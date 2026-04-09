@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 DATASET_DB = BASE_DIR / "Data" / "dataset.sqlite"
 MODEL_DIR = BASE_DIR / "Models"
 
-DEFAULT_DATASET = "dataset_2012-24_new"
+DEFAULT_DATASET = "dataset_2012-26"
 TARGET_COLUMN = "OU-Cover"
 DATE_COLUMN = "Date"
 DROP_COLUMNS = [

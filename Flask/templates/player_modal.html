@@ -2,8 +2,8 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="player-modal-label">Player profile</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="player-modal-label">球員資料</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="關閉"></button>
             </div>
             <div class="modal-body">
                 <div class="d-flex align-items-center gap-3 mb-4">
@@ -16,13 +16,13 @@
                         <div id="player-name" class="player-name"></div>
                         <div id="player-details" class="tag-row"></div>
                         <div id="player-injury" class="mt-2"></div>
-                        <div class="player-meta mt-2">Player ID: <span id="player-modal-id"></span></div>
+                        <div class="player-meta mt-2">球員 ID: <span id="player-modal-id"></span></div>
                     </div>
                 </div>
 
                 <div id="stats-loading" class="text-center py-4">
                     <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                        <span class="visually-hidden">載入中...</span>
                     </div>
                 </div>
 
@@ -32,15 +32,15 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>MIN</th>
-                                <th>PTS</th>
-                                <th>REB</th>
-                                <th>AST</th>
-                                <th>STL</th>
-                                <th>BLK</th>
-                                <th>TO</th>
-                                <th>FG%</th>
+                                <th>日期</th>
+                                <th>分鐘</th>
+                                <th>得分</th>
+                                <th>籃板</th>
+                                <th>助攻</th>
+                                <th>抄截</th>
+                                <th>火鍋</th>
+                                <th>失誤</th>
+                                <th>命中率</th>
                             </tr>
                         </thead>
                         <tbody id="stats-body"></tbody>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">關閉</button>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
                             <span class="status-chip status-injured">${injuryStatus}</span>
                         `;
                     } else {
-                        injuryEl.innerHTML = `<span class="status-chip status-healthy">Healthy</span>`;
+                        injuryEl.innerHTML = `<span class="status-chip status-healthy">健康</span>`;
                     }
 
                     if (data.games && data.games.length > 0) {

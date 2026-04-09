@@ -25,7 +25,7 @@
 
 body {
     margin: 0;
-    font-family: "Manrope", "Space Grotesk", sans-serif;
+    font-family: "Manrope", "Space Grotesk", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
     background: radial-gradient(circle at top, #162036 0%, #0b0f17 55%, #080b14 100%);
     color: var(--text);
     min-height: 100vh;
@@ -381,10 +381,108 @@ h3 {
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .team-name:hover {
     text-decoration: underline;
+}
+
+.team-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.team-logo-sm {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.modal-title .team-logo {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.date-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0 24px;
+}
+
+.date-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 18px;
+    border-radius: 14px;
+    background: rgba(8, 12, 24, 0.6);
+    border: 1px solid var(--stroke);
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-width: 72px;
+}
+
+.date-chip:hover {
+    background: rgba(20, 28, 48, 0.8);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.date-chip.selected {
+    background: linear-gradient(145deg, var(--accent), #1f5fc7);
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(47, 124, 246, 0.3);
+}
+
+.date-chip.is-today .date-chip-label {
+    font-weight: 700;
+}
+
+.date-chip-label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.date-chip-weekday {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.date-chip.selected .date-chip-weekday {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.result-badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.result-badge.correct {
+    background: rgba(45, 211, 111, 0.15);
+    color: var(--positive);
+    border: 1px solid rgba(45, 211, 111, 0.4);
+}
+
+.result-badge.wrong {
+    background: rgba(255, 107, 107, 0.15);
+    color: var(--negative);
+    border: 1px solid rgba(255, 107, 107, 0.4);
 }
 
 .matchup .at {

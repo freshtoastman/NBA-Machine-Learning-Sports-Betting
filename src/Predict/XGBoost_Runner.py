@@ -114,12 +114,16 @@ def _print_expected_value(
             "away_color": Fore.GREEN if ev_away > 0 else Fore.RED,
         }
         bankroll_descriptor = " Fraction of Bankroll: "
-        bankroll_fraction_home = bankroll_descriptor + str(
-            kc.calculate_kelly_criterion(home_team_odds[idx], ml_predictions_array[idx][1])
-        ) + "%"
-        bankroll_fraction_away = bankroll_descriptor + str(
-            kc.calculate_kelly_criterion(away_team_odds[idx], ml_predictions_array[idx][0])
-        ) + "%"
+        if home_team_odds[idx] and away_team_odds[idx]:
+            bankroll_fraction_home = bankroll_descriptor + str(
+                kc.calculate_kelly_criterion(home_team_odds[idx], ml_predictions_array[idx][1])
+            ) + "%"
+            bankroll_fraction_away = bankroll_descriptor + str(
+                kc.calculate_kelly_criterion(away_team_odds[idx], ml_predictions_array[idx][0])
+            ) + "%"
+        else:
+            bankroll_fraction_home = bankroll_descriptor + "n/a"
+            bankroll_fraction_away = bankroll_descriptor + "n/a"
 
         print(
             home_team
@@ -137,6 +141,61 @@ def _print_expected_value(
             + Style.RESET_ALL
             + (bankroll_fraction_away if kelly_criterion else "")
         )
+
+
+def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds):
+    """Run XGBoost prediction and return structured results (no printing).
+
+    Returns a list of dicts, one per game, with keys:
+        away_team, home_team,
+        away_confidence, home_confidence,
+        ou_pick ('OVER'|'UNDER'), ou_value, ou_confidence,
+        away_team_ev, home_team_ev,
+        away_team_odds, home_team_odds.
+    """
+    _load_models()
+
+    frame_uo = frame_ml.copy()
+    frame_uo["OU"] = np.asarray(todays_games_uo, dtype=float)
+
+    ml_predictions_array = _predict_probs(xgb_ml, data, xgb_ml_calibrator)
+    ou_predictions_array = _predict_probs(
+        xgb_uo, frame_uo.values.astype(float), xgb_uo_calibrator
+    )
+
+    results = []
+    for idx, game in enumerate(games):
+        home_team, away_team = game
+        ml_probs = ml_predictions_array[idx]
+        ou_probs = ou_predictions_array[idx]
+        winner = int(np.argmax(ml_probs))
+        under_over = int(np.argmax(ou_probs))
+
+        home_odds = home_team_odds[idx]
+        away_odds = away_team_odds[idx]
+        ev_home = ev_away = 0.0
+        if home_odds and away_odds:
+            ev_home = float(Expected_Value.expected_value(ml_probs[1], int(home_odds)))
+            ev_away = float(Expected_Value.expected_value(ml_probs[0], int(away_odds)))
+
+        results.append({
+            "home_team": home_team,
+            "away_team": away_team,
+            "home_confidence": round(float(ml_probs[1]) * 100, 1),
+            "away_confidence": round(float(ml_probs[0]) * 100, 1),
+            "winner": "home" if winner == 1 else "away",
+            "ou_pick": "OVER" if under_over == 1 else "UNDER",
+            "ou_value": todays_games_uo[idx],
+            "ou_confidence": round(float(ou_probs[under_over]) * 100, 1),
+            "home_team_ev": ev_home,
+            "away_team_ev": ev_away,
+            "home_team_odds": int(home_odds) if home_odds else None,
+            "away_team_odds": int(away_odds) if away_odds else None,
+            "home_kelly": kc.calculate_kelly_criterion(home_odds, ml_probs[1]) if (home_odds and away_odds) else None,
+            "away_kelly": kc.calculate_kelly_criterion(away_odds, ml_probs[0]) if (home_odds and away_odds) else None,
+        })
+
+    return results
 
 
 def xgb_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, kelly_criterion):

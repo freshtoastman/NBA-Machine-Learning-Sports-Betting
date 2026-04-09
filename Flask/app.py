@@ -1,54 +1,36 @@
-from datetime import date
-import json
-from flask import Flask, render_template,jsonify
+from datetime import date, datetime, timedelta
+import os
+import sys
+from flask import Flask, render_template, jsonify, request
 from functools import lru_cache
-import subprocess, requests, re, time
+import requests
+import time
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from main import predict_today_xgb, predict_historical_xgb
+from src.Utils.Teams import team_logo_url, team_name_zh
+from src.Utils.tools import current_nba_season_start_year, today_taipei
+
+RAPIDAPI_KEY = os.environ.get("RAPIDAPI_KEY")
+RAPIDAPI_HEADERS = {
+    "x-rapidapi-key": RAPIDAPI_KEY,
+    "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com",
+}
 
 
 @lru_cache()
-def fetch_fanduel(ttl_hash=None):
+def fetch_game_data(sportsbook, ttl_hash=None):
     del ttl_hash
-    return fetch_game_data(sportsbook="fanduel")
+    games = predict_today_xgb(sportsbook=sportsbook)
+    return {f"{g['away_team']}:{g['home_team']}": g for g in games}
 
-@lru_cache()
-def fetch_draftkings(ttl_hash=None):
-    del ttl_hash
-    return fetch_game_data(sportsbook="draftkings")
 
-@lru_cache()
-def fetch_betmgm(ttl_hash=None):
-    del ttl_hash
-    return fetch_game_data(sportsbook="betmgm")
-
-def fetch_game_data(sportsbook="fanduel"):
-    cmd = ["python", "main.py", "-xgb", f"-odds={sportsbook}"]
-    stdout = subprocess.check_output(cmd, cwd="../").decode()
-    data_re = re.compile(r'\n(?P<home_team>[\w ]+)(\((?P<home_confidence>[\d+\.]+)%\))? vs (?P<away_team>[\w ]+)(\((?P<away_confidence>[\d+\.]+)%\))?: (?P<ou_pick>OVER|UNDER) (?P<ou_value>[\d+\.]+) (\((?P<ou_confidence>[\d+\.]+)%\))?', re.MULTILINE)
-    ev_re = re.compile(r'(?P<team>[\w ]+) EV: (?P<ev>[-\d+\.]+)', re.MULTILINE)
-    odds_re = re.compile(r'(?P<away_team>[\w ]+) \((?P<away_team_odds>-?\d+)\) @ (?P<home_team>[\w ]+) \((?P<home_team_odds>-?\d+)\)', re.MULTILINE)
-    games = {}
-    for match in data_re.finditer(stdout):
-        game_dict = {'away_team': match.group('away_team').strip(),
-                     'home_team': match.group('home_team').strip(),
-                     'away_confidence': match.group('away_confidence'),
-                     'home_confidence': match.group('home_confidence'),
-                     'ou_pick': match.group('ou_pick'),
-                     'ou_value': match.group('ou_value'),
-                     'ou_confidence': match.group('ou_confidence')}
-        for ev_match in ev_re.finditer(stdout):
-            if ev_match.group('team') == game_dict['away_team']:
-                game_dict['away_team_ev'] = ev_match.group('ev')
-            if ev_match.group('team') == game_dict['home_team']:
-                game_dict['home_team_ev'] = ev_match.group('ev')
-        for odds_match in odds_re.finditer(stdout):
-            if odds_match.group('away_team') == game_dict['away_team']:
-                game_dict['away_team_odds'] = odds_match.group('away_team_odds')
-            if odds_match.group('home_team') == game_dict['home_team']:
-                game_dict['home_team_odds'] = odds_match.group('home_team_odds')
-
-        print(json.dumps(game_dict, sort_keys=True, indent=4))
-        games[f"{game_dict['away_team']}:{game_dict['home_team']}"] = game_dict
-    return games
+@lru_cache(maxsize=64)
+def fetch_historical_data(date_iso):
+    """Historical predictions for a past date. Returns a dict keyed by 'away:home'."""
+    target = date.fromisoformat(date_iso)
+    games = predict_historical_xgb(target)
+    return {f"{g['away_team']}:{g['home_team']}": g for g in games}
 
 
 def get_ttl_hash(seconds=600):
@@ -56,17 +38,63 @@ def get_ttl_hash(seconds=600):
     return round(time.time() / seconds)
 
 
+def build_date_chips(selected_date, days=7):
+    """Build a list of {iso, label, is_today, is_selected} chips for header."""
+    today = today_taipei()
+    chips = []
+    for offset in range(0, days + 1):
+        d = today - timedelta(days=offset)
+        chips.append({
+            "iso": d.isoformat(),
+            "label": "今天" if offset == 0 else f"{d.month}/{d.day}",
+            "weekday": ["週一", "週二", "週三", "週四", "週五", "週六", "週日"][d.weekday()],
+            "is_today": offset == 0,
+            "is_selected": d == selected_date,
+        })
+    return chips
+
+
 app = Flask(__name__)
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+app.jinja_env.globals.update(
+    team_logo_url=team_logo_url,
+    team_name_zh=team_name_zh,
+)
 
 
 @app.route("/")
 def index():
-    fanduel = fetch_fanduel(ttl_hash=get_ttl_hash())
-    draftkings = fetch_draftkings(ttl_hash=get_ttl_hash())
-    betmgm = fetch_betmgm(ttl_hash=get_ttl_hash())
+    today = today_taipei()
+    selected_date_str = request.args.get("date")
+    if selected_date_str:
+        try:
+            selected_date = date.fromisoformat(selected_date_str)
+        except ValueError:
+            selected_date = today
+    else:
+        selected_date = today
 
-    return render_template('index.html', today=date.today(), data={"fanduel": fanduel, "draftkings": draftkings, "betmgm": betmgm})
+    is_today = selected_date == today
+    if is_today:
+        ttl = get_ttl_hash()
+        fanduel = fetch_game_data("fanduel", ttl_hash=ttl)
+        draftkings = fetch_game_data("draftkings", ttl_hash=ttl)
+        betmgm = fetch_game_data("betmgm", ttl_hash=ttl)
+    else:
+        # For past days, we read from local SQLite (single source, not per-book).
+        historical = fetch_historical_data(selected_date.isoformat())
+        fanduel = historical
+        draftkings = {}
+        betmgm = {}
+
+    return render_template(
+        'index.html',
+        today=today,
+        selected_date=selected_date,
+        is_today=is_today,
+        date_chips=build_date_chips(selected_date),
+        data={"fanduel": fanduel, "draftkings": draftkings, "betmgm": betmgm},
+    )
 
 
 
@@ -74,14 +102,10 @@ def index():
 def get_player_data(team_abv):
     """Fetch player data for a given team abbreviation"""
     url = "https://tank01-fantasy-stats.p.rapidapi.com/getNBATeamRoster"
-    headers = {
-        "x-rapidapi-key": "a0f0cd0b5cmshfef96ed37a9cda6p1f67bajsnfcdd16f37df8",
-        "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com"
-    }
     querystring = {"teamAbv": team_abv}
-    
+
     try:
-        response = requests.get(url, headers=headers, params=querystring)
+        response = requests.get(url, headers=RAPIDAPI_HEADERS, params=querystring)
         data = response.json()
         
         if data.get('statusCode') == 200:
@@ -151,26 +175,21 @@ def team_data(team_name):
     
 @app.route("/player-stats/<player_id>")
 def player_stats(player_id):
-    headers = {
-        "x-rapidapi-key": "a0f0cd0b5cmshfef96ed37a9cda6p1f67bajsnfcdd16f37df8",
-        "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com"
-    }
-    
     # First get player info
     info_url = "https://tank01-fantasy-stats.p.rapidapi.com/getNBAPlayerInfo"
     info_querystring = {"playerID": player_id}
-    
+
     # Then get game stats
     games_url = "https://tank01-fantasy-stats.p.rapidapi.com/getNBAGamesForPlayer"
     games_querystring = {
         "playerID": player_id,
-        "season": "2024",
+        "season": str(current_nba_season_start_year()),
     }
-    
+
     try:
         # Get both responses
-        info_response = requests.get(info_url, headers=headers, params=info_querystring)
-        games_response = requests.get(games_url, headers=headers, params=games_querystring)
+        info_response = requests.get(info_url, headers=RAPIDAPI_HEADERS, params=info_querystring)
+        games_response = requests.get(games_url, headers=RAPIDAPI_HEADERS, params=games_querystring)
         
         info_data = info_response.json()
         games_data = games_response.json()

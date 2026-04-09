@@ -1,10 +1,18 @@
 import re
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
 
 from .Dictionaries import team_index_current
+
+TAIPEI_TZ = ZoneInfo("Asia/Taipei")
+
+
+def today_taipei():
+    """Return today's date in Asia/Taipei timezone."""
+    return datetime.now(TAIPEI_TZ).date()
 
 games_header = {
     'user-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -81,3 +89,19 @@ def get_date(date_string):
     year1, month, day = re.search(r'(\d+)-\d+-(\d\d)(\d\d)', date_string).groups()
     year = year1 if int(month) > 8 else int(year1) + 1
     return datetime.strptime(f"{year}-{month}-{day}", '%Y-%m-%d')
+
+
+def current_nba_season_start_year(today=None):
+    """Return the calendar year that the current NBA season started in.
+
+    NBA seasons run October–June. October–December belongs to season starting that year;
+    January–September belongs to season starting the previous year.
+    """
+    today = today or datetime.today()
+    return today.year if today.month >= 10 else today.year - 1
+
+
+def current_nba_season(today=None):
+    """Return the current NBA season label, e.g. '2025-26'."""
+    start = current_nba_season_start_year(today)
+    return f"{start}-{(start + 1) % 100:02d}"

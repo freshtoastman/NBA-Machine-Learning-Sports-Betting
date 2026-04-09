@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NBA Edge Lab</title>
+    <title>NBA 預測實驗室</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
@@ -25,18 +25,18 @@
                 <div class="brand">
                     <div class="brand-mark">NBA</div>
                     <div class="brand-text">
-                        Edge Lab
-                        <small>Machine Learning Picks</small>
+                        預測實驗室
+                        <small>機器學習選號</small>
                     </div>
                 </div>
                 <div class="nav-links">
-                    <a href="#picks">Today's Board</a>
-                    <a href="#stack">Model Stack</a>
-                    <a href="#insights">Market Pulse</a>
+                    <a href="#picks">今日預測</a>
+                    <a href="#stack">模型架構</a>
+                    <a href="#insights">市場脈動</a>
                 </div>
                 <div class="nav-actions">
-                    <a class="btn btn-ghost" href="#picks">View Picks</a>
-                    <a class="btn btn-primary" href="#stack">How It Works</a>
+                    <a class="btn btn-ghost" href="#picks">查看預測</a>
+                    <a class="btn btn-primary" href="#stack">運作原理</a>
                 </div>
             </nav>
         </header>
@@ -44,80 +44,79 @@
         <main>
             <section class="hero">
                 <div class="hero-copy reveal">
-                    <div class="eyebrow">NBA Machine Learning</div>
-                    <h1>Sharper NBA edges, distilled from every possession.</h1>
+                    <div class="eyebrow">NBA 機器學習</div>
+                    <h1>用每一個回合，淬煉出更銳利的 NBA 籌碼。</h1>
                     <p>
-                        Model-driven win probabilities and totals picks, enriched with sportsbook odds,
-                        expected value, and bankroll guidance. Updated daily for today's slate.
+                        模型驅動的勝率與大小分預測，結合運彩賠率、期望值與資金管理建議。每日更新今日對戰。
                     </p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#picks">Explore Today's Board</a>
-                        <a class="btn btn-ghost" href="#insights">See Market Pulse</a>
+                        <a class="btn btn-primary" href="#picks">查看今日對戰</a>
+                        <a class="btn btn-ghost" href="#insights">了解市場脈動</a>
                     </div>
                     <div class="hero-metrics">
                         <div class="metric-card">
-                            <span>Today's slate</span>
-                            <strong>{{ games_count }} matchups</strong>
+                            <span>今日場次</span>
+                            <strong>{{ games_count }} 場對戰</strong>
                         </div>
                         <div class="metric-card">
-                            <span>Sportsbooks</span>
+                            <span>運彩公司</span>
                             <strong>FanDuel / DK / MGM</strong>
                         </div>
                         <div class="metric-card">
-                            <span>Model focus</span>
-                            <strong>Moneyline + Totals</strong>
+                            <span>模型主題</span>
+                            <strong>勝負 + 大小分</strong>
                         </div>
                     </div>
                 </div>
                 <div class="hero-panel reveal" data-delay="120">
                     <div>
-                        <div class="eyebrow">Slate snapshot</div>
-                        <h3 class="panel-title">{{ today }} / Live model board</h3>
-                        <p>Confidence-weighted projections with EV overlays and totals lean.</p>
+                        <div class="eyebrow">今日快照</div>
+                        <h3 class="panel-title">{{ today }} / 即時模型看板</h3>
+                        <p>含信心加權的勝率預測、期望值疊加、與大小分傾向。</p>
                     </div>
                     <div class="pulse-grid">
                         <div class="pulse-item">
-                            <span class="eyebrow">ML Accuracy</span>
+                            <span class="eyebrow">勝負準確率</span>
                             <strong>~69%</strong>
                         </div>
                         <div class="pulse-item">
-                            <span class="eyebrow">Totals Accuracy</span>
+                            <span class="eyebrow">大小分準確率</span>
                             <strong>~55%</strong>
                         </div>
                         <div class="pulse-item">
-                            <span class="eyebrow">Kelly Enabled</span>
-                            <strong>Optional</strong>
+                            <span class="eyebrow">Kelly 準則</span>
+                            <strong>選用</strong>
                         </div>
                     </div>
-                    <div class="chip">Updated {{ today }}</div>
+                    <div class="chip">更新於 {{ today }}</div>
                 </div>
             </section>
 
             <section id="insights" class="section">
                 <div class="section-header">
                     <div>
-                        <div class="eyebrow">Market pulse</div>
-                        <h2>Translate market odds into model-ready signals.</h2>
-                        <p>We blend season-long team stats with live odds to surface value and totals lean.</p>
+                        <div class="eyebrow">市場脈動</div>
+                        <h2>把市場賠率轉化為模型可用的訊號。</h2>
+                        <p>融合整季球隊統計與即時賠率,挖掘價值與大小分傾向。</p>
                     </div>
-                    <div class="chip">Signal + Context</div>
+                    <div class="chip">訊號 + 脈絡</div>
                 </div>
                 <div class="insights-grid">
                     <div class="insight-card reveal">
-                        <h4>EV Overlay</h4>
-                        <p>Every side includes expected value so you can separate noise from true edge.</p>
+                        <h4>期望值疊加</h4>
+                        <p>每一邊都附上期望值,幫你分辨噪音與真正的籌碼。</p>
                     </div>
                     <div class="insight-card reveal" data-delay="80">
-                        <h4>Rest-Aware Features</h4>
-                        <p>Days of rest and schedule effects are baked into matchup features.</p>
+                        <h4>休息日特徵</h4>
+                        <p>球員的休息天數與賽程效應,都納入了對戰特徵。</p>
                     </div>
                     <div class="insight-card reveal" data-delay="160">
-                        <h4>Odds Consistency</h4>
-                        <p>Compare three books side-by-side and spot pricing gaps instantly.</p>
+                        <h4>賠率比較</h4>
+                        <p>三家運彩公司並排,瞬間找到定價的縫隙。</p>
                     </div>
                     <div class="insight-card reveal" data-delay="240">
-                        <h4>Totals Confidence</h4>
-                        <p>Over/under picks include probability confidence to gauge conviction.</p>
+                        <h4>大小分信心</h4>
+                        <p>大小分預測附上機率信心,衡量篤定程度。</p>
                     </div>
                 </div>
             </section>
@@ -125,11 +124,20 @@
             <section id="picks" class="section">
                 <div class="section-header">
                     <div>
-                        <div class="eyebrow">Today's Board</div>
-                        <h2>Model picks for every matchup.</h2>
-                        <p>Click any team name to see roster details and player form.</p>
+                        <div class="eyebrow">{% if is_today %}今日預測{% else %}歷史回顧{% endif %}</div>
+                        <h2>{% if is_today %}每場對戰的模型選號。{% else %}{{ selected_date }} 的預測 vs 實際結果。{% endif %}</h2>
+                        <p>{% if is_today %}點任一隊名可查看球員名單與狀態。{% else %}標記顯示模型在當天的命中情形。{% endif %}</p>
                     </div>
-                    <div class="chip">{{ today }}</div>
+                    <div class="chip">台灣時間 {{ today }}</div>
+                </div>
+
+                <div class="date-chips">
+                    {% for chip in date_chips %}
+                    <a href="?date={{ chip.iso }}" class="date-chip {% if chip.is_selected %}selected{% endif %} {% if chip.is_today %}is-today{% endif %}">
+                        <span class="date-chip-label">{{ chip.label }}</span>
+                        <span class="date-chip-weekday">{{ chip.weekday }}</span>
+                    </a>
+                    {% endfor %}
                 </div>
 
                 <div class="picks-grid">
@@ -150,15 +158,36 @@
                         <div class="game-header">
                             <div class="matchup">
                                 <div class="team-stack">
-                                    <span class="team-name" data-bs-toggle="modal" data-bs-target="#modal-{{ away_team|replace(' ', '-')|lower }}">{{ away_team }}</span>
-                                    <span class="team-name" data-bs-toggle="modal" data-bs-target="#modal-{{ home_team|replace(' ', '-')|lower }}">{{ home_team }}</span>
+                                    <span class="team-name" data-bs-toggle="modal" data-bs-target="#modal-{{ away_team|replace(' ', '-')|lower }}">
+                                        {% if team_logo_url(away_team) %}
+                                        <img class="team-logo" src="{{ team_logo_url(away_team) }}" alt="{{ away_team }}" loading="lazy">
+                                        {% endif %}
+                                        {{ team_name_zh(away_team) }}
+                                    </span>
+                                    <span class="team-name" data-bs-toggle="modal" data-bs-target="#modal-{{ home_team|replace(' ', '-')|lower }}">
+                                        {% if team_logo_url(home_team) %}
+                                        <img class="team-logo" src="{{ team_logo_url(home_team) }}" alt="{{ home_team }}" loading="lazy">
+                                        {% endif %}
+                                        {{ team_name_zh(home_team) }}
+                                    </span>
                                 </div>
                                 <span class="at">@</span>
                             </div>
                             <div class="lean">
-                                <span>Model lean</span>
-                                <strong>{{ lean_team }}</strong>
-                                <div class="player-meta">{{ lean_conf|round(1) }}% confidence</div>
+                                <span>模型傾向</span>
+                                <strong>{{ team_name_zh(lean_team) }}</strong>
+                                <div class="player-meta">{{ lean_conf|round(1) }}% 信心</div>
+                                {% if fd_game and fd_game.ml_correct is defined and fd_game.ml_correct is not none %}
+                                <div class="result-badge {% if fd_game.ml_correct %}correct{% else %}wrong{% endif %}">
+                                    勝負 {% if fd_game.ml_correct %}✓ 命中{% else %}✗ 失準{% endif %}
+                                </div>
+                                {% endif %}
+                                {% if fd_game and fd_game.ou_correct is defined and fd_game.ou_correct is not none %}
+                                <div class="result-badge {% if fd_game.ou_correct %}correct{% else %}wrong{% endif %}">
+                                    大小分 {% if fd_game.ou_correct %}✓ 命中{% else %}✗ 失準{% endif %}
+                                    {% if fd_game.actual_total %} (實際 {{ fd_game.actual_total }}){% endif %}
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="books-grid">
@@ -170,7 +199,8 @@
                                     <span class="book-name">{{ sportsbook }}</span>
                                     {% if sbgame %}
                                         {% if sbgame.ou_pick %}
-                                            <span class="ou-chip {% if sbgame.ou_pick == 'UNDER' %}under{% endif %}">{{ sbgame.ou_pick }} {{ sbgame.ou_value }}</span>
+                                            {% set ou_label = '大分' if sbgame.ou_pick == 'OVER' else '小分' %}
+                                            <span class="ou-chip {% if sbgame.ou_pick == 'UNDER' %}under{% endif %}">{{ ou_label }} {{ sbgame.ou_value }}</span>
                                         {% endif %}
                                     {% endif %}
                                 </div>
@@ -182,7 +212,12 @@
                                     <div class="book-lines">
                                         <div>
                                             <div class="line-row">
-                                                <span>{{ sbgame.away_team }}</span>
+                                                <span>
+                                                    {% if team_logo_url(sbgame.away_team) %}
+                                                    <img class="team-logo team-logo-sm" src="{{ team_logo_url(sbgame.away_team) }}" alt="{{ sbgame.away_team }}" loading="lazy">
+                                                    {% endif %}
+                                                    {{ team_name_zh(sbgame.away_team) }}
+                                                </span>
                                                 <span class="odds">
                                                     {% if sbgame.away_team_odds %}
                                                         {% if sbgame.away_team_odds|int > 0 %}+{% endif %}{{ sbgame.away_team_odds }}
@@ -203,7 +238,12 @@
                                         </div>
                                         <div>
                                             <div class="line-row">
-                                                <span>{{ sbgame.home_team }}</span>
+                                                <span>
+                                                    {% if team_logo_url(sbgame.home_team) %}
+                                                    <img class="team-logo team-logo-sm" src="{{ team_logo_url(sbgame.home_team) }}" alt="{{ sbgame.home_team }}" loading="lazy">
+                                                    {% endif %}
+                                                    {{ team_name_zh(sbgame.home_team) }}
+                                                </span>
                                                 <span class="odds">
                                                     {% if sbgame.home_team_odds %}
                                                         {% if sbgame.home_team_odds|int > 0 %}+{% endif %}{{ sbgame.home_team_odds }}
@@ -224,7 +264,7 @@
                                         </div>
                                     </div>
                                 {% else %}
-                                    <div class="empty-book">No odds for this matchup.</div>
+                                    <div class="empty-book">這場比賽暫無賠率。</div>
                                 {% endif %}
                             </div>
                             {% endfor %}
@@ -237,35 +277,35 @@
             <section id="stack" class="section">
                 <div class="section-header">
                     <div>
-                        <div class="eyebrow">Model stack</div>
-                        <h2>From raw stats to ready-to-bet predictions.</h2>
-                        <p>A compact pipeline that goes from daily NBA data to live picks.</p>
+                        <div class="eyebrow">模型架構</div>
+                        <h2>從原始數據到可下注的預測。</h2>
+                        <p>一條精簡的管線,從每日 NBA 資料一路到即時選號。</p>
                     </div>
-                    <div class="chip">XGBoost + Neural Net</div>
+                    <div class="chip">XGBoost + 神經網路</div>
                 </div>
                 <div class="feature-grid">
                     <div class="feature-card reveal">
-                        <h3>Ingest</h3>
-                        <p>Daily team stats and sportsbook odds flow into SQLite datasets.</p>
+                        <h3>資料擷取</h3>
+                        <p>每日球隊統計與運彩賠率匯入 SQLite 資料集。</p>
                     </div>
                     <div class="feature-card reveal" data-delay="90">
-                        <h3>Feature build</h3>
-                        <p>Matchups combine team baselines, days of rest, and totals data.</p>
+                        <h3>特徵建構</h3>
+                        <p>把球隊基礎、休息日、大小分資料組合成對戰特徵。</p>
                     </div>
                     <div class="feature-card reveal" data-delay="180">
-                        <h3>Train</h3>
-                        <p>XGBoost and neural nets learn win probabilities and totals leans.</p>
+                        <h3>模型訓練</h3>
+                        <p>XGBoost 與神經網路學習勝率與大小分傾向。</p>
                     </div>
                     <div class="feature-card reveal" data-delay="270">
-                        <h3>Deploy</h3>
-                        <p>Live odds run through models to surface EV and Kelly sizing.</p>
+                        <h3>線上預測</h3>
+                        <p>即時賠率走過模型,輸出期望值與 Kelly 倉位建議。</p>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            Built for sharper NBA decisions. Data + models update daily.
+            為更銳利的 NBA 決策而生。資料與模型每日更新。
         </footer>
     </div>
 

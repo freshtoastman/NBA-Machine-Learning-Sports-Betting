@@ -1,24 +1,32 @@
 import argparse
+import os
 from datetime import datetime, timedelta
 
 import pandas as pd
 import tensorflow as tf
 from colorama import Fore, Style
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 from src.DataProviders.SbrOddsProvider import SbrOddsProvider
 from src.Predict import NN_Runner, XGBoost_Runner
 from src.Utils.Dictionaries import team_index_current
 from src.Utils.tools import (
     create_todays_games_from_odds,
+    current_nba_season,
+    current_nba_season_start_year,
     get_json_data,
     to_data_frame,
     get_todays_games_json,
     create_todays_games,
 )
 
-TODAYS_GAMES_URL = "https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2025/scores/00_todays_scores.json"
-DATA_URL = "https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=&DateTo=&Division=&GameScope=&GameSegment=&Height=&ISTRound=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2025-26&SeasonSegment=&SeasonType=Regular%20Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
-SCHEDULE_PATH = "Data/nba-2025-UTC.csv"
+_SEASON_START_YEAR = current_nba_season_start_year()
+_SEASON = current_nba_season()
+
+TODAYS_GAMES_URL = f"https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/{_SEASON_START_YEAR}/scores/00_todays_scores.json"
+DATA_URL = f"https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=&DateTo=&Division=&GameScope=&GameSegment=&Height=&ISTRound=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season={_SEASON}&SeasonSegment=&SeasonType=Regular%20Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
+SCHEDULE_PATH = os.path.join(PROJECT_ROOT, "Data", f"nba-{_SEASON_START_YEAR}-UTC.csv")
 
 
 def create_todays_games_data(games, df, odds, schedule_df, today):
@@ -127,6 +135,150 @@ def run_models(data, normalized_data, todays_games_uo, frame_ml, games, home_tea
             normalized_data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc
         )
         print("-------------------------------------------------------")
+
+
+def predict_today_xgb(sportsbook):
+    """Programmatic XGBoost prediction for today's NBA games.
+
+    Returns a list of structured prediction dicts (see XGBoost_Runner.xgb_predict).
+    Used by Flask app and any other consumer that needs structured output.
+    """
+    odds = SbrOddsProvider(sportsbook=sportsbook).get_odds() if sportsbook else None
+    games, odds = resolve_games(odds, sportsbook)
+    if games is None:
+        return []
+
+    stats_json = get_json_data(DATA_URL)
+    df = to_data_frame(stats_json)
+    schedule_df = load_schedule()
+    today = datetime.today()
+    data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
+        games, df, odds, schedule_df, today
+    )
+    return XGBoost_Runner.xgb_predict(
+        data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds
+    )
+
+
+# Historical (past dates) — read features + actual outcomes from local SQLite,
+# join money lines from OddsData.sqlite, and compare predictions to actuals.
+import sqlite3  # noqa: E402
+
+_DATASET_DB = os.path.join(PROJECT_ROOT, "Data", "dataset.sqlite")
+_ODDS_DB = os.path.join(PROJECT_ROOT, "Data", "OddsData.sqlite")
+_DATASET_TABLE = "dataset_2012-26"
+_DROP_FEATURE_COLS = [
+    "index", "Score", "Home-Team-Win", "TEAM_NAME", "Date",
+    "index.1", "TEAM_NAME.1", "Date.1", "OU-Cover",
+]
+
+
+def _season_table_for_date(date_obj):
+    """Return the OddsData season table key for a date (NBA season starts Oct)."""
+    if date_obj.month >= 10:
+        start = date_obj.year
+    else:
+        start = date_obj.year - 1
+    return f"{start}-{(start + 1) % 100:02d}"
+
+
+def predict_historical_xgb(target_date):
+    """Predict + grade NBA games for a past date using locally cached data.
+
+    Returns a list of dicts shaped like xgb_predict() output, plus extra fields:
+        actual_home_win (bool|None), actual_winner ('home'|'away'|None),
+        actual_total (float|None), actual_ou_result ('OVER'|'UNDER'|'PUSH'|None),
+        ml_correct (bool|None), ou_correct (bool|None).
+    """
+    import pandas as pd
+
+    with sqlite3.connect(_DATASET_DB) as con:
+        df = pd.read_sql_query(
+            f'SELECT * FROM "{_DATASET_TABLE}" WHERE Date = ?',
+            con,
+            params=(target_date.isoformat(),),
+        )
+    if df.empty:
+        return []
+
+    # Try to attach money lines from OddsData season table.
+    season_table = _season_table_for_date(target_date)
+    odds_lookup = {}
+    try:
+        with sqlite3.connect(_ODDS_DB) as con:
+            odds_df = pd.read_sql_query(
+                f'SELECT Date, Home, Away, ML_Home, ML_Away, OU, Points '
+                f'FROM "{season_table}" WHERE Date = ?',
+                con,
+                params=(target_date.isoformat(),),
+            )
+        for _, row in odds_df.iterrows():
+            key = (row["Home"], row["Away"])
+            odds_lookup[key] = row
+    except Exception:
+        pass
+
+    # Build the same arrays xgb_predict expects.
+    games = []
+    home_odds_list = []
+    away_odds_list = []
+    todays_uo = []
+    actual_rows = []  # parallel to games
+    for _, row in df.iterrows():
+        home_team = row["TEAM_NAME"]
+        away_team = row["TEAM_NAME.1"]
+        games.append([home_team, away_team])
+        odds_row = odds_lookup.get((home_team, away_team))
+        if odds_row is not None:
+            home_odds_list.append(odds_row.get("ML_Home"))
+            away_odds_list.append(odds_row.get("ML_Away"))
+            todays_uo.append(odds_row.get("OU") if pd.notna(odds_row.get("OU")) else row.get("OU"))
+        else:
+            home_odds_list.append(None)
+            away_odds_list.append(None)
+            todays_uo.append(row.get("OU"))
+        actual_rows.append({
+            "home_win": int(row["Home-Team-Win"]) if pd.notna(row.get("Home-Team-Win")) else None,
+            "ou_cover": int(row["OU-Cover"]) if pd.notna(row.get("OU-Cover")) else None,
+            "total_points": odds_row.get("Points") if odds_row is not None and pd.notna(odds_row.get("Points")) else None,
+            "ou_value": todays_uo[-1],
+        })
+
+    # Build the feature frame the same way create_todays_games_data does.
+    frame_ml = df.drop(columns=_DROP_FEATURE_COLS, errors="ignore").copy()
+    if "OU" in frame_ml.columns:
+        frame_ml = frame_ml.drop(columns=["OU"])
+    data = frame_ml.astype(float).to_numpy()
+
+    predictions = XGBoost_Runner.xgb_predict(
+        data, todays_uo, frame_ml, games, home_odds_list, away_odds_list
+    )
+
+    # Annotate with actual outcomes + correctness.
+    ou_label_map = {0: "UNDER", 1: "OVER", 2: "PUSH"}
+    for pred, actual in zip(predictions, actual_rows):
+        ah = actual["home_win"]
+        if ah is not None:
+            pred["actual_home_win"] = bool(ah)
+            pred["actual_winner"] = "home" if ah == 1 else "away"
+            pred["ml_correct"] = (pred["winner"] == pred["actual_winner"])
+        else:
+            pred["actual_home_win"] = None
+            pred["actual_winner"] = None
+            pred["ml_correct"] = None
+
+        oc = actual["ou_cover"]
+        if oc is not None:
+            pred["actual_ou_result"] = ou_label_map.get(oc)
+            pred["ou_correct"] = (pred["ou_pick"] == pred["actual_ou_result"]) if pred["actual_ou_result"] != "PUSH" else None
+        else:
+            pred["actual_ou_result"] = None
+            pred["ou_correct"] = None
+
+        pred["actual_total"] = actual["total_points"]
+        pred["is_historical"] = True
+
+    return predictions
 
 
 def main(args):
