@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBA 預測 — {{ selected_date }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% set fanduel_games = data.get('fanduel') or {} %}
+    <div class="page compact">
+        <header class="compact-header">
+            <div class="compact-title">
+                <span class="brand-mark">NBA</span>
+                <h1>機器學習預測</h1>
+                <span class="tz-chip">台灣時間 {{ today }}</span>
+            </div>
+            <div class="date-chips">
+                {% for chip in date_chips %}
+                <a href="?date={{ chip.iso }}" class="date-chip {% if chip.is_selected %}selected{% endif %} {% if chip.is_today %}is-today{% endif %}">
+                    <span class="date-chip-label">{{ chip.label }}</span>
+                    <span class="date-chip-weekday">{{ chip.weekday }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </header>
+
+        <section class="dashboard">
+            {# Row 1: 當日 predictions #}
+            {% if summary.games > 0 %}
+            <div class="dash-row">
+                <span class="dash-tag today-tag">今日 {{ selected_date }}</span>
+                <span class="dash-chip"><b>{{ summary.games }}</b> 場</span>
+                <span class="dash-chip">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
+                <span class="dash-chip">大 <b>{{ summary.over_picks }}</b> / 小 <b>{{ summary.under_picks }}</b></span>
+                <span class="dash-chip">平均 <b>{{ summary.avg_confidence }}%</b></span>
+                {% if not is_today and summary.ml_hit_rate is not none %}
+                <span class="dash-chip hit"><span class="dash-lbl">ML</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
+                <span class="dash-chip hit"><span class="dash-lbl">OU</span><b>{{ summary.ou_hit_rate }}%</b><span class="dash-sub">{{ summary.ou_correct }}/{{ summary.ou_graded }}</span></span>
+                {% endif %}
+                {% if summary.value_picks %}
+                <span class="dash-chip diamond">💎 <b>{{ summary.value_picks }}</b>{% if not is_today and summary.value_hit_rate is not none %} · <b>{{ summary.value_hit_rate }}%</b> ({{ summary.value_wins }}/{{ summary.value_decided }}){% endif %}</span>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div id="daily-report-block" style="margin-top:10px;">
+                <button class="daily-report-btn" onclick="loadDailyReport('{{ selected_date }}')">📊 生成當日 AI 分析報告</button>
+                <div class="daily-report-content" style="display:none;"></div>
+            </div>
+        </section>
+
+        {# Model comparison: ML / UO / ATS side-by-side #}
+        {% if season_stats %}
+        <section class="model-compare">
+            <div class="model-compare-head">
+                <span class="dash-tag season-tag">{{ season_key }} 賽季 · {{ season_stats.games }} 場</span>
+                <span class="model-compare-sub">三個模型對照 · 鑽石場次採用最高勝率設定</span>
+            </div>
+            <div class="model-grid">
+                {# ML moneyline #}
+                <div class="model-card ml-card">
+                    <div class="model-card-head">
+                        <span class="model-name">ML 勝負</span>
+                        <span class="model-acc {% if season_stats.ml_hit_rate >= 65 %}good{% elif season_stats.ml_hit_rate < 55 %}bad{% endif %}">{{ season_stats.ml_hit_rate }}%</span>
+                    </div>
+                    <div class="model-card-body">
+                        {% if season_stats.value_picks %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">💎 鑽石</span>
+                            <span class="model-stat-val">{{ season_stats.value_picks }} 場</span>
+                        </div>
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">命中率</span>
+                            <span class="model-stat-val big {% if season_stats.value_hit_rate >= 70 %}good{% elif season_stats.value_hit_rate < 55 %}bad{% endif %}">{{ season_stats.value_hit_rate }}%</span>
+                            <span class="model-stat-sub">{{ season_stats.value_wins }}/{{ season_stats.value_wins + season_stats.value_losses }}</span>
+                        </div>
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">flat $1 ROI</span>
+                            <span class="model-stat-val {% if season_stats.value_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.value_roi > 0 %}+{% endif %}{{ season_stats.value_roi }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="model-empty">無鑽石場次</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# UO totals #}
+                <div class="model-card uo-card">
+                    <div class="model-card-head">
+                        <span class="model-name">UO 大小分</span>
+                        <span class="model-acc {% if season_stats.ou_hit_rate >= 55 %}good{% elif season_stats.ou_hit_rate < 48 %}bad{% endif %}">{{ season_stats.ou_hit_rate }}%</span>
+                    </div>
+                    <div class="model-card-body">
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">命中</span>
+                            <span class="model-stat-val">{{ season_stats.ou_hits }}/{{ season_stats.games }}</span>
+                        </div>
+                        <div class="model-empty">大小分市場效率高,模型訊號弱</div>
+                    </div>
+                </div>
+
+                {# ATS spread #}
+                {% if season_stats.ats_model %}
+                {% set a = season_stats.ats_model %}
+                <div class="model-card ats-card">
+                    <div class="model-card-head">
+                        <span class="model-name">ATS 讓分</span>
+                        <span class="model-acc {% if a.hit_rate >= 53 %}good{% elif a.hit_rate < 50 %}bad{% endif %}">{{ a.hit_rate }}%</span>
+                    </div>
+                    <div class="model-card-body">
+                        {% if a.value_bets %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">💎 鑽石</span>
+                            <span class="model-stat-val">{{ a.value_bets }} 場</span>
+                        </div>
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">命中率</span>
+                            <span class="model-stat-val big {% if a.value_hit_rate >= 65 %}good{% elif a.value_hit_rate < 53 %}bad{% endif %}">{{ a.value_hit_rate }}%</span>
+                            <span class="model-stat-sub">{{ a.value_wins }}/{{ a.value_bets }}</span>
+                        </div>
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">$1k/注 ROI</span>
+                            <span class="model-stat-val {% if a.value_roi > 0 %}good{% else %}bad{% endif %}">{% if a.value_roi > 0 %}+{% endif %}{{ a.value_roi }}%</span>
+                            <span class="model-stat-sub">${% if a.value_pl > 0 %}+{% endif %}{{ '{:,.0f}'.format(a.value_pl) }}</span>
+                        </div>
+                        {% else %}
+                        <div class="model-empty">無鑽石場次</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            {# Combined / consensus strip #}
+            {% if season_stats.elite_bets %}
+            <div class="combined-strip">
+                <span class="combined-lbl">🔥 ML + ATS 同邊共識</span>
+                <span class="combined-stat">{{ season_stats.elite_bets }} 場</span>
+                <span class="combined-stat"><b class="{% if season_stats.elite_hit_rate >= 60 %}good{% elif season_stats.elite_hit_rate < 50 %}bad{% endif %}">{{ season_stats.elite_hit_rate }}%</b> 命中</span>
+                <span class="combined-stat">{{ season_stats.elite_wins }} 勝 / {{ season_stats.elite_losses }} 負</span>
+                <span class="combined-stat"><b class="{% if season_stats.elite_pl > 0 %}good{% else %}bad{% endif %}">${% if season_stats.elite_pl > 0 %}+{% endif %}{{ '{:,.0f}'.format(season_stats.elite_pl) }}</b></span>
+                <span class="combined-stat"><b class="{% if season_stats.elite_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.elite_roi > 0 %}+{% endif %}{{ season_stats.elite_roi }}%</b> ROI</span>
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        <main class="picks-grid compact-grid">
+            {% if fanduel_games|length == 0 %}
+            <div class="empty-state">
+                <p>{{ selected_date }} 沒有比賽資料。</p>
+            </div>
+            {% endif %}
+
+            {% for game_key, game in fanduel_games.items() %}
+            {% set teams = game_key.split(':') %}
+            {% set away_team = teams[0] %}
+            {% set home_team = teams[1] %}
+            {% set away_conf = game.away_confidence|default(0)|float %}
+            {% set home_conf = game.home_confidence|default(0)|float %}
+            {% set lean_is_home = home_conf >= away_conf %}
+            {% set lean_team = home_team if lean_is_home else away_team %}
+            {% set lean_conf = home_conf if lean_is_home else away_conf %}
+            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}">
+                {% if game.is_value %}
+                <div class="value-banner {% if game.is_consensus %}consensus{% endif %}">
+                    {% if game.is_consensus %}🔥 雙模型共識{% else %}💎 價值場次{% endif %} —
+                    押 <strong>{{ team_name_zh(home_team if game.value_side == 'home' else away_team) }}</strong>
+                    <span class="value-edge">+{{ game.value_edge }}pp edge</span>
+                    <span class="value-detail">模型 {{ game.value_prob }}% vs 市場 {{ game.fair_home if game.value_side == 'home' else game.fair_away }}%</span>
+                    <span class="value-detail">EV +{{ game.value_ev }}</span>
+                    {% if game.is_consensus %}<span class="value-detail">+ ATS 模型同意</span>{% endif %}
+                </div>
+                {% endif %}
+                <div class="pick-teams">
+                    <div class="team-row {% if game.actual_winner == 'away' %}team-won{% endif %}">
+                        {% if team_logo_url(away_team) %}
+                        <img class="team-logo" src="{{ team_logo_url(away_team) }}" alt="{{ away_team }}" loading="lazy">
+                        {% endif %}
+                        <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ away_team|replace(' ', '-')|lower }}">
+                            {{ team_name_zh(away_team) }}
+                        </span>
+                        {% if game.away_score is defined and game.away_score is not none %}
+                        <span class="team-score">{{ game.away_score }}</span>
+                        {% endif %}
+                        <span class="team-conf">{{ away_conf|round(1) }}%</span>
+                    </div>
+                    <div class="vs-divider">@</div>
+                    <div class="team-row {% if game.actual_winner == 'home' %}team-won{% endif %}">
+                        {% if team_logo_url(home_team) %}
+                        <img class="team-logo" src="{{ team_logo_url(home_team) }}" alt="{{ home_team }}" loading="lazy">
+                        {% endif %}
+                        <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ home_team|replace(' ', '-')|lower }}">
+                            {{ team_name_zh(home_team) }}
+                        </span>
+                        {% if game.home_score is defined and game.home_score is not none %}
+                        <span class="team-score">{{ game.home_score }}</span>
+                        {% endif %}
+                        <span class="team-conf">{{ home_conf|round(1) }}%</span>
+                    </div>
+                </div>
+
+                <div class="pick-meta">
+                    <div class="pick-row">
+                        <span class="pick-label">模型勝</span>
+                        <strong>{{ team_name_zh(lean_team) }}</strong>
+                        <span class="pick-conf">{{ lean_conf|round(1) }}%</span>
+                        {% if game.ml_correct is defined and game.ml_correct is not none %}
+                        <span class="badge-mini {% if game.ml_correct %}ok{% else %}fail{% endif %}">{% if game.ml_correct %}✓{% else %}✗{% endif %}</span>
+                        {% endif %}
+                    </div>
+                    {% if game.spread is defined and game.spread is not none %}
+                    {% set spread_val = game.spread|float %}
+                    <div class="pick-row">
+                        <span class="pick-label">讓分</span>
+                        {% if spread_val > 0 %}
+                        <strong>{{ team_name_zh(home_team) }} -{{ spread_val }}</strong>
+                        <span class="pick-actual">{{ team_name_zh(away_team) }} +{{ spread_val }}</span>
+                        {% elif spread_val < 0 %}
+                        <strong>{{ team_name_zh(away_team) }} {{ spread_val }}</strong>
+                        <span class="pick-actual">{{ team_name_zh(home_team) }} +{{ -spread_val }}</span>
+                        {% else %}
+                        <strong>無讓分</strong>
+                        {% endif %}
+                        {% if game.ats_winner == 'home' %}
+                        <span class="ats-result covered">{{ team_name_zh(home_team) }} 蓋過 ({{ game.ats_cover_margin }})</span>
+                        {% elif game.ats_winner == 'away' %}
+                        <span class="ats-result covered">{{ team_name_zh(away_team) }} 蓋過 ({{ -game.ats_cover_margin }})</span>
+                        {% elif game.ats_winner == 'push' %}
+                        <span class="ats-result push">PUSH</span>
+                        {% endif %}
+                    </div>
+                    {% if game.ats_model_pick %}
+                    <div class="pick-row {% if game.ats_is_value %}ats-value-row{% endif %}">
+                        <span class="pick-label">ATS 模型</span>
+                        <strong>{% if game.ats_model_pick == 'home' %}{{ team_name_zh(home_team) }}{% else %}{{ team_name_zh(away_team) }}{% endif %} 蓋</strong>
+                        <span class="pick-conf">{{ game.ats_model_confidence }}%</span>
+                        {% if game.ats_is_value %}
+                        <span class="ats-edge-tag">edge +{{ game.ats_value_edge }}pp</span>
+                        {% endif %}
+                        {% if game.ats_winner and game.ats_winner != 'push' %}
+                        <span class="badge-mini {% if game.ats_model_pick == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.ats_model_pick == game.ats_winner %}✓{% else %}✗{% endif %}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if game.ou_pick %}
+                    <div class="pick-row">
+                        <span class="pick-label">總分</span>
+                        <strong>{% if game.ou_pick == 'OVER' %}大分{% else %}小分{% endif %}{% if game.ou_value %} {{ game.ou_value }}{% endif %}</strong>
+                        <span class="pick-conf">{{ game.ou_confidence|round(1) }}%</span>
+                        {% if game.actual_total %}<span class="pick-actual">實際 {{ game.actual_total }}</span>{% endif %}
+                        {% if game.ou_correct is defined and game.ou_correct is not none %}
+                        <span class="badge-mini {% if game.ou_correct %}ok{% else %}fail{% endif %}">{% if game.ou_correct %}✓{% else %}✗{% endif %}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="ai-block" id="ai-{{ loop.index0 }}">
+                    <button class="ai-btn" onclick="loadAnalysis({{ loop.index0 }}, '{{ selected_date }}', '{{ home_team }}', '{{ away_team }}')">🤖 AI 分析</button>
+                    <div class="ai-content" style="display:none;">
+                        <div class="ai-loading">⏳ 搜尋傷兵資訊 + 生成分析中...</div>
+                        <div class="ai-result" style="display:none;"></div>
+                    </div>
+                </div>
+
+                {% if game.home_profile and game.away_profile %}
+                {% set wd_name = game.home_profile.weekday_name %}
+                <details class="profile-detail">
+                    <summary>歷史輪廓 — 時間 × {{ wd_name }} / 強弱對戰</summary>
+                    {% macro cell(s) -%}
+                    {% if s.games > 0 -%}
+                    <div class="cell-main">{{ s.wins }}-{{ s.losses }} <span class="cell-pct {% if s.win_rate >= 60 %}good{% elif s.win_rate < 45 %}bad{% endif %}">{{ s.win_rate }}%</span></div>
+                    <div class="cell-sub">ATS {{ s.ats_wins }}-{{ s.ats_losses }}{% if s.ats_rate is not none %} {{ s.ats_rate }}%{% endif %}</div>
+                    {%- else -%}
+                    <div class="cell-empty">—</div>
+                    {%- endif %}
+                    {%- endmacro %}
+                    <div class="profile-grid">
+                        {% for side, team_label, profile in [('away', team_name_zh(away_team), game.away_profile), ('home', team_name_zh(home_team), game.home_profile)] %}
+                        <div class="profile-team">
+                            <div class="profile-team-name">{{ team_label }}</div>
+                            <table class="profile-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>整體</th>
+                                        <th>{{ wd_name }}</th>
+                                        <th>對強隊</th>
+                                        <th>對弱隊</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for win_key, win_label in [('season', '本賽季'), ('last_3m', '近 3 月'), ('last_2m', '近 2 月'), ('last_1m', '近 1 月')] %}
+                                    {% set w = profile[win_key] %}
+                                    <tr>
+                                        <th class="row-label">{{ win_label }}</th>
+                                        <td>{{ cell(w.overall) }}</td>
+                                        <td>{{ cell(w.weekday) }}</td>
+                                        <td>{{ cell(w.vs_strong) }}</td>
+                                        <td>{{ cell(w.vs_weak) }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </details>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </main>
+
+        <footer class="compact-footer">
+            模型 {{ today }} · XGBoost ML 69.1% / UO 50.0%
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>
+    function renderGameAnalysis(data) {
+        const confClass = data.confidence === '高' ? 'conf-high' : data.confidence === '中' ? 'conf-mid' : 'conf-low';
+        const src = data.source === 'gemini+search' ? '🌐 Gemini+搜尋' : data.source === 'gemini' ? '🤖 Gemini' : data.source === 'claude' ? '🤖 Claude' : '📊 規則分析';
+        return `
+        <div class="ai-card">
+            <div class="ai-row ai-injuries">
+                <div class="ai-inj-col">
+                    <span class="ai-inj-title">🏥 主隊傷兵</span>
+                    ${(data.injuries_home || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('')}
+                </div>
+                <div class="ai-inj-col">
+                    <span class="ai-inj-title">🏥 客隊傷兵</span>
+                    ${(data.injuries_away || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('')}
+                </div>
+            </div>
+            <div class="ai-row ai-factors">
+                <span class="ai-section-lbl">🔍 關鍵因素</span>
+                ${(data.key_factors || []).map(f => `<span class="ai-factor">${f}</span>`).join('')}
+            </div>
+            <div class="ai-row ai-verdicts">
+                <div class="ai-verdict"><span class="ai-v-lbl">勝負</span><strong>${data.ml_verdict || '?'}</strong><span class="ai-v-reason">${data.ml_reason || ''}</span></div>
+                <div class="ai-verdict"><span class="ai-v-lbl">讓分</span><strong>${data.ats_verdict || '?'}</strong><span class="ai-v-reason">${data.ats_reason || ''}</span></div>
+                <div class="ai-verdict"><span class="ai-v-lbl">大小分</span><strong>${data.ou_verdict || '?'}</strong><span class="ai-v-reason">${data.ou_reason || ''}</span></div>
+            </div>
+            <div class="ai-row ai-summary">
+                <span class="ai-conf ${confClass}">信心 ${data.confidence || '?'}</span>
+                <span class="ai-summary-text">${data.summary || ''}</span>
+                <span class="ai-source">${src}</span>
+            </div>
+        </div>`;
+    }
+
+    function loadAnalysis(idx, gameDate, home, away) {
+        const block = document.getElementById('ai-' + idx);
+        const btn = block.querySelector('.ai-btn');
+        const content = block.querySelector('.ai-content');
+        const loading = content.querySelector('.ai-loading');
+        const result = content.querySelector('.ai-result');
+
+        if (content.style.display === 'block' && result.style.display === 'block') {
+            content.style.display = 'none';
+            result.style.display = 'none';
+            btn.textContent = '🤖 AI 分析';
+            return;
+        }
+
+        btn.textContent = '⏳ 搜尋 + 分析中...';
+        btn.disabled = true;
+        content.style.display = 'block';
+        loading.style.display = 'block';
+        result.style.display = 'none';
+
+        fetch(`/api/analysis?date=${encodeURIComponent(gameDate)}&home=${encodeURIComponent(home)}&away=${encodeURIComponent(away)}`)
+            .then(r => r.json())
+            .then(data => {
+                loading.style.display = 'none';
+                if (data.error) {
+                    result.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
+                } else {
+                    result.innerHTML = renderGameAnalysis(data);
+                }
+                result.style.display = 'block';
+                btn.textContent = '🤖 收合分析';
+            })
+            .catch(err => {
+                loading.style.display = 'none';
+                result.innerHTML = `<div class="ai-error">⚠️ ${err.message}</div>`;
+                result.style.display = 'block';
+                btn.textContent = '🤖 AI 分析';
+            })
+            .finally(() => { btn.disabled = false; });
+    }
+
+    function loadDailyReport(gameDate) {
+        const block = document.getElementById('daily-report-block');
+        const btn = block.querySelector('.daily-report-btn');
+        const content = block.querySelector('.daily-report-content');
+
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            btn.textContent = '📊 生成當日 AI 分析報告';
+            return;
+        }
+
+        btn.textContent = '⏳ 搜尋傷兵 + 生成報告中...';
+        btn.disabled = true;
+
+        fetch(`/api/daily-report?date=${encodeURIComponent(gameDate)}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    content.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
+                } else {
+                    const picks = (data.top_picks || []).map(p =>
+                        `<div class="report-pick"><strong>${p.game}</strong> — ${p.pick} <span class="ai-conf conf-${p.confidence === '高' ? 'high' : p.confidence === '中' ? 'mid' : 'low'}">${p.confidence}</span><span class="ai-v-reason">${p.reason}</span></div>`
+                    ).join('');
+                    const avoids = (data.avoid_games || []).map(a =>
+                        `<div class="report-avoid">⚠️ ${a.game} — ${a.reason}</div>`
+                    ).join('');
+                    const injuries = (data.injury_impact || []).map(i =>
+                        `<span class="ai-factor">${i}</span>`
+                    ).join('');
+                    content.innerHTML = `
+                    <div class="daily-report">
+                        <div class="report-headline">${data.headline || ''}</div>
+                        ${picks ? `<div class="report-section"><span class="report-section-lbl">🏆 今日推薦</span>${picks}</div>` : ''}
+                        ${avoids ? `<div class="report-section"><span class="report-section-lbl">⛔ 建議避開</span>${avoids}</div>` : ''}
+                        ${injuries ? `<div class="report-section"><span class="report-section-lbl">🏥 重大傷兵</span><div class="ai-factors-row">${injuries}</div></div>` : ''}
+                        <div class="report-summary">${data.daily_summary || ''}</div>
+                    </div>`;
+                }
+                content.style.display = 'block';
+                btn.textContent = '📊 收合報告';
+            })
+            .catch(err => {
+                content.innerHTML = `<div class="ai-error">⚠️ ${err.message}</div>`;
+                content.style.display = 'block';
+                btn.textContent = '📊 生成當日 AI 分析報告';
+            })
+            .finally(() => { btn.disabled = false; });
+    }
+    </script>
+    {% include 'team_modal.html' %}
+    {% include 'player_modal.html' %}
+</body>
+</html>

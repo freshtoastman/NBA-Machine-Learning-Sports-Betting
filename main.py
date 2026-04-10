@@ -155,14 +155,86 @@ def predict_today_xgb(sportsbook):
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
         games, df, odds, schedule_df, today
     )
-    return XGBoost_Runner.xgb_predict(
+    spreads = []
+    for home_team, away_team in games:
+        if odds:
+            game_odds = odds.get(f"{home_team}:{away_team}", {})
+            raw_spread = game_odds.get("home_spread")
+            # SBR convention: home_spread positive = home is underdog (receives pts).
+            # Our convention (matching OddsData): positive = home is favorite (gives pts).
+            # Negate to unify.
+            spreads.append(-float(raw_spread) if raw_spread is not None else None)
+        else:
+            spreads.append(None)
+    predictions = XGBoost_Runner.xgb_predict(
         data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds
     )
+    # ATS model batch prediction for today's games.
+    safe_spreads = [float(sp) if sp not in (None, "") else 0.0 for sp in spreads]
+    advanced_df = None
+    try:
+        from src.Utils.AdvancedFeatures import merge_into as _merge_adv
+        helper = pd.DataFrame({
+            "TEAM_NAME": [g[0] for g in games],
+            "TEAM_NAME.1": [g[1] for g in games],
+            "Date": [today.date().isoformat()] * len(games),
+        })
+        helper = _merge_adv(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
+        adv_cols = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
+        if adv_cols:
+            advanced_df = helper[adv_cols].fillna(0.0)
+    except Exception:
+        advanced_df = None
+    ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
+
+    today_iso = today.date().isoformat()
+    for idx, (pred, sp) in enumerate(zip(predictions, spreads)):
+        pred["spread"] = float(sp) if sp not in (None, "") else None
+        pred["home_profile"] = team_profile_for_date(pred["home_team"], today_iso)
+        pred["away_profile"] = team_profile_for_date(pred["away_team"], today_iso)
+        pred["ats_winner"] = None
+        pred["ats_cover_margin"] = None
+
+        # ATS model prediction.
+        if ats_probs is not None and sp not in (None, ""):
+            p_home_cover = float(ats_probs[idx, 1])
+            pred["ats_model_pick"] = "home" if p_home_cover >= 0.5 else "away"
+            pred["ats_model_home_prob"] = round(p_home_cover * 100, 1)
+            pred["ats_model_confidence"] = round(max(p_home_cover, 1 - p_home_cover) * 100, 1)
+            edge_pp = abs(p_home_cover - 0.5) * 100
+            pred["ats_value_edge"] = round(edge_pp, 1)
+            pred["ats_is_value"] = edge_pp >= 8.0
+        else:
+            pred["ats_model_pick"] = None
+            pred["ats_model_home_prob"] = None
+            pred["ats_model_confidence"] = None
+            pred["ats_value_edge"] = None
+            pred["ats_is_value"] = False
+
+        # Value pick detection (ML moneyline).
+        model_home_prob = pred["home_confidence"] / 100.0
+        pred.update(evaluate_value(
+            model_home_prob, pred.get("home_team_odds"), pred.get("away_team_odds"),
+        ))
+
+        # Consensus.
+        ml_value_side = pred.get("value_side") if pred.get("is_value") else None
+        ats_pick = pred.get("ats_model_pick")
+        if ml_value_side and ats_pick and ml_value_side == ats_pick:
+            pred["consensus_pick"] = ml_value_side
+            pred["is_consensus"] = True
+        else:
+            pred["consensus_pick"] = None
+            pred["is_consensus"] = False
+    return predictions
 
 
 # Historical (past dates) — read features + actual outcomes from local SQLite,
 # join money lines from OddsData.sqlite, and compare predictions to actuals.
 import sqlite3  # noqa: E402
+
+from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E402
+from src.Utils.ValueFinder import evaluate_value  # noqa: E402
 
 _DATASET_DB = os.path.join(PROJECT_ROOT, "Data", "dataset.sqlite")
 _ODDS_DB = os.path.join(PROJECT_ROOT, "Data", "OddsData.sqlite")
@@ -207,7 +279,7 @@ def predict_historical_xgb(target_date):
     try:
         with sqlite3.connect(_ODDS_DB) as con:
             odds_df = pd.read_sql_query(
-                f'SELECT Date, Home, Away, ML_Home, ML_Away, OU, Points '
+                f'SELECT Date, Home, Away, ML_Home, ML_Away, OU, Spread, Points, Win_Margin '
                 f'FROM "{season_table}" WHERE Date = ?',
                 con,
                 params=(target_date.isoformat(),),
@@ -244,39 +316,155 @@ def predict_historical_xgb(target_date):
             "ou_value": todays_uo[-1],
         })
 
-    # Build the feature frame the same way create_todays_games_data does.
+    # Build the feature frame keeping OU at its trained position.
+    # ML model drops OU; UO model expects it. xgb_predict will rebuild
+    # frame_uo with the right column layout via _build_frame_uo, so we keep
+    # OU here so the column position matches what the trainer saw.
     frame_ml = df.drop(columns=_DROP_FEATURE_COLS, errors="ignore").copy()
     if "OU" in frame_ml.columns:
-        frame_ml = frame_ml.drop(columns=["OU"])
-    data = frame_ml.astype(float).to_numpy()
+        ml_data = frame_ml.drop(columns=["OU"]).astype(float).to_numpy()
+    else:
+        ml_data = frame_ml.astype(float).to_numpy()
+    data = ml_data
 
     predictions = XGBoost_Runner.xgb_predict(
         data, todays_uo, frame_ml, games, home_odds_list, away_odds_list
     )
 
-    # Annotate with actual outcomes + correctness.
-    ou_label_map = {0: "UNDER", 1: "OVER", 2: "PUSH"}
-    for pred, actual in zip(predictions, actual_rows):
-        ah = actual["home_win"]
-        if ah is not None:
-            pred["actual_home_win"] = bool(ah)
-            pred["actual_winner"] = "home" if ah == 1 else "away"
-            pred["ml_correct"] = (pred["winner"] == pred["actual_winner"])
+    # Run the dedicated ATS model in a single batch.
+    spreads_list = [
+        odds_lookup.get((g[0], g[1]), {}).get("Spread") if odds_lookup.get((g[0], g[1])) is not None else None
+        for g in games
+    ]
+    safe_spreads = [float(s) if s is not None and pd.notna(s) else 0.0 for s in spreads_list]
+
+    # Inject AdvancedFeatures rows so the ATS model gets rolling form +
+    # schedule density just like at training time.
+    advanced_df = None
+    try:
+        from src.Utils.AdvancedFeatures import merge_into as _merge_advanced
+        helper = pd.DataFrame({
+            "TEAM_NAME": [g[0] for g in games],
+            "TEAM_NAME.1": [g[1] for g in games],
+            "Date": [target_date.isoformat()] * len(games),
+        })
+        helper = _merge_advanced(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
+        advanced_cols = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
+        if advanced_cols:
+            advanced_df = helper[advanced_cols].fillna(0.0)
+    except Exception:
+        advanced_df = None
+    ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
+
+    # Annotate with actual outcomes + correctness + per-team scores.
+    # Treat Points==0 as "not yet played" (Get_Odds_Data writes 0 placeholders
+    # before tip-off when scraped early in the day).
+    for idx, pred in enumerate(predictions):
+        pred["is_historical"] = True
+        home_team = pred["home_team"]
+        away_team = pred["away_team"]
+        odds_row = odds_lookup.get((home_team, away_team))
+
+        # ATS model prediction (P that home team covers the spread).
+        if ats_probs is not None and spreads_list[idx] is not None:
+            p_home_cover = float(ats_probs[idx, 1])
+            pred["ats_model_pick"] = "home" if p_home_cover >= 0.5 else "away"
+            pred["ats_model_home_prob"] = round(p_home_cover * 100, 1)
+            pred["ats_model_confidence"] = round(max(p_home_cover, 1 - p_home_cover) * 100, 1)
+            # ATS edge: market implied is ~50% (vig-removed at -110 ≈ 0.5).
+            # Highest-win-rate threshold from OOS sweep:
+            # edge ≥ 8pp → 63.4% hit rate, +20.5% ROI (balance of volume + quality).
+            edge_pp = abs(p_home_cover - 0.5) * 100
+            pred["ats_value_edge"] = round(edge_pp, 1)
+            pred["ats_is_value"] = edge_pp >= 8.0
         else:
+            pred["ats_model_pick"] = None
+            pred["ats_model_home_prob"] = None
+            pred["ats_model_confidence"] = None
+            pred["ats_value_edge"] = None
+            pred["ats_is_value"] = False
+
+        # CONSENSUS: ML moneyline value pick + ATS model agreement.
+        # ML diamond skews to underdogs (avg award), ATS model skews to home —
+        # the overlap is a stricter filter that catches "model thinks underdog
+        # wins outright AND covers". When both fire, both bet sides win.
+        ml_value_side = pred.get("value_side") if pred.get("is_value") else None
+        ats_pick = pred.get("ats_model_pick")
+        if ml_value_side and ats_pick and ml_value_side == ats_pick:
+            pred["consensus_pick"] = ml_value_side
+            pred["is_consensus"] = True
+        else:
+            pred["consensus_pick"] = None
+            pred["is_consensus"] = False
+
+        played = False
+        total_points = None
+        win_margin = None
+        if odds_row is not None:
+            pts = odds_row.get("Points")
+            mar = odds_row.get("Win_Margin")
+            if pd.notna(pts) and float(pts) > 0:
+                played = True
+                total_points = float(pts)
+                win_margin = float(mar) if pd.notna(mar) else 0.0
+
+        # Spread: positive = home favored by N, negative = home underdog.
+        if odds_row is not None and pd.notna(odds_row.get("Spread")):
+            pred["spread"] = float(odds_row["Spread"])
+        else:
+            pred["spread"] = None
+
+        # Historical splits (weekday + opponent strength + ATS).
+        target_iso = target_date.isoformat()
+        pred["home_profile"] = team_profile_for_date(home_team, target_iso)
+        pred["away_profile"] = team_profile_for_date(away_team, target_iso)
+
+        # Value detection: model vs market.
+        model_home_prob = pred["home_confidence"] / 100.0
+        home_ml = odds_row.get("ML_Home") if odds_row is not None else None
+        away_ml = odds_row.get("ML_Away") if odds_row is not None else None
+        pred.update(evaluate_value(model_home_prob, home_ml, away_ml))
+
+        if played:
+            pred["home_score"] = int((total_points + win_margin) / 2)
+            pred["away_score"] = int((total_points - win_margin) / 2)
+            pred["actual_total"] = int(total_points)
+            home_won = win_margin > 0
+            pred["actual_home_win"] = home_won
+            pred["actual_winner"] = "home" if home_won else "away"
+            pred["ml_correct"] = pred["winner"] == pred["actual_winner"]
+
+            # ATS: which side covered the spread?
+            cover_side, cover_margin = grade_spread(pred["spread"], win_margin)
+            pred["ats_winner"] = cover_side  # 'home' | 'away' | 'push' | None
+            pred["ats_cover_margin"] = round(cover_margin, 1) if cover_margin is not None else None
+
+            ou_value = odds_row.get("OU") if odds_row is not None else None
+            if pd.notna(ou_value) and ou_value:
+                if total_points > float(ou_value):
+                    pred["actual_ou_result"] = "OVER"
+                elif total_points < float(ou_value):
+                    pred["actual_ou_result"] = "UNDER"
+                else:
+                    pred["actual_ou_result"] = "PUSH"
+                if pred["actual_ou_result"] == "PUSH":
+                    pred["ou_correct"] = None
+                else:
+                    pred["ou_correct"] = pred["ou_pick"] == pred["actual_ou_result"]
+            else:
+                pred["actual_ou_result"] = None
+                pred["ou_correct"] = None
+        else:
+            pred["home_score"] = None
+            pred["away_score"] = None
+            pred["actual_total"] = None
             pred["actual_home_win"] = None
             pred["actual_winner"] = None
             pred["ml_correct"] = None
-
-        oc = actual["ou_cover"]
-        if oc is not None:
-            pred["actual_ou_result"] = ou_label_map.get(oc)
-            pred["ou_correct"] = (pred["ou_pick"] == pred["actual_ou_result"]) if pred["actual_ou_result"] != "PUSH" else None
-        else:
             pred["actual_ou_result"] = None
             pred["ou_correct"] = None
-
-        pred["actual_total"] = actual["total_points"]
-        pred["is_historical"] = True
+            pred["ats_winner"] = None
+            pred["ats_cover_margin"] = None
 
     return predictions
 

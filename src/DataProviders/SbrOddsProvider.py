@@ -26,6 +26,7 @@ class SbrOddsProvider:
             away_team_name = game['away_team'].replace("Los Angeles Clippers", "LA Clippers")
 
             money_line_home_value = money_line_away_value = totals_value = None
+            home_spread_value = None
 
             # Get money line bet values
             if self.sportsbook in game['home_ml']:
@@ -37,8 +38,13 @@ class SbrOddsProvider:
             if self.sportsbook in game['total']:
                 totals_value = game['total'][self.sportsbook]
 
+            # Get home spread (positive = home favored by N, negative = underdog).
+            if 'home_spread' in game and self.sportsbook in game['home_spread']:
+                home_spread_value = game['home_spread'][self.sportsbook]
+
             dict_res[home_team_name + ':' + away_team_name] = {
                 'under_over_odds': totals_value,
+                'home_spread': home_spread_value,
                 home_team_name: {'money_line_odds': money_line_home_value},
                 away_team_name: {'money_line_odds': money_line_away_value}
             }

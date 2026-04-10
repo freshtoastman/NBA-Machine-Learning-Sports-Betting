@@ -182,6 +182,7 @@ def latest_xgb_model(kind: str):
     if not candidates:
         raise FileNotFoundError(f"No XGBoost {kind} model in {XGB_MODEL_DIR}")
     import re
+    import sys
     pat = re.compile(r"XGBoost_(\d+(?:\.\d+)?)%_")
 
     def score(p):
@@ -192,7 +193,16 @@ def latest_xgb_model(kind: str):
     booster = xgb.Booster()
     booster.load_model(str(best))
     calib_path = best.with_name(f"{best.stem}_calibration.pkl")
-    calibrator = joblib.load(calib_path) if calib_path.exists() else None
+    calibrator = None
+    if calib_path.exists():
+        # Calibrator was pickled with BoosterWrapper defined in the trainer's
+        # __main__. Inject our local wrapper into __main__ so unpickling works.
+        sys.modules["__main__"].BoosterWrapper = _BoosterWrapper
+        try:
+            calibrator = joblib.load(calib_path)
+        except Exception as exc:
+            print(f"warn: failed to load calibrator ({exc}); using raw probs")
+            calibrator = None
     return booster, calibrator
 
 
@@ -301,8 +311,9 @@ def simulate_bets(probs, y_true, ml_home, ml_away, bankroll0=1000.0):
         else:
             flat_pl -= 1.0
 
-        # Kelly fractional bet (with 0.25 fractional Kelly to reduce variance)
-        f = kelly_fraction(prob, odds) * 0.25
+        # Conservative fractional Kelly (0.10x). Full Kelly is wildly volatile;
+        # 0.10 fractional smooths things out while still benefiting from edge.
+        f = kelly_fraction(prob, odds) * 0.10
         stake = kelly_bankroll * f
         if stake > 0:
             n_kelly_bets += 1
@@ -315,6 +326,17 @@ def simulate_bets(probs, y_true, ml_home, ml_away, bankroll0=1000.0):
         flat_bankroll_curve.append(bankroll0 + flat_pl)
         kelly_bankroll_curve.append(kelly_bankroll)
 
+    def max_drawdown(curve):
+        peak = curve[0]
+        max_dd = 0.0
+        for v in curve:
+            if v > peak:
+                peak = v
+            dd = (peak - v) / peak if peak > 0 else 0.0
+            if dd > max_dd:
+                max_dd = dd
+        return max_dd
+
     return {
         "flat": {
             "n_bets": n_flat_bets,
@@ -323,6 +345,7 @@ def simulate_bets(probs, y_true, ml_home, ml_away, bankroll0=1000.0):
             "pl": flat_pl,
             "roi": (flat_pl / flat_stake_total) if flat_stake_total else 0.0,
             "final_bankroll": bankroll0 + flat_pl,
+            "max_drawdown": max_drawdown(flat_bankroll_curve),
             "curve": flat_bankroll_curve,
         },
         "kelly": {
@@ -330,7 +353,9 @@ def simulate_bets(probs, y_true, ml_home, ml_away, bankroll0=1000.0):
             "n_wins": n_kelly_wins,
             "win_rate": (n_kelly_wins / n_kelly_bets) if n_kelly_bets else 0.0,
             "final_bankroll": kelly_bankroll,
+            "peak_bankroll": max(kelly_bankroll_curve),
             "roi": (kelly_bankroll - bankroll0) / bankroll0,
+            "max_drawdown": max_drawdown(kelly_bankroll_curve),
             "curve": kelly_bankroll_curve,
         },
     }
@@ -397,14 +422,19 @@ def report_run(label, y_ml, probs_ml, y_uo, probs_uo, ml_home, ml_away, dates, h
         print(f"  win rate:       {sim['flat']['win_rate']:.4f}")
         print(f"  P/L:            ${sim['flat']['pl']:+.2f}")
         print(f"  ROI per bet:    {sim['flat']['roi']*100:+.2f}%")
-        print("\nFractional Kelly betting (0.25 Kelly, $1000 bankroll):")
+        print(f"  max drawdown:   {sim['flat']['max_drawdown']*100:.1f}%")
+        print("\nFractional Kelly betting (0.10x Kelly, $1000 bankroll):")
         print(f"  bets:           {sim['kelly']['n_bets']}")
         print(f"  win rate:       {sim['kelly']['win_rate']:.4f}")
+        print(f"  peak bankroll:  ${sim['kelly']['peak_bankroll']:.2f}")
         print(f"  final bankroll: ${sim['kelly']['final_bankroll']:.2f}")
         print(f"  total return:   {sim['kelly']['roi']*100:+.2f}%")
+        print(f"  max drawdown:   {sim['kelly']['max_drawdown']*100:.1f}%")
+        if abs(sim['flat']['roi']) < 0.01:
+            print("  note: flat ROI ≈ 0 → Kelly result is path-dependent noise, not skill.")
 
     # By month
-    months = pd.to_datetime(dates).strftime("%Y-%m").to_numpy()
+    months = pd.to_datetime(pd.Series(dates).reset_index(drop=True)).dt.strftime("%Y-%m").to_numpy()
     print("\nBy month (ML accuracy):")
     print(f"  {'month':<10}  {'games':>6}  {'wins':>6}  {'acc':>8}")
     for k, total, wins, acc in breakdown_by_key(probs_ml, y_ml, months):

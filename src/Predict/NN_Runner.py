@@ -69,9 +69,23 @@ def nn_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_
         ml_predictions_array.append(_model.predict(np.array([row])))
 
     frame_uo = copy.deepcopy(frame_ml)
-    frame_uo['OU'] = np.asarray(todays_games_uo)
+    # Replace any missing OU values with a sensible default (NBA totals
+    # average around 220) so the network doesn't see NaN inputs.
+    safe_ou = np.array([
+        float(v) if v not in (None, '') and not (isinstance(v, float) and np.isnan(v)) else 220.0
+        for v in todays_games_uo
+    ])
+    # Insert OU at the column position the trainer expected (right before
+    # Days-Rest-Home), not appended at the end.
+    if 'OU' in frame_uo.columns:
+        frame_uo['OU'] = safe_ou
+    elif 'Days-Rest-Home' in frame_uo.columns:
+        insert_pos = frame_uo.columns.get_loc('Days-Rest-Home')
+        frame_uo.insert(insert_pos, 'OU', safe_ou)
+    else:
+        frame_uo['OU'] = safe_ou
     data = frame_uo.values
-    data = data.astype(float)
+    data = np.nan_to_num(data.astype(float), nan=0.0)
     data = tf.keras.utils.normalize(data, axis=1)
 
     ou_predictions_array = []
@@ -133,10 +147,14 @@ def nn_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_
         expected_value_colors = {'home_color': Fore.GREEN if ev_home > 0 else Fore.RED,
                                  'away_color': Fore.GREEN if ev_away > 0 else Fore.RED}
         bankroll_descriptor = ' Fraction of Bankroll: '
-        bankroll_fraction_home = bankroll_descriptor + str(
-            kc.calculate_kelly_criterion(home_team_odds[count], ml_predictions_array[count][0][1])) + '%'
-        bankroll_fraction_away = bankroll_descriptor + str(
-            kc.calculate_kelly_criterion(away_team_odds[count], ml_predictions_array[count][0][0])) + '%'
+        if home_team_odds[count] and away_team_odds[count]:
+            bankroll_fraction_home = bankroll_descriptor + str(
+                kc.calculate_kelly_criterion(home_team_odds[count], ml_predictions_array[count][0][1])) + '%'
+            bankroll_fraction_away = bankroll_descriptor + str(
+                kc.calculate_kelly_criterion(away_team_odds[count], ml_predictions_array[count][0][0])) + '%'
+        else:
+            bankroll_fraction_home = bankroll_descriptor + 'n/a'
+            bankroll_fraction_away = bankroll_descriptor + 'n/a'
 
         print(home_team + ' EV: ' + expected_value_colors['home_color'] + str(ev_home) + Style.RESET_ALL + (
             bankroll_fraction_home if kelly_criterion else ''))

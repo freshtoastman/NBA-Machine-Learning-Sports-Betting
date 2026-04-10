@@ -97,16 +97,33 @@ def build_game_features(team_df, home_team, away_team, index_map):
 
 
 def select_odds_table(odds_con, season_key):
+    """Pick the freshest odds table for a season.
+
+    Multiple legacy table-name conventions exist (e.g. `odds_2025-26`,
+    `2025-26`, `odds_2025-26_new`). When more than one is present we choose
+    the one with the most recent Date so we don't accidentally pick a
+    stale snapshot from an earlier ingest.
+    """
     candidates = [
         f"odds_{season_key}_new",
         f"odds_{season_key}",
         f"{season_key}_new",
         f"{season_key}",
     ]
-    for table_name in candidates:
-        if table_exists(odds_con, table_name):
-            return table_name
-    return None
+    existing = [t for t in candidates if table_exists(odds_con, t)]
+    if not existing:
+        return None
+    if len(existing) == 1:
+        return existing[0]
+
+    def freshness(table_name):
+        try:
+            row = odds_con.execute(f'SELECT MAX(Date) FROM "{table_name}"').fetchone()
+            return row[0] or ""
+        except Exception:
+            return ""
+
+    return max(existing, key=freshness)
 
 
 def main():

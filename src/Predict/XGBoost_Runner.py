@@ -18,8 +18,26 @@ ACCURACY_PATTERN = re.compile(r"XGBoost_(\d+(?:\.\d+)?)%_")
 
 xgb_ml = None
 xgb_uo = None
+xgb_ats = None
 xgb_ml_calibrator = None
 xgb_uo_calibrator = None
+xgb_ats_calibrator = None
+
+
+def reset_model_cache():
+    """Force the runner to re-select and reload models on the next call.
+
+    Call this after retraining so Flask (or any long-running process) picks
+    up the freshly saved model instead of the stale in-memory booster.
+    """
+    global xgb_ml, xgb_uo, xgb_ats
+    global xgb_ml_calibrator, xgb_uo_calibrator, xgb_ats_calibrator
+    xgb_ml = None
+    xgb_uo = None
+    xgb_ats = None
+    xgb_ml_calibrator = None
+    xgb_uo_calibrator = None
+    xgb_ats_calibrator = None
 
 
 def _select_model_path(kind):
@@ -46,7 +64,8 @@ def _load_calibrator(model_path):
 
 
 def _load_models():
-    global xgb_ml, xgb_uo, xgb_ml_calibrator, xgb_uo_calibrator
+    global xgb_ml, xgb_uo, xgb_ats
+    global xgb_ml_calibrator, xgb_uo_calibrator, xgb_ats_calibrator
     if xgb_ml is None:
         ml_path = _select_model_path("ML")
         xgb_ml = xgb.Booster()
@@ -56,7 +75,57 @@ def _load_models():
         uo_path = _select_model_path("UO")
         xgb_uo = xgb.Booster()
         xgb_uo.load_model(str(uo_path))
-        xgb_uo_calibrator = _load_calibrator(uo_path)
+        # Sigmoid calibration squashes UO probabilities so much that argmax
+        # always picks the same class. Use raw booster output instead.
+        xgb_uo_calibrator = None
+    if xgb_ats is None:
+        try:
+            ats_path = _select_model_path("ATS")
+            xgb_ats = xgb.Booster()
+            xgb_ats.load_model(str(ats_path))
+            # Sigmoid calibration squashes the (already weak) ATS signal to
+            # near-constant 0.49. Use raw booster output to preserve range.
+            xgb_ats_calibrator = None
+        except FileNotFoundError:
+            xgb_ats = False  # Sentinel: no model available; don't try again.
+            xgb_ats_calibrator = None
+
+
+def _build_frame_ats(frame_ml, spreads, advanced=None):
+    """Build feature frame for the ATS model.
+
+    The ATS trainer drops OU and appends Spread + advanced rolling features.
+    `advanced` is an optional DataFrame indexed parallel to frame_ml with
+    H_/A_/D_ columns from src.Utils.AdvancedFeatures. When provided, those
+    columns are appended in the same order the trainer produced them.
+    """
+    frame_ats = frame_ml.copy()
+    if "OU" in frame_ats.columns:
+        frame_ats = frame_ats.drop(columns=["OU"])
+    spread_array = np.asarray(spreads, dtype=float)
+    if "Spread" in frame_ats.columns:
+        frame_ats["Spread"] = spread_array
+    else:
+        frame_ats["Spread"] = spread_array
+    if advanced is not None and len(advanced) == len(frame_ats):
+        for col in advanced.columns:
+            frame_ats[col] = advanced[col].values
+    return frame_ats
+
+
+def predict_ats_probs(frame_ml, spreads, advanced=None):
+    """Return P(home_covers) for each game, or None if model unavailable.
+
+    `advanced`: optional DataFrame of H_/A_/D_ rolling features parallel to
+    frame_ml. If the loaded ATS model expects them, pass them; otherwise
+    omit and the helper falls back to the basic feature layout.
+    """
+    _load_models()
+    if xgb_ats is False or xgb_ats is None:
+        return None
+    frame_ats = _build_frame_ats(frame_ml, spreads, advanced=advanced)
+    data = frame_ats.values.astype(float)
+    return _predict_probs(xgb_ats, data, xgb_ats_calibrator)
 
 
 def _predict_probs(model, data, calibrator=None):
@@ -143,6 +212,27 @@ def _print_expected_value(
         )
 
 
+def _build_frame_uo(frame_ml, todays_games_uo):
+    """Build the frame the UO model expects with OU in the trained position.
+
+    The UO model was trained with OU located right before Days-Rest-Home in
+    the dataset. xgb_predict / nn_runner historically appended OU to the end,
+    which silently misaligned every column after position ~104 and made the
+    model read garbage. We insert OU at the correct slot here.
+    """
+    frame_uo = frame_ml.copy()
+    ou_array = np.asarray(todays_games_uo, dtype=float)
+    if "OU" in frame_uo.columns:
+        frame_uo["OU"] = ou_array
+        return frame_uo
+    if "Days-Rest-Home" in frame_uo.columns:
+        insert_pos = frame_uo.columns.get_loc("Days-Rest-Home")
+    else:
+        insert_pos = len(frame_uo.columns)
+    frame_uo.insert(insert_pos, "OU", ou_array)
+    return frame_uo
+
+
 def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds):
     """Run XGBoost prediction and return structured results (no printing).
 
@@ -155,8 +245,7 @@ def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_tea
     """
     _load_models()
 
-    frame_uo = frame_ml.copy()
-    frame_uo["OU"] = np.asarray(todays_games_uo, dtype=float)
+    frame_uo = _build_frame_uo(frame_ml, todays_games_uo)
 
     ml_predictions_array = _predict_probs(xgb_ml, data, xgb_ml_calibrator)
     ou_predictions_array = _predict_probs(
@@ -201,8 +290,7 @@ def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_tea
 def xgb_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, kelly_criterion):
     _load_models()
 
-    frame_uo = frame_ml.copy()
-    frame_uo["OU"] = np.asarray(todays_games_uo, dtype=float)
+    frame_uo = _build_frame_uo(frame_ml, todays_games_uo)
 
     try:
         ml_predictions_array = _predict_probs(xgb_ml, data, xgb_ml_calibrator)

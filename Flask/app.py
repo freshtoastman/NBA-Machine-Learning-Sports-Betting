@@ -1,15 +1,22 @@
 from datetime import date, datetime, timedelta
 import os
 import sys
+from pathlib import Path
 from flask import Flask, render_template, jsonify, request
 from functools import lru_cache
 import requests
 import time
 
+# Load .env from project root.
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from main import predict_today_xgb, predict_historical_xgb
+from src.Utils.AIAnalysis import analyze_game, generate_daily_report
+from src.Utils.SeasonStats import compute_season_stats
 from src.Utils.Teams import team_logo_url, team_name_zh
-from src.Utils.tools import current_nba_season_start_year, today_taipei
+from src.Utils.tools import current_nba_season, current_nba_season_start_year, today_taipei
 
 RAPIDAPI_KEY = os.environ.get("RAPIDAPI_KEY")
 RAPIDAPI_HEADERS = {
@@ -36,6 +43,58 @@ def fetch_historical_data(date_iso):
 def get_ttl_hash(seconds=600):
     """Return the same value withing `seconds` time period"""
     return round(time.time() / seconds)
+
+
+def compute_summary(games_dict, is_historical):
+    """Compute aggregate stats for the header bar."""
+    games = list(games_dict.values())
+    n = len(games)
+    if n == 0:
+        return {"games": 0}
+
+    home_picks = sum(1 for g in games if g.get("winner") == "home")
+    away_picks = n - home_picks
+    over_picks = sum(1 for g in games if g.get("ou_pick") == "OVER")
+    under_picks = n - over_picks
+    avg_conf = sum(max(g.get("home_confidence", 0), g.get("away_confidence", 0)) for g in games) / n
+
+    summary = {
+        "games": n,
+        "home_picks": home_picks,
+        "away_picks": away_picks,
+        "over_picks": over_picks,
+        "under_picks": under_picks,
+        "avg_confidence": round(avg_conf, 1),
+    }
+
+    value_picks = [g for g in games if g.get("is_value")]
+    summary["value_picks"] = len(value_picks)
+
+    if is_historical:
+        ml_correct = sum(1 for g in games if g.get("ml_correct") is True)
+        ml_graded = sum(1 for g in games if g.get("ml_correct") is not None)
+        ou_correct = sum(1 for g in games if g.get("ou_correct") is True)
+        ou_graded = sum(1 for g in games if g.get("ou_correct") is not None)
+        summary["ml_correct"] = ml_correct
+        summary["ml_graded"] = ml_graded
+        summary["ml_hit_rate"] = round(ml_correct / ml_graded * 100, 1) if ml_graded else None
+        summary["ou_correct"] = ou_correct
+        summary["ou_graded"] = ou_graded
+        summary["ou_hit_rate"] = round(ou_correct / ou_graded * 100, 1) if ou_graded else None
+
+        # Value pick hit rate
+        value_decided = [g for g in value_picks if g.get("ml_correct") is not None]
+        value_wins = sum(
+            1 for g in value_decided
+            if g["value_side"] == g.get("actual_winner")
+        )
+        summary["value_decided"] = len(value_decided)
+        summary["value_wins"] = value_wins
+        summary["value_hit_rate"] = (
+            round(value_wins / len(value_decided) * 100, 1) if value_decided else None
+        )
+
+    return summary
 
 
 def build_date_chips(selected_date, days=7):
@@ -87,16 +146,65 @@ def index():
         draftkings = {}
         betmgm = {}
 
+    summary = compute_summary(fanduel, is_historical=not is_today)
+    season_key = current_nba_season(selected_date)
+    season_stats = compute_season_stats(season_key)
+
     return render_template(
         'index.html',
         today=today,
         selected_date=selected_date,
         is_today=is_today,
         date_chips=build_date_chips(selected_date),
+        summary=summary,
+        season_key=season_key,
+        season_stats=season_stats,
         data={"fanduel": fanduel, "draftkings": draftkings, "betmgm": betmgm},
     )
 
 
+
+
+def _get_games_for_date(game_date_str):
+    """Retrieve prediction dict for a date (today or historical)."""
+    today = today_taipei()
+    target = date.fromisoformat(game_date_str)
+    if target == today:
+        return fetch_game_data("fanduel", ttl_hash=get_ttl_hash())
+    return fetch_historical_data(game_date_str)
+
+
+@app.route("/api/analysis")
+def api_analysis():
+    """AJAX: structured AI analysis for a single game."""
+    game_date = request.args.get("date")
+    home = request.args.get("home")
+    away = request.args.get("away")
+    if not game_date or not home or not away:
+        return jsonify({"error": "Missing date/home/away params"}), 400
+
+    games = _get_games_for_date(game_date)
+    game = games.get(f"{away}:{home}")
+    if not game:
+        return jsonify({"error": f"Game not found"}), 404
+
+    result = analyze_game(game, game_date)
+    return jsonify(result)
+
+
+@app.route("/api/daily-report")
+def api_daily_report():
+    """AJAX: generate AI daily report for all games on a date."""
+    game_date = request.args.get("date")
+    if not game_date:
+        return jsonify({"error": "Missing date param"}), 400
+
+    games = _get_games_for_date(game_date)
+    if not games:
+        return jsonify({"error": "No games found"}), 404
+
+    result = generate_daily_report(games, game_date)
+    return jsonify(result)
 
 
 def get_player_data(team_abv):
