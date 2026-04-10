@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBA 預測 — 登入</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Manrope", "Noto Sans TC", sans-serif;
+            background: radial-gradient(circle at top, #162036 0%, #0b0f17 55%, #080b14 100%);
+            color: #f2f5ff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            max-width: 420px;
+            width: 100%;
+            padding: 40px 32px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(20, 28, 48, 0.95), rgba(12, 17, 30, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 80px rgba(7, 12, 24, 0.45);
+            text-align: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .brand-mark {
+            background: linear-gradient(135deg, #2f7cf6, #23d6c6);
+            color: #04111f;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+        .brand h1 { font-size: 22px; font-weight: 700; }
+        .desc { color: #9aa6c7; font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
+        .error-msg {
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.4);
+            color: #ff6b6b;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        form { display: flex; flex-direction: column; gap: 14px; }
+        input[type="email"] {
+            background: rgba(8, 12, 24, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f2f5ff;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input[type="email"]:focus { border-color: #2f7cf6; }
+        input[type="email"]::placeholder { color: #6b7a9e; }
+        .btn {
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2f7cf6, #1f5fc7);
+            color: white;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(47, 124, 246, 0.4); }
+        .divider { color: #6b7a9e; font-size: 13px; margin: 20px 0; }
+        .subscribe-link {
+            display: block;
+            padding: 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(242, 201, 76, 0.15), rgba(255, 157, 92, 0.1));
+            border: 1px solid rgba(242, 201, 76, 0.4);
+            color: #f2c94c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .subscribe-link:hover { background: rgba(242, 201, 76, 0.25); }
+        .footer { margin-top: 24px; font-size: 12px; color: #6b7a9e; }
+        .footer a { color: #2f7cf6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="brand">
+            <span class="brand-mark">NBA</span>
+            <h1>機器學習預測</h1>
+        </div>
+        <p class="desc">
+            模型驅動的 NBA 勝負、讓分、大小分預測。<br>
+            含 AI 即時傷兵分析與鑽石場次。
+        </p>
+
+        {% if error == 'unauthorized' %}
+        <div class="error-msg">
+            此信箱不在授權名單中。請先訂閱或聯絡管理員。
+        </div>
+        {% elif error == 'invalid' %}
+        <div class="error-msg">
+            登入連結無效或已過期。請重新輸入信箱。
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="email" name="email" placeholder="輸入授權信箱" required autocomplete="email">
+            <button type="submit" class="btn btn-primary">登入</button>
+        </form>
+
+        <div class="divider">— 還不是會員？ —</div>
+
+        <a href="/subscribe" class="subscribe-link">📩 訂閱方案 & 申請存取</a>
+
+        <div class="footer">
+            問題？<a href="mailto:{{ admin_email }}">{{ admin_email }}</a>
+        </div>
+    </div>
+</body>
+</html>

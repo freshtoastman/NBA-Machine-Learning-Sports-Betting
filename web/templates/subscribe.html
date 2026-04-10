@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBA 預測 — 訂閱方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Manrope", "Noto Sans TC", sans-serif;
+            background: radial-gradient(circle at top, #162036 0%, #0b0f17 55%, #080b14 100%);
+            color: #f2f5ff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .brand-mark { background: linear-gradient(135deg, #2f7cf6, #23d6c6); color: #04111f; padding: 6px 14px; border-radius: 10px; font-size: 14px; font-weight: 800; }
+        h1 { font-size: 28px; margin-bottom: 12px; }
+        .subtitle { color: #9aa6c7; font-size: 15px; line-height: 1.6; }
+
+        .stats-row {
+            display: flex; justify-content: center; gap: 24px; margin: 24px 0; flex-wrap: wrap;
+        }
+        .stat-badge {
+            padding: 8px 18px; border-radius: 12px;
+            background: rgba(8, 12, 24, 0.6); border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+        .stat-badge strong { display: block; font-size: 20px; color: #2dd36f; }
+        .stat-badge span { font-size: 11px; color: #9aa6c7; }
+
+        .plans {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px; margin-bottom: 40px;
+        }
+        .plan {
+            padding: 28px 24px; border-radius: 18px;
+            background: linear-gradient(145deg, rgba(20, 28, 48, 0.95), rgba(12, 17, 30, 0.95));
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .plan.featured { border-color: rgba(242, 201, 76, 0.5); box-shadow: 0 4px 24px rgba(242, 201, 76, 0.12); }
+        .plan-name { font-size: 16px; font-weight: 700; }
+        .plan.featured .plan-name { color: #f2c94c; }
+        .plan-price { font-size: 32px; font-weight: 800; }
+        .plan-price span { font-size: 14px; font-weight: 400; color: #9aa6c7; }
+        .plan-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .plan-features li { font-size: 13px; color: #c8d0e8; padding-left: 20px; position: relative; }
+        .plan-features li::before { content: "✓"; position: absolute; left: 0; color: #2dd36f; font-weight: 700; }
+        .plan-features li.locked::before { content: "✗"; color: #ff6b6b; }
+
+        .contact-section {
+            text-align: center; padding: 32px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(20, 28, 48, 0.85), rgba(12, 17, 30, 0.85));
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .contact-section h2 { font-size: 20px; margin-bottom: 12px; }
+        .contact-section p { color: #9aa6c7; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        .contact-btn {
+            display: inline-block; padding: 14px 32px; border-radius: 12px;
+            background: linear-gradient(135deg, #2f7cf6, #1f5fc7);
+            color: white; text-decoration: none; font-weight: 700; font-size: 15px;
+            transition: all 0.2s;
+        }
+        .contact-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(47, 124, 246, 0.4); }
+        .back-link { display: block; text-align: center; margin-top: 24px; color: #2f7cf6; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand">
+                <span class="brand-mark">NBA</span>
+                <h1>機器學習預測</h1>
+            </div>
+            <p class="subtitle">
+                由 XGBoost + 神經網路 + ATS 讓分模型驅動<br>
+                每日自動更新、AI 即時傷兵分析
+            </p>
+            <div class="stats-row">
+                <div class="stat-badge"><strong>71.5%</strong><span>ML 勝負準確率</span></div>
+                <div class="stat-badge"><strong>77.1%</strong><span>鑽石場次命中</span></div>
+                <div class="stat-badge"><strong>+34.6%</strong><span>鑽石 ROI</span></div>
+                <div class="stat-badge"><strong>67.7%</strong><span>ATS 鑽石命中</span></div>
+            </div>
+        </div>
+
+        <div class="plans">
+            <div class="plan">
+                <div class="plan-name">基礎版</div>
+                <div class="plan-price">$29<span>/月</span></div>
+                <ul class="plan-features">
+                    <li>每日勝負 + 大小分預測</li>
+                    <li>讓分盤口顯示</li>
+                    <li>7 天歷史回顧</li>
+                    <li>真實比分 + 命中對照</li>
+                    <li class="locked">鑽石場次</li>
+                    <li class="locked">ATS 模型</li>
+                    <li class="locked">AI 分析</li>
+                </ul>
+            </div>
+
+            <div class="plan featured">
+                <div class="plan-name">⭐ 進階版（推薦）</div>
+                <div class="plan-price">$79<span>/月</span></div>
+                <ul class="plan-features">
+                    <li>基礎版所有功能</li>
+                    <li>💎 ML 鑽石場次（77% 命中）</li>
+                    <li>💎 ATS 讓分鑽石（68% 命中）</li>
+                    <li>🤖 AI 即時傷兵 + 分析</li>
+                    <li>📊 每日分析報告</li>
+                    <li>歷史輪廓（賽季/近況/強弱對戰）</li>
+                    <li class="locked">API 存取</li>
+                </ul>
+            </div>
+
+            <div class="plan">
+                <div class="plan-name">專業版</div>
+                <div class="plan-price">$199<span>/月</span></div>
+                <ul class="plan-features">
+                    <li>進階版所有功能</li>
+                    <li>API 程式化存取</li>
+                    <li>歷史回測數據下載</li>
+                    <li>自訂閾值設定</li>
+                    <li>優先模型更新</li>
+                    <li>一對一 Discord 諮詢</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>📩 申請訂閱</h2>
+            <p>
+                寄信到以下信箱，說明你想訂閱的方案。<br>
+                確認付款後，你的信箱會被加入授權名單，即可登入使用。
+            </p>
+            <a class="contact-btn" href="mailto:{{ admin_email }}?subject=NBA 預測訂閱申請&body=你好，我想訂閱【基礎版/進階版/專業版】方案。%0A%0A我的信箱：%0A付款方式偏好：">
+                寄信給 {{ admin_email }}
+            </a>
+        </div>
+
+        <a href="/login" class="back-link">← 返回登入</a>
+    </div>
+</body>
+</html>

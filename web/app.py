@@ -4,8 +4,10 @@ Reads pre-computed JSON from data/ directory — no model inference,
 no tensorflow/xgboost/pandas dependencies. Only external API calls
 are AI analysis (Gemini) and player data (RapidAPI).
 """
+import hashlib
 import json
 import os
+import secrets
 from datetime import date, datetime, timedelta
 from functools import lru_cache
 from pathlib import Path
@@ -13,12 +15,86 @@ from zoneinfo import ZoneInfo
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, render_template, jsonify, request
+from flask import (
+    Flask, render_template, jsonify, request,
+    redirect, url_for, session, make_response,
+)
 
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", secrets.token_hex(32))
 app.jinja_env.add_extension("jinja2.ext.loopcontrols")
+
+
+# ---------------------------------------------------------------------------
+# Auth: whitelist-based access control
+# ---------------------------------------------------------------------------
+# Whitelist stored as env var AUTHORIZED_EMAILS (comma-separated).
+# Each user gets an access token (sha256 of email + salt).
+# Login via /login?token=xxx or /login with email form.
+
+AUTH_SALT = os.environ.get("AUTH_SALT", "nba-ml-2026")
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "lchao@example.com")
+
+
+def _get_whitelist() -> set[str]:
+    raw = os.environ.get("AUTHORIZED_EMAILS", "")
+    return {e.strip().lower() for e in raw.split(",") if e.strip()}
+
+
+def _make_token(email: str) -> str:
+    return hashlib.sha256(f"{email.lower().strip()}:{AUTH_SALT}".encode()).hexdigest()[:16]
+
+
+def _is_authenticated() -> bool:
+    return session.get("authenticated") is True
+
+
+@app.before_request
+def require_auth():
+    """Gate all pages behind auth except /login and /subscribe."""
+    allowed = {"/login", "/subscribe", "/favicon.ico"}
+    if request.path in allowed or request.path.startswith("/static"):
+        return
+    if _is_authenticated():
+        return
+    # Check token in query string (magic link).
+    token = request.args.get("token")
+    if token:
+        whitelist = _get_whitelist()
+        for email in whitelist:
+            if _make_token(email) == token:
+                session["authenticated"] = True
+                session["email"] = email
+                return redirect(request.path)
+        return redirect(url_for("login", error="invalid"))
+    return redirect(url_for("login"))
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = request.args.get("error")
+    if request.method == "POST":
+        email = request.form.get("email", "").strip().lower()
+        whitelist = _get_whitelist()
+        if email in whitelist:
+            session["authenticated"] = True
+            session["email"] = email
+            return redirect(url_for("index"))
+        error = "unauthorized"
+    return render_template("login.html", error=error, admin_email=ADMIN_EMAIL)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
+@app.route("/subscribe")
+def subscribe():
+    return render_template("subscribe.html", admin_email=ADMIN_EMAIL)
 
 DATA_DIR = Path(__file__).parent / "data"
 TAIPEI_TZ = ZoneInfo("Asia/Taipei")
