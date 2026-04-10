@@ -288,8 +288,10 @@ def _rapidapi_headers():
     }
 
 
-@app.route("/team-data/<team_name>")
+@app.route("/team-data/<path:team_name>")
 def team_data(team_name):
+    from urllib.parse import unquote
+    team_name = unquote(team_name)
     abv = TEAM_ABBREVIATIONS.get(team_name)
     if not abv:
         return jsonify({"success": False, "error": f"Unknown team: {team_name}"})
@@ -316,7 +318,7 @@ def team_data(team_name):
     return jsonify({"success": False, "error": "API error"})
 
 
-@app.route("/player-stats/<player_id>")
+@app.route("/player-stats/<path:player_id>")
 def player_stats(player_id):
     headers = _rapidapi_headers()
     try:
