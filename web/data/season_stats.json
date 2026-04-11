@@ -1,9 +1,9 @@
 {
  "season": "2025-26",
- "games": 1187,
- "ml_hits": 850,
- "ml_hit_rate": 71.6,
- "ou_hits": 591,
+ "games": 1198,
+ "ml_hits": 857,
+ "ml_hit_rate": 71.5,
+ "ou_hits": 597,
  "ou_hit_rate": 49.8,
  "value_picks": 28,
  "value_wins": 24,
@@ -21,15 +21,15 @@
  "elite_total_stake": 28000,
  "perfect_hits": 21,
  "ats_model": {
-  "games": 1187,
-  "hits": 608,
-  "hit_rate": 51.2,
+  "games": 1198,
+  "hits": 611,
+  "hit_rate": 51.0,
   "home_pick_pct": 39.4,
-  "value_bets": 92,
-  "value_wins": 62,
-  "value_losses": 30,
-  "value_hit_rate": 67.4,
-  "value_pl": 25800.0,
-  "value_roi": 28.0
+  "value_bets": 95,
+  "value_wins": 63,
+  "value_losses": 32,
+  "value_hit_rate": 66.3,
+  "value_pl": 24700.0,
+  "value_roi": 26.0
  }
 }

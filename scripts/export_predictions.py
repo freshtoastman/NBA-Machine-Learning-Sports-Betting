@@ -37,14 +37,15 @@ def export_date(target_date: date) -> dict | None:
     today = today_taipei()
     is_today = target_date == today
 
-    if is_today:
+    # Always try historical first (reads from local SQLite — fast, reliable).
+    # Fall back to live SBR only if historical returns nothing for today.
+    games_list = predict_historical_xgb(target_date)
+    if not games_list and is_today:
         try:
             games_list = predict_today_xgb(sportsbook="fanduel")
         except Exception as exc:
             print(f"  warn: predict_today_xgb failed: {exc}")
             games_list = []
-    else:
-        games_list = predict_historical_xgb(target_date)
 
     if not games_list:
         return None
