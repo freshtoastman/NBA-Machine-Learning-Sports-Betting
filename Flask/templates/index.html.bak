@@ -18,7 +18,6 @@
                 <span class="brand-mark">NBA</span>
                 <h1>機器學習預測</h1>
                 <span class="tz-chip">台灣時間 {{ today }}</span>
-                <a href="/logout" class="logout-btn">登出</a>
             </div>
             <div class="date-chips">
                 {% for chip in date_chips %}
@@ -328,47 +327,31 @@
     <script src="{{ url_for('static', filename='app.js') }}"></script>
     <script>
     function renderGameAnalysis(data) {
-        const units = parseInt(data.ats_units) || 0;
-        const unitBars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
-        const src = (data.source || '').includes('gemini') ? '🌐 Gemini+搜尋' : data.source === 'claude' ? '🤖 Claude' : '📊 規則分析';
+        const confClass = data.confidence === '高' ? 'conf-high' : data.confidence === '中' ? 'conf-mid' : 'conf-low';
+        const src = data.source === 'gemini+search' ? '🌐 Gemini+搜尋' : data.source === 'gemini' ? '🤖 Gemini' : data.source === 'claude' ? '🤖 Claude' : '📊 規則分析';
         return `
         <div class="ai-card">
             <div class="ai-row ai-injuries">
                 <div class="ai-inj-col">
                     <span class="ai-inj-title">🏥 主隊傷兵</span>
-                    ${(data.injuries_home || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('') || '<span class="ai-inj-item">無傷兵</span>'}
+                    ${(data.injuries_home || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('')}
                 </div>
                 <div class="ai-inj-col">
                     <span class="ai-inj-title">🏥 客隊傷兵</span>
-                    ${(data.injuries_away || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('') || '<span class="ai-inj-item">無傷兵</span>'}
+                    ${(data.injuries_away || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('')}
                 </div>
             </div>
-            ${data.injury_impact ? `<div class="ai-row"><span class="ai-impact">💉 ${data.injury_impact}</span></div>` : ''}
             <div class="ai-row ai-factors">
                 <span class="ai-section-lbl">🔍 關鍵因素</span>
                 ${(data.key_factors || []).map(f => `<span class="ai-factor">${f}</span>`).join('')}
             </div>
-            <div class="ai-ats-pick ${units >= 3 ? 'ats-strong' : units >= 1 ? 'ats-lean' : 'ats-pass'}">
-                <div class="ai-ats-main">
-                    <span class="ai-ats-label">🎯 讓分推薦</span>
-                    <strong class="ai-ats-text">${data.ats_pick || '不推薦'}</strong>
-                    <span class="ai-units">${unitBars} ${units}U</span>
-                </div>
-                <div class="ai-ats-reason">${data.ats_reason || ''}</div>
+            <div class="ai-row ai-verdicts">
+                <div class="ai-verdict"><span class="ai-v-lbl">勝負</span><strong>${data.ml_verdict || '?'}</strong><span class="ai-v-reason">${data.ml_reason || ''}</span></div>
+                <div class="ai-verdict"><span class="ai-v-lbl">讓分</span><strong>${data.ats_verdict || '?'}</strong><span class="ai-v-reason">${data.ats_reason || ''}</span></div>
+                <div class="ai-verdict"><span class="ai-v-lbl">大小分</span><strong>${data.ou_verdict || '?'}</strong><span class="ai-v-reason">${data.ou_reason || ''}</span></div>
             </div>
-            <div class="ai-row ai-secondary">
-                <div class="ai-mini-verdict">
-                    <span class="ai-v-lbl">大小分</span>
-                    <strong>${data.ou_pick || '—'}</strong>
-                    <span class="ai-v-reason">${data.ou_reason || ''}</span>
-                </div>
-                <div class="ai-mini-verdict ai-ml-note">
-                    <span class="ai-v-lbl">勝負盤</span>
-                    <span class="ai-v-reason">${data.ml_note || '賠率過低不建議'}</span>
-                </div>
-            </div>
-            ${data.risk_warning ? `<div class="ai-row ai-risk">⚠️ ${data.risk_warning}</div>` : ''}
             <div class="ai-row ai-summary">
+                <span class="ai-conf ${confClass}">信心 ${data.confidence || '?'}</span>
                 <span class="ai-summary-text">${data.summary || ''}</span>
                 <span class="ai-source">${src}</span>
             </div>
@@ -436,38 +419,21 @@
                 if (data.error) {
                     content.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
                 } else {
-                    const bestBets = (data.best_bets || []).map(p => {
-                        const units = parseInt(p.units) || 0;
-                        const bars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
-                        return `<div class="report-bet best">
-                            <div class="report-bet-head"><strong>${p.game}</strong><span class="report-spread">${p.spread || ''}</span></div>
-                            <div class="report-bet-pick">🎯 ${p.pick} <span class="ai-units">${bars} ${units}U</span></div>
-                            <div class="report-bet-reason">${p.reason || ''}</div>
-                            ${p.model_support ? `<div class="report-bet-model">📊 ${p.model_support}</div>` : ''}
-                        </div>`;
-                    }).join('');
-                    const leans = (data.lean_picks || []).map(p => {
-                        const units = parseInt(p.units) || 0;
-                        return `<div class="report-bet lean">
-                            <div class="report-bet-head"><strong>${p.game}</strong></div>
-                            <div class="report-bet-pick">${p.pick} <span class="ai-units">${'🟡'.repeat(units)}${'⚫'.repeat(5-units)} ${units}U</span></div>
-                            <div class="report-bet-reason">${p.reason || ''}</div>
-                        </div>`;
-                    }).join('');
-                    const avoids = (data.avoid_games || []).map(a =>
-                        `<div class="report-avoid">⛔ <strong>${a.game}</strong> — ${a.reason}</div>`
+                    const picks = (data.top_picks || []).map(p =>
+                        `<div class="report-pick"><strong>${p.game}</strong> — ${p.pick} <span class="ai-conf conf-${p.confidence === '高' ? 'high' : p.confidence === '中' ? 'mid' : 'low'}">${p.confidence}</span><span class="ai-v-reason">${p.reason}</span></div>`
                     ).join('');
-                    const injuries = (data.injury_alerts || []).map(i =>
-                        `<div class="report-injury">🏥 ${i}</div>`
+                    const avoids = (data.avoid_games || []).map(a =>
+                        `<div class="report-avoid">⚠️ ${a.game} — ${a.reason}</div>`
+                    ).join('');
+                    const injuries = (data.injury_impact || []).map(i =>
+                        `<span class="ai-factor">${i}</span>`
                     ).join('');
                     content.innerHTML = `
                     <div class="daily-report">
                         <div class="report-headline">${data.headline || ''}</div>
-                        ${bestBets ? `<div class="report-section"><span class="report-section-lbl">🎯 讓分精選（Best Bets）</span>${bestBets}</div>` : ''}
-                        ${leans ? `<div class="report-section"><span class="report-section-lbl">📌 次級推薦（Leans）</span>${leans}</div>` : ''}
+                        ${picks ? `<div class="report-section"><span class="report-section-lbl">🏆 今日推薦</span>${picks}</div>` : ''}
                         ${avoids ? `<div class="report-section"><span class="report-section-lbl">⛔ 建議避開</span>${avoids}</div>` : ''}
-                        ${injuries ? `<div class="report-section"><span class="report-section-lbl">🏥 傷兵快報</span>${injuries}</div>` : ''}
-                        ${data.bankroll_plan ? `<div class="report-bankroll">💰 ${data.bankroll_plan}</div>` : ''}
+                        ${injuries ? `<div class="report-section"><span class="report-section-lbl">🏥 重大傷兵</span><div class="ai-factors-row">${injuries}</div></div>` : ''}
                         <div class="report-summary">${data.daily_summary || ''}</div>
                     </div>`;
                 }

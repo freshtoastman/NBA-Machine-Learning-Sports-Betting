@@ -131,59 +131,93 @@ ATS模型: {ats_pick} 蓋 ({ats_conf}%, edge {ats_edge}pp)
 {_fmt_profile(game.get('away_profile'), a_zh)}"""
 
 
-SINGLE_GAME_PROMPT = """你是 NBA 專業分析師。根據以下資料和你搜尋到的最新傷兵/新聞，對這場比賽做分析。
+SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認真的體育投注者，他們需要明確的讓分推薦，不是模糊建議。
 
 比賽日期: {game_date}
 {context}
 
-請用以下 JSON 格式回答（不要加 markdown code block）：
+=== 你的任務 ===
+1. 搜尋兩隊今天的 injury report（傷兵報告），列出每個傷兵的狀態
+2. 評估傷兵對讓分盤的影響（缺少主力 = 可能蓋不過讓分）
+3. 綜合模型預測 + 傷兵 + 賽程 + 動機，給出明確的讓分推薦
+4. 勝負盤（moneyline）賠率通常太低，不值得推薦 — 除非是大冷門值得小注
+
+=== 回答格式（JSON，不要 code block）===
 {{
-  "injuries_home": ["球員名 - 狀態(OUT/GTD/Available)", ...],
-  "injuries_away": ["球員名 - 狀態(OUT/GTD/Available)", ...],
+  "injuries_home": ["球員名 - OUT/GTD/Available（傷勢描述）", ...],
+  "injuries_away": ["球員名 - OUT/GTD/Available（傷勢描述）", ...],
+  "injury_impact": "傷兵對讓分盤的具體影響（哪個球員缺陣拉大/縮小分差）",
   "key_factors": ["因素1", "因素2", "因素3"],
-  "ml_verdict": "看好哪隊勝（隊名）",
-  "ml_reason": "一句話理由",
-  "ats_verdict": "押哪邊讓分（隊名 +/- 分數）",
-  "ats_reason": "一句話理由",
-  "ou_verdict": "大分/小分",
+  "ats_pick": "明確寫：押 XX隊 +/-N 分（例如：押 鵜鶘 +16.5）",
+  "ats_reason": "為什麼選這一邊（2-3句，具體分析）",
+  "ats_units": "1-5（1=低信心試水，3=標準注，5=極高信心重注）",
+  "ou_pick": "大分 N / 小分 N / 不推薦",
   "ou_reason": "一句話理由",
-  "confidence": "高/中/低",
-  "summary": "50字內總結建議"
+  "ml_note": "勝負盤備註（通常寫'賠率過低不建議'，除非有冷門價值）",
+  "risk_warning": "這場的風險（可能翻車的原因）",
+  "summary": "一句話結論：押什麼、幾個單位"
 }}
 
-重要：
-1. 先搜尋兩隊今天的傷兵報告(injury report)
-2. injuries 欄位要列出實際查到的傷兵，不要編造
-3. key_factors 要包含傷兵影響、賽程疲勞、季後賽動機等模型看不到的因素
-4. 用繁體中文回答"""
+=== 規則 ===
+- ats_pick 必須明確寫出「押 XX隊 +/-N 分」，不能含糊
+- ats_units 必須是 1-5 的數字，不能寫「中」「低」
+- 如果讓分盤沒有優勢，ats_pick 寫「不推薦」，ats_units 寫 0
+- injuries 必須是實際搜尋到的，不能編造
+- 用繁體中文回答"""
 
 
-DAILY_REPORT_PROMPT = """你是 NBA 專業分析師。以下是今天所有比賽的模型預測和數據。請產出一份當日分析報告。
+DAILY_REPORT_PROMPT = """你是職業 NBA 讓分盤分析師團隊主管。你的任務是產出一份讓投注者能直接照著操作的當日報告。
 
 日期: {game_date}
 比賽數量: {num_games}
 
 {all_contexts}
 
-請用以下 JSON 格式回答（不要加 markdown code block）：
+=== 你的任務 ===
+1. 搜尋今天所有重大傷兵消息
+2. 從所有比賽中挑出「值得下注的讓分盤」（明確寫出押哪隊 +/- 幾分）
+3. 標出應該避開的比賽
+4. 寫出整體策略
+
+=== 回答格式（JSON，不要 code block）===
 {{
-  "headline": "今日 NBA 一句話標題",
-  "top_picks": [
-    {{"game": "隊A vs 隊B", "pick": "建議", "confidence": "高/中/低", "reason": "理由"}},
-    ...最多3場
+  "headline": "今日 NBA 讓分盤精選（一句吸引眼球的標題）",
+  "best_bets": [
+    {{
+      "game": "客隊 @ 主隊",
+      "spread": "主隊 -N / 客隊 +N",
+      "pick": "押 XX隊 +/-N 分（明確寫出）",
+      "units": 1到5的數字,
+      "reason": "2-3句具體分析（含傷兵影響）",
+      "model_support": "模型資料佐證（ML信心、ATS edge等）"
+    }}
+  ],
+  "lean_picks": [
+    {{
+      "game": "客隊 @ 主隊",
+      "pick": "押 XX隊 +/-N 分",
+      "units": 1到2,
+      "reason": "一句話理由"
+    }}
   ],
   "avoid_games": [
-    {{"game": "隊A vs 隊B", "reason": "為什麼要避開"}}
+    {{"game": "客隊 @ 主隊", "reason": "為什麼避開（傷兵不確定/盤口合理/五五波）"}}
   ],
-  "injury_impact": ["重大傷兵影響1", "重大傷兵影響2"],
-  "daily_summary": "100字內的當日總結，包含整體策略建議"
+  "injury_alerts": ["重大傷兵消息1", "重大傷兵消息2"],
+  "bankroll_plan": "今日資金分配建議（總共幾個單位、怎麼分配）",
+  "daily_summary": "100字策略總結"
 }}
 
-重要：
-1. 搜尋今天所有重大傷兵消息
-2. top_picks 只選最有把握的場次（鑽石場次 + 高信心）
-3. avoid_games 列出不確定性高、應避開的場次
-4. 用繁體中文回答"""
+=== 規則 ===
+- best_bets: 最多 3 場，只放你最有信心的讓分推薦（units >= 3）
+- lean_picks: 次級推薦（units 1-2），有優勢但不夠強
+- 每個 pick 必須明確寫出「押 XX隊 +/-N 分」
+- units 必須是數字 1-5
+- 如果今天沒有好的讓分機會，best_bets 可以是空陣列，並在 daily_summary 說明
+- 勝負盤（moneyline）只有在大冷門有價值時才提及，否則不推薦
+- injury_alerts 必須是搜尋到的真實傷兵消息
+- bankroll_plan 建議今天總共下多少單位（保守 3-5 / 標準 5-8 / 積極 8-12）
+- 用繁體中文回答"""
 
 
 # ---------------------------------------------------------------------------

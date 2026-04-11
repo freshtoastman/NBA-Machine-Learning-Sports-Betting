@@ -466,19 +466,47 @@ a {
 .ai-section-lbl { font-size: 11px; font-weight: 700; color: var(--accent-2); width: 100%; }
 .ai-factor { display: inline-block; padding: 2px 8px; border-radius: 6px; background: rgba(35, 214, 198, 0.1); border: 1px solid rgba(35, 214, 198, 0.25); color: var(--text); font-size: 11px; }
 
-.ai-verdicts { gap: 8px; }
-.ai-verdict { flex: 1; min-width: 100px; padding: 6px 8px; border-radius: 8px; background: rgba(20, 28, 48, 0.6); border: 1px solid var(--stroke); display: flex; flex-direction: column; gap: 2px; }
 .ai-v-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; }
-.ai-verdict strong { font-size: 13px; color: var(--text); }
 .ai-v-reason { font-size: 11px; color: var(--muted); }
 
+.ai-impact { font-size: 11px; color: var(--negative); font-weight: 600; padding: 4px 8px; border-radius: 6px; background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.2); }
+
+.ai-ats-pick { padding: 10px 12px; border-radius: 10px; margin: 4px 0; }
+.ai-ats-pick.ats-strong { background: linear-gradient(135deg, rgba(45, 211, 111, 0.15), rgba(45, 211, 111, 0.05)); border: 1px solid rgba(45, 211, 111, 0.4); }
+.ai-ats-pick.ats-lean { background: rgba(242, 201, 76, 0.1); border: 1px solid rgba(242, 201, 76, 0.3); }
+.ai-ats-pick.ats-pass { background: rgba(154, 166, 199, 0.08); border: 1px solid rgba(154, 166, 199, 0.2); }
+.ai-ats-main { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ai-ats-label { font-size: 11px; font-weight: 700; color: var(--muted); }
+.ai-ats-text { font-size: 15px; color: var(--text); }
+.ats-strong .ai-ats-text { color: var(--positive); }
+.ai-units { font-size: 12px; letter-spacing: 1px; margin-left: auto; }
+.ai-ats-reason { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+.ai-secondary { gap: 8px; }
+.ai-mini-verdict { flex: 1; min-width: 120px; padding: 6px 8px; border-radius: 8px; background: rgba(20, 28, 48, 0.4); border: 1px solid var(--stroke); display: flex; flex-direction: column; gap: 2px; }
+.ai-mini-verdict strong { font-size: 12px; color: var(--text); }
+.ai-ml-note { opacity: 0.6; }
+
+.ai-risk { font-size: 11px; color: var(--accent-3); padding: 4px 8px; border-radius: 6px; background: rgba(242, 201, 76, 0.08); border: 1px solid rgba(242, 201, 76, 0.2); }
+
 .ai-summary { align-items: center; gap: 8px; padding-top: 6px; border-top: 1px solid var(--stroke); }
-.ai-conf { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; }
-.conf-high { background: rgba(45, 211, 111, 0.2); color: var(--positive); border: 1px solid rgba(45, 211, 111, 0.4); }
-.conf-mid { background: rgba(242, 201, 76, 0.2); color: var(--accent-3); border: 1px solid rgba(242, 201, 76, 0.4); }
-.conf-low { background: rgba(154, 166, 199, 0.15); color: var(--muted); border: 1px solid rgba(154, 166, 199, 0.3); }
-.ai-summary-text { flex: 1; color: var(--text); font-size: 12px; font-weight: 600; }
+.ai-summary-text { flex: 1; color: var(--text); font-size: 12px; font-weight: 700; }
 .ai-source { font-size: 10px; color: var(--muted); margin-left: auto; }
+
+/* Daily report — bet cards */
+.report-bet { padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; }
+.report-bet.best { background: linear-gradient(135deg, rgba(45, 211, 111, 0.12), rgba(45, 211, 111, 0.04)); border: 1px solid rgba(45, 211, 111, 0.35); }
+.report-bet.lean { background: rgba(242, 201, 76, 0.08); border: 1px solid rgba(242, 201, 76, 0.25); }
+.report-bet-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.report-bet-head strong { font-size: 13px; color: var(--text); }
+.report-spread { font-size: 11px; color: var(--muted); }
+.report-bet-pick { font-size: 14px; font-weight: 700; color: var(--positive); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.report-bet.lean .report-bet-pick { color: var(--accent-3); }
+.report-bet-reason { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.report-bet-model { font-size: 11px; color: var(--accent); margin-top: 4px; }
+.report-avoid { font-size: 12px; color: var(--muted); padding: 4px 0; }
+.report-injury { font-size: 12px; color: var(--negative); padding: 3px 0; }
+.report-bankroll { font-size: 13px; font-weight: 700; color: var(--accent-3); padding: 8px 12px; border-radius: 8px; background: rgba(242, 201, 76, 0.1); border: 1px solid rgba(242, 201, 76, 0.25); }
 
 /* Daily report */
 .daily-report-btn {
