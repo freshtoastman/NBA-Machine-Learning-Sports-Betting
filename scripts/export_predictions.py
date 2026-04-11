@@ -32,20 +32,15 @@ def _serialize(obj):
 
 def export_date(target_date: date) -> dict | None:
     """Generate prediction dict for a single date."""
-    from main import predict_historical_xgb, predict_today_xgb
+    from main import predict_historical_xgb
 
     today = today_taipei()
     is_today = target_date == today
 
-    # Always try historical first (reads from local SQLite — fast, reliable).
-    # Fall back to live SBR only if historical returns nothing for today.
+    # Always use historical mode (reads from local SQLite).
+    # Never call predict_today_xgb in CI — it may try interactive input()
+    # when SBR odds are unavailable, which hangs on stdin EOF.
     games_list = predict_historical_xgb(target_date)
-    if not games_list and is_today:
-        try:
-            games_list = predict_today_xgb(sportsbook="fanduel")
-        except Exception as exc:
-            print(f"  warn: predict_today_xgb failed: {exc}")
-            games_list = []
 
     if not games_list:
         return None

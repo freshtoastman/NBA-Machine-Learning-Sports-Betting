@@ -3,8 +3,16 @@ import os
 from datetime import datetime, timedelta
 
 import pandas as pd
-import tensorflow as tf
 from colorama import Fore, Style
+
+# Lazy tensorflow import — only needed for NN predictions, not XGBoost or export.
+tf = None
+def _get_tf():
+    global tf
+    if tf is None:
+        import tensorflow as _tf
+        tf = _tf
+    return tf
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -489,7 +497,7 @@ def main(args):
         args.xgb = True
         args.nn = True
 
-    normalized_data = tf.keras.utils.normalize(data, axis=1) if args.nn else None
+    normalized_data = _get_tf().keras.utils.normalize(data, axis=1) if args.nn else None
     run_models(
         data,
         normalized_data,
