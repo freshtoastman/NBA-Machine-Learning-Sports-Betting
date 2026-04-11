@@ -1,0 +1,88 @@
+name: Daily NBA Data Update
+
+on:
+  schedule:
+    # 22:00 UTC = 06:00 台灣時間 (每天)
+    - cron: '0 22 * * *'
+  workflow_dispatch: # 手動觸發
+
+permissions:
+  contents: write
+
+env:
+  PYTHONPATH: ${{ github.workspace }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('requirements.txt') }}
+
+      - name: Cache SQLite databases
+        uses: actions/cache@v4
+        with:
+          path: |
+            Data/TeamData.sqlite
+            Data/OddsData.sqlite
+            Data/dataset.sqlite
+          # Cache rotates daily so we always build on yesterday's data.
+          key: sqlite-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: |
+            sqlite-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install google-genai python-dotenv
+
+      - name: Step 1 — Update team stats
+        run: |
+          cd src/Process-Data
+          python -m Get_Data
+        continue-on-error: true
+
+      - name: Step 2 — Update odds data
+        run: |
+          cd src/Process-Data
+          python -m Get_Odds_Data
+        continue-on-error: true
+
+      - name: Step 3 — Patch final scores (sbrscrape)
+        run: python scripts/patch_scores.py
+
+      - name: Step 4 — Rebuild dataset
+        run: python src/Process-Data/Create_Games.py
+
+      - name: Step 5 — Export predictions to JSON
+        run: python scripts/export_predictions.py
+
+      - name: Step 6 — Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "daily update $(date -u +%Y-%m-%d)
+
+          Co-Authored-By: GitHub Actions <github-actions[bot]@users.noreply.github.com>"
+            git push
+          fi
