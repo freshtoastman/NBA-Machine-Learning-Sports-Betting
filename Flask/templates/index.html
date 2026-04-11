@@ -49,10 +49,12 @@
             </div>
             {% endif %}
 
-            <div id="daily-report-block" style="margin-top:10px;">
-                <button class="daily-report-btn" onclick="loadDailyReport('{{ selected_date }}')">📊 生成當日 AI 分析報告</button>
-                <div class="daily-report-content" style="display:none;"></div>
+            <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+                <button class="daily-report-btn" onclick="loadDailyReport('{{ selected_date }}')" style="flex:1;min-width:200px;">📊 生成當日 AI 分析報告</button>
+                <button class="pinned-analysis-btn" id="pinned-btn" onclick="analyzePinned('{{ selected_date }}')" style="flex:1;min-width:200px;display:none;">📌 分析置頂場次 (<span id="pinned-count">0</span>)</button>
             </div>
+            <div class="daily-report-content" style="display:none;"></div>
+            <div class="pinned-report-content" style="display:none;"></div>
         </section>
 
         {# Model comparison: ML / UO / ATS side-by-side #}
@@ -167,7 +169,8 @@
             {% set lean_is_home = home_conf >= away_conf %}
             {% set lean_team = home_team if lean_is_home else away_team %}
             {% set lean_conf = home_conf if lean_is_home else away_conf %}
-            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}">
+            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}">
+                <button class="pin-btn" onclick="togglePin('{{ game_key }}')" title="置頂此場次">📌</button>
                 {% if game.is_value %}
                 <div class="value-banner {% if game.is_consensus %}consensus{% endif %}">
                     {% if game.is_consensus %}🔥 雙模型共識{% else %}💎 價值場次{% endif %} —
@@ -480,6 +483,111 @@
                 btn.textContent = '📊 生成當日 AI 分析報告';
             })
             .finally(() => { btn.disabled = false; });
+    }
+    </script>
+    <script>
+    // Pinned games (localStorage)
+    const PINNED_KEY = 'nba_pinned_games';
+    function getPinned() {
+        try { return JSON.parse(localStorage.getItem(PINNED_KEY) || '[]'); } catch { return []; }
+    }
+    function savePinned(list) {
+        localStorage.setItem(PINNED_KEY, JSON.stringify(list));
+        updatePinnedUI();
+    }
+    function togglePin(gameKey) {
+        let pinned = getPinned();
+        const idx = pinned.indexOf(gameKey);
+        if (idx >= 0) { pinned.splice(idx, 1); } else { pinned.push(gameKey); }
+        savePinned(pinned);
+    }
+    function updatePinnedUI() {
+        const pinned = getPinned();
+        // Update pin buttons
+        document.querySelectorAll('.pick-card').forEach(card => {
+            const key = card.dataset.gameKey;
+            const btn = card.querySelector('.pin-btn');
+            if (btn) {
+                if (pinned.includes(key)) {
+                    btn.classList.add('pinned');
+                    card.classList.add('is-pinned');
+                } else {
+                    btn.classList.remove('pinned');
+                    card.classList.remove('is-pinned');
+                }
+            }
+        });
+        // Sort: pinned first
+        const grid = document.querySelector('.picks-grid');
+        if (grid) {
+            const cards = Array.from(grid.querySelectorAll('.pick-card'));
+            cards.sort((a, b) => {
+                const aPin = pinned.includes(a.dataset.gameKey) ? 0 : 1;
+                const bPin = pinned.includes(b.dataset.gameKey) ? 0 : 1;
+                return aPin - bPin;
+            });
+            cards.forEach(c => grid.appendChild(c));
+        }
+        // Show/hide pinned analysis button
+        const pinnedBtn = document.getElementById('pinned-btn');
+        const countEl = document.getElementById('pinned-count');
+        if (pinnedBtn && countEl) {
+            countEl.textContent = pinned.length;
+            pinnedBtn.style.display = pinned.length > 0 ? 'block' : 'none';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', updatePinnedUI);
+
+    function analyzePinned(gameDate) {
+        const pinned = getPinned();
+        if (!pinned.length) return;
+        const btn = document.querySelector('.pinned-analysis-btn');
+        const content = document.querySelector('.pinned-report-content');
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            btn.innerHTML = `📌 分析置頂場次 (<span id="pinned-count">${pinned.length}</span>)`;
+            return;
+        }
+        btn.textContent = '⏳ 分析中...';
+        btn.disabled = true;
+        fetch('/api/analyze-pinned', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({date: gameDate, pinned: pinned})
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.error) {
+                content.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
+            } else {
+                const picks = (data.picks || []).map(p => {
+                    const u = parseInt(p.units) || 0;
+                    const bars = '🟢'.repeat(Math.min(u,5)) + '⚫'.repeat(Math.max(0,5-u));
+                    const inj = (p.injuries || []).map(i => `<span class="ai-inj-item">🏥 ${i}</span>`).join('');
+                    return `<div class="report-bet best">
+                        <div class="report-bet-head"><strong>${p.game}</strong></div>
+                        <div class="report-bet-pick">🎯 ${p.pick} <span class="ai-units">${bars} ${u}U</span></div>
+                        <div class="report-bet-reason">${p.reason || ''}</div>
+                        ${inj ? `<div style="margin-top:4px">${inj}</div>` : ''}
+                    </div>`;
+                }).join('');
+                content.innerHTML = `
+                <div class="daily-report" style="border-color:rgba(47,124,246,0.4);">
+                    <div class="report-headline">📌 置頂場次分析（${pinned.length} 場）</div>
+                    ${picks}
+                    ${data.parlay_suggestion ? `<div class="report-bankroll">🔗 串關：${data.parlay_suggestion}</div>` : ''}
+                    ${data.total_units ? `<div class="report-bankroll">💰 總單位：${data.total_units}U</div>` : ''}
+                    <div class="report-summary">${data.strategy || ''}</div>
+                </div>`;
+            }
+            content.style.display = 'block';
+            btn.innerHTML = `📌 收合置頂分析 (<span id="pinned-count">${pinned.length}</span>)`;
+        })
+        .catch(err => {
+            content.innerHTML = `<div class="ai-error">⚠️ ${err.message}</div>`;
+            content.style.display = 'block';
+        })
+        .finally(() => { btn.disabled = false; });
     }
     </script>
     {% include 'team_modal.html' %}

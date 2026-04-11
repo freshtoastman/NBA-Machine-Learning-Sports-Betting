@@ -273,36 +273,163 @@ def api_analysis():
     if not game:
         return jsonify({"error": "Game not found"}), 404
 
-    prompt = f"""你是NBA專業分析師。分析這場比賽，搜尋最新傷兵消息。
-{away} @ {home} ({game_date})
-讓分: {game.get('spread')}
-ML模型: {'主隊' if game.get('winner')=='home' else '客隊'} ({game.get('home_confidence') if game.get('winner')=='home' else game.get('away_confidence')}%)
-ATS模型: {'主隊' if game.get('ats_model_pick')=='home' else '客隊'} 蓋 ({game.get('ats_model_confidence')}%)
-鑽石: {'是' if game.get('is_value') else '否'}
+    ctx = _build_game_context(game)
+    prompt = f"""你是職業 NBA 讓分盤分析師。你的讀者是認真的體育投注者。
 
-用JSON回答(不要code block):
-{{"injuries_home":["球員-狀態",...],"injuries_away":["球員-狀態",...],"key_factors":["因素1","因素2"],"ml_verdict":"看好哪隊","ml_reason":"理由","ats_verdict":"押哪邊讓分","ats_reason":"理由","ou_verdict":"大/小分","ou_reason":"理由","confidence":"高/中/低","summary":"50字總結"}}
-用繁體中文。"""
+比賽日期: {game_date}
+{ctx}
+
+=== 任務 ===
+1. 搜尋兩隊今天的 injury report（傷兵報告）
+2. 評估傷兵對讓分盤的影響
+3. 給出明確的讓分推薦（押哪隊 +/- 幾分、幾個單位）
+
+=== 回答格式（JSON，不要 code block）===
+{{
+  "injuries_home": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+  "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+  "injury_impact": "傷兵對讓分盤的具體影響",
+  "key_factors": ["因素1", "因素2", "因素3"],
+  "ats_pick": "明確寫：押 XX隊 +/-N 分",
+  "ats_reason": "為什麼選這一邊（2-3句具體分析）",
+  "ats_units": 數字1到5,
+  "ou_pick": "大分 N / 小分 N / 不推薦",
+  "ou_reason": "一句話理由",
+  "ml_note": "勝負盤備註（通常'賠率過低不建議'）",
+  "risk_warning": "這場的風險",
+  "summary": "一句話結論：押什麼、幾個單位"
+}}
+
+規則：ats_pick 必須明確寫「押 XX隊 +/-N 分」。ats_units 必須是數字1-5。用繁體中文。"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if result:
         result["source"] = "gemini"
     else:
+        ml_pick = game.get("home_team") if game.get("winner") == "home" else game.get("away_team")
+        ats_team = game.get("home_team") if game.get("ats_model_pick") == "home" else game.get("away_team") if game.get("ats_model_pick") else "N/A"
+        sp = game.get("spread")
         result = {
             "injuries_home": [], "injuries_away": [],
-            "key_factors": ["無法取得即時資料"],
-            "ml_verdict": game.get("home_team") if game.get("winner") == "home" else game.get("away_team"),
-            "ml_reason": f"模型信心 {game.get('home_confidence') if game.get('winner')=='home' else game.get('away_confidence')}%",
-            "ats_verdict": "見讓分模型",
-            "ats_reason": f"ATS edge {game.get('ats_value_edge', 0)}pp",
-            "ou_verdict": game.get("ou_pick", "?"),
-            "ou_reason": f"信心 {game.get('ou_confidence', '?')}%",
-            "confidence": "中",
-            "summary": "AI 分析暫時無法使用，請參考模型預測。",
+            "injury_impact": "無法查詢傷兵（離線模式）",
+            "key_factors": ["請參考模型預測"],
+            "ats_pick": f"押 {ats_team} {'+'if game.get('ats_model_pick')!='home' and sp else '-'}{abs(sp) if sp else '?'}" if ats_team != "N/A" else "不推薦",
+            "ats_reason": f"ATS 模型 edge {game.get('ats_value_edge', 0)}pp",
+            "ats_units": 2 if game.get("ats_is_value") else 1,
+            "ou_pick": f"{'大分' if game.get('ou_pick')=='OVER' else '小分'} {game.get('ou_value','?')}",
+            "ou_reason": f"模型信心 {game.get('ou_confidence','?')}%",
+            "ml_note": "賠率過低不建議",
+            "risk_warning": "AI 分析暫時不可用，僅供參考",
+            "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
             "source": "fallback",
         }
     return jsonify(result)
+
+
+@app.route("/api/analyze-pinned", methods=["POST"])
+def api_analyze_pinned():
+    """Analyze user's pinned games as a group — find correlations and parlays."""
+    body = request.get_json(silent=True) or {}
+    game_date = body.get("date")
+    pinned_keys = body.get("pinned", [])
+    if not game_date or not pinned_keys:
+        return jsonify({"error": "Missing date or pinned list"}), 400
+
+    data = load_date_data(game_date)
+    if not data:
+        return jsonify({"error": "No data"}), 404
+
+    pinned_games = []
+    for key in pinned_keys:
+        g = data["games"].get(key)
+        if g:
+            pinned_games.append(g)
+    if not pinned_games:
+        return jsonify({"error": "No valid pinned games found"}), 404
+
+    contexts = []
+    for i, g in enumerate(pinned_games, 1):
+        contexts.append(f"=== 置頂場次 {i} ===\n{_build_game_context(g)}")
+
+    prompt = f"""你是職業 NBA 讓分盤分析師。用戶從今天 {len(data['games'])} 場比賽中置頂了 {len(pinned_games)} 場要你重點分析。
+
+日期: {game_date}
+
+{chr(10).join(contexts)}
+
+=== 任務 ===
+1. 搜尋這 {len(pinned_games)} 場的傷兵
+2. 每場給出明確讓分推薦（押哪隊 +/- 幾分、幾個單位）
+3. 分析這幾場之間有沒有關聯（例如同一隊連戰、跨場串關機會）
+4. 給出這 {len(pinned_games)} 場的整體下注策略
+
+=== 回答格式（JSON，不要 code block）===
+{{
+  "picks": [
+    {{
+      "game": "客隊 @ 主隊",
+      "pick": "押 XX隊 +/-N 分",
+      "units": 1到5,
+      "reason": "2-3句分析（含傷兵）",
+      "injuries": ["重要傷兵1", "重要傷兵2"]
+    }}
+  ],
+  "parlay_suggestion": "串關建議（如果有合適的 2-3 場串關機會就寫，沒有就寫'不建議串關'）",
+  "total_units": 數字（這幾場總共建議下多少單位）,
+  "strategy": "整體策略（100字）"
+}}
+
+規則：每個 pick 必須明確寫「押 XX隊 +/-N 分」。units 是數字。用繁體中文。"""
+
+    raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
+    result = _parse_json(raw)
+    if not result:
+        result = {
+            "picks": [{"game": f"{g.get('away_team')} @ {g.get('home_team')}", "pick": "參考模型", "units": 1, "reason": "AI 暫時不可用", "injuries": []} for g in pinned_games],
+            "parlay_suggestion": "不建議串關",
+            "total_units": len(pinned_games),
+            "strategy": "AI 分析暫時不可用，請參考各場模型預測。",
+        }
+    return jsonify(result)
+
+
+def _build_game_context(g):
+    """Build detailed context string for a single game."""
+    home = g.get("home_team", "?")
+    away = g.get("away_team", "?")
+    ml_pick = home if g.get("winner") == "home" else away
+    ml_conf = g.get("home_confidence") if g.get("winner") == "home" else g.get("away_confidence", 0)
+    spread = g.get("spread")
+    spread_s = f"{spread:+.1f}" if spread is not None else "N/A"
+    ats_side = g.get("ats_model_pick")
+    ats_team = home if ats_side == "home" else away if ats_side == "away" else "N/A"
+    ats_conf = g.get("ats_model_confidence", "?")
+    ats_edge = g.get("ats_value_edge", 0)
+    ou_pick = g.get("ou_pick", "?")
+    ou_val = g.get("ou_value", "?")
+    value_side = g.get("value_side")
+    value_team = home if value_side == "home" else away if value_side else "無"
+    value_edge = g.get("value_edge", 0)
+    # Profile summary
+    def _prof(p, name):
+        if not p:
+            return ""
+        s = p.get("season", {}).get("overall", {})
+        m = p.get("last_1m", {}).get("overall", {})
+        parts = []
+        if s.get("games"):
+            parts.append(f"賽季{s['wins']}-{s['losses']}({s['win_rate']}%)")
+        if m.get("games"):
+            parts.append(f"近月{m['wins']}-{m['losses']}({m['win_rate']}%)")
+        return f"{name}: {' '.join(parts)}" if parts else ""
+    hp = _prof(g.get("home_profile"), home)
+    ap = _prof(g.get("away_profile"), away)
+    return f"""{away} @ {home} | 讓分 {home} {spread_s}
+ML: {ml_pick}({ml_conf}%) | ATS: {ats_team}蓋({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
+鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
+{hp}
+{ap}"""
 
 
 @app.route("/api/daily-report")
@@ -317,24 +444,72 @@ def api_daily_report():
     games = data["games"]
     contexts = []
     for i, (k, g) in enumerate(games.items(), 1):
-        contexts.append(f"第{i}場: {g.get('away_team')} @ {g.get('home_team')} 讓分{g.get('spread')} ML{'主' if g.get('winner')=='home' else '客'}({g.get('home_confidence') if g.get('winner')=='home' else g.get('away_confidence')}%) 鑽石:{'是' if g.get('is_value') else '否'}")
+        contexts.append(f"=== 第{i}場 ===\n{_build_game_context(g)}")
 
-    prompt = f"""NBA分析師，產出{game_date}當日報告。搜尋傷兵消息。
-{len(games)}場比賽:
+    prompt = f"""你是職業 NBA 讓分盤分析師團隊主管。產出一份讓投注者能直接照著操作的當日報告。
+
+日期: {game_date}
+比賽數量: {len(games)}
+
 {chr(10).join(contexts)}
-用JSON回答(不要code block):
-{{"headline":"一句標題","top_picks":[{{"game":"隊vs隊","pick":"建議","confidence":"高/中/低","reason":"理由"}}],"avoid_games":[{{"game":"隊vs隊","reason":"原因"}}],"injury_impact":["傷兵影響1"],"daily_summary":"100字策略建議"}}
-用繁體中文。"""
+
+=== 任務 ===
+1. 搜尋今天所有重大傷兵消息
+2. 從所有比賽中挑出「值得下注的讓分盤」（明確寫出押哪隊 +/- 幾分）
+3. 標出應該避開的比賽
+4. 寫出整體策略
+
+=== 回答格式（JSON，不要 code block）===
+{{
+  "headline": "今日 NBA 讓分盤精選（一句吸引眼球的標題）",
+  "best_bets": [
+    {{
+      "game": "客隊 @ 主隊",
+      "spread": "主隊 -N / 客隊 +N",
+      "pick": "押 XX隊 +/-N 分（明確寫出）",
+      "units": 1到5的數字,
+      "reason": "2-3句具體分析（含傷兵影響）",
+      "model_support": "模型資料佐證（ML信心、ATS edge等）"
+    }}
+  ],
+  "lean_picks": [
+    {{
+      "game": "客隊 @ 主隊",
+      "pick": "押 XX隊 +/-N 分",
+      "units": 1到2,
+      "reason": "一句話理由"
+    }}
+  ],
+  "avoid_games": [
+    {{"game": "客隊 @ 主隊", "reason": "為什麼避開（傷兵不確定/盤口合理/五五波）"}}
+  ],
+  "injury_alerts": ["重大傷兵消息1", "重大傷兵消息2"],
+  "bankroll_plan": "今日資金分配建議（總共幾個單位、怎麼分配）",
+  "daily_summary": "150字策略總結：今天哪些盤口有機會、整體市場觀察、風險提醒"
+}}
+
+=== 規則 ===
+- best_bets: 最多 3 場，只放你最有信心的讓分推薦（units >= 3）
+- lean_picks: 次級推薦（units 1-2）
+- 每個 pick 必須明確寫出「押 XX隊 +/-N 分」，不能含糊
+- units 必須是數字 1-5（1=試水，3=標準，5=重注）
+- 勝負盤（moneyline）只有在大冷門有價值時才提及
+- injury_alerts 必須是搜尋到的真實傷兵消息
+- 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if not result:
+        # Fallback
+        value_games = [g for g in games.values() if g.get("is_value")]
         result = {
-            "headline": f"今日 {len(games)} 場比賽",
-            "top_picks": [],
+            "headline": f"今日 {len(games)} 場比賽，{len(value_games)} 場鑽石",
+            "best_bets": [],
+            "lean_picks": [],
             "avoid_games": [],
-            "injury_impact": ["無法取得傷兵資訊"],
-            "daily_summary": f"{len(games)} 場比賽，請參考各場模型預測。",
+            "injury_alerts": ["無法取得傷兵資訊（離線模式）"],
+            "bankroll_plan": f"建議保守操作，等待更好的場次。",
+            "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。",
         }
     return jsonify(result)
 
