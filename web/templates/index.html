@@ -666,17 +666,6 @@
                 ${data.backtest_alignment ? `<div class="ai-backtest-tag">📋 回測佐證: ${data.backtest_alignment}</div>` : ''}
                 ${data.profile_insight ? `<div class="ai-backtest-tag">📊 歷史輪廓: ${data.profile_insight}</div>` : ''}
             </div>
-            <div class="ai-row ai-secondary">
-                <div class="ai-mini-verdict">
-                    <span class="ai-v-lbl">大小分</span>
-                    <strong>${data.ou_pick || '—'}</strong>
-                    <span class="ai-v-reason">${data.ou_reason || ''}</span>
-                </div>
-                <div class="ai-mini-verdict ai-ml-note">
-                    <span class="ai-v-lbl">勝負盤</span>
-                    <span class="ai-v-reason">${data.ml_note || '賠率過低不建議'}</span>
-                </div>
-            </div>
             ${data.risk_warning ? `<div class="ai-row ai-risk">⚠️ ${data.risk_warning}</div>` : ''}
             <div class="ai-row ai-summary">
                 <span class="ai-summary-text">${data.summary || ''}</span>
