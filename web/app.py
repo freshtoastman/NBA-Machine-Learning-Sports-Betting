@@ -124,6 +124,28 @@ def load_date_data(iso_date: str) -> dict | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def load_bracket() -> dict | None:
+    p = DATA_DIR / "bracket.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def bracket_in_window(bracket: dict | None, today_: date) -> bool:
+    """True if today falls inside bracket's show_from..show_until window."""
+    if not bracket:
+        return False
+    try:
+        sf = date.fromisoformat(bracket.get("show_from") or "")
+        su = date.fromisoformat(bracket.get("show_until") or "")
+    except ValueError:
+        return False
+    return sf <= today_ <= su
+
+
 def load_season_stats() -> dict | None:
     p = DATA_DIR / "season_stats.json"
     if not p.exists():
@@ -196,6 +218,13 @@ def index():
                 pass
 
     is_today = selected_date == today
+    landed_on_today = is_today or no_games_today
+    bracket_data = load_bracket()
+    show_bracket_banner = landed_on_today and bracket_in_window(bracket_data, today)
+    # Auto-redirect to bracket when: user lands on today, no games today, and
+    # the playoff bracket window is active — treat it as "playoffs launching".
+    if show_bracket_banner and no_games_today and not request.args.get("nobracket"):
+        return redirect(url_for("bracket"))
     games = data.get("games", {}) if data else {}
     summary = data.get("summary", {"games": 0}) if data else {"games": 0}
     active_series = data.get("active_series", []) if data else []
@@ -241,7 +270,37 @@ def index():
         season_stats=season_stats,
         active_series=active_series,
         is_playoff_view=is_playoff_view,
+        show_bracket_banner=show_bracket_banner,
+        bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
+    )
+
+
+@app.route("/bracket")
+def bracket():
+    bracket_data = load_bracket()
+    if not bracket_data:
+        return render_template(
+            "bracket.html",
+            bracket=None,
+            today=today_taipei(),
+        )
+    # Resolve team_name_zh / team_logo_url globally from the bracket itself so
+    # the template's existing helpers work (logos are already embedded per team).
+    name_to_card = {}
+    for side in ("east", "west"):
+        for s in bracket_data[side]["seeds"] + bracket_data[side]["lottery"]:
+            name_to_card[s["team"]] = s
+    app.jinja_env.globals["team_name_zh"] = (
+        lambda n: (name_to_card.get(n) or {}).get("team_zh") or n
+    )
+    app.jinja_env.globals["team_logo_url"] = (
+        lambda n: (name_to_card.get(n) or {}).get("logo")
+    )
+    return render_template(
+        "bracket.html",
+        bracket=bracket_data,
+        today=today_taipei(),
     )
 
 

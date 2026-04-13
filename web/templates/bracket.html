@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBA 季後賽對戰圖 — {{ bracket.playoff_start if bracket else today }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+      .bracket-page { max-width: 1200px; margin: 0 auto; padding: 20px; }
+      .bracket-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+      .bracket-head h1 { font-size: 22px; margin:0; font-weight:700; }
+      .bracket-head .sub { color:#888; font-size:13px; }
+      .bracket-back { color:#3ea6ff; text-decoration:none; font-size:14px; }
+      .conf-wrap { display:grid; grid-template-columns: 1fr; gap:24px; }
+      @media (min-width: 900px){ .conf-wrap { grid-template-columns: 1fr 1fr; } }
+      .conf-card { background:#141821; border:1px solid #222a36; border-radius:14px; padding:16px; }
+      .conf-card.east { border-top:3px solid #3ea6ff; }
+      .conf-card.west { border-top:3px solid #ff7a45; }
+      .conf-title { font-size:18px; font-weight:700; margin-bottom:12px; display:flex; justify-content:space-between; align-items:baseline; }
+      .conf-title .conf-sub { font-size:12px; color:#888; font-weight:400; }
+      .seed-list { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
+      .seed-row { display:flex; align-items:center; gap:10px; padding:6px 10px; border-radius:8px; background:#1a1f2b; font-size:13px; }
+      .seed-row.playoff { border-left:3px solid #52c77a; }
+      .seed-row.playin { border-left:3px solid #f4bf50; background:#1f1e18; }
+      .seed-row.out { opacity:0.45; }
+      .seed-num { width:22px; font-weight:700; color:#aaa; text-align:center; }
+      .seed-logo { width:22px; height:22px; object-fit:contain; }
+      .seed-name { flex:1; font-weight:500; }
+      .seed-rec { color:#888; font-variant-numeric: tabular-nums; font-size:12px; }
+      .section-label { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; margin:14px 0 6px; }
+      .playin-block { background:#1a1f2b; border-radius:10px; padding:10px 12px; margin-bottom:14px; }
+      .playin-game { display:flex; align-items:center; gap:8px; font-size:13px; padding:6px 0; border-bottom:1px dashed #2a3040; }
+      .playin-game:last-child { border-bottom:none; }
+      .playin-label { width:90px; color:#f4bf50; font-size:11px; font-weight:600; }
+      .playin-teams { flex:1; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+      .playin-vs { color:#666; padding:0 4px; }
+      .playin-chip { display:inline-flex; align-items:center; gap:4px; background:#232a38; padding:3px 6px; border-radius:6px; }
+      .playin-chip img { width:16px; height:16px; object-fit:contain; }
+      .playin-note { font-size:11px; color:#888; margin-top:2px; }
+      .matchup-list { display:flex; flex-direction:column; gap:8px; }
+      .matchup { background:#1a1f2b; border-radius:10px; padding:10px 12px; border-left:3px solid #52c77a; }
+      .matchup-label { font-size:11px; color:#888; margin-bottom:4px; letter-spacing:0.5px; }
+      .matchup-side { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:14px; }
+      .matchup-side img { width:24px; height:24px; object-fit:contain; }
+      .matchup-side .high-seed { color:#52c77a; font-weight:600; font-size:11px; margin-right:2px; }
+      .matchup-vs { font-size:10px; color:#555; text-align:center; margin:2px 0; letter-spacing:2px; }
+      .tbd { color:#777; font-style:italic; }
+      .empty-banner { background:#1a1f2b; border:1px dashed #2a3040; border-radius:12px; padding:30px; text-align:center; color:#888; }
+      .status-chip { display:inline-block; background:#1f2c1f; color:#7fd69b; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+    </style>
+</head>
+<body>
+<div class="page compact">
+  <div class="bracket-page">
+    <div class="bracket-head">
+      <div>
+        <h1>🏆 NBA 季後賽對戰圖</h1>
+        {% if bracket %}
+        <div class="sub">
+          戰績截至 {{ bracket.snapshot_date }} · 季後賽開打 {{ bracket.playoff_start }}
+        </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if bracket %}
+        <span class="status-chip">附加賽階段</span>
+        {% endif %}
+        <a class="bracket-back" href="{{ url_for('index', nobracket=1) }}">← 回到每日預測</a>
+      </div>
+    </div>
+
+    {% if not bracket %}
+    <div class="empty-banner">
+      目前沒有季後賽對戰圖資料（bracket.json 不存在）。<br>
+      請在例行賽末段執行 <code>scripts/export_predictions.py</code> 以產出最新的排名與附加賽對戰。
+    </div>
+    {% else %}
+
+    {% macro team_row(card, seed, klass) -%}
+      <div class="seed-row {{ klass }}">
+        <span class="seed-num">{{ seed }}</span>
+        {% if card.logo %}<img class="seed-logo" src="{{ card.logo }}" alt="">{% endif %}
+        <span class="seed-name">{{ card.team_zh }}</span>
+        <span class="seed-rec">{{ card.wins }}-{{ card.losses }} · {{ (card.win_pct*100)|round(1) }}%</span>
+      </div>
+    {%- endmacro %}
+
+    {% macro team_chip(c) -%}
+      {% if c is mapping %}
+        <span class="playin-chip">
+          {% if c.logo %}<img src="{{ c.logo }}" alt="">{% endif %}
+          <b>#{{ c.seed }}</b> {{ c.team_zh }}
+          <span style="color:#888;font-size:11px;">({{ c.wins }}-{{ c.losses }})</span>
+        </span>
+      {% else %}
+        <span class="tbd">{{ c }}</span>
+      {% endif %}
+    {%- endmacro %}
+
+    {% macro conf(side, name, css) %}
+      {% set c = bracket[side] %}
+      <div class="conf-card {{ css }}">
+        <div class="conf-title">
+          <span>{{ c.name }}</span>
+          <span class="conf-sub">1-6 直接晉級 · 7-10 附加賽</span>
+        </div>
+
+        <div class="section-label">例行賽排名</div>
+        <div class="seed-list">
+          {% for s in c.seeds %}
+            {% if loop.index <= 6 %}
+              {{ team_row(s, loop.index, 'playoff') }}
+            {% else %}
+              {{ team_row(s, loop.index, 'playin') }}
+            {% endif %}
+          {% endfor %}
+          {% for s in c.lottery %}
+            {{ team_row(s, loop.index + 10, 'out') }}
+          {% endfor %}
+        </div>
+
+        <div class="section-label">附加賽（Play-In Tournament）</div>
+        <div class="playin-block">
+          <div class="playin-game">
+            <div class="playin-label">{{ c.play_in.game_a.label }}</div>
+            <div class="playin-teams">
+              {{ team_chip(c.play_in.game_a.home) }}
+              <span class="playin-vs">vs</span>
+              {{ team_chip(c.play_in.game_a.away) }}
+            </div>
+          </div>
+          <div class="playin-note">勝者 → 第 7 種子；敗者 → 8 號決定戰</div>
+
+          <div class="playin-game">
+            <div class="playin-label">{{ c.play_in.game_b.label }}</div>
+            <div class="playin-teams">
+              {{ team_chip(c.play_in.game_b.home) }}
+              <span class="playin-vs">vs</span>
+              {{ team_chip(c.play_in.game_b.away) }}
+            </div>
+          </div>
+          <div class="playin-note">勝者 → 8 號決定戰；敗者 → 淘汰</div>
+
+          <div class="playin-game">
+            <div class="playin-label">{{ c.play_in.game_c.label }}</div>
+            <div class="playin-teams">
+              {{ team_chip(c.play_in.game_c.home) }}
+              <span class="playin-vs">vs</span>
+              {{ team_chip(c.play_in.game_c.away) }}
+            </div>
+          </div>
+          <div class="playin-note">勝者 → 第 8 種子；敗者 → 淘汰</div>
+        </div>
+
+        <div class="section-label">第一輪對戰</div>
+        <div class="matchup-list">
+          {% for m in c.first_round %}
+          <div class="matchup">
+            <div class="matchup-label">{{ m.label }}</div>
+            <div class="matchup-side">
+              {% if m.high is mapping %}
+                <span class="high-seed">#{{ m.high.seed }}</span>
+                {% if m.high.logo %}<img src="{{ m.high.logo }}" alt="">{% endif %}
+                <span>{{ m.high.team_zh }}</span>
+                <span class="seed-rec">{{ m.high.wins }}-{{ m.high.losses }}</span>
+              {% else %}
+                <span class="tbd">{{ m.high }}</span>
+              {% endif %}
+            </div>
+            <div class="matchup-vs">VS</div>
+            <div class="matchup-side">
+              {% if m.low is mapping %}
+                <span class="high-seed">#{{ m.low.seed }}</span>
+                {% if m.low.logo %}<img src="{{ m.low.logo }}" alt="">{% endif %}
+                <span>{{ m.low.team_zh }}</span>
+                <span class="seed-rec">{{ m.low.wins }}-{{ m.low.losses }}</span>
+              {% else %}
+                <span class="tbd">{{ m.low }}</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endmacro %}
+
+    <div class="conf-wrap">
+      {{ conf('east', '東區', 'east') }}
+      {{ conf('west', '西區', 'west') }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>
