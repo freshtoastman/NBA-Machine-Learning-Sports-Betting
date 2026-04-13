@@ -508,25 +508,47 @@ a {
 .report-injury { font-size: 12px; color: var(--negative); padding: 3px 0; }
 .report-bankroll { font-size: 13px; font-weight: 700; color: var(--accent-3); padding: 8px 12px; border-radius: 8px; background: rgba(242, 201, 76, 0.1); border: 1px solid rgba(242, 201, 76, 0.25); }
 
-/* Pin button */
+/* Star button — bottom-right corner. Doesn't intrude on the team-row layout. */
 .pin-btn {
     position: absolute;
-    top: 8px;
+    bottom: 8px;
     right: 8px;
-    background: none;
-    border: none;
-    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 12, 24, 0.55);
+    border: 1px solid var(--stroke);
+    border-radius: 50%;
+    font-size: 15px;
+    line-height: 1;
     cursor: pointer;
-    opacity: 0.3;
-    transition: all 0.2s;
+    opacity: 0.55;
+    transition: all 0.15s ease;
     z-index: 2;
-    filter: grayscale(1);
-    padding: 4px;
+    filter: grayscale(0.8);
+    padding: 0;
 }
-.pin-btn:hover { opacity: 0.7; filter: none; }
-.pin-btn.pinned { opacity: 1; filter: none; transform: scale(1.2); }
-.pick-card { position: relative; }
-.pick-card.is-pinned { border-color: rgba(47, 124, 246, 0.5); box-shadow: 0 0 12px rgba(47, 124, 246, 0.15); }
+.pin-btn:hover {
+    opacity: 1;
+    filter: none;
+    background: rgba(20, 28, 48, 0.9);
+    border-color: rgba(242, 201, 76, 0.5);
+    transform: scale(1.08);
+}
+.pin-btn.pinned {
+    opacity: 1;
+    filter: none;
+    background: rgba(242, 201, 76, 0.2);
+    border-color: var(--accent-3);
+    box-shadow: 0 0 8px rgba(242, 201, 76, 0.4);
+}
+.pick-card { position: relative; padding-bottom: 14px; }
+.pick-card.is-pinned {
+    border-color: rgba(242, 201, 76, 0.5);
+    box-shadow: 0 0 12px rgba(242, 201, 76, 0.15);
+}
 
 .pinned-analysis-btn {
     background: linear-gradient(135deg, rgba(47, 124, 246, 0.2), rgba(35, 214, 198, 0.15));
@@ -832,8 +854,10 @@ a {
 .team-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 3px 0;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
 }
 
 .team-row .team-logo {
@@ -848,6 +872,10 @@ a {
     font-weight: 600;
     cursor: pointer;
     flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .team-name-text:hover {
@@ -858,20 +886,53 @@ a {
     font-size: 18px;
     font-weight: 700;
     color: var(--text);
-    min-width: 30px;
+    min-width: 36px;
     text-align: right;
+    font-variant-numeric: tabular-nums;
 }
 
 .team-conf {
     font-size: 11px;
     color: var(--muted);
-    min-width: 42px;
+    min-width: 44px;
     text-align: right;
+    font-variant-numeric: tabular-nums;
 }
 
 .team-row.team-won .team-name-text,
 .team-row.team-won .team-score {
     color: var(--positive);
+}
+
+.no-games-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(242, 201, 76, 0.12), rgba(242, 201, 76, 0.04));
+    border: 1px solid rgba(242, 201, 76, 0.4);
+    margin-bottom: 16px;
+}
+
+.no-games-icon {
+    font-size: 32px;
+}
+
+.no-games-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.no-games-text strong {
+    font-size: 16px;
+    color: var(--accent-3);
+}
+
+.no-games-text span {
+    font-size: 13px;
+    color: var(--muted);
 }
 
 .ha-tag {
@@ -902,47 +963,29 @@ a {
 .spread-chip {
     display: inline-flex;
     align-items: center;
-    padding: 2px 8px;
-    border-radius: 8px;
-    background: rgba(8, 12, 24, 0.7);
-    border: 1px solid var(--stroke);
+    padding: 2px 0;
     color: var(--muted);
     font-size: 12px;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-    margin-right: 6px;
-    min-width: 44px;
-    justify-content: center;
+    min-width: 52px;
+    justify-content: flex-end;
 }
 
 .spread-chip.covered {
-    background: rgba(45, 211, 111, 0.18);
     color: var(--positive);
-    border-color: rgba(45, 211, 111, 0.55);
 }
 
 .spread-chip.missed {
-    background: rgba(255, 107, 107, 0.12);
     color: var(--negative);
-    border-color: rgba(255, 107, 107, 0.4);
-    opacity: 0.7;
+    opacity: 0.65;
 }
 
+/* Use full-row tint to mark which side covered the spread.
+   Cleaner than a "蓋過" badge that breaks column alignment. */
 .team-row.team-covered {
-    position: relative;
-}
-
-.team-row.team-covered::after {
-    content: "蓋過";
-    margin-left: 6px;
-    padding: 1px 6px;
-    border-radius: 6px;
-    background: rgba(45, 211, 111, 0.15);
-    color: var(--positive);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(45, 211, 111, 0.4);
+    background: rgba(45, 211, 111, 0.10);
+    border: 1px solid rgba(45, 211, 111, 0.25);
 }
 
 .badge-mini.push {
@@ -955,12 +998,9 @@ a {
 }
 
 .vs-divider {
-    text-align: center;
-    color: var(--muted);
-    font-size: 10px;
-    padding: 0 4px;
-    letter-spacing: 2px;
-    margin: -2px 0;
+    height: 1px;
+    background: var(--stroke);
+    margin: 4px 8px;
 }
 
 .pick-meta {

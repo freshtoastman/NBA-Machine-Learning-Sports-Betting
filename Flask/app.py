@@ -121,6 +121,38 @@ app.jinja_env.globals.update(
 )
 
 
+def _has_upcoming_games_today(today):
+    """Check the static schedule CSV for any game starting AFTER `now` in TPE."""
+    try:
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        import pandas as pd
+        df = pd.read_csv(
+            os.path.join(os.path.dirname(__file__), "..", "Data", f"nba-{today.year if today.month >= 10 else today.year - 1}-UTC.csv"),
+            parse_dates=["Date"],
+            date_format="%d/%m/%Y %H:%M",
+        )
+        df["Date"] = df["Date"].dt.tz_localize("UTC").dt.tz_convert("Asia/Taipei")
+        now_tpe = datetime.now(ZoneInfo("Asia/Taipei"))
+        upcoming = df[df["Date"] > now_tpe]
+        return len(upcoming) > 0
+    except Exception:
+        return True  # fail open: assume there are games
+
+
+def _last_played_date_with_games(today):
+    """Walk back day-by-day until we find a date that has historical predictions."""
+    for offset in range(1, 15):
+        d = today - timedelta(days=offset)
+        try:
+            games = fetch_historical_data(d.isoformat())
+            if games:
+                return d
+        except Exception:
+            continue
+    return None
+
+
 @app.route("/")
 def index():
     today = today_taipei()
@@ -132,6 +164,15 @@ def index():
             selected_date = today
     else:
         selected_date = today
+
+    # If the user is on "today" but there are no upcoming games (NBA off day),
+    # auto-redirect view to the most recent date that DID have games.
+    no_games_today = False
+    if selected_date == today and not _has_upcoming_games_today(today):
+        last = _last_played_date_with_games(today)
+        if last is not None:
+            no_games_today = True
+            selected_date = last  # show the recent recap instead
 
     is_today = selected_date == today
     if is_today:
@@ -155,6 +196,7 @@ def index():
         today=today,
         selected_date=selected_date,
         is_today=is_today,
+        no_games_today=no_games_today,
         date_chips=build_date_chips(selected_date),
         summary=summary,
         season_key=season_key,
@@ -192,6 +234,110 @@ def api_analysis():
     return jsonify(result)
 
 
+def _annotate_picks_with_game_key(picks, games_dict):
+    """Add `game_key` (English away:home) to each AI pick by matching team names.
+
+    Tries multiple match strategies because the AI may use Chinese names, raw
+    English, or partial matches.
+    """
+    # Build lookup tables: zh_full -> game_key, en_substring -> game_key.
+    zh_to_key = {}
+    en_to_key = {}
+    for key, g in games_dict.items():
+        away_en = g.get("away_team", "")
+        home_en = g.get("home_team", "")
+        away_zh = team_name_zh(away_en)
+        home_zh = team_name_zh(home_en)
+        # Multiple lookup keys per game.
+        zh_to_key[f"{away_zh} @ {home_zh}"] = key
+        zh_to_key[f"{away_zh}@{home_zh}"] = key
+        en_to_key[f"{away_en} @ {home_en}"] = key
+        # Also store the raw zh names as fallback.
+        zh_to_key[away_zh + home_zh] = key
+
+    def find_key(game_str):
+        if not game_str:
+            return None
+        s = game_str.strip().replace(" ", "")
+        # Direct match
+        for variant, k in zh_to_key.items():
+            if variant.replace(" ", "") == s:
+                return k
+        # Substring match: look for any team name in the game string
+        for key, g in games_dict.items():
+            away_zh = team_name_zh(g.get("away_team", ""))
+            home_zh = team_name_zh(g.get("home_team", ""))
+            if away_zh and home_zh and away_zh in game_str and home_zh in game_str:
+                return key
+        return None
+
+    for p in picks or []:
+        gk = find_key(p.get("game"))
+        if gk:
+            p["game_key"] = gk
+    return picks
+
+
+@app.route("/api/analyze-pinned", methods=["POST"])
+def api_analyze_pinned():
+    """AJAX: analyze a user-pinned subset of games for a date.
+
+    Body: {date: 'YYYY-MM-DD', pinned: ['Boston Celtics:Miami Heat', ...]}
+    Returns: {picks, parlay_suggestion, total_units, strategy}
+    """
+    payload = request.get_json(silent=True) or {}
+    game_date = payload.get("date")
+    pinned_keys = payload.get("pinned") or []
+    if not game_date or not pinned_keys:
+        return jsonify({"error": "Missing date or pinned list"}), 400
+
+    all_games = _get_games_for_date(game_date)
+    if not all_games:
+        return jsonify({"error": "No games found for date"}), 404
+
+    # Filter to pinned subset (game_keys are 'away:home' English names).
+    subset = {k: g for k, g in all_games.items() if k in pinned_keys}
+    if not subset:
+        return jsonify({"error": "No pinned games match today's slate"}), 404
+
+    report = generate_daily_report(subset, game_date)
+    if not isinstance(report, dict):
+        return jsonify({"error": "AI report failed"}), 500
+
+    # Annotate AI picks with English game_key for the front-end (consistent with daily-report).
+    _annotate_picks_with_game_key(report.get("best_bets"), subset)
+    _annotate_picks_with_game_key(report.get("lean_picks"), subset)
+
+    # Reshape to what the front-end expects: a flat `picks` list.
+    picks = []
+    for b in (report.get("best_bets") or []):
+        picks.append({
+            "game": b.get("game"),
+            "game_key": b.get("game_key"),
+            "pick": b.get("pick"),
+            "units": b.get("units", 0),
+            "reason": b.get("reason"),
+            "injuries": [],
+        })
+    for l in (report.get("lean_picks") or []):
+        picks.append({
+            "game": l.get("game"),
+            "game_key": l.get("game_key"),
+            "pick": l.get("pick"),
+            "units": l.get("units", 0),
+            "reason": l.get("reason"),
+            "injuries": [],
+        })
+
+    total_units = sum(int(p.get("units") or 0) for p in picks)
+    return jsonify({
+        "picks": picks,
+        "total_units": total_units,
+        "strategy": report.get("daily_summary", ""),
+        "parlay_suggestion": None,
+    })
+
+
 @app.route("/api/daily-report")
 def api_daily_report():
     """AJAX: generate AI daily report for all games on a date."""
@@ -204,6 +350,10 @@ def api_daily_report():
         return jsonify({"error": "No games found"}), 404
 
     result = generate_daily_report(games, game_date)
+    # Annotate each pick with the english game_key so the client can auto-pin.
+    if isinstance(result, dict):
+        _annotate_picks_with_game_key(result.get("best_bets"), games)
+        _annotate_picks_with_game_key(result.get("lean_picks"), games)
     return jsonify(result)
 
 
