@@ -138,19 +138,24 @@ def _build_game_context(game: dict, game_date: str) -> str:
     ats_edge = game.get("ats_value_edge", 0)
 
     # Spread convention here: positive => home is favorite (gives points).
-    # We must render BOTH sides explicitly so the LLM doesn't flip the sign.
+    # We avoid +/- sign syntax in the pick options because the LLM keeps
+    # flipping them. Instead we use explicit Chinese wording:
+    #   「押 A 讓 N 分」    = A is favored by N (gives up N points)
+    #   「押 A 受讓 N 分」  = A is the underdog getting N points
     spread = game.get("spread")
     if spread is None:
         spread_str = "N/A"
         pick_option_a = pick_option_b = None
     elif spread > 0:
-        spread_str = f"{h_zh} -{spread:.1f} / {a_zh} +{spread:.1f}（主隊讓 {spread:.1f} 分）"
-        pick_option_a = f"押 {h_zh} -{spread:.1f} 分"
-        pick_option_b = f"押 {a_zh} +{spread:.1f} 分"
+        abs_sp = f"{spread:.1f}"
+        spread_str = f"{h_zh} 讓 {abs_sp} 分 / {a_zh} 受讓 {abs_sp} 分"
+        pick_option_a = f"押 {h_zh} 讓 {abs_sp} 分"
+        pick_option_b = f"押 {a_zh} 受讓 {abs_sp} 分"
     elif spread < 0:
-        spread_str = f"{h_zh} +{-spread:.1f} / {a_zh} -{-spread:.1f}（客隊讓 {-spread:.1f} 分）"
-        pick_option_a = f"押 {a_zh} -{-spread:.1f} 分"
-        pick_option_b = f"押 {h_zh} +{-spread:.1f} 分"
+        abs_sp = f"{-spread:.1f}"
+        spread_str = f"{a_zh} 讓 {abs_sp} 分 / {h_zh} 受讓 {abs_sp} 分"
+        pick_option_a = f"押 {a_zh} 讓 {abs_sp} 分"
+        pick_option_b = f"押 {h_zh} 受讓 {abs_sp} 分"
     else:
         spread_str = "PK（無讓分）"
         pick_option_a = f"押 {h_zh}（PK）"
