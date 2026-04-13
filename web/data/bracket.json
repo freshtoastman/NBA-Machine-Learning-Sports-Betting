@@ -1,0 +1,539 @@
+{
+ "snapshot_date": "2026-04-14",
+ "generated_for": "2026-04-14",
+ "playoff_start": "2026-04-14",
+ "show_from": "2026-04-07",
+ "show_until": "2026-04-24",
+ "east": {
+  "name": "東區",
+  "seeds": [
+   {
+    "team": "Detroit Pistons",
+    "team_zh": "底特律活塞",
+    "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+    "wins": 60,
+    "losses": 22,
+    "win_pct": 0.732,
+    "seed": 1
+   },
+   {
+    "team": "Boston Celtics",
+    "team_zh": "波士頓塞爾提克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+    "wins": 56,
+    "losses": 26,
+    "win_pct": 0.683,
+    "seed": 2
+   },
+   {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   },
+   {
+    "team": "Cleveland Cavaliers",
+    "team_zh": "克里夫蘭騎士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 4
+   },
+   {
+    "team": "Atlanta Hawks",
+    "team_zh": "亞特蘭大老鷹",
+    "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+    "wins": 46,
+    "losses": 36,
+    "win_pct": 0.561,
+    "seed": 5
+   },
+   {
+    "team": "Toronto Raptors",
+    "team_zh": "多倫多暴龍",
+    "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+    "wins": 46,
+    "losses": 36,
+    "win_pct": 0.561,
+    "seed": 6
+   },
+   {
+    "team": "Orlando Magic",
+    "team_zh": "奧蘭多魔術",
+    "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 7
+   },
+   {
+    "team": "Philadelphia 76ers",
+    "team_zh": "費城七六人",
+    "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 8
+   },
+   {
+    "team": "Charlotte Hornets",
+    "team_zh": "夏洛特黃蜂",
+    "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+    "wins": 44,
+    "losses": 38,
+    "win_pct": 0.537,
+    "seed": 9
+   },
+   {
+    "team": "Miami Heat",
+    "team_zh": "邁阿密熱火",
+    "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+    "wins": 43,
+    "losses": 39,
+    "win_pct": 0.524,
+    "seed": 10
+   }
+  ],
+  "lottery": [
+   {
+    "team": "Milwaukee Bucks",
+    "team_zh": "密爾瓦基公鹿",
+    "logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
+    "wins": 32,
+    "losses": 50,
+    "win_pct": 0.39,
+    "seed": 11
+   },
+   {
+    "team": "Chicago Bulls",
+    "team_zh": "芝加哥公牛",
+    "logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
+    "wins": 31,
+    "losses": 51,
+    "win_pct": 0.378,
+    "seed": 12
+   },
+   {
+    "team": "Brooklyn Nets",
+    "team_zh": "布魯克林籃網",
+    "logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
+    "wins": 20,
+    "losses": 62,
+    "win_pct": 0.244,
+    "seed": 13
+   },
+   {
+    "team": "Indiana Pacers",
+    "team_zh": "印第安納溜馬",
+    "logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
+    "wins": 19,
+    "losses": 63,
+    "win_pct": 0.232,
+    "seed": 14
+   },
+   {
+    "team": "Washington Wizards",
+    "team_zh": "華盛頓巫師",
+    "logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
+    "wins": 17,
+    "losses": 65,
+    "win_pct": 0.207,
+    "seed": 15
+   }
+  ],
+  "play_in": {
+   "game_a": {
+    "label": "7 vs 8",
+    "home": {
+     "team": "Orlando Magic",
+     "team_zh": "奧蘭多魔術",
+     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Philadelphia 76ers",
+     "team_zh": "費城七六人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 8
+    },
+    "winner_seed": 7,
+    "loser_note": "敗者進 8/9 淘汰賽"
+   },
+   "game_b": {
+    "label": "9 vs 10",
+    "home": {
+     "team": "Charlotte Hornets",
+     "team_zh": "夏洛特黃蜂",
+     "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+     "wins": 44,
+     "losses": 38,
+     "win_pct": 0.537,
+     "seed": 9
+    },
+    "away": {
+     "team": "Miami Heat",
+     "team_zh": "邁阿密熱火",
+     "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+     "wins": 43,
+     "losses": 39,
+     "win_pct": 0.524,
+     "seed": 10
+    },
+    "winner_note": "晉級 8 號淘汰賽",
+    "loser_note": "淘汰"
+   },
+   "game_c": {
+    "label": "8 號種子決定戰",
+    "home": "7/8 敗者",
+    "away": "9/10 勝者",
+    "winner_seed": 8
+   }
+  },
+  "first_round": [
+   {
+    "label": "1 vs 8",
+    "high": {
+     "team": "Detroit Pistons",
+     "team_zh": "底特律活塞",
+     "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+     "wins": 60,
+     "losses": 22,
+     "win_pct": 0.732,
+     "seed": 1
+    },
+    "low": "待定（8 號種子）"
+   },
+   {
+    "label": "4 vs 5",
+    "high": {
+     "team": "Cleveland Cavaliers",
+     "team_zh": "克里夫蘭騎士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 4
+    },
+    "low": {
+     "team": "Atlanta Hawks",
+     "team_zh": "亞特蘭大老鷹",
+     "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+     "wins": 46,
+     "losses": 36,
+     "win_pct": 0.561,
+     "seed": 5
+    }
+   },
+   {
+    "label": "3 vs 6",
+    "high": {
+     "team": "New York Knicks",
+     "team_zh": "紐約尼克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 3
+    },
+    "low": {
+     "team": "Toronto Raptors",
+     "team_zh": "多倫多暴龍",
+     "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+     "wins": 46,
+     "losses": 36,
+     "win_pct": 0.561,
+     "seed": 6
+    }
+   },
+   {
+    "label": "2 vs 7",
+    "high": {
+     "team": "Boston Celtics",
+     "team_zh": "波士頓塞爾提克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+     "wins": 56,
+     "losses": 26,
+     "win_pct": 0.683,
+     "seed": 2
+    },
+    "low": "待定（7 號種子）"
+   }
+  ]
+ },
+ "west": {
+  "name": "西區",
+  "seeds": [
+   {
+    "team": "Oklahoma City Thunder",
+    "team_zh": "奧克拉荷馬雷霆",
+    "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+    "wins": 64,
+    "losses": 18,
+    "win_pct": 0.78,
+    "seed": 1
+   },
+   {
+    "team": "San Antonio Spurs",
+    "team_zh": "聖安東尼奧馬刺",
+    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+    "wins": 62,
+    "losses": 20,
+    "win_pct": 0.756,
+    "seed": 2
+   },
+   {
+    "team": "Denver Nuggets",
+    "team_zh": "丹佛金塊",
+    "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+    "wins": 54,
+    "losses": 28,
+    "win_pct": 0.659,
+    "seed": 3
+   },
+   {
+    "team": "Los Angeles Lakers",
+    "team_zh": "洛杉磯湖人",
+    "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 4
+   },
+   {
+    "team": "Houston Rockets",
+    "team_zh": "休士頓火箭",
+    "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 5
+   },
+   {
+    "team": "Minnesota Timberwolves",
+    "team_zh": "明尼蘇達灰狼",
+    "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+    "wins": 49,
+    "losses": 33,
+    "win_pct": 0.598,
+    "seed": 6
+   },
+   {
+    "team": "Phoenix Suns",
+    "team_zh": "鳳凰城太陽",
+    "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 7
+   },
+   {
+    "team": "LA Clippers",
+    "team_zh": "洛杉磯快艇",
+    "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+    "wins": 42,
+    "losses": 40,
+    "win_pct": 0.512,
+    "seed": 8
+   },
+   {
+    "team": "Portland Trail Blazers",
+    "team_zh": "波特蘭拓荒者",
+    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+    "wins": 42,
+    "losses": 40,
+    "win_pct": 0.512,
+    "seed": 9
+   },
+   {
+    "team": "Golden State Warriors",
+    "team_zh": "金州勇士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+    "wins": 37,
+    "losses": 45,
+    "win_pct": 0.451,
+    "seed": 10
+   }
+  ],
+  "lottery": [
+   {
+    "team": "Dallas Mavericks",
+    "team_zh": "達拉斯獨行俠",
+    "logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
+    "wins": 26,
+    "losses": 56,
+    "win_pct": 0.317,
+    "seed": 11
+   },
+   {
+    "team": "New Orleans Pelicans",
+    "team_zh": "紐奧良鵜鶘",
+    "logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
+    "wins": 26,
+    "losses": 56,
+    "win_pct": 0.317,
+    "seed": 12
+   },
+   {
+    "team": "Memphis Grizzlies",
+    "team_zh": "曼菲斯灰熊",
+    "logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
+    "wins": 25,
+    "losses": 57,
+    "win_pct": 0.305,
+    "seed": 13
+   },
+   {
+    "team": "Sacramento Kings",
+    "team_zh": "沙加緬度國王",
+    "logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
+    "wins": 22,
+    "losses": 60,
+    "win_pct": 0.268,
+    "seed": 14
+   },
+   {
+    "team": "Utah Jazz",
+    "team_zh": "猶他爵士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
+    "wins": 22,
+    "losses": 60,
+    "win_pct": 0.268,
+    "seed": 15
+   }
+  ],
+  "play_in": {
+   "game_a": {
+    "label": "7 vs 8",
+    "home": {
+     "team": "Phoenix Suns",
+     "team_zh": "鳳凰城太陽",
+     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "LA Clippers",
+     "team_zh": "洛杉磯快艇",
+     "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+     "wins": 42,
+     "losses": 40,
+     "win_pct": 0.512,
+     "seed": 8
+    },
+    "winner_seed": 7,
+    "loser_note": "敗者進 8/9 淘汰賽"
+   },
+   "game_b": {
+    "label": "9 vs 10",
+    "home": {
+     "team": "Portland Trail Blazers",
+     "team_zh": "波特蘭拓荒者",
+     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+     "wins": 42,
+     "losses": 40,
+     "win_pct": 0.512,
+     "seed": 9
+    },
+    "away": {
+     "team": "Golden State Warriors",
+     "team_zh": "金州勇士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+     "wins": 37,
+     "losses": 45,
+     "win_pct": 0.451,
+     "seed": 10
+    },
+    "winner_note": "晉級 8 號淘汰賽",
+    "loser_note": "淘汰"
+   },
+   "game_c": {
+    "label": "8 號種子決定戰",
+    "home": "7/8 敗者",
+    "away": "9/10 勝者",
+    "winner_seed": 8
+   }
+  },
+  "first_round": [
+   {
+    "label": "1 vs 8",
+    "high": {
+     "team": "Oklahoma City Thunder",
+     "team_zh": "奧克拉荷馬雷霆",
+     "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+     "wins": 64,
+     "losses": 18,
+     "win_pct": 0.78,
+     "seed": 1
+    },
+    "low": "待定（8 號種子）"
+   },
+   {
+    "label": "4 vs 5",
+    "high": {
+     "team": "Los Angeles Lakers",
+     "team_zh": "洛杉磯湖人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 4
+    },
+    "low": {
+     "team": "Houston Rockets",
+     "team_zh": "休士頓火箭",
+     "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 5
+    }
+   },
+   {
+    "label": "3 vs 6",
+    "high": {
+     "team": "Denver Nuggets",
+     "team_zh": "丹佛金塊",
+     "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+     "wins": 54,
+     "losses": 28,
+     "win_pct": 0.659,
+     "seed": 3
+    },
+    "low": {
+     "team": "Minnesota Timberwolves",
+     "team_zh": "明尼蘇達灰狼",
+     "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+     "wins": 49,
+     "losses": 33,
+     "win_pct": 0.598,
+     "seed": 6
+    }
+   },
+   {
+    "label": "2 vs 7",
+    "high": {
+     "team": "San Antonio Spurs",
+     "team_zh": "聖安東尼奧馬刺",
+     "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+     "wins": 62,
+     "losses": 20,
+     "win_pct": 0.756,
+     "seed": 2
+    },
+    "low": "待定（7 號種子）"
+   }
+  ]
+ }
+}
