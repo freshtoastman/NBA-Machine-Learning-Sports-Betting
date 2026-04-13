@@ -101,8 +101,17 @@ def _build_game_context(game: dict, game_date: str) -> str:
     ats_conf = game.get("ats_model_confidence", "?")
     ats_edge = game.get("ats_value_edge", 0)
 
+    # Spread convention here: positive => home is favorite (gives points).
+    # We must render BOTH sides explicitly so the LLM doesn't flip the sign.
     spread = game.get("spread")
-    spread_str = f"{spread:+.1f}" if spread is not None else "N/A"
+    if spread is None:
+        spread_str = "N/A"
+    elif spread > 0:
+        spread_str = f"{h_zh} -{spread:.1f} / {a_zh} +{spread:.1f}（主隊讓 {spread:.1f}）"
+    elif spread < 0:
+        spread_str = f"{h_zh} +{-spread:.1f} / {a_zh} -{-spread:.1f}（客隊讓 {-spread:.1f}）"
+    else:
+        spread_str = "PK（無讓分）"
 
     value_side = game.get("value_side")
     value_team = home if value_side == "home" else away if value_side else "N/A"
@@ -121,7 +130,7 @@ def _build_game_context(game: dict, game_date: str) -> str:
         return f"{name}: " + " | ".join(parts) if parts else f"{name}: 無數據"
 
     return f"""{a_zh}({away}) @ {h_zh}({home})
-讓分: {h_zh} {spread_str}
+讓分盤: {spread_str}
 ML模型: {ml_pick} ({ml_conf}%)
 UO模型: {ou_pick} {ou_val} ({ou_conf}%)
 ATS模型: {ats_pick} 蓋 ({ats_conf}%, edge {ats_edge}pp)
@@ -356,6 +365,26 @@ def analyze_game(game: dict, game_date: str, force: bool = False) -> dict:
         if cached:
             return cached
 
+    # If we don't have a spread, the AI cannot recommend a meaningful ATS pick;
+    # fall back to a structured "no odds" response so the front-end can show it.
+    if game.get("spread") is None:
+        from src.Utils.Teams import team_name_zh as _zh
+        return {
+            "injuries_home": [],
+            "injuries_away": [],
+            "injury_impact": "尚無資料",
+            "key_factors": ["運彩公司尚未開盤"],
+            "ats_pick": "不推薦（尚無讓分盤口）",
+            "ats_reason": "今天 sbrscrape 抓不到讓分資料，請賽前 2-4 小時再試。",
+            "ats_units": 0,
+            "ou_pick": "不推薦",
+            "ou_reason": "尚無總分盤口",
+            "ml_note": "無金錢線資料",
+            "risk_warning": "等待盤口公布後再下注。",
+            "summary": "今日尚無賠率，無法生成讓分推薦。",
+            "source": "no-odds-fallback",
+        }
+
     context = _build_game_context(game, game_date)
     prompt = SINGLE_GAME_PROMPT.format(game_date=game_date, context=context)
 
@@ -403,13 +432,35 @@ def generate_daily_report(games: dict, game_date: str, force: bool = False) -> d
         if cached:
             return cached
 
+    # Pre-flight: only include games that actually have spread data. AI cannot
+    # write a meaningful `pick` like "押 X 隊 -5 分" without a spread.
+    games_with_spread = {k: g for k, g in games.items() if g.get("spread") is not None}
+    if not games_with_spread:
+        from src.Utils.Teams import team_name_zh as _zh
+        result = {
+            "headline": f"⚠️ {game_date} 今日尚無賠率資料",
+            "best_bets": [],
+            "lean_picks": [],
+            "avoid_games": [],
+            "injury_alerts": [],
+            "bankroll_plan": "等待運彩公司開盤後再下注。",
+            "daily_summary": (
+                f"今日 {len(games)} 場比賽，但運彩公司尚未公布讓分/總分/金錢線盤口"
+                f"（sbrscrape 抓不到資料）。模型的勝負預測仍可參考個別比賽卡。"
+                f"請賽前 2-4 小時再重新生成報告。"
+            ),
+            "source": "no-odds-fallback",
+        }
+        # Don't cache this — let it regenerate when odds become available.
+        return result
+
     all_contexts = []
-    for i, (game_key, game) in enumerate(games.items(), 1):
+    for i, (game_key, game) in enumerate(games_with_spread.items(), 1):
         all_contexts.append(f"=== 第{i}場 ===\n{_build_game_context(game, game_date)}")
 
     prompt = DAILY_REPORT_PROMPT.format(
         game_date=game_date,
-        num_games=len(games),
+        num_games=len(games_with_spread),
         all_contexts="\n\n".join(all_contexts),
     )
 
