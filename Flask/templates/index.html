@@ -253,10 +253,10 @@
                     </div>
                     {% endif %}
                     {% endif %}
-                    {% if game.ou_pick %}
+                    {% if game.ou_pick and game.ou_value %}
                     <div class="pick-row">
                         <span class="pick-label">總分</span>
-                        <strong>{% if game.ou_pick == 'OVER' %}大分{% else %}小分{% endif %}{% if game.ou_value %} {{ game.ou_value }}{% endif %}</strong>
+                        <strong>{% if game.ou_pick == 'OVER' %}大分{% else %}小分{% endif %} {{ game.ou_value }}</strong>
                         <span class="pick-conf">{{ game.ou_confidence|round(1) }}%</span>
                         {% if game.actual_total %}<span class="pick-actual">實際 {{ game.actual_total }}</span>{% endif %}
                         {% if game.ou_correct is defined and game.ou_correct is not none %}

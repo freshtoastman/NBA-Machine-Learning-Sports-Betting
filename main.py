@@ -37,7 +37,14 @@ DATA_URL = f"https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFro
 SCHEDULE_PATH = os.path.join(PROJECT_ROOT, "Data", f"nba-{_SEASON_START_YEAR}-UTC.csv")
 
 
-def create_todays_games_data(games, df, odds, schedule_df, today):
+def create_todays_games_data(games, df, odds, schedule_df, today, interactive=True):
+    """Build today's matchup features.
+
+    When `odds` is provided, prefill OU + money lines from sportsbook data.
+    When `odds` is None and `interactive=True` (CLI mode), prompt the user.
+    When `odds` is None and `interactive=False` (Flask/web mode), fall back to
+    None values so the model still produces predictions without stdin.
+    """
     match_data = []
     todays_games_uo = []
     home_team_odds = []
@@ -49,14 +56,24 @@ def create_todays_games_data(games, df, odds, schedule_df, today):
             continue
         if odds:
             game_key = f"{home_team}:{away_team}"
-            game_odds = odds[game_key]
-            todays_games_uo.append(game_odds['under_over_odds'])
-            home_team_odds.append(game_odds[home_team]['money_line_odds'])
-            away_team_odds.append(game_odds[away_team]['money_line_odds'])
-        else:
+            game_odds = odds.get(game_key)
+            if game_odds is None:
+                todays_games_uo.append(None)
+                home_team_odds.append(None)
+                away_team_odds.append(None)
+            else:
+                todays_games_uo.append(game_odds.get('under_over_odds'))
+                home_team_odds.append(game_odds.get(home_team, {}).get('money_line_odds'))
+                away_team_odds.append(game_odds.get(away_team, {}).get('money_line_odds'))
+        elif interactive:
             todays_games_uo.append(input(home_team + ' vs ' + away_team + ': '))
             home_team_odds.append(input(home_team + ' odds: '))
             away_team_odds.append(input(away_team + ' odds: '))
+        else:
+            # Non-interactive (Flask): no live odds, fall through with None.
+            todays_games_uo.append(None)
+            home_team_odds.append(None)
+            away_team_odds.append(None)
 
         # calculate days rest for both teams
         home_games = schedule_df[
@@ -145,6 +162,33 @@ def run_models(data, normalized_data, todays_games_uo, frame_ml, games, home_tea
         print("-------------------------------------------------------")
 
 
+def _load_today_odds_fallback(games, today):
+    """Read today's odds from local OddsData.sqlite, keyed by (home, away).
+
+    Returns a dict {(home, away): {ML_Home, ML_Away, OU, Spread}} for any games
+    whose row exists in the season table. Used when sbrscrape misses.
+    """
+    season_table = _season_table_for_date(today.date())
+    out = {}
+    try:
+        with sqlite3.connect(_ODDS_DB) as con:
+            rows = con.execute(
+                f'SELECT Home, Away, ML_Home, ML_Away, OU, Spread FROM "{season_table}" '
+                f'WHERE Date = ?',
+                (today.date().isoformat(),),
+            ).fetchall()
+        for home, away, ml_h, ml_a, ou, spread in rows:
+            out[(home, away)] = {
+                "ML_Home": ml_h,
+                "ML_Away": ml_a,
+                "OU": ou,
+                "Spread": spread,
+            }
+    except Exception:
+        pass
+    return out
+
+
 def predict_today_xgb(sportsbook):
     """Programmatic XGBoost prediction for today's NBA games.
 
@@ -161,19 +205,33 @@ def predict_today_xgb(sportsbook):
     schedule_df = load_schedule()
     today = datetime.today()
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
-        games, df, odds, schedule_df, today
+        games, df, odds, schedule_df, today, interactive=False
     )
+
+    # Fallback to local OddsData.sqlite for any missing OU / ML / Spread values.
+    fallback = _load_today_odds_fallback(games, today)
+    valid_games = [(h, a) for h, a in games if h in team_index_current and a in team_index_current]
     spreads = []
-    for home_team, away_team in games:
+    for idx, (home_team, away_team) in enumerate(valid_games):
+        fb = fallback.get((home_team, away_team), {})
+        if todays_games_uo[idx] in (None, "") and fb.get("OU"):
+            todays_games_uo[idx] = fb["OU"]
+        if home_team_odds[idx] in (None, "") and fb.get("ML_Home"):
+            home_team_odds[idx] = fb["ML_Home"]
+        if away_team_odds[idx] in (None, "") and fb.get("ML_Away"):
+            away_team_odds[idx] = fb["ML_Away"]
+
+        spread_val = None
         if odds:
             game_odds = odds.get(f"{home_team}:{away_team}", {})
             raw_spread = game_odds.get("home_spread")
             # SBR convention: home_spread positive = home is underdog (receives pts).
             # Our convention (matching OddsData): positive = home is favorite (gives pts).
-            # Negate to unify.
-            spreads.append(-float(raw_spread) if raw_spread is not None else None)
-        else:
-            spreads.append(None)
+            if raw_spread is not None:
+                spread_val = -float(raw_spread)
+        if spread_val is None and fb.get("Spread") not in (None, ""):
+            spread_val = float(fb["Spread"])
+        spreads.append(spread_val)
     predictions = XGBoost_Runner.xgb_predict(
         data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds
     )
