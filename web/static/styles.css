@@ -655,6 +655,17 @@ a {
     color: #ff9d5c;
 }
 
+.pick-card.golden-pick {
+    border-color: rgba(255, 191, 64, 0.8);
+    box-shadow: 0 4px 18px rgba(255, 191, 64, 0.22);
+}
+
+.value-banner.golden {
+    background: linear-gradient(90deg, rgba(255, 191, 64, 0.35), rgba(255, 140, 40, 0.18));
+    border-bottom-color: rgba(255, 191, 64, 0.7);
+    color: #ffd580;
+}
+
 .value-banner strong {
     color: var(--text);
 }

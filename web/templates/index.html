@@ -140,6 +140,28 @@
                 {% endif %}
             </div>
 
+            {# Golden tier strip: value pick + |spread| ≤ 6 (backtest sweet spot). #}
+            {% if season_stats.golden_picks %}
+            <div class="combined-strip" style="background:linear-gradient(90deg,#2a2418,#1a1f2b);border:1px solid #8a7437;">
+                <span class="combined-lbl">🥇 金鑽 (鑽石 + |讓分|≤6)</span>
+                <span class="combined-stat">{{ season_stats.golden_picks }} 場</span>
+                <span class="combined-stat"><b class="{% if season_stats.golden_hit_rate >= 70 %}good{% elif season_stats.golden_hit_rate < 55 %}bad{% endif %}">{{ season_stats.golden_hit_rate }}%</b> 命中</span>
+                <span class="combined-stat">{{ season_stats.golden_wins }} 勝 / {{ season_stats.golden_losses }} 負</span>
+                <span class="combined-stat"><b class="{% if season_stats.golden_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.golden_roi > 0 %}+{% endif %}{{ season_stats.golden_roi }}%</b> ROI</span>
+            </div>
+            {% endif %}
+
+            {# Model calibration diagnostics — lower Brier + near-zero gap = healthy. #}
+            {% if season_stats.brier is defined and season_stats.brier is not none %}
+            <div class="combined-strip" style="background:#141821;border:1px solid #222a36;font-size:12px;">
+                <span class="combined-lbl" style="color:#888;">🔬 模型校準診斷</span>
+                <span class="combined-stat">Brier <b>{{ season_stats.brier }}</b> <span style="color:#666;">(基準 0.25, 越低越好)</span></span>
+                {% if season_stats.calib_gap_mid is not none %}
+                <span class="combined-stat">0.5-0.8 區間 gap <b class="{% if season_stats.calib_gap_mid|abs < 0.03 %}good{% elif season_stats.calib_gap_mid|abs > 0.08 %}bad{% endif %}">{% if season_stats.calib_gap_mid >= 0 %}+{% endif %}{{ season_stats.calib_gap_mid }}</b></span>
+                {% endif %}
+            </div>
+            {% endif %}
+
             {# Combined / consensus strip #}
             {% if season_stats.elite_bets %}
             <div class="combined-strip">
@@ -196,7 +218,7 @@
             {% set lean_is_home = home_conf >= away_conf %}
             {% set lean_team = home_team if lean_is_home else away_team %}
             {% set lean_conf = home_conf if lean_is_home else away_conf %}
-            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}">
+            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_golden %}golden-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}">
                 <button class="pin-btn" onclick="togglePin('{{ game_key }}')" title="加入精選">⭐</button>
                 {% if game.is_playoff and game.series_round %}
                 <div class="series-chip-row">
@@ -208,8 +230,8 @@
                 </div>
                 {% endif %}
                 {% if game.is_value %}
-                <div class="value-banner {% if game.is_consensus %}consensus{% endif %}">
-                    {% if game.is_consensus %}🔥 雙模型共識{% else %}💎 價值場次{% endif %} —
+                <div class="value-banner {% if game.is_consensus %}consensus{% endif %} {% if game.is_golden %}golden{% endif %}">
+                    {% if game.is_golden %}🥇 金鑽場次{% elif game.is_consensus %}🔥 雙模型共識{% else %}💎 價值場次{% endif %} —
                     押 <strong>{{ team_name_zh(home_team if game.value_side == 'home' else away_team) }}</strong>
                     <span class="value-edge">+{{ game.value_edge }}pp edge</span>
                     <span class="value-detail">模型 {{ game.value_prob }}% vs 市場 {{ game.fair_home if game.value_side == 'home' else game.fair_away }}%</span>
