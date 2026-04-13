@@ -99,6 +99,60 @@
                 <span class="model-compare-sub">金鑽為主要策略 · 鑽石/ATS 為輔</span>
             </div>
 
+            {# 本週金鑽戰績 — 近 7 日金鑽明細, 可點擊回查 #}
+            {% if weekly_golden and weekly_golden.total_picks %}
+            <details class="weekly-golden" open>
+                <summary class="weekly-golden-summary">
+                    <span class="wg-title">📅 本週金鑽戰績</span>
+                    <span class="wg-total">{{ weekly_golden.total_picks }} 場</span>
+                    {% if weekly_golden.total_hit_rate is not none %}
+                    <span class="wg-total"><b class="{% if weekly_golden.total_hit_rate >= 70 %}good{% elif weekly_golden.total_hit_rate < 50 %}bad{% endif %}">{{ weekly_golden.total_hit_rate }}%</b> 命中</span>
+                    <span class="wg-total">{{ weekly_golden.total_hits }}/{{ weekly_golden.total_decided }}</span>
+                    {% endif %}
+                    {% if weekly_golden.total_pending %}
+                    <span class="wg-total wg-pending">📅 待開賽 {{ weekly_golden.total_pending }}</span>
+                    {% endif %}
+                </summary>
+                <div class="weekly-golden-body">
+                    {% for day in weekly_golden.days %}
+                    <div class="wg-day">
+                        <div class="wg-day-head">
+                            <span class="wg-day-date">{{ day.label }} {{ day.weekday }}</span>
+                            <span class="wg-day-count">{{ day.picks|length }} 場</span>
+                            {% if day.hit_rate is not none %}
+                            <span class="wg-day-hit {% if day.hit_rate >= 70 %}good{% elif day.hit_rate < 50 %}bad{% endif %}">{{ day.hit_rate }}% ({{ day.hits }}/{{ day.decided }})</span>
+                            {% endif %}
+                            {% if day.pending %}
+                            <span class="wg-day-pending">📅 {{ day.pending }} 待開</span>
+                            {% endif %}
+                        </div>
+                        <div class="wg-picks">
+                            {% for p in day.picks %}
+                            <a class="wg-pick wg-{{ p.status }}" href="?date={{ p.date }}#pick-{{ p.game_key }}" title="回查 {{ p.date }} 這場的完整分析">
+                                <span class="wg-pick-date">{{ day.label }}</span>
+                                <span class="wg-pick-main">
+                                    <b>{{ p.side_zh }}</b>
+                                    <span class="wg-pick-vs">{% if p.side == 'home' %}vs {{ p.away_zh }}{% else %}@ {{ p.home_zh }}{% endif %}</span>
+                                </span>
+                                <span class="wg-pick-meta">
+                                    {% if p.spread is not none %}<span>{{ '%.1f'|format(p.spread|abs) }} 分</span>{% endif %}
+                                    {% if p.value_edge is not none %}<span>edge +{{ p.value_edge }}pp</span>{% endif %}
+                                </span>
+                                <span class="wg-pick-status">
+                                    {% if p.status == 'win' %}✓ 贏
+                                    {% elif p.status == 'loss' %}✗ 輸
+                                    {% else %}📅 待開
+                                    {% endif %}
+                                </span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </details>
+            {% endif %}
+
             {# 🥇 HERO: 金鑽 — 目前 ROI 最高的主要策略 (移至最上方) #}
             {% if season_stats.golden_picks %}
             <div class="golden-hero">
@@ -253,7 +307,7 @@
             {% set lean_is_home = home_conf >= away_conf %}
             {% set lean_team = home_team if lean_is_home else away_team %}
             {% set lean_conf = home_conf if lean_is_home else away_conf %}
-            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_golden %}golden-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}" data-ats-winner="{{ game.ats_winner if game.ats_winner else '' }}">
+            <article id="pick-{{ game_key }}" class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_golden %}golden-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}" data-ats-winner="{{ game.ats_winner if game.ats_winner else '' }}">
                 <button class="pin-btn" onclick="togglePin('{{ game_key }}')" title="加入精選">⭐</button>
                 {% if game.is_playoff and game.series_round %}
                 <div class="series-chip-row">
@@ -872,24 +926,33 @@
             if (data.error) {
                 content.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
             } else {
+                // Each pinned pick uses the SAME per-game analysis card as
+                // /api/analysis so the depth matches.
                 const picks = (data.picks || []).map(p => {
-                    const u = parseInt(p.units) || 0;
-                    const bars = '🟢'.repeat(Math.min(u,5)) + '⚫'.repeat(Math.max(0,5-u));
-                    const inj = (p.injuries || []).map(i => `<span class="ai-inj-item">🏥 ${i}</span>`).join('');
-                    return `<div class="report-bet best">
-                        <div class="report-bet-head"><strong>${p.game}</strong></div>
-                        <div class="report-bet-pick">🎯 ${p.pick} <span class="ai-units">${bars} ${u}U</span></div>
-                        <div class="report-bet-reason">${p.reason || ''}</div>
-                        ${inj ? `<div style="margin-top:4px">${inj}</div>` : ''}
+                    // Back-compat: older schemas used `units/pick/reason` with
+                    // no ats_ prefix. Normalize so renderGameAnalysis works.
+                    const normalized = Object.assign({
+                        ats_pick: p.pick || p.ats_pick,
+                        ats_units: p.units != null ? p.units : p.ats_units,
+                        ats_reason: p.reason || p.ats_reason,
+                        injuries_home: p.injuries_home || [],
+                        injuries_away: p.injuries_away || [],
+                        source: data.source,
+                    }, p);
+                    return `<div class="pinned-pick-block">
+                        <div class="pinned-pick-head">📌 ${normalized.game || ''}</div>
+                        ${renderGameAnalysis(normalized)}
                     </div>`;
                 }).join('');
                 content.innerHTML = `
-                <div class="daily-report" style="border-color:rgba(47,124,246,0.4);">
+                <div class="daily-report pinned-report">
                     <div class="report-headline">📌 置頂場次分析（${pinned.length} 場）</div>
                     ${picks}
-                    ${data.parlay_suggestion ? `<div class="report-bankroll">🔗 串關：${data.parlay_suggestion}</div>` : ''}
-                    ${data.total_units ? `<div class="report-bankroll">💰 總單位：${data.total_units}U</div>` : ''}
-                    <div class="report-summary">${data.strategy || ''}</div>
+                    <div class="pinned-aggregate">
+                        ${data.parlay_suggestion ? `<div class="report-bankroll">🔗 串關建議：${data.parlay_suggestion}</div>` : ''}
+                        ${data.total_units ? `<div class="report-bankroll">💰 總單位：${data.total_units}U</div>` : ''}
+                        ${data.strategy ? `<div class="report-summary">${data.strategy}</div>` : ''}
+                    </div>
                 </div>`;
             }
             content.style.display = 'block';

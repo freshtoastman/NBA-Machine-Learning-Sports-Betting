@@ -2436,3 +2436,234 @@ h3 {
     font-size: 10px;
     margin-left: auto;
 }
+
+/* --------------------------------------------------------------------- */
+/* 本週金鑽戰績 — 近 7 日明細 + 回查連結                                  */
+/* --------------------------------------------------------------------- */
+.weekly-golden {
+    background: rgba(20, 24, 33, 0.7);
+    border: 1px solid rgba(255, 191, 64, 0.25);
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.weekly-golden-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    flex-wrap: wrap;
+    background: rgba(255, 191, 64, 0.05);
+    border-bottom: 1px solid rgba(255, 191, 64, 0.15);
+}
+
+.weekly-golden-summary::-webkit-details-marker { display: none; }
+.weekly-golden-summary::marker { content: ''; }
+
+.weekly-golden[open] .weekly-golden-summary::before { content: "▼ "; color: #888; font-size: 10px; }
+.weekly-golden:not([open]) .weekly-golden-summary::before { content: "▶ "; color: #888; font-size: 10px; }
+
+.weekly-golden .wg-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffdca0;
+    letter-spacing: 0.5px;
+}
+
+.weekly-golden .wg-total {
+    font-size: 11px;
+    color: #b8c1d0;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+}
+
+.weekly-golden .wg-total b.good { color: var(--positive); }
+.weekly-golden .wg-total b.bad { color: var(--negative); }
+.weekly-golden .wg-total.wg-pending { background: rgba(80, 100, 140, 0.18); color: #9cb0d5; }
+
+.weekly-golden-body {
+    padding: 8px 12px 12px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.wg-day {
+    padding: 8px 4px;
+    border-bottom: 1px dashed rgba(80, 90, 105, 0.25);
+}
+.wg-day:last-child { border-bottom: none; }
+
+.wg-day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.wg-day-date {
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.wg-day-count {
+    font-size: 10px;
+    color: #666;
+}
+
+.wg-day-hit {
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: #b8c1d0;
+}
+.wg-day-hit.good { color: var(--positive); }
+.wg-day-hit.bad { color: var(--negative); }
+
+.wg-day-pending {
+    font-size: 10px;
+    color: #9cb0d5;
+}
+
+.wg-picks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wg-pick {
+    display: grid;
+    grid-template-columns: 38px 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.wg-pick:hover {
+    background: rgba(255, 191, 64, 0.08);
+    border-color: rgba(255, 191, 64, 0.35);
+    text-decoration: none;
+}
+
+.wg-pick-date {
+    color: #666;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.wg-pick-main b {
+    color: #ffdca0;
+    font-weight: 700;
+    margin-right: 6px;
+}
+.wg-pick-vs { color: #888; font-size: 11px; }
+
+.wg-pick-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 10px;
+    color: #777;
+    font-variant-numeric: tabular-nums;
+}
+
+.wg-pick-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.wg-pick.wg-win { border-left: 3px solid var(--positive); }
+.wg-pick.wg-win .wg-pick-status { background: rgba(82, 199, 122, 0.18); color: var(--positive); }
+
+.wg-pick.wg-loss { border-left: 3px solid var(--negative); opacity: 0.72; }
+.wg-pick.wg-loss .wg-pick-status { background: rgba(255, 107, 107, 0.18); color: var(--negative); }
+
+.wg-pick.wg-pending { border-left: 3px solid #50699b; }
+.wg-pick.wg-pending .wg-pick-status { background: rgba(80, 105, 155, 0.18); color: #9cb0d5; }
+
+@media (max-width: 520px) {
+    .wg-pick {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "main status"
+            "meta meta";
+        row-gap: 4px;
+    }
+    .wg-pick-date { display: none; }
+    .wg-pick-main { grid-area: main; }
+    .wg-pick-status { grid-area: status; }
+    .wg-pick-meta { grid-area: meta; }
+}
+
+/* --------------------------------------------------------------------- */
+/* 置頂場次分析 — 每場用 ai-card 呈現, 加一個遊戲 header                   */
+/* --------------------------------------------------------------------- */
+.pinned-report {
+    border-color: rgba(47, 124, 246, 0.4);
+}
+
+.pinned-pick-block {
+    margin-top: 12px;
+    border: 1px solid rgba(47, 124, 246, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(15, 22, 38, 0.5);
+}
+
+.pinned-pick-block:first-of-type {
+    margin-top: 8px;
+}
+
+.pinned-pick-head {
+    padding: 8px 14px;
+    background: rgba(47, 124, 246, 0.15);
+    border-bottom: 1px solid rgba(47, 124, 246, 0.3);
+    font-size: 13px;
+    font-weight: 700;
+    color: #aac8ff;
+    letter-spacing: 0.3px;
+}
+
+.pinned-pick-block .ai-card {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.pinned-aggregate {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(80, 90, 105, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Flash briefly when hash navigation lands on a pick card. */
+.pick-card:target {
+    animation: pick-target-flash 1.8s ease-out;
+    scroll-margin-top: 16px;
+}
+@keyframes pick-target-flash {
+    0%, 30% { box-shadow: 0 0 0 3px rgba(255, 191, 64, 0.7); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 191, 64, 0); }
+}

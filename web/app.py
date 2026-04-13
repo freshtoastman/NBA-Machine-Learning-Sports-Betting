@@ -151,6 +151,83 @@ def load_date_data(iso_date: str) -> dict | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def load_weekly_golden(today_: date, days: int = 7) -> dict:
+    """Collect every golden-tier pick from the last N days.
+
+    Returns a dict: {
+        "days": [{date, label, picks: [...], hits, decided, hit_rate}, ...],
+        "total_picks": int, "total_hits": int, "total_decided": int,
+        "total_hit_rate": float | None,
+    }
+    Each pick: {date, game_key, away_zh, home_zh, side_zh, value_edge,
+                value_ev, status: "win"|"loss"|"pending"}
+    """
+    out_days = []
+    total_picks = total_hits = total_decided = 0
+    for offset in range(days):
+        d = today_ - timedelta(days=offset)
+        iso = d.isoformat()
+        data = load_date_data(iso)
+        if data is None:
+            continue
+        picks = []
+        hits = decided = 0
+        for key, g in (data.get("games") or {}).items():
+            if not g.get("is_golden"):
+                continue
+            side = g.get("value_side")
+            if side == "home":
+                side_zh = g.get("home_team_zh") or g.get("home_team")
+            else:
+                side_zh = g.get("away_team_zh") or g.get("away_team")
+            # Result: use ml_correct since value side picks home/away ML.
+            ml_correct = g.get("ml_correct")
+            if ml_correct is None:
+                status = "pending"
+            elif ml_correct:
+                status = "win"
+                hits += 1
+                decided += 1
+            else:
+                status = "loss"
+                decided += 1
+            picks.append({
+                "date": iso,
+                "game_key": key,
+                "away_zh": g.get("away_team_zh") or g.get("away_team"),
+                "home_zh": g.get("home_team_zh") or g.get("home_team"),
+                "side": side,
+                "side_zh": side_zh,
+                "spread": g.get("spread"),
+                "value_edge": g.get("value_edge"),
+                "value_ev": g.get("value_ev"),
+                "status": status,
+            })
+        if not picks:
+            continue
+        total_picks += len(picks)
+        total_hits += hits
+        total_decided += decided
+        out_days.append({
+            "date": iso,
+            "label": f"{d.month}/{d.day}",
+            "weekday": WEEKDAY_ZH[d.weekday()],
+            "picks": picks,
+            "hits": hits,
+            "decided": decided,
+            "pending": len(picks) - decided,
+            "hit_rate": round(hits / decided * 100, 1) if decided else None,
+        })
+    return {
+        "days": out_days,
+        "total_picks": total_picks,
+        "total_hits": total_hits,
+        "total_decided": total_decided,
+        "total_pending": total_picks - total_decided,
+        "total_hit_rate": round(total_hits / total_decided * 100, 1) if total_decided else None,
+    }
+
+
 def load_bracket() -> dict | None:
     p = DATA_DIR / "bracket.json"
     if not p.exists():
@@ -299,6 +376,7 @@ def index():
         is_playoff_view=is_playoff_view,
         show_bracket_banner=show_bracket_banner,
         bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
+        weekly_golden=load_weekly_golden(today),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
     )
 
@@ -504,6 +582,7 @@ def api_analyze_pinned():
         contexts.append(f"=== 置頂場次 {i} ===\n{_build_game_context(g)}")
 
     prompt = f"""你是職業 NBA 讓分盤分析師。用戶從今天 {len(data['games'])} 場比賽中置頂了 {len(pinned_games)} 場要你重點分析。
+**每場分析的深度必須和單場 AI 分析完全一樣**：傷兵、關鍵因素、回測訊號引用、歷史輪廓數據、讓分推薦、大小分、勝負盤、風險、總結都要寫完整。
 
 日期: {game_date}
 
@@ -511,39 +590,81 @@ def api_analyze_pinned():
 
 === 任務 ===
 1. 搜尋這 {len(pinned_games)} 場的傷兵
-2. 每場給出明確讓分推薦（從該場提供的『選項A/選項B』中擇一）
-3. 分析這幾場之間有沒有關聯（同一隊連戰、跨場串關機會）
-4. 給出這 {len(pinned_games)} 場的整體下注策略
+2. 每場給出完整的單場分析（和單場 AI 分析一樣的面向）
+3. 最後額外分析這幾場之間的關聯（同隊連戰、跨場串關機會）並給出整體下注策略
 
 === 回答格式（JSON，不要 code block）===
 {{
   "picks": [
     {{
       "game": "客隊 @ 主隊（繁體中文隊名）",
-      "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
-      "units": 1到5,
-      "reason": "2-3句分析（含傷兵）",
-      "injuries": ["重要傷兵1", "重要傷兵2"]
+      "injuries_home": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+      "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+      "injury_impact": "傷兵對讓分盤的具體影響",
+      "key_factors": ["因素1", "因素2", "因素3"],
+      "backtest_alignment": "回測訊號支持/反對哪一方（引用至少一條回測訊號）",
+      "profile_insight": "歷史輪廓觀察（引用具體數據：近期勝率%、ATS cover率等）",
+      "ats_pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
+      "ats_reason": "為什麼選這一邊（2-3句，必須提到回測訊號和歷史輪廓佐證）",
+      "ats_units": 數字1到5,
+      "ou_pick": "大分 N / 小分 N / 不推薦",
+      "ou_reason": "一句話理由",
+      "ml_note": "勝負盤備註（通常'賠率過低不建議'）",
+      "risk_warning": "這場的風險",
+      "summary": "一句話結論：押什麼、幾個單位"
     }}
   ],
-  "parlay_suggestion": "串關建議（如果有合適的 2-3 場串關機會就寫，沒有就寫'不建議串關'）",
-  "total_units": 數字（這幾場總共建議下多少單位）,
-  "strategy": "整體策略（100字）"
+  "parlay_suggestion": "串關建議（2-3 腿合適組合，或'不建議串關'）",
+  "total_units": 數字（這幾場合計建議單位數）,
+  "strategy": "整體策略（100字，說明單位分配和風險控制）"
 }}
 
 嚴格規則：
-- 每個 pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號
-- units 是數字 1-5
+- **picks 陣列的每一個元素必須包含上方所有欄位，少寫任何一個都算失敗**
+- 每個 ats_pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
+- ats_units 必須是數字 1-5
+- backtest_alignment 和 profile_insight 為必填，必須引用具體數據
 - 隊名一律用繁體中文
 - 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if not result:
+        # Fallback: build per-pick stubs that still match the per-game schema
+        # so the frontend can render them uniformly.
+        fb_picks = []
+        for g in pinned_games:
+            home_zh = g.get("home_team_zh") or g.get("home_team", "?")
+            away_zh = g.get("away_team_zh") or g.get("away_team", "?")
+            ats_side = g.get("ats_model_pick")
+            ats_team = home_zh if ats_side == "home" else away_zh if ats_side == "away" else "N/A"
+            sp = g.get("spread")
+            if ats_team != "N/A" and sp is not None:
+                abs_sp = f"{abs(sp):.1f}"
+                is_fav = (ats_side == "home" and sp > 0) or (ats_side == "away" and sp < 0)
+                ats_pick_str = f"押 {ats_team} {'讓' if is_fav else '受讓'} {abs_sp} 分"
+            else:
+                ats_pick_str = "不推薦"
+            fb_picks.append({
+                "game": f"{away_zh} @ {home_zh}",
+                "injuries_home": [], "injuries_away": [],
+                "injury_impact": "無法查詢傷兵（離線模式）",
+                "key_factors": ["請參考模型預測"],
+                "backtest_alignment": "無相關回測訊號",
+                "profile_insight": "離線模式無法取用歷史輪廓",
+                "ats_pick": ats_pick_str,
+                "ats_reason": f"ATS 模型 edge {g.get('ats_value_edge', 0)}pp",
+                "ats_units": 2 if g.get("ats_is_value") else 1,
+                "ou_pick": f"{'大分' if g.get('ou_pick') == 'OVER' else '小分'} {g.get('ou_value', '?')}",
+                "ou_reason": f"模型信心 {g.get('ou_confidence', '?')}%",
+                "ml_note": "賠率過低不建議",
+                "risk_warning": "AI 分析暫時不可用，僅供參考",
+                "summary": f"參考 ATS 模型方向下注，{2 if g.get('ats_is_value') else 1} 個單位。",
+            })
         result = {
-            "picks": [{"game": f"{g.get('away_team')} @ {g.get('home_team')}", "pick": "參考模型", "units": 1, "reason": "AI 暫時不可用", "injuries": []} for g in pinned_games],
+            "picks": fb_picks,
             "parlay_suggestion": "不建議串關",
-            "total_units": len(pinned_games),
+            "total_units": sum(p["ats_units"] for p in fb_picks),
             "strategy": "AI 分析暫時不可用，請參考各場模型預測。",
             "source": "fallback",
         }
