@@ -8,7 +8,8 @@
   "over_picks": 2,
   "under_picks": 0,
   "avg_confidence": 67.4,
-  "value_picks": 0
+  "value_picks": 0,
+  "golden_picks": 0
  },
  "games": {
   "Miami Heat:Charlotte Hornets": {

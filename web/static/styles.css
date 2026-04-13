@@ -215,6 +215,33 @@ a {
     color: var(--negative);
 }
 
+.dash-chip.golden {
+    background: linear-gradient(90deg, rgba(255, 191, 64, 0.22), rgba(255, 140, 40, 0.08));
+    border-color: rgba(255, 191, 64, 0.55);
+    color: #ffd580;
+    font-weight: 600;
+    transition: background 0.15s ease;
+}
+
+.dash-chip.golden:hover {
+    background: linear-gradient(90deg, rgba(255, 191, 64, 0.35), rgba(255, 140, 40, 0.15));
+}
+
+.dash-chip.golden b {
+    color: #ffdca0;
+    font-size: 15px;
+}
+
+.dash-chip.muted {
+    opacity: 0.55;
+    font-size: 11px;
+}
+
+.dash-chip.muted b {
+    color: var(--text);
+    opacity: 0.85;
+}
+
 .dash-chip.big b {
     font-size: 16px;
 }
@@ -2276,4 +2303,136 @@ h3 {
 .stats-table .table-hover tbody tr:hover td {
     color: var(--text);
     background: rgba(255, 255, 255, 0.06);
+}
+
+/* --------------------------------------------------------------------- */
+/* Hero: 金鑽策略 — 主要 KPI, 最顯眼                                     */
+/* --------------------------------------------------------------------- */
+.golden-hero {
+    background: linear-gradient(135deg, rgba(255, 191, 64, 0.18), rgba(255, 140, 40, 0.05));
+    border: 1px solid rgba(255, 191, 64, 0.5);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 20px rgba(255, 191, 64, 0.15);
+}
+
+.golden-hero-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.golden-hero-badge {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffdca0;
+    letter-spacing: 0.5px;
+}
+
+.golden-hero-sub {
+    font-size: 11px;
+    color: #a88c56;
+}
+
+.golden-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.golden-stat {
+    text-align: center;
+    padding: 8px 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 191, 64, 0.2);
+}
+
+.golden-stat-lbl {
+    font-size: 10px;
+    color: #a88c56;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.golden-stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #ffdca0;
+    line-height: 1.1;
+}
+
+.golden-stat-val.good {
+    color: var(--positive);
+}
+
+.golden-stat-val.bad {
+    color: var(--negative);
+}
+
+.golden-stat-sub {
+    font-size: 10px;
+    color: #888;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+    .golden-hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    .golden-stat-val {
+        font-size: 18px;
+    }
+}
+
+/* --------------------------------------------------------------------- */
+/* Diagnostic footer: Brier + calibration gap — 灰字小標不搶注意力         */
+/* --------------------------------------------------------------------- */
+.diagnostic-footer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 14px;
+    margin-top: 8px;
+    background: rgba(20, 24, 33, 0.6);
+    border: 1px dashed rgba(80, 90, 105, 0.4);
+    border-radius: 8px;
+    font-size: 11px;
+    color: #888;
+    flex-wrap: wrap;
+}
+
+.diagnostic-footer .diag-lbl {
+    color: #666;
+    letter-spacing: 0.5px;
+}
+
+.diagnostic-footer .diag-stat {
+    font-variant-numeric: tabular-nums;
+}
+
+.diagnostic-footer .diag-stat b {
+    color: #b8c1d0;
+    font-weight: 600;
+}
+
+.diagnostic-footer .diag-stat b.good {
+    color: var(--positive);
+}
+
+.diagnostic-footer .diag-stat b.bad {
+    color: var(--negative);
+}
+
+.diagnostic-footer .diag-hint {
+    color: #555;
+    font-size: 10px;
+    margin-left: auto;
 }

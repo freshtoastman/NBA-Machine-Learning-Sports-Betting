@@ -83,6 +83,7 @@ def export_date(target_date: date) -> dict | None:
         "under_picks": n - over_picks,
         "avg_confidence": round(avg_conf, 1),
         "value_picks": sum(1 for g in games_list if g.get("is_value")),
+        "golden_picks": sum(1 for g in games_list if g.get("is_golden")),
     }
 
     if not is_today:
@@ -103,6 +104,15 @@ def export_date(target_date: date) -> dict | None:
         summary["value_wins"] = value_wins
         summary["value_losses"] = len(value_decided) - value_wins
         summary["value_hit_rate"] = round(value_wins / len(value_decided) * 100, 1) if value_decided else None
+
+        # Golden hit rate (subset of value picks)
+        golden_games = [g for g in games_list if g.get("is_golden")]
+        golden_decided = [g for g in golden_games if g.get("ml_correct") is not None]
+        golden_wins = sum(1 for g in golden_decided if g["ml_correct"])
+        summary["golden_decided"] = len(golden_decided)
+        summary["golden_wins"] = golden_wins
+        summary["golden_losses"] = len(golden_decided) - golden_wins
+        summary["golden_hit_rate"] = round(golden_wins / len(golden_decided) * 100, 1) if golden_decided else None
 
     # Active playoff series (for the tracker UI).
     try:

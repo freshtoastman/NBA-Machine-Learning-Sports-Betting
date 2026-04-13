@@ -49,19 +49,37 @@
                 </div>
             </div>
             {% endif %}
-            {# Row 1: 當日 predictions #}
+            {# Row 1: 當日 predictions — 依重要性排序：金鑽 → 鑽石 → 命中 → 其他 #}
             {% if summary.games > 0 %}
             <div class="dash-row">
                 <span class="dash-tag today-tag">{% if no_games_today %}最近一場 {% else %}今日 {% endif %}{{ selected_date }}</span>
                 <span class="dash-chip"><b>{{ summary.games }}</b> 場</span>
-                <span class="dash-chip">主隊勝 <b>{{ summary.home_picks }}</b> / 客隊勝 <b>{{ summary.away_picks }}</b></span>
-                <span class="dash-chip">平均信心 <b>{{ summary.avg_confidence }}%</b></span>
-                {% if not is_today and summary.ml_hit_rate is not none %}
-                <span class="dash-chip hit"><span class="dash-lbl">勝負命中</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
+
+                {% if summary.golden_picks %}
+                <span class="dash-chip golden" style="cursor:pointer" onclick="scrollToValue()" title="金鑽 = 鑽石場次 AND |讓分|≤6">
+                    🥇 <b>{{ summary.golden_picks }}</b> 金鑽
+                    {% if not is_today and summary.golden_hit_rate is not none %}
+                    · <b>{{ summary.golden_hit_rate }}%</b>
+                    <span class="dash-sub">{{ summary.golden_wins }}/{{ summary.golden_decided }}</span>
+                    {% endif %}
+                </span>
                 {% endif %}
+
                 {% if summary.value_picks %}
-                <span class="dash-chip diamond" style="cursor:pointer" onclick="scrollToValue()">💎 <b>{{ summary.value_picks }}</b>{% if not is_today and summary.value_hit_rate is not none %} · <b>{{ summary.value_hit_rate }}%</b> ({{ summary.value_wins }}/{{ summary.value_decided }}){% endif %}</span>
+                <span class="dash-chip diamond" style="cursor:pointer" onclick="scrollToValue()">
+                    💎 <b>{{ summary.value_picks }}</b> 鑽石
+                    {% if not is_today and summary.value_hit_rate is not none %}
+                    · <b>{{ summary.value_hit_rate }}%</b>
+                    <span class="dash-sub">{{ summary.value_wins }}/{{ summary.value_decided }}</span>
+                    {% endif %}
+                </span>
                 {% endif %}
+
+                {% if not is_today and summary.ml_hit_rate is not none %}
+                <span class="dash-chip hit"><span class="dash-lbl">ML 命中</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
+                {% endif %}
+
+                <span class="dash-chip muted" title="當日預測的主/客場勝隊比">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
             </div>
             {% endif %}
 
@@ -78,8 +96,36 @@
         <section class="model-compare">
             <div class="model-compare-head">
                 <span class="dash-tag season-tag">{{ season_key }} 賽季 · {{ season_stats.games }} 場</span>
-                <span class="model-compare-sub">三個模型對照 · 鑽石場次採用最高勝率設定</span>
+                <span class="model-compare-sub">金鑽為主要策略 · 鑽石/ATS 為輔</span>
             </div>
+
+            {# 🥇 HERO: 金鑽 — 目前 ROI 最高的主要策略 (移至最上方) #}
+            {% if season_stats.golden_picks %}
+            <div class="golden-hero">
+                <div class="golden-hero-head">
+                    <span class="golden-hero-badge">🥇 金鑽策略</span>
+                    <span class="golden-hero-sub">鑽石 + |讓分|≤6 · 4 季回測甜蜜區</span>
+                </div>
+                <div class="golden-hero-stats">
+                    <div class="golden-stat">
+                        <div class="golden-stat-lbl">命中率</div>
+                        <div class="golden-stat-val {% if season_stats.golden_hit_rate >= 70 %}good{% elif season_stats.golden_hit_rate < 55 %}bad{% endif %}">{{ season_stats.golden_hit_rate }}%</div>
+                        <div class="golden-stat-sub">{{ season_stats.golden_wins }}/{{ season_stats.golden_picks }}</div>
+                    </div>
+                    <div class="golden-stat">
+                        <div class="golden-stat-lbl">ROI (flat $1)</div>
+                        <div class="golden-stat-val {% if season_stats.golden_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.golden_roi > 0 %}+{% endif %}{{ season_stats.golden_roi }}%</div>
+                        <div class="golden-stat-sub">累計 {% if season_stats.golden_pl >= 0 %}+{% endif %}{{ season_stats.golden_pl }} 單位</div>
+                    </div>
+                    <div class="golden-stat">
+                        <div class="golden-stat-lbl">場次</div>
+                        <div class="golden-stat-val">{{ season_stats.golden_picks }}</div>
+                        <div class="golden-stat-sub">{{ season_stats.golden_losses }} 負</div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="model-grid">
                 {# ML moneyline #}
                 <div class="model-card ml-card">
@@ -140,37 +186,26 @@
                 {% endif %}
             </div>
 
-            {# Golden tier strip: value pick + |spread| ≤ 6 (backtest sweet spot). #}
-            {% if season_stats.golden_picks %}
-            <div class="combined-strip" style="background:linear-gradient(90deg,#2a2418,#1a1f2b);border:1px solid #8a7437;">
-                <span class="combined-lbl">🥇 金鑽 (鑽石 + |讓分|≤6)</span>
-                <span class="combined-stat">{{ season_stats.golden_picks }} 場</span>
-                <span class="combined-stat"><b class="{% if season_stats.golden_hit_rate >= 70 %}good{% elif season_stats.golden_hit_rate < 55 %}bad{% endif %}">{{ season_stats.golden_hit_rate }}%</b> 命中</span>
-                <span class="combined-stat">{{ season_stats.golden_wins }} 勝 / {{ season_stats.golden_losses }} 負</span>
-                <span class="combined-stat"><b class="{% if season_stats.golden_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.golden_roi > 0 %}+{% endif %}{{ season_stats.golden_roi }}%</b> ROI</span>
-            </div>
-            {% endif %}
-
-            {# Model calibration diagnostics — lower Brier + near-zero gap = healthy. #}
-            {% if season_stats.brier is defined and season_stats.brier is not none %}
-            <div class="combined-strip" style="background:#141821;border:1px solid #222a36;font-size:12px;">
-                <span class="combined-lbl" style="color:#888;">🔬 模型校準診斷</span>
-                <span class="combined-stat">Brier <b>{{ season_stats.brier }}</b> <span style="color:#666;">(基準 0.25, 越低越好)</span></span>
-                {% if season_stats.calib_gap_mid is not none %}
-                <span class="combined-stat">0.5-0.8 區間 gap <b class="{% if season_stats.calib_gap_mid|abs < 0.03 %}good{% elif season_stats.calib_gap_mid|abs > 0.08 %}bad{% endif %}">{% if season_stats.calib_gap_mid >= 0 %}+{% endif %}{{ season_stats.calib_gap_mid }}</b></span>
-                {% endif %}
-            </div>
-            {% endif %}
-
-            {# Combined / consensus strip #}
+            {# Tertiary: ML + ATS 同邊共識 — 次於金鑽的輔助訊號 #}
             {% if season_stats.elite_bets %}
             <div class="combined-strip">
-                <span class="combined-lbl">🔥 ML + ATS 同邊共識</span>
+                <span class="combined-lbl">🔥 ML + ATS 共識</span>
                 <span class="combined-stat">{{ season_stats.elite_bets }} 場</span>
                 <span class="combined-stat"><b class="{% if season_stats.elite_hit_rate >= 60 %}good{% elif season_stats.elite_hit_rate < 50 %}bad{% endif %}">{{ season_stats.elite_hit_rate }}%</b> 命中</span>
-                <span class="combined-stat">{{ season_stats.elite_wins }} 勝 / {{ season_stats.elite_losses }} 負</span>
-                <span class="combined-stat"><b class="{% if season_stats.elite_pl > 0 %}good{% else %}bad{% endif %}">${% if season_stats.elite_pl > 0 %}+{% endif %}{{ '{:,.0f}'.format(season_stats.elite_pl) }}</b></span>
+                <span class="combined-stat">{{ season_stats.elite_wins }}-{{ season_stats.elite_losses }}</span>
                 <span class="combined-stat"><b class="{% if season_stats.elite_roi > 0 %}good{% else %}bad{% endif %}">{% if season_stats.elite_roi > 0 %}+{% endif %}{{ season_stats.elite_roi }}%</b> ROI</span>
+            </div>
+            {% endif %}
+
+            {# Footer: 校準診斷 — 模型健康度，灰字小標不搶注意力 #}
+            {% if season_stats.brier is defined and season_stats.brier is not none %}
+            <div class="diagnostic-footer">
+                <span class="diag-lbl">🔬 模型校準</span>
+                <span class="diag-stat">Brier <b>{{ season_stats.brier }}</b></span>
+                {% if season_stats.calib_gap_mid is not none %}
+                <span class="diag-stat">0.5-0.8 gap <b class="{% if season_stats.calib_gap_mid|abs < 0.03 %}good{% elif season_stats.calib_gap_mid|abs > 0.08 %}bad{% endif %}">{% if season_stats.calib_gap_mid >= 0 %}+{% endif %}{{ season_stats.calib_gap_mid }}</b></span>
+                {% endif %}
+                <span class="diag-hint">(Brier 越低越好, 基準 0.25; gap 越近 0 越健康)</span>
             </div>
             {% endif %}
         </section>

@@ -9,12 +9,21 @@
   "under_picks": 3,
   "avg_confidence": 68.7,
   "value_picks": 2,
+  "golden_picks": 2,
   "ml_correct": 5,
   "ml_graded": 6,
   "ml_hit_rate": 83.3,
   "ou_correct": 3,
   "ou_graded": 6,
-  "ou_hit_rate": 50.0
+  "ou_hit_rate": 50.0,
+  "value_decided": 2,
+  "value_wins": 2,
+  "value_losses": 0,
+  "value_hit_rate": 100.0,
+  "golden_decided": 2,
+  "golden_wins": 2,
+  "golden_losses": 0,
+  "golden_hit_rate": 100.0
  },
  "games": {
   "Miami Heat:Toronto Raptors": {

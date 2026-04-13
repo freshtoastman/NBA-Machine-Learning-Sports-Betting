@@ -9,12 +9,21 @@
   "under_picks": 8,
   "avg_confidence": 71.1,
   "value_picks": 1,
+  "golden_picks": 1,
   "ml_correct": 9,
   "ml_graded": 15,
   "ml_hit_rate": 60.0,
   "ou_correct": 8,
   "ou_graded": 15,
-  "ou_hit_rate": 53.3
+  "ou_hit_rate": 53.3,
+  "value_decided": 1,
+  "value_wins": 1,
+  "value_losses": 0,
+  "value_hit_rate": 100.0,
+  "golden_decided": 1,
+  "golden_wins": 1,
+  "golden_losses": 0,
+  "golden_hit_rate": 100.0
  },
  "games": {
   "Miami Heat:Washington Wizards": {

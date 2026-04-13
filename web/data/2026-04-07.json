@@ -9,12 +9,21 @@
   "under_picks": 6,
   "avg_confidence": 74.4,
   "value_picks": 2,
+  "golden_picks": 2,
   "ml_correct": 8,
   "ml_graded": 10,
   "ml_hit_rate": 80.0,
   "ou_correct": 6,
   "ou_graded": 10,
-  "ou_hit_rate": 60.0
+  "ou_hit_rate": 60.0,
+  "value_decided": 2,
+  "value_wins": 2,
+  "value_losses": 0,
+  "value_hit_rate": 100.0,
+  "golden_decided": 2,
+  "golden_wins": 2,
+  "golden_losses": 0,
+  "golden_hit_rate": 100.0
  },
  "games": {
   "Minnesota Timberwolves:Indiana Pacers": {

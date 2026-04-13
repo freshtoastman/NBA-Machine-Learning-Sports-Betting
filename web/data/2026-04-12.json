@@ -9,16 +9,21 @@
   "under_picks": 8,
   "avg_confidence": 79.9,
   "value_picks": 5,
+  "golden_picks": 1,
   "ml_correct": 11,
   "ml_graded": 15,
   "ml_hit_rate": 73.3,
   "ou_correct": 6,
   "ou_graded": 15,
   "ou_hit_rate": 40.0,
-  "value_decided": 1,
-  "value_wins": 0,
-  "value_losses": 1,
-  "value_hit_rate": 0.0
+  "value_decided": 5,
+  "value_wins": 3,
+  "value_losses": 2,
+  "value_hit_rate": 60.0,
+  "golden_decided": 1,
+  "golden_wins": 0,
+  "golden_losses": 1,
+  "golden_hit_rate": 0.0
  },
  "games": {
   "Milwaukee Bucks:Philadelphia 76ers": {
