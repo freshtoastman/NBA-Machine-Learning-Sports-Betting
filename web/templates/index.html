@@ -60,7 +60,7 @@
                 <span class="dash-chip hit"><span class="dash-lbl">勝負命中</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
                 {% endif %}
                 {% if summary.value_picks %}
-                <span class="dash-chip diamond">💎 <b>{{ summary.value_picks }}</b>{% if not is_today and summary.value_hit_rate is not none %} · <b>{{ summary.value_hit_rate }}%</b> ({{ summary.value_wins }}/{{ summary.value_decided }}){% endif %}</span>
+                <span class="dash-chip diamond" style="cursor:pointer" onclick="scrollToValue()">💎 <b>{{ summary.value_picks }}</b>{% if not is_today and summary.value_hit_rate is not none %} · <b>{{ summary.value_hit_rate }}%</b> ({{ summary.value_wins }}/{{ summary.value_decided }}){% endif %}</span>
                 {% endif %}
             </div>
             {% endif %}
@@ -196,7 +196,7 @@
             {% set lean_is_home = home_conf >= away_conf %}
             {% set lean_team = home_team if lean_is_home else away_team %}
             {% set lean_conf = home_conf if lean_is_home else away_conf %}
-            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}">
+            <article class="pick-card {% if game.is_value %}value-pick{% endif %} {% if game.is_playoff %}playoff-card{% endif %} {% if game.series_is_elimination %}elimination-card{% endif %} {% if game.ml_correct is defined and game.ml_correct is not none %}{% if game.ml_correct %}graded-correct{% else %}graded-wrong{% endif %}{% endif %}" data-game-key="{{ game_key }}" data-ats-winner="{{ game.ats_winner if game.ats_winner else '' }}">
                 <button class="pin-btn" onclick="togglePin('{{ game_key }}')" title="加入精選">⭐</button>
                 {% if game.is_playoff and game.series_round %}
                 <div class="series-chip-row">
@@ -315,14 +315,119 @@
                     </div>
                 </div>
 
+                {# ── ATS Strategy Checklist (回測高勝率策略) ── #}
+                {% set sp = game.spread|default(0)|float %}
+                {% set abs_sp = sp if sp >= 0 else -sp %}
+                {% set h_conf = game.home_confidence|default(50)|float %}
+                {% set a_conf = game.away_confidence|default(50)|float %}
+                {% set model_conf = h_conf if h_conf >= a_conf else a_conf %}
+                {% set model_side = 'home' if h_conf >= a_conf else 'away' %}
+                {% set home_fav = sp > 0 %}
+                {% set ats_pick = game.ats_model_pick|default(none) %}
+                {% set ats_conf = game.ats_model_confidence|default(50)|float %}
+                {# Profile-derived form: use season overall win_rate as proxy #}
+                {% set h_wr = game.home_profile.last_1m.overall.win_rate|default(50)|float if game.home_profile else 50 %}
+                {% set a_wr = game.away_profile.last_1m.overall.win_rate|default(50)|float if game.away_profile else 50 %}
+                {% set h_ats_rate = game.home_profile.last_3m.overall.ats_rate|default(50)|float if game.home_profile else 50 %}
+                {% set a_ats_rate = game.away_profile.last_3m.overall.ats_rate|default(50)|float if game.away_profile else 50 %}
+                {% set h_season_wr = game.home_profile.season.overall.win_rate|default(50)|float if game.home_profile else 50 %}
+                {% set a_season_wr = game.away_profile.season.overall.win_rate|default(50)|float if game.away_profile else 50 %}
+                {# Playoff fields #}
+                {% set is_po = game.is_playoff|default(false) %}
+                {% set series_gn = game.series_game_num|default(0)|int %}
+                {% set series_lead = game.series_lead_for_home|default(0)|int %}
+                {% set is_elim = game.series_is_elimination|default(false) %}
+
+                {% set ns = namespace(checks=[]) %}
+
+                {# ── 例行賽策略 ── #}
+                {% if not is_po %}
+                  {% if abs_sp >= 5 and h_wr <= 35 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🔥','text':'主場弱隊大讓分 → 押客場/受讓 (歷史 70% WR)','tier':'hot'}] %}
+                  {% endif %}
+                  {% if abs_sp >= 5 and abs_sp < 10 and h_wr <= 35 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🔥','text':'讓分5-10 + 主場弱隊 → 押冷門 (70.1%)','tier':'hot'}] %}
+                  {% endif %}
+                  {% if h_ats_rate <= 35 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📉','text':'主場近期 ATS 差 → 押客場 cover (61.7%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if a_wr >= 65 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'客場 L10 強隊 → 押客場 cover (60.1%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if a_ats_rate >= 65 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'客場 ATS 近期熱 → 押客場 cover (59.0%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if not home_fav and h_season_wr >= 55 %}
+                    {% set ns.checks = ns.checks + [{'icon':'💡','text':'主場受讓 + 例行賽強隊 → 押主場 cover (61.5%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if abs_sp >= 5 and abs_sp < 10 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📊','text':'中讓分(5-10) → 冷門 cover 傾向 (58.9%)','tier':'base'}] %}
+                  {% endif %}
+                {% endif %}
+
+                {# ── 季後賽策略 ── #}
+                {% if is_po %}
+                  {% if series_gn >= 6 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🔥','text':'Game ' ~ series_gn ~ ' → 押客場/冷門 (63% WR, +20% ROI)','tier':'hot'}] %}
+                  {% endif %}
+                  {% if series_gn == 5 and series_lead == 0 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🔥','text':'Game 5 (2-2 平手) → 押主場 cover (60%)','tier':'hot'}] %}
+                  {% endif %}
+                  {% if is_elim %}
+                    {% set ns.checks = ns.checks + [{'icon':'⚠️','text':'淘汰局 → 押冷門 cover (56.7%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if is_elim and abs_sp <= 8 %}
+                    {% set ns.checks = ns.checks + [{'icon':'💡','text':'小讓分淘汰局 → 押冷門 (56.6%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if model_conf >= 65 and not is_elim %}
+                    {% set ns.checks = ns.checks + [{'icon':'🤖','text':'模型信心 ≥65% + 非淘汰局 → 押 ' ~ ('主場' if model_side == 'home' else '客場') ~ ' (57.1%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if a_season_wr >= 60 and home_fav %}
+                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'例行賽強隊受讓(客場) → 押客場 cover (54.7%)','tier':'base'}] %}
+                  {% endif %}
+                  {% if h_season_wr >= 60 and not home_fav %}
+                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'例行賽強隊受讓(主場) → 押主場 cover (58.8%)','tier':'warm'}] %}
+                  {% endif %}
+                  {% if series_gn <= 2 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📊','text':'系列賽前兩場 → 主場略有 ATS 優勢 (54%)','tier':'base'}] %}
+                  {% endif %}
+                  {% if series_lead <= -2 %}
+                    {% set ns.checks = ns.checks + [{'icon':'📊','text':'主場大幅落後 → 客場 cover 傾向 (55.5%)','tier':'base'}] %}
+                  {% endif %}
+                  {% if is_elim and series_lead < 0 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🚫','text':'主場淘汰局(落後方) → 避免押主場 (僅 39.4%)','tier':'danger'}] %}
+                  {% endif %}
+                {% endif %}
+
+                {# ── 模型信號 (通用) ── #}
+                {% if model_conf >= 70 %}
+                  {% set ns.checks = ns.checks + [{'icon':'🤖','text':'ML 模型高信心 ≥70% → 勝負盤可靠','tier':'base'}] %}
+                {% endif %}
+
+                {% if ns.checks|length > 0 %}
+                <details class="strategy-checklist" open>
+                    <summary>📋 回測策略 Checklist ({{ ns.checks|length }})</summary>
+                    <div class="strategy-list">
+                        {% for c in ns.checks %}
+                        <label class="strategy-item tier-{{ c.tier }}">
+                            <input type="checkbox" class="strategy-cb">
+                            <span class="strategy-icon">{{ c.icon }}</span>
+                            <span class="strategy-text">{{ c.text }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </details>
+                {% endif %}
+
                 {% if game.home_profile and game.away_profile %}
                 {% set wd_name = game.home_profile.weekday_name %}
                 <details class="profile-detail">
                     <summary>歷史輪廓 — 時間 × {{ wd_name }} / 強弱對戰</summary>
                     {% macro cell(s) -%}
                     {% if s.games > 0 -%}
-                    <div class="cell-main">{{ s.wins }}-{{ s.losses }} <span class="cell-pct {% if s.win_rate >= 60 %}good{% elif s.win_rate < 45 %}bad{% endif %}">{{ s.win_rate }}%</span></div>
-                    <div class="cell-sub">ATS {{ s.ats_wins }}-{{ s.ats_losses }}{% if s.ats_rate is not none %} {{ s.ats_rate }}%{% endif %}</div>
+                    <div class="cell-main"><span class="cell-pct {% if s.win_rate >= 60 %}good{% elif s.win_rate < 45 %}bad{% endif %}">{{ s.win_rate }}%</span></div>
+                    <div class="cell-record">{{ s.wins }}-{{ s.losses }}</div>
+                    <div class="cell-sub">ATS {{ s.ats_wins }}-{{ s.ats_losses }}{% if s.ats_rate is not none %} {{s.ats_rate}}%{% endif %}</div>
                     {%- else -%}
                     <div class="cell-empty">—</div>
                     {%- endif %}
@@ -331,6 +436,7 @@
                         {% for side, team_label, profile in [('away', team_name_zh(away_team), game.away_profile), ('home', team_name_zh(home_team), game.home_profile)] %}
                         <div class="profile-team">
                             <div class="profile-team-name">{{ team_label }}</div>
+                            <div class="profile-table-wrap">
                             <table class="profile-table">
                                 <thead>
                                     <tr>
@@ -354,11 +460,13 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
                 </details>
                 {% endif %}
+                <div class="ai-featured-badge"></div>
             </article>
             {% endfor %}
         </main>
@@ -367,10 +475,38 @@
             模型 {{ today }} · XGBoost ML 69.1% / UO 50.0%
         </footer>
     </div>
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
     <script>
+    // Back to top visibility
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('backToTop');
+        if (btn) btn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
+    function scrollToValue() {
+        const card = document.querySelector('.pick-card.value-pick');
+        if (card) highlightCard(card);
+    }
+    function scrollToGame(gameName) {
+        // Match game name (Chinese) to a card by checking team names
+        const cards = document.querySelectorAll('.pick-card');
+        for (const card of cards) {
+            const names = Array.from(card.querySelectorAll('.team-name-text')).map(el => el.textContent.trim());
+            if (names.some(n => n && gameName.includes(n))) {
+                highlightCard(card);
+                return;
+            }
+        }
+    }
+    function highlightCard(card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.transition = 'box-shadow 0.3s';
+        card.style.boxShadow = '0 0 20px rgba(99, 102, 241, 0.6)';
+        setTimeout(() => { card.style.boxShadow = ''; }, 2000);
+    }
     function renderGameAnalysis(data) {
         const units = parseInt(data.ats_units) || 0;
         const unitBars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
@@ -399,6 +535,8 @@
                     <span class="ai-units">${unitBars} ${units}U</span>
                 </div>
                 <div class="ai-ats-reason">${data.ats_reason || ''}</div>
+                ${data.backtest_alignment ? `<div class="ai-backtest-tag">📋 回測佐證: ${data.backtest_alignment}</div>` : ''}
+                ${data.profile_insight ? `<div class="ai-backtest-tag">📊 歷史輪廓: ${data.profile_insight}</div>` : ''}
             </div>
             <div class="ai-row ai-secondary">
                 <div class="ai-mini-verdict">
@@ -460,6 +598,66 @@
             .finally(() => { btn.disabled = false; });
     }
 
+    function markFeaturedCards(data) {
+        // Clear previous marks
+        document.querySelectorAll('.pick-card').forEach(c => {
+            c.classList.remove('ai-best', 'ai-lean', 'ai-avoid');
+            const badge = c.querySelector('.ai-featured-badge');
+            if (badge) badge.innerHTML = '';
+        });
+        // Collect game names per tier
+        const tiers = [
+            { items: data.best_bets || [], cls: 'ai-best', label: '🎯 精選' },
+            { items: data.lean_picks || [], cls: 'ai-lean', label: '📌 次選' },
+            { items: data.avoid_games || [], cls: 'ai-avoid', label: '⛔ 避開' },
+        ];
+        // Match by checking if a card's team names appear in the report game field
+        document.querySelectorAll('.pick-card').forEach(card => {
+            const names = Array.from(card.querySelectorAll('.team-name-text')).map(el => el.textContent.trim());
+            const atsWinner = card.dataset.atsWinner; // 'home', 'away', 'push', or ''
+            for (const tier of tiers) {
+                for (const pick of tier.items) {
+                    const game = pick.game || '';
+                    if (names.some(n => n && game.includes(n))) {
+                        card.classList.add(tier.cls);
+                        const badge = card.querySelector('.ai-featured-badge');
+                        if (!badge) return;
+                        const pickText = pick.pick || pick.reason || '';
+                        // Determine if AI pick won by matching pick team to ATS winner side
+                        let resultHtml = '';
+                        if (atsWinner && atsWinner !== '' && atsWinner !== 'None' && pickText) {
+                            // Figure out which side (home/away) the pick favors
+                            const homeNameEl = card.querySelectorAll('.team-name-text')[1];
+                            const awayNameEl = card.querySelectorAll('.team-name-text')[0];
+                            const homeName = homeNameEl ? homeNameEl.textContent.trim() : '';
+                            const awayName = awayNameEl ? awayNameEl.textContent.trim() : '';
+                            let pickSide = '';
+                            if (homeName && pickText.includes(homeName)) pickSide = 'home';
+                            else if (awayName && pickText.includes(awayName)) pickSide = 'away';
+                            if (atsWinner === 'push') {
+                                resultHtml = '<span class="ai-pick-result push">PUSH</span>';
+                            } else if (pickSide && pickSide === atsWinner) {
+                                resultHtml = '<span class="ai-pick-result win">✓ 贏</span>';
+                            } else if (pickSide && pickSide !== atsWinner) {
+                                resultHtml = '<span class="ai-pick-result lose">✗ 輸</span>';
+                            }
+                        }
+                        badge.innerHTML = `<span>${tier.label}</span> <span class="ai-pick-text">${pickText}</span>${resultHtml}`;
+                        return;
+                    }
+                }
+            }
+        });
+        // Auto-pin best_bets + lean_picks
+        const pinned = getPinned();
+        let added = 0;
+        document.querySelectorAll('.pick-card.ai-best, .pick-card.ai-lean').forEach(card => {
+            const key = card.dataset.gameKey;
+            if (key && !pinned.includes(key)) { pinned.push(key); added++; }
+        });
+        if (added > 0) savePinned(pinned);
+    }
+
     function loadDailyReport(gameDate) {
         const btn = document.querySelector('.daily-report-btn');
         const content = document.querySelector('.daily-report-content');
@@ -468,6 +666,12 @@
         if (content.style.display === 'block') {
             content.style.display = 'none';
             btn.textContent = '📊 生成當日 AI 分析報告';
+            // Clear featured badges
+            document.querySelectorAll('.pick-card').forEach(c => {
+                c.classList.remove('ai-best', 'ai-lean', 'ai-avoid');
+                const b = c.querySelector('.ai-featured-badge');
+                if (b) b.innerHTML = '';
+            });
             return;
         }
 
@@ -483,7 +687,8 @@
                     const bestBets = (data.best_bets || []).map(p => {
                         const units = parseInt(p.units) || 0;
                         const bars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
-                        return `<div class="report-bet best">
+                        const esc = (p.game || '').replace(/'/g, "\\'");
+                        return `<div class="report-bet best" style="cursor:pointer" onclick="scrollToGame('${esc}')">
                             <div class="report-bet-head"><strong>${p.game}</strong><span class="report-spread">${p.spread || ''}</span></div>
                             <div class="report-bet-pick">🎯 ${p.pick} <span class="ai-units">${bars} ${units}U</span></div>
                             <div class="report-bet-reason">${p.reason || ''}</div>
@@ -492,15 +697,17 @@
                     }).join('');
                     const leans = (data.lean_picks || []).map(p => {
                         const units = parseInt(p.units) || 0;
-                        return `<div class="report-bet lean">
+                        const esc = (p.game || '').replace(/'/g, "\\'");
+                        return `<div class="report-bet lean" style="cursor:pointer" onclick="scrollToGame('${esc}')">
                             <div class="report-bet-head"><strong>${p.game}</strong></div>
                             <div class="report-bet-pick">${p.pick} <span class="ai-units">${'🟡'.repeat(units)}${'⚫'.repeat(5-units)} ${units}U</span></div>
                             <div class="report-bet-reason">${p.reason || ''}</div>
                         </div>`;
                     }).join('');
-                    const avoids = (data.avoid_games || []).map(a =>
-                        `<div class="report-avoid">⛔ <strong>${a.game}</strong> — ${a.reason}</div>`
-                    ).join('');
+                    const avoids = (data.avoid_games || []).map(a => {
+                        const esc = (a.game || '').replace(/'/g, "\\'");
+                        return `<div class="report-avoid" style="cursor:pointer" onclick="scrollToGame('${esc}')">⛔ <strong>${a.game}</strong> — ${a.reason}</div>`;
+                    }).join('');
                     const injuries = (data.injury_alerts || []).map(i =>
                         `<div class="report-injury">🏥 ${i}</div>`
                     ).join('');
@@ -515,24 +722,8 @@
                         <div class="report-summary">${data.daily_summary || ''}</div>
                     </div>`;
 
-                    // Auto-pin recommended games (best_bets + lean_picks).
-                    const recommended = [
-                        ...(data.best_bets || []),
-                        ...(data.lean_picks || []),
-                    ].map(p => p.game_key).filter(Boolean);
-                    if (recommended.length > 0) {
-                        const pinned = getPinned();
-                        let added = 0;
-                        for (const k of recommended) {
-                            if (!pinned.includes(k)) {
-                                pinned.push(k);
-                                added++;
-                            }
-                        }
-                        if (added > 0) {
-                            savePinned(pinned);
-                        }
-                    }
+                    // Mark game cards as 精選 / lean / avoid based on report.
+                    markFeaturedCards(data);
                 }
                 content.style.display = 'block';
                 btn.textContent = '📊 收合報告';
@@ -588,18 +779,22 @@
             });
             cards.forEach(c => grid.appendChild(c));
         }
-        // Show/hide pinned analysis button
+        // Show/hide pinned analysis button — only count pinned games on current page
         const pinnedBtn = document.getElementById('pinned-btn');
         const countEl = document.getElementById('pinned-count');
         if (pinnedBtn && countEl) {
-            countEl.textContent = pinned.length;
-            pinnedBtn.style.display = pinned.length > 0 ? 'block' : 'none';
+            const pageKeys = Array.from(document.querySelectorAll('.pick-card')).map(c => c.dataset.gameKey);
+            const pinnedOnPage = pinned.filter(k => pageKeys.includes(k)).length;
+            countEl.textContent = pinnedOnPage;
+            pinnedBtn.style.display = pinnedOnPage > 0 ? 'block' : 'none';
         }
     }
     document.addEventListener('DOMContentLoaded', updatePinnedUI);
 
     function analyzePinned(gameDate) {
-        const pinned = getPinned();
+        const allPinned = getPinned();
+        const pageKeys = Array.from(document.querySelectorAll('.pick-card')).map(c => c.dataset.gameKey);
+        const pinned = allPinned.filter(k => pageKeys.includes(k));
         if (!pinned.length) return;
         const btn = document.querySelector('.pinned-analysis-btn');
         const content = document.querySelector('.pinned-report-content');

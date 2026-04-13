@@ -14,7 +14,11 @@
   "ml_hit_rate": 85.7,
   "ou_correct": 3,
   "ou_graded": 7,
-  "ou_hit_rate": 42.9
+  "ou_hit_rate": 42.9,
+  "value_decided": 1,
+  "value_wins": 1,
+  "value_losses": 0,
+  "value_hit_rate": 100.0
  },
  "games": {
   "Minnesota Timberwolves:Orlando Magic": {

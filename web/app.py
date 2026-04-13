@@ -401,7 +401,9 @@ def api_analysis():
 === 任務 ===
 1. 搜尋兩隊今天的 injury report（傷兵報告）
 2. 評估傷兵對讓分盤的影響
-3. 給出明確的讓分推薦（從上方『選項A/選項B』中擇一）
+3. **仔細閱讀「回測策略訊號」**：這些是根據歷史比賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥60%，⚡中 = 勝率 55-60%，🚫警告 = 應避免。你的推薦應該與回測訊號一致，除非有明確傷兵或特殊消息推翻。
+4. **分析「歷史輪廓」**：注意兩隊的近期趨勢（近1月/近3月）、本日週幾的勝率、對強/弱隊的表現差異、ATS cover 率。找出有利或不利的歷史模式。
+5. 綜合模型 + 回測策略 + 歷史輪廓 + 傷兵，給出明確讓分推薦（從上方『選項A/選項B』中擇一）
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -409,8 +411,10 @@ def api_analysis():
   "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
   "injury_impact": "傷兵對讓分盤的具體影響",
   "key_factors": ["因素1", "因素2", "因素3"],
+  "backtest_alignment": "回測訊號支持/反對哪一方（引用至少一條回測訊號，說明推薦與訊號的關係）",
+  "profile_insight": "歷史輪廓觀察（引用具體數據：近期趨勢、週幾勝率、對強弱隊表現、ATS cover率）",
   "ats_pick": "從上方『選項A』或『選項B』中挑一個整段原封不動複製",
-  "ats_reason": "為什麼選這一邊（2-3句具體分析）",
+  "ats_reason": "為什麼選這一邊（2-3句，必須提到回測策略訊號和歷史輪廓的佐證）",
   "ats_units": 數字1到5,
   "ou_pick": "大分 N / 小分 N / 不推薦",
   "ou_reason": "一句話理由",
@@ -422,6 +426,9 @@ def api_analysis():
 嚴格規則：
 - ats_pick 必須從『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
 - ats_units 必須是數字 1-5
+- **backtest_alignment 為必填**：必須引用「回測策略訊號」中至少一條，說明推薦與訊號的關係。若無訊號則填「無相關回測訊號」
+- **profile_insight 為必填**：必須引用「歷史輪廓」中的具體數據（勝率%、W-L、ATS cover率），分析近期走勢和本場相關模式
+- **ats_reason 必須提到回測和歷史輪廓**：明確引用回測訊號和歷史輪廓數據作為佐證
 - 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
@@ -589,20 +596,34 @@ def _build_game_context(g):
     value_team = home_zh if value_side == "home" else away_zh if value_side else "無"
     value_edge = g.get("value_edge", 0)
 
-    # Profile summary
-    def _prof(p, name):
+    # Profile summary — full historical context
+    def _prof(p, name, side_label):
         if not p:
             return ""
-        s = p.get("season", {}).get("overall", {})
-        m = p.get("last_1m", {}).get("overall", {})
-        parts = []
-        if s.get("games"):
-            parts.append(f"賽季{s['wins']}-{s['losses']}({s['win_rate']}%)")
-        if m.get("games"):
-            parts.append(f"近月{m['wins']}-{m['losses']}({m['win_rate']}%)")
-        return f"{name}: {' '.join(parts)}" if parts else ""
-    hp = _prof(g.get("home_profile"), home_zh)
-    ap = _prof(g.get("away_profile"), away_zh)
+        lines = [f"【{name}（{side_label}）歷史輪廓】"]
+
+        def _fmt(stat, label):
+            if not stat or not stat.get("games"):
+                return None
+            ats = ""
+            if stat.get("ats_rate") is not None:
+                ats = f" ATS {stat['ats_wins']}-{stat['ats_losses']}({stat['ats_rate']}%)"
+            return f"  {label}: {stat['wins']}-{stat['losses']}({stat['win_rate']}%){ats}"
+
+        for period_key, period_label in [("season", "本賽季"), ("last_3m", "近3月"), ("last_1m", "近1月")]:
+            period = p.get(period_key, {})
+            overall = _fmt(period.get("overall"), "整體")
+            weekday = _fmt(period.get("weekday"), p.get("weekday_name", "週日"))
+            vs_strong = _fmt(period.get("vs_strong"), "對強隊")
+            vs_weak = _fmt(period.get("vs_weak"), "對弱隊")
+            row_parts = [x for x in [overall, weekday, vs_strong, vs_weak] if x]
+            if row_parts:
+                lines.append(f" {period_label}:")
+                lines.extend(row_parts)
+        return "\n".join(lines) if len(lines) > 1 else ""
+
+    hp = _prof(g.get("home_profile"), home_zh, "主場")
+    ap = _prof(g.get("away_profile"), away_zh, "客場")
 
     pick_block = ""
     if pick_option_a and pick_option_b:
@@ -612,11 +633,21 @@ def _build_game_context(g):
             f"  選項B: {pick_option_b}"
         )
 
+    # Backtest signals
+    from src.Utils.AIAnalysis import _build_backtest_signals
+    signals = _build_backtest_signals(g)
+    if signals:
+        tier_label = {"hot": "🔥強", "warm": "⚡中", "base": "📊參考", "danger": "🚫警告"}
+        sig_lines = "\n".join(f"  [{tier_label.get(s['tier'], '📊')}] {s['text']}" for s in signals)
+        bt_block = f"\n回測策略訊號（根據歷史數據回測結果，勝率已驗證）:\n{sig_lines}"
+    else:
+        bt_block = ""
+
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
 ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
 鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
 {hp}
-{ap}{pick_block}"""
+{ap}{pick_block}{bt_block}"""
 
 
 @app.route("/api/daily-report")
@@ -652,9 +683,11 @@ def api_daily_report():
 
 === 任務 ===
 1. 搜尋今天所有重大傷兵消息
-2. 從每場比賽提供的『選項A/選項B』中挑出值得下注的讓分推薦
-3. 標出應該避開的比賽
-4. 寫出整體策略
+2. **仔細閱讀每場比賽的「回測策略訊號」**：🔥強 = 歷史勝率 ≥60%，⚡中 = 55-60%，🚫警告 = 應避免。優先挑選有多個 🔥/⚡ 訊號支持的場次作為 best_bets。
+3. **分析每場比賽的「歷史輪廓」**：注意近期趨勢（近1月走勢）、本日週幾的勝率、對強/弱隊的表現、ATS cover 率。走勢好或 ATS cover 率高的隊伍更值得信賴。
+4. 從每場比賽提供的『選項A/選項B』中挑出值得下注的讓分推薦
+5. 標出應該避開的比賽（特別留意有 🚫警告 訊號的場次、或近期走勢極差的隊伍）
+6. 寫出整體策略
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -665,8 +698,8 @@ def api_daily_report():
       "spread": "從該場『讓分盤:』那行複製",
       "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "units": 1到5的數字,
-      "reason": "2-3句具體分析（含傷兵影響）",
-      "model_support": "模型資料佐證（ML信心、ATS edge等）"
+      "reason": "2-3句具體分析（含傷兵影響 + 必須引用該場回測策略訊號和歷史輪廓佐證）",
+      "model_support": "模型資料佐證（ML信心、ATS edge等）+ 回測訊號摘要 + 歷史輪廓重點"
     }}
   ],
   "lean_picks": [
@@ -674,7 +707,7 @@ def api_daily_report():
       "game": "客隊 @ 主隊",
       "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "units": 1到2,
-      "reason": "一句話理由"
+      "reason": "一句話理由（引用回測訊號或歷史輪廓）"
     }}
   ],
   "avoid_games": [
@@ -692,6 +725,9 @@ def api_daily_report():
 - units 必須是數字 1-5
 - 勝負盤（moneyline）只有在大冷門有價值時才提及
 - injury_alerts 必須是搜尋到的真實傷兵消息
+- **best_bets 的 reason 和 model_support 必須引用該場「回測策略訊號」和「歷史輪廓」**：例如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover」或「近1月 ATS cover 率 65%，走勢火熱」。若該場無回測訊號則註明「無相關回測訊號」
+- **lean_picks 的 reason 也須提到回測訊號或歷史輪廓**
+- **avoid_games 的 reason 可引用歷史輪廓走勢不佳的數據**
 - 隊名一律用繁體中文
 - 用繁體中文回答"""
 
