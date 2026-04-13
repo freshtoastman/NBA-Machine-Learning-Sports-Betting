@@ -1,6 +1,6 @@
 {
  "date": "2026-04-12",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 15,
   "home_picks": 12,
@@ -8,7 +8,13 @@
   "over_picks": 7,
   "under_picks": 8,
   "avg_confidence": 66.2,
-  "value_picks": 0
+  "value_picks": 0,
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null
  },
  "games": {
   "Milwaukee Bucks:Philadelphia 76ers": {
