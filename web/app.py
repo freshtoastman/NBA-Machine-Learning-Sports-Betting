@@ -97,7 +97,34 @@ def subscribe():
     return render_template("subscribe.html", admin_email=ADMIN_EMAIL)
 
 DATA_DIR = Path(__file__).parent / "data"
+# Writable cache dir. /tmp is writable on Vercel lambdas and local dev.
+CACHE_DIR = Path("/tmp/nba_ai_cache")
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
 TAIPEI_TZ = ZoneInfo("Asia/Taipei")
+
+
+def _cache_get(key: str) -> dict | None:
+    p = CACHE_DIR / f"{key}.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def _cache_put(key: str, value: dict) -> None:
+    try:
+        (CACHE_DIR / f"{key}.json").write_text(
+            json.dumps(value, ensure_ascii=False), encoding="utf-8",
+        )
+    except OSError:
+        pass
+
+
+def _safe_key(*parts: str) -> str:
+    raw = "|".join(parts)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
 
 WEEKDAY_ZH = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"]
 
@@ -358,6 +385,13 @@ def api_analysis():
     if not game:
         return jsonify({"error": "Game not found"}), 404
 
+    cache_key = f"analysis_{game_date}_{_safe_key(away, home)}"
+    if not request.args.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
+
     ctx = _build_game_context(game)
     prompt = f"""你是職業 NBA 讓分盤分析師。你的讀者是認真的體育投注者。
 
@@ -423,6 +457,10 @@ def api_analysis():
             "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
             "source": "fallback",
         }
+    # Only cache successful (non-fallback) results so a transient Gemini outage
+    # doesn't pin a degraded answer forever.
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 
@@ -438,6 +476,13 @@ def api_analyze_pinned():
     data = load_date_data(game_date)
     if not data:
         return jsonify({"error": "No data"}), 404
+
+    cache_key = f"pinned_{game_date}_{_safe_key(*sorted(pinned_keys))}"
+    if not body.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
 
     pinned_games = []
     for key in pinned_keys:
@@ -493,7 +538,12 @@ def api_analyze_pinned():
             "parlay_suggestion": "不建議串關",
             "total_units": len(pinned_games),
             "strategy": "AI 分析暫時不可用，請參考各場模型預測。",
+            "source": "fallback",
         }
+    else:
+        result.setdefault("source", "gemini")
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 
@@ -579,6 +629,16 @@ def api_daily_report():
         return jsonify({"error": "No data"}), 404
 
     games = data["games"]
+    # Cache key is bound to the set of games that day — if games change
+    # (odds update, new game added), the cache invalidates automatically.
+    games_sig = _safe_key(*sorted(games.keys()))
+    cache_key = f"daily_{game_date}_{games_sig}"
+    if not request.args.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
+
     contexts = []
     for i, (k, g) in enumerate(games.items(), 1):
         contexts.append(f"=== 第{i}場 ===\n{_build_game_context(g)}")
@@ -648,7 +708,12 @@ def api_daily_report():
             "injury_alerts": ["無法取得傷兵資訊（離線模式）"],
             "bankroll_plan": f"建議保守操作，等待更好的場次。",
             "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。",
+            "source": "fallback",
         }
+    else:
+        result.setdefault("source", "gemini")
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 
