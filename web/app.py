@@ -308,7 +308,7 @@ def api_analysis():
 === 任務 ===
 1. 搜尋兩隊今天的 injury report（傷兵報告）
 2. 評估傷兵對讓分盤的影響
-3. 給出明確的讓分推薦（押哪隊 +/- 幾分、幾個單位）
+3. 給出明確的讓分推薦（從上方『選項A/選項B』中擇一）
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -316,7 +316,7 @@ def api_analysis():
   "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
   "injury_impact": "傷兵對讓分盤的具體影響",
   "key_factors": ["因素1", "因素2", "因素3"],
-  "ats_pick": "明確寫：押 XX隊 +/-N 分",
+  "ats_pick": "從上方『選項A』或『選項B』中挑一個整段原封不動複製",
   "ats_reason": "為什麼選這一邊（2-3句具體分析）",
   "ats_units": 數字1到5,
   "ou_pick": "大分 N / 小分 N / 不推薦",
@@ -326,21 +326,35 @@ def api_analysis():
   "summary": "一句話結論：押什麼、幾個單位"
 }}
 
-規則：ats_pick 必須明確寫「押 XX隊 +/-N 分」。ats_units 必須是數字1-5。用繁體中文。"""
+嚴格規則：
+- ats_pick 必須從『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
+- ats_units 必須是數字 1-5
+- 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if result:
         result["source"] = "gemini"
     else:
-        ml_pick = game.get("home_team") if game.get("winner") == "home" else game.get("away_team")
-        ats_team = game.get("home_team") if game.get("ats_model_pick") == "home" else game.get("away_team") if game.get("ats_model_pick") else "N/A"
+        home_zh = game.get("home_team_zh") or game.get("home_team", "?")
+        away_zh = game.get("away_team_zh") or game.get("away_team", "?")
+        ml_pick = home_zh if game.get("winner") == "home" else away_zh
+        ats_side = game.get("ats_model_pick")
+        ats_team = home_zh if ats_side == "home" else away_zh if ats_side == "away" else "N/A"
         sp = game.get("spread")
+        # Rule-based ATS pick using 讓/受讓 wording.
+        if ats_team != "N/A" and sp is not None:
+            abs_sp = f"{abs(sp):.1f}"
+            # Model picks the favorite iff (home picked AND home favored) OR (away picked AND away favored).
+            is_fav = (ats_side == "home" and sp > 0) or (ats_side == "away" and sp < 0)
+            ats_pick_str = f"押 {ats_team} {'讓' if is_fav else '受讓'} {abs_sp} 分"
+        else:
+            ats_pick_str = "不推薦"
         result = {
             "injuries_home": [], "injuries_away": [],
             "injury_impact": "無法查詢傷兵（離線模式）",
             "key_factors": ["請參考模型預測"],
-            "ats_pick": f"押 {ats_team} {'+'if game.get('ats_model_pick')!='home' and sp else '-'}{abs(sp) if sp else '?'}" if ats_team != "N/A" else "不推薦",
+            "ats_pick": ats_pick_str,
             "ats_reason": f"ATS 模型 edge {game.get('ats_value_edge', 0)}pp",
             "ats_units": 2 if game.get("ats_is_value") else 1,
             "ou_pick": f"{'大分' if game.get('ou_pick')=='OVER' else '小分'} {game.get('ou_value','?')}",
@@ -386,16 +400,16 @@ def api_analyze_pinned():
 
 === 任務 ===
 1. 搜尋這 {len(pinned_games)} 場的傷兵
-2. 每場給出明確讓分推薦（押哪隊 +/- 幾分、幾個單位）
-3. 分析這幾場之間有沒有關聯（例如同一隊連戰、跨場串關機會）
+2. 每場給出明確讓分推薦（從該場提供的『選項A/選項B』中擇一）
+3. 分析這幾場之間有沒有關聯（同一隊連戰、跨場串關機會）
 4. 給出這 {len(pinned_games)} 場的整體下注策略
 
 === 回答格式（JSON，不要 code block）===
 {{
   "picks": [
     {{
-      "game": "客隊 @ 主隊",
-      "pick": "押 XX隊 +/-N 分",
+      "game": "客隊 @ 主隊（繁體中文隊名）",
+      "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "units": 1到5,
       "reason": "2-3句分析（含傷兵）",
       "injuries": ["重要傷兵1", "重要傷兵2"]
@@ -406,7 +420,11 @@ def api_analyze_pinned():
   "strategy": "整體策略（100字）"
 }}
 
-規則：每個 pick 必須明確寫「押 XX隊 +/-N 分」。units 是數字。用繁體中文。"""
+嚴格規則：
+- 每個 pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號
+- units 是數字 1-5
+- 隊名一律用繁體中文
+- 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
@@ -421,22 +439,47 @@ def api_analyze_pinned():
 
 
 def _build_game_context(g):
-    """Build detailed context string for a single game."""
-    home = g.get("home_team", "?")
-    away = g.get("away_team", "?")
-    ml_pick = home if g.get("winner") == "home" else away
-    ml_conf = g.get("home_confidence") if g.get("winner") == "home" else g.get("away_confidence", 0)
+    """Build detailed context string for a single game.
+
+    Produces two pre-formatted pick-option strings using 讓/受讓 wording
+    (never +/- signs) so the LLM can only copy one verbatim without flipping.
+    """
+    home_zh = g.get("home_team_zh") or g.get("home_team", "?")
+    away_zh = g.get("away_team_zh") or g.get("away_team", "?")
+    ml_side = g.get("winner")
+    ml_pick_zh = home_zh if ml_side == "home" else away_zh
+    ml_conf = g.get("home_confidence") if ml_side == "home" else g.get("away_confidence", 0)
     spread = g.get("spread")
-    spread_s = f"{spread:+.1f}" if spread is not None else "N/A"
+
+    # Spread convention: positive => home is favorite (gives points).
+    if spread is None:
+        spread_str = "N/A"
+        pick_option_a = pick_option_b = None
+    elif spread > 0:
+        abs_sp = f"{spread:.1f}"
+        spread_str = f"{home_zh} 讓 {abs_sp} 分 / {away_zh} 受讓 {abs_sp} 分"
+        pick_option_a = f"押 {home_zh} 讓 {abs_sp} 分"
+        pick_option_b = f"押 {away_zh} 受讓 {abs_sp} 分"
+    elif spread < 0:
+        abs_sp = f"{-spread:.1f}"
+        spread_str = f"{away_zh} 讓 {abs_sp} 分 / {home_zh} 受讓 {abs_sp} 分"
+        pick_option_a = f"押 {away_zh} 讓 {abs_sp} 分"
+        pick_option_b = f"押 {home_zh} 受讓 {abs_sp} 分"
+    else:
+        spread_str = "PK（無讓分）"
+        pick_option_a = f"押 {home_zh}（PK）"
+        pick_option_b = f"押 {away_zh}（PK）"
+
     ats_side = g.get("ats_model_pick")
-    ats_team = home if ats_side == "home" else away if ats_side == "away" else "N/A"
+    ats_team = home_zh if ats_side == "home" else away_zh if ats_side == "away" else "N/A"
     ats_conf = g.get("ats_model_confidence", "?")
     ats_edge = g.get("ats_value_edge", 0)
     ou_pick = g.get("ou_pick", "?")
     ou_val = g.get("ou_value", "?")
     value_side = g.get("value_side")
-    value_team = home if value_side == "home" else away if value_side else "無"
+    value_team = home_zh if value_side == "home" else away_zh if value_side else "無"
     value_edge = g.get("value_edge", 0)
+
     # Profile summary
     def _prof(p, name):
         if not p:
@@ -449,13 +492,22 @@ def _build_game_context(g):
         if m.get("games"):
             parts.append(f"近月{m['wins']}-{m['losses']}({m['win_rate']}%)")
         return f"{name}: {' '.join(parts)}" if parts else ""
-    hp = _prof(g.get("home_profile"), home)
-    ap = _prof(g.get("away_profile"), away)
-    return f"""{away} @ {home} | 讓分 {home} {spread_s}
-ML: {ml_pick}({ml_conf}%) | ATS: {ats_team}蓋({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
+    hp = _prof(g.get("home_profile"), home_zh)
+    ap = _prof(g.get("away_profile"), away_zh)
+
+    pick_block = ""
+    if pick_option_a and pick_option_b:
+        pick_block = (
+            f"\n讓分推薦只能從以下兩個字串擇一（複製貼上，不要改任何字）：\n"
+            f"  選項A: {pick_option_a}\n"
+            f"  選項B: {pick_option_b}"
+        )
+
+    return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
+ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
 鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
 {hp}
-{ap}"""
+{ap}{pick_block}"""
 
 
 @app.route("/api/daily-report")
@@ -481,7 +533,7 @@ def api_daily_report():
 
 === 任務 ===
 1. 搜尋今天所有重大傷兵消息
-2. 從所有比賽中挑出「值得下注的讓分盤」（明確寫出押哪隊 +/- 幾分）
+2. 從每場比賽提供的『選項A/選項B』中挑出值得下注的讓分推薦
 3. 標出應該避開的比賽
 4. 寫出整體策略
 
@@ -490,9 +542,9 @@ def api_daily_report():
   "headline": "今日 NBA 讓分盤精選（一句吸引眼球的標題）",
   "best_bets": [
     {{
-      "game": "客隊 @ 主隊",
-      "spread": "主隊 -N / 客隊 +N",
-      "pick": "押 XX隊 +/-N 分（明確寫出）",
+      "game": "客隊 @ 主隊（繁體中文隊名）",
+      "spread": "從該場『讓分盤:』那行複製",
+      "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "units": 1到5的數字,
       "reason": "2-3句具體分析（含傷兵影響）",
       "model_support": "模型資料佐證（ML信心、ATS edge等）"
@@ -501,7 +553,7 @@ def api_daily_report():
   "lean_picks": [
     {{
       "game": "客隊 @ 主隊",
-      "pick": "押 XX隊 +/-N 分",
+      "pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "units": 1到2,
       "reason": "一句話理由"
     }}
@@ -514,13 +566,14 @@ def api_daily_report():
   "daily_summary": "150字策略總結：今天哪些盤口有機會、整體市場觀察、風險提醒"
 }}
 
-=== 規則 ===
-- best_bets: 最多 3 場，只放你最有信心的讓分推薦（units >= 3）
-- lean_picks: 次級推薦（units 1-2）
-- 每個 pick 必須明確寫出「押 XX隊 +/-N 分」，不能含糊
-- units 必須是數字 1-5（1=試水，3=標準，5=重注）
+=== 嚴格規則 ===
+- best_bets: 最多 3 場，units >= 3
+- lean_picks: 次級推薦，units 1-2
+- **每個 pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名**
+- units 必須是數字 1-5
 - 勝負盤（moneyline）只有在大冷門有價值時才提及
 - injury_alerts 必須是搜尋到的真實傷兵消息
+- 隊名一律用繁體中文
 - 用繁體中文回答"""
 
     raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
