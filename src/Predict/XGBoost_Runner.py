@@ -145,9 +145,10 @@ def _align_features(model, data):
 
 def _predict_probs(model, data, calibrator=None):
     aligned = _align_features(model, data)
+    raw = np.asarray(model.predict(xgb.DMatrix(aligned)))
     if calibrator is not None:
-        return calibrator.predict_proba(aligned)
-    return model.predict(xgb.DMatrix(aligned))
+        return np.asarray(calibrator.predict_proba(raw))
+    return raw
 
 
 def _format_game_line(home_team, away_team, winner_is_home, winner_confidence, under_over, ou_value, ou_confidence):
