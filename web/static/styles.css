@@ -2649,6 +2649,46 @@ h3 {
     border: none;
 }
 
+/* --------------------------------------------------------------------- */
+/* AI 分析: 金鑽判定橫條 — 在 ai-card 最上方                              */
+/* --------------------------------------------------------------------- */
+.ai-golden-verdict {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    margin: -14px -14px 10px;
+    border-radius: 12px 12px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    background: rgba(100, 110, 130, 0.12);
+    color: #b8c1d0;
+    border-bottom: 1px solid rgba(80, 90, 105, 0.35);
+}
+
+.ai-golden-verdict .ai-gv-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.ai-golden-verdict .ai-gv-text {
+    flex: 1;
+}
+
+.ai-golden-verdict.is-golden {
+    background: linear-gradient(90deg, rgba(255, 191, 64, 0.32), rgba(255, 140, 40, 0.12));
+    border-bottom-color: rgba(255, 191, 64, 0.7);
+    color: #ffdca0;
+    box-shadow: inset 0 -2px 0 rgba(255, 191, 64, 0.4);
+}
+
+.ai-golden-verdict.is-silver {
+    background: linear-gradient(90deg, rgba(180, 190, 210, 0.15), rgba(120, 130, 150, 0.06));
+    border-bottom-color: rgba(180, 190, 210, 0.35);
+    color: #c5cfe0;
+}
+
 .pinned-aggregate {
     margin-top: 14px;
     padding-top: 12px;

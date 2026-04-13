@@ -622,8 +622,25 @@
         const units = parseInt(data.ats_units) || 0;
         const unitBars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
         const src = (data.source || '').includes('gemini') ? '🌐 Gemini+搜尋' : data.source === 'claude' ? '🤖 Claude' : '📊 規則分析';
+        // Golden factor strip: shows whether the pick is in the statistical
+        // sweet spot AND how the AI weighed that fact against other signals.
+        // Uses the authoritative is_golden/is_value flags from the backend,
+        // not the free-form verdict text.
+        const gv = (data.golden_verdict || '').trim();
+        const isGolden = data.is_golden === true;
+        const isSilver = !isGolden && data.is_value === true;
+        const gvClass = isGolden ? 'ai-golden-verdict is-golden'
+                      : isSilver ? 'ai-golden-verdict is-silver'
+                      : 'ai-golden-verdict';
+        const gvIcon = isGolden ? '🥇' : isSilver ? '🥈' : 'ℹ️';
+        const gvLabel = isGolden ? '金鑽面向 ✓' : isSilver ? '銀鑽（非甜蜜區）' : '非鑽石';
+        const gvBody = gv || '（AI 未提供金鑽面向的觀察）';
+        const gvHtml = (isGolden || isSilver || gv)
+            ? `<div class="${gvClass}"><span class="ai-gv-icon">${gvIcon}</span><span class="ai-gv-text"><b>${gvLabel}</b> · ${gvBody}</span></div>`
+            : '';
         return `
         <div class="ai-card">
+            ${gvHtml}
             <div class="ai-row ai-injuries">
                 <div class="ai-inj-col">
                     <span class="ai-inj-title">🏥 主隊傷兵</span>
@@ -937,6 +954,8 @@
                         ats_reason: p.reason || p.ats_reason,
                         injuries_home: p.injuries_home || [],
                         injuries_away: p.injuries_away || [],
+                        is_golden: p.is_golden === true,
+                        is_value: p.is_value === true,
                         source: data.source,
                     }, p);
                     return `<div class="pinned-pick-block">

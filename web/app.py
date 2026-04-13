@@ -489,6 +489,7 @@ def api_analysis():
   "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
   "injury_impact": "傷兵對讓分盤的具體影響",
   "key_factors": ["因素1", "因素2", "因素3"],
+  "golden_verdict": "你如何看待『金鑽面向』這個因素（是/否、以及它對你的推薦信心的影響方向，不必直接照搬回測數字）",
   "backtest_alignment": "回測訊號支持/反對哪一方（引用至少一條回測訊號，說明推薦與訊號的關係）",
   "profile_insight": "歷史輪廓觀察（引用具體數據：近期趨勢、週幾勝率、對強弱隊表現、ATS cover率）",
   "ats_pick": "從上方『選項A』或『選項B』中挑一個整段原封不動複製",
@@ -504,6 +505,7 @@ def api_analysis():
 嚴格規則：
 - ats_pick 必須從『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
 - ats_units 必須是數字 1-5
+- **golden_verdict 為必填**：這是讓你確認你有把「金鑽面向」納入決策的欄位。請在整合傷兵、關鍵因素、回測訊號、歷史輪廓、金鑽面向、市場盤口後**自主判斷**，簡述金鑽因素如何（或為何無法）影響你對這場的信心。不要機械式地依金鑽狀態決定 units — units 應該是你綜合所有面向後的結論
 - **backtest_alignment 為必填**：必須引用「回測策略訊號」中至少一條，說明推薦與訊號的關係。若無訊號則填「無相關回測訊號」
 - **profile_insight 為必填**：必須引用「歷史輪廓」中的具體數據（勝率%、W-L、ATS cover率），分析近期走勢和本場相關模式
 - **ats_reason 必須提到回測和歷史輪廓**：明確引用回測訊號和歷史輪廓數據作為佐證
@@ -528,10 +530,18 @@ def api_analysis():
             ats_pick_str = f"押 {ats_team} {'讓' if is_fav else '受讓'} {abs_sp} 分"
         else:
             ats_pick_str = "不推薦"
+        # 金鑽面向只寫觀察，不介入 units 決定（離線模式無法做全面判斷）
+        if game.get("is_golden"):
+            golden_verdict_str = "金鑽面向：是（鑽石 + |讓分|≤6，屬歷史甜蜜區）"
+        elif game.get("is_value"):
+            golden_verdict_str = "金鑽面向：否（鑽石但 |讓分|>6，銀鑽區）"
+        else:
+            golden_verdict_str = "金鑽面向：否（非鑽石場次）"
         result = {
             "injuries_home": [], "injuries_away": [],
             "injury_impact": "無法查詢傷兵（離線模式）",
             "key_factors": ["請參考模型預測"],
+            "golden_verdict": golden_verdict_str,
             "ats_pick": ats_pick_str,
             "ats_reason": f"ATS 模型 edge {game.get('ats_value_edge', 0)}pp",
             "ats_units": 2 if game.get("ats_is_value") else 1,
@@ -542,6 +552,10 @@ def api_analysis():
             "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
             "source": "fallback",
         }
+    # Expose the authoritative golden/value flags so the frontend can style
+    # the response without parsing the AI's free-form verdict text.
+    result["is_golden"] = bool(game.get("is_golden"))
+    result["is_value"] = bool(game.get("is_value"))
     # Only cache successful (non-fallback) results so a transient Gemini outage
     # doesn't pin a degraded answer forever.
     if result.get("source") == "gemini":
@@ -602,6 +616,7 @@ def api_analyze_pinned():
       "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
       "injury_impact": "傷兵對讓分盤的具體影響",
       "key_factors": ["因素1", "因素2", "因素3"],
+      "golden_verdict": "你如何看待『金鑽面向』這個因素（是/否、它對你的信心影響方向），不必機械式決定單位",
       "backtest_alignment": "回測訊號支持/反對哪一方（引用至少一條回測訊號）",
       "profile_insight": "歷史輪廓觀察（引用具體數據：近期勝率%、ATS cover率等）",
       "ats_pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
@@ -623,6 +638,7 @@ def api_analyze_pinned():
 - **picks 陣列的每一個元素必須包含上方所有欄位，少寫任何一個都算失敗**
 - 每個 ats_pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
 - ats_units 必須是數字 1-5
+- **golden_verdict 為必填**：確認你有把「金鑽面向」納入整體判斷，說明它對該場推薦信心的影響方向（加成/警告/中立），但 units 必須是你綜合所有面向後的結論，不要因為是金鑽就機械式給 3-5U
 - backtest_alignment 和 profile_insight 為必填，必須引用具體數據
 - 隊名一律用繁體中文
 - 用繁體中文回答"""
@@ -645,11 +661,18 @@ def api_analyze_pinned():
                 ats_pick_str = f"押 {ats_team} {'讓' if is_fav else '受讓'} {abs_sp} 分"
             else:
                 ats_pick_str = "不推薦"
+            if g.get("is_golden"):
+                gv = "金鑽面向：是（甜蜜區）"
+            elif g.get("is_value"):
+                gv = "金鑽面向：否（鑽石但 |讓分|>6）"
+            else:
+                gv = "金鑽面向：否（非鑽石）"
             fb_picks.append({
                 "game": f"{away_zh} @ {home_zh}",
                 "injuries_home": [], "injuries_away": [],
                 "injury_impact": "無法查詢傷兵（離線模式）",
                 "key_factors": ["請參考模型預測"],
+                "golden_verdict": gv,
                 "backtest_alignment": "無相關回測訊號",
                 "profile_insight": "離線模式無法取用歷史輪廓",
                 "ats_pick": ats_pick_str,
@@ -670,6 +693,11 @@ def api_analyze_pinned():
         }
     else:
         result.setdefault("source", "gemini")
+    # Annotate each pick with the authoritative golden/value flags so the
+    # frontend can style without parsing the AI's free-form verdict text.
+    for p, g in zip(result.get("picks") or [], pinned_games):
+        p["is_golden"] = bool(g.get("is_golden"))
+        p["is_value"] = bool(g.get("is_value"))
     if result.get("source") == "gemini":
         _cache_put(cache_key, result)
     return jsonify(result)
@@ -764,9 +792,31 @@ def _build_game_context(g):
     else:
         bt_block = ""
 
+    # Golden tier factor: value pick AND |spread| ≤ 6. Just surface the
+    # factual status + historical reference — let the AI weigh it against
+    # all the other signals before reaching a verdict.
+    if g.get("is_golden"):
+        abs_sp = f"{abs(float(spread)):.1f}" if spread is not None else "?"
+        golden_line = (
+            f"🥇 金鑽面向: 是 (押 {value_team}, +{value_edge}pp edge, |讓分| {abs_sp}) "
+            f"— 歷史 4 季回測此類組合平均 +12.8% ROI / 71-79% 命中率"
+        )
+    elif g.get("is_value"):
+        sp_abs = abs(float(spread)) if spread is not None else None
+        if sp_abs is not None and sp_abs > 6:
+            golden_line = (
+                f"🥇 金鑽面向: 否 (鑽石 {value_team}, 但 |讓分| {sp_abs:.1f} > 6, "
+                f"歷史此區段平均 +5.7% ROI)"
+            )
+        else:
+            golden_line = f"🥇 金鑽面向: 否 (鑽石 {value_team}, 盤口資料不完整)"
+    else:
+        golden_line = "🥇 金鑽面向: 否 (不是鑽石場次)"
+
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
 ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
 鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
+{golden_line}
 {hp}
 {ap}{pick_block}{bt_block}"""
 
@@ -877,6 +927,7 @@ def api_daily_report():
 # ---------------------------------------------------------------------------
 # API: Player data (RapidAPI, lightweight)
 # ---------------------------------------------------------------------------
+# (kept below; pinned flag annotation is inserted at the other return site.)
 
 TEAM_ABBREVIATIONS = {
     "Orlando Magic": "ORL", "Minnesota Timberwolves": "MIN", "Miami Heat": "MIA",
