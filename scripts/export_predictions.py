@@ -81,11 +81,22 @@ def export_date(target_date: date) -> dict | None:
         summary["ou_graded"] = len(ou_graded)
         summary["ou_hit_rate"] = round(summary["ou_correct"] / len(ou_graded) * 100, 1) if ou_graded else None
 
+    # Active playoff series (for the tracker UI).
+    try:
+        from src.Utils.PlayoffContext import get_active_series_for_date, is_playoff_date
+        active_series = get_active_series_for_date(target_date)
+        is_playoff_view = is_playoff_date(target_date)
+    except Exception:
+        active_series = []
+        is_playoff_view = False
+
     return {
         "date": target_date.isoformat(),
         "is_today": is_today,
         "summary": summary,
         "games": games_dict,
+        "active_series": active_series,
+        "is_playoff_view": is_playoff_view,
     }
 
 

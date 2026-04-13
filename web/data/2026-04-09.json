@@ -2927,5 +2927,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg"
   }
- }
+ },
+ "active_series": [],
+ "is_playoff_view": false
 }

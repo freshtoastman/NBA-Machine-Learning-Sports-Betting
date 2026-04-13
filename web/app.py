@@ -179,28 +179,51 @@ def index():
     else:
         selected_date = today
 
+    # If "today" requested has no exported JSON, auto-fall back to the most
+    # recent date that does (so the user lands on real content instead of an
+    # empty page).
+    no_games_today = False
     data = load_date_data(selected_date.isoformat())
+    if data is None and selected_date == today:
+        idx_tmp = load_dates_index()
+        latest_iso = (idx_tmp.get("dates") or [None])[0]
+        if latest_iso:
+            try:
+                selected_date = date.fromisoformat(latest_iso)
+                data = load_date_data(latest_iso)
+                no_games_today = True
+            except ValueError:
+                pass
+
     is_today = selected_date == today
     games = data.get("games", {}) if data else {}
     summary = data.get("summary", {"games": 0}) if data else {"games": 0}
+    active_series = data.get("active_series", []) if data else []
+    is_playoff_view = data.get("is_playoff_view", False) if data else False
     season_stats = load_season_stats()
     idx = load_dates_index()
 
-    # Override team_name_zh / logo from exported data.
+    # Build a name→game lookup so team_name_zh / team_logo_url can resolve any
+    # team referenced from active_series (which has team names not in `games`).
+    name_to_game = {}
+    for g in games.values():
+        for side in ("home_team", "away_team"):
+            if g.get(side):
+                name_to_game[g[side]] = g
+
+    # Override team_name_zh / logo from exported data. For names not in this
+    # day's games (e.g. teams in active_series tracker), return None so the
+    # template's `{% if team_logo_url(...) %}` skips the image.
     def _zh(name):
-        for g in games.values():
-            if g.get("home_team") == name:
-                return g.get("home_team_zh", name)
-            if g.get("away_team") == name:
-                return g.get("away_team_zh", name)
+        g = name_to_game.get(name)
+        if g:
+            return g.get("home_team_zh") if g.get("home_team") == name else g.get("away_team_zh") or name
         return name
 
     def _logo(name):
-        for g in games.values():
-            if g.get("home_team") == name:
-                return g.get("home_logo")
-            if g.get("away_team") == name:
-                return g.get("away_logo")
+        g = name_to_game.get(name)
+        if g:
+            return g.get("home_logo") if g.get("home_team") == name else g.get("away_logo")
         return None
 
     app.jinja_env.globals["team_name_zh"] = _zh
@@ -211,10 +234,13 @@ def index():
         today=today,
         selected_date=selected_date,
         is_today=is_today,
+        no_games_today=no_games_today,
         date_chips=build_date_chips(selected_date),
         summary=summary,
         season_key=idx.get("season", "2025-26"),
         season_stats=season_stats,
+        active_series=active_series,
+        is_playoff_view=is_playoff_view,
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
     )
 
