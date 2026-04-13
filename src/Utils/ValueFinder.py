@@ -57,6 +57,9 @@ def expected_value(prob: float, american_odds) -> float:
     return prob * (decimal - 1.0) - (1.0 - prob)
 
 
+SWEET_SPOT_MAX_SPREAD = 6.0  # |spread| ≤ 6: 4-season backtest shows this is the ROI sweet spot.
+
+
 def evaluate_value(
     model_home_prob: float,
     home_odds,
@@ -65,6 +68,7 @@ def evaluate_value(
     min_model_prob: float = 0.70,
     edge_threshold_pp: float = 5.0,
     max_edge_pp: float = None,
+    spread: float | None = None,
 ) -> dict:
     """Decide whether either side of a game is a value pick.
 
@@ -88,6 +92,7 @@ def evaluate_value(
     """
     result = {
         "is_value": False,
+        "is_golden": False,
         "value_side": None,
         "value_edge": None,
         "value_ev": None,
@@ -135,8 +140,18 @@ def evaluate_value(
     # Tier within the value band: "elite" if edge is in the high-conviction range.
     tier = "elite" if side_edge >= 15.0 else "value"
 
+    # Golden flag: value pick AND spread in the ROI sweet spot (|spread| ≤ 6).
+    is_golden = False
+    if spread is not None:
+        try:
+            if abs(float(spread)) <= SWEET_SPOT_MAX_SPREAD:
+                is_golden = True
+        except (TypeError, ValueError):
+            pass
+
     result.update({
         "is_value": True,
+        "is_golden": is_golden,
         "value_side": side,
         "value_edge": round(side_edge, 1),
         "value_ev": round(ev, 3),

@@ -281,6 +281,7 @@ def predict_today_xgb(sportsbook):
         model_home_prob = pred["home_confidence"] / 100.0
         pred.update(evaluate_value(
             model_home_prob, pred.get("home_team_odds"), pred.get("away_team_odds"),
+            spread=pred.get("spread"),
         ))
 
         # Consensus.
@@ -513,7 +514,7 @@ def predict_historical_xgb(target_date):
         model_home_prob = pred["home_confidence"] / 100.0
         home_ml = odds_row.get("ML_Home") if odds_row is not None else None
         away_ml = odds_row.get("ML_Away") if odds_row is not None else None
-        pred.update(evaluate_value(model_home_prob, home_ml, away_ml))
+        pred.update(evaluate_value(model_home_prob, home_ml, away_ml, spread=pred.get("spread")))
 
         if played:
             pred["home_score"] = int((total_points + win_margin) / 2)

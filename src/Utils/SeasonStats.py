@@ -158,10 +158,9 @@ def _compute(season_key: str, _fingerprint: float):
     booster_ml.load_model(str(ml_path))
     calib_ml = _load_calibrator(ml_path)
     X_ml_aligned = _trim(booster_ml, X_ml)
+    probs_ml = np.asarray(booster_ml.predict(xgb.DMatrix(X_ml_aligned)))
     if calib_ml is not None:
-        probs_ml = np.asarray(calib_ml.predict_proba(X_ml_aligned))
-    else:
-        probs_ml = np.asarray(booster_ml.predict(xgb.DMatrix(X_ml_aligned)))
+        probs_ml = np.asarray(calib_ml.predict_proba(probs_ml))
 
     # UO model with proper column position via _build_frame_uo.
     uo_path = _select_model_path("UO")
@@ -273,9 +272,21 @@ def _compute(season_key: str, _fingerprint: float):
     STAKE = 1000.0
     PAYOUT_WIN = 900.0  # profit per winning $1000 ATS bet
 
+    # Brier + calibration gap on the ML home probability.
+    p_home = probs_ml[:, 1]
+    brier = float(np.mean((p_home - y_ml) ** 2))
+    mid_mask = (p_home >= 0.5) & (p_home < 0.8)
+    if mid_mask.sum() > 0:
+        calib_gap_mid = float(np.mean(y_ml[mid_mask] - p_home[mid_mask]))
+    else:
+        calib_gap_mid = None
+
     n_value = 0
     value_wins = 0
     value_pl = 0.0
+    # Golden tier: value pick AND |spread| ≤ 6.
+    golden_n = golden_w = 0
+    golden_pl = 0.0
     # Combined: diamond pick that ALSO covers the spread (the value side)
     elite_bets = 0       # value picks with valid spread/margin (excludes pushes)
     elite_wins = 0       # value side covered the spread
@@ -285,7 +296,9 @@ def _compute(season_key: str, _fingerprint: float):
     perfect_hits = 0     # ML correct AND ATS covered
 
     for i in range(games):
-        v = evaluate_value(float(probs_ml[i, 1]), ml_h[i], ml_a[i])
+        sp_i = spreads[i] if i < len(spreads) else None
+        sp_arg = None if pd.isna(sp_i) else float(sp_i)
+        v = evaluate_value(float(probs_ml[i, 1]), ml_h[i], ml_a[i], spread=sp_arg)
         if not v["is_value"]:
             continue
         n_value += 1
@@ -298,7 +311,13 @@ def _compute(season_key: str, _fingerprint: float):
         odds_used = ml_h[i] if v["value_side"] == "home" else ml_a[i]
         dec = american_to_decimal(odds_used)
         if dec is not None:
-            value_pl += (dec - 1.0) if won_ml else -1.0
+            pl_unit = (dec - 1.0) if won_ml else -1.0
+            value_pl += pl_unit
+            if v.get("is_golden"):
+                golden_n += 1
+                if won_ml:
+                    golden_w += 1
+                golden_pl += pl_unit
 
         # ATS evaluation on the value side.
         sp = spreads[i]
@@ -335,6 +354,16 @@ def _compute(season_key: str, _fingerprint: float):
         "value_hit_rate": round(value_wins / n_value * 100, 1) if n_value else None,
         "value_pl": round(value_pl, 2),
         "value_roi": round(value_pl / n_value * 100, 1) if n_value else None,
+        # Golden tier = value pick AND |spread| ≤ 6 (backtest sweet spot).
+        "golden_picks": golden_n,
+        "golden_wins": golden_w,
+        "golden_losses": golden_n - golden_w,
+        "golden_hit_rate": round(golden_w / golden_n * 100, 1) if golden_n else None,
+        "golden_pl": round(golden_pl, 2),
+        "golden_roi": round(golden_pl / golden_n * 100, 1) if golden_n else None,
+        # Model-quality diagnostics.
+        "brier": round(brier, 4),
+        "calib_gap_mid": round(calib_gap_mid, 4) if calib_gap_mid is not None else None,
         # Diamond ATS strategy: bet $1000 on value side ATS at -110.
         "elite_bets": elite_bets,
         "elite_wins": elite_wins,
