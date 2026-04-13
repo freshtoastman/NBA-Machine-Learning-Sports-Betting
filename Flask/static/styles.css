@@ -874,6 +874,86 @@ a {
     color: var(--positive);
 }
 
+.ha-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-right: 2px;
+}
+
+.ha-tag.home-tag {
+    background: rgba(47, 124, 246, 0.18);
+    color: var(--accent);
+    border: 1px solid rgba(47, 124, 246, 0.5);
+}
+
+.ha-tag.away-tag {
+    background: rgba(35, 214, 198, 0.15);
+    color: var(--accent-2);
+    border: 1px solid rgba(35, 214, 198, 0.5);
+}
+
+.spread-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(8, 12, 24, 0.7);
+    border: 1px solid var(--stroke);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    margin-right: 6px;
+    min-width: 44px;
+    justify-content: center;
+}
+
+.spread-chip.covered {
+    background: rgba(45, 211, 111, 0.18);
+    color: var(--positive);
+    border-color: rgba(45, 211, 111, 0.55);
+}
+
+.spread-chip.missed {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--negative);
+    border-color: rgba(255, 107, 107, 0.4);
+    opacity: 0.7;
+}
+
+.team-row.team-covered {
+    position: relative;
+}
+
+.team-row.team-covered::after {
+    content: "蓋過";
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(45, 211, 111, 0.15);
+    color: var(--positive);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(45, 211, 111, 0.4);
+}
+
+.badge-mini.push {
+    background: rgba(154, 166, 199, 0.15);
+    color: var(--muted);
+    border: 1px solid var(--stroke);
+    width: auto;
+    padding: 0 6px;
+    font-size: 10px;
+}
+
 .vs-divider {
     text-align: center;
     color: var(--muted);

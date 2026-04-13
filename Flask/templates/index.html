@@ -36,12 +36,10 @@
             <div class="dash-row">
                 <span class="dash-tag today-tag">今日 {{ selected_date }}</span>
                 <span class="dash-chip"><b>{{ summary.games }}</b> 場</span>
-                <span class="dash-chip">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
-                <span class="dash-chip">大 <b>{{ summary.over_picks }}</b> / 小 <b>{{ summary.under_picks }}</b></span>
-                <span class="dash-chip">平均 <b>{{ summary.avg_confidence }}%</b></span>
+                <span class="dash-chip">主隊勝 <b>{{ summary.home_picks }}</b> / 客隊勝 <b>{{ summary.away_picks }}</b></span>
+                <span class="dash-chip">平均信心 <b>{{ summary.avg_confidence }}%</b></span>
                 {% if not is_today and summary.ml_hit_rate is not none %}
-                <span class="dash-chip hit"><span class="dash-lbl">ML</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
-                <span class="dash-chip hit"><span class="dash-lbl">OU</span><b>{{ summary.ou_hit_rate }}%</b><span class="dash-sub">{{ summary.ou_correct }}/{{ summary.ou_graded }}</span></span>
+                <span class="dash-chip hit"><span class="dash-lbl">勝負命中</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
                 {% endif %}
                 {% if summary.value_picks %}
                 <span class="dash-chip diamond">💎 <b>{{ summary.value_picks }}</b>{% if not is_today and summary.value_hit_rate is not none %} · <b>{{ summary.value_hit_rate }}%</b> ({{ summary.value_wins }}/{{ summary.value_decided }}){% endif %}</span>
@@ -89,21 +87,6 @@
                         {% else %}
                         <div class="model-empty">無鑽石場次</div>
                         {% endif %}
-                    </div>
-                </div>
-
-                {# UO totals #}
-                <div class="model-card uo-card">
-                    <div class="model-card-head">
-                        <span class="model-name">UO 大小分</span>
-                        <span class="model-acc {% if season_stats.ou_hit_rate >= 55 %}good{% elif season_stats.ou_hit_rate < 48 %}bad{% endif %}">{{ season_stats.ou_hit_rate }}%</span>
-                    </div>
-                    <div class="model-card-body">
-                        <div class="model-stat-row">
-                            <span class="model-stat-lbl">命中</span>
-                            <span class="model-stat-val">{{ season_stats.ou_hits }}/{{ season_stats.games }}</span>
-                        </div>
-                        <div class="model-empty">大小分市場效率高,模型訊號弱</div>
                     </div>
                 </div>
 
@@ -181,27 +164,39 @@
                     {% if game.is_consensus %}<span class="value-detail">+ ATS 模型同意</span>{% endif %}
                 </div>
                 {% endif %}
+                {# Compute per-team spread display (positive spread = home favored). #}
+                {% set spread_val = game.spread|float if game.spread is defined and game.spread is not none else None %}
+                {% set away_spread = (spread_val|string) if spread_val is none else (('+' ~ spread_val) if spread_val > 0 else (('-' ~ (-spread_val)) if spread_val < 0 else 'PK')) %}
+                {% set home_spread = (spread_val|string) if spread_val is none else (('-' ~ spread_val) if spread_val > 0 else (('+' ~ (-spread_val)) if spread_val < 0 else 'PK')) %}
                 <div class="pick-teams">
-                    <div class="team-row {% if game.actual_winner == 'away' %}team-won{% endif %}">
+                    <div class="team-row {% if game.actual_winner == 'away' %}team-won{% endif %} {% if game.ats_winner == 'away' %}team-covered{% endif %}">
+                        <span class="ha-tag away-tag">客</span>
                         {% if team_logo_url(away_team) %}
                         <img class="team-logo" src="{{ team_logo_url(away_team) }}" alt="{{ away_team }}" loading="lazy">
                         {% endif %}
                         <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ away_team|replace(' ', '-')|lower }}">
                             {{ team_name_zh(away_team) }}
                         </span>
+                        {% if spread_val is not none %}
+                        <span class="spread-chip {% if game.ats_winner == 'away' %}covered{% elif game.ats_winner == 'home' %}missed{% endif %}" title="客隊讓分">{{ away_spread }}</span>
+                        {% endif %}
                         {% if game.away_score is defined and game.away_score is not none %}
                         <span class="team-score">{{ game.away_score }}</span>
                         {% endif %}
                         <span class="team-conf">{{ away_conf|round(1) }}%</span>
                     </div>
                     <div class="vs-divider">@</div>
-                    <div class="team-row {% if game.actual_winner == 'home' %}team-won{% endif %}">
+                    <div class="team-row {% if game.actual_winner == 'home' %}team-won{% endif %} {% if game.ats_winner == 'home' %}team-covered{% endif %}">
+                        <span class="ha-tag home-tag">主</span>
                         {% if team_logo_url(home_team) %}
                         <img class="team-logo" src="{{ team_logo_url(home_team) }}" alt="{{ home_team }}" loading="lazy">
                         {% endif %}
                         <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ home_team|replace(' ', '-')|lower }}">
                             {{ team_name_zh(home_team) }}
                         </span>
+                        {% if spread_val is not none %}
+                        <span class="spread-chip {% if game.ats_winner == 'home' %}covered{% elif game.ats_winner == 'away' %}missed{% endif %}" title="主隊讓分">{{ home_spread }}</span>
+                        {% endif %}
                         {% if game.home_score is defined and game.home_score is not none %}
                         <span class="team-score">{{ game.home_score }}</span>
                         {% endif %}
@@ -218,50 +213,42 @@
                         <span class="badge-mini {% if game.ml_correct %}ok{% else %}fail{% endif %}">{% if game.ml_correct %}✓{% else %}✗{% endif %}</span>
                         {% endif %}
                     </div>
-                    {% if game.spread is defined and game.spread is not none %}
-                    {% set spread_val = game.spread|float %}
-                    <div class="pick-row">
-                        <span class="pick-label">讓分</span>
-                        {% if spread_val > 0 %}
-                        <strong>{{ team_name_zh(home_team) }} -{{ spread_val }}</strong>
-                        <span class="pick-actual">{{ team_name_zh(away_team) }} +{{ spread_val }}</span>
-                        {% elif spread_val < 0 %}
-                        <strong>{{ team_name_zh(away_team) }} {{ spread_val }}</strong>
-                        <span class="pick-actual">{{ team_name_zh(home_team) }} +{{ -spread_val }}</span>
-                        {% else %}
-                        <strong>無讓分</strong>
-                        {% endif %}
-                        {% if game.ats_winner == 'home' %}
-                        <span class="ats-result covered">{{ team_name_zh(home_team) }} 蓋過 ({{ game.ats_cover_margin }})</span>
-                        {% elif game.ats_winner == 'away' %}
-                        <span class="ats-result covered">{{ team_name_zh(away_team) }} 蓋過 ({{ -game.ats_cover_margin }})</span>
-                        {% elif game.ats_winner == 'push' %}
-                        <span class="ats-result push">PUSH</span>
-                        {% endif %}
-                    </div>
-                    {% if game.ats_model_pick %}
+                    {% if spread_val is not none and game.ats_model_pick %}
+                    {# Choose wording based on which side the model picks:
+                       - If model picks the favorite → "讓 X 分" (give X)
+                       - If model picks the underdog → "受讓 X 分" (get X) #}
+                    {% set pick_home = game.ats_model_pick == 'home' %}
+                    {% set picked_team = home_team if pick_home else away_team %}
+                    {% set abs_spread = spread_val if spread_val > 0 else -spread_val %}
+                    {% set is_favorite = (pick_home and spread_val > 0) or (not pick_home and spread_val < 0) %}
                     <div class="pick-row {% if game.ats_is_value %}ats-value-row{% endif %}">
                         <span class="pick-label">ATS 模型</span>
-                        <strong>{% if game.ats_model_pick == 'home' %}{{ team_name_zh(home_team) }}{% else %}{{ team_name_zh(away_team) }}{% endif %} 蓋</strong>
+                        <strong>
+                            {% if spread_val == 0 %}
+                                {{ team_name_zh(picked_team) }}（PK）
+                            {% elif is_favorite %}
+                                {{ team_name_zh(picked_team) }} 讓 {{ abs_spread }} 分
+                            {% else %}
+                                {{ team_name_zh(picked_team) }} 受讓 {{ abs_spread }} 分
+                            {% endif %}
+                        </strong>
                         <span class="pick-conf">{{ game.ats_model_confidence }}%</span>
                         {% if game.ats_is_value %}
                         <span class="ats-edge-tag">edge +{{ game.ats_value_edge }}pp</span>
                         {% endif %}
                         {% if game.ats_winner and game.ats_winner != 'push' %}
                         <span class="badge-mini {% if game.ats_model_pick == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.ats_model_pick == game.ats_winner %}✓{% else %}✗{% endif %}</span>
+                        {% elif game.ats_winner == 'push' %}
+                        <span class="badge-mini push">PUSH</span>
                         {% endif %}
                     </div>
                     {% endif %}
-                    {% endif %}
-                    {% if game.ou_pick and game.ou_value %}
+                    {# Show the OU line value only (no model prediction or hit/miss). #}
+                    {% if game.ou_value %}
                     <div class="pick-row">
-                        <span class="pick-label">總分</span>
-                        <strong>{% if game.ou_pick == 'OVER' %}大分{% else %}小分{% endif %} {{ game.ou_value }}</strong>
-                        <span class="pick-conf">{{ game.ou_confidence|round(1) }}%</span>
+                        <span class="pick-label">總分盤</span>
+                        <strong>O/U {{ game.ou_value }}</strong>
                         {% if game.actual_total %}<span class="pick-actual">實際 {{ game.actual_total }}</span>{% endif %}
-                        {% if game.ou_correct is defined and game.ou_correct is not none %}
-                        <span class="badge-mini {% if game.ou_correct %}ok{% else %}fail{% endif %}">{% if game.ou_correct %}✓{% else %}✗{% endif %}</span>
-                        {% endif %}
                     </div>
                     {% endif %}
                 </div>
