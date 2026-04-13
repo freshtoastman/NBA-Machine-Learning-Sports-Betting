@@ -126,8 +126,66 @@ def select_odds_table(odds_con, season_key):
     return max(existing, key=freshness)
 
 
+def _load_playoff_windows(config):
+    """Return dict {season_key: (start_date, end_date)} for playoff date ranges."""
+    out = {}
+    for season_key, value in config.get("get-playoffs", {}).items():
+        out[season_key] = (
+            datetime.strptime(value["start_date"], "%Y-%m-%d").date(),
+            datetime.strptime(value["end_date"], "%Y-%m-%d").date(),
+        )
+    return out
+
+
+def _build_per_game_series_state(odds_df, playoff_window):
+    """Walk playoff games chronologically and compute the live series state at
+    the moment each game tipped off (i.e., based only on PRIOR games in the same
+    series). Returns dict {(date_str, home, away): (game_num, home_wins_so_far,
+    away_wins_so_far, is_elimination)}.
+    """
+    if playoff_window is None or odds_df.empty:
+        return {}
+    start, end = playoff_window
+    out = {}
+    # Filter to playoff window and sort by date.
+    rows = []
+    for r in odds_df.itertuples(index=False):
+        date_str = normalize_date(r.Date)
+        try:
+            d = datetime.strptime(date_str, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if start <= d <= end:
+            rows.append((date_str, r.Home, r.Away, getattr(r, "Win_Margin", 0), getattr(r, "Points", 0)))
+    rows.sort(key=lambda x: x[0])
+
+    # Per-matchup running win counters keyed by (team_a, team_b) where team_a
+    # alphabetically precedes team_b. The values track accumulated wins for
+    # each side based on Win_Margin sign.
+    counts = {}  # frozenset → {team_a: int, team_b: int}
+    for date_str, home, away, margin, points in rows:
+        key = frozenset({home, away})
+        teams = sorted([home, away])
+        team_a, team_b = teams[0], teams[1]
+        prior = counts.get(key, {team_a: 0, team_b: 0})
+        # Snapshot BEFORE this game.
+        home_wins_so_far = prior[home]
+        away_wins_so_far = prior[away]
+        game_num = home_wins_so_far + away_wins_so_far + 1
+        is_elim = 1 if (home_wins_so_far == 3 and away_wins_so_far < 3) or (away_wins_so_far == 3 and home_wins_so_far < 3) else 0
+        out[(date_str, home, away)] = (game_num, home_wins_so_far, away_wins_so_far, is_elim)
+
+        # Update for next iteration: only credit a win if the game was played.
+        if margin is not None and points not in (None, 0):
+            winner = home if margin > 0 else away
+            prior[winner] = prior.get(winner, 0) + 1
+        counts[key] = prior
+    return out
+
+
 def main():
     config = toml.load(CONFIG_PATH)
+    playoff_windows = _load_playoff_windows(config)
 
     scores = []
     win_margin = []
@@ -136,6 +194,10 @@ def main():
     games = []
     days_rest_away = []
     days_rest_home = []
+    is_playoff_list = []
+    series_game_num_list = []
+    series_lead_for_home_list = []
+    is_elimination_list = []
 
     with sqlite3.connect(ODDS_DB_PATH) as odds_con, sqlite3.connect(TEAMS_DB_PATH) as teams_con:
         for season_key in config["create-games"].keys():
@@ -151,6 +213,8 @@ def main():
                 continue
 
             index_map = get_team_index_map(season_key)
+            playoff_window = playoff_windows.get(season_key)
+            per_game_series = _build_per_game_series_state(odds_df, playoff_window)
 
             for row in odds_df.itertuples(index=False):
                 date_str = normalize_date(row.Date)
@@ -175,6 +239,23 @@ def main():
                 else:
                     ou_cover.append(2)
 
+                # Playoff flagging.
+                row_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+                is_po = bool(playoff_window and playoff_window[0] <= row_date <= playoff_window[1])
+                is_playoff_list.append(1 if is_po else 0)
+
+                # Per-game series snapshot (state BEFORE this game tipped off).
+                snapshot = per_game_series.get((date_str, row.Home, row.Away)) if is_po else None
+                if snapshot:
+                    game_num, home_wins, away_wins, is_elim = snapshot
+                    series_game_num_list.append(game_num)
+                    series_lead_for_home_list.append(home_wins - away_wins)
+                    is_elimination_list.append(is_elim)
+                else:
+                    series_game_num_list.append(0)
+                    series_lead_for_home_list.append(0)
+                    is_elimination_list.append(0)
+
                 games.append(game)
 
     if not games:
@@ -189,6 +270,10 @@ def main():
     frame["OU-Cover"] = np.asarray(ou_cover)
     frame["Days-Rest-Home"] = np.asarray(days_rest_home)
     frame["Days-Rest-Away"] = np.asarray(days_rest_away)
+    frame["is_playoff"] = np.asarray(is_playoff_list)
+    frame["series_game_num"] = np.asarray(series_game_num_list)
+    frame["series_lead_for_home"] = np.asarray(series_lead_for_home_list)
+    frame["is_elimination_game"] = np.asarray(is_elimination_list)
 
     for field in frame.columns.values:
         if "TEAM_" in field or "Date" in field:
@@ -197,6 +282,8 @@ def main():
 
     with sqlite3.connect(OUTPUT_DB_PATH) as con:
         frame.to_sql(OUTPUT_TABLE, con, if_exists="replace", index=False)
+    n_playoff = sum(is_playoff_list)
+    print(f"Wrote {len(games)} rows to {OUTPUT_TABLE} (regular={len(games) - n_playoff}, playoff={n_playoff})")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,6 @@
 data_url = "https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=10%2F01%2F{2}&DateTo={0}%2F{1}%2F{3}&Division=&GameScope=&GameSegment=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season={4}&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
+playoffs_data_url = "https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=04%2F01%2F{3}&DateTo={0}%2F{1}%2F{3}&Division=&GameScope=&GameSegment=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season={4}&SeasonSegment=&SeasonType=Playoffs&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
+series_state_url = "https://stats.nba.com/stats/playoffseriesresults?LeagueID=00&Season={season}"
 
 [get-data]
     [get-data.2007-08]
@@ -112,6 +114,93 @@ data_url = "https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom
     [get-data.2025-26]
         start_date = "2025-10-21"
         end_date = "2026-6-21"
+        start_year = "2025"
+        end_year = "2026"
+
+# Playoff date ranges per season. Used by Get_Playoffs_Data.py and to flag
+# is_playoff in dataset.sqlite. Play-in starts ~April 15, finals end ~June 22.
+[get-playoffs]
+    [get-playoffs.2012-13]
+        start_date = "2013-04-20"
+        end_date = "2013-6-20"
+        start_year = "2012"
+        end_year = "2013"
+
+    [get-playoffs.2013-14]
+        start_date = "2014-04-19"
+        end_date = "2014-6-15"
+        start_year = "2013"
+        end_year = "2014"
+
+    [get-playoffs.2014-15]
+        start_date = "2015-04-18"
+        end_date = "2015-6-16"
+        start_year = "2014"
+        end_year = "2015"
+
+    [get-playoffs.2015-16]
+        start_date = "2016-04-16"
+        end_date = "2016-6-19"
+        start_year = "2015"
+        end_year = "2016"
+
+    [get-playoffs.2016-17]
+        start_date = "2017-04-15"
+        end_date = "2017-6-12"
+        start_year = "2016"
+        end_year = "2017"
+
+    [get-playoffs.2017-18]
+        start_date = "2018-04-14"
+        end_date = "2018-6-8"
+        start_year = "2017"
+        end_year = "2018"
+
+    [get-playoffs.2018-19]
+        start_date = "2019-04-13"
+        end_date = "2019-6-13"
+        start_year = "2018"
+        end_year = "2019"
+
+    [get-playoffs.2019-20]
+        start_date = "2020-08-15"
+        end_date = "2020-10-11"
+        start_year = "2019"
+        end_year = "2020"
+
+    [get-playoffs.2020-21]
+        start_date = "2021-05-18"
+        end_date = "2021-7-20"
+        start_year = "2020"
+        end_year = "2021"
+
+    [get-playoffs.2021-22]
+        start_date = "2022-04-12"
+        end_date = "2022-6-16"
+        start_year = "2021"
+        end_year = "2022"
+
+    [get-playoffs.2022-23]
+        start_date = "2023-04-11"
+        end_date = "2023-6-12"
+        start_year = "2022"
+        end_year = "2023"
+
+    [get-playoffs.2023-24]
+        start_date = "2024-04-16"
+        end_date = "2024-6-17"
+        start_year = "2023"
+        end_year = "2024"
+
+    [get-playoffs.2024-25]
+        start_date = "2025-04-15"
+        end_date = "2025-6-22"
+        start_year = "2024"
+        end_year = "2025"
+
+    [get-playoffs.2025-26]
+        start_date = "2026-04-14"
+        end_date = "2026-6-22"
         start_year = "2025"
         end_year = "2026"
 

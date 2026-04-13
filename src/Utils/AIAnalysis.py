@@ -82,6 +82,42 @@ def _set_cache(game_date: str, home: str, away: str, data: dict):
 # Prompt
 # ---------------------------------------------------------------------------
 
+def _build_playoff_context_block(game: dict, h_zh: str, a_zh: str, game_date: str) -> str:
+    """Return a multi-line playoff context block, or empty string if not playoff."""
+    try:
+        from src.Utils.PlayoffContext import get_series_state
+    except Exception:
+        return ""
+    home = game.get("home_team", "")
+    away = game.get("away_team", "")
+    state = get_series_state(home, away, game_date)
+    if not state:
+        return ""
+
+    must_win_team = None
+    if state["is_must_win_for"] == "home":
+        must_win_team = h_zh
+    elif state["is_must_win_for"] == "away":
+        must_win_team = a_zh
+
+    leader_zh = h_zh if state["leader"] == home else a_zh if state["leader"] == away else None
+    if leader_zh:
+        status = f"{leader_zh}領先 {max(state['home_wins'], state['away_wins'])}-{min(state['home_wins'], state['away_wins'])}"
+    else:
+        status = f"平手 {state['home_wins']}-{state['away_wins']}"
+
+    elim_line = ""
+    if state["is_elimination"]:
+        elim_line = f"\n  🔴 淘汰局: {must_win_team} 今晚輸了即遭淘汰"
+
+    return f"""
+季後賽脈絡:
+  輪次: {state['round_label']}（系列賽第 {state['series_game_num']} 場 / 7 戰 4 勝制）
+  系列賽狀態: {status}
+  主場: {h_zh}（系列賽中目前主場記錄略，整體系列賽 {state['home_wins']}-{state['away_wins']}）{elim_line}
+"""
+
+
 def _build_game_context(game: dict, game_date: str) -> str:
     """Build structured context string from our model data."""
     from src.Utils.Teams import team_name_zh
@@ -144,8 +180,10 @@ def _build_game_context(game: dict, game_date: str) -> str:
             f"  選項B: {pick_option_b}"
         )
 
+    playoff_block = _build_playoff_context_block(game, h_zh, a_zh, game_date)
+
     return f"""{a_zh}（主場：{h_zh}）
-讓分盤: {spread_str}
+讓分盤: {spread_str}{playoff_block}
 ML模型: {team_name_zh(ml_pick)} ({ml_conf}%)
 ATS模型: {team_name_zh(ats_pick) if ats_pick != 'N/A' else 'N/A'}（{ats_conf}%, edge {ats_edge}pp）
 鑽石場次: {'是 — ' + team_name_zh(value_team) + f' (edge +{value_edge}pp)' if game.get('is_value') else '否'}
@@ -184,6 +222,48 @@ SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認
 - 如果讓分盤沒有優勢，ats_pick 寫「不推薦」，ats_units 寫 0
 - ats_units 必須是 1-5 的整數
 - 隊名一律用繁體中文，不要用英文
+- injuries 必須是實際搜尋到的，不能編造"""
+
+
+PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後賽 ≠ 常規賽 — 你必須把以下季後賽特有的因素納入分析：
+
+比賽日期: {game_date}
+{context}
+
+=== 季後賽特殊考量（必須評估）===
+1. **系列賽動能**：誰拿下上一場？領先方通常在保護優勢，落後方背水一戰
+2. **淘汰局壓力**：若是淘汰局，落後方戰意爆棚但體能也接近極限；領先方可能有「rest mode」現象
+3. **球員輪換縮減 (rotation tightening)**：季後賽核心球員上場時間 ↑，板凳貢獻 ↓ — 主力傷勢影響被放大
+4. **裁判尺度**：季後賽判罰通常較鬆，肉搏戰 — 利於防守強隊與低位中鋒
+5. **主場優勢加成**：季後賽主場勝率歷史平均 ~62%，比常規賽 ~57% 高
+6. **教練調整**：第 3 場以後雙方都會做戰術調整（雙人包夾、更換對位）
+7. **Game 1 警訊**：首場樣本太雜（球隊還在試對位），units 應降一級
+
+=== 你的任務 ===
+1. 搜尋兩隊今天的 injury report，特別關注關鍵球員（Top 3 rotation player）
+2. 評估系列賽當前狀態對讓分盤的影響
+3. 給出明確的讓分推薦
+
+=== 回答格式（JSON，不要 code block）===
+{{
+  "injuries_home": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+  "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
+  "injury_impact": "傷兵對讓分盤的具體影響",
+  "series_context": "用 1-2 句描述系列賽動能（例：湖人 3-1 領先，Game 5 主場想直接收尾）",
+  "key_factors": ["淘汰壓力 / rotation 縮減 / 傷情 / 動能 等季後賽特有因素，至少 3 個"],
+  "ats_pick": "從上方提供的『選項A』或『選項B』中挑一個，整個字串原封不動複製",
+  "ats_reason": "為什麼選這邊（2-3 句，必須提到系列賽脈絡）",
+  "ats_units": 1到5的整數,
+  "ml_note": "勝負盤備註（季後賽冷門較少，通常賠率偏低）",
+  "risk_warning": "翻車風險",
+  "summary": "一句話結論"
+}}
+
+=== 嚴格規則 ===
+- **ats_pick 必須從『讓分推薦只能從以下兩個字串擇一』那段中複製整段字串。**
+- 若是 Game 1，ats_units 上限 3
+- 若是淘汰局且模型 edge < 8pp，ats_units 上限 2（淘汰局變數太大）
+- 隊名一律用繁體中文
 - injuries 必須是實際搜尋到的，不能編造"""
 
 
@@ -397,7 +477,20 @@ def analyze_game(game: dict, game_date: str, force: bool = False) -> dict:
         }
 
     context = _build_game_context(game, game_date)
-    prompt = SINGLE_GAME_PROMPT.format(game_date=game_date, context=context)
+
+    # Branch on playoff vs regular season prompt.
+    is_playoff_game = False
+    try:
+        from src.Utils.PlayoffContext import is_playoff_date, get_series_state
+        is_playoff_game = bool(
+            is_playoff_date(game_date)
+            and get_series_state(home, away, game_date) is not None
+        )
+    except Exception:
+        is_playoff_game = False
+
+    template = PLAYOFF_GAME_PROMPT if is_playoff_game else SINGLE_GAME_PROMPT
+    prompt = template.format(game_date=game_date, context=context)
 
     result = None
 

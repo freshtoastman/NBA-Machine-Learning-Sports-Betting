@@ -292,6 +292,30 @@ def predict_today_xgb(sportsbook):
         else:
             pred["consensus_pick"] = None
             pred["is_consensus"] = False
+
+        # Playoff series context (only meaningful in playoff window).
+        try:
+            from src.Utils.PlayoffContext import get_series_state, is_playoff_date
+            if is_playoff_date(today_iso):
+                state = get_series_state(pred["home_team"], pred["away_team"], today_iso)
+                if state:
+                    pred["is_playoff"] = True
+                    pred["series_round"] = state["round_label"]
+                    pred["series_game_num"] = state["series_game_num"]
+                    pred["series_home_wins"] = state["home_wins"]
+                    pred["series_away_wins"] = state["away_wins"]
+                    pred["series_status_text"] = state["status_text"]
+                    pred["series_is_elimination"] = state["is_elimination"]
+                else:
+                    pred["is_playoff"] = True
+                    pred["series_round"] = None
+                    pred["series_game_num"] = None
+                    pred["series_status_text"] = "尚無系列賽資料"
+                    pred["series_is_elimination"] = False
+            else:
+                pred["is_playoff"] = False
+        except Exception:
+            pred["is_playoff"] = False
     return predictions
 
 
@@ -531,6 +555,27 @@ def predict_historical_xgb(target_date):
             pred["ou_correct"] = None
             pred["ats_winner"] = None
             pred["ats_cover_margin"] = None
+
+        # Inject playoff series state for historical games too.
+        try:
+            from src.Utils.PlayoffContext import is_playoff_date, get_series_state
+            target_iso = target_date.isoformat()
+            if is_playoff_date(target_iso):
+                state = get_series_state(home_team, away_team, target_iso)
+                if state:
+                    pred["is_playoff"] = True
+                    pred["series_round"] = state["round_label"]
+                    pred["series_game_num"] = state["series_game_num"]
+                    pred["series_home_wins"] = state["home_wins"]
+                    pred["series_away_wins"] = state["away_wins"]
+                    pred["series_status_text"] = state["status_text"]
+                    pred["series_is_elimination"] = state["is_elimination"]
+                else:
+                    pred["is_playoff"] = True
+            else:
+                pred["is_playoff"] = False
+        except Exception:
+            pred["is_playoff"] = False
 
     return predictions
 

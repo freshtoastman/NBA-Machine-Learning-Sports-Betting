@@ -163,7 +163,14 @@ def main():
         return
 
     X, y = prepare_data(df)
+
+    # Capture is_playoff flag (kept as a feature, but also used for split-eval).
+    is_playoff_col = None
+    if "is_playoff" in df.columns:
+        is_playoff_col = df["is_playoff"].fillna(0).astype(int).to_numpy()
+
     X_train_val, y_train_val, X_test, y_test = split_train_test(X, y)
+    is_playoff_test = is_playoff_col[-len(X_test):] if is_playoff_col is not None else None
 
     rng = np.random.default_rng(args.seed)
     best = {
@@ -218,6 +225,15 @@ def main():
     print(f"Best val log loss: {best['val_loss']:.4f}")
     print(f"Test accuracy: {accuracy:.4f}")
     print(f"Test log loss: {test_loss:.4f}")
+
+    # Playoff-only evaluation.
+    if is_playoff_test is not None and is_playoff_test.sum() > 0:
+        po_mask = is_playoff_test == 1
+        rs_mask = is_playoff_test == 0
+        po_acc = accuracy_score(y_test[po_mask], y_pred[po_mask]) if po_mask.sum() else 0.0
+        rs_acc = accuracy_score(y_test[rs_mask], y_pred[rs_mask]) if rs_mask.sum() else 0.0
+        print(f"Test acc (regular only):  {rs_acc:.4f}  ({rs_mask.sum()} games)")
+        print(f"Test acc (playoffs only): {po_acc:.4f}  ({po_mask.sum()} games)")
 
     params = best["params"]
     model_name = (

@@ -35,22 +35,26 @@ run_step() {
     fi
 }
 
-# 1. Update raw data.
+# 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
-run_step "Get_Data"      python -m Get_Data
-run_step "Get_Odds_Data" python -m Get_Odds_Data
+run_step "Get_Data"           python -m Get_Data
+run_step "Get_Odds_Data"      python -m Get_Odds_Data
+run_step "Get_Playoffs_Data"  python -m Get_Playoffs_Data || true
 cd "$PROJECT_DIR"
 
 # 2. Patch final scores for recent days (sbrscrape).
 run_step "Patch_Scores"  python scripts/patch_scores.py
 
-# 3. Rebuild the merged dataset.
+# 3. Derive playoff series state from updated odds (idempotent).
+run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-seasons || true
+
+# 4. Rebuild the merged dataset (now includes is_playoff + series cols).
 run_step "Create_Games"  python src/Process-Data/Create_Games.py
 
-# 4. Export predictions to static JSON for Vercel.
+# 5. Export predictions to static JSON for Vercel.
 run_step "Export_JSON"   python scripts/export_predictions.py
 
-# 5. Git commit & push web/data/ to trigger Vercel deploy.
+# 6. Git commit & push web/data/ to trigger Vercel deploy.
 cd "$PROJECT_DIR"
 if git diff --quiet web/data/ 2>/dev/null; then
     echo "No changes in web/data/, skipping push." >> "$LOG_FILE"

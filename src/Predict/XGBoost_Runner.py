@@ -128,10 +128,26 @@ def predict_ats_probs(frame_ml, spreads, advanced=None):
     return _predict_probs(xgb_ats, data, xgb_ats_calibrator)
 
 
+def _align_features(model, data):
+    """Backward-compat shim: if the dataset added new feature columns at the
+    end (e.g. is_playoff + series cols) but the loaded model was trained
+    against an older feature count, slice off the trailing extras so the
+    prediction still works. The retraining step removes the need for this.
+    """
+    try:
+        expected = int(getattr(model, "num_features", lambda: data.shape[1])())
+    except Exception:
+        expected = data.shape[1]
+    if data.shape[1] > expected:
+        return data[:, :expected]
+    return data
+
+
 def _predict_probs(model, data, calibrator=None):
+    aligned = _align_features(model, data)
     if calibrator is not None:
-        return calibrator.predict_proba(data)
-    return model.predict(xgb.DMatrix(data))
+        return calibrator.predict_proba(aligned)
+    return model.predict(xgb.DMatrix(aligned))
 
 
 def _format_game_line(home_team, away_team, winner_is_home, winner_confidence, under_over, ou_value, ou_confidence):

@@ -143,15 +143,25 @@ def _compute(season_key: str, _fingerprint: float):
         frame_for_ml = frame_keep_ou
     X_ml = frame_for_ml.astype(float).to_numpy()
 
+    def _trim(model, X):
+        """Backward-compat: trim trailing feature cols if dataset has more
+        cols than the loaded model (e.g. is_playoff was added after training)."""
+        try:
+            n = int(model.num_features())
+        except Exception:
+            n = X.shape[1]
+        return X[:, :n] if X.shape[1] > n else X
+
     # Load + run ML model.
     ml_path = _select_model_path("ML")
     booster_ml = xgb.Booster()
     booster_ml.load_model(str(ml_path))
     calib_ml = _load_calibrator(ml_path)
+    X_ml_aligned = _trim(booster_ml, X_ml)
     if calib_ml is not None:
-        probs_ml = np.asarray(calib_ml.predict_proba(X_ml))
+        probs_ml = np.asarray(calib_ml.predict_proba(X_ml_aligned))
     else:
-        probs_ml = np.asarray(booster_ml.predict(xgb.DMatrix(X_ml)))
+        probs_ml = np.asarray(booster_ml.predict(xgb.DMatrix(X_ml_aligned)))
 
     # UO model with proper column position via _build_frame_uo.
     uo_path = _select_model_path("UO")
@@ -160,7 +170,7 @@ def _compute(season_key: str, _fingerprint: float):
     ou_array = frame_keep_ou["OU"].astype(float).to_numpy() if "OU" in frame_keep_ou.columns else None
     frame_uo = _build_frame_uo(frame_for_ml, ou_array if ou_array is not None else [])
     X_uo = frame_uo.astype(float).to_numpy()
-    probs_uo = np.asarray(booster_uo.predict(xgb.DMatrix(X_uo)))
+    probs_uo = np.asarray(booster_uo.predict(xgb.DMatrix(_trim(booster_uo, X_uo))))
 
     # ATS model — optional, may not exist yet.
     probs_ats = None

@@ -188,6 +188,15 @@ def index():
         betmgm = {}
 
     summary = compute_summary(fanduel, is_historical=not is_today)
+
+    # Active playoff series for the date (powers the series tracker UI).
+    try:
+        from src.Utils.PlayoffContext import get_active_series_for_date, is_playoff_date
+        active_series = get_active_series_for_date(selected_date)
+        is_playoff_view = is_playoff_date(selected_date)
+    except Exception:
+        active_series = []
+        is_playoff_view = False
     season_key = current_nba_season(selected_date)
     season_stats = compute_season_stats(season_key)
 
@@ -201,6 +210,8 @@ def index():
         summary=summary,
         season_key=season_key,
         season_stats=season_stats,
+        active_series=active_series,
+        is_playoff_view=is_playoff_view,
         data={"fanduel": fanduel, "draftkings": draftkings, "betmgm": betmgm},
     )
 
