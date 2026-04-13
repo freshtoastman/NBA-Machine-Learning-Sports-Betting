@@ -97,7 +97,34 @@ def subscribe():
     return render_template("subscribe.html", admin_email=ADMIN_EMAIL)
 
 DATA_DIR = Path(__file__).parent / "data"
+# Writable cache dir. /tmp is writable on Vercel lambdas and local dev.
+CACHE_DIR = Path("/tmp/nba_ai_cache")
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
 TAIPEI_TZ = ZoneInfo("Asia/Taipei")
+
+
+def _cache_get(key: str) -> dict | None:
+    p = CACHE_DIR / f"{key}.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def _cache_put(key: str, value: dict) -> None:
+    try:
+        (CACHE_DIR / f"{key}.json").write_text(
+            json.dumps(value, ensure_ascii=False), encoding="utf-8",
+        )
+    except OSError:
+        pass
+
+
+def _safe_key(*parts: str) -> str:
+    raw = "|".join(parts)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
 
 WEEKDAY_ZH = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"]
 
@@ -122,6 +149,28 @@ def load_date_data(iso_date: str) -> dict | None:
     if not p.exists():
         return None
     return json.loads(p.read_text(encoding="utf-8"))
+
+
+def load_bracket() -> dict | None:
+    p = DATA_DIR / "bracket.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def bracket_in_window(bracket: dict | None, today_: date) -> bool:
+    """True if today falls inside bracket's show_from..show_until window."""
+    if not bracket:
+        return False
+    try:
+        sf = date.fromisoformat(bracket.get("show_from") or "")
+        su = date.fromisoformat(bracket.get("show_until") or "")
+    except ValueError:
+        return False
+    return sf <= today_ <= su
 
 
 def load_season_stats() -> dict | None:
@@ -196,6 +245,13 @@ def index():
                 pass
 
     is_today = selected_date == today
+    landed_on_today = is_today or no_games_today
+    bracket_data = load_bracket()
+    show_bracket_banner = landed_on_today and bracket_in_window(bracket_data, today)
+    # Auto-redirect to bracket when: user lands on today, no games today, and
+    # the playoff bracket window is active — treat it as "playoffs launching".
+    if show_bracket_banner and no_games_today and not request.args.get("nobracket"):
+        return redirect(url_for("bracket"))
     games = data.get("games", {}) if data else {}
     summary = data.get("summary", {"games": 0}) if data else {"games": 0}
     active_series = data.get("active_series", []) if data else []
@@ -241,7 +297,37 @@ def index():
         season_stats=season_stats,
         active_series=active_series,
         is_playoff_view=is_playoff_view,
+        show_bracket_banner=show_bracket_banner,
+        bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
+    )
+
+
+@app.route("/bracket")
+def bracket():
+    bracket_data = load_bracket()
+    if not bracket_data:
+        return render_template(
+            "bracket.html",
+            bracket=None,
+            today=today_taipei(),
+        )
+    # Resolve team_name_zh / team_logo_url globally from the bracket itself so
+    # the template's existing helpers work (logos are already embedded per team).
+    name_to_card = {}
+    for side in ("east", "west"):
+        for s in bracket_data[side]["seeds"] + bracket_data[side]["lottery"]:
+            name_to_card[s["team"]] = s
+    app.jinja_env.globals["team_name_zh"] = (
+        lambda n: (name_to_card.get(n) or {}).get("team_zh") or n
+    )
+    app.jinja_env.globals["team_logo_url"] = (
+        lambda n: (name_to_card.get(n) or {}).get("logo")
+    )
+    return render_template(
+        "bracket.html",
+        bracket=bracket_data,
+        today=today_taipei(),
     )
 
 
@@ -298,6 +384,13 @@ def api_analysis():
     game = data["games"].get(f"{away}:{home}")
     if not game:
         return jsonify({"error": "Game not found"}), 404
+
+    cache_key = f"analysis_{game_date}_{_safe_key(away, home)}"
+    if not request.args.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
 
     ctx = _build_game_context(game)
     prompt = f"""你是職業 NBA 讓分盤分析師。你的讀者是認真的體育投注者。
@@ -364,6 +457,10 @@ def api_analysis():
             "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
             "source": "fallback",
         }
+    # Only cache successful (non-fallback) results so a transient Gemini outage
+    # doesn't pin a degraded answer forever.
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 
@@ -379,6 +476,13 @@ def api_analyze_pinned():
     data = load_date_data(game_date)
     if not data:
         return jsonify({"error": "No data"}), 404
+
+    cache_key = f"pinned_{game_date}_{_safe_key(*sorted(pinned_keys))}"
+    if not body.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
 
     pinned_games = []
     for key in pinned_keys:
@@ -434,7 +538,12 @@ def api_analyze_pinned():
             "parlay_suggestion": "不建議串關",
             "total_units": len(pinned_games),
             "strategy": "AI 分析暫時不可用，請參考各場模型預測。",
+            "source": "fallback",
         }
+    else:
+        result.setdefault("source", "gemini")
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 
@@ -520,6 +629,16 @@ def api_daily_report():
         return jsonify({"error": "No data"}), 404
 
     games = data["games"]
+    # Cache key is bound to the set of games that day — if games change
+    # (odds update, new game added), the cache invalidates automatically.
+    games_sig = _safe_key(*sorted(games.keys()))
+    cache_key = f"daily_{game_date}_{games_sig}"
+    if not request.args.get("refresh"):
+        cached = _cache_get(cache_key)
+        if cached:
+            cached["cached"] = True
+            return jsonify(cached)
+
     contexts = []
     for i, (k, g) in enumerate(games.items(), 1):
         contexts.append(f"=== 第{i}場 ===\n{_build_game_context(g)}")
@@ -589,7 +708,12 @@ def api_daily_report():
             "injury_alerts": ["無法取得傷兵資訊（離線模式）"],
             "bankroll_plan": f"建議保守操作，等待更好的場次。",
             "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。",
+            "source": "fallback",
         }
+    else:
+        result.setdefault("source", "gemini")
+    if result.get("source") == "gemini":
+        _cache_put(cache_key, result)
     return jsonify(result)
 
 

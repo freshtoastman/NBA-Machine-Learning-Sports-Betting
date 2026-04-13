@@ -31,6 +31,15 @@
         </header>
 
         <section class="dashboard">
+            {% if show_bracket_banner %}
+            <a href="{{ url_for('bracket') }}" class="no-games-banner" style="display:flex;text-decoration:none;color:inherit;background:linear-gradient(90deg,#1f2c1f,#1a1f2b);border:1px solid #3a5a3a;">
+                <div class="no-games-icon">🏆</div>
+                <div class="no-games-text">
+                    <strong>季後賽即將開打{% if bracket_playoff_start %} ({{ bracket_playoff_start }}){% endif %}</strong>
+                    <span>點此查看東區／西區對戰圖與附加賽組合 →</span>
+                </div>
+            </a>
+            {% endif %}
             {% if no_games_today %}
             <div class="no-games-banner">
                 <div class="no-games-icon">🏀</div>
