@@ -118,6 +118,90 @@ def _build_playoff_context_block(game: dict, h_zh: str, a_zh: str, game_date: st
 """
 
 
+def _build_backtest_signals(game: dict) -> list[dict]:
+    """Compute backtest-proven ATS strategy signals for a game.
+
+    Each signal: {'text': str, 'tier': 'hot'|'warm'|'base'|'danger'}
+    Same logic as the Jinja2 checklist in index.html.
+    """
+    signals: list[dict] = []
+    spread = game.get("spread")
+    if spread is None:
+        return signals
+    abs_sp = abs(float(spread))
+    home_fav = float(spread) > 0
+
+    h_conf = float(game.get("home_confidence", 50))
+    a_conf = float(game.get("away_confidence", 50))
+    model_conf = max(h_conf, a_conf)
+    model_side = "home" if h_conf >= a_conf else "away"
+
+    # Profile-derived form
+    h_prof = game.get("home_profile") or {}
+    a_prof = game.get("away_profile") or {}
+    h_wr_1m = (h_prof.get("last_1m", {}).get("overall", {}).get("win_rate") or 50)
+    a_wr_1m = (a_prof.get("last_1m", {}).get("overall", {}).get("win_rate") or 50)
+    h_ats_3m = (h_prof.get("last_3m", {}).get("overall", {}).get("ats_rate") or 50)
+    a_ats_3m = (a_prof.get("last_3m", {}).get("overall", {}).get("ats_rate") or 50)
+    h_season_wr = (h_prof.get("season", {}).get("overall", {}).get("win_rate") or 50)
+    a_season_wr = (a_prof.get("season", {}).get("overall", {}).get("win_rate") or 50)
+
+    is_po = bool(game.get("is_playoff"))
+    series_gn = int(game.get("series_game_num") or 0)
+    series_lead = int(game.get("series_lead_for_home") or 0)
+    is_elim = bool(game.get("series_is_elimination"))
+
+    from src.Utils.Teams import team_name_zh
+    h_zh = team_name_zh(game.get("home_team", "?"))
+    a_zh = team_name_zh(game.get("away_team", "?"))
+
+    # ── Regular season strategies ──
+    if not is_po:
+        if abs_sp >= 5 and h_wr_1m <= 35:
+            signals.append({"text": f"主場弱隊大讓分 → 押客場/受讓（歷史 70% WR）", "tier": "hot"})
+        if abs_sp >= 5 and abs_sp < 10 and h_wr_1m <= 35:
+            signals.append({"text": f"讓分 5-10 + 主場弱隊 → 押冷門（70.1%）", "tier": "hot"})
+        if h_ats_3m <= 35:
+            signals.append({"text": f"{h_zh}近期 ATS 差 → 押客場 cover（61.7%）", "tier": "warm"})
+        if a_wr_1m >= 65:
+            signals.append({"text": f"{a_zh} L10 強隊 → 押客場 cover（60.1%）", "tier": "warm"})
+        if a_ats_3m >= 65:
+            signals.append({"text": f"{a_zh} ATS 近期熱 → 押客場 cover（59.0%）", "tier": "warm"})
+        if not home_fav and h_season_wr >= 55:
+            signals.append({"text": f"主場受讓 + 例行賽強隊 → 押主場 cover（61.5%）", "tier": "warm"})
+        if abs_sp >= 5 and abs_sp < 10:
+            signals.append({"text": "中讓分(5-10) → 冷門 cover 傾向（58.9%）", "tier": "base"})
+
+    # ── Playoff strategies ──
+    if is_po:
+        if series_gn >= 6:
+            signals.append({"text": f"Game {series_gn} → 押客場/冷門（63% WR, +20% ROI）", "tier": "hot"})
+        if series_gn == 5 and series_lead == 0:
+            signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%）", "tier": "hot"})
+        if is_elim:
+            signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
+        if is_elim and abs_sp <= 8:
+            signals.append({"text": "小讓分淘汰局 → 押冷門（56.6%）", "tier": "warm"})
+        if model_conf >= 65 and not is_elim:
+            side_zh = "主場" if model_side == "home" else "客場"
+            signals.append({"text": f"模型信心 ≥65% + 非淘汰局 → 押{side_zh}（57.1%）", "tier": "warm"})
+        if a_season_wr >= 60 and home_fav:
+            signals.append({"text": f"例行賽強隊受讓（{a_zh}）→ 押客場 cover（54.7%）", "tier": "base"})
+        if h_season_wr >= 60 and not home_fav:
+            signals.append({"text": f"例行賽強隊受讓（{h_zh}）→ 押主場 cover（58.8%）", "tier": "warm"})
+        if series_gn <= 2:
+            signals.append({"text": "系列賽前兩場 → 主場略有 ATS 優勢（54%）", "tier": "base"})
+        if series_lead <= -2:
+            signals.append({"text": "主場大幅落後 → 客場 cover 傾向（55.5%）", "tier": "base"})
+        if is_elim and series_lead < 0:
+            signals.append({"text": "⚠ 主場淘汰局（落後方）→ 避免押主場（僅 39.4%）", "tier": "danger"})
+
+    if model_conf >= 70:
+        signals.append({"text": "ML 模型高信心 ≥70% → 勝負盤可靠", "tier": "base"})
+
+    return signals
+
+
 def _build_game_context(game: dict, game_date: str) -> str:
     """Build structured context string from our model data."""
     from src.Utils.Teams import team_name_zh
@@ -187,6 +271,17 @@ def _build_game_context(game: dict, game_date: str) -> str:
 
     playoff_block = _build_playoff_context_block(game, h_zh, a_zh, game_date)
 
+    # Backtest strategy signals
+    signals = _build_backtest_signals(game)
+    if signals:
+        tier_label = {"hot": "🔥強", "warm": "⚡中", "base": "📊參考", "danger": "🚫警告"}
+        signal_lines = "\n".join(
+            f"  [{tier_label.get(s['tier'], '📊')}] {s['text']}" for s in signals
+        )
+        backtest_block = f"\n回測策略訊號（根據歷史數據回測結果，勝率已驗證）:\n{signal_lines}"
+    else:
+        backtest_block = ""
+
     return f"""{a_zh}（主場：{h_zh}）
 讓分盤: {spread_str}{playoff_block}
 ML模型: {team_name_zh(ml_pick)} ({ml_conf}%)
@@ -194,7 +289,7 @@ ATS模型: {team_name_zh(ats_pick) if ats_pick != 'N/A' else 'N/A'}（{ats_conf}
 鑽石場次: {'是 — ' + team_name_zh(value_team) + f' (edge +{value_edge}pp)' if game.get('is_value') else '否'}
 共識: {'🔥 是' if game.get('is_consensus') else '否'}
 {_fmt_profile(game.get('home_profile'), h_zh)}
-{_fmt_profile(game.get('away_profile'), a_zh)}{pick_options_block}"""
+{_fmt_profile(game.get('away_profile'), a_zh)}{pick_options_block}{backtest_block}"""
 
 
 SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認真的體育投注者，他們需要明確的讓分推薦。
@@ -205,8 +300,9 @@ SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認
 === 你的任務 ===
 1. 搜尋兩隊今天的 injury report（傷兵報告），列出每個傷兵狀態
 2. 評估傷兵對讓分盤的影響（缺主力 = 可能蓋不過讓分）
-3. 綜合模型 + 傷兵 + 賽程 + 動機，給出明確讓分推薦
-4. 勝負盤（moneyline）賠率通常太低不推薦 — 除非冷門值得小注
+3. **仔細閱讀「回測策略訊號」**：這些是根據 2007-2026 年 24,000+ 場歷史比賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥60%，⚡中 = 勝率 55-60%，🚫警告 = 歷史上此情境勝率極低應避免。你的推薦應該與回測訊號的方向一致，除非有明確的傷兵或特殊消息推翻。
+4. 綜合模型 + 回測策略 + 傷兵 + 賽程 + 動機，給出明確讓分推薦
+5. 勝負盤（moneyline）賠率通常太低不推薦 — 除非冷門值得小注
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -214,8 +310,9 @@ SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認
   "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
   "injury_impact": "傷兵對讓分盤的具體影響",
   "key_factors": ["因素1", "因素2", "因素3"],
+  "backtest_alignment": "回測訊號支持/反對哪一方（用一句話說明你的推薦與回測訊號的關係）",
   "ats_pick": "從上方提供的『選項A』或『選項B』中挑一個，整個字串原封不動複製",
-  "ats_reason": "為什麼選這邊（2-3 句）",
+  "ats_reason": "為什麼選這邊（2-3 句，必須提到回測策略訊號的佐證或為何不採用）",
   "ats_units": 1到5的整數,
   "ml_note": "勝負盤備註（通常寫'賠率過低不建議'）",
   "risk_warning": "翻車風險",
@@ -227,7 +324,9 @@ SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認
 - 如果讓分盤沒有優勢，ats_pick 寫「不推薦」，ats_units 寫 0
 - ats_units 必須是 1-5 的整數
 - 隊名一律用繁體中文，不要用英文
-- injuries 必須是實際搜尋到的，不能編造"""
+- injuries 必須是實際搜尋到的，不能編造
+- **backtest_alignment 為必填欄位**：必須引用上方「回測策略訊號」中至少一條訊號，說明你的推薦與該訊號是一致還是相反。若無訊號則填「無相關回測訊號」。
+- **ats_reason 中必須提到回測**：在理由中明確引用回測訊號內容（如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover」），否則回答視為不完整。"""
 
 
 PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後賽 ≠ 常規賽 — 你必須把以下季後賽特有的因素納入分析：
@@ -247,7 +346,8 @@ PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後�
 === 你的任務 ===
 1. 搜尋兩隊今天的 injury report，特別關注關鍵球員（Top 3 rotation player）
 2. 評估系列賽當前狀態對讓分盤的影響
-3. 給出明確的讓分推薦
+3. **仔細閱讀「回測策略訊號」**：這些是根據 13 季、996 場季後賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥58%，⚡中 = 勝率 53-58%，🚫警告 = 此情境歷史上勝率極低應避免。你的推薦應與回測訊號的方向一致，除非傷兵或系列賽動態有明確推翻理由。
+4. 綜合模型 + 回測策略 + 傷兵 + 系列賽脈絡，給出明確讓分推薦
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -255,9 +355,10 @@ PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後�
   "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
   "injury_impact": "傷兵對讓分盤的具體影響",
   "series_context": "用 1-2 句描述系列賽動能（例：湖人 3-1 領先，Game 5 主場想直接收尾）",
-  "key_factors": ["淘汰壓力 / rotation 縮減 / 傷情 / 動能 等季後賽特有因素，至少 3 個"],
+  "key_factors": ["淘汰壓力 / rotation 縮減 / 傷情 / 動能 / 回測策略 等因素，至少 3 個"],
+  "backtest_alignment": "回測訊號支持/反對哪一方（一句話說明推薦與回測訊號的關係）",
   "ats_pick": "從上方提供的『選項A』或『選項B』中挑一個，整個字串原封不動複製",
-  "ats_reason": "為什麼選這邊（2-3 句，必須提到系列賽脈絡）",
+  "ats_reason": "為什麼選這邊（2-3 句，必須提到系列賽脈絡與回測策略佐證）",
   "ats_units": 1到5的整數,
   "ml_note": "勝負盤備註（季後賽冷門較少，通常賠率偏低）",
   "risk_warning": "翻車風險",
@@ -269,7 +370,9 @@ PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後�
 - 若是 Game 1，ats_units 上限 3
 - 若是淘汰局且模型 edge < 8pp，ats_units 上限 2（淘汰局變數太大）
 - 隊名一律用繁體中文
-- injuries 必須是實際搜尋到的，不能編造"""
+- injuries 必須是實際搜尋到的，不能編造
+- **backtest_alignment 為必填欄位**：必須引用上方「回測策略訊號」中至少一條訊號，說明推薦與訊號的關係。
+- **ats_reason 中必須提到回測**：明確引用回測訊號內容作為佐證。"""
 
 
 DAILY_REPORT_PROMPT = """你是職業 NBA 讓分盤分析師團隊主管。你的任務是產出一份讓投注者能直接照著操作的當日報告。
@@ -281,9 +384,10 @@ DAILY_REPORT_PROMPT = """你是職業 NBA 讓分盤分析師團隊主管。你�
 
 === 你的任務 ===
 1. 搜尋今天所有重大傷兵消息
-2. 從每場比賽提供的『選項A / 選項B』中，挑出值得下注的讓分推薦
-3. 標出應該避開的比賽
-4. 寫出整體策略
+2. **仔細閱讀每場比賽的「回測策略訊號」**：這些是歷史回測驗證的高勝率情境。🔥強 = 歷史 ≥60%，⚡中 = 55-60%，🚫警告 = 應避免。優先挑選有多個 🔥/⚡ 訊號支持的場次作為 best_bets。
+3. 從每場比賽提供的『選項A / 選項B』中，挑出值得下注的讓分推薦
+4. 標出應該避開的比賽（特別留意有 🚫警告 訊號的場次）
+5. 寫出整體策略
 
 === 回答格式（JSON，不要 code block）===
 {{
@@ -294,8 +398,8 @@ DAILY_REPORT_PROMPT = """你是職業 NBA 讓分盤分析師團隊主管。你�
       "spread": "從該場 context 複製『讓分盤:』那行的內容",
       "pick": "從該場 context 提供的『選項A 或 選項B』中挑一個，整段原封不動複製",
       "units": 1到5的整數,
-      "reason": "2-3 句具體分析（含傷兵影響）",
-      "model_support": "模型資料佐證（ML 信心、ATS edge 等）"
+      "reason": "2-3 句具體分析（含傷兵影響 + 回測策略佐證）",
+      "model_support": "模型 + 回測佐證（ML 信心、ATS edge、回測訊號方向）"
     }}
   ],
   "lean_picks": [
@@ -415,6 +519,12 @@ def _rule_based_analysis(game: dict, game_date: str) -> dict:
     if game.get("is_consensus"):
         factors.append("雙模型共識，最強訊號")
 
+    # Include backtest signals in rule-based factors
+    signals = _build_backtest_signals(game)
+    for sig in signals:
+        if sig["tier"] in ("hot", "warm", "danger"):
+            factors.append(f"[回測] {sig['text']}")
+
     for side, zh, prof in [("home", h_zh, game.get("home_profile")),
                             ("away", a_zh, game.get("away_profile"))]:
         m = (prof or {}).get("last_1m", {}).get("overall", {})
@@ -426,10 +536,23 @@ def _rule_based_analysis(game: dict, game_date: str) -> dict:
 
     conf = "高" if (ml_conf or 0) >= 70 or game.get("is_consensus") else "中" if (ml_conf or 0) >= 60 else "低"
 
+    # Build backtest_alignment summary
+    bt_hot = [s for s in signals if s["tier"] == "hot"]
+    bt_warn = [s for s in signals if s["tier"] == "danger"]
+    if bt_hot:
+        bt_align = "回測強訊號: " + "; ".join(s["text"] for s in bt_hot)
+    elif bt_warn:
+        bt_align = "回測警告: " + "; ".join(s["text"] for s in bt_warn)
+    elif signals:
+        bt_align = "回測參考: " + signals[0]["text"]
+    else:
+        bt_align = ""
+
     return {
         "injuries_home": ["無法查詢（離線模式）"],
         "injuries_away": ["無法查詢（離線模式）"],
         "key_factors": factors or ["無特殊因素"],
+        "backtest_alignment": bt_align,
         "ml_verdict": ml_pick,
         "ml_reason": f"模型信心 {ml_conf}%",
         "ats_verdict": f"{ats_team} {spread_str}",

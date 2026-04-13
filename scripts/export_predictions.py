@@ -95,6 +95,15 @@ def export_date(target_date: date) -> dict | None:
         summary["ou_graded"] = len(ou_graded)
         summary["ou_hit_rate"] = round(summary["ou_correct"] / len(ou_graded) * 100, 1) if ou_graded else None
 
+        # Diamond (value) picks hit rate
+        value_games = [g for g in games_list if g.get("is_value")]
+        value_decided = [g for g in value_games if g.get("ml_correct") is not None]
+        value_wins = sum(1 for g in value_decided if g["ml_correct"])
+        summary["value_decided"] = len(value_decided)
+        summary["value_wins"] = value_wins
+        summary["value_losses"] = len(value_decided) - value_wins
+        summary["value_hit_rate"] = round(value_wins / len(value_decided) * 100, 1) if value_decided else None
+
     # Active playoff series (for the tracker UI).
     try:
         from src.Utils.PlayoffContext import get_active_series_for_date, is_playoff_date
