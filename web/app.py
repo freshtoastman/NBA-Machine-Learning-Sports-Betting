@@ -633,9 +633,9 @@ def _build_game_context(g):
             f"  選項B: {pick_option_b}"
         )
 
-    # Backtest signals
-    from src.Utils.AIAnalysis import _build_backtest_signals
-    signals = _build_backtest_signals(g)
+    # Backtest signals (self-contained module — works on Vercel).
+    from backtest_signals import build_backtest_signals
+    signals = build_backtest_signals(g)
     if signals:
         tier_label = {"hot": "🔥強", "warm": "⚡中", "base": "📊參考", "danger": "🚫警告"}
         sig_lines = "\n".join(f"  [{tier_label.get(s['tier'], '📊')}] {s['text']}" for s in signals)
