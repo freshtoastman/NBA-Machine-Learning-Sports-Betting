@@ -2650,6 +2650,179 @@ h3 {
 }
 
 /* --------------------------------------------------------------------- */
+/* 買點計算器 — 場中下注用                                                */
+/* --------------------------------------------------------------------- */
+.card-btn-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.card-btn-row .ai-btn, .card-btn-row .buy-btn {
+    flex: 1;
+    min-width: 120px;
+}
+
+.buy-btn {
+    background: rgba(99, 179, 237, 0.14);
+    border: 1px solid rgba(99, 179, 237, 0.45);
+    color: #8ec5ff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+.buy-btn:hover {
+    background: rgba(99, 179, 237, 0.25);
+    border-color: rgba(99, 179, 237, 0.7);
+}
+
+.buy-calc {
+    margin-top: 8px;
+}
+
+.buy-calc-card {
+    background: rgba(15, 25, 40, 0.85);
+    border: 1px solid rgba(99, 179, 237, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.buy-calc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(99, 179, 237, 0.12);
+    border-bottom: 1px solid rgba(99, 179, 237, 0.3);
+    font-size: 13px;
+    font-weight: 700;
+    color: #aad4ff;
+}
+
+.buy-calc-close {
+    cursor: pointer;
+    color: #7890b0;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0 4px;
+}
+.buy-calc-close:hover { color: #ff9d9d; }
+
+.buy-calc-body {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.buy-calc-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.buy-calc-lbl {
+    color: #8ea0b8;
+    min-width: 60px;
+    font-size: 11px;
+}
+
+.buy-calc-orig {
+    color: #c5d0e0;
+    font-variant-numeric: tabular-nums;
+}
+.buy-calc-orig b { color: #ffdca0; }
+
+.buy-calc-sides, .buy-calc-juice {
+    display: flex;
+    gap: 12px;
+}
+.buy-calc-sides label, .buy-calc-juice label {
+    cursor: pointer;
+    color: #b8c1d0;
+    font-size: 12px;
+}
+.buy-calc-sides input, .buy-calc-juice input {
+    margin-right: 4px;
+}
+
+.buy-calc-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(120, 140, 170, 0.4);
+    color: #e0e8f5;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    width: 80px;
+    font-variant-numeric: tabular-nums;
+}
+.buy-calc-input:focus {
+    outline: none;
+    border-color: rgba(99, 179, 237, 0.7);
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.buy-calc-hint {
+    color: #667089;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.buy-calc-result {
+    padding-top: 8px;
+    border-top: 1px dashed rgba(80, 95, 120, 0.4);
+    margin-top: 4px;
+}
+
+.buy-calc-out {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.buy-calc-stat {
+    text-align: center;
+    padding: 6px 4px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+.buy-calc-stat .bcs-lbl {
+    display: block;
+    font-size: 10px;
+    color: #8ea0b8;
+    margin-bottom: 2px;
+}
+
+.buy-calc-stat b {
+    font-size: 15px;
+    color: #e0e8f5;
+    font-variant-numeric: tabular-nums;
+}
+.buy-calc-stat b.good { color: var(--positive); }
+.buy-calc-stat b.bad { color: var(--negative); }
+
+.buy-calc-verdict {
+    text-align: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.buy-calc-verdict.buy-worse { background: rgba(120, 120, 120, 0.15); color: #707789; }
+.buy-calc-verdict.buy-bad { background: rgba(255, 107, 107, 0.18); color: var(--negative); }
+.buy-calc-verdict.buy-meh { background: rgba(180, 180, 80, 0.15); color: #c8c380; }
+.buy-calc-verdict.buy-ok { background: rgba(99, 179, 237, 0.18); color: #8ec5ff; }
+.buy-calc-verdict.buy-good { background: rgba(82, 199, 122, 0.2); color: var(--positive); }
+.buy-calc-verdict.buy-great { background: linear-gradient(90deg, rgba(255, 191, 64, 0.3), rgba(82, 199, 122, 0.25)); color: #ffdca0; }
+
+/* --------------------------------------------------------------------- */
 /* AI 分析: 金鑽判定橫條 — 在 ai-card 最上方                              */
 /* --------------------------------------------------------------------- */
 .ai-golden-verdict {

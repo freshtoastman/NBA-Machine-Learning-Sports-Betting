@@ -169,6 +169,113 @@ def spread_buckets(probs, y, spreads, ml_h, ml_a):
     return buckets, out
 
 
+def ats_sweet_spot(probs, spreads, margins):
+    """Find the |spread| ranges where blindly backing favorite vs underdog
+    produces the biggest ATS edge (at -110 juice), with and without an
+    ML-model-agreement filter.
+
+    Returns a list of rows: (bucket_label, n, fav_cover_rate, dog_cover_rate,
+    fav_roi, dog_roi, best_side, best_roi)
+    """
+    # Finer-grained buckets around key numbers (3, 5, 7, 10).
+    buckets = [
+        (0.0, 2.5, "0-2.5"),
+        (2.5, 3.5, "2.5-3.5 (key 3)"),
+        (3.5, 4.5, "3.5-4.5"),
+        (4.5, 5.5, "4.5-5.5 (key 5)"),
+        (5.5, 6.5, "5.5-6.5"),
+        (6.5, 7.5, "6.5-7.5 (key 7)"),
+        (7.5, 9.0, "7.5-9"),
+        (9.0, 11.0, "9-11 (key 10)"),
+        (11.0, 99.0, "11+"),
+    ]
+    rows = []
+    # Also an ML-agreement filtered row set: pick side only when our ML
+    # probability agrees with the fav side (fav is stronger) by ≥5pp.
+    rows_agree = []
+
+    p_home = probs[:, 1]
+    wins = [{"n": 0, "fav_cov": 0, "dog_cov": 0,
+             "n_agree": 0, "fav_cov_agree": 0, "dog_cov_agree": 0}
+            for _ in buckets]
+
+    for i in range(len(p_home)):
+        sp = spreads[i]
+        mg = margins[i]
+        if pd.isna(sp) or pd.isna(mg):
+            continue
+        sp = float(sp)
+        abs_sp = abs(sp)
+        # home_cover_margin > 0 means home covered.
+        hc_margin = float(mg) - sp
+        if hc_margin == 0:
+            continue  # push: not a decision
+        home_fav = sp > 0
+        fav_covered = (home_fav and hc_margin > 0) or (not home_fav and hc_margin < 0)
+
+        # Find bucket
+        b_idx = None
+        for bi, (lo, hi, _label) in enumerate(buckets):
+            if lo <= abs_sp < hi:
+                b_idx = bi
+                break
+        if b_idx is None:
+            continue
+        w = wins[b_idx]
+        w["n"] += 1
+        if fav_covered:
+            w["fav_cov"] += 1
+        else:
+            w["dog_cov"] += 1
+
+        # Agreement filter: ML model also leans the fav side with decent edge
+        ml_fav_prob = p_home[i] if home_fav else (1 - p_home[i])
+        if ml_fav_prob >= 0.55:  # model agrees with market direction, ≥5pp
+            w["n_agree"] += 1
+            if fav_covered:
+                w["fav_cov_agree"] += 1
+            else:
+                w["dog_cov_agree"] += 1
+
+    # Compute ROI at -110 (win +0.909, loss -1.0)
+    def _roi(cov, n):
+        if n == 0:
+            return 0.0, 0.0
+        hit = cov / n
+        # flat bet -110
+        roi = (cov * 0.909 - (n - cov) * 1.0) / n * 100
+        return hit * 100, roi
+
+    out_main = []
+    out_agree = []
+    for bi, (_, _, label) in enumerate(buckets):
+        w = wins[bi]
+        if w["n"] == 0:
+            continue
+        fav_hit, fav_roi = _roi(w["fav_cov"], w["n"])
+        dog_hit, dog_roi = _roi(w["dog_cov"], w["n"])
+        best_side = "讓分(押fav)" if fav_roi >= dog_roi else "受讓(押dog)"
+        best_roi = max(fav_roi, dog_roi)
+        out_main.append({
+            "label": label, "n": w["n"],
+            "fav_hit": fav_hit, "fav_roi": fav_roi,
+            "dog_hit": dog_hit, "dog_roi": dog_roi,
+            "best_side": best_side, "best_roi": best_roi,
+        })
+        if w["n_agree"] > 0:
+            fav_hit_a, fav_roi_a = _roi(w["fav_cov_agree"], w["n_agree"])
+            dog_hit_a, dog_roi_a = _roi(w["dog_cov_agree"], w["n_agree"])
+            best_side_a = "讓分(押fav)" if fav_roi_a >= dog_roi_a else "受讓(押dog)"
+            out_agree.append({
+                "label": label, "n": w["n_agree"],
+                "fav_hit": fav_hit_a, "fav_roi": fav_roi_a,
+                "dog_hit": dog_hit_a, "dog_roi": dog_roi_a,
+                "best_side": best_side_a,
+                "best_roi": max(fav_roi_a, dog_roi_a),
+            })
+    return out_main, out_agree
+
+
 def golden_vs_silver(probs, y, spreads, ml_h, ml_a):
     """Compare picks flagged golden (|spread| ≤ 6) vs silver (rest)."""
     out = {
@@ -232,6 +339,19 @@ def main():
         print(f"{label:<14}{b['n']:>6}{b['w']:>6}{hit:>8.1f}{roi:>+10.2f}")
 
     spreads = df["Spread"].to_numpy() if "Spread" in df.columns else np.full(len(y), np.nan)
+
+    print("\n--- #4 ATS spread sweet spot (market, no model) ---")
+    margins = df["Win_Margin"].to_numpy() if "Win_Margin" in df.columns else np.full(len(y), np.nan)
+    ss_main, ss_agree = ats_sweet_spot(probs, df["Spread"].to_numpy() if "Spread" in df.columns else np.full(len(y), np.nan), margins)
+    print(f"{'|spread|':<18}{'n':>5}{'fav%':>8}{'favROI':>9}{'dog%':>8}{'dogROI':>9}  best")
+    for r in ss_main:
+        print(f"{r['label']:<18}{r['n']:>5}{r['fav_hit']:>8.1f}{r['fav_roi']:>+9.2f}{r['dog_hit']:>8.1f}{r['dog_roi']:>+9.2f}  {r['best_side']} ({r['best_roi']:+.2f}%)")
+
+    if ss_agree:
+        print("\n--- #4b Filter: ML 模型同意市場方向 (≥55% 偏 fav) ---")
+        print(f"{'|spread|':<18}{'n':>5}{'fav%':>8}{'favROI':>9}{'dog%':>8}{'dogROI':>9}  best")
+        for r in ss_agree:
+            print(f"{r['label']:<18}{r['n']:>5}{r['fav_hit']:>8.1f}{r['fav_roi']:>+9.2f}{r['dog_hit']:>8.1f}{r['dog_roi']:>+9.2f}  {r['best_side']} ({r['best_roi']:+.2f}%)")
 
     print("\n--- #3a Golden vs Silver value picks ---")
     gs = golden_vs_silver(probs, y, spreads, ml_h, ml_a)
