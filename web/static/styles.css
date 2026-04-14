@@ -2822,6 +2822,26 @@ h3 {
 .buy-calc-verdict.buy-good { background: rgba(82, 199, 122, 0.2); color: var(--positive); }
 .buy-calc-verdict.buy-great { background: linear-gradient(90deg, rgba(255, 191, 64, 0.3), rgba(82, 199, 122, 0.25)); color: #ffdca0; }
 
+.buy-calc-move {
+    font-size: 12px;
+    color: #b8c1d0;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+}
+.buy-calc-move b { color: #ffdca0; margin: 0 4px; }
+
+.buy-cross-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: rgba(255, 191, 64, 0.18);
+    border: 1px solid rgba(255, 191, 64, 0.45);
+    border-radius: 999px;
+    font-size: 10px;
+    color: #ffdca0;
+    font-weight: 600;
+}
+
 /* --------------------------------------------------------------------- */
 /* AI 分析: 金鑽判定橫條 — 在 ai-card 最上方                              */
 /* --------------------------------------------------------------------- */

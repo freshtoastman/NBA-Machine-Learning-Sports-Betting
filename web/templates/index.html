@@ -653,6 +653,23 @@
         return 0.5;
     }
 
+    // `orig` here is the DB Spread value (= away_spread):
+    //   orig > 0  ⇒ home favored by |orig|, so home's team-line is -orig, away's is +orig
+    //   orig < 0  ⇒ away favored by |orig|, home's team-line is -orig (positive), away's is +orig (negative)
+    // The user enters the live spread **from their chosen team's perspective**,
+    // so negative = that team giving points, positive = receiving. This handles
+    // the sign-crossing case (e.g., Lakers opened -3, now Lakers +2 → offset +5).
+    function teamLineOriginal(orig, side /* 'home' | 'away' */) {
+        return side === 'home' ? -orig : orig;
+    }
+    function computeOffset(orig, side, live) {
+        return side === 'home' ? live + orig : live - orig;
+    }
+    function formatLine(line) {
+        const s = line >= 0 ? '+' : '';
+        return `${s}${line.toFixed(1)}`;
+    }
+
     function toggleBuyCalc(idx, origSpread, homeZh, awayZh) {
         const el = document.getElementById('buy-' + idx);
         if (!el) return;
@@ -660,17 +677,11 @@
             el.style.display = 'none';
             return;
         }
-        // `orig` stores the original spread as stored in DB:
-        //   positive = away gets points (home is favorite by |orig|)
-        //   negative = home gets points (away is favorite by |orig|)
         const orig = Number(origSpread);
-        const absOrig = Math.abs(orig);
-        const homeFav = orig > 0;
-        const favZh = homeFav ? homeZh : awayZh;
-        const dogZh = homeFav ? awayZh : homeZh;
-        // Pre-format the side-labeled lines for display.
-        const origFavStr = `${favZh} -${absOrig.toFixed(1)}`;
-        const origDogStr = `${dogZh} +${absOrig.toFixed(1)}`;
+        const homeOrig = teamLineOriginal(orig, 'home');
+        const awayOrig = teamLineOriginal(orig, 'away');
+        const homeLabel = `${homeZh} ${formatLine(homeOrig)}`;
+        const awayLabel = `${awayZh} ${formatLine(awayOrig)}`;
 
         el.innerHTML = `
         <div class="buy-calc-card">
@@ -681,25 +692,25 @@
             <div class="buy-calc-body">
                 <div class="buy-calc-row">
                     <span class="buy-calc-lbl">原始盤口</span>
-                    <span class="buy-calc-orig"><b>${origFavStr}</b> &nbsp; / &nbsp; <b>${origDogStr}</b></span>
+                    <span class="buy-calc-orig"><b>${homeLabel}</b> &nbsp; / &nbsp; <b>${awayLabel}</b></span>
                 </div>
                 <div class="buy-calc-row">
                     <span class="buy-calc-lbl">我要押</span>
                     <div class="buy-calc-sides">
-                        <label><input type="radio" name="bc-side-${idx}" value="fav" checked onchange="updateBuyCalc(${idx},${orig},'${favZh}','${dogZh}')"> <b>${favZh}</b>（讓分）</label>
-                        <label><input type="radio" name="bc-side-${idx}" value="dog" onchange="updateBuyCalc(${idx},${orig},'${favZh}','${dogZh}')"> <b>${dogZh}</b>（受讓）</label>
+                        <label><input type="radio" name="bc-side-${idx}" value="home" checked onchange="updateBuyCalc(${idx},${orig},'${homeZh}','${awayZh}')"> 主 <b>${homeZh}</b></label>
+                        <label><input type="radio" name="bc-side-${idx}" value="away" onchange="updateBuyCalc(${idx},${orig},'${homeZh}','${awayZh}')"> 客 <b>${awayZh}</b></label>
                     </div>
                 </div>
                 <div class="buy-calc-row">
                     <span class="buy-calc-lbl">場中盤口</span>
-                    <input type="number" class="buy-calc-input" id="bc-live-${idx}" step="0.5" placeholder="例如 -${Math.max(0, absOrig-2).toFixed(1)}" oninput="updateBuyCalc(${idx},${orig},'${favZh}','${dogZh}')">
-                    <span class="buy-calc-hint">(負號=讓分, 正號=受讓)</span>
+                    <input type="number" class="buy-calc-input" id="bc-live-${idx}" step="0.5" placeholder="${formatLine(homeOrig)}" oninput="updateBuyCalc(${idx},${orig},'${homeZh}','${awayZh}')">
+                    <span class="buy-calc-hint">(該隊視角: 負=讓分, 正=受讓)</span>
                 </div>
                 <div class="buy-calc-row">
                     <span class="buy-calc-lbl">盤口 juice</span>
                     <div class="buy-calc-juice">
-                        <label><input type="radio" name="bc-juice-${idx}" value="110" checked onchange="updateBuyCalc(${idx},${orig},'${favZh}','${dogZh}')"> -110</label>
-                        <label><input type="radio" name="bc-juice-${idx}" value="105" onchange="updateBuyCalc(${idx},${orig},'${favZh}','${dogZh}')"> -105</label>
+                        <label><input type="radio" name="bc-juice-${idx}" value="110" checked onchange="updateBuyCalc(${idx},${orig},'${homeZh}','${awayZh}')"> -110</label>
+                        <label><input type="radio" name="bc-juice-${idx}" value="105" onchange="updateBuyCalc(${idx},${orig},'${homeZh}','${awayZh}')"> -105</label>
                     </div>
                 </div>
                 <div class="buy-calc-result" id="bc-result-${idx}">
@@ -710,7 +721,7 @@
         el.style.display = 'block';
     }
 
-    function updateBuyCalc(idx, orig, favZh, dogZh) {
+    function updateBuyCalc(idx, orig, homeZh, awayZh) {
         const result = document.getElementById('bc-result-' + idx);
         const input = document.getElementById('bc-live-' + idx);
         if (!result || !input) return;
@@ -720,35 +731,21 @@
             return;
         }
         const live = Number(raw);
-        const absOrig = Math.abs(orig);
-        const homeFav = orig > 0;
         const sideRadio = document.querySelector(`input[name="bc-side-${idx}"]:checked`);
         const juiceRadio = document.querySelector(`input[name="bc-juice-${idx}"]:checked`);
-        const side = sideRadio ? sideRadio.value : 'fav';
+        const side = sideRadio ? sideRadio.value : 'home';
         const juice = juiceRadio ? juiceRadio.value : '110';
         const breakeven = juice === '110' ? 0.5238 : 0.5122;
 
-        // Offset interpretation: positive = user got more points (better for the side they bet).
-        // The original line for the favorite side is -absOrig.
-        // If the user is on fav at live=-3 and original fav was -5, they gained 2 points (they lay fewer).
-        //   offset_fav = absOrig - |live|   when live is still negative
-        // The original line for the dog side is +absOrig.
-        // If the user is on dog at live=+7 and original dog was +5, they gained 2 points.
-        //   offset_dog = |live| - absOrig  when live is still positive
-        // We accept either sign input for flexibility — use absolute value and rely on the side choice.
-        const absLive = Math.abs(live);
-        let offset;
-        if (side === 'fav') {
-            offset = absOrig - absLive;
-        } else {
-            offset = absLive - absOrig;
-        }
+        const oldLine = teamLineOriginal(orig, side);
+        const offset = computeOffset(orig, side, live);
+        const crossedZero = (oldLine < 0 && live > 0) || (oldLine > 0 && live < 0);
 
         const coverProb = lookupCover(offset);
         const edgePct = (coverProb - breakeven) * 100;
         const offsetTag = offset >= 0 ? `+${offset.toFixed(1)}` : `${offset.toFixed(1)}`;
         let verdictClass = 'buy-bad';
-        let verdictText = '✗ 比原盤還差，不要下';
+        let verdictText = '';
         if (offset < 0) {
             verdictClass = 'buy-worse';
             verdictText = `✗ 比原盤差 ${Math.abs(offset).toFixed(1)} 分，直接 skip`;
@@ -768,15 +765,20 @@
             verdictClass = 'buy-great';
             verdictText = '✓✓ 強 edge，加碼';
         }
-        const sideName = side === 'fav' ? favZh : dogZh;
+        const sideName = side === 'home' ? homeZh : awayZh;
+        const movementDesc = `${formatLine(oldLine)} → ${formatLine(live)}`;
+        const crossTag = crossedZero
+            ? `<span class="buy-cross-tag">⚡ 跨過 0 分（${oldLine < 0 ? '讓→受' : '受→讓'}）</span>`
+            : '';
         result.innerHTML = `
+            <div class="buy-calc-move">押 <b>${sideName}</b>: ${movementDesc} ${crossTag}</div>
             <div class="buy-calc-out">
                 <div class="buy-calc-stat"><span class="bcs-lbl">改善</span><b class="${offset >= 0 ? 'good' : 'bad'}">${offsetTag} 分</b></div>
                 <div class="buy-calc-stat"><span class="bcs-lbl">cover 率</span><b>${(coverProb * 100).toFixed(1)}%</b></div>
                 <div class="buy-calc-stat"><span class="bcs-lbl">edge @ -${juice}</span><b class="${edgePct >= 0 ? 'good' : 'bad'}">${edgePct >= 0 ? '+' : ''}${edgePct.toFixed(2)}%</b></div>
             </div>
-            <div class="buy-calc-verdict ${verdictClass}">${verdictText} · 押 <b>${sideName}</b></div>
-            <div class="buy-calc-hint">※ 基於 3068 場 4 季回測表, 線性內插</div>
+            <div class="buy-calc-verdict ${verdictClass}">${verdictText}</div>
+            <div class="buy-calc-hint">※ 基於 3068 場回測表, 線性內插</div>
         `;
     }
 
