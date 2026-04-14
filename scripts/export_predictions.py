@@ -34,6 +34,19 @@ WEST_TEAMS = {
     "San Antonio Spurs", "Utah Jazz",
 }
 
+# Per-season tiebreaker overrides for tied records. Our dataset cannot
+# replicate the NBA's full tiebreaker chain (head-to-head, division leader,
+# division record, conference record...), so when two teams finish with
+# identical W-L, list them here as (higher_seed_team, lower_seed_team).
+# The sort routine swaps adjacent tied entries to match this expected order.
+SEED_OVERRIDES = {
+    "2025-26": {
+        # Play-in reality: PHX (#7) plays POR (#8); LAC drops to #9.
+        "west": [("Portland Trail Blazers", "LA Clippers")],
+        "east": [],
+    },
+}
+
 
 def _serialize(obj):
     """JSON serializer that handles dates and numpy types."""
@@ -133,6 +146,13 @@ def export_date(target_date: date) -> dict | None:
     }
 
 
+def _season_key_for(d: date) -> str:
+    """NBA season runs Oct → June; '2025-26' season spans Oct 2025 → Jun 2026."""
+    if d.month >= 10:
+        return f"{d.year}-{(d.year + 1) % 100:02d}"
+    return f"{d.year - 1}-{d.year % 100:02d}"
+
+
 def _team_card(team, wins, losses):
     return {
         "team": team,
@@ -178,14 +198,37 @@ def build_bracket(target_date: date) -> dict | None:
         elif name in WEST_TEAMS:
             west.append(card)
 
-    def _sort(seq):
-        seq.sort(key=lambda c: (-c["win_pct"], -c["wins"]))
+    season_key = _season_key_for(target_date)
+    overrides = SEED_OVERRIDES.get(season_key, {})
+
+    def _apply_tiebreaker_overrides(seq, override_pairs):
+        """Swap adjacent tied entries to match the (higher, lower) pairs."""
+        if not override_pairs:
+            return seq
+        name_to_idx = {c["team"]: i for i, c in enumerate(seq)}
+        for higher, lower in override_pairs:
+            hi = name_to_idx.get(higher)
+            lo = name_to_idx.get(lower)
+            if hi is None or lo is None:
+                continue
+            # Only swap if they're tied and currently in the wrong order.
+            if seq[hi]["win_pct"] != seq[lo]["win_pct"]:
+                continue
+            if hi > lo:
+                seq[hi], seq[lo] = seq[lo], seq[hi]
+                name_to_idx[higher] = lo
+                name_to_idx[lower] = hi
+        return seq
+
+    def _sort(seq, override_pairs):
+        seq.sort(key=lambda c: (-c["win_pct"], -c["wins"], c["team"]))
+        _apply_tiebreaker_overrides(seq, override_pairs)
         for i, c in enumerate(seq, 1):
             c["seed"] = i
         return seq
 
-    east = _sort(east)
-    west = _sort(west)
+    east = _sort(east, overrides.get("east", []))
+    west = _sort(west, overrides.get("west", []))
 
     def _conference(name, seeds):
         # Play-in: 7v8 winner → #7; 9v10 winner vs 7v8 loser → #8.

@@ -337,18 +337,18 @@
     "seed": 7
    },
    {
-    "team": "LA Clippers",
-    "team_zh": "洛杉磯快艇",
-    "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+    "team": "Portland Trail Blazers",
+    "team_zh": "波特蘭拓荒者",
+    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
     "wins": 42,
     "losses": 40,
     "win_pct": 0.512,
     "seed": 8
    },
    {
-    "team": "Portland Trail Blazers",
-    "team_zh": "波特蘭拓荒者",
-    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+    "team": "LA Clippers",
+    "team_zh": "洛杉磯快艇",
+    "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
     "wins": 42,
     "losses": 40,
     "win_pct": 0.512,
@@ -424,9 +424,9 @@
      "seed": 7
     },
     "away": {
-     "team": "LA Clippers",
-     "team_zh": "洛杉磯快艇",
-     "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+     "team": "Portland Trail Blazers",
+     "team_zh": "波特蘭拓荒者",
+     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
      "wins": 42,
      "losses": 40,
      "win_pct": 0.512,
@@ -438,9 +438,9 @@
    "game_b": {
     "label": "9 vs 10",
     "home": {
-     "team": "Portland Trail Blazers",
-     "team_zh": "波特蘭拓荒者",
-     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+     "team": "LA Clippers",
+     "team_zh": "洛杉磯快艇",
+     "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
      "wins": 42,
      "losses": 40,
      "win_pct": 0.512,
