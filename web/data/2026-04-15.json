@@ -985,6 +985,23 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg"
   }
  },
- "active_series": [],
+ "active_series": [
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Charlotte Hornets",
+   "low_seed": "Miami Heat",
+   "high_wins": 1,
+   "low_wins": 0
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Phoenix Suns",
+   "low_seed": "Portland Trail Blazers",
+   "high_wins": 0,
+   "low_wins": 1
+  }
+ ],
  "is_playoff_view": true
 }
