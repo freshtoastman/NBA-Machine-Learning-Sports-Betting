@@ -97,36 +97,59 @@ def ensure_table(con, season_key):
 def assign_rounds(sorted_series):
     """Bucket series into rounds based on chronological order + game count.
 
-    Heuristic:
-      - A 'series' with only 1-2 distinct days AND no team has 4 wins yet
-        AND the earliest-date is BEFORE the first 'real' series → Play-In (round 0)
-      - Otherwise we bucket the chronologically sorted series:
-        first 8 → R1, next 4 → R2, next 2 → R3, last 1 → R4
+    NBA playoff structure:
+      - Play-In (round 0): 4-6 single-game matchups in the first ~5 days
+      - Round 1: 8 best-of-7 series
+      - Round 2: 4 best-of-7 (conference semis)
+      - Round 3: 2 best-of-7 (conference finals)
+      - Round 4: 1 best-of-7 (finals)
+
+    Identification strategy:
+      1. Any matchup with ≤2 games AND max wins ≤1 that starts within the
+         first 5 days of the playoff window is Play-In.
+      2. If there are already ≥8 multi-game series, any remaining single-game
+         matchups from the early window are definitely Play-In.
+      3. When we only have early-window single-game matchups (playoffs just
+         started), ALL of them are Play-In — first round hasn't begun yet.
     """
+    if not sorted_series:
+        return []
+
+    # Find the earliest game date across all matchups.
+    global_earliest = min(d["earliest_date"] for _, d in sorted_series)
+
     play_in = []
     real = []
     for matchup, data in sorted_series:
         max_wins = max(data["wins_a"], data["wins_b"])
-        # Play-In games end after a single matchup; any series we already see
-        # with both wins_a < 1 in early dates is just unknown not play-in. We
-        # treat "single-game series before main bracket" as Play-In.
-        if data["num_games"] <= 1 and max_wins <= 1:
+        days_from_start = _days_between(global_earliest, data["earliest_date"])
+
+        # Play-In: single-game matchup starting within first 5 days of the
+        # playoff window, where no team has won a best-of-7 series yet.
+        is_single_game = data["num_games"] <= 2 and max_wins <= 1
+        is_early = days_from_start <= 5
+
+        if is_single_game and is_early:
             play_in.append((matchup, data))
         else:
             real.append((matchup, data))
 
-    # Decide which 1-game series are actually Play-In vs real R1 game 1.
-    # Heuristic: if there are obviously > 8 'real' series, the extras are R1 G1s.
+    # When there are already ≥8 multi-game series, all single-game early
+    # matchups are clearly Play-In.
     if len(real) >= 8:
         play_in_actual = play_in
         all_real = real
+    elif len(real) == 0:
+        # Playoffs just started — only early single-game matchups exist.
+        # These are all Play-In games.
+        play_in_actual = play_in
+        all_real = []
     else:
-        # Mix; the early single-game ones still might be Play-In, but ambiguous.
-        # Sort everything by earliest_date and treat first N as Play-In where
-        # N matches the typical 6-game Play-In structure.
-        all_combined = sorted(play_in + real, key=lambda s: s[1]["earliest_date"])
-        play_in_actual = all_combined[:max(0, len(all_combined) - 15)]
-        all_real = all_combined[len(play_in_actual):]
+        # Ambiguous: some multi-game series + some single-game ones.
+        # Early single-game matchups (≤5 days from start) stay as Play-In.
+        # Single-game matchups that start later are likely R1 Game 1.
+        play_in_actual = play_in
+        all_real = real
 
     out = []
     for matchup, data in play_in_actual:
@@ -146,6 +169,14 @@ def assign_rounds(sorted_series):
         out.append((matchup, data, 1))
 
     return out
+
+
+def _days_between(date_a: str, date_b: str) -> int:
+    """Return number of days between two YYYY-MM-DD strings."""
+    from datetime import datetime as _dt
+    a = _dt.strptime(date_a[:10], "%Y-%m-%d")
+    b = _dt.strptime(date_b[:10], "%Y-%m-%d")
+    return abs((b - a).days)
 
 
 def derive_series_for_season(season_key):

@@ -116,6 +116,8 @@ def _elimination_underdog(pred, series_state, team_form) -> PlayoffATSPick | Non
     """
     if series_state is None:
         return None
+    if series_state.get("round_num", 0) == 0:
+        return None  # Play-In: no series elimination context
     if not series_state.get("is_elimination"):
         return None
     spread = pred.get("spread")
@@ -143,6 +145,8 @@ def _complacent_leader(pred, series_state, team_form) -> PlayoffATSPick | None:
     """
     if series_state is None:
         return None
+    if series_state.get("round_num", 0) == 0:
+        return None  # Play-In: no series lead context
     home_wins = series_state.get("home_wins", 0)
     away_wins = series_state.get("away_wins", 0)
     lead = home_wins - away_wins
@@ -169,6 +173,8 @@ def _trailing_home_desperation(pred, series_state, team_form) -> PlayoffATSPick 
     """
     if series_state is None:
         return None
+    if series_state.get("round_num", 0) == 0:
+        return None  # Play-In: no series trail context
     home_wins = series_state.get("home_wins", 0)
     away_wins = series_state.get("away_wins", 0)
     lead = home_wins - away_wins
