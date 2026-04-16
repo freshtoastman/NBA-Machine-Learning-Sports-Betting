@@ -1027,6 +1027,22 @@
    "low_seed": "Portland Trail Blazers",
    "high_wins": 0,
    "low_wins": 1
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Orlando Magic",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 0,
+   "low_wins": 1
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Golden State Warriors",
+   "low_seed": "LA Clippers",
+   "high_wins": 1,
+   "low_wins": 0
   }
  ],
  "is_playoff_view": true
