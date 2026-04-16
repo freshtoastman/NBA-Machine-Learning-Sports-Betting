@@ -235,20 +235,10 @@ def _grade_ai_predictions(game_date: str, games: dict):
                     ats_correct = 1 if ats_winner == "away" else 0
             elif ats_winner == "push":
                 ats_correct = None  # push = no decision
-            # Grade OU pick
-            ou_correct = None
-            ou_pick_text = row["ou_pick"] or ""
-            actual_total = g.get("actual_total")
-            ou_value = g.get("ou_value")
-            if actual_total and ou_value and ou_pick_text:
-                if "大分" in ou_pick_text:
-                    ou_correct = 1 if actual_total > ou_value else 0
-                elif "小分" in ou_pick_text:
-                    ou_correct = 1 if actual_total < ou_value else 0
-            if ats_correct is not None or ou_correct is not None:
+                    if ats_correct is not None:
                 con.execute(
-                    "UPDATE ai_prediction_log SET ats_correct=?, ou_correct=?, graded_at=? WHERE id=?",
-                    (ats_correct, ou_correct, now, row["id"]),
+                    "UPDATE ai_prediction_log SET ats_correct=?, graded_at=? WHERE id=?",
+                    (ats_correct, now, row["id"]),
                 )
         con.commit()
         con.close()
@@ -1115,8 +1105,6 @@ def api_ai_log():
             "ats_pick": r["ats_pick"],
             "ats_units": r["ats_units"],
             "ats_reason": r["ats_reason"],
-            "ou_pick": r["ou_pick"],
-            "ou_reason": r["ou_reason"],
             "summary": r["summary"],
             "source": r["source"],
             "is_golden": bool(r["is_golden"]),
@@ -1124,15 +1112,12 @@ def api_ai_log():
             "spread": r["spread"],
             "created_at": r["created_at"],
             "ats_correct": r["ats_correct"],
-            "ou_correct": r["ou_correct"],
             "graded_at": r["graded_at"],
         })
 
     # Compute aggregate stats
     ats_graded = [r for r in records if r["ats_correct"] is not None]
     ats_wins = sum(1 for r in ats_graded if r["ats_correct"] == 1)
-    ou_graded = [r for r in records if r["ou_correct"] is not None]
-    ou_wins = sum(1 for r in ou_graded if r["ou_correct"] == 1)
     golden_graded = [r for r in ats_graded if r["is_golden"]]
     golden_wins = sum(1 for r in golden_graded if r["ats_correct"] == 1)
 
@@ -1148,9 +1133,6 @@ def api_ai_log():
         "ats_wins": ats_wins,
         "ats_losses": len(ats_graded) - ats_wins,
         "ats_hit_rate": round(ats_wins / len(ats_graded) * 100, 1) if ats_graded else None,
-        "ou_graded": len(ou_graded),
-        "ou_wins": ou_wins,
-        "ou_hit_rate": round(ou_wins / len(ou_graded) * 100, 1) if ou_graded else None,
         "golden_graded": len(golden_graded),
         "golden_wins": golden_wins,
         "golden_hit_rate": round(golden_wins / len(golden_graded) * 100, 1) if golden_graded else None,

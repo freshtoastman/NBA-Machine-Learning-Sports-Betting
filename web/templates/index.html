@@ -1184,10 +1184,6 @@
                         <div class="ai-log-stat-val ${s.ats_hit_rate >= 55 ? 'good' : s.ats_hit_rate < 50 ? 'bad' : ''}">${s.ats_hit_rate != null ? s.ats_hit_rate + '%' : '—'}</div>
                         <div class="ai-log-stat-sub">${s.ats_wins || 0}W ${s.ats_losses || 0}L</div>
                     </div>
-                    <div class="ai-log-stat">
-                        <div class="ai-log-stat-lbl">大小分命中</div>
-                        <div class="ai-log-stat-val ${s.ou_hit_rate >= 55 ? 'good' : s.ou_hit_rate < 50 ? 'bad' : ''}">${s.ou_hit_rate != null ? s.ou_hit_rate + '%' : '—'}</div>
-                        <div class="ai-log-stat-sub">${s.ou_graded || 0} 場已結算</div>
                     </div>`;
                 if (s.golden_graded) {
                     statsHtml += `<div class="ai-log-stat">
@@ -1244,7 +1240,6 @@
                                 <div class="ai-log-pick-detail">
                                     <span class="ai-log-pick-ats">${g.ats_pick || '—'}</span>
                                     ${g.ats_units ? `<span class="ai-log-pick-units">${g.ats_units}U</span>` : ''}
-                                    ${g.ou_pick ? `<span class="ai-log-pick-ou">${g.ou_pick}</span>` : ''}
                                 </div>
                                 <div class="ai-log-pick-status ${statusCls}">${statusText}</div>
                             </div>`;
