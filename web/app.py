@@ -235,7 +235,7 @@ def _grade_ai_predictions(game_date: str, games: dict):
                     ats_correct = 1 if ats_winner == "away" else 0
             elif ats_winner == "push":
                 ats_correct = None  # push = no decision
-                    if ats_correct is not None:
+            if ats_correct is not None:
                 con.execute(
                     "UPDATE ai_prediction_log SET ats_correct=?, graded_at=? WHERE id=?",
                     (ats_correct, now, row["id"]),
