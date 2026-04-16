@@ -131,36 +131,41 @@ def _safe_key(*parts: str) -> str:
 # ---------------------------------------------------------------------------
 # AI Prediction Log — persistent SQLite database
 # ---------------------------------------------------------------------------
-AI_LOG_DB = Path(__file__).parent / "data" / "ai_prediction_log.sqlite"
+# Use /tmp on Vercel (web/data/ is read-only in serverless); local dev uses web/data/.
+_local_log_path = Path(__file__).parent / "data" / "ai_prediction_log.sqlite"
+AI_LOG_DB = _local_log_path if _local_log_path.parent.exists() and os.access(str(_local_log_path.parent), os.W_OK) else CACHE_DIR / "ai_prediction_log.sqlite"
 
 
 def _init_ai_log_db():
-    con = sqlite3.connect(str(AI_LOG_DB))
-    con.execute("""CREATE TABLE IF NOT EXISTS ai_prediction_log (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        game_date TEXT NOT NULL,
-        home_team TEXT NOT NULL,
-        away_team TEXT NOT NULL,
-        home_team_zh TEXT,
-        away_team_zh TEXT,
-        ats_pick TEXT,
-        ats_units INTEGER,
-        ats_reason TEXT,
-        ou_pick TEXT,
-        ou_reason TEXT,
-        summary TEXT,
-        source TEXT,
-        is_golden INTEGER DEFAULT 0,
-        is_value INTEGER DEFAULT 0,
-        spread REAL,
-        created_at TEXT NOT NULL,
-        ats_correct INTEGER,
-        ou_correct INTEGER,
-        graded_at TEXT,
-        UNIQUE(game_date, home_team, away_team)
-    )""")
-    con.commit()
-    con.close()
+    try:
+        con = sqlite3.connect(str(AI_LOG_DB))
+        con.execute("""CREATE TABLE IF NOT EXISTS ai_prediction_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            game_date TEXT NOT NULL,
+            home_team TEXT NOT NULL,
+            away_team TEXT NOT NULL,
+            home_team_zh TEXT,
+            away_team_zh TEXT,
+            ats_pick TEXT,
+            ats_units INTEGER,
+            ats_reason TEXT,
+            ou_pick TEXT,
+            ou_reason TEXT,
+            summary TEXT,
+            source TEXT,
+            is_golden INTEGER DEFAULT 0,
+            is_value INTEGER DEFAULT 0,
+            spread REAL,
+            created_at TEXT NOT NULL,
+            ats_correct INTEGER,
+            ou_correct INTEGER,
+            graded_at TEXT,
+            UNIQUE(game_date, home_team, away_team)
+        )""")
+        con.commit()
+        con.close()
+    except Exception:
+        pass
 
 
 _init_ai_log_db()
