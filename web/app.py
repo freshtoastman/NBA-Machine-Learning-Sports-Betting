@@ -598,6 +598,9 @@ def api_analysis():
         cached = _cache_get(cache_key)
         if cached:
             cached["cached"] = True
+            # Ensure cached results are also logged (first call may have
+            # been before the log feature existed, or the DB was wiped).
+            _log_ai_prediction(game_date, home, away, cached, game)
             return jsonify(cached)
 
     ctx = _build_game_context(game)
