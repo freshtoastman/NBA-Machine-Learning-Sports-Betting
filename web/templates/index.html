@@ -291,6 +291,20 @@
         </section>
         {% endif %}
 
+        {# ── AI Prediction Log (AI 預測紀錄) ── #}
+        <section class="ai-log-section">
+            <details class="ai-log-details">
+                <summary class="ai-log-summary" onclick="loadAiLog()">
+                    <span class="ai-log-title">📋 AI 預測紀錄</span>
+                    <span class="ai-log-hint">點擊展開歷史預測與命中率</span>
+                </summary>
+                <div class="ai-log-body" id="ai-log-body">
+                    <div class="ai-log-loading" style="display:none;">⏳ 載入紀錄中...</div>
+                    <div class="ai-log-content"></div>
+                </div>
+            </details>
+        </section>
+
         <main class="picks-grid compact-grid">
             {% if fanduel_games|length == 0 %}
             <div class="empty-state">
@@ -1135,6 +1149,120 @@
             content.style.display = 'block';
         })
         .finally(() => { btn.disabled = false; });
+    }
+
+    // ── AI Prediction Log ──
+    let aiLogLoaded = false;
+    function loadAiLog() {
+        if (aiLogLoaded) return;
+        const body = document.getElementById('ai-log-body');
+        const loading = body.querySelector('.ai-log-loading');
+        const content = body.querySelector('.ai-log-content');
+        loading.style.display = 'block';
+
+        fetch('/api/ai-log?days=30')
+            .then(r => r.json())
+            .then(data => {
+                loading.style.display = 'none';
+                if (data.error) {
+                    content.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
+                    return;
+                }
+                aiLogLoaded = true;
+                const s = data.stats || {};
+                const records = data.records || [];
+
+                // Stats dashboard
+                let statsHtml = `<div class="ai-log-stats">
+                    <div class="ai-log-stat">
+                        <div class="ai-log-stat-lbl">總預測</div>
+                        <div class="ai-log-stat-val">${s.total_predictions || 0}</div>
+                        <div class="ai-log-stat-sub">${s.pending || 0} 場待開</div>
+                    </div>
+                    <div class="ai-log-stat">
+                        <div class="ai-log-stat-lbl">ATS 命中</div>
+                        <div class="ai-log-stat-val ${s.ats_hit_rate >= 55 ? 'good' : s.ats_hit_rate < 50 ? 'bad' : ''}">${s.ats_hit_rate != null ? s.ats_hit_rate + '%' : '—'}</div>
+                        <div class="ai-log-stat-sub">${s.ats_wins || 0}W ${s.ats_losses || 0}L</div>
+                    </div>
+                    <div class="ai-log-stat">
+                        <div class="ai-log-stat-lbl">大小分命中</div>
+                        <div class="ai-log-stat-val ${s.ou_hit_rate >= 55 ? 'good' : s.ou_hit_rate < 50 ? 'bad' : ''}">${s.ou_hit_rate != null ? s.ou_hit_rate + '%' : '—'}</div>
+                        <div class="ai-log-stat-sub">${s.ou_graded || 0} 場已結算</div>
+                    </div>`;
+                if (s.golden_graded) {
+                    statsHtml += `<div class="ai-log-stat">
+                        <div class="ai-log-stat-lbl">🥇 金鑽命中</div>
+                        <div class="ai-log-stat-val ${s.golden_hit_rate >= 60 ? 'good' : s.golden_hit_rate < 50 ? 'bad' : ''}">${s.golden_hit_rate != null ? s.golden_hit_rate + '%' : '—'}</div>
+                        <div class="ai-log-stat-sub">${s.golden_wins || 0}/${s.golden_graded}</div>
+                    </div>`;
+                }
+                statsHtml += `<div class="ai-log-stat">
+                        <div class="ai-log-stat-lbl">ROI</div>
+                        <div class="ai-log-stat-val ${s.roi > 0 ? 'good' : s.roi < 0 ? 'bad' : ''}">${s.roi != null ? (s.roi > 0 ? '+' : '') + s.roi + '%' : '—'}</div>
+                        <div class="ai-log-stat-sub">${s.pl_units != null ? (s.pl_units > 0 ? '+' : '') + s.pl_units + 'U' : ''}</div>
+                    </div>
+                </div>`;
+
+                // Records table
+                let tableHtml = '';
+                if (records.length > 0) {
+                    // Group by date
+                    const byDate = {};
+                    records.forEach(r => {
+                        if (!byDate[r.game_date]) byDate[r.game_date] = [];
+                        byDate[r.game_date].push(r);
+                    });
+
+                    tableHtml = '<div class="ai-log-records">';
+                    for (const [dt, games] of Object.entries(byDate)) {
+                        const dayWins = games.filter(g => g.ats_correct === 1).length;
+                        const dayGraded = games.filter(g => g.ats_correct !== null).length;
+                        const dayRate = dayGraded ? Math.round(dayWins / dayGraded * 100) : null;
+
+                        tableHtml += `<div class="ai-log-day">
+                            <div class="ai-log-day-head">
+                                <a href="?date=${dt}" class="ai-log-day-date">${dt}</a>
+                                <span class="ai-log-day-count">${games.length} 場</span>
+                                ${dayRate != null ? `<span class="ai-log-day-rate ${dayRate >= 60 ? 'good' : dayRate < 50 ? 'bad' : ''}">${dayRate}% (${dayWins}/${dayGraded})</span>` : ''}
+                            </div>
+                            <div class="ai-log-day-picks">`;
+
+                        games.forEach(g => {
+                            const statusCls = g.ats_correct === 1 ? 'win' : g.ats_correct === 0 ? 'loss' : 'pending';
+                            const statusText = g.ats_correct === 1 ? '✓ 贏' : g.ats_correct === 0 ? '✗ 輸' : '📅 待開';
+                            const badges = [];
+                            if (g.is_golden) badges.push('<span class="ai-log-badge golden">🥇</span>');
+                            else if (g.is_value) badges.push('<span class="ai-log-badge diamond">💎</span>');
+                            const srcBadge = g.source === 'gemini' ? '🤖' : g.source === 'fallback' ? '🔧' : '';
+
+                            tableHtml += `<div class="ai-log-pick ai-log-${statusCls}">
+                                <div class="ai-log-pick-main">
+                                    ${badges.join('')}
+                                    <span class="ai-log-pick-teams">${g.away_team_zh || g.away_team} @ ${g.home_team_zh || g.home_team}</span>
+                                    ${srcBadge ? `<span class="ai-log-src">${srcBadge}</span>` : ''}
+                                </div>
+                                <div class="ai-log-pick-detail">
+                                    <span class="ai-log-pick-ats">${g.ats_pick || '—'}</span>
+                                    ${g.ats_units ? `<span class="ai-log-pick-units">${g.ats_units}U</span>` : ''}
+                                    ${g.ou_pick ? `<span class="ai-log-pick-ou">${g.ou_pick}</span>` : ''}
+                                </div>
+                                <div class="ai-log-pick-status ${statusCls}">${statusText}</div>
+                            </div>`;
+                        });
+
+                        tableHtml += '</div></div>';
+                    }
+                    tableHtml += '</div>';
+                } else {
+                    tableHtml = '<div class="ai-log-empty">尚無 AI 預測紀錄。點擊各場比賽的「🤖 AI 分析」按鈕產生預測後，紀錄會自動儲存。</div>';
+                }
+
+                content.innerHTML = statsHtml + tableHtml;
+            })
+            .catch(err => {
+                loading.style.display = 'none';
+                content.innerHTML = `<div class="ai-error">⚠️ ${err.message}</div>`;
+            });
     }
     </script>
     {% include 'team_modal.html' %}

@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import secrets
+import sqlite3
 from datetime import date, datetime, timedelta
 from functools import lru_cache
 from pathlib import Path
@@ -125,6 +126,130 @@ def _cache_put(key: str, value: dict) -> None:
 def _safe_key(*parts: str) -> str:
     raw = "|".join(parts)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
+
+
+# ---------------------------------------------------------------------------
+# AI Prediction Log — persistent SQLite database
+# ---------------------------------------------------------------------------
+AI_LOG_DB = Path(__file__).parent / "data" / "ai_prediction_log.sqlite"
+
+
+def _init_ai_log_db():
+    con = sqlite3.connect(str(AI_LOG_DB))
+    con.execute("""CREATE TABLE IF NOT EXISTS ai_prediction_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        game_date TEXT NOT NULL,
+        home_team TEXT NOT NULL,
+        away_team TEXT NOT NULL,
+        home_team_zh TEXT,
+        away_team_zh TEXT,
+        ats_pick TEXT,
+        ats_units INTEGER,
+        ats_reason TEXT,
+        ou_pick TEXT,
+        ou_reason TEXT,
+        summary TEXT,
+        source TEXT,
+        is_golden INTEGER DEFAULT 0,
+        is_value INTEGER DEFAULT 0,
+        spread REAL,
+        created_at TEXT NOT NULL,
+        ats_correct INTEGER,
+        ou_correct INTEGER,
+        graded_at TEXT,
+        UNIQUE(game_date, home_team, away_team)
+    )""")
+    con.commit()
+    con.close()
+
+
+_init_ai_log_db()
+
+
+def _log_ai_prediction(game_date: str, home: str, away: str, analysis: dict,
+                        game: dict):
+    """Save an AI analysis prediction to the log database."""
+    now = datetime.now(TAIPEI_TZ).isoformat()
+    try:
+        con = sqlite3.connect(str(AI_LOG_DB))
+        con.execute(
+            """INSERT OR REPLACE INTO ai_prediction_log
+               (game_date, home_team, away_team, home_team_zh, away_team_zh,
+                ats_pick, ats_units, ats_reason, ou_pick, ou_reason, summary,
+                source, is_golden, is_value, spread, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (game_date, home, away,
+             game.get("home_team_zh", ""),
+             game.get("away_team_zh", ""),
+             analysis.get("ats_pick", ""),
+             analysis.get("ats_units"),
+             analysis.get("ats_reason", ""),
+             analysis.get("ou_pick", ""),
+             analysis.get("ou_reason", ""),
+             analysis.get("summary", ""),
+             analysis.get("source", ""),
+             1 if analysis.get("is_golden") else 0,
+             1 if analysis.get("is_value") else 0,
+             game.get("spread"),
+             now),
+        )
+        con.commit()
+        con.close()
+    except Exception:
+        pass
+
+
+def _grade_ai_predictions(game_date: str, games: dict):
+    """Grade AI predictions for a given date using actual game outcomes."""
+    try:
+        con = sqlite3.connect(str(AI_LOG_DB))
+        con.row_factory = sqlite3.Row
+        rows = con.execute(
+            "SELECT * FROM ai_prediction_log WHERE game_date = ? AND graded_at IS NULL",
+            (game_date,),
+        ).fetchall()
+        if not rows:
+            con.close()
+            return
+        now = datetime.now(TAIPEI_TZ).isoformat()
+        for row in rows:
+            key = f"{row['away_team']}:{row['home_team']}"
+            g = games.get(key)
+            if not g:
+                continue
+            # Grade ATS pick
+            ats_winner = g.get("ats_winner")  # 'home', 'away', 'push', or None
+            ats_correct = None
+            if ats_winner and ats_winner != "push" and row["ats_pick"]:
+                home_zh = g.get("home_team_zh", "")
+                away_zh = g.get("away_team_zh", "")
+                pick_text = row["ats_pick"]
+                if home_zh and home_zh in pick_text:
+                    ats_correct = 1 if ats_winner == "home" else 0
+                elif away_zh and away_zh in pick_text:
+                    ats_correct = 1 if ats_winner == "away" else 0
+            elif ats_winner == "push":
+                ats_correct = None  # push = no decision
+            # Grade OU pick
+            ou_correct = None
+            ou_pick_text = row["ou_pick"] or ""
+            actual_total = g.get("actual_total")
+            ou_value = g.get("ou_value")
+            if actual_total and ou_value and ou_pick_text:
+                if "大分" in ou_pick_text:
+                    ou_correct = 1 if actual_total > ou_value else 0
+                elif "小分" in ou_pick_text:
+                    ou_correct = 1 if actual_total < ou_value else 0
+            if ats_correct is not None or ou_correct is not None:
+                con.execute(
+                    "UPDATE ai_prediction_log SET ats_correct=?, ou_correct=?, graded_at=? WHERE id=?",
+                    (ats_correct, ou_correct, now, row["id"]),
+                )
+        con.commit()
+        con.close()
+    except Exception:
+        pass
+
 
 WEEKDAY_ZH = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"]
 
@@ -556,6 +681,8 @@ def api_analysis():
     # the response without parsing the AI's free-form verdict text.
     result["is_golden"] = bool(game.get("is_golden"))
     result["is_value"] = bool(game.get("is_value"))
+    # Log AI prediction for tracking accuracy
+    _log_ai_prediction(game_date, home, away, result, game)
     # Only cache successful (non-fallback) results so a transient Gemini outage
     # doesn't pin a degraded answer forever.
     if result.get("source") == "gemini":
@@ -922,6 +1049,109 @@ def api_daily_report():
     if result.get("source") == "gemini":
         _cache_put(cache_key, result)
     return jsonify(result)
+
+
+# ---------------------------------------------------------------------------
+# API: AI Prediction Log — history + stats
+# ---------------------------------------------------------------------------
+
+@app.route("/api/ai-log")
+def api_ai_log():
+    """Return AI prediction log with grading and stats.
+
+    Query params:
+      days: number of days to look back (default 30)
+      date: specific date to filter (optional)
+    """
+    if not _is_authenticated():
+        return jsonify({"error": "Unauthorized"}), 401
+
+    days = int(request.args.get("days", 30))
+    specific_date = request.args.get("date")
+
+    # Try to grade ungraded predictions for recent dates
+    end_date = date.today()
+    start_date = end_date - timedelta(days=days)
+    d = start_date
+    while d <= end_date:
+        data = load_date_data(d.isoformat())
+        if data and data.get("games"):
+            _grade_ai_predictions(d.isoformat(), data["games"])
+        d += timedelta(days=1)
+
+    try:
+        con = sqlite3.connect(str(AI_LOG_DB))
+        con.row_factory = sqlite3.Row
+        if specific_date:
+            rows = con.execute(
+                "SELECT * FROM ai_prediction_log WHERE game_date = ? ORDER BY created_at DESC",
+                (specific_date,),
+            ).fetchall()
+        else:
+            rows = con.execute(
+                "SELECT * FROM ai_prediction_log WHERE game_date >= ? ORDER BY game_date DESC, created_at DESC",
+                (start_date.isoformat(),),
+            ).fetchall()
+        con.close()
+    except Exception:
+        return jsonify({"records": [], "stats": {}})
+
+    records = []
+    for r in rows:
+        records.append({
+            "game_date": r["game_date"],
+            "home_team": r["home_team"],
+            "away_team": r["away_team"],
+            "home_team_zh": r["home_team_zh"],
+            "away_team_zh": r["away_team_zh"],
+            "ats_pick": r["ats_pick"],
+            "ats_units": r["ats_units"],
+            "ats_reason": r["ats_reason"],
+            "ou_pick": r["ou_pick"],
+            "ou_reason": r["ou_reason"],
+            "summary": r["summary"],
+            "source": r["source"],
+            "is_golden": bool(r["is_golden"]),
+            "is_value": bool(r["is_value"]),
+            "spread": r["spread"],
+            "created_at": r["created_at"],
+            "ats_correct": r["ats_correct"],
+            "ou_correct": r["ou_correct"],
+            "graded_at": r["graded_at"],
+        })
+
+    # Compute aggregate stats
+    ats_graded = [r for r in records if r["ats_correct"] is not None]
+    ats_wins = sum(1 for r in ats_graded if r["ats_correct"] == 1)
+    ou_graded = [r for r in records if r["ou_correct"] is not None]
+    ou_wins = sum(1 for r in ou_graded if r["ou_correct"] == 1)
+    golden_graded = [r for r in ats_graded if r["is_golden"]]
+    golden_wins = sum(1 for r in golden_graded if r["ats_correct"] == 1)
+
+    # ROI calculation: assume flat $110 to win $100 per bet (standard -110 juice)
+    total_wagered = len(ats_graded) * 110
+    total_returned = ats_wins * 210  # win back $110 + $100 profit
+    roi = round((total_returned - total_wagered) / total_wagered * 100, 1) if total_wagered else None
+    pl_units = ats_wins - (len(ats_graded) - ats_wins) * 1.1  # simplified P/L
+
+    stats = {
+        "total_predictions": len(records),
+        "ats_graded": len(ats_graded),
+        "ats_wins": ats_wins,
+        "ats_losses": len(ats_graded) - ats_wins,
+        "ats_hit_rate": round(ats_wins / len(ats_graded) * 100, 1) if ats_graded else None,
+        "ou_graded": len(ou_graded),
+        "ou_wins": ou_wins,
+        "ou_hit_rate": round(ou_wins / len(ou_graded) * 100, 1) if ou_graded else None,
+        "golden_graded": len(golden_graded),
+        "golden_wins": golden_wins,
+        "golden_hit_rate": round(golden_wins / len(golden_graded) * 100, 1) if golden_graded else None,
+        "roi": roi,
+        "pl_units": round(pl_units, 1) if ats_graded else None,
+        "pending": len(records) - len(ats_graded),
+    }
+
+    return jsonify({"records": records, "stats": stats})
 
 
 # ---------------------------------------------------------------------------
