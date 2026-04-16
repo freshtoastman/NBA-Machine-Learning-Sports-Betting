@@ -34,10 +34,21 @@ _SEASON = current_nba_season()
 
 TODAYS_GAMES_URL = f"https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/{_SEASON_START_YEAR}/scores/00_todays_scores.json"
 DATA_URL = f"https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=&DateTo=&Division=&GameScope=&GameSegment=&Height=&ISTRound=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season={_SEASON}&SeasonSegment=&SeasonType=Regular%20Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
+ADVANCED_DATA_URL = DATA_URL.replace("MeasureType=Base", "MeasureType=Advanced")
 SCHEDULE_PATH = os.path.join(PROJECT_ROOT, "Data", f"nba-{_SEASON_START_YEAR}-UTC.csv")
 
+# Advanced stat columns to merge (same as Create_Games).
+_ADVANCED_COLS = [
+    "TEAM_ID",
+    "OFF_RATING", "DEF_RATING", "NET_RATING",
+    "PACE", "TS_PCT", "EFG_PCT",
+    "OREB_PCT", "DREB_PCT", "REB_PCT",
+    "TM_TOV_PCT", "AST_PCT", "AST_TO", "AST_RATIO",
+    "PIE",
+]
 
-def create_todays_games_data(games, df, odds, schedule_df, today, interactive=True):
+
+def create_todays_games_data(games, df, odds, schedule_df, today, interactive=True, adv_df=None):
     """Build today's matchup features.
 
     When `odds` is provided, prefill OU + money lines from sportsbook data.
@@ -103,6 +114,19 @@ def create_todays_games_data(games, df, odds, schedule_df, today, interactive=Tr
         stats = pd.concat([home_team_series, away_team_series])
         stats['Days-Rest-Home'] = home_days_off.days
         stats['Days-Rest-Away'] = away_days_off.days
+
+        # Merge advanced efficiency stats if available.
+        if adv_df is not None and len(adv_df) == 30:
+            home_idx = team_index_current.get(home_team)
+            away_idx = team_index_current.get(away_team)
+            if home_idx is not None and away_idx is not None:
+                adv_cols = [c for c in adv_df.columns if c != "TEAM_ID"]
+                home_adv = adv_df.iloc[home_idx]
+                away_adv = adv_df.iloc[away_idx]
+                for col in adv_cols:
+                    stats[f"ADV_{col}"] = home_adv[col]
+                    stats[f"ADV_{col}.1"] = away_adv[col]
+
         match_data.append(stats)
 
     games_data_frame = pd.concat(match_data, ignore_index=True, axis=1)
@@ -202,10 +226,22 @@ def predict_today_xgb(sportsbook):
 
     stats_json = get_json_data(DATA_URL)
     df = to_data_frame(stats_json)
+
+    # Fetch advanced efficiency stats (OffRtg, DefRtg, Pace, TS%, etc.)
+    adv_df = None
+    try:
+        adv_json = get_json_data(ADVANCED_DATA_URL)
+        adv_raw = to_data_frame(adv_json)
+        if not adv_raw.empty:
+            available = [c for c in _ADVANCED_COLS if c in adv_raw.columns]
+            adv_df = adv_raw[available] if available else None
+    except Exception:
+        adv_df = None
+
     schedule_df = load_schedule()
     today = datetime.today()
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
-        games, df, odds, schedule_df, today, interactive=False
+        games, df, odds, schedule_df, today, interactive=False, adv_df=adv_df
     )
 
     # Fallback to local OddsData.sqlite for any missing OU / ML / Spread values.
@@ -253,9 +289,24 @@ def predict_today_xgb(sportsbook):
         advanced_df = None
     ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
 
+    # Fetch injury reports for all teams via AI web search.
+    injury_cache = {}
     today_iso = today.date().isoformat()
+    try:
+        from src.Utils.InjuryReport import get_game_injuries
+        for home_team, away_team in valid_games:
+            injury_data = get_game_injuries(home_team, away_team, today_iso)
+            injury_cache[(home_team, away_team)] = injury_data
+    except Exception:
+        pass
+
     for idx, (pred, sp) in enumerate(zip(predictions, spreads)):
         pred["spread"] = float(sp) if sp not in (None, "") else None
+
+        # Attach injury report.
+        inj = injury_cache.get((pred["home_team"], pred["away_team"]))
+        pred["injuries"] = inj if inj else None
+
         pred["home_profile"] = team_profile_for_date(pred["home_team"], today_iso)
         pred["away_profile"] = team_profile_for_date(pred["away_team"], today_iso)
         pred["ats_winner"] = None
@@ -673,10 +724,22 @@ def main(args):
 
     stats_json = get_json_data(DATA_URL)
     df = to_data_frame(stats_json)
+
+    # Fetch advanced efficiency stats.
+    adv_df = None
+    try:
+        adv_json = get_json_data(ADVANCED_DATA_URL)
+        adv_raw = to_data_frame(adv_json)
+        if not adv_raw.empty:
+            available = [c for c in _ADVANCED_COLS if c in adv_raw.columns]
+            adv_df = adv_raw[available] if available else None
+    except Exception:
+        adv_df = None
+
     schedule_df = load_schedule()
     today = datetime.today()
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
-        games, df, odds, schedule_df, today
+        games, df, odds, schedule_df, today, adv_df=adv_df
     )
 
     if args.A:
