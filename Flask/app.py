@@ -70,6 +70,33 @@ def compute_summary(games_dict, is_historical):
     value_picks = [g for g in games if g.get("is_value")]
     summary["value_picks"] = len(value_picks)
 
+    golden_picks = [g for g in games if g.get("is_golden")]
+    summary["golden_picks"] = len(golden_picks)
+
+    # Collect GOLD/SILVER playoff ATS signals across all games.
+    po_ats_alerts = []
+    for g in games:
+        if g.get("is_playoff") and g.get("playoff_ats_picks"):
+            for pick in g["playoff_ats_picks"]:
+                if pick.get("tier") in ("GOLD", "SILVER"):
+                    po_ats_alerts.append({
+                        "game_key": "%s:%s" % (g.get("away_team", ""), g.get("home_team", "")),
+                        "home_team": g.get("home_team", ""),
+                        "away_team": g.get("away_team", ""),
+                        "home_team_zh": g.get("home_team_zh", g.get("home_team", "")),
+                        "away_team_zh": g.get("away_team_zh", g.get("away_team", "")),
+                        "signal": pick.get("signal"),
+                        "side": pick.get("side"),
+                        "ats_side": pick.get("ats_side"),
+                        "tier": pick.get("tier"),
+                        "backtest_wr": pick.get("backtest_wr"),
+                        "backtest_roi": pick.get("backtest_roi"),
+                        "reason_zh": pick.get("reason_zh"),
+                        "ats_winner": g.get("ats_winner"),
+                    })
+    summary["playoff_ats_alerts"] = po_ats_alerts
+    summary["playoff_ats_count"] = len(po_ats_alerts)
+
     if is_historical:
         ml_correct = sum(1 for g in games if g.get("ml_correct") is True)
         ml_graded = sum(1 for g in games if g.get("ml_correct") is not None)

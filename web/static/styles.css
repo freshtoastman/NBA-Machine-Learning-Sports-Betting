@@ -3164,3 +3164,113 @@ h3 {
     }
     .ai-log-stat-val { font-size: 15px; }
 }
+
+/* ========== Playoff ATS Alert Panel ========== */
+.dash-chip.playoff-ats {
+    background: linear-gradient(90deg, rgba(99, 179, 255, 0.18), rgba(56, 130, 220, 0.08));
+    border-color: rgba(99, 179, 255, 0.5);
+    color: #99d4ff;
+}
+.dash-chip.playoff-ats:hover {
+    background: linear-gradient(90deg, rgba(99, 179, 255, 0.28), rgba(56, 130, 220, 0.15));
+}
+.dash-chip.playoff-ats b { color: #c8eaff; font-size: 15px; }
+
+.po-ats-alert-panel {
+    background: linear-gradient(135deg, rgba(15, 25, 40, 0.95), rgba(10, 20, 35, 0.95));
+    border: 1px solid rgba(99, 179, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 12px;
+}
+.po-ats-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.po-ats-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #99d4ff;
+    letter-spacing: 0.02em;
+}
+.po-ats-sub {
+    font-size: 11px;
+    color: var(--muted);
+}
+.po-ats-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.po-ats-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    min-width: 200px;
+    flex: 1;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.po-ats-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    color: inherit;
+    text-decoration: none;
+}
+.po-ats-card.tier-gold {
+    background: rgba(255, 215, 0, 0.10);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+}
+.po-ats-card.tier-silver {
+    background: rgba(192, 192, 192, 0.08);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+.po-ats-card-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.po-ats-tier-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+.po-ats-tier-badge.tier-gold { background: rgba(255,215,0,0.2); color: #ffd700; }
+.po-ats-tier-badge.tier-silver { background: rgba(192,192,192,0.15); color: #c0c0c0; }
+.po-ats-signal {
+    font-size: 11px;
+    color: var(--muted);
+    flex: 1;
+}
+.po-ats-card-main {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+.po-ats-card-main strong {
+    font-size: 15px;
+    color: var(--text);
+}
+.po-ats-direction {
+    font-size: 12px;
+    color: #99d4ff;
+    font-weight: 600;
+}
+.po-ats-card-meta {
+    font-size: 11px;
+    color: var(--muted);
+}
+.po-ats-card-meta b { color: #7ecf7e; }
+.po-ats-reason {
+    font-size: 11px;
+    color: rgba(200, 220, 255, 0.6);
+    margin-top: 2px;
+    line-height: 1.4;
+}

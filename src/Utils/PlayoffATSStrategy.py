@@ -4,7 +4,8 @@ Backtested on 13 seasons (2012-2025) of playoff data.  The signals below
 survived walk-forward validation and target the structural inefficiencies
 of playoff spreads:
 
-  * Markets overvalue regular-season dominance → favorites only cover 46.5%
+  * Markets overvalue regular-season dominance → favorites only cover 48.1%
+  * Small spread (0-2 pts): away underdog covers 57.8% (n=116, ROI+10.3%)
   * Elimination-game intensity compresses margins → underdogs cover 57.5%
   * ML model confidence on small spreads is highly predictive (80% WR)
   * ATS cold streaks in regular season reverse in playoffs (regression)
@@ -253,6 +254,32 @@ def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None
     )
 
 
+def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Home team giving ≤2 pts → bet away to cover.
+
+    13-season backtest: 57.8% WR, +10.3% ROI, n=116 games, 9/13 seasons profitable.
+    Structural reason: when home is only a 1-2 pt favorite, the spread under-prices
+    away competitiveness in playoff intensity. Home court advantage is smaller than
+    the market assumes at short spreads.
+    """
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    # Home is giving 0-2 pts (home is slight favorite)
+    if not (0 < spread <= 2):
+        return None
+    return PlayoffATSPick(
+        signal_name="小讓分客場受讓",
+        side="away",
+        ats_side="受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.578,
+        backtest_roi=10.3,
+        backtest_n=116,
+        reason_zh=f"主場僅讓 {spread:.1f} 分，市場高估主場優勢，客場受讓 13 賽季勝率 57.8%",
+    )
+
+
 def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """5.5 ≤ |spread| < 8 → bet underdog (13-season: 60.9% WR, +16.3% ROI).
 
@@ -284,6 +311,7 @@ _SIGNALS = [
     _ats_cold_bounce,
     _complacent_leader,
     _ml_moderate_conf_small_spread,
+    _small_spread_away_dog,
     _evenly_matched_home,
     _elimination_underdog,
     _medium_spread_dog,

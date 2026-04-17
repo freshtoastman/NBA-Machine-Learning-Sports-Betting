@@ -79,7 +79,50 @@
                 <span class="dash-chip hit"><span class="dash-lbl">ML 命中</span><b>{{ summary.ml_hit_rate }}%</b><span class="dash-sub">{{ summary.ml_correct }}/{{ summary.ml_graded }}</span></span>
                 {% endif %}
 
+                {% if summary.playoff_ats_count %}
+                <span class="dash-chip playoff-ats" style="cursor:pointer" onclick="scrollToPlayoffAts()" title="季後賽回測信號 (GOLD/SILVER)">
+                    🏀 <b>{{ summary.playoff_ats_count }}</b> 季後賽優勢
+                </span>
+                {% endif %}
+
                 <span class="dash-chip muted" title="當日預測的主/客場勝隊比">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
+            </div>
+            {% endif %}
+
+            {# ── 季後賽優勢投注 Alert Panel ── #}
+            {% if summary.playoff_ats_alerts %}
+            <div class="po-ats-alert-panel" id="po-ats-panel">
+                <div class="po-ats-header">
+                    <span class="po-ats-title">🏀 季後賽優勢投注</span>
+                    <span class="po-ats-sub">回測信號 · 點擊場次查看詳情</span>
+                </div>
+                <div class="po-ats-list">
+                {% for alert in summary.playoff_ats_alerts %}
+                    {% set tier_cls = 'gold' if alert.tier == 'GOLD' else 'silver' %}
+                    {% set side_zh = alert.home_team_zh if alert.side == 'home' else alert.away_team_zh %}
+                    <a class="po-ats-card tier-{{ tier_cls }}" href="#pick-{{ alert.game_key }}">
+                        <div class="po-ats-card-top">
+                            <span class="po-ats-tier-badge tier-{{ tier_cls }}">{{ alert.tier }}</span>
+                            <span class="po-ats-signal">{{ alert.signal }}</span>
+                            {% if alert.ats_winner %}
+                            <span class="badge-mini {% if alert.side == alert.ats_winner %}ok{% else %}fail{% endif %}">
+                                {% if alert.side == alert.ats_winner %}✓ 命中{% else %}✗ 失敗{% endif %}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="po-ats-card-main">
+                            <strong>{{ side_zh }}</strong>
+                            <span class="po-ats-direction">{{ alert.ats_side }}</span>
+                        </div>
+                        <div class="po-ats-card-meta">
+                            {{ alert.away_team_zh }} @ {{ alert.home_team_zh }}
+                            · 回測 <b>{{ (alert.backtest_wr * 100)|round(0)|int }}%</b> WR
+                            {% if alert.backtest_roi is not none %} · ROI +{{ alert.backtest_roi }}%{% endif %}
+                        </div>
+                        <div class="po-ats-reason">{{ alert.reason_zh }}</div>
+                    </a>
+                {% endfor %}
+                </div>
             </div>
             {% endif %}
 
@@ -632,6 +675,10 @@
     function scrollToValue() {
         const card = document.querySelector('.pick-card.value-pick');
         if (card) highlightCard(card);
+    }
+    function scrollToPlayoffAts() {
+        const panel = document.getElementById('po-ats-panel');
+        if (panel) { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }
     function scrollToGame(gameName) {
         // Match game name (Chinese) to a card by checking team names

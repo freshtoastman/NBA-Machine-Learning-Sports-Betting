@@ -88,6 +88,28 @@ def export_date(target_date: date) -> dict | None:
     over_picks = sum(1 for g in games_list if g.get("ou_pick") == "OVER")
     avg_conf = sum(max(g.get("home_confidence", 0), g.get("away_confidence", 0)) for g in games_list) / n if n else 0
 
+    # Collect GOLD/SILVER playoff ATS signals across all games.
+    po_ats_alerts = []
+    for g in games_list:
+        if g.get("is_playoff") and g.get("playoff_ats_picks"):
+            for pick in g["playoff_ats_picks"]:
+                if pick.get("tier") in ("GOLD", "SILVER"):
+                    po_ats_alerts.append({
+                        "game_key": "%s:%s" % (g["away_team"], g["home_team"]),
+                        "home_team": g["home_team"],
+                        "away_team": g["away_team"],
+                        "home_team_zh": g.get("home_team_zh", g["home_team"]),
+                        "away_team_zh": g.get("away_team_zh", g["away_team"]),
+                        "signal": pick.get("signal"),
+                        "side": pick.get("side"),
+                        "ats_side": pick.get("ats_side"),
+                        "tier": pick.get("tier"),
+                        "backtest_wr": pick.get("backtest_wr"),
+                        "backtest_roi": pick.get("backtest_roi"),
+                        "reason_zh": pick.get("reason_zh"),
+                        "ats_winner": g.get("ats_winner"),
+                    })
+
     summary = {
         "games": n,
         "home_picks": home_picks,
@@ -97,6 +119,8 @@ def export_date(target_date: date) -> dict | None:
         "avg_confidence": round(avg_conf, 1),
         "value_picks": sum(1 for g in games_list if g.get("is_value")),
         "golden_picks": sum(1 for g in games_list if g.get("is_golden")),
+        "playoff_ats_alerts": po_ats_alerts,
+        "playoff_ats_count": len(po_ats_alerts),
     }
 
     if not is_today:
