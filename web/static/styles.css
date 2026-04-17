@@ -3274,3 +3274,283 @@ h3 {
     margin-top: 2px;
     line-height: 1.4;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Right Side Panel — ATS Daily Log & H2H Records
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Panel container — fixed to right edge, full viewport height */
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    z-index: 1050;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    pointer-events: none;   /* collapsed: only the tab is clickable */
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+}
+.side-panel.open {
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Toggle tab — sticks out on left edge of panel, always visible */
+.sp-toggle-tab {
+    position: absolute;
+    left: -36px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    background: #1e3a5f;
+    border: 1px solid rgba(100,160,255,0.25);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    color: #c0d8ff;
+    cursor: pointer;
+    padding: 12px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: auto;
+    transition: background 0.15s;
+}
+.sp-toggle-tab:hover { background: #254a7a; }
+.sp-toggle-icon { font-size: 16px; line-height: 1; }
+.sp-toggle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; writing-mode: vertical-rl; text-orientation: mixed; }
+
+/* Inner panel body */
+.sp-inner {
+    flex: 1;
+    background: #0e1e35;
+    border-left: 1px solid rgba(100,160,255,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+}
+
+/* Header */
+.sp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(100,160,255,0.15);
+    flex-shrink: 0;
+    background: #0a1728;
+}
+.sp-title { font-size: 14px; font-weight: 700; color: #c0d8ff; }
+.sp-close-btn {
+    background: none;
+    border: none;
+    color: #6b8fb5;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+    transition: color 0.15s, background 0.15s;
+}
+.sp-close-btn:hover { color: #c0d8ff; background: rgba(255,255,255,0.06); }
+
+/* Tab row */
+.sp-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(100,160,255,0.15);
+    flex-shrink: 0;
+}
+.sp-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #6b8fb5;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 4px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+.sp-tab:hover { color: #9fc0e8; }
+.sp-tab.active { color: #5ba3f5; border-bottom-color: #5ba3f5; }
+
+/* Tab content area — scrollable */
+.sp-tab-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #1e3a5f transparent;
+}
+.sp-tab-content::-webkit-scrollbar { width: 4px; }
+.sp-tab-content::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 2px; }
+
+/* Loading / error / empty states */
+.sp-loading { color: #6b8fb5; font-size: 12px; text-align: center; padding: 20px 0; }
+.sp-error { color: #f77; font-size: 12px; padding: 10px; }
+.sp-empty { color: #6b8fb5; font-size: 12px; text-align: center; padding: 20px 0; }
+.sp-placeholder {
+    color: #6b8fb5;
+    font-size: 12px;
+    text-align: center;
+    padding: 40px 20px;
+    line-height: 1.8;
+}
+
+/* ── ATS Daily Log Stats ── */
+.sp-ats-stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.sp-stat {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+}
+.sp-stat-lbl { font-size: 10px; color: #6b8fb5; margin-bottom: 2px; }
+.sp-stat-val { font-size: 18px; font-weight: 800; color: #c0d8ff; }
+.sp-stat-sub { font-size: 10px; color: #6b8fb5; }
+.sp-stat-val.sp-stat-good { color: #7ecf7e; }
+.sp-stat-val.sp-stat-ok { color: #e8c96a; }
+.sp-stat-val.sp-stat-bad { color: #e87070; }
+
+/* Day block */
+.sp-day-block {
+    margin-bottom: 10px;
+    border: 1px solid rgba(100,160,255,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.sp-day-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(100,160,255,0.08);
+}
+.sp-day-date { font-size: 11px; font-weight: 700; color: #5ba3f5; text-decoration: none; }
+.sp-day-date:hover { text-decoration: underline; }
+.sp-day-rate { font-size: 11px; color: #6b8fb5; }
+.sp-day-rate-good { color: #7ecf7e; }
+.sp-day-rate-bad { color: #e87070; }
+
+/* Individual pick row */
+.sp-pick {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(100,160,255,0.06);
+}
+.sp-pick:last-child { border-bottom: none; }
+.sp-pick-status {
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+    padding-top: 1px;
+}
+.sp-st-win { color: #7ecf7e; }
+.sp-st-loss { color: #e87070; }
+.sp-st-pending { color: #6b8fb5; font-size: 11px; }
+.sp-pick-info { flex: 1; min-width: 0; }
+.sp-pick-name { font-size: 11px; color: #c0d8ff; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-pick-detail { font-size: 10px; color: #6b8fb5; margin-top: 1px; }
+.sp-edge { color: #5ba3f5; margin-left: 4px; font-weight: 700; }
+
+/* ── H2H Records ── */
+.h2h-btn {
+    background: rgba(80,160,255,0.1);
+    border: 1px solid rgba(80,160,255,0.25);
+    color: #7ab8ff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+.h2h-btn:hover {
+    background: rgba(80,160,255,0.2);
+    border-color: rgba(80,160,255,0.5);
+    color: #aad4ff;
+}
+
+.sp-h2h-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(100,160,255,0.15);
+}
+.sp-h2h-title { font-size: 13px; font-weight: 700; color: #c0d8ff; }
+.sp-h2h-season { font-size: 10px; color: #6b8fb5; }
+
+.sp-h2h-ats-summary {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+.sp-h2h-team-rec { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sp-h2h-rec-name { font-size: 11px; font-weight: 700; color: #c0d8ff; text-align: center; }
+.sp-h2h-rec-ats { font-size: 10px; color: #6b8fb5; }
+.sp-h2h-team-rec.good .sp-h2h-rec-ats { color: #7ecf7e; }
+.sp-h2h-team-rec.bad .sp-h2h-rec-ats { color: #e87070; }
+.sp-h2h-vs { font-size: 10px; color: #6b8fb5; text-align: center; white-space: nowrap; }
+
+/* H2H game table */
+.sp-h2h-table { font-size: 11px; }
+.sp-h2h-table-head {
+    display: grid;
+    grid-template-columns: 42px 1fr 34px 34px 26px;
+    gap: 2px;
+    padding: 4px 6px;
+    color: #6b8fb5;
+    font-size: 10px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(100,160,255,0.12);
+    margin-bottom: 2px;
+}
+.sp-h2h-row {
+    display: grid;
+    grid-template-columns: 42px 1fr 34px 34px 26px;
+    gap: 2px;
+    padding: 5px 6px;
+    border-bottom: 1px solid rgba(100,160,255,0.06);
+    align-items: center;
+    transition: background 0.1s;
+}
+.sp-h2h-row:last-child { border-bottom: none; }
+.sp-h2h-row:hover { background: rgba(255,255,255,0.03); }
+.sp-h2h-date { color: #6b8fb5; font-size: 10px; }
+.sp-h2h-teams { color: #b0c8e8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-h2h-teams b { color: #c0d8ff; }
+.sp-h2h-spread { color: #9ab8d8; text-align: right; }
+.sp-h2h-margin { color: #9ab8d8; text-align: right; }
+.sp-h2h-ats { font-weight: 700; text-align: center; }
+.sp-h2h-ats.covered { color: #7ecf7e; }
+.sp-h2h-ats.missed { color: #e87070; }
+.sp-h2h-ats.push { color: #6b8fb5; }
+
+/* Responsive: narrower panel on smaller screens */
+@media (max-width: 600px) {
+    .side-panel { width: 290px; }
+}

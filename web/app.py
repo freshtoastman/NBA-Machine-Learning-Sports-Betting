@@ -1232,5 +1232,194 @@ def player_stats(player_id):
     return jsonify({"success": False, "error": "API error"})
 
 
+# ---------------------------------------------------------------------------
+# API: Head-to-Head Season Records
+# ---------------------------------------------------------------------------
+
+_ODDS_DB_PATH = Path(__file__).parent.parent / "Data" / "OddsData.sqlite"
+
+
+def _freshest_table(con, season: str) -> str:
+    """Return the table name with the most-recent Date for a given season."""
+    candidates = [
+        row[0] for row in
+        con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+        if season in row[0]
+    ]
+    if not candidates:
+        return season
+    if len(candidates) == 1:
+        return candidates[0]
+    best, best_date = candidates[0], ""
+    for c in candidates:
+        try:
+            row = con.execute(f'SELECT MAX(Date) FROM "{c}"').fetchone()
+            d = row[0] or ""
+            if d > best_date:
+                best, best_date = c, d
+        except Exception:
+            pass
+    return best
+
+
+@app.route("/api/h2h")
+def api_h2h():
+    """Return head-to-head records for two teams in the current season.
+
+    Query params:
+      home: home team name (English)
+      away: away team name (English)
+      season: season string, default "2025-26"
+    """
+    home = request.args.get("home", "").strip()
+    away = request.args.get("away", "").strip()
+    season = request.args.get("season", "2025-26")
+
+    if not home or not away:
+        return jsonify({"error": "Missing home or away parameter"}), 400
+
+    if not _ODDS_DB_PATH.exists():
+        return jsonify({"error": "Database not available", "games": [], "total": 0})
+
+    try:
+        con = sqlite3.connect(str(_ODDS_DB_PATH))
+        con.row_factory = sqlite3.Row
+        table = _freshest_table(con, season)
+        rows = con.execute(
+            f"""SELECT Date, Home, Away, Spread, Win_Margin, Points
+                FROM "{table}"
+                WHERE (Home=? AND Away=?) OR (Home=? AND Away=?)
+                ORDER BY Date""",
+            (home, away, away, home),
+        ).fetchall()
+        con.close()
+    except Exception as exc:
+        return jsonify({"error": str(exc), "games": [], "total": 0})
+
+    games = []
+    for r in rows:
+        spread = r["Spread"]   # positive = home favored (gives points)
+        wm = r["Win_Margin"]   # positive = home won
+        if spread is not None and wm is not None:
+            diff = wm - spread
+            if abs(diff) < 0.001:
+                ats_result = "push"
+            elif diff > 0:
+                ats_result = "home"   # home team covered
+            else:
+                ats_result = "away"   # away team covered
+        else:
+            ats_result = None
+
+        games.append({
+            "date": r["Date"],
+            "home": r["Home"],
+            "away": r["Away"],
+            "spread": spread,
+            "win_margin": wm,
+            "ats_result": ats_result,
+        })
+
+    return jsonify({
+        "games": games,
+        "home_team": home,
+        "away_team": away,
+        "season": season,
+        "total": len(games),
+    })
+
+
+# ---------------------------------------------------------------------------
+# API: ATS Model Daily Pick Log
+# ---------------------------------------------------------------------------
+
+@app.route("/api/ats-daily-log")
+def api_ats_daily_log():
+    """Return ATS model value picks (ats_is_value=True) with outcomes for recent days.
+
+    Query params:
+      days: look-back window (default 30)
+    """
+    days = int(request.args.get("days", 30))
+    today_ = today_taipei()
+
+    day_records = []
+    for offset in range(days):
+        d = today_ - timedelta(days=offset)
+        iso = d.isoformat()
+        data = load_date_data(iso)
+        if not data:
+            continue
+
+        day_picks = []
+        for key, g in (data.get("games") or {}).items():
+            if not g.get("ats_is_value"):
+                continue
+
+            ats_pick_side = g.get("ats_model_pick")   # 'home' or 'away'
+            ats_winner = g.get("ats_winner")           # 'home', 'away', 'push', or None
+            spread = g.get("spread")
+
+            if ats_winner and ats_winner != "push":
+                correct = 1 if ats_pick_side == ats_winner else 0
+            elif ats_winner == "push":
+                correct = None
+            else:
+                correct = None   # pending / no result yet
+
+            # Build readable pick string (e.g. "讓 3.5" or "受讓 3.5")
+            home_zh = g.get("home_team_zh") or g.get("home_team", "?")
+            away_zh = g.get("away_team_zh") or g.get("away_team", "?")
+            picked_zh = home_zh if ats_pick_side == "home" else away_zh
+            if spread is not None:
+                abs_sp = abs(float(spread))
+                is_fav = (ats_pick_side == "home" and spread > 0) or \
+                         (ats_pick_side == "away" and spread < 0)
+                if abs_sp == 0:
+                    pick_str = f"{picked_zh}（PK）"
+                elif is_fav:
+                    pick_str = f"{picked_zh} 讓 {abs_sp:.1f}"
+                else:
+                    pick_str = f"{picked_zh} 受讓 {abs_sp:.1f}"
+            else:
+                pick_str = picked_zh
+
+            day_picks.append({
+                "game_date": iso,
+                "game_key": key,
+                "home_team": g.get("home_team"),
+                "away_team": g.get("away_team"),
+                "home_team_zh": home_zh,
+                "away_team_zh": away_zh,
+                "spread": spread,
+                "ats_pick": ats_pick_side,
+                "pick_str": pick_str,
+                "ats_edge": g.get("ats_value_edge"),
+                "ats_winner": ats_winner,
+                "ats_correct": correct,
+                "is_golden": bool(g.get("is_golden")),
+                "is_value": bool(g.get("is_value")),
+            })
+
+        if day_picks:
+            day_records.append({"date": iso, "picks": day_picks})
+
+    # Aggregate stats
+    all_picks = [p for day in day_records for p in day["picks"]]
+    graded = [p for p in all_picks if p["ats_correct"] is not None]
+    wins = sum(1 for p in graded if p["ats_correct"] == 1)
+
+    stats = {
+        "total": len(all_picks),
+        "graded": len(graded),
+        "wins": wins,
+        "losses": len(graded) - wins,
+        "hit_rate": round(wins / len(graded) * 100, 1) if graded else None,
+        "pending": len(all_picks) - len(graded),
+    }
+
+    return jsonify({"days": day_records, "stats": stats})
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

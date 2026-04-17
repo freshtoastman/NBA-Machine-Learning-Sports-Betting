@@ -505,6 +505,7 @@
                         {% if game.spread is defined and game.spread is not none %}
                         <button class="buy-btn" onclick="toggleBuyCalc({{ loop.index0 }}, {{ game.spread }}, '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🎯 買點計算</button>
                         {% endif %}
+                        <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🔄 對戰</button>
                     </div>
                     <div class="ai-content" style="display:none;">
                         <div class="ai-loading">⏳ 搜尋傷兵資訊 + 生成分析中...</div>
@@ -1321,5 +1322,273 @@
     </script>
     {% include 'team_modal.html' %}
     {% include 'player_modal.html' %}
+
+    <!-- ── Right Side Panel ─────────────────────────────────────── -->
+    <div id="side-panel" class="side-panel">
+        <!-- Toggle tab sticks out on the left edge -->
+        <button class="sp-toggle-tab" id="sp-toggle-tab" onclick="toggleSidePanel()" title="ATS 追蹤 / 對戰紀錄">
+            <span class="sp-toggle-icon">📊</span>
+            <span class="sp-toggle-label">ATS</span>
+        </button>
+
+        <div class="sp-inner">
+            <div class="sp-header">
+                <span class="sp-title">📊 ATS 追蹤</span>
+                <button class="sp-close-btn" onclick="toggleSidePanel()">✕</button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="sp-tabs">
+                <button class="sp-tab active" id="sp-tab-ats" onclick="showSpTab('ats')">每日紀錄</button>
+                <button class="sp-tab" id="sp-tab-h2h" onclick="showSpTab('h2h')">對戰紀錄</button>
+            </div>
+
+            <!-- ATS Daily Log Tab -->
+            <div id="sp-content-ats" class="sp-tab-content">
+                <div id="sp-ats-inner">
+                    <div class="sp-loading" id="sp-ats-loading">載入中…</div>
+                    <div id="sp-ats-body" style="display:none;"></div>
+                </div>
+            </div>
+
+            <!-- H2H Records Tab -->
+            <div id="sp-content-h2h" class="sp-tab-content" style="display:none;">
+                <div id="sp-h2h-placeholder" class="sp-placeholder">
+                    點擊場次卡片的<br>「🔄 對戰」按鈕<br>查看兩隊本季對戰紀錄
+                </div>
+                <div id="sp-h2h-body" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ── Side Panel JS ─────────────────────────────────────────── -->
+    <script>
+    // ── Side panel state ──────────────────────────────────────────
+    let _spOpen = false;
+    let _spAtsLoaded = false;
+    let _spActiveTab = 'ats';
+
+    function toggleSidePanel(forceOpen) {
+        const panel = document.getElementById('side-panel');
+        if (!panel) return;
+        if (forceOpen === true) {
+            _spOpen = true;
+        } else if (forceOpen === false) {
+            _spOpen = false;
+        } else {
+            _spOpen = !_spOpen;
+        }
+        panel.classList.toggle('open', _spOpen);
+        if (_spOpen && !_spAtsLoaded) {
+            loadSpAts();
+        }
+    }
+
+    function showSpTab(tab) {
+        _spActiveTab = tab;
+        document.querySelectorAll('.sp-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.sp-tab-content').forEach(c => c.style.display = 'none');
+        const tabBtn = document.getElementById('sp-tab-' + tab);
+        const tabContent = document.getElementById('sp-content-' + tab);
+        if (tabBtn) tabBtn.classList.add('active');
+        if (tabContent) tabContent.style.display = 'block';
+    }
+
+    // ── ATS Daily Log ─────────────────────────────────────────────
+    function loadSpAts() {
+        const loading = document.getElementById('sp-ats-loading');
+        const body = document.getElementById('sp-ats-body');
+        if (!loading || !body) return;
+        loading.style.display = 'block';
+        body.style.display = 'none';
+
+        fetch('/api/ats-daily-log?days=30')
+            .then(r => r.json())
+            .then(data => {
+                loading.style.display = 'none';
+                body.style.display = 'block';
+                _spAtsLoaded = true;
+
+                const s = data.stats || {};
+                const days = data.days || [];
+
+                // Stats banner
+                const hrClass = s.hit_rate >= 70 ? 'sp-stat-good' : s.hit_rate >= 55 ? 'sp-stat-ok' : s.hit_rate != null ? 'sp-stat-bad' : '';
+                let html = `<div class="sp-ats-stats">
+                    <div class="sp-stat">
+                        <div class="sp-stat-lbl">命中率</div>
+                        <div class="sp-stat-val ${hrClass}">${s.hit_rate != null ? s.hit_rate + '%' : '—'}</div>
+                        <div class="sp-stat-sub">${s.wins || 0}W ${s.losses || 0}L</div>
+                    </div>
+                    <div class="sp-stat">
+                        <div class="sp-stat-lbl">總場次</div>
+                        <div class="sp-stat-val">${s.total || 0}</div>
+                        <div class="sp-stat-sub">${s.pending || 0} 待開</div>
+                    </div>
+                </div>`;
+
+                if (!days.length) {
+                    html += '<div class="sp-empty">近 30 日無 ATS 價值押注紀錄</div>';
+                } else {
+                    days.forEach(day => {
+                        const picks = day.picks || [];
+                        const graded = picks.filter(p => p.ats_correct !== null);
+                        const dayWins = picks.filter(p => p.ats_correct === 1).length;
+                        const rateStr = graded.length ? `${Math.round(dayWins / graded.length * 100)}% (${dayWins}/${graded.length})` : `${picks.length} 待開`;
+                        const rateClass = graded.length && dayWins / graded.length >= 0.6 ? 'sp-day-rate-good'
+                                        : graded.length && dayWins / graded.length < 0.5 ? 'sp-day-rate-bad' : '';
+
+                        html += `<div class="sp-day-block">
+                            <div class="sp-day-head">
+                                <a href="?date=${day.date}" class="sp-day-date">${day.date}</a>
+                                <span class="sp-day-rate ${rateClass}">${rateStr}</span>
+                            </div>`;
+
+                        picks.forEach(p => {
+                            const st = p.ats_correct === 1 ? 'win' : p.ats_correct === 0 ? 'loss' : 'pending';
+                            const stText = p.ats_correct === 1 ? '✓' : p.ats_correct === 0 ? '✗' : '⏳';
+                            const badge = p.is_golden ? '🥇 ' : p.is_value ? '💎 ' : '';
+                            const edge = p.ats_edge ? `<span class="sp-edge">+${p.ats_edge}pp</span>` : '';
+                            html += `<div class="sp-pick sp-pick-${st}">
+                                <span class="sp-pick-status sp-st-${st}">${stText}</span>
+                                <div class="sp-pick-info">
+                                    <div class="sp-pick-name">${badge}${p.away_team_zh || p.away_team} @ ${p.home_team_zh || p.home_team}</div>
+                                    <div class="sp-pick-detail">${p.pick_str || ''}${edge}</div>
+                                </div>
+                            </div>`;
+                        });
+
+                        html += '</div>';
+                    });
+                }
+
+                body.innerHTML = html;
+            })
+            .catch(err => {
+                const loading2 = document.getElementById('sp-ats-loading');
+                const body2 = document.getElementById('sp-ats-body');
+                if (loading2) loading2.style.display = 'none';
+                if (body2) { body2.style.display = 'block'; body2.innerHTML = `<div class="sp-error">⚠️ ${err.message}</div>`; }
+            });
+    }
+
+    // ── H2H Records ───────────────────────────────────────────────
+    function openH2H(homeEn, awayEn, homeZh, awayZh) {
+        // Open panel and switch to H2H tab
+        toggleSidePanel(true);
+        showSpTab('h2h');
+
+        const placeholder = document.getElementById('sp-h2h-placeholder');
+        const body = document.getElementById('sp-h2h-body');
+        if (!placeholder || !body) return;
+
+        placeholder.style.display = 'none';
+        body.style.display = 'block';
+        body.innerHTML = '<div class="sp-loading">載入對戰紀錄…</div>';
+
+        fetch(`/api/h2h?home=${encodeURIComponent(homeEn)}&away=${encodeURIComponent(awayEn)}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    body.innerHTML = `<div class="sp-error">⚠️ ${data.error}</div>`;
+                    return;
+                }
+
+                const games = data.games || [];
+                const season = data.season || '2025-26';
+
+                // Compute ATS records for home_team and away_team
+                // home_team = homeEn (the requested "home" team for today's game)
+                let hCover = 0, hMiss = 0, aCover = 0, aMiss = 0;
+                games.forEach(g => {
+                    if (!g.ats_result || g.ats_result === 'push') return;
+                    // ats_result = 'home' means g.home covered
+                    const homeActuallyCovered = g.ats_result === 'home';
+                    if (g.home === homeEn) {
+                        // homeEn was home in this game
+                        homeActuallyCovered ? hCover++ : hMiss++;
+                        homeActuallyCovered ? aMiss++ : aCover++;
+                    } else {
+                        // homeEn was away in this game
+                        homeActuallyCovered ? hMiss++ : hCover++;
+                        homeActuallyCovered ? aCover++ : aMiss++;
+                    }
+                });
+
+                // Header
+                let html = `<div class="sp-h2h-header">
+                    <span class="sp-h2h-title">${homeZh} vs ${awayZh}</span>
+                    <span class="sp-h2h-season">${season}</span>
+                </div>`;
+
+                if (!games.length) {
+                    html += '<div class="sp-empty">本季尚無對戰紀錄</div>';
+                } else {
+                    // ATS summary records
+                    const hRate = (hCover + hMiss) ? Math.round(hCover / (hCover + hMiss) * 100) : null;
+                    const aRate = (aCover + aMiss) ? Math.round(aCover / (aCover + aMiss) * 100) : null;
+
+                    html += `<div class="sp-h2h-ats-summary">
+                        <div class="sp-h2h-team-rec ${hRate >= 60 ? 'good' : hRate != null && hRate < 40 ? 'bad' : ''}">
+                            <span class="sp-h2h-rec-name">${homeZh}</span>
+                            <span class="sp-h2h-rec-ats">ATS ${hCover}-${hMiss}${hRate != null ? ' (' + hRate + '%)' : ''}</span>
+                        </div>
+                        <div class="sp-h2h-vs">對戰共 ${games.length} 場</div>
+                        <div class="sp-h2h-team-rec ${aRate >= 60 ? 'good' : aRate != null && aRate < 40 ? 'bad' : ''}">
+                            <span class="sp-h2h-rec-name">${awayZh}</span>
+                            <span class="sp-h2h-rec-ats">ATS ${aCover}-${aMiss}${aRate != null ? ' (' + aRate + '%)' : ''}</span>
+                        </div>
+                    </div>`;
+
+                    // Game-by-game table
+                    html += '<div class="sp-h2h-table">';
+                    html += `<div class="sp-h2h-table-head">
+                        <span>日期</span><span>主隊</span><span>讓分</span><span>比分</span><span>ATS</span>
+                    </div>`;
+
+                    games.forEach(g => {
+                        const isHomeHome = g.home === homeEn; // homeEn is the home team today
+                        const homeIsGame = g.home;
+                        const awayIsGame = g.away;
+                        // Show team names in zh
+                        const gameHomeZh = isHomeHome ? homeZh : awayZh;
+                        const gameAwayZh = isHomeHome ? awayZh : homeZh;
+
+                        const sp = g.spread;
+                        const wm = g.win_margin;
+                        const spStr = sp != null ? (sp > 0 ? `-${sp}` : sp < 0 ? `+${-sp}` : 'PK') : '—';
+                        const scoreStr = wm != null ? (wm >= 0 ? `+${wm}` : `${wm}`) : '—';
+
+                        const ar = g.ats_result;
+                        // From homeEn's perspective: did homeEn cover?
+                        let atsCls = '', atsText = '—';
+                        if (ar) {
+                            if (ar === 'push') {
+                                atsCls = 'push'; atsText = 'PK';
+                            } else {
+                                const homeEnCovered = (ar === 'home') === isHomeHome;
+                                atsCls = homeEnCovered ? 'covered' : 'missed';
+                                atsText = homeEnCovered ? '✓' : '✗';
+                            }
+                        }
+
+                        html += `<div class="sp-h2h-row">
+                            <span class="sp-h2h-date">${g.date ? g.date.slice(5) : '—'}</span>
+                            <span class="sp-h2h-teams">${gameAwayZh}@<b>${gameHomeZh}</b></span>
+                            <span class="sp-h2h-spread">${spStr}</span>
+                            <span class="sp-h2h-margin">${scoreStr}</span>
+                            <span class="sp-h2h-ats ${atsCls}">${atsText}</span>
+                        </div>`;
+                    });
+
+                    html += '</div>';
+                }
+
+                body.innerHTML = html;
+            })
+            .catch(err => {
+                body.innerHTML = `<div class="sp-error">⚠️ ${err.message}</div>`;
+            });
+    }
+    </script>
 </body>
 </html>
