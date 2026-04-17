@@ -1355,7 +1355,7 @@ def api_h2h():
 
 @app.route("/api/ats-daily-log")
 def api_ats_daily_log():
-    """Return ATS model value picks (ats_is_value=True) with outcomes for recent days.
+    """Return all ATS model picks with outcomes for recent days.
 
     Query params:
       days: look-back window (default 30)
@@ -1373,10 +1373,10 @@ def api_ats_daily_log():
 
         day_picks = []
         for key, g in (data.get("games") or {}).items():
-            if not g.get("ats_is_value"):
+            ats_pick_side = g.get("ats_model_pick")
+            if not ats_pick_side:
                 continue
 
-            ats_pick_side = g.get("ats_model_pick")   # 'home' or 'away'
             ats_winner = g.get("ats_winner")           # 'home', 'away', 'push', or None
             spread = g.get("spread")
 
@@ -1419,6 +1419,7 @@ def api_ats_daily_log():
                 "ats_correct": correct,
                 "is_golden": bool(g.get("is_golden")),
                 "is_value": bool(g.get("is_value")),
+                "ats_is_value": bool(g.get("ats_is_value")),
             })
 
         if day_picks:
@@ -1429,6 +1430,11 @@ def api_ats_daily_log():
     graded = [p for p in all_picks if p["ats_correct"] is not None]
     wins = sum(1 for p in graded if p["ats_correct"] == 1)
 
+    # Recent 5-pick streak from graded picks
+    last5 = graded[-5:] if len(graded) >= 5 else graded
+    streak_wins = sum(1 for p in last5 if p["ats_correct"] == 1)
+    streak_str = f"{streak_wins}-{len(last5) - streak_wins}" if last5 else None
+
     stats = {
         "total": len(all_picks),
         "graded": len(graded),
@@ -1436,6 +1442,7 @@ def api_ats_daily_log():
         "losses": len(graded) - wins,
         "hit_rate": round(wins / len(graded) * 100, 1) if graded else None,
         "pending": len(all_picks) - len(graded),
+        "last5": streak_str,
     }
 
     return jsonify({"days": day_records, "stats": stats})

@@ -334,19 +334,6 @@
         </section>
         {% endif %}
 
-        {# ── AI Prediction Log (AI 預測紀錄) ── #}
-        <section class="ai-log-section">
-            <details class="ai-log-details">
-                <summary class="ai-log-summary" onclick="loadAiLog()">
-                    <span class="ai-log-title">📋 AI 預測紀錄</span>
-                    <span class="ai-log-hint">點擊展開歷史預測與命中率</span>
-                </summary>
-                <div class="ai-log-body" id="ai-log-body">
-                    <div class="ai-log-loading" style="display:none;">⏳ 載入紀錄中...</div>
-                    <div class="ai-log-content"></div>
-                </div>
-            </details>
-        </section>
 
         <main class="picks-grid compact-grid">
             {% if fanduel_games|length == 0 %}
@@ -1340,7 +1327,7 @@
 
             <!-- Tabs -->
             <div class="sp-tabs">
-                <button class="sp-tab active" id="sp-tab-ats" onclick="showSpTab('ats')">每日紀錄</button>
+                <button class="sp-tab active" id="sp-tab-ats" onclick="showSpTab('ats')">預測紀錄</button>
                 <button class="sp-tab" id="sp-tab-h2h" onclick="showSpTab('h2h')">對戰紀錄</button>
             </div>
 
@@ -1418,17 +1405,22 @@
                     <div class="sp-stat">
                         <div class="sp-stat-lbl">命中率</div>
                         <div class="sp-stat-val ${hrClass}">${s.hit_rate != null ? s.hit_rate + '%' : '—'}</div>
-                        <div class="sp-stat-sub">${s.wins || 0}W ${s.losses || 0}L</div>
+                        <div class="sp-stat-sub">${s.wins || 0}勝 ${s.losses || 0}負</div>
                     </div>
                     <div class="sp-stat">
                         <div class="sp-stat-lbl">總場次</div>
-                        <div class="sp-stat-val">${s.total || 0}</div>
+                        <div class="sp-stat-val">${s.graded || 0}</div>
                         <div class="sp-stat-sub">${s.pending || 0} 待開</div>
+                    </div>
+                    <div class="sp-stat">
+                        <div class="sp-stat-lbl">近5場</div>
+                        <div class="sp-stat-val">${s.last5 || '—'}</div>
+                        <div class="sp-stat-sub">勝-負</div>
                     </div>
                 </div>`;
 
                 if (!days.length) {
-                    html += '<div class="sp-empty">近 30 日無 ATS 價值押注紀錄</div>';
+                    html += '<div class="sp-empty">近 30 日無 ATS 預測紀錄</div>';
                 } else {
                     days.forEach(day => {
                         const picks = day.picks || [];
@@ -1447,7 +1439,7 @@
                         picks.forEach(p => {
                             const st = p.ats_correct === 1 ? 'win' : p.ats_correct === 0 ? 'loss' : 'pending';
                             const stText = p.ats_correct === 1 ? '✓' : p.ats_correct === 0 ? '✗' : '⏳';
-                            const badge = p.is_golden ? '🥇 ' : p.is_value ? '💎 ' : '';
+                            const badge = p.is_golden ? '🥇 ' : p.ats_is_value ? '⭐ ' : '';
                             const edge = p.ats_edge ? `<span class="sp-edge">+${p.ats_edge}pp</span>` : '';
                             html += `<div class="sp-pick sp-pick-${st}">
                                 <span class="sp-pick-status sp-st-${st}">${stText}</span>
