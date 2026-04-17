@@ -134,6 +134,15 @@ def _add_rolling_features(long: pd.DataFrame) -> pd.DataFrame:
     long["form_pts_diff_5"] = (pts_for_prev - pts_against_prev).groupby(long["Team"]).transform(
         lambda s: s.rolling(5, min_periods=2).mean()
     )
+    long["form_pts_for_5"] = pts_for_prev.groupby(long["Team"]).transform(
+        lambda s: s.rolling(5, min_periods=2).mean()
+    )
+    long["form_pts_against_5"] = pts_against_prev.groupby(long["Team"]).transform(
+        lambda s: s.rolling(5, min_periods=2).mean()
+    )
+    long["form_pts_diff_10"] = (pts_for_prev - pts_against_prev).groupby(long["Team"]).transform(
+        lambda s: s.rolling(10, min_periods=3).mean()
+    )
 
     # Streaks: count of consecutive prior games with same outcome.
     def _streak(series, value):
@@ -282,6 +291,10 @@ def build_feature_table() -> pd.DataFrame:
         "form_ats_pct_home_10", "form_ats_pct_away_10",
         # Temporal features (positions 14-16): excluded from training via DROP_COLUMNS.
         "game_num_season", "month_sin", "month_cos",
+        # Offense/defense split + longer-window diff (positions 17-19): added 2026-04-17.
+        # Included in retrain experiments; excluded from 175-feature production model
+        # via DROP_COLUMNS (safely truncated by _align_features()).
+        "form_pts_for_5", "form_pts_against_5", "form_pts_diff_10",
     ]
     table = long[feature_cols].copy()
     _FEATURE_TABLE_CACHE = table

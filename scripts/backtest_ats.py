@@ -666,12 +666,24 @@ def analyze_with_model(games: pd.DataFrame):
     test_df = ds.iloc[test_start:].reset_index(drop=True)
     print(f"  Test set: {len(test_df)} games")
 
-    # Prepare features (same drops as ATS trainer)
+    # Prepare features (same drops as ATS trainer — must stay in sync with
+    # src/Train-Models/XGBoost_Model_ATS.py DROP_COLUMNS)
     drop_cols = [
         "index", "Score", "Home-Team-Win", "TEAM_NAME", "Date",
         "index.1", "TEAM_NAME.1", "Date.1", "OU-Cover", "OU",
         "Win_Margin", "ATS_Cover",
         "Home", "Away", "Points", "ML_Home", "ML_Away",
+        # Temporal features excluded from 175-feature production model.
+        "H_game_num_season", "A_game_num_season", "D_game_num_season",
+        "H_month_sin", "A_month_sin", "D_month_sin",
+        "H_month_cos", "A_month_cos", "D_month_cos",
+        # Home/away split ATS features excluded from production model.
+        "H_form_ats_pct_home_10", "A_form_ats_pct_home_10", "D_form_ats_pct_home_10",
+        "H_form_ats_pct_away_10", "A_form_ats_pct_away_10", "D_form_ats_pct_away_10",
+        # Offense/defense split + 10-game diff: excluded from 175-feature production model.
+        "H_form_pts_for_5", "A_form_pts_for_5", "D_form_pts_for_5",
+        "H_form_pts_against_5", "A_form_pts_against_5", "D_form_pts_against_5",
+        "H_form_pts_diff_10", "A_form_pts_diff_10", "D_form_pts_diff_10",
     ]
     X_test = test_df.drop(columns=drop_cols, errors="ignore").astype(float).to_numpy()
     y_test = test_df["ATS_Cover"].astype(int).to_numpy()

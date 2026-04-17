@@ -3,9 +3,13 @@ import re
 from pathlib import Path
 
 import numpy as np
-import tensorflow as tf
+try:
+    import tensorflow as tf
+    from keras.models import load_model
+except ImportError:
+    tf = None
+    load_model = None
 from colorama import Fore, Style, init, deinit
-from keras.models import load_model
 from src.Utils import Expected_Value
 from src.Utils import Kelly_Criterion as kc
 

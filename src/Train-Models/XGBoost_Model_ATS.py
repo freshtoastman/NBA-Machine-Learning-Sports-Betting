@@ -54,6 +54,13 @@ DROP_COLUMNS = [
     # Excluded permanently: home/away split features do not improve precision.
     "H_form_ats_pct_home_10", "A_form_ats_pct_home_10", "D_form_ats_pct_home_10",
     "H_form_ats_pct_away_10", "A_form_ats_pct_away_10", "D_form_ats_pct_away_10",
+    # Offense/defense split + 10-game diff features added 2026-04-17.
+    # seed=42 with 184 features (150 trials) gave 75.6% OOS 2025-26 (45 picks)
+    # vs production 76.6% (47 picks) — WORSE on both seasons. Excluded to keep
+    # the stable 175-feature production model architecture.
+    "H_form_pts_for_5", "A_form_pts_for_5", "D_form_pts_for_5",
+    "H_form_pts_against_5", "A_form_pts_against_5", "D_form_pts_against_5",
+    "H_form_pts_diff_10", "A_form_pts_diff_10", "D_form_pts_diff_10",
 ]
 NUM_CLASSES = 2
 
