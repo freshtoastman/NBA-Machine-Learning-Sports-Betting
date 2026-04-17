@@ -1,6 +1,6 @@
 {
  "date": "2026-04-17",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 2,
   "home_picks": 1,
@@ -11,7 +11,21 @@
   "value_picks": 0,
   "golden_picks": 0,
   "playoff_ats_alerts": [],
-  "playoff_ats_count": 0
+  "playoff_ats_count": 0,
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Charlotte Hornets:Orlando Magic": {
@@ -23,11 +37,11 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 60.0,
-   "home_team_ev": 7.56,
-   "away_team_ev": -11.57,
+   "home_team_ev": 7.57,
+   "away_team_ev": -11.58,
    "home_team_odds": 144,
    "away_team_odds": -172,
-   "home_kelly": 5.25,
+   "home_kelly": 5.26,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
