@@ -505,7 +505,7 @@
                         {% if game.spread is defined and game.spread is not none %}
                         <button class="buy-btn" onclick="toggleBuyCalc({{ loop.index0 }}, {{ game.spread }}, '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🎯 買點計算</button>
                         {% endif %}
-                        <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}', {{ game_key | tojson }})">🔄 對戰</button>
+                        <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}', '{{ game_key }}')">🔄 對戰</button>
                     </div>
                     <div class="ai-content" style="display:none;">
                         <div class="ai-loading">⏳ 搜尋傷兵資訊 + 生成分析中...</div>
