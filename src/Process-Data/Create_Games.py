@@ -19,8 +19,20 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 CONFIG_PATH = BASE_DIR / "config.toml"
 ODDS_DB_PATH = BASE_DIR / "Data" / "OddsData.sqlite"
 TEAMS_DB_PATH = BASE_DIR / "Data" / "TeamData.sqlite"
+ADVANCED_DB_PATH = BASE_DIR / "Data" / "AdvancedTeamData.sqlite"
 OUTPUT_DB_PATH = BASE_DIR / "Data" / "dataset.sqlite"
 OUTPUT_TABLE = "dataset_2012-26"
+
+# Advanced stat columns we want to merge (subset of MeasureType=Advanced).
+# These are the most predictive efficiency metrics not already in Base stats.
+ADVANCED_COLS = [
+    "TEAM_ID",
+    "OFF_RATING", "DEF_RATING", "NET_RATING",
+    "PACE", "TS_PCT", "EFG_PCT",
+    "OREB_PCT", "DREB_PCT", "REB_PCT",
+    "TM_TOV_PCT", "AST_PCT", "AST_TO", "AST_RATIO",
+    "PIE",
+]
 
 TEAM_INDEX_BY_SEASON = {
     "2007-08": team_index_07,
@@ -78,6 +90,39 @@ def fetch_team_table(teams_con, date_str):
     if not table_exists(teams_con, date_str):
         return None
     return pd.read_sql_query(f'SELECT * FROM "{date_str}"', teams_con)
+
+
+def fetch_advanced_table(adv_con, date_str):
+    """Return advanced stats DataFrame for a date, or None if unavailable."""
+    if adv_con is None:
+        return None
+    if not table_exists(adv_con, date_str):
+        return None
+    df = pd.read_sql_query(f'SELECT * FROM "{date_str}"', adv_con)
+    # Keep only the columns we care about (some API versions may differ).
+    available = [c for c in ADVANCED_COLS if c in df.columns]
+    return df[available] if available else None
+
+
+def _merge_advanced_into_game(game_series, adv_df, home_team, away_team, index_map):
+    """Append advanced stat columns (prefixed A_) for home and away teams."""
+    if adv_df is None:
+        return game_series
+    home_idx = index_map.get(home_team)
+    away_idx = index_map.get(away_team)
+    if home_idx is None or away_idx is None:
+        return game_series
+    if len(adv_df) != 30:
+        return game_series
+
+    cols = [c for c in adv_df.columns if c != "TEAM_ID"]
+    home_adv = adv_df.iloc[home_idx]
+    away_adv = adv_df.iloc[away_idx]
+
+    for col in cols:
+        game_series[f"ADV_{col}"] = home_adv[col]
+        game_series[f"ADV_{col}.1"] = away_adv[col]
+    return game_series
 
 
 def build_game_features(team_df, home_team, away_team, index_map):
@@ -199,6 +244,11 @@ def main():
     series_lead_for_home_list = []
     is_elimination_list = []
 
+    # Open advanced stats DB if it exists; gracefully degrade if missing.
+    adv_con = None
+    if ADVANCED_DB_PATH.exists():
+        adv_con = sqlite3.connect(ADVANCED_DB_PATH)
+
     with sqlite3.connect(ODDS_DB_PATH) as odds_con, sqlite3.connect(TEAMS_DB_PATH) as teams_con:
         for season_key in config["create-games"].keys():
             print(season_key)
@@ -225,6 +275,10 @@ def main():
                 game = build_game_features(team_df, row.Home, row.Away, index_map)
                 if game is None:
                     continue
+
+                # Merge advanced efficiency stats if available for this date.
+                adv_df = fetch_advanced_table(adv_con, date_str)
+                game = _merge_advanced_into_game(game, adv_df, row.Home, row.Away, index_map)
 
                 scores.append(row.Points)
                 ou_values.append(row.OU)
@@ -280,10 +334,14 @@ def main():
             continue
         frame[field] = frame[field].astype(float)
 
+    if adv_con is not None:
+        adv_con.close()
+
     with sqlite3.connect(OUTPUT_DB_PATH) as con:
         frame.to_sql(OUTPUT_TABLE, con, if_exists="replace", index=False)
+    n_adv = sum(1 for c in frame.columns if c.startswith("ADV_"))
     n_playoff = sum(is_playoff_list)
-    print(f"Wrote {len(games)} rows to {OUTPUT_TABLE} (regular={len(games) - n_playoff}, playoff={n_playoff})")
+    print(f"Wrote {len(games)} rows to {OUTPUT_TABLE} (regular={len(games) - n_playoff}, playoff={n_playoff}, adv_cols={n_adv})")
 
 
 if __name__ == "__main__":

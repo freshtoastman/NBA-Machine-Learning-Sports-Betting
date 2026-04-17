@@ -34,10 +34,21 @@ _SEASON = current_nba_season()
 
 TODAYS_GAMES_URL = f"https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/{_SEASON_START_YEAR}/scores/00_todays_scores.json"
 DATA_URL = f"https://stats.nba.com/stats/leaguedashteamstats?Conference=&DateFrom=&DateTo=&Division=&GameScope=&GameSegment=&Height=&ISTRound=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season={_SEASON}&SeasonSegment=&SeasonType=Regular%20Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision="
+ADVANCED_DATA_URL = DATA_URL.replace("MeasureType=Base", "MeasureType=Advanced")
 SCHEDULE_PATH = os.path.join(PROJECT_ROOT, "Data", f"nba-{_SEASON_START_YEAR}-UTC.csv")
 
+# Advanced stat columns to merge (same as Create_Games).
+_ADVANCED_COLS = [
+    "TEAM_ID",
+    "OFF_RATING", "DEF_RATING", "NET_RATING",
+    "PACE", "TS_PCT", "EFG_PCT",
+    "OREB_PCT", "DREB_PCT", "REB_PCT",
+    "TM_TOV_PCT", "AST_PCT", "AST_TO", "AST_RATIO",
+    "PIE",
+]
 
-def create_todays_games_data(games, df, odds, schedule_df, today, interactive=True):
+
+def create_todays_games_data(games, df, odds, schedule_df, today, interactive=True, adv_df=None):
     """Build today's matchup features.
 
     When `odds` is provided, prefill OU + money lines from sportsbook data.
@@ -103,6 +114,19 @@ def create_todays_games_data(games, df, odds, schedule_df, today, interactive=Tr
         stats = pd.concat([home_team_series, away_team_series])
         stats['Days-Rest-Home'] = home_days_off.days
         stats['Days-Rest-Away'] = away_days_off.days
+
+        # Merge advanced efficiency stats if available.
+        if adv_df is not None and len(adv_df) == 30:
+            home_idx = team_index_current.get(home_team)
+            away_idx = team_index_current.get(away_team)
+            if home_idx is not None and away_idx is not None:
+                adv_cols = [c for c in adv_df.columns if c != "TEAM_ID"]
+                home_adv = adv_df.iloc[home_idx]
+                away_adv = adv_df.iloc[away_idx]
+                for col in adv_cols:
+                    stats[f"ADV_{col}"] = home_adv[col]
+                    stats[f"ADV_{col}.1"] = away_adv[col]
+
         match_data.append(stats)
 
     games_data_frame = pd.concat(match_data, ignore_index=True, axis=1)
@@ -113,6 +137,37 @@ def create_todays_games_data(games, df, odds, schedule_df, today, interactive=Tr
     data = data.astype(float)
 
     return data, todays_games_uo, frame_ml, home_team_odds, away_team_odds
+
+
+def _ats_value_threshold(game_date) -> float:
+    """Return the minimum edge% to flag a bet as ATS value on a given date.
+
+    OOS analysis (2025-26, 1221 games) shows strong seasonal degradation:
+      Oct-Feb (early season):  ≥8%  → 75.6% (34/45 picks)  — reliable
+      March (late regular):    ≥8%  →  0.0%  (0/ 3 picks)  — unreliable
+      April regular season:    ≥8%  → 25.0%  (2/ 8 picks)  — unreliable
+    Both March and April have negative EV at -110 odds regardless of threshold.
+    Suppressing late regular-season bets (March 1 – April 13) preserves EV.
+    Playoffs (April 14+) use a slightly elevated threshold since sample is thin.
+    """
+    import datetime as _dt
+    if isinstance(game_date, _dt.datetime):
+        game_date = game_date.date()
+    elif isinstance(game_date, str):
+        game_date = _dt.date.fromisoformat(game_date)
+    month = game_date.month
+    day   = game_date.day
+    # NBA regular season runs Oct–Apr; playoffs begin around April 14-15.
+    # Late regular season (March and first ~2 weeks of April) has negative EV
+    # due to resting/tanking — suppress by setting threshold to 100%.
+    if month == 3:
+        return 100.0  # Suppress — 0/3 hit rate in March 2025-26
+    if month == 4 and day < 14:
+        return 100.0  # Suppress — end-of-regular-season garbage time
+    if month == 4:
+        return 10.0   # Playoffs/play-in: slightly higher bar (thin OOS sample)
+    # Oct, Nov, Dec, Jan, Feb — standard regular season
+    return 8.0
 
 
 def load_schedule():
@@ -202,10 +257,22 @@ def predict_today_xgb(sportsbook):
 
     stats_json = get_json_data(DATA_URL)
     df = to_data_frame(stats_json)
+
+    # Fetch advanced efficiency stats (OffRtg, DefRtg, Pace, TS%, etc.)
+    adv_df = None
+    try:
+        adv_json = get_json_data(ADVANCED_DATA_URL)
+        adv_raw = to_data_frame(adv_json)
+        if not adv_raw.empty:
+            available = [c for c in _ADVANCED_COLS if c in adv_raw.columns]
+            adv_df = adv_raw[available] if available else None
+    except Exception:
+        adv_df = None
+
     schedule_df = load_schedule()
     today = datetime.today()
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
-        games, df, odds, schedule_df, today, interactive=False
+        games, df, odds, schedule_df, today, interactive=False, adv_df=adv_df
     )
 
     # Fallback to local OddsData.sqlite for any missing OU / ML / Spread values.
@@ -248,14 +315,45 @@ def predict_today_xgb(sportsbook):
         helper = _merge_adv(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
         adv_cols = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
         if adv_cols:
-            advanced_df = helper[adv_cols].fillna(0.0)
+            # Keep legacy columns first (preserves column positions for the
+            # 175-feature model); new/experimental features go at the end so
+            # _align_features() truncation drops them until retrained.
+            # IMPORTANT: any feature added to AdvancedFeatures AFTER the 175-
+            # feature model was trained must be listed here so it lands in
+            # adv_new (appended last) rather than adv_old (inline), which would
+            # shift A_/D_ feature positions and silently break the model.
+            _NEW_ADV_STEMS = {
+                "game_num_season", "month_sin", "month_cos",   # temporal
+                "form_ats_pct_home_10", "form_ats_pct_away_10",  # home/away ATS split
+            }
+            adv_old = [c for c in adv_cols if c[2:] not in _NEW_ADV_STEMS]
+            adv_new = [c for c in adv_cols if c[2:] in _NEW_ADV_STEMS]
+            advanced_df = helper[adv_old + adv_new].fillna(0.0)
     except Exception:
         advanced_df = None
     ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
 
+    # Fetch injury reports for all teams via AI web search.
+    injury_cache = {}
     today_iso = today.date().isoformat()
+    try:
+        from src.Utils.InjuryReport import get_game_injuries
+        for home_team, away_team in valid_games:
+            injury_data = get_game_injuries(home_team, away_team, today_iso)
+            injury_cache[(home_team, away_team)] = injury_data
+    except Exception:
+        pass
+
     for idx, (pred, sp) in enumerate(zip(predictions, spreads)):
         pred["spread"] = float(sp) if sp not in (None, "") else None
+
+        # Attach injury report.
+        inj = injury_cache.get((pred["home_team"], pred["away_team"]))
+        if inj:
+            pred["injuries"] = inj
+        else:
+            pred["injuries"] = None
+
         pred["home_profile"] = team_profile_for_date(pred["home_team"], today_iso)
         pred["away_profile"] = team_profile_for_date(pred["away_team"], today_iso)
         pred["ats_winner"] = None
@@ -269,7 +367,10 @@ def predict_today_xgb(sportsbook):
             pred["ats_model_confidence"] = round(max(p_home_cover, 1 - p_home_cover) * 100, 1)
             edge_pp = abs(p_home_cover - 0.5) * 100
             pred["ats_value_edge"] = round(edge_pp, 1)
-            pred["ats_is_value"] = edge_pp >= 8.0
+            # Date-adaptive threshold: early regular season (Oct-Feb) uses 8%,
+            # late regular season (Mar/early Apr) suppressed (negative EV observed),
+            # playoffs (Apr 14+) uses 10%. See _ats_value_threshold().
+            pred["ats_is_value"] = edge_pp >= _ats_value_threshold(today)
         else:
             pred["ats_model_pick"] = None
             pred["ats_model_home_prob"] = None
@@ -442,7 +543,18 @@ def predict_historical_xgb(target_date):
         helper = _merge_advanced(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
         advanced_cols = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
         if advanced_cols:
-            advanced_df = helper[advanced_cols].fillna(0.0)
+            # Legacy columns first so the 175-feature model's column positions
+            # are preserved; new/experimental features appended at the end where
+            # _align_features() truncation drops them until a new model is trained.
+            # Any feature added after the 175-feature model was trained MUST be
+            # listed here — omitting it shifts A_/D_ positions and breaks the model.
+            _NEW_ADV_STEMS = {
+                "game_num_season", "month_sin", "month_cos",   # temporal
+                "form_ats_pct_home_10", "form_ats_pct_away_10",  # home/away ATS split
+            }
+            adv_old = [c for c in advanced_cols if c[2:] not in _NEW_ADV_STEMS]
+            adv_new = [c for c in advanced_cols if c[2:] in _NEW_ADV_STEMS]
+            advanced_df = helper[adv_old + adv_new].fillna(0.0)
     except Exception:
         advanced_df = None
     ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
@@ -463,11 +575,14 @@ def predict_historical_xgb(target_date):
             pred["ats_model_home_prob"] = round(p_home_cover * 100, 1)
             pred["ats_model_confidence"] = round(max(p_home_cover, 1 - p_home_cover) * 100, 1)
             # ATS edge: market implied is ~50% (vig-removed at -110 ≈ 0.5).
-            # Highest-win-rate threshold from OOS sweep:
-            # edge ≥ 8pp → 63.4% hit rate, +20.5% ROI (balance of volume + quality).
+            # OOS analysis (2025-26 full season, 1214 games):
+            #   ≥8% → 64.3% (56 games); ≥9% → 67.4% (43 games).
+            # Regular season (Oct-Mar): ≥8% → 70.8%, ≥9% → 75.7%.
+            # Late regular season (Mar / early Apr): suppressed — negative EV.
+            # Playoffs (Apr 14+): ≥10%.
             edge_pp = abs(p_home_cover - 0.5) * 100
             pred["ats_value_edge"] = round(edge_pp, 1)
-            pred["ats_is_value"] = edge_pp >= 8.0
+            pred["ats_is_value"] = edge_pp >= _ats_value_threshold(target_date)
         else:
             pred["ats_model_pick"] = None
             pred["ats_model_home_prob"] = None
@@ -591,10 +706,22 @@ def main(args):
 
     stats_json = get_json_data(DATA_URL)
     df = to_data_frame(stats_json)
+
+    # Fetch advanced efficiency stats.
+    adv_df = None
+    try:
+        adv_json = get_json_data(ADVANCED_DATA_URL)
+        adv_raw = to_data_frame(adv_json)
+        if not adv_raw.empty:
+            available = [c for c in _ADVANCED_COLS if c in adv_raw.columns]
+            adv_df = adv_raw[available] if available else None
+    except Exception:
+        adv_df = None
+
     schedule_df = load_schedule()
     today = datetime.today()
     data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = create_todays_games_data(
-        games, df, odds, schedule_df, today
+        games, df, odds, schedule_df, today, adv_df=adv_df
     )
 
     if args.A:

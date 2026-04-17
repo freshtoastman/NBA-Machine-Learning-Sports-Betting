@@ -38,6 +38,7 @@ run_step() {
 # 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
 run_step "Get_Data"           python -m Get_Data
+run_step "Get_Advanced_Data"  python -m Get_Advanced_Data   # CRITICAL: 28 ADV_ features for 175-feature ATS model
 run_step "Get_Odds_Data"      python -m Get_Odds_Data
 run_step "Get_Playoffs_Data"  python -m Get_Playoffs_Data || true
 cd "$PROJECT_DIR"

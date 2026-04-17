@@ -48,7 +48,9 @@ def _select_model_path(kind):
     def score(path):
         match = ACCURACY_PATTERN.search(path.name)
         accuracy = float(match.group(1)) if match else 0.0
-        return (path.stat().st_mtime, accuracy)
+        # Prefer accuracy over recency — a freshly saved but weaker model
+        # should not displace an older, more accurate one.
+        return (accuracy, path.stat().st_mtime)
 
     return max(candidates, key=score)
 

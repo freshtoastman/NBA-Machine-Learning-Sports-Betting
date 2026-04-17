@@ -161,6 +161,49 @@ def _add_rolling_features(long: pd.DataFrame) -> pd.DataFrame:
         lambda s: _streak(s, 1.0)
     )
 
+    # Home/away split ATS cover rates.
+    # Tracks how each team covers the spread specifically as the home team
+    # vs. as the away team. Model's away picks fail when home teams are hot
+    # at home — this splits the form_ats_pct_10 signal by venue context.
+    home_long = long[long["IsHome"] == 1].copy().sort_values(["Team", "Date"])
+    away_long = long[long["IsHome"] == 0].copy().sort_values(["Team", "Date"])
+
+    home_cov_prev = home_long.groupby("Team")["Covered"].shift(1)
+    away_cov_prev = away_long.groupby("Team")["Covered"].shift(1)
+
+    home_long["form_ats_pct_home_10"] = home_cov_prev.groupby(home_long["Team"]).transform(
+        lambda s: s.rolling(10, min_periods=3).mean()
+    )
+    away_long["form_ats_pct_away_10"] = away_cov_prev.groupby(away_long["Team"]).transform(
+        lambda s: s.rolling(10, min_periods=3).mean()
+    )
+
+    long = long.merge(
+        home_long[["Team", "Date", "form_ats_pct_home_10"]],
+        on=["Team", "Date"], how="left"
+    )
+    long = long.merge(
+        away_long[["Team", "Date", "form_ats_pct_away_10"]],
+        on=["Team", "Date"], how="left"
+    )
+
+    # Season position features.
+    # game_num_season: how many games this team has already played in this
+    # calendar season (0 = first game). Uses the NBA season year (Oct-Sep)
+    # so game 70+ = end-of-season where tanking/rest dynamics differ.
+    def _season_year(date):
+        # Season year is the start calendar year: Oct 2025 -> 2025.
+        return date.year if date.month >= 10 else date.year - 1
+
+    long["_season_year"] = long["Date"].apply(_season_year)
+    long["game_num_season"] = long.groupby(["Team", "_season_year"]).cumcount()
+    long = long.drop(columns=["_season_year"])
+
+    # Month of year (1-12). Sinusoidal encoding to preserve cyclical structure.
+    long["month_num"] = long["Date"].dt.month
+    long["month_sin"] = np.sin(2 * np.pi * long["month_num"] / 12)
+    long["month_cos"] = np.cos(2 * np.pi * long["month_num"] / 12)
+
     return long
 
 
@@ -227,10 +270,18 @@ def build_feature_table() -> pd.DataFrame:
 
     feature_cols = [
         "Team", "Date",
+        # Legacy 12 features (positions 0-11): preserved for 175-feature model compat.
         "form_w_pct_5", "form_w_pct_10", "form_ats_pct_10", "form_pts_diff_5",
         "streak_w", "streak_l", "streak_ats_cover",
         "days_since_prev", "b2b", "games_last_4d", "games_last_7d",
         "road_trip_len",
+        # Home/away split ATS features (positions 12-13): added 2026-04-17.
+        # Not in _NEW_ADV_STEMS so they go into adv_old → appear at positions
+        # 175-180 for the 175-feature model (safely truncated) and 175-180 for
+        # any 181-feature model trained to include them.
+        "form_ats_pct_home_10", "form_ats_pct_away_10",
+        # Temporal features (positions 14-16): excluded from training via DROP_COLUMNS.
+        "game_num_season", "month_sin", "month_cos",
     ]
     table = long[feature_cols].copy()
     _FEATURE_TABLE_CACHE = table

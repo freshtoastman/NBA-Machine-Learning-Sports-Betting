@@ -230,14 +230,35 @@ def _compute(season_key: str, _fingerprint: float):
             ats_hits = int((pred_ats == actual_home_cover).sum())
             home_picks = int((pred_ats == 1).sum())
 
-            # ATS value-tier strategy ($1k @ -110, edge ≥8pp).
+            # ATS value-tier strategy ($1k @ -110, edge ≥threshold).
+            # Use the same date-adaptive thresholds as main.py:
+            #   Oct-Feb: ≥8%  (reliable window)
+            #   March: suppressed (0 picks)
+            #   Apr 1-13: suppressed (end-of-season garbage time)
+            #   Apr 14+: ≥10% (playoffs/play-in, thin sample)
+            import datetime as _dt
+            def _ats_threshold(date_str):
+                try:
+                    d = _dt.date.fromisoformat(date_str)
+                    if d.month == 3:
+                        return 100.0
+                    if d.month == 4 and d.day < 14:
+                        return 100.0
+                    if d.month == 4:
+                        return 10.0
+                    return 8.0
+                except Exception:
+                    return 8.0
+
+            date_col = df["Date"].to_numpy()
             ats_v_bets = ats_v_wins = 0
             ats_v_pl = 0.0
             valid_idx = np.where(valid)[0]
             for j, i in enumerate(valid_idx):
                 p_home = float(probs_ats[i, 1])
                 edge = abs(p_home - 0.5) * 100
-                if edge < 8.0:
+                threshold = _ats_threshold(date_col[i])
+                if edge < threshold:
                     continue
                 pred_side = 1 if p_home >= 0.5 else 0
                 if home_cover_margin[j] == 0:

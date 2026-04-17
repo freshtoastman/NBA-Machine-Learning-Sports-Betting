@@ -42,6 +42,18 @@ DROP_COLUMNS = [
     "Win_Margin", "ATS_Cover",
     # Merge metadata from OddsData
     "Home", "Away", "Points", "ML_Home", "ML_Away",
+    # Temporal features from AdvancedFeatures: these added noise and hurt
+    # Oct-Feb edge≥8% precision (57.5% vs 75.6% for legacy 12-feature model).
+    # Excluded to produce the stable 175-feature model architecture.
+    "H_game_num_season", "A_game_num_season", "D_game_num_season",
+    "H_month_sin", "A_month_sin", "D_month_sin",
+    "H_month_cos", "A_month_cos", "D_month_cos",
+    # Home/away split ATS features from AdvancedFeatures: added 2026-04-17.
+    # 50-trial test with seed=123 gave 57.4% Oct-Feb >=8% precision (vs 75.6%
+    # baseline). 150-trial test with seed=42 gave 61% (mcw=9) — WORSE.
+    # Excluded permanently: home/away split features do not improve precision.
+    "H_form_ats_pct_home_10", "A_form_ats_pct_home_10", "D_form_ats_pct_home_10",
+    "H_form_ats_pct_away_10", "A_form_ats_pct_away_10", "D_form_ats_pct_away_10",
 ]
 NUM_CLASSES = 2
 
@@ -242,7 +254,11 @@ def sample_params(rng, seed):
         "colsample_bytree": float(rng.uniform(0.5, 1.0)),
         "colsample_bylevel": float(rng.uniform(0.5, 1.0)),
         "colsample_bynode": float(rng.uniform(0.5, 1.0)),
-        "min_child_weight": int(rng.integers(1, 21)),
+        # Higher min_child_weight forces stronger regularization, which is critical
+        # for ATS models: models with mcw=3 generate many high-edge picks at low
+        # precision (~59%), while mcw=16 gives fewer but more accurate picks (75.6%).
+        # Range raised from [1,20] to [8,30] to focus search on well-regularized models.
+        "min_child_weight": int(rng.integers(8, 31)),
         "gamma": float(rng.uniform(0.0, 10.0)),
         "max_delta_step": int(rng.integers(0, 11)),
         "max_bin": int(rng.integers(128, 1025)),
