@@ -307,6 +307,64 @@ def build_bracket(target_date: date) -> dict | None:
     }
 
 
+def build_season_h2h(season_key: str) -> dict | None:
+    """Build a lookup of all head-to-head matchups for the season.
+
+    Returns dict with key 'pairs': canonical_key → list of game records,
+    where canonical_key = sorted(home, away) joined with ':'.
+    """
+    import sqlite3
+    db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+    if not db.exists():
+        return None
+    try:
+        con = sqlite3.connect(str(db))
+        # Pick the freshest table for the season
+        candidates = [
+            row[0] for row in
+            con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+            if season_key in row[0]
+        ]
+        best, best_date = (candidates[0] if candidates else season_key), ""
+        for c in candidates:
+            try:
+                row = con.execute(f'SELECT MAX(Date) FROM "{c}"').fetchone()
+                d = row[0] or ""
+                if d > best_date:
+                    best, best_date = c, d
+            except Exception:
+                pass
+
+        rows = con.execute(
+            f'SELECT Date, Home, Away, Spread, Win_Margin FROM "{best}" ORDER BY Date'
+        ).fetchall()
+        con.close()
+    except Exception:
+        return None
+
+    pairs: dict = {}
+    for date_str, home, away, spread, wm in rows:
+        if spread is not None and wm is not None:
+            diff = wm - spread
+            if abs(diff) < 0.001:
+                ats_result = "push"
+            elif diff > 0:
+                ats_result = "home"
+            else:
+                ats_result = "away"
+        else:
+            ats_result = None
+
+        game = {"date": date_str, "home": home, "away": away,
+                "spread": spread, "win_margin": wm, "ats_result": ats_result}
+
+        # Index under canonical key (alphabetical) so both lookup directions work
+        key = ":".join(sorted([home, away]))
+        pairs.setdefault(key, []).append(game)
+
+    return {"season": season_key, "pairs": pairs}
+
+
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     today = today_taipei()
@@ -352,6 +410,14 @@ def main():
             with open(bracket_path, "w", encoding="utf-8") as f:
                 json.dump(bracket, f, ensure_ascii=False, indent=1, default=_serialize)
             print(f"Bracket → {bracket_path.name}")
+
+    # Season H2H lookup (all matchups in current season from OddsData.sqlite).
+    h2h = build_season_h2h(season_key)
+    if h2h:
+        h2h_path = OUT_DIR / "season_h2h.json"
+        with open(h2h_path, "w", encoding="utf-8") as f:
+            json.dump(h2h, f, ensure_ascii=False, indent=1, default=_serialize)
+        print(f"H2H → {h2h_path.name} ({len(h2h.get('pairs', {}))} matchup pairs)")
 
     # Date index.
     index_path = OUT_DIR / "dates.json"

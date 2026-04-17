@@ -1266,6 +1266,9 @@ def _freshest_table(con, season: str) -> str:
 def api_h2h():
     """Return head-to-head records for two teams in the current season.
 
+    Reads from pre-computed web/data/season_h2h.json (available on Vercel).
+    Falls back to querying OddsData.sqlite directly if the JSON is absent.
+
     Query params:
       home: home team name (English)
       away: away team name (English)
@@ -1278,6 +1281,24 @@ def api_h2h():
     if not home or not away:
         return jsonify({"error": "Missing home or away parameter"}), 400
 
+    # ── Primary path: pre-computed JSON (works on Vercel) ──
+    h2h_json = DATA_DIR / "season_h2h.json"
+    if h2h_json.exists():
+        try:
+            h2h_data = json.loads(h2h_json.read_text(encoding="utf-8"))
+            canonical = ":".join(sorted([home, away]))
+            games = h2h_data.get("pairs", {}).get(canonical, [])
+            return jsonify({
+                "games": games,
+                "home_team": home,
+                "away_team": away,
+                "season": h2h_data.get("season", season),
+                "total": len(games),
+            })
+        except Exception:
+            pass  # fall through to SQLite path
+
+    # ── Fallback path: query SQLite directly (local dev only) ──
     if not _ODDS_DB_PATH.exists():
         return jsonify({"error": "Database not available", "games": [], "total": 0})
 
@@ -1286,7 +1307,7 @@ def api_h2h():
         con.row_factory = sqlite3.Row
         table = _freshest_table(con, season)
         rows = con.execute(
-            f"""SELECT Date, Home, Away, Spread, Win_Margin, Points
+            f"""SELECT Date, Home, Away, Spread, Win_Margin
                 FROM "{table}"
                 WHERE (Home=? AND Away=?) OR (Home=? AND Away=?)
                 ORDER BY Date""",
@@ -1298,35 +1319,23 @@ def api_h2h():
 
     games = []
     for r in rows:
-        spread = r["Spread"]   # positive = home favored (gives points)
-        wm = r["Win_Margin"]   # positive = home won
+        spread = r["Spread"]
+        wm = r["Win_Margin"]
         if spread is not None and wm is not None:
             diff = wm - spread
             if abs(diff) < 0.001:
                 ats_result = "push"
             elif diff > 0:
-                ats_result = "home"   # home team covered
+                ats_result = "home"
             else:
-                ats_result = "away"   # away team covered
+                ats_result = "away"
         else:
             ats_result = None
+        games.append({"date": r["Date"], "home": r["Home"], "away": r["Away"],
+                      "spread": spread, "win_margin": wm, "ats_result": ats_result})
 
-        games.append({
-            "date": r["Date"],
-            "home": r["Home"],
-            "away": r["Away"],
-            "spread": spread,
-            "win_margin": wm,
-            "ats_result": ats_result,
-        })
-
-    return jsonify({
-        "games": games,
-        "home_team": home,
-        "away_team": away,
-        "season": season,
-        "total": len(games),
-    })
+    return jsonify({"games": games, "home_team": home, "away_team": away,
+                    "season": season, "total": len(games)})
 
 
 # ---------------------------------------------------------------------------
