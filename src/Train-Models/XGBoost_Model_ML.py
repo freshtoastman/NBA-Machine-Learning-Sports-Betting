@@ -119,12 +119,18 @@ def format_param(value, precision=3):
 
 
 class BoosterWrapper:
+    _estimator_type = "classifier"
+
     def __init__(self, booster, num_class):
         self.booster = booster
         self.classes_ = np.arange(num_class)
 
     def fit(self, X, y):
         return self
+
+    def predict(self, X):
+        probs = self.predict_proba(X)
+        return np.argmax(probs, axis=1)
 
     def predict_proba(self, X):
         return self.booster.predict(xgb.DMatrix(X))

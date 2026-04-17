@@ -1314,6 +1314,42 @@ a {
     border-color: rgba(154, 166, 199, 0.4);
 }
 
+/* ========== Playoff ATS Strategy Row ========== */
+.playoff-ats-row {
+    margin-left: -10px;
+    padding-left: 8px;
+    border-radius: 4px;
+}
+.playoff-ats-row.tier-gold {
+    background: rgba(255, 215, 0, 0.12);
+    border-left: 3px solid #ffd700;
+}
+.playoff-ats-row.tier-silver {
+    background: rgba(192, 192, 192, 0.10);
+    border-left: 3px solid #c0c0c0;
+}
+.playoff-ats-row.tier-bronze {
+    background: rgba(205, 127, 50, 0.08);
+    border-left: 3px solid #cd7f32;
+}
+.pick-conf.tier-gold {
+    color: #ffd700;
+    font-weight: 800;
+}
+.pick-conf.tier-silver {
+    color: #c0c0c0;
+    font-weight: 700;
+}
+.pick-conf.tier-bronze {
+    color: #cd7f32;
+    font-weight: 600;
+}
+.pick-signal {
+    font-size: 10px;
+    color: var(--muted);
+    margin-left: 4px;
+}
+
 /* ========== Strategy Checklist ========== */
 .strategy-checklist {
     margin-top: 8px;

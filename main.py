@@ -349,10 +349,7 @@ def predict_today_xgb(sportsbook):
 
         # Attach injury report.
         inj = injury_cache.get((pred["home_team"], pred["away_team"]))
-        if inj:
-            pred["injuries"] = inj
-        else:
-            pred["injuries"] = None
+        pred["injuries"] = inj if inj else None
 
         pred["home_profile"] = team_profile_for_date(pred["home_team"], today_iso)
         pred["away_profile"] = team_profile_for_date(pred["away_team"], today_iso)
@@ -418,6 +415,35 @@ def predict_today_xgb(sportsbook):
                 pred["is_playoff"] = False
         except Exception:
             pred["is_playoff"] = False
+
+        # Playoff ATS strategy picks.
+        try:
+            if pred.get("is_playoff"):
+                series_st = None
+                try:
+                    series_st = get_series_state(pred["home_team"], pred["away_team"], today_iso)
+                except Exception:
+                    pass
+                team_form = _build_team_form(pred["home_team"], pred["away_team"], today_iso)
+                ats_picks = evaluate_playoff_ats(pred, series_st, team_form)
+                pred["playoff_ats_picks"] = picks_to_dict(ats_picks)
+                bp = best_pick(ats_picks)
+                pred["playoff_ats_best_side"] = bp.side if bp else None
+                pred["playoff_ats_best_signal"] = bp.signal_name if bp else None
+                pred["playoff_ats_best_tier"] = bp.tier if bp else None
+                pred["playoff_ats_consensus"] = consensus_side(ats_picks)
+            else:
+                pred["playoff_ats_picks"] = []
+                pred["playoff_ats_best_side"] = None
+                pred["playoff_ats_best_signal"] = None
+                pred["playoff_ats_best_tier"] = None
+                pred["playoff_ats_consensus"] = None
+        except Exception:
+            pred["playoff_ats_picks"] = []
+            pred["playoff_ats_best_side"] = None
+            pred["playoff_ats_best_signal"] = None
+            pred["playoff_ats_best_tier"] = None
+            pred["playoff_ats_consensus"] = None
     return predictions
 
 
@@ -427,6 +453,30 @@ import sqlite3  # noqa: E402
 
 from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E402
 from src.Utils.ValueFinder import evaluate_value  # noqa: E402
+from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict  # noqa: E402
+
+def _build_team_form(home_team, away_team, date_str):
+    """Build team_form dict for PlayoffATSStrategy from AdvancedFeatures."""
+    try:
+        from src.Utils.AdvancedFeatures import build_feature_table
+        table = build_feature_table()
+        if table.empty:
+            return None
+        import pandas as pd
+        target = pd.Timestamp(date_str)
+        h_rows = table[(table["Team"] == home_team) & (table["Date"] <= target)].tail(1)
+        a_rows = table[(table["Team"] == away_team) & (table["Date"] <= target)].tail(1)
+        form = {}
+        if not h_rows.empty:
+            form["home_ats_l10"] = h_rows.iloc[0].get("form_ats_pct_10")
+            form["home_w20"] = h_rows.iloc[0].get("form_w_pct_10")
+        if not a_rows.empty:
+            form["away_ats_l10"] = a_rows.iloc[0].get("form_ats_pct_10")
+            form["away_w20"] = a_rows.iloc[0].get("form_w_pct_10")
+        return form if form else None
+    except Exception:
+        return None
+
 
 _DATASET_DB = os.path.join(PROJECT_ROOT, "Data", "dataset.sqlite")
 _ODDS_DB = os.path.join(PROJECT_ROOT, "Data", "OddsData.sqlite")
@@ -692,6 +742,35 @@ def predict_historical_xgb(target_date):
                 pred["is_playoff"] = False
         except Exception:
             pred["is_playoff"] = False
+
+        # Playoff ATS strategy picks.
+        try:
+            if pred.get("is_playoff"):
+                series_st = None
+                try:
+                    series_st = get_series_state(home_team, away_team, target_date.isoformat())
+                except Exception:
+                    pass
+                team_form = _build_team_form(home_team, away_team, target_date.isoformat())
+                ats_picks = evaluate_playoff_ats(pred, series_st, team_form)
+                pred["playoff_ats_picks"] = picks_to_dict(ats_picks)
+                bp = best_pick(ats_picks)
+                pred["playoff_ats_best_side"] = bp.side if bp else None
+                pred["playoff_ats_best_signal"] = bp.signal_name if bp else None
+                pred["playoff_ats_best_tier"] = bp.tier if bp else None
+                pred["playoff_ats_consensus"] = consensus_side(ats_picks)
+            else:
+                pred["playoff_ats_picks"] = []
+                pred["playoff_ats_best_side"] = None
+                pred["playoff_ats_best_signal"] = None
+                pred["playoff_ats_best_tier"] = None
+                pred["playoff_ats_consensus"] = None
+        except Exception:
+            pred["playoff_ats_picks"] = []
+            pred["playoff_ats_best_side"] = None
+            pred["playoff_ats_best_signal"] = None
+            pred["playoff_ats_best_tier"] = None
+            pred["playoff_ats_consensus"] = None
 
     return predictions
 

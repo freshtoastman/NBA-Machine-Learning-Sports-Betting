@@ -141,6 +141,25 @@ def load_dataset(dataset_name):
     except Exception as exc:
         print(f"warn: advanced feature merge failed: {exc}")
 
+    # Merge playoff context features (is_playoff, series_game_num, etc.).
+    try:
+        from src.Utils.PlayoffContext import is_playoff_date, build_playoff_features, get_series_state
+        pf_rows = []
+        for _, row in df.iterrows():
+            date_str = str(row["Date"])[:10]
+            if is_playoff_date(date_str):
+                state = get_series_state(row["TEAM_NAME"], row["TEAM_NAME.1"], date_str)
+                pf_rows.append(build_playoff_features(state))
+            else:
+                pf_rows.append(build_playoff_features(None))
+        pf_df = pd.DataFrame(pf_rows)
+        for col in pf_df.columns:
+            df[col] = pf_df[col].values
+        n_playoff = int(df["is_playoff"].sum())
+        print(f"Playoff features merged: {n_playoff} playoff games out of {len(df)}")
+    except Exception as exc:
+        print(f"warn: playoff feature merge failed: {exc}")
+
     return df
 
 

@@ -422,6 +422,30 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    {# Playoff ATS strategy pick — show only during playoffs when a signal fires #}
+                    {% if game.playoff_ats_best_side and spread_val is not none %}
+                    {% set po_pick_home = game.playoff_ats_best_side == 'home' %}
+                    {% set po_picked_team = home_team if po_pick_home else away_team %}
+                    {% set po_is_fav = (po_pick_home and spread_val > 0) or (not po_pick_home and spread_val < 0) %}
+                    {% set tier_class = 'gold' if game.playoff_ats_best_tier == 'GOLD' else ('silver' if game.playoff_ats_best_tier == 'SILVER' else 'bronze') %}
+                    <div class="pick-row playoff-ats-row tier-{{ tier_class }}">
+                        <span class="pick-label">季後賽策略</span>
+                        <strong>
+                            {% if po_is_fav %}
+                                {{ team_name_zh(po_picked_team) }} 讓 {{ abs_spread }} 分
+                            {% else %}
+                                {{ team_name_zh(po_picked_team) }} 受讓 {{ abs_spread }} 分
+                            {% endif %}
+                        </strong>
+                        <span class="pick-conf tier-{{ tier_class }}">{{ game.playoff_ats_best_tier }}</span>
+                        <span class="pick-signal">{{ game.playoff_ats_best_signal }}</span>
+                        {% if game.ats_winner and game.ats_winner != 'push' %}
+                        <span class="badge-mini {% if game.playoff_ats_best_side == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.playoff_ats_best_side == game.ats_winner %}✓{% else %}✗{% endif %}</span>
+                        {% elif game.ats_winner == 'push' %}
+                        <span class="badge-mini push">PUSH</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
                     {# Show the OU line value only (no model prediction or hit/miss). #}
                     {% if game.ou_value %}
                     <div class="pick-row">
@@ -496,37 +520,25 @@
                   {% endif %}
                 {% endif %}
 
-                {# ── 季後賽策略 ── #}
-                {% if is_po %}
+                {# ── 季後賽策略 (動態回測信號) ── #}
+                {% if is_po and game.playoff_ats_picks %}
+                  {% for pick in game.playoff_ats_picks %}
+                    {% set tier_map = {'GOLD': 'hot', 'SILVER': 'warm', 'BRONZE': 'base'} %}
+                    {% set icon_map = {'GOLD': '🥇', 'SILVER': '🥈', 'BRONZE': '🥉'} %}
+                    {% set t = tier_map.get(pick.tier, 'base') %}
+                    {% set ic = icon_map.get(pick.tier, '📊') %}
+                    {% set ns.checks = ns.checks + [{'icon': ic, 'text': pick.reason_zh ~ ' (回測 ' ~ (pick.backtest_wr * 100)|round(0)|int ~ '% WR, ' ~ pick.backtest_roi|round(1) ~ '% ROI, n=' ~ pick.backtest_n ~ ')', 'tier': t}] %}
+                  {% endfor %}
+                {% elif is_po %}
+                  {# Fallback: static rules when dynamic picks not yet computed #}
                   {% if series_gn >= 6 %}
                     {% set ns.checks = ns.checks + [{'icon':'🔥','text':'Game ' ~ series_gn ~ ' → 押客場/冷門 (63% WR, +20% ROI)','tier':'hot'}] %}
                   {% endif %}
-                  {% if series_gn == 5 and series_lead == 0 %}
-                    {% set ns.checks = ns.checks + [{'icon':'🔥','text':'Game 5 (2-2 平手) → 押主場 cover (60%)','tier':'hot'}] %}
-                  {% endif %}
                   {% if is_elim %}
-                    {% set ns.checks = ns.checks + [{'icon':'⚠️','text':'淘汰局 → 押冷門 cover (56.7%)','tier':'warm'}] %}
+                    {% set ns.checks = ns.checks + [{'icon':'⚠️','text':'淘汰局 → 押冷門 cover (57.5%)','tier':'warm'}] %}
                   {% endif %}
-                  {% if is_elim and abs_sp <= 8 %}
-                    {% set ns.checks = ns.checks + [{'icon':'💡','text':'小讓分淘汰局 → 押冷門 (56.6%)','tier':'warm'}] %}
-                  {% endif %}
-                  {% if model_conf >= 65 and not is_elim %}
-                    {% set ns.checks = ns.checks + [{'icon':'🤖','text':'模型信心 ≥65% + 非淘汰局 → 押 ' ~ ('主場' if model_side == 'home' else '客場') ~ ' (57.1%)','tier':'warm'}] %}
-                  {% endif %}
-                  {% if a_season_wr >= 60 and home_fav %}
-                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'例行賽強隊受讓(客場) → 押客場 cover (54.7%)','tier':'base'}] %}
-                  {% endif %}
-                  {% if h_season_wr >= 60 and not home_fav %}
-                    {% set ns.checks = ns.checks + [{'icon':'📈','text':'例行賽強隊受讓(主場) → 押主場 cover (58.8%)','tier':'warm'}] %}
-                  {% endif %}
-                  {% if series_gn <= 2 %}
-                    {% set ns.checks = ns.checks + [{'icon':'📊','text':'系列賽前兩場 → 主場略有 ATS 優勢 (54%)','tier':'base'}] %}
-                  {% endif %}
-                  {% if series_lead <= -2 %}
-                    {% set ns.checks = ns.checks + [{'icon':'📊','text':'主場大幅落後 → 客場 cover 傾向 (55.5%)','tier':'base'}] %}
-                  {% endif %}
-                  {% if is_elim and series_lead < 0 %}
-                    {% set ns.checks = ns.checks + [{'icon':'🚫','text':'主場淘汰局(落後方) → 避免押主場 (僅 39.4%)','tier':'danger'}] %}
+                  {% if model_conf >= 65 and abs_sp <= 5 %}
+                    {% set ns.checks = ns.checks + [{'icon':'🤖','text':'模型信心 ≥65% + 小讓分 → 押 ' ~ ('主場' if model_side == 'home' else '客場') ~ ' (80% WR)','tier':'hot'}] %}
                   {% endif %}
                 {% endif %}
 
