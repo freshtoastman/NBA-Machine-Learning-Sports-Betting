@@ -172,29 +172,48 @@ def _build_backtest_signals(game: dict) -> list[dict]:
         if abs_sp >= 5 and abs_sp < 10:
             signals.append({"text": "中讓分(5-10) → 冷門 cover 傾向（58.9%）", "tier": "base"})
 
-    # ── Playoff strategies ──
+    # ── Playoff strategies: use live PlayoffATSStrategy picks when available ──
     if is_po:
-        if series_gn >= 6:
-            signals.append({"text": f"Game {series_gn} → 押客場/冷門（63% WR, +20% ROI）", "tier": "hot"})
-        if series_gn == 5 and series_lead == 0:
-            signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%）", "tier": "hot"})
-        if is_elim:
-            signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
-        if is_elim and abs_sp <= 8:
-            signals.append({"text": "小讓分淘汰局 → 押冷門（56.6%）", "tier": "warm"})
-        if model_conf >= 65 and not is_elim:
-            side_zh = "主場" if model_side == "home" else "客場"
-            signals.append({"text": f"模型信心 ≥65% + 非淘汰局 → 押{side_zh}（57.1%）", "tier": "warm"})
-        if a_season_wr >= 60 and home_fav:
-            signals.append({"text": f"例行賽強隊受讓（{a_zh}）→ 押客場 cover（54.7%）", "tier": "base"})
-        if h_season_wr >= 60 and not home_fav:
-            signals.append({"text": f"例行賽強隊受讓（{h_zh}）→ 押主場 cover（58.8%）", "tier": "warm"})
-        if series_gn <= 2:
-            signals.append({"text": "系列賽前兩場 → 主場略有 ATS 優勢（54%）", "tier": "base"})
-        if series_lead <= -2:
-            signals.append({"text": "主場大幅落後 → 客場 cover 傾向（55.5%）", "tier": "base"})
-        if is_elim and series_lead < 0:
-            signals.append({"text": "⚠ 主場淘汰局（落後方）→ 避免押主場（僅 39.4%）", "tier": "danger"})
+        po_picks = game.get("playoff_ats_picks") or []
+        if po_picks:
+            # Convert PlayoffATSStrategy picks → signal dicts for the AI prompt.
+            tier_to_ai = {"GOLD": "hot", "SILVER": "warm", "BRONZE": "base"}
+            for pick in po_picks:
+                wr_pct = int(round(pick.get("backtest_wr", 0) * 100))
+                roi = pick.get("backtest_roi", 0)
+                n = pick.get("backtest_n", 0)
+                reason = pick.get("reason_zh", "")
+                signal_name = pick.get("signal", "")
+                ats_side = pick.get("ats_side", "")
+                tier = tier_to_ai.get(pick.get("tier", "BRONZE"), "base")
+                text = (
+                    f"【季後賽回測】{signal_name}：{reason} "
+                    f"（回測 {wr_pct}% WR, +{roi}% ROI, n={n}）→ {ats_side}"
+                )
+                signals.append({"text": text, "tier": tier})
+        else:
+            # Fallback static rules when playoff_ats_picks not yet computed.
+            if series_gn >= 6:
+                signals.append({"text": f"Game {series_gn} → 押客場/冷門（63% WR, +20% ROI）", "tier": "hot"})
+            if series_gn == 5 and series_lead == 0:
+                signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%）", "tier": "hot"})
+            if is_elim:
+                signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
+            if is_elim and abs_sp <= 8:
+                signals.append({"text": "小讓分淘汰局 → 押冷門（56.6%）", "tier": "warm"})
+            if model_conf >= 65 and not is_elim:
+                side_zh = "主場" if model_side == "home" else "客場"
+                signals.append({"text": f"模型信心 ≥65% + 非淘汰局 → 押{side_zh}（57.1%）", "tier": "warm"})
+            if a_season_wr >= 60 and home_fav:
+                signals.append({"text": f"例行賽強隊受讓（{a_zh}）→ 押客場 cover（54.7%）", "tier": "base"})
+            if h_season_wr >= 60 and not home_fav:
+                signals.append({"text": f"例行賽強隊受讓（{h_zh}）→ 押主場 cover（58.8%）", "tier": "warm"})
+            if series_gn <= 2:
+                signals.append({"text": "系列賽前兩場 → 主場略有 ATS 優勢（54%）", "tier": "base"})
+            if series_lead <= -2:
+                signals.append({"text": "主場大幅落後 → 客場 cover 傾向（55.5%）", "tier": "base"})
+            if is_elim and series_lead < 0:
+                signals.append({"text": "⚠ 主場淘汰局（落後方）→ 避免押主場（僅 39.4%）", "tier": "danger"})
 
     if model_conf >= 70:
         signals.append({"text": "ML 模型高信心 ≥70% → 勝負盤可靠", "tier": "base"})
@@ -326,7 +345,7 @@ SINGLE_GAME_PROMPT = """你是職業 NBA 讓分盤分析師。你的讀者是認
 - 隊名一律用繁體中文，不要用英文
 - injuries 必須是實際搜尋到的，不能編造
 - **backtest_alignment 為必填欄位**：必須引用上方「回測策略訊號」中至少一條訊號，說明你的推薦與該訊號是一致還是相反。若無訊號則填「無相關回測訊號」。
-- **ats_reason 中必須提到回測**：在理由中明確引用回測訊號內容（如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover」），否則回答視為不完整。"""
+- **ats_reason 中必須提到回測**：在理由中明確引用回測訊號名稱與勝率（如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover，與本場推薦一致」），否則回答視為不完整。"""
 
 
 PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後賽 ≠ 常規賽 — 你必須把以下季後賽特有的因素納入分析：
@@ -346,7 +365,7 @@ PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後�
 === 你的任務 ===
 1. 搜尋兩隊今天的 injury report，特別關注關鍵球員（Top 3 rotation player）
 2. 評估系列賽當前狀態對讓分盤的影響
-3. **仔細閱讀「回測策略訊號」**：這些是根據 13 季、996 場季後賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥58%，⚡中 = 勝率 53-58%，🚫警告 = 此情境歷史上勝率極低應避免。你的推薦應與回測訊號的方向一致，除非傷兵或系列賽動態有明確推翻理由。
+3. **仔細閱讀「回測策略訊號」**：這些標有【季後賽回測】的訊號是由機器學習系統根據 13 季（2012-2025）、996 場季後賽實際資料驗證得出的高勝率策略，每條都附有真實回測勝率（WR）、ROI、樣本數（n）。🔥強 = 歷史勝率 ≥60%，⚡中 = 勝率 55-60%，🚫警告 = 此情境歷史上勝率極低應避免。**這些訊號是你最重要的參考依據**，你的推薦必須與訊號方向一致，除非有確鑿的傷兵或突發消息能推翻。
 4. 綜合模型 + 回測策略 + 傷兵 + 系列賽脈絡，給出明確讓分推薦
 
 === 回答格式（JSON，不要 code block）===
@@ -371,8 +390,8 @@ PLAYOFF_GAME_PROMPT = """你是職業 NBA 季後賽讓分盤分析師。季後�
 - 若是淘汰局且模型 edge < 8pp，ats_units 上限 2（淘汰局變數太大）
 - 隊名一律用繁體中文
 - injuries 必須是實際搜尋到的，不能編造
-- **backtest_alignment 為必填欄位**：必須引用上方「回測策略訊號」中至少一條訊號，說明推薦與訊號的關係。
-- **ats_reason 中必須提到回測**：明確引用回測訊號內容作為佐證。"""
+- **backtest_alignment 為必填欄位**：必須引用上方「回測策略訊號」中至少一條【季後賽回測】訊號，說明推薦與訊號的關係（例如「小讓分客場受讓訊號支持押客場，與本場推薦一致」）。
+- **ats_reason 中必須提到回測**：明確引用訊號名稱與其回測 WR（例如「季後賽回測顯示此情境 57.8% WR，支持押客場受讓」），不能泛泛而談。"""
 
 
 DAILY_REPORT_PROMPT = """你是職業 NBA 讓分盤分析師團隊主管。你的任務是產出一份讓投注者能直接照著操作的當日報告。
