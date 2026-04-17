@@ -657,17 +657,7 @@
             </article>
             {% endfor %}
         </main>
-        <script>
-        // Per-game team profiles for the H2H side panel
-        const GAME_PROFILES = {
-          {% for gk, gm in fanduel_games.items() %}
-          {{ gk | tojson }}: {
-            "home": {{ gm.home_profile | tojson if gm.home_profile else 'null' }},
-            "away": {{ gm.away_profile | tojson if gm.away_profile else 'null' }}
-          }{% if not loop.last %},{% endif %}
-          {% endfor %}
-        };
-        </script>
+        <script>const GAME_PROFILES = {{ game_profiles_json | safe }};</script>
 
         <footer class="compact-footer">
             模型 {{ today }} · XGBoost ML 69.1% / UO 50.0%

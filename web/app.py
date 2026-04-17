@@ -482,6 +482,16 @@ def index():
     app.jinja_env.globals["team_name_zh"] = _zh
     app.jinja_env.globals["team_logo_url"] = _logo
 
+    # Serialize per-game team profiles for the H2H side panel.
+    # Done in Python (not Jinja loop) to avoid JS syntax errors from inline tojson.
+    game_profiles = {
+        key: {"home": g.get("home_profile"), "away": g.get("away_profile")}
+        for key, g in games.items()
+        if g.get("home_profile") or g.get("away_profile")
+    }
+    import json as _json
+    game_profiles_json = _json.dumps(game_profiles, ensure_ascii=False)
+
     return render_template(
         "index.html",
         today=today,
@@ -498,6 +508,7 @@ def index():
         bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
         weekly_golden=load_weekly_golden(today),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
+        game_profiles_json=game_profiles_json,
     )
 
 
