@@ -336,14 +336,14 @@ def build_season_h2h(season_key: str) -> dict | None:
                 pass
 
         rows = con.execute(
-            f'SELECT Date, Home, Away, Spread, Win_Margin FROM "{best}" ORDER BY Date'
+            f'SELECT Date, Home, Away, Spread, Win_Margin, Points FROM "{best}" ORDER BY Date'
         ).fetchall()
         con.close()
     except Exception:
         return None
 
     pairs: dict = {}
-    for date_str, home, away, spread, wm in rows:
+    for date_str, home, away, spread, wm, pts in rows:
         if spread is not None and wm is not None:
             diff = wm - spread
             if abs(diff) < 0.001:
@@ -355,8 +355,17 @@ def build_season_h2h(season_key: str) -> dict | None:
         else:
             ats_result = None
 
+        # Derive actual scores from total points + win margin
+        if pts and wm is not None and pts > 0:
+            home_score = round((pts + wm) / 2)
+            away_score = round((pts - wm) / 2)
+        else:
+            home_score = away_score = None
+
         game = {"date": date_str, "home": home, "away": away,
-                "spread": spread, "win_margin": wm, "ats_result": ats_result}
+                "spread": spread, "win_margin": wm,
+                "home_score": home_score, "away_score": away_score,
+                "ats_result": ats_result}
 
         # Index under canonical key (alphabetical) so both lookup directions work
         key = ":".join(sorted([home, away]))

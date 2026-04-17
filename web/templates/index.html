@@ -505,7 +505,7 @@
                         {% if game.spread is defined and game.spread is not none %}
                         <button class="buy-btn" onclick="toggleBuyCalc({{ loop.index0 }}, {{ game.spread }}, '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🎯 買點計算</button>
                         {% endif %}
-                        <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🔄 對戰</button>
+                        <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}', {{ game_key | tojson }})">🔄 對戰</button>
                     </div>
                     <div class="ai-content" style="display:none;">
                         <div class="ai-loading">⏳ 搜尋傷兵資訊 + 生成分析中...</div>
@@ -657,6 +657,17 @@
             </article>
             {% endfor %}
         </main>
+        <script>
+        // Per-game team profiles for the H2H side panel
+        const GAME_PROFILES = {
+          {% for gk, gm in fanduel_games.items() %}
+          {{ gk | tojson }}: {
+            "home": {{ gm.home_profile | tojson if gm.home_profile else 'null' }},
+            "away": {{ gm.away_profile | tojson if gm.away_profile else 'null' }}
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        };
+        </script>
 
         <footer class="compact-footer">
             模型 {{ today }} · XGBoost ML 69.1% / UO 50.0%
@@ -1472,8 +1483,26 @@
     }
 
     // ── H2H Records ───────────────────────────────────────────────
-    function openH2H(homeEn, awayEn, homeZh, awayZh) {
-        // Open panel and switch to H2H tab
+    function _renderProfile(prof, teamZh) {
+        if (!prof) return '';
+        const periods = [['season','本賽季'],['last_3m','近3月'],['last_1m','近1月']];
+        const rows = periods.map(([key, label]) => {
+            const o = (prof[key] || {}).overall;
+            if (!o || !o.games) return '';
+            const arCls = o.ats_rate >= 55 ? 'good' : (o.ats_rate != null && o.ats_rate < 45 ? 'bad' : '');
+            return `<div class="sp-prof-row">
+                <span class="sp-prof-period">${label}</span>
+                <span class="sp-prof-wl">${o.wins}-${o.losses} <small>(${o.win_rate}%)</small></span>
+                <span class="sp-prof-ats ${arCls}">ATS ${o.ats_wins}-${o.ats_losses} <small>(${o.ats_rate ?? '?'}%)</small></span>
+            </div>`;
+        }).join('');
+        return `<div class="sp-prof-card">
+            <div class="sp-prof-name">${teamZh}</div>
+            ${rows || '<div class="sp-prof-empty">無資料</div>'}
+        </div>`;
+    }
+
+    function openH2H(homeEn, awayEn, homeZh, awayZh, gameKey) {
         toggleSidePanel(true);
         showSpTab('h2h');
 
@@ -1496,90 +1525,110 @@
                 const games = data.games || [];
                 const season = data.season || '2025-26';
 
-                // Compute ATS records for home_team and away_team
-                // home_team = homeEn (the requested "home" team for today's game)
+                // ATS records from each team's perspective
                 let hCover = 0, hMiss = 0, aCover = 0, aMiss = 0;
                 games.forEach(g => {
                     if (!g.ats_result || g.ats_result === 'push') return;
-                    // ats_result = 'home' means g.home covered
-                    const homeActuallyCovered = g.ats_result === 'home';
+                    const homeCovered = g.ats_result === 'home';
                     if (g.home === homeEn) {
-                        // homeEn was home in this game
-                        homeActuallyCovered ? hCover++ : hMiss++;
-                        homeActuallyCovered ? aMiss++ : aCover++;
+                        homeCovered ? hCover++ : hMiss++;
+                        homeCovered ? aMiss++ : aCover++;
                     } else {
-                        // homeEn was away in this game
-                        homeActuallyCovered ? hMiss++ : hCover++;
-                        homeActuallyCovered ? aCover++ : aMiss++;
+                        homeCovered ? hMiss++ : hCover++;
+                        homeCovered ? aCover++ : aMiss++;
                     }
                 });
 
                 // Header
                 let html = `<div class="sp-h2h-header">
                     <span class="sp-h2h-title">${homeZh} vs ${awayZh}</span>
-                    <span class="sp-h2h-season">${season}</span>
+                    <span class="sp-h2h-season">${season} · ${games.length} 場</span>
                 </div>`;
+
+                // Historical profiles (from today's game data)
+                const profiles = (typeof GAME_PROFILES !== 'undefined' && gameKey)
+                    ? (GAME_PROFILES[gameKey] || {}) : {};
+                const homeProf = profiles.home || null;
+                const awayProf = profiles.away || null;
+                if (homeProf || awayProf) {
+                    html += `<div class="sp-h2h-profiles">
+                        ${_renderProfile(homeProf, homeZh)}
+                        ${_renderProfile(awayProf, awayZh)}
+                    </div>`;
+                }
 
                 if (!games.length) {
                     html += '<div class="sp-empty">本季尚無對戰紀錄</div>';
                 } else {
-                    // ATS summary records
+                    // ATS H2H summary
                     const hRate = (hCover + hMiss) ? Math.round(hCover / (hCover + hMiss) * 100) : null;
                     const aRate = (aCover + aMiss) ? Math.round(aCover / (aCover + aMiss) * 100) : null;
-
                     html += `<div class="sp-h2h-ats-summary">
                         <div class="sp-h2h-team-rec ${hRate >= 60 ? 'good' : hRate != null && hRate < 40 ? 'bad' : ''}">
                             <span class="sp-h2h-rec-name">${homeZh}</span>
-                            <span class="sp-h2h-rec-ats">ATS ${hCover}-${hMiss}${hRate != null ? ' (' + hRate + '%)' : ''}</span>
+                            <span class="sp-h2h-rec-ats">H2H ATS ${hCover}-${hMiss}${hRate != null ? ' ('+hRate+'%)' : ''}</span>
                         </div>
-                        <div class="sp-h2h-vs">對戰共 ${games.length} 場</div>
                         <div class="sp-h2h-team-rec ${aRate >= 60 ? 'good' : aRate != null && aRate < 40 ? 'bad' : ''}">
                             <span class="sp-h2h-rec-name">${awayZh}</span>
-                            <span class="sp-h2h-rec-ats">ATS ${aCover}-${aMiss}${aRate != null ? ' (' + aRate + '%)' : ''}</span>
+                            <span class="sp-h2h-rec-ats">H2H ATS ${aCover}-${aMiss}${aRate != null ? ' ('+aRate+'%)' : ''}</span>
                         </div>
                     </div>`;
 
-                    // Game-by-game table
-                    html += '<div class="sp-h2h-table">';
-                    html += `<div class="sp-h2h-table-head">
-                        <span>日期</span><span>主隊</span><span>讓分</span><span>比分</span><span>ATS</span>
-                    </div>`;
-
+                    // Game-by-game cards
+                    html += '<div class="sp-h2h-games">';
                     games.forEach(g => {
-                        const isHomeHome = g.home === homeEn; // homeEn is the home team today
-                        const homeIsGame = g.home;
-                        const awayIsGame = g.away;
-                        // Show team names in zh
+                        const isHomeHome = g.home === homeEn;
                         const gameHomeZh = isHomeHome ? homeZh : awayZh;
                         const gameAwayZh = isHomeHome ? awayZh : homeZh;
 
+                        // Spread: who gives/receives points
                         const sp = g.spread;
-                        const wm = g.win_margin;
-                        const spStr = sp != null ? (sp > 0 ? `-${sp}` : sp < 0 ? `+${-sp}` : 'PK') : '—';
-                        const scoreStr = wm != null ? (wm >= 0 ? `+${wm}` : `${wm}`) : '—';
-
-                        const ar = g.ats_result;
-                        // From homeEn's perspective: did homeEn cover?
-                        let atsCls = '', atsText = '—';
-                        if (ar) {
-                            if (ar === 'push') {
-                                atsCls = 'push'; atsText = 'PK';
-                            } else {
-                                const homeEnCovered = (ar === 'home') === isHomeHome;
-                                atsCls = homeEnCovered ? 'covered' : 'missed';
-                                atsText = homeEnCovered ? '✓' : '✗';
-                            }
+                        let spreadLine = 'PK';
+                        if (sp != null && sp !== 0) {
+                            const giverZh = sp > 0 ? gameHomeZh : gameAwayZh;
+                            const abssp = Math.abs(sp);
+                            const rcvrZh = sp > 0 ? gameAwayZh : gameHomeZh;
+                            spreadLine = `<span class="sp-giver">${giverZh} 讓 ${abssp}</span><span class="sp-rcvr">${rcvrZh} 受讓 ${abssp}</span>`;
                         }
 
-                        html += `<div class="sp-h2h-row">
-                            <span class="sp-h2h-date">${g.date ? g.date.slice(5) : '—'}</span>
-                            <span class="sp-h2h-teams">${gameAwayZh}@<b>${gameHomeZh}</b></span>
-                            <span class="sp-h2h-spread">${spStr}</span>
-                            <span class="sp-h2h-margin">${scoreStr}</span>
-                            <span class="sp-h2h-ats ${atsCls}">${atsText}</span>
+                        // Actual score
+                        let scoreHtml = '';
+                        if (g.home_score != null && g.away_score != null) {
+                            const homeWon = g.home_score > g.away_score;
+                            scoreHtml = `<span class="sp-score">
+                                <span class="${homeWon ? 'sp-score-win' : ''}">${gameHomeZh} ${g.home_score}</span>
+                                <span class="sp-score-sep">-</span>
+                                <span class="${!homeWon ? 'sp-score-win' : ''}">${g.away_score} ${gameAwayZh}</span>
+                            </span>`;
+                        } else if (g.win_margin != null) {
+                            scoreHtml = `<span class="sp-score sp-score-margin">${g.win_margin >= 0 ? gameHomeZh+' +'+g.win_margin : gameAwayZh+' +'+ (-g.win_margin)}</span>`;
+                        }
+
+                        // ATS badge: show who covered
+                        const ar = g.ats_result;
+                        let atsBadge = '';
+                        if (ar === 'push') {
+                            atsBadge = '<span class="sp-ats-badge push">PUSH</span>';
+                        } else if (ar) {
+                            const covHomeInGame = ar === 'home';
+                            const covTeamZh = covHomeInGame ? gameHomeZh : gameAwayZh;
+                            // Is the covered team "our" home team (homeEn)?
+                            const isOurHome = (covHomeInGame && isHomeHome) || (!covHomeInGame && !isHomeHome);
+                            atsBadge = `<span class="sp-ats-badge ${isOurHome ? 'covered' : 'missed'}">${covTeamZh} ✓</span>`;
+                        }
+
+                        html += `<div class="sp-h2h-game-card">
+                            <div class="sp-h2h-gc-top">
+                                <span class="sp-h2h-gc-date">${g.date ? g.date.slice(5) : '—'}</span>
+                                <span class="sp-h2h-gc-teams">${gameAwayZh}<span class="sp-ha-tag">客</span> @ ${gameHomeZh}<span class="sp-ha-tag">主</span></span>
+                                ${atsBadge}
+                            </div>
+                            <div class="sp-h2h-gc-bot">
+                                <span class="sp-h2h-gc-spread">${spreadLine}</span>
+                                ${scoreHtml}
+                            </div>
                         </div>`;
                     });
-
                     html += '</div>';
                 }
 
