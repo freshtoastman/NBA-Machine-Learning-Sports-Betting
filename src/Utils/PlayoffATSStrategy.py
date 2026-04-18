@@ -233,6 +233,58 @@ def _g5_tied_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Game 2 → Home team covers regardless of G1 result.
+
+    Full playoff backtest (174 games, 12 seasons): 58.6% home covers, ROI=+11.9%.
+    After G1, home team (higher seed) either bounces back from a loss or protects
+    their 1-0 lead at home. Both scenarios favor the home team covering G2.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 2:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="G2主場反彈/鞏固",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="BRONZE",
+        backtest_wr=0.586,
+        backtest_roi=11.9,
+        backtest_n=174,
+        reason_zh="第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
+    )
+
+
+def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Game 6 → Away team covers.
+
+    Full playoff backtest (88 games, 12 seasons): 64.8% away covers, ROI=+23.7%.
+    Strongest game-number signal. In G6 (lower seed at home), the visiting team
+    (higher seed) covers at high rate whether closing out or forcing G7.
+    NOTE: May conflict with _elimination_underdog if home team faces elimination.
+    When both fire in opposite directions, treat as no consensus.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 6:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="G6客場壓制",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="SILVER",
+        backtest_wr=0.648,
+        backtest_roi=23.7,
+        backtest_n=88,
+        reason_zh="第6場客場隊 cover 率 64.8% (n=88，12季歷史)，係最強局數信號",
+    )
+
+
 def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     """DISABLED — actual data shows 51.3% home covers (n=265), not claimed 63.5% (n=52).
     Signal adds no value. Kept as stub but never fires."""
@@ -294,11 +346,13 @@ def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
 _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
+    _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
+    _g2_home_bounce,                  # BRONZE verified: 58.6% (n=174) — G2 home covers
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]

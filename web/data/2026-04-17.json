@@ -532,11 +532,22 @@
    "series_away_wins": 0,
    "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
-   "playoff_ats_picks": [],
-   "playoff_ats_best_side": null,
-   "playoff_ats_best_signal": null,
-   "playoff_ats_best_tier": null,
-   "playoff_ats_consensus": null,
+   "playoff_ats_picks": [
+    {
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "ats_side": "受讓(押dog)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "backtest_roi": 11.9,
+     "backtest_n": 174,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+    }
+   ],
+   "playoff_ats_best_side": "home",
+   "playoff_ats_best_signal": "G2主場反彈/鞏固",
+   "playoff_ats_best_tier": "BRONZE",
+   "playoff_ats_consensus": "home",
    "home_team_zh": "奧蘭多魔術",
    "away_team_zh": "夏洛特黃蜂",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
@@ -1041,6 +1052,16 @@
      "backtest_roi": 15.5,
      "backtest_n": 30,
      "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)"
+    },
+    {
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "backtest_roi": 11.9,
+     "backtest_n": 174,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
     }
    ],
    "playoff_ats_best_side": "home",

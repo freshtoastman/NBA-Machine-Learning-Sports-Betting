@@ -557,12 +557,22 @@
      "backtest_roi": 5.8,
      "backtest_n": 155,
      "reason_zh": "主場僅讓 1.5 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)"
+    },
+    {
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "backtest_roi": 11.9,
+     "backtest_n": 174,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
     }
    ],
    "playoff_ats_best_side": "away",
    "playoff_ats_best_signal": "小讓分客場受讓",
    "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": "away",
+   "playoff_ats_consensus": null,
    "home_team_zh": "費城七六人",
    "away_team_zh": "奧蘭多魔術",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
@@ -1067,6 +1077,16 @@
      "backtest_roi": 15.5,
      "backtest_n": 30,
      "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)"
+    },
+    {
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "backtest_roi": 11.9,
+     "backtest_n": 174,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
     }
    ],
    "playoff_ats_best_side": "home",
