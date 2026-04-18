@@ -281,9 +281,11 @@ def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | No
 
 
 def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """5.5 ≤ |spread| < 8 → bet underdog (13-season: 60.9% WR, +16.3% ROI).
+    """5.5 ≤ |spread| < 8 → bet underdog.
 
-    Markets over-adjust medium spreads in playoffs.
+    12-season playoff history (290 games): 52.1% dog covers overall — barely break-even.
+    Recent 3 seasons (2022-25, 67 games): 61.2% — high year-to-year variance (32%-68%).
+    Keep as BRONZE (informational only, not high-conviction).
     """
     spread = pred.get("spread")
     if spread is None:
@@ -298,10 +300,10 @@ def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
         side=side,
         ats_side="受讓(押dog)",
         tier="BRONZE",
-        backtest_wr=0.609,
-        backtest_roi=16.3,
-        backtest_n=64,
-        reason_zh=f"讓分 {abs_sp:.1f} 在 5.5-8 區間，市場高估熱門，冷門 cover 率 60.9%",
+        backtest_wr=0.521,
+        backtest_roi=4.2,
+        backtest_n=290,
+        reason_zh=f"讓分 {abs_sp:.1f} 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)",
     )
 
 
