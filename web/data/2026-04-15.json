@@ -1108,6 +1108,14 @@
    "low_seed": "LA Clippers",
    "high_wins": 1,
    "low_wins": 0
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Charlotte Hornets",
+   "low_seed": "Orlando Magic",
+   "high_wins": 0,
+   "low_wins": 1
   }
  ],
  "is_playoff_view": true

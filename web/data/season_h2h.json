@@ -2421,9 +2421,9 @@
     "home": "Orlando Magic",
     "away": "Charlotte Hornets",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 31,
+    "home_score": 121,
+    "away_score": 90,
     "ats_result": "home"
    }
   ],
