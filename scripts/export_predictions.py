@@ -58,22 +58,18 @@ def _is_stale_comment(comment: str, today_opponent: str | None) -> bool:
     """Return True if the injury comment references a different opponent than today's.
 
     ESPN entries from the last regular-season rest day persist into playoffs.
-    When a comment says 'out for Sunday's game against [Team]' but [Team] is not
-    today's opponent, the entry is stale and should be suppressed.
+    Callers should pass the combined shortComment + longComment as `comment` so that
+    richer context (e.g. 'regular-season finale' in longComment) is available here.
 
     Unconditional stale markers (regardless of opponent):
     - 'regular-season finale' / 'regular season finale'
-    - 'regular season' / 'regular-season' (any regular-season rest context)
     """
-    if not comment:
+    if not comment or today_opponent is None:
         return False
     c = comment.lower()
-    # Unconditional stale: any mention of "regular season" means the comment is from a
-    # regular-season game/rest day and should not carry over into playoffs.
-    if "regular season" in c or "regular-season" in c:
+    # Unconditional stale: comment explicitly says "regular-season finale" / rest context
+    if "regular-season finale" in c or "regular season finale" in c:
         return True
-    if today_opponent is None:
-        return False
     opp_lower = today_opponent.lower()
     # Check if any NBA team identifier appears in the comment
     mentioned_teams = [n for n in _NBA_TEAM_IDENTIFIERS if n in c]
@@ -119,8 +115,12 @@ def fetch_injury_report(today_matchups: dict[str, str] | None = None) -> dict[st
             if not name:
                 continue
             comment = inj.get("shortComment", "")
+            # longComment often contains richer context (e.g. "regular-season finale")
+            # that shortComment omits. Combine both for stale detection.
+            long_comment = inj.get("longComment", "")
+            stale_text = f"{comment} {long_comment}"
             # Filter stale entries that reference a different opponent (e.g., April 12 rest day)
-            if _is_stale_comment(comment, today_opp):
+            if _is_stale_comment(stale_text, today_opp):
                 continue
             status_zh = _parse_injury_status(comment)
             player_injuries.append(f"{name} ({status_zh})")

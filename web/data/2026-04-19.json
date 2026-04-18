@@ -30,16 +30,8 @@
   "playoff_ats_count": 1,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Oklahoma City Thunder: Jaylin Williams (缺陣)",
    "Oklahoma City Thunder: Cason Wallace (缺陣)",
-   "Oklahoma City Thunder: Ajay Mitchell (缺陣)",
-   "Oklahoma City Thunder: Isaiah Joe (缺陣)",
-   "Oklahoma City Thunder: Isaiah Hartenstein (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Oklahoma City Thunder: Chet Holmgren (缺陣)",
-   "Oklahoma City Thunder: Shai Gilgeous-Alexander (缺陣)",
-   "San Antonio Spurs: Dylan Harper (可能出賽)",
-   "Portland Trail Blazers: Damian Lillard (缺陣)"
+   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
   ]
  },
  "games": {
@@ -1040,14 +1032,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [
-    "Jaylin Williams (缺陣)",
     "Cason Wallace (缺陣)",
-    "Ajay Mitchell (缺陣)",
-    "Isaiah Joe (缺陣)",
-    "Isaiah Hartenstein (缺陣)",
-    "Jalen Williams (缺陣)",
-    "Chet Holmgren (缺陣)",
-    "Shai Gilgeous-Alexander (缺陣)"
+    "Ajay Mitchell (缺陣)"
    ],
    "injuries_away": []
   },
@@ -2034,12 +2020,8 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [
-    "Dylan Harper (可能出賽)"
-   ],
-   "injuries_away": [
-    "Damian Lillard (缺陣)"
-   ]
+   "injuries_home": [],
+   "injuries_away": []
   }
  },
  "active_series": [
