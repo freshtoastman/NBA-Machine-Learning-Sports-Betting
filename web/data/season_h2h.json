@@ -273,6 +273,16 @@
     "home_score": 114,
     "away_score": 98,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-04-19",
+    "home": "Boston Celtics",
+    "away": "Philadelphia 76ers",
+    "spread": 12.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -2149,6 +2159,16 @@
     "home_score": 123,
     "away_score": 107,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-04-19",
+    "home": "Detroit Pistons",
+    "away": "Orlando Magic",
+    "spread": 8.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Boston Celtics:Cleveland Cavaliers": [
@@ -7291,6 +7311,16 @@
     "home_score": 112,
     "away_score": 101,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-04-19",
+    "home": "San Antonio Spurs",
+    "away": "Portland Trail Blazers",
+    "spread": 10.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Golden State Warriors:Houston Rockets": [
@@ -7500,6 +7530,16 @@
     "win_margin": -32,
     "home_score": 103,
     "away_score": 135,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-04-19",
+    "home": "Oklahoma City Thunder",
+    "away": "Phoenix Suns",
+    "spread": 13.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "away"
    }
   ],
