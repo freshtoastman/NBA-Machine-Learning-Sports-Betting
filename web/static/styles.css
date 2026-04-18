@@ -3440,6 +3440,25 @@ h3 {
     line-height: 1.4;
 }
 
+/* ── Playoff Signal Season Tracker ── */
+.po-signal-tracker {
+    background: linear-gradient(135deg, rgba(20,30,15,0.95), rgba(10,20,25,0.95));
+    border: 1px solid rgba(82,199,122,0.25);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 10px 0;
+}
+.po-st-head { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+.po-st-title { font-size:14px; font-weight:700; color:#7fd69b; }
+.po-st-sub { font-size:11px; color:rgba(200,230,200,0.5); }
+.po-st-stats { display:flex; gap:16px; flex-wrap:wrap; }
+.po-st-stat { text-align:center; }
+.po-st-lbl { font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:rgba(200,220,200,0.5); margin-bottom:2px; }
+.po-st-val { font-size:22px; font-weight:700; color:#e0e0e0; }
+.po-st-val.good { color:#7fd69b; }
+.po-st-val.bad { color:#d97a7a; }
+.po-st-sub { font-size:11px; color:rgba(200,220,200,0.5); }
+
 /* ═══════════════════════════════════════════════════════════════
    Right Side Panel — ATS Daily Log & H2H Records
    ═══════════════════════════════════════════════════════════════ */

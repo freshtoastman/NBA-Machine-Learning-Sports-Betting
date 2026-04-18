@@ -39,5 +39,41 @@
   "value_hit_rate": 71.2,
   "value_pl": 25800.0,
   "value_roi": 35.3
+ },
+ "playoff_signals": {
+  "hits": 2,
+  "misses": 1,
+  "pending": 1,
+  "decided": 3,
+  "hit_rate": 66.7,
+  "history": [
+   {
+    "date": "2026-04-14",
+    "game": "邁阿密熱火 @ 夏洛特黃蜂",
+    "signal": "客場ATS冷門反彈",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.619,
+    "ats_winner": "away"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "多倫多暴龍 @ 克里夫蘭騎士",
+    "signal": "主場ATS冷門反彈",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-15",
+    "game": "奧蘭多魔術 @ 費城七六人",
+    "signal": "小讓分客場受讓",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.529,
+    "ats_winner": "home"
+   }
+  ]
  }
 }

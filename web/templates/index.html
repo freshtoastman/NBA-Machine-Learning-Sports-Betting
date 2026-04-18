@@ -201,6 +201,41 @@
             </details>
             {% endif %}
 
+            {# 🏀 季後賽信號戰績追蹤 #}
+            {% if season_stats.playoff_signals and season_stats.playoff_signals.decided %}
+            {% set pos = season_stats.playoff_signals %}
+            <div class="po-signal-tracker">
+                <div class="po-st-head">
+                    <span class="po-st-title">🏀 季後賽信號戰績</span>
+                    <span class="po-st-sub">GOLD/SILVER 回測信號本季累計</span>
+                </div>
+                <div class="po-st-stats">
+                    <div class="po-st-stat">
+                        <div class="po-st-lbl">命中率</div>
+                        <div class="po-st-val {% if pos.hit_rate >= 60 %}good{% elif pos.hit_rate < 50 %}bad{% endif %}">{{ pos.hit_rate }}%</div>
+                        <div class="po-st-sub">{{ pos.hits }}/{{ pos.decided }}</div>
+                    </div>
+                    <div class="po-st-stat">
+                        <div class="po-st-lbl">命中</div>
+                        <div class="po-st-val good">{{ pos.hits }}</div>
+                        <div class="po-st-sub">場次</div>
+                    </div>
+                    <div class="po-st-stat">
+                        <div class="po-st-lbl">失敗</div>
+                        <div class="po-st-val {% if pos.misses > pos.hits %}bad{% endif %}">{{ pos.misses }}</div>
+                        <div class="po-st-sub">場次</div>
+                    </div>
+                    {% if pos.pending %}
+                    <div class="po-st-stat">
+                        <div class="po-st-lbl">待開</div>
+                        <div class="po-st-val">{{ pos.pending }}</div>
+                        <div class="po-st-sub">場次</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
             {# 🥇 HERO: 金鑽 — 目前 ROI 最高的主要策略 (移至最上方) #}
             {% if season_stats.golden_picks %}
             <div class="golden-hero">

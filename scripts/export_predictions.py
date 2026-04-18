@@ -708,6 +708,44 @@ def main():
     reset_season_cache()
     stats = compute_season_stats(season_key)
     if stats:
+        # Augment with playoff signal performance (scan all date JSONs in OUT_DIR).
+        po_hits, po_misses, po_pending = [], [], []
+        for jf in sorted(OUT_DIR.glob("????-??-??.json")):
+            try:
+                with open(jf, encoding="utf-8") as _jf:
+                    _d = json.load(_jf)
+                for alert in _d.get("summary", {}).get("playoff_ats_alerts", []):
+                    tier = alert.get("tier")
+                    if tier not in ("GOLD", "SILVER"):
+                        continue
+                    wr = alert.get("backtest_wr", 0)
+                    record = {
+                        "date": _d["date"],
+                        "game": f'{alert.get("away_team_zh", alert.get("away_team", "?"))} @ {alert.get("home_team_zh", alert.get("home_team", "?"))}',
+                        "signal": alert.get("signal") or alert.get("signal_name", "?"),
+                        "side": alert.get("side"),
+                        "tier": tier,
+                        "backtest_wr": wr,
+                        "ats_winner": alert.get("ats_winner"),
+                    }
+                    winner = alert.get("ats_winner")
+                    if winner is None:
+                        po_pending.append(record)
+                    elif winner == alert.get("side"):
+                        po_hits.append(record)
+                    else:
+                        po_misses.append(record)
+            except Exception:
+                pass
+        decided = len(po_hits) + len(po_misses)
+        stats["playoff_signals"] = {
+            "hits": len(po_hits),
+            "misses": len(po_misses),
+            "pending": len(po_pending),
+            "decided": decided,
+            "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
+            "history": po_hits[-10:] + po_misses[-5:],  # recent outcomes for display
+        }
         stats_path = OUT_DIR / "season_stats.json"
         with open(stats_path, "w", encoding="utf-8") as f:
             json.dump(stats, f, ensure_ascii=False, indent=1, default=_serialize)
