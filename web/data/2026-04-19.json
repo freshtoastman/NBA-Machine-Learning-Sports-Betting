@@ -29,16 +29,7 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Boston Celtics: Derrick White (缺陣)",
-   "Boston Celtics: Neemias Queta (缺陣)",
-   "Boston Celtics: Payton Pritchard (缺陣)",
-   "Boston Celtics: Sam Hauser (缺陣)",
-   "Boston Celtics: Hugo Gonzalez (缺陣)",
-   "Boston Celtics: Jaylen Brown (缺陣)",
-   "Boston Celtics: Nikola Vucevic (缺陣)",
-   "Boston Celtics: Jayson Tatum (缺陣)",
    "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Philadelphia 76ers: Johni Broome (缺陣)",
    "Oklahoma City Thunder: Jaylin Williams (缺陣)",
    "Oklahoma City Thunder: Cason Wallace (缺陣)",
    "Oklahoma City Thunder: Ajay Mitchell (缺陣)",
@@ -47,14 +38,7 @@
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Oklahoma City Thunder: Chet Holmgren (缺陣)",
    "Oklahoma City Thunder: Shai Gilgeous-Alexander (缺陣)",
-   "Oklahoma City Thunder: Thomas Sorber (缺陣)",
-   "Phoenix Suns: Mark Williams (缺陣)",
-   "Detroit Pistons: Jalen Duren (缺陣)",
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "San Antonio Spurs: Dylan Harper (缺陣)",
-   "San Antonio Spurs: Victor Wembanyama (缺陣)",
-   "San Antonio Spurs: Luke Kornet (缺陣)",
-   "San Antonio Spurs: David Jones Garcia (缺陣)",
+   "San Antonio Spurs: Dylan Harper (可能出賽)",
    "Portland Trail Blazers: Damian Lillard (缺陣)"
   ]
  },
@@ -549,19 +533,9 @@
    "away_team_zh": "費城七六人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "injuries_home": [
-    "Derrick White (缺陣)",
-    "Neemias Queta (缺陣)",
-    "Payton Pritchard (缺陣)",
-    "Sam Hauser (缺陣)",
-    "Hugo Gonzalez (缺陣)",
-    "Jaylen Brown (缺陣)",
-    "Nikola Vucevic (缺陣)",
-    "Jayson Tatum (缺陣)"
-   ],
+   "injuries_home": [],
    "injuries_away": [
-    "Joel Embiid (缺陣)",
-    "Johni Broome (缺陣)"
+    "Joel Embiid (缺陣)"
    ]
   },
   "Phoenix Suns:Oklahoma City Thunder": {
@@ -1073,12 +1047,9 @@
     "Isaiah Hartenstein (缺陣)",
     "Jalen Williams (缺陣)",
     "Chet Holmgren (缺陣)",
-    "Shai Gilgeous-Alexander (缺陣)",
-    "Thomas Sorber (缺陣)"
+    "Shai Gilgeous-Alexander (缺陣)"
    ],
-   "injuries_away": [
-    "Mark Williams (缺陣)"
-   ]
+   "injuries_away": []
   },
   "Orlando Magic:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -1570,12 +1541,8 @@
    "away_team_zh": "奧蘭多魔術",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-   "injuries_home": [
-    "Jalen Duren (缺陣)"
-   ],
-   "injuries_away": [
-    "Jonathan Isaac (缺陣)"
-   ]
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -2068,10 +2035,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "injuries_home": [
-    "Dylan Harper (缺陣)",
-    "Victor Wembanyama (缺陣)",
-    "Luke Kornet (缺陣)",
-    "David Jones Garcia (缺陣)"
+    "Dylan Harper (可能出賽)"
    ],
    "injuries_away": [
     "Damian Lillard (缺陣)"

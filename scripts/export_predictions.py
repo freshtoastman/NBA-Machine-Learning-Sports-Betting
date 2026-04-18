@@ -32,14 +32,68 @@ def _parse_injury_status(comment: str) -> str:
         return "存疑"
     if "doubtful" in c:
         return "可能缺陣"
-    if "probable" in c:
+    if "probable" in c or "expected to play" in c or "will play" in c:
         return "可能出賽"
     # Default: confirmed out (ruled out / miss / season-ending etc.)
     return "缺陣"
 
 
-def fetch_injury_report() -> dict[str, list[str]]:
-    """Fetch NBA injury report from ESPN. Returns {team_name: [injury_strings]}."""
+_NBA_TEAM_IDENTIFIERS = {
+    # Nicknames
+    "hawks", "celtics", "nets", "hornets", "bulls", "cavaliers", "mavericks",
+    "nuggets", "pistons", "warriors", "rockets", "pacers", "clippers", "lakers",
+    "grizzlies", "heat", "bucks", "timberwolves", "pelicans", "knicks", "thunder",
+    "magic", "76ers", "suns", "trail blazers", "blazers", "kings", "spurs", "raptors",
+    "jazz", "wizards",
+    # City / location names
+    "atlanta", "boston", "brooklyn", "charlotte", "chicago", "cleveland",
+    "dallas", "denver", "detroit", "golden state", "houston", "indiana",
+    "la clippers", "los angeles", "memphis", "miami", "milwaukee", "minnesota",
+    "new orleans", "new york", "oklahoma city", "oklahoma", "orlando", "philadelphia",
+    "phoenix", "portland", "sacramento", "san antonio", "toronto", "utah", "washington",
+}
+
+
+def _is_stale_comment(comment: str, today_opponent: str | None) -> bool:
+    """Return True if the injury comment references a different opponent than today's.
+
+    ESPN entries from the last regular-season rest day persist into playoffs.
+    When a comment says 'out for Sunday's game against [Team]' but [Team] is not
+    today's opponent, the entry is stale and should be suppressed.
+
+    Unconditional stale markers (regardless of opponent):
+    - 'regular-season finale' / 'regular season finale'
+    - 'regular season' / 'regular-season' (any regular-season rest context)
+    """
+    if not comment:
+        return False
+    c = comment.lower()
+    # Unconditional stale: any mention of "regular season" means the comment is from a
+    # regular-season game/rest day and should not carry over into playoffs.
+    if "regular season" in c or "regular-season" in c:
+        return True
+    if today_opponent is None:
+        return False
+    opp_lower = today_opponent.lower()
+    # Check if any NBA team identifier appears in the comment
+    mentioned_teams = [n for n in _NBA_TEAM_IDENTIFIERS if n in c]
+    if not mentioned_teams:
+        return False  # No team mentioned → keep (likely generic comment)
+    # If the comment mentions a team, check if it's today's opponent
+    opp_matches = any(n in opp_lower for n in mentioned_teams)
+    if opp_matches:
+        return False  # Comment references today's opponent → keep
+    # Comment references a different team → stale
+    return True
+
+
+def fetch_injury_report(today_matchups: dict[str, str] | None = None) -> dict[str, list[str]]:
+    """Fetch NBA injury report from ESPN. Returns {team_name: [injury_strings]}.
+
+    today_matchups: {team_name: opponent_name} for stale-comment filtering.
+    When a player's injury comment references a team that is NOT today's opponent,
+    the entry is treated as stale (e.g., April 12 regular-season rest day entries).
+    """
     try:
         import requests
         r = requests.get(_ESPN_INJURY_URL, headers=_ESPN_HEADERS, timeout=15)
@@ -52,6 +106,7 @@ def fetch_injury_report() -> dict[str, list[str]]:
     result: dict[str, list[str]] = {}
     for team_entry in data.get("injuries", []):
         team_name = team_entry.get("displayName", "")
+        today_opp = (today_matchups or {}).get(team_name)
         player_injuries = []
         for inj in team_entry.get("injuries", []):
             # ESPN uses "Out" as catch-all status; parse comment for actual status
@@ -64,6 +119,9 @@ def fetch_injury_report() -> dict[str, list[str]]:
             if not name:
                 continue
             comment = inj.get("shortComment", "")
+            # Filter stale entries that reference a different opponent (e.g., April 12 rest day)
+            if _is_stale_comment(comment, today_opp):
+                continue
             status_zh = _parse_injury_status(comment)
             player_injuries.append(f"{name} ({status_zh})")
         if player_injuries:
@@ -128,7 +186,12 @@ def export_date(target_date: date) -> dict | None:
     # Fetch injury report once for all games (only for today — historical unavailable).
     injury_report: dict[str, list[str]] = {}
     if is_today:
-        injury_report = fetch_injury_report()
+        # Build opponent map for stale-comment filtering
+        today_opp_map: dict[str, str] = {}
+        for g in games_list:
+            today_opp_map[g["home_team"]] = g["away_team"]
+            today_opp_map[g["away_team"]] = g["home_team"]
+        injury_report = fetch_injury_report(today_matchups=today_opp_map)
 
     games_dict = {}
     for g in games_list:
