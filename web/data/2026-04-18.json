@@ -1036,6 +1036,12 @@
    "actual_ou_result": "UNDER",
    "ou_correct": true,
    "is_playoff": true,
+   "series_round": "首輪",
+   "series_game_num": 1,
+   "series_home_wins": 1,
+   "series_away_wins": 0,
+   "series_status_text": "主隊領先 1-0",
+   "series_is_elimination": false,
    "playoff_ats_picks": [
     {
      "signal": "中等讓分押冷門",
@@ -2077,6 +2083,15 @@
    "high_wins": 1,
    "low_wins": 0,
    "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Denver Nuggets",
+   "low_seed": "Minnesota Timberwolves",
+   "high_wins": 1,
+   "low_wins": 0,
+   "conference": "west"
   },
   {
    "round_num": 0,

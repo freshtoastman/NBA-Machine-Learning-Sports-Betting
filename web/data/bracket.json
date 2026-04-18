@@ -4,6 +4,8 @@
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
+ "stage_label": "首輪進行中",
+ "stage": "first_round",
  "east": {
   "name": "東區",
   "seeds": [
@@ -167,7 +169,9 @@
      "seed": 8
     },
     "winner_seed": 7,
-    "loser_note": "敗者進 8/9 淘汰賽"
+    "loser_note": "敗者進 8/9 淘汰賽",
+    "winner": "Philadelphia 76ers",
+    "winner_zh": "費城七六人"
    },
    "game_b": {
     "label": "9 vs 10",
@@ -190,13 +194,33 @@
      "seed": 10
     },
     "winner_note": "晉級 8 號淘汰賽",
-    "loser_note": "淘汰"
+    "loser_note": "淘汰",
+    "winner": "Charlotte Hornets",
+    "winner_zh": "夏洛特黃蜂"
    },
    "game_c": {
     "label": "8 號種子決定戰",
-    "home": "7/8 敗者",
-    "away": "9/10 勝者",
-    "winner_seed": 8
+    "home": {
+     "team": "Orlando Magic",
+     "team_zh": "奧蘭多魔術",
+     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Charlotte Hornets",
+     "team_zh": "夏洛特黃蜂",
+     "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+     "wins": 44,
+     "losses": 38,
+     "win_pct": 0.537,
+     "seed": 9
+    },
+    "winner_seed": 8,
+    "winner": "Orlando Magic",
+    "winner_zh": "奧蘭多魔術"
    }
   },
   "first_round": [
@@ -246,7 +270,17 @@
     },
     "high_wins": 1,
     "low_wins": 0,
-    "games_played": 1
+    "games_played": 1,
+    "next_signal": {
+     "game_num": 2,
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "home_team": "Cleveland Cavaliers",
+     "home_team_zh": "克里夫蘭騎士",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+    }
    },
    {
     "label": "3 vs 6",
@@ -461,7 +495,9 @@
      "seed": 8
     },
     "winner_seed": 7,
-    "loser_note": "敗者進 8/9 淘汰賽"
+    "loser_note": "敗者進 8/9 淘汰賽",
+    "winner": "Portland Trail Blazers",
+    "winner_zh": "波特蘭拓荒者"
    },
    "game_b": {
     "label": "9 vs 10",
@@ -484,13 +520,33 @@
      "seed": 10
     },
     "winner_note": "晉級 8 號淘汰賽",
-    "loser_note": "淘汰"
+    "loser_note": "淘汰",
+    "winner": "Golden State Warriors",
+    "winner_zh": "金州勇士"
    },
    "game_c": {
     "label": "8 號種子決定戰",
-    "home": "7/8 敗者",
-    "away": "9/10 勝者",
-    "winner_seed": 8
+    "home": {
+     "team": "Phoenix Suns",
+     "team_zh": "鳳凰城太陽",
+     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Golden State Warriors",
+     "team_zh": "金州勇士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+     "wins": 37,
+     "losses": 45,
+     "win_pct": 0.451,
+     "seed": 10
+    },
+    "winner_seed": 8,
+    "winner": "Phoenix Suns",
+    "winner_zh": "鳳凰城太陽"
    }
   },
   "first_round": [
@@ -562,9 +618,19 @@
      "win_pct": 0.598,
      "seed": 6
     },
-    "high_wins": 0,
+    "high_wins": 1,
     "low_wins": 0,
-    "games_played": 0
+    "games_played": 1,
+    "next_signal": {
+     "game_num": 2,
+     "signal": "G2主場反彈/鞏固",
+     "side": "home",
+     "home_team": "Denver Nuggets",
+     "home_team_zh": "丹佛金塊",
+     "tier": "BRONZE",
+     "backtest_wr": 0.586,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+    }
    },
    {
     "label": "2 vs 7",

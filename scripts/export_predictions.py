@@ -453,42 +453,138 @@ def build_bracket(target_date: date) -> dict | None:
     east_r1_resolved = _resolve_playin_r1(east, season_key, playoff_start)
     west_r1_resolved = _resolve_playin_r1(west, season_key, playoff_start)
 
-    # Load series_state to annotate first_round with current win counts.
+    # Load series_state (R1+ for scores, play-in for results).
     _series_wins: dict = {}
+    _playin_results: dict = {}  # frozenset({high, low}) → (hw, lw)
+    _stage_label = "附加賽階段"
     try:
         import sqlite3 as _sq
         _odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
         _tbl = f"series_state_{season_key}"
         with _sq.connect(str(_odds_db)) as _con:
             for _row in _con.execute(
-                f'SELECT high_seed, low_seed, high_wins, low_wins FROM "{_tbl}"'
-                f' WHERE round_num >= 1'
+                f'SELECT high_seed, low_seed, high_wins, low_wins, round_num FROM "{_tbl}"'
             ):
-                _hs, _ls, _hw, _lw = _row
-                _series_wins[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
+                _hs, _ls, _hw, _lw, _rn = _row
+                if _rn >= 1:
+                    _series_wins[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
+                else:
+                    _playin_results[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
+        # Determine stage
+        if _series_wins:
+            max_rn = 1
+            with _sq.connect(str(_odds_db)) as _con:
+                row = _con.execute(
+                    f'SELECT MAX(round_num) FROM "{_tbl}" WHERE round_num >= 1'
+                ).fetchone()
+                if row and row[0]:
+                    max_rn = row[0]
+            _stage_label = {1: "首輪進行中", 2: "第二輪進行中",
+                            3: "分區決賽", 4: "總決賽"}.get(max_rn, "季後賽進行中")
+        elif _playin_results:
+            _stage_label = "附加賽進行中"
     except Exception:
         pass
 
+    def _playin_winner_loser(team_a, team_b):
+        """Return (winner_card, loser_card) using playin_results, or (None, None)."""
+        key = frozenset({team_a["team"], team_b["team"]})
+        result = _playin_results.get(key)
+        if result is None:
+            return None, None
+        hw, lw = result
+        # high_seed = team_a (home), low_seed = team_b (away) in our naming
+        # Find which is which from playin_results by matching team names
+        for _hs, _ls, _hw2, _lw2, _ in []:  # unused placeholder
+            pass
+        # Look up directly
+        try:
+            import sqlite3 as _sq2
+            _odds_db2 = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+            _tbl2 = f"series_state_{season_key}"
+            with _sq2.connect(str(_odds_db2)) as _con2:
+                row = _con2.execute(
+                    f'SELECT high_seed, low_seed, high_wins, low_wins FROM "{_tbl2}"'
+                    f' WHERE round_num = 0 AND ('
+                    f'  (high_seed = ? AND low_seed = ?) OR (high_seed = ? AND low_seed = ?))',
+                    (team_a["team"], team_b["team"], team_b["team"], team_a["team"]),
+                ).fetchone()
+        except Exception:
+            return None, None
+        if not row:
+            return None, None
+        hs_name, ls_name, hw2, lw2 = row
+        if hw2 and not lw2:
+            winner_name, loser_name = hs_name, ls_name
+        elif lw2 and not hw2:
+            winner_name, loser_name = ls_name, hs_name
+        else:
+            return None, None
+        winner = team_a if team_a["team"] == winner_name else team_b
+        loser = team_a if team_a["team"] == loser_name else team_b
+        return winner, loser
+
     def _conference(name, seeds, r1_resolved):
-        # Play-in: 7v8 winner → #7; 9v10 winner vs 7v8 loser → #8.
+        # Enrich play-in with winner data from series_state.
+        seed7, seed8 = seeds[6], seeds[7]
+        seed9, seed10 = seeds[8], seeds[9]
+
+        ga_winner, ga_loser = _playin_winner_loser(seed7, seed8)
+        gb_winner, gb_loser = _playin_winner_loser(seed9, seed10)
+
+        # game_c: 7v8 loser vs 9v10 winner
+        gc_home = ga_loser or "7/8 敗者"
+        gc_away = gb_winner or "9/10 勝者"
+        gc_winner, gc_loser = (None, None)
+        if ga_loser and gb_winner:
+            gc_winner, gc_loser = _playin_winner_loser(ga_loser, gb_winner)
+
         play_in = {
-            "game_a": {"label": "7 vs 8", "home": seeds[6], "away": seeds[7],
-                       "winner_seed": 7, "loser_note": "敗者進 8/9 淘汰賽"},
-            "game_b": {"label": "9 vs 10", "home": seeds[8], "away": seeds[9],
-                       "winner_note": "晉級 8 號淘汰賽", "loser_note": "淘汰"},
-            "game_c": {"label": "8 號種子決定戰", "home": "7/8 敗者",
-                       "away": "9/10 勝者", "winner_seed": 8},
+            "game_a": {
+                "label": "7 vs 8", "home": seed7, "away": seed8,
+                "winner_seed": 7, "loser_note": "敗者進 8/9 淘汰賽",
+                "winner": ga_winner["team"] if ga_winner else None,
+                "winner_zh": ga_winner["team_zh"] if ga_winner else None,
+            },
+            "game_b": {
+                "label": "9 vs 10", "home": seed9, "away": seed10,
+                "winner_note": "晉級 8 號淘汰賽", "loser_note": "淘汰",
+                "winner": gb_winner["team"] if gb_winner else None,
+                "winner_zh": gb_winner["team_zh"] if gb_winner else None,
+            },
+            "game_c": {
+                "label": "8 號種子決定戰",
+                "home": gc_home, "away": gc_away,
+                "winner_seed": 8,
+                "winner": gc_winner["team"] if gc_winner else None,
+                "winner_zh": gc_winner["team_zh"] if gc_winner else None,
+            },
         }
         low_8 = r1_resolved.get(8, "待定（8 號種子）")
         low_7 = r1_resolved.get(7, "待定（7 號種子）")
 
         def _with_wins(high_team, low_team):
-            """Attach series win counts to a first_round entry dict."""
+            """Attach series win counts and upcoming signal hints to a first_round entry."""
             if isinstance(high_team, str) or isinstance(low_team, str):
                 return {}
             key = frozenset({high_team["team"], low_team["team"]})
             hw, lw = _series_wins.get(key, (0, 0))
-            return {"high_wins": hw, "low_wins": lw, "games_played": hw + lw}
+            gp = hw + lw
+            entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
+            # G2 home bounce signal: fires when exactly 1 game has been played
+            if gp == 1:
+                g2_home = high_team if hw > lw else low_team
+                entry["next_signal"] = {
+                    "game_num": 2,
+                    "signal": "G2主場反彈/鞏固",
+                    "side": "home",
+                    "home_team": g2_home["team"],
+                    "home_team_zh": g2_home["team_zh"],
+                    "tier": "BRONZE",
+                    "backtest_wr": 0.586,
+                    "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
+                }
+            return entry
 
         first_round = [
             {"label": "1 vs 8", "high": seeds[0], "low": low_8,
@@ -514,6 +610,8 @@ def build_bracket(target_date: date) -> dict | None:
         "playoff_start": playoff_start,
         "show_from": show_from,
         "show_until": show_until,
+        "stage_label": _stage_label,
+        "stage": "first_round" if _series_wins else ("play_in" if _playin_results else None),
         "east": _conference("東區", east, east_r1_resolved),
         "west": _conference("西區", west, west_r1_resolved),
     }
