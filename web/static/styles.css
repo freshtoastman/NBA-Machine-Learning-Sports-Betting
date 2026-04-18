@@ -3633,6 +3633,40 @@ h3 {
 .sp-pick-detail { font-size: 10px; color: #6b8fb5; margin-top: 1px; }
 .sp-edge { color: #5ba3f5; margin-left: 4px; font-weight: 700; }
 
+/* ── Playoff strategy picks in prediction log ── */
+.sp-playoff-stats {
+    margin-top: 8px;
+    border-top: 1px solid rgba(255,180,50,0.2);
+    padding-top: 8px;
+    position: relative;
+}
+.sp-stat-header {
+    font-size: 10px;
+    font-weight: 700;
+    color: #e8a94a;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+.sp-po-section {
+    margin-top: 4px;
+    border-top: 1px dashed rgba(255,180,50,0.15);
+    padding-top: 2px;
+}
+.sp-po-pick { background: rgba(255,180,50,0.03); }
+.sp-po-tier {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+.sp-po-gold   { background: rgba(255,215,0,0.15);  color: #ffd700; border: 1px solid rgba(255,215,0,0.3); }
+.sp-po-silver { background: rgba(192,192,192,0.12); color: #c0c0c0; border: 1px solid rgba(192,192,192,0.25); }
+.sp-po-bronze { background: rgba(205,127,50,0.12);  color: #cd7f32; border: 1px solid rgba(205,127,50,0.25); }
+.sp-po-signal { color: #9ba8b9; font-style: italic; margin-left: 4px; }
+
 /* ── H2H Records ── */
 .h2h-btn {
     background: rgba(80,160,255,0.1);

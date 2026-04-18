@@ -98,32 +98,51 @@ def assign_rounds(sorted_series):
     """Bucket series into rounds based on chronological order + game count.
 
     Heuristic:
-      - A 'series' with only 1-2 distinct days AND no team has 4 wins yet
-        AND the earliest-date is BEFORE the first 'real' series → Play-In (round 0)
-      - Otherwise we bucket the chronologically sorted series:
+      - Play-In teams appear in MULTIPLE matchups (e.g. GS plays LAC then PHX).
+        Any matchup containing such a team is Play-In (round 0).
+      - Eliminated Play-In teams appear in only one matchup, but their opponent
+        is a confirmed Play-In team, so the matchup is still caught.
+      - Remaining matchups are real bracket series bucketed chronologically:
         first 8 → R1, next 4 → R2, next 2 → R3, last 1 → R4
     """
+    from collections import Counter
+
+    # Step 1: count how many distinct matchups each team appears in.
+    team_matchup_count: Counter = Counter()
+    for _matchup, data in sorted_series:
+        team_matchup_count[data["team_a"]] += 1
+        team_matchup_count[data["team_b"]] += 1
+
+    # Teams in 2+ matchups are confirmed Play-In participants.
+    playin_teams = {t for t, cnt in team_matchup_count.items() if cnt >= 2}
+
     play_in = []
     real = []
     for matchup, data in sorted_series:
         max_wins = max(data["wins_a"], data["wins_b"])
-        # Play-In games end after a single matchup; any series we already see
-        # with both wins_a < 1 in early dates is just unknown not play-in. We
-        # treat "single-game series before main bracket" as Play-In.
-        if data["num_games"] <= 1 and max_wins <= 1:
+        # Confirmed Play-In matchup: either team is a Play-In participant.
+        if data["team_a"] in playin_teams or data["team_b"] in playin_teams:
+            play_in.append((matchup, data))
+        elif data["num_games"] <= 1 and max_wins <= 1:
+            # Single-game series whose teams don't appear elsewhere — ambiguous.
+            # Could be an eliminated Play-In team's only game, or R1 Game 1.
+            # We keep it in play_in tentatively; the bucketing below resolves it.
             play_in.append((matchup, data))
         else:
             real.append((matchup, data))
 
-    # Decide which 1-game series are actually Play-In vs real R1 game 1.
-    # Heuristic: if there are obviously > 8 'real' series, the extras are R1 G1s.
+    # Step 2: bucket real bracket series.
     if len(real) >= 8:
+        # Enough R1 series exist — our play_in list is reliable.
         play_in_actual = play_in
         all_real = real
+    elif len(real) == 0 and len(play_in) <= 8:
+        # Only Play-In games have been played so far; no R1 data yet.
+        play_in_actual = play_in
+        all_real = []
     else:
-        # Mix; the early single-game ones still might be Play-In, but ambiguous.
-        # Sort everything by earliest_date and treat first N as Play-In where
-        # N matches the typical 6-game Play-In structure.
+        # Mixed: some ambiguous single-game series alongside a partial bracket.
+        # Sort everything and keep the last ≤15 as the real bracket.
         all_combined = sorted(play_in + real, key=lambda s: s[1]["earliest_date"])
         play_in_actual = all_combined[:max(0, len(all_combined) - 15)]
         all_real = all_combined[len(play_in_actual):]

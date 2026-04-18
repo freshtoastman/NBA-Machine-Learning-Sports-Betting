@@ -1427,76 +1427,107 @@ def api_ats_daily_log():
 
         day_picks = []
         for key, g in (data.get("games") or {}).items():
-            ats_pick_side = g.get("ats_model_pick")
-            if not ats_pick_side:
-                continue
-
             ats_winner = g.get("ats_winner")           # 'home', 'away', 'push', or None
             spread = g.get("spread")
-
-            if ats_winner and ats_winner != "push":
-                correct = 1 if ats_pick_side == ats_winner else 0
-            elif ats_winner == "push":
-                correct = None
-            else:
-                correct = None   # pending / no result yet
-
-            # Build readable pick string (e.g. "讓 3.5" or "受讓 3.5")
             home_zh = g.get("home_team_zh") or g.get("home_team", "?")
             away_zh = g.get("away_team_zh") or g.get("away_team", "?")
-            picked_zh = home_zh if ats_pick_side == "home" else away_zh
-            if spread is not None:
-                abs_sp = abs(float(spread))
-                is_fav = (ats_pick_side == "home" and spread > 0) or \
-                         (ats_pick_side == "away" and spread < 0)
-                if abs_sp == 0:
-                    pick_str = f"{picked_zh}（PK）"
-                elif is_fav:
-                    pick_str = f"{picked_zh} 讓 {abs_sp:.1f}"
-                else:
-                    pick_str = f"{picked_zh} 受讓 {abs_sp:.1f}"
-            else:
-                pick_str = picked_zh
 
-            day_picks.append({
-                "game_date": iso,
-                "game_key": key,
-                "home_team": g.get("home_team"),
-                "away_team": g.get("away_team"),
-                "home_team_zh": home_zh,
-                "away_team_zh": away_zh,
-                "spread": spread,
-                "ats_pick": ats_pick_side,
-                "pick_str": pick_str,
-                "ats_edge": g.get("ats_value_edge"),
-                "ats_winner": ats_winner,
-                "ats_correct": correct,
-                "is_golden": bool(g.get("is_golden")),
-                "is_value": bool(g.get("is_value")),
-                "ats_is_value": bool(g.get("ats_is_value")),
-            })
+            def _ats_correct(pick_side, winner):
+                if winner and winner != "push":
+                    return 1 if pick_side == winner else 0
+                return None
+
+            def _pick_str(pick_side, sp):
+                picked_zh = home_zh if pick_side == "home" else away_zh
+                if sp is not None:
+                    abs_sp = abs(float(sp))
+                    is_fav = (pick_side == "home" and sp > 0) or (pick_side == "away" and sp < 0)
+                    if abs_sp == 0:
+                        return f"{picked_zh}（PK）"
+                    return f"{picked_zh} {'讓' if is_fav else '受讓'} {abs_sp:.1f}"
+                return picked_zh
+
+            # ── ML model pick ────────────────────────────────────────
+            ats_pick_side = g.get("ats_model_pick")
+            if ats_pick_side:
+                day_picks.append({
+                    "game_date": iso,
+                    "game_key": key,
+                    "home_team": g.get("home_team"),
+                    "away_team": g.get("away_team"),
+                    "home_team_zh": home_zh,
+                    "away_team_zh": away_zh,
+                    "spread": spread,
+                    "ats_pick": ats_pick_side,
+                    "pick_str": _pick_str(ats_pick_side, spread),
+                    "ats_edge": g.get("ats_value_edge"),
+                    "ats_winner": ats_winner,
+                    "ats_correct": _ats_correct(ats_pick_side, ats_winner),
+                    "is_golden": bool(g.get("is_golden")),
+                    "is_value": bool(g.get("is_value")),
+                    "ats_is_value": bool(g.get("ats_is_value")),
+                    "pick_type": "ml",
+                })
+
+            # ── Playoff strategy pick (best signal per game) ──────────
+            po_side = g.get("playoff_ats_best_side")
+            po_tier = g.get("playoff_ats_best_tier")
+            po_signal = g.get("playoff_ats_best_signal")
+            if po_side and po_tier and g.get("is_playoff"):
+                day_picks.append({
+                    "game_date": iso,
+                    "game_key": key,
+                    "home_team": g.get("home_team"),
+                    "away_team": g.get("away_team"),
+                    "home_team_zh": home_zh,
+                    "away_team_zh": away_zh,
+                    "spread": spread,
+                    "ats_pick": po_side,
+                    "pick_str": _pick_str(po_side, spread),
+                    "ats_edge": None,
+                    "ats_winner": ats_winner,
+                    "ats_correct": _ats_correct(po_side, ats_winner),
+                    "is_golden": False,
+                    "is_value": False,
+                    "ats_is_value": False,
+                    "pick_type": "playoff",
+                    "playoff_tier": po_tier,
+                    "playoff_signal": po_signal,
+                })
 
         if day_picks:
             day_records.append({"date": iso, "picks": day_picks})
 
-    # Aggregate stats
+    # Aggregate stats — ML picks only (playoff picks tracked separately)
     all_picks = [p for day in day_records for p in day["picks"]]
-    graded = [p for p in all_picks if p["ats_correct"] is not None]
+    ml_picks = [p for p in all_picks if p.get("pick_type") != "playoff"]
+    po_picks = [p for p in all_picks if p.get("pick_type") == "playoff"]
+
+    graded = [p for p in ml_picks if p["ats_correct"] is not None]
     wins = sum(1 for p in graded if p["ats_correct"] == 1)
 
-    # Recent 5-pick streak from graded picks
+    # Recent 5-pick streak from graded ML picks
     last5 = graded[-5:] if len(graded) >= 5 else graded
     streak_wins = sum(1 for p in last5 if p["ats_correct"] == 1)
     streak_str = f"{streak_wins}-{len(last5) - streak_wins}" if last5 else None
 
+    # Playoff strategy stats
+    po_graded = [p for p in po_picks if p["ats_correct"] is not None]
+    po_wins = sum(1 for p in po_graded if p["ats_correct"] == 1)
+
     stats = {
-        "total": len(all_picks),
+        "total": len(ml_picks),
         "graded": len(graded),
         "wins": wins,
         "losses": len(graded) - wins,
         "hit_rate": round(wins / len(graded) * 100, 1) if graded else None,
-        "pending": len(all_picks) - len(graded),
+        "pending": len(ml_picks) - len(graded),
         "last5": streak_str,
+        "playoff_total": len(po_picks),
+        "playoff_graded": len(po_graded),
+        "playoff_wins": po_wins,
+        "playoff_losses": len(po_graded) - po_wins,
+        "playoff_hit_rate": round(po_wins / len(po_graded) * 100, 1) if po_graded else None,
     }
 
     return jsonify({"days": day_records, "stats": stats})
