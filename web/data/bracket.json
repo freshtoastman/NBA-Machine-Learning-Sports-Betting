@@ -1,11 +1,9 @@
 {
  "snapshot_date": "2026-04-18",
  "generated_for": "2026-04-18",
- "playoff_start": "2026-04-18",
+ "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
- "show_until": "2026-05-15",
- "stage": "first_round",
- "stage_label": "首輪進行中",
+ "show_until": "2026-04-24",
  "east": {
   "name": "東區",
   "seeds": [
@@ -46,36 +44,36 @@
     "seed": 4
    },
    {
-    "team": "Toronto Raptors",
-    "team_zh": "多倫多暴龍",
-    "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
-    "wins": 46,
-    "losses": 36,
-    "win_pct": 0.561,
-    "seed": 5
-   },
-   {
     "team": "Atlanta Hawks",
     "team_zh": "亞特蘭大老鷹",
     "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
     "wins": 46,
     "losses": 36,
     "win_pct": 0.561,
+    "seed": 5
+   },
+   {
+    "team": "Toronto Raptors",
+    "team_zh": "多倫多暴龍",
+    "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+    "wins": 46,
+    "losses": 36,
+    "win_pct": 0.561,
     "seed": 6
    },
    {
-    "team": "Philadelphia 76ers",
-    "team_zh": "費城七六人",
-    "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+    "team": "Orlando Magic",
+    "team_zh": "奧蘭多魔術",
+    "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
     "wins": 45,
     "losses": 37,
     "win_pct": 0.549,
     "seed": 7
    },
    {
-    "team": "Orlando Magic",
-    "team_zh": "奧蘭多魔術",
-    "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+    "team": "Philadelphia 76ers",
+    "team_zh": "費城七六人",
+    "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
     "wins": 45,
     "losses": 37,
     "win_pct": 0.549,
@@ -88,9 +86,7 @@
     "wins": 44,
     "losses": 38,
     "win_pct": 0.537,
-    "seed": 9,
-    "eliminated": true,
-    "eliminated_in": "附加賽 8 號決定戰"
+    "seed": 9
    },
    {
     "team": "Miami Heat",
@@ -99,9 +95,7 @@
     "wins": 43,
     "losses": 39,
     "win_pct": 0.524,
-    "seed": 10,
-    "eliminated": true,
-    "eliminated_in": "附加賽 9/10 淘汰賽"
+    "seed": 10
    }
   ],
   "lottery": [
@@ -152,10 +146,8 @@
    }
   ],
   "play_in": {
-   "completed": true,
    "game_a": {
     "label": "7 vs 8",
-    "date": "2026-04-15",
     "home": {
      "team": "Orlando Magic",
      "team_zh": "奧蘭多魔術",
@@ -174,14 +166,11 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "winner": "Philadelphia 76ers",
-    "winner_zh": "費城七六人",
-    "result_seed": 7,
+    "winner_seed": 7,
     "loser_note": "敗者進 8/9 淘汰賽"
    },
    "game_b": {
     "label": "9 vs 10",
-    "date": "2026-04-14",
     "home": {
      "team": "Charlotte Hornets",
      "team_zh": "夏洛特黃蜂",
@@ -200,35 +189,14 @@
      "win_pct": 0.524,
      "seed": 10
     },
-    "winner": "Charlotte Hornets",
-    "winner_zh": "夏洛特黃蜂",
     "winner_note": "晉級 8 號淘汰賽",
     "loser_note": "淘汰"
    },
    "game_c": {
     "label": "8 號種子決定戰",
-    "date": "2026-04-17",
-    "home": {
-     "team": "Orlando Magic",
-     "team_zh": "奧蘭多魔術",
-     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-     "wins": 45,
-     "losses": 37,
-     "win_pct": 0.549,
-     "seed": 7
-    },
-    "away": {
-     "team": "Charlotte Hornets",
-     "team_zh": "夏洛特黃蜂",
-     "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-     "wins": 44,
-     "losses": 38,
-     "win_pct": 0.537,
-     "seed": 9
-    },
-    "winner": "Orlando Magic",
-    "winner_zh": "奧蘭多魔術",
-    "result_seed": 8
+    "home": "7/8 敗者",
+    "away": "9/10 勝者",
+    "winner_seed": 8
    }
   },
   "first_round": [
@@ -243,15 +211,7 @@
      "win_pct": 0.732,
      "seed": 1
     },
-    "low": {
-     "team": "Orlando Magic",
-     "team_zh": "奧蘭多魔術",
-     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-     "wins": 45,
-     "losses": 37,
-     "win_pct": 0.549,
-     "seed": 8
-    }
+    "low": "待定（8 號種子）"
    },
    {
     "label": "4 vs 5",
@@ -265,9 +225,9 @@
      "seed": 4
     },
     "low": {
-     "team": "Toronto Raptors",
-     "team_zh": "多倫多暴龍",
-     "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+     "team": "Atlanta Hawks",
+     "team_zh": "亞特蘭大老鷹",
+     "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
      "wins": 46,
      "losses": 36,
      "win_pct": 0.561,
@@ -286,9 +246,9 @@
      "seed": 3
     },
     "low": {
-     "team": "Atlanta Hawks",
-     "team_zh": "亞特蘭大老鷹",
-     "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+     "team": "Toronto Raptors",
+     "team_zh": "多倫多暴龍",
+     "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
      "wins": 46,
      "losses": 36,
      "win_pct": 0.561,
@@ -306,15 +266,7 @@
      "win_pct": 0.683,
      "seed": 2
     },
-    "low": {
-     "team": "Philadelphia 76ers",
-     "team_zh": "費城七六人",
-     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-     "wins": 45,
-     "losses": 37,
-     "win_pct": 0.549,
-     "seed": 7
-    }
+    "low": "待定（7 號種子）"
    }
   ]
  },
@@ -376,21 +328,21 @@
     "seed": 6
    },
    {
-    "team": "Portland Trail Blazers",
-    "team_zh": "波特蘭拓荒者",
-    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-    "wins": 42,
-    "losses": 40,
-    "win_pct": 0.512,
-    "seed": 7
-   },
-   {
     "team": "Phoenix Suns",
     "team_zh": "鳳凰城太陽",
     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
     "wins": 45,
     "losses": 37,
     "win_pct": 0.549,
+    "seed": 7
+   },
+   {
+    "team": "Portland Trail Blazers",
+    "team_zh": "波特蘭拓荒者",
+    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+    "wins": 42,
+    "losses": 40,
+    "win_pct": 0.512,
     "seed": 8
    },
    {
@@ -400,9 +352,7 @@
     "wins": 42,
     "losses": 40,
     "win_pct": 0.512,
-    "seed": 9,
-    "eliminated": true,
-    "eliminated_in": "附加賽 8 號決定戰"
+    "seed": 9
    },
    {
     "team": "Golden State Warriors",
@@ -411,9 +361,7 @@
     "wins": 37,
     "losses": 45,
     "win_pct": 0.451,
-    "seed": 10,
-    "eliminated": true,
-    "eliminated_in": "附加賽 9/10 淘汰賽"
+    "seed": 10
    }
   ],
   "lottery": [
@@ -464,10 +412,8 @@
    }
   ],
   "play_in": {
-   "completed": true,
    "game_a": {
     "label": "7 vs 8",
-    "date": "2026-04-14",
     "home": {
      "team": "Phoenix Suns",
      "team_zh": "鳳凰城太陽",
@@ -486,14 +432,11 @@
      "win_pct": 0.512,
      "seed": 8
     },
-    "winner": "Portland Trail Blazers",
-    "winner_zh": "波特蘭拓荒者",
-    "result_seed": 7,
+    "winner_seed": 7,
     "loser_note": "敗者進 8/9 淘汰賽"
    },
    "game_b": {
     "label": "9 vs 10",
-    "date": "2026-04-15",
     "home": {
      "team": "LA Clippers",
      "team_zh": "洛杉磯快艇",
@@ -512,35 +455,14 @@
      "win_pct": 0.451,
      "seed": 10
     },
-    "winner": "LA Clippers",
-    "winner_zh": "洛杉磯快艇",
     "winner_note": "晉級 8 號淘汰賽",
     "loser_note": "淘汰"
    },
    "game_c": {
     "label": "8 號種子決定戰",
-    "date": "2026-04-17",
-    "home": {
-     "team": "Phoenix Suns",
-     "team_zh": "鳳凰城太陽",
-     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-     "wins": 45,
-     "losses": 37,
-     "win_pct": 0.549,
-     "seed": 7
-    },
-    "away": {
-     "team": "LA Clippers",
-     "team_zh": "洛杉磯快艇",
-     "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
-     "wins": 42,
-     "losses": 40,
-     "win_pct": 0.512,
-     "seed": 9
-    },
-    "winner": "Phoenix Suns",
-    "winner_zh": "鳳凰城太陽",
-    "result_seed": 8
+    "home": "7/8 敗者",
+    "away": "9/10 勝者",
+    "winner_seed": 8
    }
   },
   "first_round": [
@@ -555,15 +477,7 @@
      "win_pct": 0.78,
      "seed": 1
     },
-    "low": {
-     "team": "Phoenix Suns",
-     "team_zh": "鳳凰城太陽",
-     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-     "wins": 45,
-     "losses": 37,
-     "win_pct": 0.549,
-     "seed": 8
-    }
+    "low": "待定（8 號種子）"
    },
    {
     "label": "4 vs 5",
@@ -618,15 +532,7 @@
      "win_pct": 0.756,
      "seed": 2
     },
-    "low": {
-     "team": "Portland Trail Blazers",
-     "team_zh": "波特蘭拓荒者",
-     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-     "wins": 42,
-     "losses": 40,
-     "win_pct": 0.512,
-     "seed": 7
-    }
+    "low": "待定（7 號種子）"
    }
   ]
  }
