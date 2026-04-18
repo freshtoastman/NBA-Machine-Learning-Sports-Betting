@@ -961,12 +961,40 @@ def _build_game_context(g):
     else:
         inj_block = "\n傷兵名單: 無重要傷兵記錄"
 
+    # Playoff ATS signals with full backtest detail (GOLD/SILVER/BRONZE)
+    po_picks = g.get("playoff_ats_picks") or []
+    if po_picks:
+        tier_label = {"GOLD": "🥇金", "SILVER": "🥈銀", "BRONZE": "🥉銅"}
+        po_lines = []
+        for p in po_picks:
+            tier = tier_label.get(p.get("tier", ""), p.get("tier", ""))
+            wr = p.get("backtest_wr", 0)
+            roi = p.get("backtest_roi", 0)
+            n = p.get("backtest_n", "?")
+            reason = p.get("reason_zh", "")
+            side = p.get("ats_side", "")
+            po_lines.append(f"  [{tier}] {side}: {reason}（回測 {n} 場，勝率 {wr*100:.0f}%，ROI +{roi:.1f}%）")
+        po_block = "\n季後賽 ATS 策略訊號（回測驗證）:\n" + "\n".join(po_lines)
+    else:
+        po_block = ""
+
+    # Moneyline odds and model fair probability
+    ml_odds_h = g.get("home_team_odds")
+    ml_odds_a = g.get("away_team_odds")
+    fair_h = g.get("fair_home")
+    fair_a = g.get("fair_away")
+    odds_line = ""
+    if ml_odds_h is not None and ml_odds_a is not None:
+        odds_line = f"\n賠率: {home_zh} {ml_odds_h:+d} / {away_zh} {ml_odds_a:+d}"
+        if fair_h is not None:
+            odds_line += f" | 模型公允機率: {home_zh} {fair_h:.1f}% / {away_zh} {fair_a:.1f}%"
+
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
 ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
-鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
+鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}{odds_line}
 {golden_line}
 {hp}
-{ap}{inj_block}{pick_block}{bt_block}"""
+{ap}{inj_block}{po_block}{pick_block}{bt_block}"""
 
 
 @app.route("/api/daily-report")
@@ -993,16 +1021,29 @@ def api_daily_report():
     for i, (k, g) in enumerate(games.items(), 1):
         contexts.append(f"=== 第{i}場 ===\n{_build_game_context(g)}")
 
+    # Collect all injury alerts from games for the summary
+    all_injuries = []
+    for g in games.values():
+        home_zh_g = g.get("home_team_zh") or g.get("home_team", "?")
+        away_zh_g = g.get("away_team_zh") or g.get("away_team", "?")
+        for p in g.get("injuries_home") or []:
+            all_injuries.append(f"{home_zh_g}（主）: {p}")
+        for p in g.get("injuries_away") or []:
+            all_injuries.append(f"{away_zh_g}（客）: {p}")
+    inj_summary = ("\n傷兵彙整（ESPN 即時數據，已含於各場比賽 context 中）:\n" +
+                   "\n".join(f"  {x}" for x in all_injuries)) if all_injuries else "\n傷兵: 無重大傷兵記錄"
+
     prompt = f"""你是職業 NBA 讓分盤分析師團隊主管。產出一份讓投注者能直接照著操作的當日報告。
 
 日期: {game_date}
 比賽數量: {len(games)}
+{inj_summary}
 
 {chr(10).join(contexts)}
 
 === 任務 ===
-1. 搜尋今天所有重大傷兵消息
-2. **仔細閱讀每場比賽的「回測策略訊號」**：🔥強 = 歷史勝率 ≥60%，⚡中 = 55-60%，🚫警告 = 應避免。優先挑選有多個 🔥/⚡ 訊號支持的場次作為 best_bets。
+1. **評估傷兵影響**：各場比賽的傷兵名單已由 ESPN 即時提供（見上方傷兵彙整及各場 context 中「傷兵名單」），不需自行搜尋。直接根據已提供名單評估對讓分盤的影響。
+2. **仔細閱讀每場比賽的「回測策略訊號」和「季後賽 ATS 策略訊號」**：🔥強 = 歷史勝率 ≥60%，⚡中 = 55-60%，🚫警告 = 應避免。優先挑選有多個 🔥/⚡ 訊號支持的場次作為 best_bets。
 3. **分析每場比賽的「歷史輪廓」**：注意近期趨勢（近1月走勢）、本日週幾的勝率、對強/弱隊的表現、ATS cover 率。走勢好或 ATS cover 率高的隊伍更值得信賴。
 4. 從每場比賽提供的『選項A/選項B』中挑出值得下注的讓分推薦
 5. 標出應該避開的比賽（特別留意有 🚫警告 訊號的場次、或近期走勢極差的隊伍）
@@ -1032,7 +1073,7 @@ def api_daily_report():
   "avoid_games": [
     {{"game": "客隊 @ 主隊", "reason": "為什麼避開（傷兵不確定/盤口合理/五五波）"}}
   ],
-  "injury_alerts": ["重大傷兵消息1", "重大傷兵消息2"],
+  "injury_alerts": ["整理 ESPN 傷兵名單中影響讓分盤最重要的球員（例如：湖人隊 Luka Doncic 缺陣，影響大）"],
   "bankroll_plan": "今日資金分配建議（總共幾個單位、怎麼分配）",
   "daily_summary": "150字策略總結：今天哪些盤口有機會、整體市場觀察、風險提醒"
 }}
@@ -1043,14 +1084,14 @@ def api_daily_report():
 - **每個 pick 必須從該場提供的『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名**
 - units 必須是數字 1-5
 - 勝負盤（moneyline）只有在大冷門有價值時才提及
-- injury_alerts 必須是搜尋到的真實傷兵消息
+- injury_alerts 必須來自已提供的 ESPN 傷兵名單，彙整影響讓分盤最大的球員缺陣情況
 - **best_bets 的 reason 和 model_support 必須引用該場「回測策略訊號」和「歷史輪廓」**：例如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover」或「近1月 ATS cover 率 65%，走勢火熱」。若該場無回測訊號則註明「無相關回測訊號」
 - **lean_picks 的 reason 也須提到回測訊號或歷史輪廓**
 - **avoid_games 的 reason 可引用歷史輪廓走勢不佳的數據**
 - 隊名一律用繁體中文
 - 用繁體中文回答"""
 
-    raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
+    raw = _call_gemini(prompt, use_search=False) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if not result:
         # Fallback
@@ -1060,7 +1101,7 @@ def api_daily_report():
             "best_bets": [],
             "lean_picks": [],
             "avoid_games": [],
-            "injury_alerts": ["無法取得傷兵資訊（離線模式）"],
+            "injury_alerts": all_injuries[:5] if all_injuries else ["無重大傷兵"],
             "bankroll_plan": f"建議保守操作，等待更好的場次。",
             "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。",
             "source": "fallback",
