@@ -148,6 +148,8 @@ def _ats_value_threshold(game_date, is_away_pick: bool = False) -> float:
       Combined home 8% + away 9%: 82.0% (61 picks across both OOS seasons)
       Away picks at 8-9% edge: 2/4 correct in 2025-26, 5/9 in 2024-25 — barely break-even,
       so raising away threshold from 8%→9% improves accuracy at near-zero EV cost.
+      Home picks at 6-8%: profitable (72.7% 2024-25, 77.8% 2025-26, 75% combined) but
+      brings 2024-25 seasonal accuracy to 79.1% (below 80% target) — NOT deployed.
       March (late regular):  100% — 0/3 hit rate, negative EV
       April 1-13:            100% — garbage time / resting
       Playoffs (Apr 14+):    10%  — thin OOS sample, elevated bar
