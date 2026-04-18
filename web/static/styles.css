@@ -495,6 +495,12 @@ a {
 .ai-inj-title { font-size: 11px; font-weight: 700; color: var(--negative); }
 .ai-inj-item { font-size: 11px; color: var(--muted); padding-left: 8px; }
 
+/* Injury row in main game cards (ESPN data, today only) */
+.injury-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 12px; background: rgba(255,107,107,0.06); border-radius: 8px; margin: 4px 0; }
+.inj-col { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; flex: 1; min-width: 120px; }
+.inj-label { font-size: 10px; font-weight: 700; color: var(--negative); margin-right: 2px; }
+.inj-badge { font-size: 10px; color: var(--muted); background: rgba(255,107,107,0.12); border: 1px solid rgba(255,107,107,0.25); border-radius: 4px; padding: 1px 5px; }
+
 .ai-section-lbl { font-size: 11px; font-weight: 700; color: var(--accent-2); width: 100%; }
 .ai-factor { display: inline-block; padding: 2px 8px; border-radius: 6px; background: rgba(35, 214, 198, 0.1); border: 1px solid rgba(35, 214, 198, 0.25); color: var(--text); font-size: 11px; }
 

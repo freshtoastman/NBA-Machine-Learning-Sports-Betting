@@ -486,6 +486,20 @@
                     {% endif %}
                 </div>
 
+                {# Injury warnings — populated for today's games from ESPN injury report #}
+                {% set h_inj = game.injuries_home|default([]) %}
+                {% set a_inj = game.injuries_away|default([]) %}
+                {% if h_inj or a_inj %}
+                <div class="injury-row">
+                    {% if h_inj %}
+                    <div class="inj-col"><span class="inj-label">🏥 主隊</span>{% for p in h_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
+                    {% endif %}
+                    {% if a_inj %}
+                    <div class="inj-col"><span class="inj-label">🏥 客隊</span>{% for p in a_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
                 <div class="ai-block" id="ai-{{ loop.index0 }}">
                     <div class="card-btn-row">
                         <button class="ai-btn" onclick="loadAnalysis({{ loop.index0 }}, '{{ selected_date }}', '{{ home_team }}', '{{ away_team }}')">🤖 AI 分析</button>
