@@ -541,12 +541,14 @@
                 {% set a_inj = game.injuries_away|default([]) %}
                 {% if h_inj or a_inj %}
                 <div class="injury-row">
-                    {% if h_inj %}
-                    <div class="inj-col"><span class="inj-label">🏥 主隊</span>{% for p in h_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
-                    {% endif %}
-                    {% if a_inj %}
-                    <div class="inj-col"><span class="inj-label">🏥 客隊</span>{% for p in a_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
-                    {% endif %}
+                    <div class="inj-col">
+                        {% if h_inj %}<span class="inj-label">🏥 主隊</span>{% endif %}
+                        <div class="inj-badges">{% for p in h_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
+                    </div>
+                    <div class="inj-col">
+                        {% if a_inj %}<span class="inj-label">🏥 客隊</span>{% endif %}
+                        <div class="inj-badges">{% for p in a_inj %}<span class="inj-badge">{{ p }}</span>{% endfor %}</div>
+                    </div>
                 </div>
                 {% endif %}
 
