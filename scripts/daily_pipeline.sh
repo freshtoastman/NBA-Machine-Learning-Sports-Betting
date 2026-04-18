@@ -46,6 +46,9 @@ cd "$PROJECT_DIR"
 # 2. Patch final scores for recent days (sbrscrape).
 run_step "Patch_Scores"  python scripts/patch_scores.py
 
+# 2b. Collect referee data for recent days (builds historical ATS profiles).
+python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
+
 # 3. Derive playoff series state from updated odds (idempotent).
 run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-seasons || true
 
