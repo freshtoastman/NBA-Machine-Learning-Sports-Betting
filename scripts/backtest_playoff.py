@@ -175,6 +175,8 @@ def split_regular_playoff(df: pd.DataFrame, season: str):
 # ---------------------------------------------------------------------------
 
 class _BoosterWrapper:
+    _estimator_type = "classifier"
+
     def __init__(self, booster, num_class):
         self.booster = booster
         self.classes_ = np.arange(num_class)
@@ -182,8 +184,17 @@ class _BoosterWrapper:
     def fit(self, X, y):
         return self
 
+    def predict(self, X):
+        probs = self.booster.predict(xgb.DMatrix(X))
+        if probs.ndim == 2:
+            return np.argmax(probs, axis=1)
+        return (probs >= 0.5).astype(int)
+
     def predict_proba(self, X):
-        return self.booster.predict(xgb.DMatrix(X))
+        probs = self.booster.predict(xgb.DMatrix(X))
+        if probs.ndim == 1:
+            return np.column_stack([1 - probs, probs])
+        return probs
 
 
 def train_xgb(X, y, num_classes, trials=20, seed=42):
