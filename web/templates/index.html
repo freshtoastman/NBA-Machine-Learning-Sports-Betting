@@ -314,11 +314,55 @@
         {% endif %}
 
         {% if is_playoff_view and active_series %}
+        {% set east_series = active_series|selectattr('conference','equalto','east')|list %}
+        {% set west_series = active_series|selectattr('conference','equalto','west')|list %}
+        {% set has_conf = east_series|length + west_series|length > 0 %}
         <section class="series-tracker">
             <div class="series-tracker-head">
-                <span>🏆 季後賽進行中</span>
-                <span class="series-tracker-sub">{{ active_series|length }} 組系列賽</span>
+                <span>🏆 季後賽首輪</span>
+                <span class="series-tracker-sub">{{ active_series|length }} 組系列賽 · 附加賽已結束</span>
             </div>
+            {% if has_conf %}
+            <div class="series-conf-wrap">
+                {% for conf_name, conf_series, conf_class in [('東區', east_series, 'east'), ('西區', west_series, 'west')] %}
+                {% if conf_series %}
+                <div class="series-conf-block {{ conf_class }}">
+                    <div class="series-conf-title">{{ conf_name }}</div>
+                    <div class="series-tracker-grid">
+                        {% for s in conf_series %}
+                        {% set total_played = s.high_wins + s.low_wins %}
+                        {% set status = s.status or ('in_progress' if total_played > 0 else 'upcoming') %}
+                        <div class="series-mini status-{{ status }}">
+                            <div class="series-mini-head">
+                                <span class="series-mini-round">{{ s.round_label }}</span>
+                                {% if status == 'upcoming' %}
+                                <span class="series-mini-badge upcoming">即將開打</span>
+                                {% elif s.high_wins >= 4 or s.low_wins >= 4 %}
+                                <span class="series-mini-badge done">已結束</span>
+                                {% else %}
+                                <span class="series-mini-badge live">G{{ total_played + 1 }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="series-mini-teams">
+                                <div class="series-mini-team {% if s.low_wins == 4 %}eliminated-foe{% elif s.high_wins == 4 %}series-winner{% endif %}">
+                                    {% if s.high_seed_num %}<span class="series-mini-seed">#{{ s.high_seed_num }}</span>{% endif %}
+                                    <span class="series-mini-name">{{ team_name_zh(s.high_seed) }}</span>
+                                    <strong class="series-mini-wins">{{ s.high_wins }}</strong>
+                                </div>
+                                <div class="series-mini-team {% if s.high_wins == 4 %}eliminated-foe{% elif s.low_wins == 4 %}series-winner{% endif %}">
+                                    {% if s.low_seed_num %}<span class="series-mini-seed">#{{ s.low_seed_num }}</span>{% endif %}
+                                    <span class="series-mini-name">{{ team_name_zh(s.low_seed) }}</span>
+                                    <strong class="series-mini-wins">{{ s.low_wins }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
             <div class="series-tracker-grid">
                 {% for s in active_series %}
                 <div class="series-mini">
@@ -336,6 +380,7 @@
                 </div>
                 {% endfor %}
             </div>
+            {% endif %}
         </section>
         {% endif %}
 
@@ -849,6 +894,45 @@
         `;
     }
 
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function renderInjuryItem(raw) {
+        // Expected format: "球員名 - OUT/GTD/Available（傷勢）" or just a string
+        const text = String(raw || '').trim();
+        if (!text) return '';
+        if (text.includes('無法查詢') || text === '無傷兵') {
+            return `<div class="ai-inj-empty">${escapeHtml(text)}</div>`;
+        }
+        // Match status keyword (case-insensitive) and split name/detail
+        const statusMatch = text.match(/\b(OUT|DTD|GTD|QUESTIONABLE|DOUBTFUL|PROBABLE|AVAILABLE|健康|出戰)\b/i);
+        let cls = 'inj-unknown';
+        let label = '';
+        if (statusMatch) {
+            const s = statusMatch[1].toUpperCase();
+            if (s === 'OUT' || s === 'DOUBTFUL') { cls = 'inj-out'; label = s === 'OUT' ? 'OUT' : 'DBT'; }
+            else if (s === 'GTD' || s === 'QUESTIONABLE' || s === 'DTD') { cls = 'inj-gtd'; label = s === 'QUESTIONABLE' ? 'GTD' : s; }
+            else if (s === 'PROBABLE') { cls = 'inj-probable'; label = 'PRB'; }
+            else if (s === 'AVAILABLE' || s === '健康' || s === '出戰') { cls = 'inj-ok'; label = 'OK'; }
+            else { label = s; }
+        }
+        // Split name vs rest at first " - " or "－" or "—"
+        const splitMatch = text.match(/^(.+?)\s*[-－—]\s*(.+)$/);
+        let name = text, detail = '';
+        if (splitMatch) {
+            name = splitMatch[1].trim();
+            detail = splitMatch[2].trim();
+            // Strip the status keyword from detail since we render it as a badge
+            if (statusMatch) {
+                detail = detail.replace(new RegExp('^' + statusMatch[1] + '\\s*[（(]?', 'i'), '').replace(/[）)]\s*$/, '').trim();
+            }
+        }
+        const badge = label ? `<span class="ai-inj-badge ${cls}">${escapeHtml(label)}</span>` : '';
+        const detailHtml = detail ? `<span class="ai-inj-detail">${escapeHtml(detail)}</span>` : '';
+        return `<div class="ai-inj-item ${cls}">${badge}<span class="ai-inj-name">${escapeHtml(name)}</span>${detailHtml}</div>`;
+    }
+
     function renderGameAnalysis(data) {
         const units = parseInt(data.ats_units) || 0;
         const unitBars = '🟢'.repeat(Math.min(units, 5)) + '⚫'.repeat(Math.max(0, 5 - units));
@@ -874,12 +958,16 @@
             ${gvHtml}
             <div class="ai-row ai-injuries">
                 <div class="ai-inj-col">
-                    <span class="ai-inj-title">🏥 主隊傷兵</span>
-                    ${(data.injuries_home || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('') || '<span class="ai-inj-item">無傷兵</span>'}
+                    <div class="ai-inj-title"><span class="ai-inj-dot"></span>主隊傷兵<span class="ai-inj-count">${(data.injuries_home || []).length}</span></div>
+                    <div class="ai-inj-list">
+                        ${(data.injuries_home || []).map(renderInjuryItem).join('') || '<div class="ai-inj-empty">✓ 無傷兵</div>'}
+                    </div>
                 </div>
                 <div class="ai-inj-col">
-                    <span class="ai-inj-title">🏥 客隊傷兵</span>
-                    ${(data.injuries_away || []).map(p => `<span class="ai-inj-item">${p}</span>`).join('') || '<span class="ai-inj-item">無傷兵</span>'}
+                    <div class="ai-inj-title"><span class="ai-inj-dot"></span>客隊傷兵<span class="ai-inj-count">${(data.injuries_away || []).length}</span></div>
+                    <div class="ai-inj-list">
+                        ${(data.injuries_away || []).map(renderInjuryItem).join('') || '<div class="ai-inj-empty">✓ 無傷兵</div>'}
+                    </div>
                 </div>
             </div>
             ${data.injury_impact ? `<div class="ai-row"><span class="ai-impact">💉 ${data.injury_impact}</span></div>` : ''}

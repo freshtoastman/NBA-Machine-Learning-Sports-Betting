@@ -2068,50 +2068,98 @@
   {
    "round_num": 1,
    "round_label": "首輪",
-   "high_seed": "Charlotte Hornets",
-   "low_seed": "Miami Heat",
-   "high_wins": 1,
-   "low_wins": 0
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Phoenix Suns",
-   "low_seed": "Portland Trail Blazers",
-   "high_wins": 0,
-   "low_wins": 1
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Orlando Magic",
-   "low_seed": "Philadelphia 76ers",
-   "high_wins": 0,
-   "low_wins": 1
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Golden State Warriors",
-   "low_seed": "LA Clippers",
-   "high_wins": 1,
-   "low_wins": 0
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Charlotte Hornets",
+   "conference": "east",
+   "high_seed": "Detroit Pistons",
+   "high_seed_num": 1,
    "low_seed": "Orlando Magic",
+   "low_seed_num": 8,
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 0,
+   "status": "upcoming"
   },
   {
    "round_num": 1,
    "round_label": "首輪",
-   "high_seed": "Golden State Warriors",
-   "low_seed": "Phoenix Suns",
+   "conference": "east",
+   "high_seed": "Boston Celtics",
+   "high_seed_num": 2,
+   "low_seed": "Philadelphia 76ers",
+   "low_seed_num": 7,
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 0,
+   "status": "upcoming"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "east",
+   "high_seed": "New York Knicks",
+   "high_seed_num": 3,
+   "low_seed": "Atlanta Hawks",
+   "low_seed_num": 6,
+   "high_wins": 1,
+   "low_wins": 0,
+   "status": "in_progress"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "east",
+   "high_seed": "Cleveland Cavaliers",
+   "high_seed_num": 4,
+   "low_seed": "Toronto Raptors",
+   "low_seed_num": 5,
+   "high_wins": 1,
+   "low_wins": 0,
+   "status": "in_progress"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "west",
+   "high_seed": "Oklahoma City Thunder",
+   "high_seed_num": 1,
+   "low_seed": "Phoenix Suns",
+   "low_seed_num": 8,
+   "high_wins": 0,
+   "low_wins": 0,
+   "status": "upcoming"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "west",
+   "high_seed": "San Antonio Spurs",
+   "high_seed_num": 2,
+   "low_seed": "Portland Trail Blazers",
+   "low_seed_num": 7,
+   "high_wins": 0,
+   "low_wins": 0,
+   "status": "upcoming"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "west",
+   "high_seed": "Denver Nuggets",
+   "high_seed_num": 3,
+   "low_seed": "Minnesota Timberwolves",
+   "low_seed_num": 6,
+   "high_wins": 1,
+   "low_wins": 0,
+   "status": "in_progress"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "conference": "west",
+   "high_seed": "Los Angeles Lakers",
+   "high_seed_num": 4,
+   "low_seed": "Houston Rockets",
+   "low_seed_num": 5,
+   "high_wins": 1,
+   "low_wins": 0,
+   "status": "in_progress"
   }
  ],
  "is_playoff_view": true
