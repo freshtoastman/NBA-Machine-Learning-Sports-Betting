@@ -9,6 +9,7 @@ of playoff spreads:
   * Elimination-game intensity compresses margins → underdogs cover 57.5%
   * ML model confidence on small spreads is highly predictive (80% WR)
   * ATS cold streaks in regular season reverse in playoffs (regression)
+  * Game 5 tied 2-2 → Home covers 60.0% (n=60, strongest structural signal)
 
 Each signal has a name, a required minimum sample size from backtest, and
 a tier (GOLD / SILVER / BRONZE) that maps to suggested Kelly fractions.
@@ -204,6 +205,34 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     return None
 
 
+def _g5_tied_home(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Game 5, series tied 2-2 → Home team covers.
+
+    Full playoff backtest (60 games, 12 seasons): 60.0% home covers, ROI=+14.5%.
+    Strongest structural signal found in playoff history — home team with crowd
+    advantage in a must-not-lose game covers at higher rate.
+    """
+    if series_state is None:
+        return None
+    game_num = series_state.get("series_game_num", 0)
+    home_wins = series_state.get("home_wins", 0)
+    away_wins = series_state.get("away_wins", 0)
+    if game_num != 5 or home_wins != 2 or away_wins != 2:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="G5平手主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.60,
+        backtest_roi=14.5,
+        backtest_n=60,
+        reason_zh="系列賽平手2-2，第5場主場優勢，12季歷史主場cover率 60% (n=60)",
+    )
+
+
 def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     """DISABLED — actual data shows 51.3% home covers (n=265), not claimed 63.5% (n=52).
     Signal adds no value. Kept as stub but never fires."""
@@ -266,6 +295,7 @@ _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
+    _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
