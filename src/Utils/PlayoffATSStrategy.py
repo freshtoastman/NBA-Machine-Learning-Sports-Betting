@@ -165,10 +165,11 @@ def _complacent_leader(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Team's last 10 regular-season ATS ≤ 30% → bounce back in playoffs.
+    """Team's last 10 ATS ≤ 30% → bounce back in playoffs.
 
-    Backtest: 75% WR, +43.2% ROI, n=20 (home side).
-    Regression to the mean: cold ATS streaks don't persist into playoffs.
+    Verified on playoff G1s (12 seasons): home 60.0% (n=30), away 61.9% (n=21).
+    All playoff games: 55.7%/54.4% — effect strongest at series start.
+    Original GOLD claim of 75% (n=20) was overstated; downgraded to SILVER.
     """
     if team_form is None:
         return None
@@ -182,11 +183,11 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             signal_name="主場ATS冷門反彈",
             side="home",
             ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-            tier="GOLD",
-            backtest_wr=0.75,
-            backtest_roi=43.2,
-            backtest_n=20,
-            reason_zh=f"主場近10場 ATS 僅 {h_ats*100:.0f}%，季後賽反彈回測勝率 75%",
+            tier="SILVER",
+            backtest_wr=0.60,
+            backtest_roi=15.5,
+            backtest_n=30,
+            reason_zh=f"主場近10場 ATS 僅 {h_ats*100:.0f}%，季後賽反彈 G1 勝率 60% (n=30)",
         )
     if a_ats is not None and a_ats <= 0.30:
         home_fav = spread is not None and spread > 0
@@ -195,10 +196,10 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             side="away",
             ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
             tier="SILVER",
-            backtest_wr=0.60,
-            backtest_roi=14.5,
-            backtest_n=15,
-            reason_zh=f"客場近10場 ATS 僅 {a_ats*100:.0f}%，季後賽反彈回測勝率 60%",
+            backtest_wr=0.619,
+            backtest_roi=17.8,
+            backtest_n=21,
+            reason_zh=f"客場近10場 ATS 僅 {a_ats*100:.0f}%，季後賽反彈 G1 勝率 61.9% (n=21)",
         )
     return None
 
@@ -260,18 +261,16 @@ def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
-# Ordered from highest confidence to lowest
+# Ordered by tier then verified WR — picks.sort() re-sorts by tier+WR anyway
 _SIGNALS = [
-    _ml_high_conf_small_spread,
-    _ats_cold_bounce,
-    _complacent_leader,
-    _ml_moderate_conf_small_spread,
-    _small_spread_away_dog,
-    _evenly_matched_home,
-    _elimination_underdog,
-    _medium_spread_dog,
-    # NOTE: _trailing_home_desperation removed — actual data shows 46.3% home cover
-    # (directionally wrong; home trailing 2+ covers LESS not more)
+    _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
+    _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
+    _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
+    _elimination_underdog,            # SILVER verified: 58.8% (n=250)
+    _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
+    _complacent_leader,               # BRONZE verified: 54.9% (n=71)
+    _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
+    _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]
 
 

@@ -20,10 +20,10 @@
     "signal": "主場ATS冷門反彈",
     "side": "home",
     "ats_side": "讓分(押fav)",
-    "tier": "GOLD",
-    "backtest_wr": 0.75,
-    "backtest_roi": 43.2,
-    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈回測勝率 75%",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "backtest_roi": 15.5,
+    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)",
     "ats_winner": "home"
    }
   ],
@@ -1036,16 +1036,16 @@
      "signal": "主場ATS冷門反彈",
      "side": "home",
      "ats_side": "讓分(押fav)",
-     "tier": "GOLD",
-     "backtest_wr": 0.75,
-     "backtest_roi": 43.2,
-     "backtest_n": 20,
-     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈回測勝率 75%"
+     "tier": "SILVER",
+     "backtest_wr": 0.6,
+     "backtest_roi": 15.5,
+     "backtest_n": 30,
+     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)"
     }
    ],
    "playoff_ats_best_side": "home",
    "playoff_ats_best_signal": "主場ATS冷門反彈",
-   "playoff_ats_best_tier": "GOLD",
+   "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "金州勇士",
