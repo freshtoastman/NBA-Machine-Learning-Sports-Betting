@@ -27,6 +27,9 @@
       .seed-row.playoff { border-left:3px solid #52c77a; }
       .seed-row.playin { border-left:3px solid #f4bf50; background:#1f1e18; }
       .seed-row.out { opacity:0.45; }
+      .seed-row.eliminated { opacity:0.55; }
+      .seed-row.eliminated .seed-name { text-decoration:line-through; color:#888; }
+      .seed-row.eliminated .elim-tag { font-size:10px; color:#d97a7a; margin-left:4px; }
       .seed-num { width:22px; font-weight:700; color:#aaa; text-align:center; }
       .seed-logo { width:22px; height:22px; object-fit:contain; }
       .seed-name { flex:1; font-weight:500; }
@@ -40,7 +43,11 @@
       .playin-vs { color:#666; padding:0 4px; }
       .playin-chip { display:inline-flex; align-items:center; gap:4px; background:#232a38; padding:3px 6px; border-radius:6px; }
       .playin-chip img { width:16px; height:16px; object-fit:contain; }
+      .playin-chip.winner { background:#1f3322; border:1px solid #3d6e4a; color:#7fd69b; }
+      .playin-chip.loser { opacity:0.55; text-decoration:line-through; }
       .playin-note { font-size:11px; color:#888; margin-top:2px; }
+      .playin-result { font-size:11px; color:#7fd69b; margin-top:2px; font-weight:600; }
+      .playin-date { color:#666; font-size:10px; margin-left:8px; }
       .matchup-list { display:flex; flex-direction:column; gap:8px; }
       .matchup { background:#1a1f2b; border-radius:10px; padding:10px 12px; border-left:3px solid #52c77a; }
       .matchup-label { font-size:11px; color:#888; margin-bottom:4px; letter-spacing:0.5px; }
@@ -67,7 +74,7 @@
       </div>
       <div>
         {% if bracket %}
-        <span class="status-chip">附加賽階段</span>
+        <span class="status-chip">{{ bracket.stage_label or '附加賽階段' }}</span>
         {% endif %}
         <a class="bracket-back" href="{{ url_for('index', nobracket=1) }}">← 回到每日預測</a>
       </div>
@@ -81,17 +88,19 @@
     {% else %}
 
     {% macro team_row(card, seed, klass) -%}
-      <div class="seed-row {{ klass }}">
+      <div class="seed-row {{ klass }}{% if card.eliminated %} eliminated{% endif %}">
         <span class="seed-num">{{ seed }}</span>
         {% if card.logo %}<img class="seed-logo" src="{{ card.logo }}" alt="">{% endif %}
-        <span class="seed-name">{{ card.team_zh }}</span>
+        <span class="seed-name">{{ card.team_zh }}{% if card.eliminated %}<span class="elim-tag">· {{ card.eliminated_in or '已淘汰' }}</span>{% endif %}</span>
         <span class="seed-rec">{{ card.wins }}-{{ card.losses }} · {{ (card.win_pct*100)|round(1) }}%</span>
       </div>
     {%- endmacro %}
 
-    {% macro team_chip(c) -%}
+    {% macro team_chip(c, winner_team=None) -%}
       {% if c is mapping %}
-        <span class="playin-chip">
+        {% set is_winner = winner_team and c.team == winner_team %}
+        {% set is_loser = winner_team and c.team != winner_team %}
+        <span class="playin-chip{% if is_winner %} winner{% elif is_loser %} loser{% endif %}">
           {% if c.logo %}<img src="{{ c.logo }}" alt="">{% endif %}
           <b>#{{ c.seed }}</b> {{ c.team_zh }}
           <span style="color:#888;font-size:11px;">({{ c.wins }}-{{ c.losses }})</span>
@@ -123,37 +132,49 @@
           {% endfor %}
         </div>
 
-        <div class="section-label">附加賽（Play-In Tournament）</div>
+        <div class="section-label">附加賽（Play-In Tournament）{% if c.play_in.completed %} · 已結束{% endif %}</div>
         <div class="playin-block">
           <div class="playin-game">
-            <div class="playin-label">{{ c.play_in.game_a.label }}</div>
+            <div class="playin-label">{{ c.play_in.game_a.label }}{% if c.play_in.game_a.date %}<span class="playin-date">{{ c.play_in.game_a.date }}</span>{% endif %}</div>
             <div class="playin-teams">
-              {{ team_chip(c.play_in.game_a.home) }}
+              {{ team_chip(c.play_in.game_a.home, c.play_in.game_a.winner) }}
               <span class="playin-vs">vs</span>
-              {{ team_chip(c.play_in.game_a.away) }}
+              {{ team_chip(c.play_in.game_a.away, c.play_in.game_a.winner) }}
             </div>
           </div>
-          <div class="playin-note">勝者 → 第 7 種子；敗者 → 8 號決定戰</div>
+          {% if c.play_in.game_a.winner_zh %}
+            <div class="playin-result">✓ {{ c.play_in.game_a.winner_zh }} 勝出 → 第 7 種子</div>
+          {% else %}
+            <div class="playin-note">勝者 → 第 7 種子；敗者 → 8 號決定戰</div>
+          {% endif %}
 
           <div class="playin-game">
-            <div class="playin-label">{{ c.play_in.game_b.label }}</div>
+            <div class="playin-label">{{ c.play_in.game_b.label }}{% if c.play_in.game_b.date %}<span class="playin-date">{{ c.play_in.game_b.date }}</span>{% endif %}</div>
             <div class="playin-teams">
-              {{ team_chip(c.play_in.game_b.home) }}
+              {{ team_chip(c.play_in.game_b.home, c.play_in.game_b.winner) }}
               <span class="playin-vs">vs</span>
-              {{ team_chip(c.play_in.game_b.away) }}
+              {{ team_chip(c.play_in.game_b.away, c.play_in.game_b.winner) }}
             </div>
           </div>
-          <div class="playin-note">勝者 → 8 號決定戰；敗者 → 淘汰</div>
+          {% if c.play_in.game_b.winner_zh %}
+            <div class="playin-result">✓ {{ c.play_in.game_b.winner_zh }} 勝出 → 晉級 8 號決定戰</div>
+          {% else %}
+            <div class="playin-note">勝者 → 8 號決定戰；敗者 → 淘汰</div>
+          {% endif %}
 
           <div class="playin-game">
-            <div class="playin-label">{{ c.play_in.game_c.label }}</div>
+            <div class="playin-label">{{ c.play_in.game_c.label }}{% if c.play_in.game_c.date %}<span class="playin-date">{{ c.play_in.game_c.date }}</span>{% endif %}</div>
             <div class="playin-teams">
-              {{ team_chip(c.play_in.game_c.home) }}
+              {{ team_chip(c.play_in.game_c.home, c.play_in.game_c.winner) }}
               <span class="playin-vs">vs</span>
-              {{ team_chip(c.play_in.game_c.away) }}
+              {{ team_chip(c.play_in.game_c.away, c.play_in.game_c.winner) }}
             </div>
           </div>
-          <div class="playin-note">勝者 → 第 8 種子；敗者 → 淘汰</div>
+          {% if c.play_in.game_c.winner_zh %}
+            <div class="playin-result">✓ {{ c.play_in.game_c.winner_zh }} 勝出 → 第 8 種子</div>
+          {% else %}
+            <div class="playin-note">勝者 → 第 8 種子；敗者 → 淘汰</div>
+          {% endif %}
         </div>
 
         <div class="section-label">第一輪對戰</div>
