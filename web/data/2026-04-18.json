@@ -25,24 +25,9 @@
     "backtest_roi": 43.2,
     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈回測勝率 75%",
     "ats_winner": null
-   },
-   {
-    "game_key": "Atlanta Hawks:New York Knicks",
-    "home_team": "New York Knicks",
-    "away_team": "Atlanta Hawks",
-    "home_team_zh": "紐約尼克",
-    "away_team_zh": "亞特蘭大老鷹",
-    "signal": "實力接近主場優勢",
-    "side": "home",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.635,
-    "backtest_roi": 21.2,
-    "reason_zh": "雙方例行賽戰績差距 <5%，主場優勢在季後賽更關鍵",
-    "ats_winner": null
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [
    "Cleveland Cavaliers: Thomas Bryant (缺陣)",
    "Toronto Raptors: Immanuel Quickley (存疑)",
@@ -1560,16 +1545,6 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
-     "signal": "實力接近主場優勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.635,
-     "backtest_roi": 21.2,
-     "backtest_n": 52,
-     "reason_zh": "雙方例行賽戰績差距 <5%，主場優勢在季後賽更關鍵"
-    },
-    {
      "signal": "中等讓分押冷門",
      "side": "away",
      "ats_side": "受讓(押dog)",
@@ -1580,10 +1555,10 @@
      "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "實力接近主場優勢",
-   "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": null,
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "中等讓分押冷門",
+   "playoff_ats_best_tier": "BRONZE",
+   "playoff_ats_consensus": "away",
    "home_team_zh": "紐約尼克",
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",

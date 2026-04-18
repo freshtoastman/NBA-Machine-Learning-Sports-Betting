@@ -204,29 +204,9 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """When teams are evenly matched (form diff < 5%), home covers.
-
-    Backtest: 63.5% WR, +21.2% ROI, n=52.
-    Home court matters more in close matchups.
-    """
-    if team_form is None:
-        return None
-    h_form = team_form.get("home_w20", 0.5)
-    a_form = team_form.get("away_w20", 0.5)
-    if abs(h_form - a_form) >= 0.05:
-        return None
-    spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
-    return PlayoffATSPick(
-        signal_name="實力接近主場優勢",
-        side="home",
-        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
-        backtest_wr=0.635,
-        backtest_roi=21.2,
-        backtest_n=52,
-        reason_zh="雙方例行賽戰績差距 <5%，主場優勢在季後賽更關鍵",
-    )
+    """DISABLED — actual data shows 51.3% home covers (n=265), not claimed 63.5% (n=52).
+    Signal adds no value. Kept as stub but never fires."""
+    return None
 
 
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
