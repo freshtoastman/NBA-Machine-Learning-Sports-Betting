@@ -611,17 +611,14 @@ def api_analysis():
 {ctx}
 
 === 任務 ===
-1. 搜尋兩隊今天的 injury report（傷兵報告）
-2. 評估傷兵對讓分盤的影響
-3. **仔細閱讀「回測策略訊號」**：這些是根據歷史比賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥60%，⚡中 = 勝率 55-60%，🚫警告 = 應避免。你的推薦應該與回測訊號一致，除非有明確傷兵或特殊消息推翻。
-4. **分析「歷史輪廓」**：注意兩隊的近期趨勢（近1月/近3月）、本日週幾的勝率、對強/弱隊的表現差異、ATS cover 率。找出有利或不利的歷史模式。
-5. 綜合模型 + 回測策略 + 歷史輪廓 + 傷兵，給出明確讓分推薦（從上方『選項A/選項B』中擇一）
+1. **評估傷兵影響**：傷兵名單已由 ESPN 即時提供（見上方「傷兵名單」）。不需自行搜尋，直接根據提供的名單評估對讓分盤的影響。
+2. **仔細閱讀「回測策略訊號」**：這些是根據歷史比賽回測驗證的高勝率情境。🔥強 = 歷史勝率 ≥60%，⚡中 = 勝率 55-60%，🚫警告 = 應避免。你的推薦應該與回測訊號一致，除非有明確傷兵或特殊消息推翻。
+3. **分析「歷史輪廓」**：注意兩隊的近期趨勢（近1月/近3月）、本日週幾的勝率、對強/弱隊的表現差異、ATS cover 率。找出有利或不利的歷史模式。
+4. 綜合模型 + 回測策略 + 歷史輪廓 + 傷兵，給出明確讓分推薦（從上方『選項A/選項B』中擇一）
 
 === 回答格式（JSON，不要 code block）===
 {{
-  "injuries_home": ["球員名 - OUT/GTD/Available（傷勢）", ...],
-  "injuries_away": ["球員名 - OUT/GTD/Available（傷勢）", ...],
-  "injury_impact": "傷兵對讓分盤的具體影響",
+  "injury_impact": "傷兵對讓分盤的具體影響（根據已提供的 ESPN 傷兵名單）",
   "key_factors": ["因素1", "因素2", "因素3"],
   "golden_verdict": "你如何看待『金鑽面向』這個因素（是/否、以及它對你的推薦信心的影響方向，不必直接照搬回測數字）",
   "backtest_alignment": "回測訊號支持/反對哪一方（引用至少一條回測訊號，說明推薦與訊號的關係）",
@@ -645,7 +642,7 @@ def api_analysis():
 - **ats_reason 必須提到回測和歷史輪廓**：明確引用回測訊號和歷史輪廓數據作為佐證
 - 用繁體中文回答"""
 
-    raw = _call_gemini(prompt, use_search=True) or _call_gemini(prompt, use_search=False)
+    raw = _call_gemini(prompt, use_search=False) or _call_gemini(prompt, use_search=False)
     result = _parse_json(raw)
     if result:
         result["source"] = "gemini"
@@ -672,8 +669,7 @@ def api_analysis():
         else:
             golden_verdict_str = "金鑽面向：否（非鑽石場次）"
         result = {
-            "injuries_home": [], "injuries_away": [],
-            "injury_impact": "無法查詢傷兵（離線模式）",
+            "injury_impact": "傷兵資料已提供於上方，AI 分析暫時不可用",
             "key_factors": ["請參考模型預測"],
             "golden_verdict": golden_verdict_str,
             "ats_pick": ats_pick_str,
@@ -686,6 +682,9 @@ def api_analysis():
             "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
             "source": "fallback",
         }
+    # Always attach ESPN injury data from prediction JSON (not from AI output)
+    result["injuries_home"] = game.get("injuries_home") or []
+    result["injuries_away"] = game.get("injuries_away") or []
     # Expose the authoritative golden/value flags so the frontend can style
     # the response without parsing the AI's free-form verdict text.
     result["is_golden"] = bool(game.get("is_golden"))
@@ -949,12 +948,25 @@ def _build_game_context(g):
     else:
         golden_line = "🥇 金鑽面向: 否 (不是鑽石場次)"
 
+    # Injury context from ESPN (pre-fetched; empty for historical games)
+    h_inj = g.get("injuries_home") or []
+    a_inj = g.get("injuries_away") or []
+    if h_inj or a_inj:
+        inj_lines = []
+        if h_inj:
+            inj_lines.append(f"  {home_zh}（主隊）: " + "、".join(h_inj))
+        if a_inj:
+            inj_lines.append(f"  {away_zh}（客隊）: " + "、".join(a_inj))
+        inj_block = "\n傷兵名單（ESPN 即時數據）:\n" + "\n".join(inj_lines)
+    else:
+        inj_block = "\n傷兵名單: 無重要傷兵記錄"
+
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
 ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
 鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}
 {golden_line}
 {hp}
-{ap}{pick_block}{bt_block}"""
+{ap}{inj_block}{pick_block}{bt_block}"""
 
 
 @app.route("/api/daily-report")
