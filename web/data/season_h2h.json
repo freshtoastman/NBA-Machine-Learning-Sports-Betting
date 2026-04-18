@@ -3447,10 +3447,10 @@
     "home": "Phoenix Suns",
     "away": "Golden State Warriors",
     "spread": 2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 15,
+    "home_score": 111,
+    "away_score": 96,
+    "ats_result": "home"
    }
   ],
   "LA Clippers:Oklahoma City Thunder": [

@@ -1116,6 +1116,14 @@
    "low_seed": "Orlando Magic",
    "high_wins": 0,
    "low_wins": 1
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Golden State Warriors",
+   "low_seed": "Phoenix Suns",
+   "high_wins": 0,
+   "low_wins": 1
   }
  ],
  "is_playoff_view": true
