@@ -52,10 +52,10 @@ def _load_series_table(season_key: str):
     try:
         with sqlite3.connect(ODDS_DB) as con:
             rows = con.execute(
-                f'SELECT round_num, round_label, high_seed, low_seed, high_wins, low_wins '
+                f'SELECT round_num, round_label, high_seed, low_seed, high_wins, low_wins, earliest_date '
                 f'FROM "{table}"'
             ).fetchall()
-        for round_num, round_label, high_seed, low_seed, high_wins, low_wins in rows:
+        for round_num, round_label, high_seed, low_seed, high_wins, low_wins, earliest_date in rows:
             if not high_seed or not low_seed:
                 continue
             key = frozenset({high_seed, low_seed})
@@ -66,14 +66,52 @@ def _load_series_table(season_key: str):
                 "low_seed": low_seed,
                 "high_wins": high_wins or 0,
                 "low_wins": low_wins or 0,
+                "earliest_date": earliest_date,
             }
     except Exception:
         pass
     return out
 
 
-def get_series_state(home_team: str, away_team: str, game_date) -> dict | None:
-    """Return the live series state for this matchup, or None if not in playoffs.
+def _count_series_games_before(home_team: str, away_team: str, target_date, season_key: str, series_start: str | None = None) -> int | None:
+    """Count completed games for this matchup in the playoff series before target_date.
+
+    series_start restricts to games on or after the series' earliest_date so that
+    regular-season games between the same teams are excluded.
+    Returns number of completed games (Points > 0) or None if query fails.
+    Used to reconstruct the pre-game series state for historical exports.
+    """
+    if isinstance(target_date, str):
+        target_date = datetime.strptime(target_date, "%Y-%m-%d").date()
+    table = f"[{season_key}]"
+    try:
+        with sqlite3.connect(ODDS_DB) as con:
+            if series_start:
+                row = con.execute(
+                    f'SELECT COUNT(*) FROM {table} '
+                    f'WHERE Date >= ? AND Date < ? AND Points > 0 '
+                    f'AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))',
+                    (series_start, target_date.isoformat(), home_team, away_team, away_team, home_team),
+                ).fetchone()
+            else:
+                row = con.execute(
+                    f'SELECT COUNT(*) FROM {table} '
+                    f'WHERE Date < ? AND Points > 0 '
+                    f'AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))',
+                    (target_date.isoformat(), home_team, away_team, away_team, home_team),
+                ).fetchone()
+            return row[0] if row else 0
+    except Exception:
+        return None
+
+
+def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None) -> dict | None:
+    """Return the series state for this matchup at game time.
+
+    When as_of_date is provided (a date object or ISO string), series_game_num is
+    computed from games completed before that date rather than from the current
+    series_state table. Use this for historical exports to avoid showing G2 signals
+    on G1 games after the series state has been updated.
 
     Returned dict keys:
         round_num, round_label, high_seed, low_seed,
@@ -96,7 +134,15 @@ def get_series_state(home_team: str, away_team: str, game_date) -> dict | None:
         home_wins = raw["low_wins"]
         away_wins = raw["high_wins"]
 
-    total_played = home_wins + away_wins
+    if as_of_date is not None:
+        series_start = raw.get("earliest_date")
+        games_before = _count_series_games_before(home_team, away_team, as_of_date, season_key, series_start)
+        if games_before is not None:
+            total_played = games_before
+        else:
+            total_played = home_wins + away_wins
+    else:
+        total_played = home_wins + away_wins
     series_game_num = total_played + 1  # the upcoming game
     is_must_win_for = None
     if home_wins == 3 and away_wins < 3:

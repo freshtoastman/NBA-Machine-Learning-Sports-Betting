@@ -32,7 +32,10 @@
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "Oklahoma City Thunder: Cason Wallace (缺陣)",
    "Oklahoma City Thunder: Ajay Mitchell (缺陣)",
-   "Orlando Magic: Jonathan Isaac (存疑)"
+   "Phoenix Suns: Grayson Allen (存疑)",
+   "Phoenix Suns: Mark Williams (存疑)",
+   "Orlando Magic: Jonathan Isaac (存疑)",
+   "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ]
  },
  "games": {
@@ -1036,7 +1039,10 @@
     "Cason Wallace (缺陣)",
     "Ajay Mitchell (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [
+    "Grayson Allen (存疑)",
+    "Mark Williams (存疑)"
+   ]
   },
   "Orlando Magic:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -2023,7 +2029,9 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Jordan McLaughlin (缺陣)"
+   ],
    "injuries_away": []
   }
  },

@@ -476,8 +476,12 @@ from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E
 from src.Utils.ValueFinder import evaluate_value  # noqa: E402
 from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict  # noqa: E402
 
-def _build_team_form(home_team, away_team, date_str):
-    """Build team_form dict for PlayoffATSStrategy from AdvancedFeatures."""
+def _build_team_form(home_team, away_team, date_str, pre_game=False):
+    """Build team_form dict for PlayoffATSStrategy from AdvancedFeatures.
+
+    pre_game=True uses strictly-before comparison to get entering form for
+    historical games where the target date's result is already in the DB.
+    """
     try:
         from src.Utils.AdvancedFeatures import build_feature_table
         table = build_feature_table()
@@ -485,8 +489,12 @@ def _build_team_form(home_team, away_team, date_str):
             return None
         import pandas as pd
         target = pd.Timestamp(date_str)
-        h_rows = table[(table["Team"] == home_team) & (table["Date"] <= target)].tail(1)
-        a_rows = table[(table["Team"] == away_team) & (table["Date"] <= target)].tail(1)
+        if pre_game:
+            h_rows = table[(table["Team"] == home_team) & (table["Date"] < target)].tail(1)
+            a_rows = table[(table["Team"] == away_team) & (table["Date"] < target)].tail(1)
+        else:
+            h_rows = table[(table["Team"] == home_team) & (table["Date"] <= target)].tail(1)
+            a_rows = table[(table["Team"] == away_team) & (table["Date"] <= target)].tail(1)
         form = {}
         if not h_rows.empty:
             form["home_ats_l10"] = h_rows.iloc[0].get("form_ats_pct_10")
@@ -758,11 +766,15 @@ def predict_historical_xgb(target_date):
             pred["ats_cover_margin"] = None
 
         # Inject playoff series state for historical games too.
+        # Use as_of_date when the game has been played so series_game_num reflects
+        # the pre-game state (avoids G2 signal firing on a historical G1 game).
+        _game_played = pred.get("home_score") is not None
+        _as_of = target_date if _game_played else None
         try:
             from src.Utils.PlayoffContext import is_playoff_date, get_series_state
             target_iso = target_date.isoformat()
             if is_playoff_date(target_iso):
-                state = get_series_state(home_team, away_team, target_iso)
+                state = get_series_state(home_team, away_team, target_iso, as_of_date=_as_of)
                 if state:
                     pred["is_playoff"] = True
                     pred["series_round"] = state["round_label"]
@@ -783,10 +795,10 @@ def predict_historical_xgb(target_date):
             if pred.get("is_playoff"):
                 series_st = None
                 try:
-                    series_st = get_series_state(home_team, away_team, target_date.isoformat())
+                    series_st = get_series_state(home_team, away_team, target_date.isoformat(), as_of_date=_as_of)
                 except Exception:
                     pass
-                team_form = _build_team_form(home_team, away_team, target_date.isoformat())
+                team_form = _build_team_form(home_team, away_team, target_date.isoformat(), pre_game=_game_played)
                 ats_picks = evaluate_playoff_ats(pred, series_st, team_form)
                 pred["playoff_ats_picks"] = picks_to_dict(ats_picks)
                 bp = best_pick(ats_picks)

@@ -1817,10 +1817,10 @@
     "home": "Denver Nuggets",
     "away": "Minnesota Timberwolves",
     "spread": 6.0,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 11,
+    "home_score": 116,
+    "away_score": 105,
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Memphis Grizzlies": [
