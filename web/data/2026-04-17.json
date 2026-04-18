@@ -43,6 +43,7 @@
    }
   ],
   "playoff_ats_count": 2,
+  "injury_alerts": [],
   "ml_correct": 1,
   "ml_graded": 2,
   "ml_hit_rate": 50.0,
@@ -68,11 +69,11 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 60.0,
-   "home_team_ev": 7.57,
-   "away_team_ev": -11.58,
+   "home_team_ev": 7.56,
+   "away_team_ev": -11.57,
    "home_team_odds": 144,
    "away_team_odds": -172,
-   "home_kelly": 5.26,
+   "home_kelly": 5.25,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -565,7 +566,9 @@
    "home_team_zh": "奧蘭多魔術",
    "away_team_zh": "夏洛特黃蜂",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Golden State Warriors:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1073,7 +1076,9 @@
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "金州勇士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   }
  },
  "active_series": [

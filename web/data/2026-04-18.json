@@ -42,7 +42,21 @@
     "ats_winner": null
    }
   ],
-  "playoff_ats_count": 2
+  "playoff_ats_count": 2,
+  "injury_alerts": [
+   "Cleveland Cavaliers: Thomas Bryant (缺陣)",
+   "Toronto Raptors: Immanuel Quickley (存疑)",
+   "Toronto Raptors: Chucky Hepburn (缺陣)",
+   "Denver Nuggets: Peyton Watson (缺陣)",
+   "Denver Nuggets: Spencer Jones (存疑)",
+   "Minnesota Timberwolves: Anthony Edwards (存疑)",
+   "Atlanta Hawks: Jock Landale (缺陣)",
+   "Los Angeles Lakers: Austin Reaves (缺陣)",
+   "Los Angeles Lakers: Luka Doncic (缺陣)",
+   "Houston Rockets: Kevin Durant (存疑)",
+   "Houston Rockets: Steven Adams (缺陣)",
+   "Houston Rockets: Fred VanVleet (缺陣)"
+  ]
  },
  "games": {
   "Toronto Raptors:Cleveland Cavaliers": {
@@ -55,7 +69,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.13,
-   "away_team_ev": 63.67,
+   "away_team_ev": 63.68,
    "home_team_odds": -330,
    "away_team_odds": 265,
    "home_kelly": 0,
@@ -545,7 +559,14 @@
    "home_team_zh": "克里夫蘭騎士",
    "away_team_zh": "多倫多暴龍",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+   "injuries_home": [
+    "Thomas Bryant (缺陣)"
+   ],
+   "injuries_away": [
+    "Immanuel Quickley (存疑)",
+    "Chucky Hepburn (缺陣)"
+   ]
   },
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
@@ -556,12 +577,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.48,
+   "home_team_ev": -19.49,
    "away_team_ev": 30.71,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 14.62,
+   "away_kelly": 14.63,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 45.8,
@@ -1047,7 +1068,14 @@
    "home_team_zh": "丹佛金塊",
    "away_team_zh": "明尼蘇達灰狼",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+   "injuries_home": [
+    "Peyton Watson (缺陣)",
+    "Spencer Jones (存疑)"
+   ],
+   "injuries_away": [
+    "Anthony Edwards (存疑)"
+   ]
   },
   "Atlanta Hawks:New York Knicks": {
    "home_team": "New York Knicks",
@@ -1058,8 +1086,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -11.4,
-   "away_team_ev": 11.01,
+   "home_team_ev": -11.41,
+   "away_team_ev": 11.02,
    "home_team_odds": -220,
    "away_team_odds": 184,
    "home_kelly": 0,
@@ -1559,7 +1587,11 @@
    "home_team_zh": "紐約尼克",
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": [
+    "Jock Landale (缺陣)"
+   ]
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1570,7 +1602,7 @@
    "ou_pick": "OVER",
    "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 51.3,
+   "home_team_ev": 51.29,
    "away_team_ev": -32.03,
    "home_team_odds": 184,
    "away_team_odds": -220,
@@ -2061,7 +2093,16 @@
    "home_team_zh": "洛杉磯湖人",
    "away_team_zh": "休士頓火箭",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+   "injuries_home": [
+    "Austin Reaves (缺陣)",
+    "Luka Doncic (缺陣)"
+   ],
+   "injuries_away": [
+    "Kevin Durant (存疑)",
+    "Steven Adams (缺陣)",
+    "Fred VanVleet (缺陣)"
+   ]
   }
  },
  "active_series": [

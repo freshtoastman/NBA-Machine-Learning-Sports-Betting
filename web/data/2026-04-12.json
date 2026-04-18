@@ -12,6 +12,7 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
+  "injury_alerts": [],
   "ml_correct": 10,
   "ml_graded": 15,
   "ml_hit_rate": 66.7,
@@ -37,8 +38,8 @@
    "ou_pick": "OVER",
    "ou_value": 227.5,
    "ou_confidence": 58.4,
-   "home_team_ev": -32.21,
-   "away_team_ev": 217.97,
+   "home_team_ev": -32.22,
+   "away_team_ev": 217.98,
    "home_team_odds": -1205,
    "away_team_odds": 750,
    "home_kelly": 0,
@@ -517,7 +518,9 @@
    "home_team_zh": "費城七六人",
    "away_team_zh": "密爾瓦基公鹿",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Charlotte Hornets:New York Knicks": {
    "home_team": "New York Knicks",
@@ -528,7 +531,7 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 63.3,
-   "home_team_ev": 314.32,
+   "home_team_ev": 314.31,
    "away_team_ev": -57.18,
    "home_team_odds": 570,
    "away_team_odds": -820,
@@ -1008,7 +1011,9 @@
    "home_team_zh": "紐約尼克",
    "away_team_zh": "夏洛特黃蜂",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Atlanta Hawks:Miami Heat": {
    "home_team": "Miami Heat",
@@ -1499,7 +1504,9 @@
    "home_team_zh": "邁阿密熱火",
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Orlando Magic:Boston Celtics": {
    "home_team": "Boston Celtics",
@@ -1510,8 +1517,8 @@
    "ou_pick": "OVER",
    "ou_value": 217.5,
    "ou_confidence": 59.6,
-   "home_team_ev": 309.92,
-   "away_team_ev": -59.38,
+   "home_team_ev": 309.91,
+   "away_team_ev": -59.37,
    "home_team_odds": 540,
    "away_team_odds": -769,
    "home_kelly": 57.39,
@@ -1990,7 +1997,9 @@
    "home_team_zh": "波士頓塞爾提克",
    "away_team_zh": "奧蘭多魔術",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Brooklyn Nets:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -2002,7 +2011,7 @@
    "ou_value": 219.5,
    "ou_confidence": 57.8,
    "home_team_ev": -19.44,
-   "away_team_ev": 259.94,
+   "away_team_ev": 259.96,
    "home_team_odds": -4545,
    "away_team_odds": 1600,
    "home_kelly": 0,
@@ -2481,7 +2490,9 @@
    "home_team_zh": "多倫多暴龍",
    "away_team_zh": "布魯克林籃網",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Washington Wizards:Cleveland Cavaliers": {
    "home_team": "Cleveland Cavaliers",
@@ -2493,7 +2504,7 @@
    "ou_value": 235.5,
    "ou_confidence": 52.3,
    "home_team_ev": -5.96,
-   "away_team_ev": 5.53,
+   "away_team_ev": 5.54,
    "home_team_odds": -521,
    "away_team_odds": 400,
    "home_kelly": 0,
@@ -2972,7 +2983,9 @@
    "home_team_zh": "克里夫蘭騎士",
    "away_team_zh": "華盛頓巫師",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Detroit Pistons:Indiana Pacers": {
    "home_team": "Indiana Pacers",
@@ -2983,7 +2996,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 74.0,
-   "home_team_ev": 62.0,
+   "home_team_ev": 61.99,
    "away_team_ev": -14.25,
    "home_team_odds": 610,
    "away_team_odds": -901,
@@ -3463,7 +3476,9 @@
    "home_team_zh": "印第安納溜馬",
    "away_team_zh": "底特律活塞",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Denver Nuggets:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -3475,7 +3490,7 @@
    "ou_value": 232.5,
    "ou_confidence": 64.4,
    "home_team_ev": -31.41,
-   "away_team_ev": 112.27,
+   "away_team_ev": 112.28,
    "home_team_odds": -521,
    "away_team_odds": 400,
    "home_kelly": 0,
@@ -3954,7 +3969,9 @@
    "home_team_zh": "聖安東尼奧馬刺",
    "away_team_zh": "丹佛金塊",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Golden State Warriors:LA Clippers": {
    "home_team": "LA Clippers",
@@ -3965,8 +3982,8 @@
    "ou_pick": "OVER",
    "ou_value": 224.5,
    "ou_confidence": 53.2,
-   "home_team_ev": -25.16,
-   "away_team_ev": 41.96,
+   "home_team_ev": -25.17,
+   "away_team_ev": 41.97,
    "home_team_odds": -250,
    "away_team_odds": 205,
    "home_kelly": 0,
@@ -4445,7 +4462,9 @@
    "home_team_zh": "洛杉磯快艇",
    "away_team_zh": "金州勇士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Sacramento Kings:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
@@ -4457,7 +4476,7 @@
    "ou_value": 228.5,
    "ou_confidence": 55.9,
    "home_team_ev": -29.87,
-   "away_team_ev": 232.46,
+   "away_team_ev": 232.47,
    "home_team_odds": -1493,
    "away_team_odds": 870,
    "home_kelly": 0,
@@ -4936,7 +4955,9 @@
    "home_team_zh": "波特蘭拓荒者",
    "away_team_zh": "沙加緬度國王",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -4951,7 +4972,7 @@
    "away_team_ev": -12.56,
    "home_team_odds": -215,
    "away_team_odds": 180,
-   "home_kelly": 2.33,
+   "home_kelly": 2.32,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -5427,7 +5448,9 @@
    "home_team_zh": "奧克拉荷馬雷霆",
    "away_team_zh": "鳳凰城太陽",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Chicago Bulls:Dallas Mavericks": {
    "home_team": "Dallas Mavericks",
@@ -5918,7 +5941,9 @@
    "home_team_zh": "達拉斯獨行俠",
    "away_team_zh": "芝加哥公牛",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Memphis Grizzlies:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -5930,7 +5955,7 @@
    "ou_value": 224.5,
    "ou_confidence": 48.7,
    "home_team_ev": -18.47,
-   "away_team_ev": 81.71,
+   "away_team_ev": 81.72,
    "home_team_odds": -800,
    "away_team_odds": 560,
    "home_kelly": 0,
@@ -6409,7 +6434,9 @@
    "home_team_zh": "休士頓火箭",
    "away_team_zh": "曼菲斯灰熊",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "New Orleans Pelicans:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -6900,7 +6927,9 @@
    "home_team_zh": "明尼蘇達灰狼",
    "away_team_zh": "紐奧良鵜鶘",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Utah Jazz:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -6911,8 +6940,8 @@
    "ou_pick": "OVER",
    "ou_value": 237.5,
    "ou_confidence": 52.3,
-   "home_team_ev": -18.76,
-   "away_team_ev": 112.4,
+   "home_team_ev": -18.77,
+   "away_team_ev": 112.42,
    "home_team_odds": -1205,
    "away_team_odds": 750,
    "home_kelly": 0,
@@ -7391,7 +7420,9 @@
    "home_team_zh": "洛杉磯湖人",
    "away_team_zh": "猶他爵士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   }
  },
  "active_series": [],

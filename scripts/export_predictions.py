@@ -8,6 +8,7 @@ Usage: PYTHONPATH=. python scripts/export_predictions.py
 import json
 import os
 import sys
+import time
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -16,6 +17,58 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.Utils.tools import today_taipei, current_nba_season
 from src.Utils.SeasonStats import compute_season_stats, reset_cache as reset_season_cache
 from src.Utils.Teams import team_name_zh, team_logo_url
+
+_ESPN_INJURY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries"
+_ESPN_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15",
+}
+_INJURY_STATUS_DISPLAY = {"Out": "缺陣", "Questionable": "存疑", "Probable": "可能出賽", "Doubtful": "可能缺陣"}
+
+
+def _parse_injury_status(comment: str) -> str:
+    """Parse actual game status from ESPN shortComment. Returns Chinese label."""
+    c = comment.lower()
+    if "questionable" in c or "being listed as" in c:
+        return "存疑"
+    if "doubtful" in c:
+        return "可能缺陣"
+    if "probable" in c:
+        return "可能出賽"
+    # Default: confirmed out (ruled out / miss / season-ending etc.)
+    return "缺陣"
+
+
+def fetch_injury_report() -> dict[str, list[str]]:
+    """Fetch NBA injury report from ESPN. Returns {team_name: [injury_strings]}."""
+    try:
+        import requests
+        r = requests.get(_ESPN_INJURY_URL, headers=_ESPN_HEADERS, timeout=15)
+        if r.status_code != 200:
+            return {}
+        data = r.json()
+    except Exception:
+        return {}
+
+    result: dict[str, list[str]] = {}
+    for team_entry in data.get("injuries", []):
+        team_name = team_entry.get("displayName", "")
+        player_injuries = []
+        for inj in team_entry.get("injuries", []):
+            # ESPN uses "Out" as catch-all status; parse comment for actual status
+            if inj.get("status") not in ("Out", "Questionable", "Probable", "Doubtful", "Day-To-Day"):
+                continue
+            athlete = inj.get("athlete", {})
+            first = athlete.get("firstName", "")
+            last = athlete.get("lastName", "")
+            name = f"{first} {last}".strip()
+            if not name:
+                continue
+            comment = inj.get("shortComment", "")
+            status_zh = _parse_injury_status(comment)
+            player_injuries.append(f"{name} ({status_zh})")
+        if player_injuries:
+            result[team_name] = player_injuries
+    return result
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "web" / "data"
 DAYS_BACK = 7
@@ -72,6 +125,11 @@ def export_date(target_date: date) -> dict | None:
     if not games_list:
         return None
 
+    # Fetch injury report once for all games (only for today — historical unavailable).
+    injury_report: dict[str, list[str]] = {}
+    if is_today:
+        injury_report = fetch_injury_report()
+
     games_dict = {}
     for g in games_list:
         key = f"{g['away_team']}:{g['home_team']}"
@@ -80,6 +138,9 @@ def export_date(target_date: date) -> dict | None:
         g["away_team_zh"] = team_name_zh(g["away_team"])
         g["home_logo"] = team_logo_url(g["home_team"])
         g["away_logo"] = team_logo_url(g["away_team"])
+        # Injury data (today only).
+        g["injuries_home"] = injury_report.get(g["home_team"], [])
+        g["injuries_away"] = injury_report.get(g["away_team"], [])
         games_dict[key] = g
 
     # Summary stats.
@@ -110,6 +171,18 @@ def export_date(target_date: date) -> dict | None:
                         "ats_winner": g.get("ats_winner"),
                     })
 
+    # Build injury alert strings for the summary report section.
+    injury_alerts = []
+    if is_today and injury_report:
+        for g in games_list:
+            home, away = g["home_team"], g["away_team"]
+            home_inj = injury_report.get(home, [])
+            away_inj = injury_report.get(away, [])
+            for p in home_inj:
+                injury_alerts.append(f"{home}: {p}")
+            for p in away_inj:
+                injury_alerts.append(f"{away}: {p}")
+
     summary = {
         "games": n,
         "home_picks": home_picks,
@@ -121,6 +194,7 @@ def export_date(target_date: date) -> dict | None:
         "golden_picks": sum(1 for g in games_list if g.get("is_golden")),
         "playoff_ats_alerts": po_ats_alerts,
         "playoff_ats_count": len(po_ats_alerts),
+        "injury_alerts": injury_alerts,
     }
 
     if not is_today:

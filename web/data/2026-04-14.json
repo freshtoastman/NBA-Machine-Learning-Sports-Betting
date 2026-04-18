@@ -12,6 +12,7 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
+  "injury_alerts": [],
   "ml_correct": 1,
   "ml_graded": 2,
   "ml_hit_rate": 50.0,
@@ -37,7 +38,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.29,
+   "home_team_ev": -12.3,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -534,7 +535,9 @@
    "home_team_zh": "夏洛特黃蜂",
    "away_team_zh": "邁阿密熱火",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   },
   "Portland Trail Blazers:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1031,7 +1034,9 @@
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg"
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": []
   }
  },
  "active_series": [
