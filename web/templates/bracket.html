@@ -50,11 +50,15 @@
       .playin-date { color:#666; font-size:10px; margin-left:8px; }
       .matchup-list { display:flex; flex-direction:column; gap:8px; }
       .matchup { background:#1a1f2b; border-radius:10px; padding:10px 12px; border-left:3px solid #52c77a; }
+      .matchup.matchup-live { border-left:3px solid #f4bf50; }
       .matchup-label { font-size:11px; color:#888; margin-bottom:4px; letter-spacing:0.5px; }
       .matchup-side { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:14px; }
+      .matchup-side.series-leading { font-weight:700; color:#7fd69b; }
       .matchup-side img { width:24px; height:24px; object-fit:contain; }
       .matchup-side .high-seed { color:#52c77a; font-weight:600; font-size:11px; margin-right:2px; }
       .matchup-vs { font-size:10px; color:#555; text-align:center; margin:2px 0; letter-spacing:2px; }
+      .series-score { font-size:14px; font-weight:700; color:#f4bf50; letter-spacing:0; }
+      .series-wins { background:#2a3a2a; color:#7fd69b; border-radius:4px; padding:1px 5px; font-size:12px; font-weight:700; margin-left:4px; }
       .tbd { color:#777; font-style:italic; }
       .empty-banner { background:#1a1f2b; border:1px dashed #2a3040; border-radius:12px; padding:30px; text-align:center; color:#888; }
       .status-chip { display:inline-block; background:#1f2c1f; color:#7fd69b; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; }
@@ -180,25 +184,33 @@
         <div class="section-label">第一輪對戰</div>
         <div class="matchup-list">
           {% for m in c.first_round %}
-          <div class="matchup">
+          <div class="matchup {% if m.games_played and m.games_played > 0 %}matchup-live{% endif %}">
             <div class="matchup-label">{{ m.label }}</div>
-            <div class="matchup-side">
+            <div class="matchup-side {% if m.high_wins is defined and m.low_wins is defined and m.high_wins > m.low_wins %}series-leading{% endif %}">
               {% if m.high is mapping %}
                 <span class="high-seed">#{{ m.high.seed }}</span>
                 {% if m.high.logo %}<img src="{{ m.high.logo }}" alt="">{% endif %}
                 <span>{{ m.high.team_zh }}</span>
                 <span class="seed-rec">{{ m.high.wins }}-{{ m.high.losses }}</span>
+                {% if m.games_played and m.games_played > 0 %}<span class="series-wins">{{ m.high_wins }}</span>{% endif %}
               {% else %}
                 <span class="tbd">{{ m.high }}</span>
               {% endif %}
             </div>
-            <div class="matchup-vs">VS</div>
-            <div class="matchup-side">
+            <div class="matchup-vs">
+              {% if m.games_played and m.games_played > 0 %}
+                <span class="series-score">{{ m.high_wins }}-{{ m.low_wins }}</span>
+              {% else %}
+                VS
+              {% endif %}
+            </div>
+            <div class="matchup-side {% if m.high_wins is defined and m.low_wins is defined and m.low_wins > m.high_wins %}series-leading{% endif %}">
               {% if m.low is mapping %}
                 <span class="high-seed">#{{ m.low.seed }}</span>
                 {% if m.low.logo %}<img src="{{ m.low.logo }}" alt="">{% endif %}
                 <span>{{ m.low.team_zh }}</span>
                 <span class="seed-rec">{{ m.low.wins }}-{{ m.low.losses }}</span>
+                {% if m.games_played and m.games_played > 0 %}<span class="series-wins">{{ m.low_wins }}</span>{% endif %}
               {% else %}
                 <span class="tbd">{{ m.low }}</span>
               {% endif %}

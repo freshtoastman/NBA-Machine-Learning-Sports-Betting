@@ -154,7 +154,8 @@ SEED_OVERRIDES = {
     "2025-26": {
         # Play-in reality: PHX (#7) plays POR (#8); LAC drops to #9.
         "west": [("Portland Trail Blazers", "LA Clippers")],
-        "east": [],
+        # TOR beat ATL in conference tiebreaker → TOR is 5-seed, ATL is 6-seed.
+        "east": [("Toronto Raptors", "Atlanta Hawks")],
     },
 }
 
@@ -398,38 +399,14 @@ def build_bracket(target_date: date) -> dict | None:
     east = _sort(east, overrides.get("east", []))
     west = _sort(west, overrides.get("west", []))
 
-    def _conference(name, seeds):
-        # Play-in: 7v8 winner → #7; 9v10 winner vs 7v8 loser → #8.
-        play_in = {
-            "game_a": {"label": "7 vs 8", "home": seeds[6], "away": seeds[7],
-                       "winner_seed": 7, "loser_note": "敗者進 8/9 淘汰賽"},
-            "game_b": {"label": "9 vs 10", "home": seeds[8], "away": seeds[9],
-                       "winner_note": "晉級 8 號淘汰賽", "loser_note": "淘汰"},
-            "game_c": {"label": "8 號種子決定戰", "home": "7/8 敗者",
-                       "away": "9/10 勝者", "winner_seed": 8},
-        }
-        first_round = [
-            {"label": "1 vs 8", "high": seeds[0], "low": "待定（8 號種子）"},
-            {"label": "4 vs 5", "high": seeds[3], "low": seeds[4]},
-            {"label": "3 vs 6", "high": seeds[2], "low": seeds[5]},
-            {"label": "2 vs 7", "high": seeds[1], "low": "待定（7 號種子）"},
-        ]
-        return {
-            "name": name,
-            "seeds": seeds[:10],
-            "lottery": seeds[10:],
-            "play_in": play_in,
-            "first_round": first_round,
-        }
-
     # Detection window for the UI: 7 days before playoffs start through 10
     # days after (covers pre-playoff anticipation + play-in tournament).
     show_from = show_until = playoff_start = None
     try:
-        import toml
+        import toml as _toml
         from datetime import datetime as _dt, timedelta as _td
-        cfg = toml.load(Path(__file__).resolve().parents[1] / "config.toml")
-        for v in cfg.get("get-playoffs", {}).values():
+        _cfg = _toml.load(Path(__file__).resolve().parents[1] / "config.toml")
+        for v in _cfg.get("get-playoffs", {}).values():
             s = _dt.strptime(v["start_date"], "%Y-%m-%d").date()
             e = _dt.strptime(v["end_date"], "%Y-%m-%d").date()
             if s <= target_date <= e or 0 <= (s - target_date).days <= 14:
@@ -440,14 +417,105 @@ def build_bracket(target_date: date) -> dict | None:
     except Exception:
         pass
 
+    # Resolve actual 7/8-seed opponents from R1 OddsData schedule.
+    # Look for games where the home team is a 1-seed or 2-seed and away team
+    # is a known play-in participant (seeds 7-10 by pre-play-in standing).
+    def _resolve_playin_r1(seed_list, _season_key, _playoff_start_str):
+        """Return {7: team_card, 8: team_card} if R1 matchups are known."""
+        resolved = {}
+        if not _playoff_start_str:
+            return resolved
+        try:
+            odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+            if not odds_db.exists():
+                return resolved
+            seed1 = seed_list[0]["team"]  # 1-seed
+            seed2 = seed_list[1]["team"]  # 2-seed
+            playin_names = {s["team"] for s in seed_list[6:10]}
+            team_card_map = {s["team"]: s for s in seed_list}
+            import sqlite3 as _sq
+            with _sq.connect(str(odds_db)) as con:
+                rows = con.execute(
+                    f'SELECT Home, Away FROM "{_season_key}" WHERE Date >= ?'
+                    f' AND (Home = ? OR Home = ?)',
+                    (_playoff_start_str, seed1, seed2),
+                ).fetchall()
+            for home, away in rows:
+                if away in playin_names and away in team_card_map:
+                    if home == seed1:
+                        resolved[8] = team_card_map[away]  # 8-seed plays at 1-seed home
+                    elif home == seed2:
+                        resolved[7] = team_card_map[away]  # 7-seed plays at 2-seed home
+        except Exception:
+            pass
+        return resolved
+
+    east_r1_resolved = _resolve_playin_r1(east, season_key, playoff_start)
+    west_r1_resolved = _resolve_playin_r1(west, season_key, playoff_start)
+
+    # Load series_state to annotate first_round with current win counts.
+    _series_wins: dict = {}
+    try:
+        import sqlite3 as _sq
+        _odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+        _tbl = f"series_state_{season_key}"
+        with _sq.connect(str(_odds_db)) as _con:
+            for _row in _con.execute(
+                f'SELECT high_seed, low_seed, high_wins, low_wins FROM "{_tbl}"'
+                f' WHERE round_num >= 1'
+            ):
+                _hs, _ls, _hw, _lw = _row
+                _series_wins[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
+    except Exception:
+        pass
+
+    def _conference(name, seeds, r1_resolved):
+        # Play-in: 7v8 winner → #7; 9v10 winner vs 7v8 loser → #8.
+        play_in = {
+            "game_a": {"label": "7 vs 8", "home": seeds[6], "away": seeds[7],
+                       "winner_seed": 7, "loser_note": "敗者進 8/9 淘汰賽"},
+            "game_b": {"label": "9 vs 10", "home": seeds[8], "away": seeds[9],
+                       "winner_note": "晉級 8 號淘汰賽", "loser_note": "淘汰"},
+            "game_c": {"label": "8 號種子決定戰", "home": "7/8 敗者",
+                       "away": "9/10 勝者", "winner_seed": 8},
+        }
+        low_8 = r1_resolved.get(8, "待定（8 號種子）")
+        low_7 = r1_resolved.get(7, "待定（7 號種子）")
+
+        def _with_wins(high_team, low_team):
+            """Attach series win counts to a first_round entry dict."""
+            if isinstance(high_team, str) or isinstance(low_team, str):
+                return {}
+            key = frozenset({high_team["team"], low_team["team"]})
+            hw, lw = _series_wins.get(key, (0, 0))
+            return {"high_wins": hw, "low_wins": lw, "games_played": hw + lw}
+
+        first_round = [
+            {"label": "1 vs 8", "high": seeds[0], "low": low_8,
+             **_with_wins(seeds[0], low_8)},
+            {"label": "4 vs 5", "high": seeds[3], "low": seeds[4],
+             **_with_wins(seeds[3], seeds[4])},
+            {"label": "3 vs 6", "high": seeds[2], "low": seeds[5],
+             **_with_wins(seeds[2], seeds[5])},
+            {"label": "2 vs 7", "high": seeds[1], "low": low_7,
+             **_with_wins(seeds[1], low_7)},
+        ]
+        return {
+            "name": name,
+            "seeds": seeds[:10],
+            "lottery": seeds[10:],
+            "play_in": play_in,
+            "first_round": first_round,
+        }
+
     return {
         "snapshot_date": snapshot_date,
         "generated_for": target_date.isoformat(),
         "playoff_start": playoff_start,
         "show_from": show_from,
         "show_until": show_until,
-        "east": _conference("東區", east),
-        "west": _conference("西區", west),
+        "east": _conference("東區", east, east_r1_resolved),
+        "west": _conference("西區", west, west_r1_resolved),
     }
 
 

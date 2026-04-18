@@ -167,14 +167,17 @@ def assign_rounds(sorted_series):
         elif data["team_a"] in playin_teams or data["team_b"] in playin_teams:
             play_in.append((matchup, data))
         elif data["num_games"] <= 1 and max_wins <= 1:
-            # Single-game series whose teams don't appear elsewhere — ambiguous.
-            # Keep in play_in tentatively; the bucketing below resolves it.
-            play_in.append((matchup, data))
+            # If both teams are direct seeds (no play-in involvement), this is R1.
+            if data["team_a"] not in playin_teams and data["team_b"] not in playin_teams:
+                real.append((matchup, data))
+            else:
+                # Ambiguous single-game involving at least one play-in team.
+                play_in.append((matchup, data))
         else:
             real.append((matchup, data))
 
     # Step 5: bucket real bracket series.
-    if bracket_matchup_keys or len(real) >= 8:
+    if bracket_matchup_keys or len(real) > 0:
         # Confirmed bracket matchups detected or enough R1 series.
         play_in_actual = play_in
         all_real = real
