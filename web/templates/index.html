@@ -35,8 +35,13 @@
             <a href="{{ url_for('bracket') }}" class="no-games-banner" style="display:flex;text-decoration:none;color:inherit;background:linear-gradient(90deg,#1f2c1f,#1a1f2b);border:1px solid #3a5a3a;">
                 <div class="no-games-icon">🏆</div>
                 <div class="no-games-text">
+                    {% if bracket_stage == 'first_round' %}
+                    <strong>季後賽首輪進行中 · 附加賽已結束</strong>
+                    <span>點此查看東西區 1-8 種子與首輪對戰表 →</span>
+                    {% else %}
                     <strong>季後賽即將開打{% if bracket_playoff_start %} ({{ bracket_playoff_start }}){% endif %}</strong>
                     <span>點此查看東區／西區對戰圖與附加賽組合 →</span>
+                    {% endif %}
                 </div>
             </a>
             {% endif %}

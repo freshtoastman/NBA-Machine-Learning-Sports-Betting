@@ -506,6 +506,7 @@ def index():
         is_playoff_view=is_playoff_view,
         show_bracket_banner=show_bracket_banner,
         bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
+        bracket_stage=(bracket_data or {}).get("stage"),
         weekly_golden=load_weekly_golden(today),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
         game_profiles_json=game_profiles_json,
