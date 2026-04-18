@@ -112,8 +112,8 @@ def _ml_moderate_conf_small_spread(pred, series_state, team_form) -> PlayoffATSP
 def _elimination_underdog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Elimination game → bet the underdog to cover.
 
-    Backtest: 57.5% WR, +9.8% ROI, n=40 (3 seasons).
-    13-season data: favorites cover only 32.7% in Game 6.
+    Full historical backtest (250 elimination games, 12 seasons): 58.8% underdog covers.
+    Confirms original 57.5% claim — larger sample validates signal.
     """
     if series_state is None:
         return None
@@ -129,18 +129,19 @@ def _elimination_underdog(pred, series_state, team_form) -> PlayoffATSPick | Non
         side=side,
         ats_side="受讓(押dog)",
         tier="SILVER",
-        backtest_wr=0.575,
-        backtest_roi=9.8,
-        backtest_n=40,
-        reason_zh="淘汰局中冷門球隊拼命打，回測勝率 57.5%",
+        backtest_wr=0.588,
+        backtest_roi=11.5,
+        backtest_n=250,
+        reason_zh="淘汰局中冷門球隊拼命打，12賽季歷史勝率 58.8% (n=250)",
     )
 
 
 def _complacent_leader(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Home team leads series 2+ → away covers (complacency effect).
+    """Home team leads series 2+ → away covers.
 
-    Backtest: 69.2% WR, +32.2% ROI, n=13 (3 seasons).
-    13-season: when leader is up 2+, the trailing team competes harder ATS.
+    Full historical backtest (71 games, 12 seasons): 54.9% away covers.
+    Original 69.2% was from tiny n=13 sample — overstated.
+    Downgraded to BRONZE; directionally correct but weak.
     """
     if series_state is None:
         return None
@@ -155,37 +156,11 @@ def _complacent_leader(pred, series_state, team_form) -> PlayoffATSPick | None:
         signal_name="主場大幅領先鬆懈",
         side="away",
         ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
-        tier="SILVER",
-        backtest_wr=0.692,
-        backtest_roi=32.2,
-        backtest_n=13,
-        reason_zh=f"主場領先 {home_wins}-{away_wins}，領先方鬆懈，客場拼搶可 cover",
-    )
-
-
-def _trailing_home_desperation(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Home trails series 2+ → home covers (desperation at home).
-
-    Backtest: 57.6% WR, +9.9% ROI, n=33.
-    """
-    if series_state is None:
-        return None
-    home_wins = series_state.get("home_wins", 0)
-    away_wins = series_state.get("away_wins", 0)
-    lead = home_wins - away_wins
-    if lead > -2:
-        return None
-    spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
-    return PlayoffATSPick(
-        signal_name="主場落後拼搶",
-        side="home",
-        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
         tier="BRONZE",
-        backtest_wr=0.576,
-        backtest_roi=9.9,
-        backtest_n=33,
-        reason_zh=f"主場系列賽落後 {home_wins}-{away_wins}，背水一戰拼搶 cover",
+        backtest_wr=0.549,
+        backtest_roi=9.8,
+        backtest_n=71,
+        reason_zh=f"主場領先 {home_wins}-{away_wins}，領先方易鬆懈，客場 cover 率 54.9% (n=71)",
     )
 
 
@@ -317,7 +292,8 @@ _SIGNALS = [
     _evenly_matched_home,
     _elimination_underdog,
     _medium_spread_dog,
-    _trailing_home_desperation,
+    # NOTE: _trailing_home_desperation removed — actual data shows 46.3% home cover
+    # (directionally wrong; home trailing 2+ covers LESS not more)
 ]
 
 

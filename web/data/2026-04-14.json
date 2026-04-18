@@ -38,7 +38,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.3,
+   "home_team_ev": -12.29,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -522,10 +522,10 @@
      "side": "away",
      "ats_side": "受讓(押dog)",
      "tier": "BRONZE",
-     "backtest_wr": 0.609,
-     "backtest_roi": 16.3,
-     "backtest_n": 64,
-     "reason_zh": "讓分 5.5 在 5.5-8 區間，市場高估熱門，冷門 cover 率 60.9%"
+     "backtest_wr": 0.521,
+     "backtest_roi": 4.2,
+     "backtest_n": 290,
+     "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
