@@ -21,9 +21,9 @@
     "side": "away",
     "ats_side": "受讓(押dog)",
     "tier": "SILVER",
-    "backtest_wr": 0.578,
-    "backtest_roi": 10.3,
-    "reason_zh": "主場僅讓 1.5 分，市場高估主場優勢，客場受讓 13 賽季勝率 57.8%",
+    "backtest_wr": 0.529,
+    "backtest_roi": 5.8,
+    "reason_zh": "主場僅讓 1.5 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)",
     "ats_winner": "home"
    },
    {
@@ -553,10 +553,10 @@
      "side": "away",
      "ats_side": "受讓(押dog)",
      "tier": "SILVER",
-     "backtest_wr": 0.578,
-     "backtest_roi": 10.3,
-     "backtest_n": 116,
-     "reason_zh": "主場僅讓 1.5 分，市場高估主場優勢，客場受讓 13 賽季勝率 57.8%"
+     "backtest_wr": 0.529,
+     "backtest_roi": 5.8,
+     "backtest_n": 155,
+     "reason_zh": "主場僅讓 1.5 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)"
     }
    ],
    "playoff_ats_best_side": "away",

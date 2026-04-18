@@ -212,10 +212,8 @@ def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Home team giving ≤2 pts → bet away to cover.
 
-    13-season backtest: 57.8% WR, +10.3% ROI, n=116 games, 9/13 seasons profitable.
-    Structural reason: when home is only a 1-2 pt favorite, the spread under-prices
-    away competitiveness in playoff intensity. Home court advantage is smaller than
-    the market assumes at short spreads.
+    Full historical (155 games, 12 seasons): 52.9% away covers overall.
+    Recent 5 seasons (2020-25, n=58): 58.6% — positive trend.
     """
     spread = pred.get("spread")
     if spread is None:
@@ -228,10 +226,10 @@ def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | No
         side="away",
         ats_side="受讓(押dog)",
         tier="SILVER",
-        backtest_wr=0.578,
-        backtest_roi=10.3,
-        backtest_n=116,
-        reason_zh=f"主場僅讓 {spread:.1f} 分，市場高估主場優勢，客場受讓 13 賽季勝率 57.8%",
+        backtest_wr=0.529,
+        backtest_roi=5.8,
+        backtest_n=155,
+        reason_zh=f"主場僅讓 {spread:.1f} 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)",
     )
 
 
