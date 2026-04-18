@@ -38,7 +38,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.3,
+   "home_team_ev": -12.29,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -1108,6 +1108,14 @@
    "low_seed": "Phoenix Suns",
    "high_wins": 0,
    "low_wins": 1
+  },
+  {
+   "round_num": 0,
+   "round_label": "附加賽",
+   "high_seed": "Cleveland Cavaliers",
+   "low_seed": "Toronto Raptors",
+   "high_wins": 1,
+   "low_wins": 0
   }
  ],
  "is_playoff_view": true
