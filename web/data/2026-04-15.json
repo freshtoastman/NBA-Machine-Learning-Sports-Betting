@@ -1108,7 +1108,8 @@
    "high_seed": "Charlotte Hornets",
    "low_seed": "Miami Heat",
    "high_wins": 1,
-   "low_wins": 0
+   "low_wins": 0,
+   "conference": "east"
   },
   {
    "round_num": 0,
@@ -1116,7 +1117,8 @@
    "high_seed": "Phoenix Suns",
    "low_seed": "Portland Trail Blazers",
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 1,
+   "conference": "west"
   },
   {
    "round_num": 0,
@@ -1124,7 +1126,8 @@
    "high_seed": "Orlando Magic",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 1,
+   "conference": "east"
   },
   {
    "round_num": 0,
@@ -1132,7 +1135,8 @@
    "high_seed": "Golden State Warriors",
    "low_seed": "LA Clippers",
    "high_wins": 1,
-   "low_wins": 0
+   "low_wins": 0,
+   "conference": "west"
   },
   {
    "round_num": 0,
@@ -1140,7 +1144,8 @@
    "high_seed": "Charlotte Hornets",
    "low_seed": "Orlando Magic",
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 1,
+   "conference": "east"
   },
   {
    "round_num": 0,
@@ -1148,7 +1153,8 @@
    "high_seed": "Golden State Warriors",
    "low_seed": "Phoenix Suns",
    "high_wins": 0,
-   "low_wins": 1
+   "low_wins": 1,
+   "conference": "west"
   },
   {
    "round_num": 0,
@@ -1156,7 +1162,8 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 1,
-   "low_wins": 0
+   "low_wins": 0,
+   "conference": "east"
   }
  ],
  "is_playoff_view": true

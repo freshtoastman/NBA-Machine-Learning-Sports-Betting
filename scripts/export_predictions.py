@@ -297,6 +297,13 @@ def export_date(target_date: date) -> dict | None:
         active_series = []
         is_playoff_view = False
 
+    # Enrich series with conference for East/West split UI.
+    active_series = [
+        dict(s, conference=("east" if s.get("high_seed") in EAST_TEAMS else
+                            "west" if s.get("high_seed") in WEST_TEAMS else None))
+        for s in active_series
+    ]
+
     return {
         "date": target_date.isoformat(),
         "is_today": is_today,

@@ -317,10 +317,11 @@
         {% set east_series = active_series|selectattr('conference','equalto','east')|list %}
         {% set west_series = active_series|selectattr('conference','equalto','west')|list %}
         {% set has_conf = east_series|length + west_series|length > 0 %}
+        {% set has_playin = active_series|selectattr('round_num','equalto',0)|list|length > 0 %}
         <section class="series-tracker">
             <div class="series-tracker-head">
-                <span>🏆 季後賽首輪</span>
-                <span class="series-tracker-sub">{{ active_series|length }} 組系列賽 · 附加賽已結束</span>
+                <span>🏆 季後賽</span>
+                <span class="series-tracker-sub">{{ active_series|length }} 組系列賽 · {% if has_playin %}附加賽進行中{% else %}附加賽已結束{% endif %}</span>
             </div>
             {% if has_conf %}
             <div class="series-conf-wrap">
