@@ -99,13 +99,16 @@ def assign_rounds(sorted_series):
 
     Heuristic:
       - Play-In teams appear in MULTIPLE matchups (e.g. GS plays LAC then PHX).
-        Any matchup containing such a team is Play-In (round 0).
-      - Eliminated Play-In teams appear in only one matchup, but their opponent
-        is a confirmed Play-In team, so the matchup is still caught.
+      - For each play-in team, their LAST matchup (by date) against a degree-1
+        opponent is a bracket (R1+) game — they advanced from play-in to bracket.
+      - Other play-in matchups (earlier games, or games against other play-in
+        teams) are classified as Play-In (round 0).
+      - Degree-1 vs degree-1 matchups occurring on or after the confirmed R1
+        start date are also bracket games (e.g. direct-seed vs direct-seed R1).
       - Remaining matchups are real bracket series bucketed chronologically:
         first 8 → R1, next 4 → R2, next 2 → R3, last 1 → R4
     """
-    from collections import Counter
+    from collections import Counter, defaultdict
 
     # Step 1: count how many distinct matchups each team appears in.
     team_matchup_count: Counter = Counter()
@@ -116,24 +119,63 @@ def assign_rounds(sorted_series):
     # Teams in 2+ matchups are confirmed Play-In participants.
     playin_teams = {t for t, cnt in team_matchup_count.items() if cnt >= 2}
 
+    # Build per-team sorted matchup list (team → [(date, matchup_key, opponent), ...]).
+    team_matchup_list: dict = defaultdict(list)
+    for matchup, data in sorted_series:
+        a, b = data["team_a"], data["team_b"]
+        d = data["earliest_date"] or ""
+        team_matchup_list[a].append((d, matchup, b))
+        team_matchup_list[b].append((d, matchup, a))
+    for t in team_matchup_list:
+        team_matchup_list[t].sort()  # chronological
+
+    # Step 2: detect bracket matchups — a play-in team's LAST matchup against
+    # a degree-1 opponent is their R1 series (advancement from play-in).
+    bracket_matchup_keys: set = set()
+    for team in playin_teams:
+        matches = team_matchup_list[team]
+        if not matches:
+            continue
+        last_date, last_key, last_opponent = matches[-1]
+        if last_opponent not in playin_teams:
+            bracket_matchup_keys.add(last_key)
+
+    # Step 3: find the earliest confirmed R1 date, then also classify
+    # degree-1 vs degree-1 matchups on or after that date as bracket.
+    if bracket_matchup_keys:
+        r1_start = min(
+            data["earliest_date"]
+            for matchup, data in sorted_series
+            if matchup in bracket_matchup_keys and data["earliest_date"]
+        )
+        for matchup, data in sorted_series:
+            if matchup in bracket_matchup_keys:
+                continue
+            if (data["team_a"] not in playin_teams
+                    and data["team_b"] not in playin_teams
+                    and data["earliest_date"]
+                    and data["earliest_date"] >= r1_start):
+                bracket_matchup_keys.add(matchup)
+
+    # Step 4: classify each series.
     play_in = []
     real = []
     for matchup, data in sorted_series:
         max_wins = max(data["wins_a"], data["wins_b"])
-        # Confirmed Play-In matchup: either team is a Play-In participant.
-        if data["team_a"] in playin_teams or data["team_b"] in playin_teams:
+        if matchup in bracket_matchup_keys:
+            real.append((matchup, data))
+        elif data["team_a"] in playin_teams or data["team_b"] in playin_teams:
             play_in.append((matchup, data))
         elif data["num_games"] <= 1 and max_wins <= 1:
             # Single-game series whose teams don't appear elsewhere — ambiguous.
-            # Could be an eliminated Play-In team's only game, or R1 Game 1.
-            # We keep it in play_in tentatively; the bucketing below resolves it.
+            # Keep in play_in tentatively; the bucketing below resolves it.
             play_in.append((matchup, data))
         else:
             real.append((matchup, data))
 
-    # Step 2: bucket real bracket series.
-    if len(real) >= 8:
-        # Enough R1 series exist — our play_in list is reliable.
+    # Step 5: bucket real bracket series.
+    if bracket_matchup_keys or len(real) >= 8:
+        # Confirmed bracket matchups detected or enough R1 series.
         play_in_actual = play_in
         all_real = real
     elif len(real) == 0 and len(play_in) <= 8:
