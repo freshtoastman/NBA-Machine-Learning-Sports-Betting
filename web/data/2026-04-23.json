@@ -32,7 +32,7 @@
   "playoff_ats_count": 1,
   "injury_alerts": [
    "Atlanta Hawks: Jock Landale (缺陣)",
-   "Toronto Raptors: Immanuel Quickley (缺陣)",
+   "New York Knicks: OG Anunoby (缺陣)",
    "Cleveland Cavaliers: Thomas Bryant (缺陣)",
    "Denver Nuggets: Peyton Watson (缺陣)"
   ],
@@ -103,7 +103,9 @@
    "injuries_home": [
     "Jock Landale (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [
+    "OG Anunoby (缺陣)"
+   ]
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -153,9 +155,7 @@
    "away_team_zh": "克里夫蘭騎士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "injuries_home": [
-    "Immanuel Quickley (缺陣)"
-   ],
+   "injuries_home": [],
    "injuries_away": [
     "Thomas Bryant (缺陣)"
    ]
