@@ -563,6 +563,26 @@ def build_bracket(target_date: date) -> dict | None:
         }
         low_8 = r1_resolved.get(8, "待定（8 號種子）")
         low_7 = r1_resolved.get(7, "待定（7 號種子）")
+        playin_survivors = {
+            c["team"] for c in r1_resolved.values() if isinstance(c, dict)
+        }
+
+        # Load today's game predictions for conflict detection (bracket is built after game JSONs).
+        _today_game_lookup: dict = {}
+        try:
+            _today_json = (
+                Path(__file__).resolve().parents[1] / "web" / "data"
+                / f"{target_date.isoformat()}.json"
+            )
+            if _today_json.exists():
+                with open(_today_json, encoding="utf-8") as _tf:
+                    _td_data = json.load(_tf)
+                for _gk, _gv in _td_data.get("games", {}).items():
+                    if isinstance(_gv, dict) and _gv.get("is_playoff"):
+                        _parts = _gk.split(":")
+                        _today_game_lookup[frozenset(_parts)] = _gv
+        except Exception:
+            pass
 
         def _with_wins(high_team, low_team):
             """Attach series win counts and upcoming signal hints to a first_round entry."""
@@ -576,7 +596,8 @@ def build_bracket(target_date: date) -> dict | None:
             entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
             # G1 pre-game hint: R1 opener home-seed advantage (fires before any game played).
             if gp == 0 and _stage_label == "首輪進行中":
-                entry["next_signal"] = {
+                is_playin_away = low_team["team"] in playin_survivors
+                ns = {
                     "game_num": 1,
                     "signal": "首輪G1主場優勢",
                     "side": "home",
@@ -585,7 +606,19 @@ def build_bracket(target_date: date) -> dict | None:
                     "tier": "SILVER",
                     "backtest_wr": 0.60,
                     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+                    "playin_away": is_playin_away,
                 }
+                # Check today's game data for conflicts (e.g. away cold bounce vs home signals).
+                _game = _today_game_lookup.get(key)
+                if _game and _game.get("playoff_ats_has_conflict"):
+                    ns["has_conflict"] = True
+                    for _pick in _game.get("playoff_ats_picks", []):
+                        if _pick.get("side") == "away":
+                            ns["conflict_signal"] = _pick.get("signal")
+                            ns["conflict_wr"] = _pick.get("backtest_wr")
+                            ns["conflict_away_team"] = low_team.get("team_zh") or low_team.get("team")
+                            break
+                entry["next_signal"] = ns
             # G2 home bounce signal: fires when exactly 1 game has been played.
             # G2 home is ALWAYS the actual higher seed regardless of G1 result.
             if gp == 1:

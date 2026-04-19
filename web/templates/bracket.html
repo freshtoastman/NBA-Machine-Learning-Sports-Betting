@@ -69,6 +69,9 @@
       .next-signal.tier-silver .ns-badge { background:#1a3a28; color:#7fd69b; }
       .next-signal.tier-gold .ns-badge { background:#3a2a10; color:#f4bf50; }
       .next-signal .ns-wr { color:#f4bf50; font-weight:700; }
+      .next-signal .ns-conflict { margin-top:4px; padding:3px 6px; background:#2a1a1a; border:1px solid #8a4040; border-radius:4px; color:#e08080; font-size:10px; }
+      .next-signal .ns-conflict .cf-badge { background:#5a2020; color:#e08080; border-radius:3px; padding:1px 4px; font-size:9px; font-weight:700; margin-right:4px; }
+      .ns-playin-hint { font-size:10px; color:#f4bf50; margin-left:4px; opacity:0.8; }
     </style>
 </head>
 <body>
@@ -226,9 +229,19 @@
             {% set tier_cls = 'tier-' + (m.next_signal.tier or 'bronze')|lower %}
             <div class="next-signal {{ tier_cls }}">
               <span class="ns-badge">{% if m.next_signal.game_num == 1 %}今日G1{% else %}G{{ m.next_signal.game_num }}{% endif %} 信號</span>
+              {% if m.next_signal.has_conflict %}⚡{% endif %}
               📊 {{ m.next_signal.home_team_zh }} 主場
               <span class="ns-wr">{{ (m.next_signal.backtest_wr * 100)|round(0)|int }}%</span>
               cover率 · {{ m.next_signal.signal }}
+              {% if m.next_signal.playin_away %}<span class="ns-playin-hint">（附加賽升組客隊）</span>{% endif %}
+              {% if m.next_signal.has_conflict and m.next_signal.conflict_signal %}
+              <div class="ns-conflict">
+                <span class="cf-badge">⚡ 分歧</span>
+                對比信號: {{ m.next_signal.conflict_away_team }} 客場
+                <span style="color:#f4bf50;font-weight:700;">{{ (m.next_signal.conflict_wr * 100)|round(0)|int }}%</span>
+                · {{ m.next_signal.conflict_signal }}
+              </div>
+              {% endif %}
             </div>
             {% endif %}
           </div>
