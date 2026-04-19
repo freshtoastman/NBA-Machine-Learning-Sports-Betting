@@ -36,20 +36,47 @@ app.jinja_env.add_extension("jinja2.ext.loopcontrols")
 # Login via /login?token=xxx or /login with email form.
 
 AUTH_SALT = os.environ.get("AUTH_SALT", "nba-ml-2026")
-ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "lchao@example.com")
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "teach@teach-k12ea.com")
+_AUTH_COOKIE = "nba_auth"
 
 
 def _get_whitelist() -> set[str]:
     raw = os.environ.get("AUTHORIZED_EMAILS", "")
-    return {e.strip().lower() for e in raw.split(",") if e.strip()}
+    emails = {e.strip().lower() for e in raw.split(",") if e.strip()}
+    emails.add(ADMIN_EMAIL.lower().strip())  # admin always allowed
+    return emails
 
 
 def _make_token(email: str) -> str:
     return hashlib.sha256(f"{email.lower().strip()}:{AUTH_SALT}".encode()).hexdigest()[:16]
 
 
+def _valid_token(token: str) -> bool:
+    """Return True if token matches any whitelisted email. Works across lambda restarts."""
+    if not token:
+        return False
+    whitelist = _get_whitelist()
+    # If whitelist is empty, fall back to accepting any token that matches admin email.
+    if not whitelist:
+        whitelist = {ADMIN_EMAIL.lower().strip()}
+    return any(_make_token(email) == token for email in whitelist)
+
+
 def _is_authenticated() -> bool:
+    # Check plain cookie first (stable across Vercel lambda restarts).
+    cookie_token = request.cookies.get(_AUTH_COOKIE, "")
+    if cookie_token and _valid_token(cookie_token):
+        return True
+    # Fallback: Flask session (works in local dev with stable secret key).
     return session.get("authenticated") is True
+
+
+def _auth_response(resp, email: str):
+    """Attach auth cookie to response."""
+    token = _make_token(email)
+    resp.set_cookie(_AUTH_COOKIE, token, max_age=60 * 60 * 24 * 30,
+                    httponly=True, samesite="Lax")
+    return resp
 
 
 @app.before_request
@@ -63,12 +90,14 @@ def require_auth():
     # Check token in query string (magic link).
     token = request.args.get("token")
     if token:
-        whitelist = _get_whitelist()
-        for email in whitelist:
-            if _make_token(email) == token:
-                session["authenticated"] = True
-                session["email"] = email
-                return redirect(request.path)
+        if _valid_token(token):
+            # Strip token from URL, set cookie, redirect cleanly.
+            clean_path = request.path
+            resp = make_response(redirect(clean_path))
+            # Find email for this token.
+            whitelist = _get_whitelist() or {ADMIN_EMAIL.lower().strip()}
+            email = next((e for e in whitelist if _make_token(e) == token), ADMIN_EMAIL)
+            return _auth_response(resp, email)
         return redirect(url_for("login", error="invalid"))
     return redirect(url_for("login"))
 
@@ -80,9 +109,8 @@ def login():
         email = request.form.get("email", "").strip().lower()
         whitelist = _get_whitelist()
         if email in whitelist:
-            session["authenticated"] = True
-            session["email"] = email
-            return redirect(url_for("index"))
+            resp = make_response(redirect(url_for("index")))
+            return _auth_response(resp, email)
         error = "unauthorized"
     return render_template("login.html", error=error, admin_email=ADMIN_EMAIL)
 
@@ -90,7 +118,9 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    resp = make_response(redirect(url_for("login")))
+    resp.delete_cookie(_AUTH_COOKIE)
+    return resp
 
 
 @app.route("/subscribe")
