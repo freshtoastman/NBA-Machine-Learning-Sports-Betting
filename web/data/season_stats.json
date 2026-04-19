@@ -126,6 +126,53 @@
     "ats_winner": "home"
    }
   ],
+  "pending_by_game": [
+   {
+    "date": "2026-04-19",
+    "game": "奧蘭多魔術 @ 底特律活塞",
+    "signals": [
+     "R1G1大讓分主場",
+     "附加賽升組客隊不利",
+     "首輪G1主場優勢"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false
+   },
+   {
+    "date": "2026-04-19",
+    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
+    "signals": [
+     "R1G1大讓分主場",
+     "附加賽升組客隊不利",
+     "首輪G1主場優勢"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false
+   },
+   {
+    "date": "2026-04-19",
+    "game": "費城七六人 @ 波士頓塞爾提克",
+    "signals": [
+     "R1G1大讓分主場",
+     "附加賽升組客隊不利",
+     "首輪G1主場優勢"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false
+   },
+   {
+    "date": "2026-04-19",
+    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
+    "signals": [
+     "R1G1大讓分主場",
+     "客場ATS冷門反彈",
+     "附加賽升組客隊不利",
+     "首輪G1主場優勢"
+    ],
+    "consensus_side": null,
+    "has_conflict": true
+   }
+  ],
   "by_signal": [
    {
     "signal": "首輪G1主場優勢",

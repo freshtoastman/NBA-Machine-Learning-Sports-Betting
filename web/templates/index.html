@@ -276,6 +276,28 @@
                     {% endfor %}
                 </div>
                 {% endif %}
+                {# 待決場次 — 今日/未來有信號的場次 #}
+                {% if pos.pending_by_game and pos.pending_by_game|length > 0 %}
+                <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size:11px;color:#ffa726;margin-bottom:6px;">今日待決信號</div>
+                    {% for pg in pos.pending_by_game %}
+                    <div style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:10px;border-radius:4px;">
+                        {% if pg.has_conflict %}
+                        <span style="color:#ffa726;font-weight:700;min-width:14px;">⚡</span>
+                        {% elif pg.consensus_side == 'home' %}
+                        <span style="color:#42a5f5;font-weight:700;min-width:14px;">主</span>
+                        {% elif pg.consensus_side == 'away' %}
+                        <span style="color:#ab47bc;font-weight:700;min-width:14px;">客</span>
+                        {% else %}
+                        <span style="color:#888;min-width:14px;">?</span>
+                        {% endif %}
+                        <span style="color:#888;min-width:40px;">{{ pg.date[5:] }}</span>
+                        <span style="color:#ddd;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ pg.game }}">{{ pg.game }}</span>
+                        <span style="color:#ffa726;white-space:nowrap;font-size:9px;background:rgba(255,167,38,0.1);padding:1px 4px;border-radius:3px;">{{ pg.signals|length }}信號</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 {# 歷史紀錄 — 已決定場次 #}
                 {% if pos.history and pos.history|length > 0 %}
                 <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">

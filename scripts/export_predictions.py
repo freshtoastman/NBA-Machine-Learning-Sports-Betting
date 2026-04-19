@@ -842,6 +842,26 @@ def main():
                 pass
         sc_decided = sc_hits + sc_misses
 
+        # Group pending signals by game for display
+        from collections import defaultdict as _dd
+        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "date": "", "game": ""})
+        for r in po_pending:
+            k = f'{r["date"]}|{r["game"]}'
+            _pending_games[k]["date"] = r["date"]
+            _pending_games[k]["game"] = r["game"]
+            _pending_games[k]["signals"].append(r["signal"])
+            _pending_games[k]["sides"].add(r["side"])
+        pending_by_game = []
+        for k, v in sorted(_pending_games.items()):
+            sides = list(v["sides"])
+            pending_by_game.append({
+                "date": v["date"],
+                "game": v["game"],
+                "signals": v["signals"],
+                "consensus_side": sides[0] if len(sides) == 1 else None,
+                "has_conflict": len(sides) > 1,
+            })
+
         stats["playoff_signals"] = {
             "hits": len(po_hits),
             "misses": len(po_misses),
@@ -849,6 +869,7 @@ def main():
             "decided": decided,
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
             "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-12:],  # chronological, most recent
+            "pending_by_game": pending_by_game,
             "by_signal": sig_breakdown,
             "strong_consensus": {
                 "hits": sc_hits, "misses": sc_misses, "pending": sc_pending,
