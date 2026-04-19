@@ -284,13 +284,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場反彈/鞏固",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Cleveland Cavaliers",
      "home_team_zh": "克里夫蘭騎士",
-     "tier": "SILVER",
-     "backtest_wr": 0.586,
-     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    },
    {
@@ -318,13 +318,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場反彈/鞏固",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "New York Knicks",
      "home_team_zh": "紐約尼克",
-     "tier": "SILVER",
-     "backtest_wr": 0.586,
-     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    },
    {
@@ -352,13 +352,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場反彈/鞏固",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Boston Celtics",
      "home_team_zh": "波士頓塞爾提克",
-     "tier": "SILVER",
-     "backtest_wr": 0.586,
-     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    }
   ]
@@ -641,13 +641,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場反彈/鞏固",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Los Angeles Lakers",
      "home_team_zh": "洛杉磯湖人",
-     "tier": "SILVER",
-     "backtest_wr": 0.586,
-     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    },
    {
@@ -675,13 +675,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場反彈/鞏固",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Denver Nuggets",
      "home_team_zh": "丹佛金塊",
-     "tier": "SILVER",
-     "backtest_wr": 0.586,
-     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    },
    {

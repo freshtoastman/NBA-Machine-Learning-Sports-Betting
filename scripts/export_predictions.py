@@ -761,19 +761,27 @@ def build_bracket(target_date: date) -> dict | None:
                             ns["conflict_away_team"] = low_team.get("team_zh") or low_team.get("team")
                             break
                 entry["next_signal"] = ns
-            # G2 home bounce signal: fires when exactly 1 game has been played.
-            # G2 home is ALWAYS the actual higher seed regardless of G1 result.
+            # G2 home signal: split by G1 result.
+            # Home lost G1 (bounce-back): 64.9% SILVER; home won G1 (consolidation): 53.4% BRONZE
             if gp == 1:
                 g2_home = high_team
+                if lw == 1 and hw == 0:
+                    # Low seed won G1 → high seed (home in G2) is in bounce-back mode
+                    g2_sig, g2_tier, g2_wr = "G2主場反彈 (輸G1)", "SILVER", 0.649
+                    g2_reason = "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)"
+                else:
+                    # High seed won G1 → consolidation mode
+                    g2_sig, g2_tier, g2_wr = "G2主場鞏固 (贏G1)", "BRONZE", 0.534
+                    g2_reason = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
                 entry["next_signal"] = {
                     "game_num": 2,
-                    "signal": "G2主場反彈/鞏固",
+                    "signal": g2_sig,
                     "side": "home",
                     "home_team": g2_home["team"],
                     "home_team_zh": g2_home["team_zh"],
-                    "tier": "SILVER",
-                    "backtest_wr": 0.586,
-                    "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
+                    "tier": g2_tier,
+                    "backtest_wr": g2_wr,
+                    "reason_zh": g2_reason,
                 }
             # G3 signals: fire based on series state when 2 games played.
             # G3 is at low_seed's home. hw=high_wins, lw=low_wins.

@@ -238,8 +238,7 @@
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)",
-   "Orlando Magic: Desmond Bane (可能出賽)",
-   "Orlando Magic: Jonathan Isaac (存疑)",
+   "Orlando Magic: Jonathan Isaac (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ],
   "ml_correct": 1,
@@ -1379,9 +1378,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 65,
-   "live_away_score": 44,
-   "live_status": "02:41 2nd",
+   "live_home_score": 72,
+   "live_away_score": 53,
+   "live_status": "Halftime",
    "live_is_final": false,
    "live_home_covering": true,
    "injuries_away": [
@@ -1920,8 +1919,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Desmond Bane (可能出賽)",
-    "Jonathan Isaac (存疑)"
+    "Jonathan Isaac (缺陣)"
    ]
   },
   "Portland Trail Blazers:San Antonio Spurs": {

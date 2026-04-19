@@ -31,6 +31,7 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
+   "Atlanta Hawks: Onyeka Okongwu (存疑)",
    "Atlanta Hawks: Jock Landale (缺陣)",
    "New York Knicks: OG Anunoby (缺陣)",
    "Cleveland Cavaliers: Thomas Bryant (缺陣)",
@@ -101,6 +102,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [
+    "Onyeka Okongwu (存疑)",
     "Jock Landale (缺陣)"
    ],
    "injuries_away": [
