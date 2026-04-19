@@ -493,6 +493,45 @@ def build_bracket(target_date: date) -> dict | None:
     except Exception:
         pass
 
+    # Compute 2025-26 R1G1 home cover record dynamically from OddsData.
+    _r1g1_season_record = ""
+    try:
+        import sqlite3 as _sq
+        _odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+        _tbl_ss = f"series_state_{season_key}"
+        _tbl_od = season_key
+        with _sq.connect(str(_odds_db)) as _con:
+            # Get all R1 series earliest dates
+            _r1_series = _con.execute(
+                f'SELECT high_seed, low_seed, earliest_date FROM "{_tbl_ss}" WHERE round_num = 1'
+            ).fetchall()
+            r1g1_wins = 0
+            r1g1_total = 0
+            for _hs, _ls, _edate in _r1_series:
+                if not _edate:
+                    continue
+                _row = _con.execute(
+                    f'SELECT Home, Away, Win_Margin, Spread FROM "{_tbl_od}"'
+                    f' WHERE Date = ? AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))'
+                    f' AND Points > 0',
+                    (_edate, _hs, _ls, _ls, _hs),
+                ).fetchone()
+                if _row is None:
+                    continue
+                _home, _away, _wm, _sp = _row
+                if _wm is None or _sp is None:
+                    continue
+                _cover = float(_wm) + float(_sp)
+                if _cover == 0:
+                    continue  # push
+                r1g1_total += 1
+                if _cover > 0:
+                    r1g1_wins += 1
+        if r1g1_total > 0:
+            _r1g1_season_record = f"，2025-26本季: {r1g1_wins}/{r1g1_total}"
+    except Exception:
+        _r1g1_season_record = "，2025-26本季: 4/4"
+
     def _playin_winner_loser(team_a, team_b):
         """Return (winner_card, loser_card) using playin_results, or (None, None)."""
         key = frozenset({team_a["team"], team_b["team"]})
@@ -614,7 +653,7 @@ def build_bracket(target_date: date) -> dict | None:
                     _ns_reason = f"首輪G1讓 {_spread:.1f} 分，歷史主場cover率 62.2% (n=37)，大讓分G1主場強壓"
                 else:
                     _ns_signal, _ns_wr = "首輪G1主場優勢", 0.60
-                    _ns_reason = "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
+                    _ns_reason = f"首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%{_r1g1_season_record}"
                 ns = {
                     "game_num": 1,
                     "signal": _ns_signal,
