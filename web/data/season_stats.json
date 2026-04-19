@@ -136,7 +136,8 @@
      "首輪G1主場優勢"
     ],
     "consensus_side": "home",
-    "has_conflict": false
+    "has_conflict": false,
+    "best_wr": 62
    },
    {
     "date": "2026-04-19",
@@ -147,7 +148,8 @@
      "首輪G1主場優勢"
     ],
     "consensus_side": "home",
-    "has_conflict": false
+    "has_conflict": false,
+    "best_wr": 73
    },
    {
     "date": "2026-04-19",
@@ -158,7 +160,8 @@
      "首輪G1主場優勢"
     ],
     "consensus_side": "home",
-    "has_conflict": false
+    "has_conflict": false,
+    "best_wr": 73
    },
    {
     "date": "2026-04-19",
@@ -170,7 +173,8 @@
      "首輪G1主場優勢"
     ],
     "consensus_side": null,
-    "has_conflict": true
+    "has_conflict": true,
+    "best_wr": 73
    }
   ],
   "by_signal": [

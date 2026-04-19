@@ -94,37 +94,50 @@
             </div>
             {% endif %}
 
-            {# ── 季後賽優勢投注 Alert Panel ── #}
+            {# ── 季後賽優勢投注 Alert Panel (grouped by game) ── #}
             {% if summary.playoff_ats_alerts %}
             <div class="po-ats-alert-panel" id="po-ats-panel">
                 <div class="po-ats-header">
                     <span class="po-ats-title">🏀 季後賽優勢投注</span>
-                    <span class="po-ats-sub">回測信號 · 點擊場次查看詳情</span>
+                    {% set _game_keys = summary.playoff_ats_alerts | map(attribute='game_key') | unique | list %}
+                    <span class="po-ats-sub">{{ _game_keys | length }} 場有信號 · {{ summary.playoff_ats_alerts | length }} 個回測信號</span>
                 </div>
-                <div class="po-ats-list">
-                {% for alert in summary.playoff_ats_alerts %}
-                    {% set tier_cls = 'gold' if alert.tier == 'GOLD' else 'silver' %}
-                    {% set side_zh = alert.home_team_zh if alert.side == 'home' else alert.away_team_zh %}
-                    <a class="po-ats-card tier-{{ tier_cls }}" href="#pick-{{ alert.game_key }}">
-                        <div class="po-ats-card-top">
-                            <span class="po-ats-tier-badge tier-{{ tier_cls }}">{{ alert.tier }}</span>
-                            <span class="po-ats-signal">{{ alert.signal }}</span>
-                            {% if alert.ats_winner %}
-                            <span class="badge-mini {% if alert.side == alert.ats_winner %}ok{% else %}fail{% endif %}">
-                                {% if alert.side == alert.ats_winner %}✓ 命中{% else %}✗ 失敗{% endif %}
-                            </span>
+                <div class="po-ats-game-list">
+                {% for game_key, game_alerts in summary.playoff_ats_alerts | groupby('game_key') %}
+                    {% set ga = game_alerts | list %}
+                    {% set first = ga[0] %}
+                    {% set has_conflict = first.has_conflict %}
+                    {% set consensus = first.strong_consensus %}
+                    {% set best_wr = ga | map(attribute='backtest_wr') | max %}
+                    {% set result = first.ats_winner %}
+                    {% set result_correct = (consensus == result) if (consensus and result) else none %}
+                    <a class="po-ats-game-group {% if has_conflict %}has-conflict{% elif consensus %}has-consensus{% endif %}" href="#pick-{{ game_key }}">
+                        <div class="po-ats-gg-top">
+                            <span class="po-ats-gg-teams">{{ first.away_team_zh }} @ {{ first.home_team_zh }}</span>
+                            {% if has_conflict %}
+                            <span class="po-ats-gg-badge conflict">⚡ 分歧</span>
+                            {% elif consensus %}
+                            <span class="po-ats-gg-badge strong-{{ consensus }}">🔥 {{ ga | length }}× SILVER {{ '主場' if consensus == 'home' else '客場' }}</span>
+                            {% endif %}
+                            {% if result %}
+                            <span class="badge-mini {% if result_correct %}ok{% else %}fail{% endif %}">{% if result_correct %}✓ 命中{% else %}✗ 失敗{% endif %}</span>
                             {% endif %}
                         </div>
-                        <div class="po-ats-card-main">
-                            <strong>{{ side_zh }}</strong>
-                            <span class="po-ats-direction">{{ alert.ats_side }}</span>
+                        <div class="po-ats-gg-pick">
+                            {% if has_conflict %}
+                            <span style="color:#e08080;font-size:12px;">信號分歧 — 無強勢方向</span>
+                            {% elif consensus %}
+                            <span class="po-ats-gg-direction">{{ '主場' if consensus == 'home' else '客場' }} 覆蓋讓分</span>
+                            <span class="po-ats-gg-wr">最高 {{ (best_wr * 100)|round(0)|int }}% WR</span>
+                            {% endif %}
                         </div>
-                        <div class="po-ats-card-meta">
-                            {{ alert.away_team_zh }} @ {{ alert.home_team_zh }}
-                            · 回測 <b>{{ (alert.backtest_wr * 100)|round(0)|int }}%</b> WR
-                            {% if alert.backtest_roi is not none %} · ROI +{{ alert.backtest_roi }}%{% endif %}
+                        <div class="po-ats-gg-chips">
+                            {% for a in ga %}
+                            <span class="po-ats-sig-chip {% if has_conflict and a.side != (ga|map(attribute='side')|list|first) %}chip-conflict{% endif %}">
+                                {{ a.signal }} <b>{{ (a.backtest_wr * 100)|round(0)|int }}%</b>
+                            </span>
+                            {% endfor %}
                         </div>
-                        <div class="po-ats-reason">{{ alert.reason_zh }}</div>
                     </a>
                 {% endfor %}
                 </div>
@@ -293,6 +306,9 @@
                         {% endif %}
                         <span style="color:#888;min-width:40px;">{{ pg.date[5:] }}</span>
                         <span style="color:#ddd;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ pg.game }}">{{ pg.game }}</span>
+                        {% if pg.best_wr and not pg.has_conflict %}
+                        <span style="color:#7fd69b;white-space:nowrap;font-size:9px;font-weight:700;margin-right:2px;">{{ pg.best_wr }}%</span>
+                        {% endif %}
                         <span style="color:#ffa726;white-space:nowrap;font-size:9px;background:rgba(255,167,38,0.1);padding:1px 4px;border-radius:3px;">{{ pg.signals|length }}信號</span>
                     </div>
                     {% endfor %}

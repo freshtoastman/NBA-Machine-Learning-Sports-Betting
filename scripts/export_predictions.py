@@ -844,22 +844,26 @@ def main():
 
         # Group pending signals by game for display
         from collections import defaultdict as _dd
-        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "date": "", "game": ""})
+        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": ""})
         for r in po_pending:
             k = f'{r["date"]}|{r["game"]}'
             _pending_games[k]["date"] = r["date"]
             _pending_games[k]["game"] = r["game"]
             _pending_games[k]["signals"].append(r["signal"])
             _pending_games[k]["sides"].add(r["side"])
+            if r.get("backtest_wr"):
+                _pending_games[k]["wrs"].append(r["backtest_wr"])
         pending_by_game = []
         for k, v in sorted(_pending_games.items()):
             sides = list(v["sides"])
+            best_wr = max(v["wrs"]) if v["wrs"] else None
             pending_by_game.append({
                 "date": v["date"],
                 "game": v["game"],
                 "signals": v["signals"],
                 "consensus_side": sides[0] if len(sides) == 1 else None,
                 "has_conflict": len(sides) > 1,
+                "best_wr": round(best_wr * 100) if best_wr else None,
             })
 
         stats["playoff_signals"] = {

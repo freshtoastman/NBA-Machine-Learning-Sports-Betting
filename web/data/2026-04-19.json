@@ -238,6 +238,7 @@
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "Phoenix Suns: Grayson Allen (存疑)",
    "Phoenix Suns: Mark Williams (存疑)",
+   "Orlando Magic: Desmond Bane (可能出賽)",
    "Orlando Magic: Jonathan Isaac (存疑)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ]
@@ -253,7 +254,7 @@
    "ou_value": 213.5,
    "ou_confidence": 51.2,
    "home_team_ev": -29.2,
-   "away_team_ev": 144.64,
+   "away_team_ev": 144.63,
    "home_team_odds": -800,
    "away_team_odds": 560,
    "home_kelly": 0,
@@ -796,12 +797,12 @@
    "ou_pick": "OVER",
    "ou_value": 215.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -26.55,
-   "away_team_ev": 152.5,
+   "home_team_ev": -26.54,
+   "away_team_ev": 152.49,
    "home_team_odds": -1000,
    "away_team_odds": 660,
    "home_kelly": 0,
-   "away_kelly": 23.11,
+   "away_kelly": 23.1,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1352,7 +1353,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.6,
    "home_team_ev": -15.5,
-   "away_team_ev": 30.15,
+   "away_team_ev": 30.14,
    "home_team_odds": -340,
    "away_team_odds": 275,
    "home_kelly": 0,
@@ -1873,6 +1874,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
+    "Desmond Bane (可能出賽)",
     "Jonathan Isaac (存疑)"
    ]
   },
@@ -1886,7 +1888,7 @@
    "ou_value": 221.5,
    "ou_confidence": 54.5,
    "home_team_ev": -15.79,
-   "away_team_ev": 48.55,
+   "away_team_ev": 48.54,
    "home_team_odds": -559,
    "away_team_odds": 420,
    "home_kelly": 0,

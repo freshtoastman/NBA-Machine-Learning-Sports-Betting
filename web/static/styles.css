@@ -3463,6 +3463,105 @@ h3 {
     line-height: 1.4;
 }
 
+/* ── Playoff Alert Panel: Grouped by game ── */
+.po-ats-game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.po-ats-game-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(192, 192, 192, 0.07);
+    border: 1px solid rgba(192, 192, 192, 0.22);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.po-ats-game-group:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    color: inherit;
+    text-decoration: none;
+}
+.po-ats-game-group.has-consensus {
+    background: rgba(82, 199, 122, 0.07);
+    border-color: rgba(82, 199, 122, 0.3);
+}
+.po-ats-game-group.has-conflict {
+    background: rgba(224, 128, 128, 0.06);
+    border-color: rgba(224, 128, 128, 0.25);
+}
+.po-ats-gg-top {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+.po-ats-gg-teams {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+}
+.po-ats-gg-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.po-ats-gg-badge.strong-home,
+.po-ats-gg-badge.strong-away {
+    background: rgba(82, 199, 122, 0.18);
+    color: #7fd69b;
+    border: 1px solid rgba(82, 199, 122, 0.4);
+}
+.po-ats-gg-badge.conflict {
+    background: rgba(224, 128, 128, 0.15);
+    color: #e08080;
+    border: 1px solid rgba(224, 128, 128, 0.4);
+}
+.po-ats-gg-pick {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.po-ats-gg-direction {
+    font-size: 14px;
+    font-weight: 700;
+    color: #7fd69b;
+}
+.po-ats-gg-wr {
+    font-size: 12px;
+    color: #f4bf50;
+    font-weight: 600;
+}
+.po-ats-gg-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 2px;
+}
+.po-ats-sig-chip {
+    font-size: 10px;
+    background: rgba(99,179,255,0.1);
+    border: 1px solid rgba(99,179,255,0.2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: #aac8e8;
+    white-space: nowrap;
+}
+.po-ats-sig-chip b { color: #7ecf7e; }
+.po-ats-sig-chip.chip-conflict {
+    background: rgba(224,128,128,0.1);
+    border-color: rgba(224,128,128,0.3);
+    color: #e0a0a0;
+}
+
 /* ── Playoff Signal Season Tracker ── */
 .po-signal-tracker {
     background: linear-gradient(135deg, rgba(20,30,15,0.95), rgba(10,20,25,0.95));
