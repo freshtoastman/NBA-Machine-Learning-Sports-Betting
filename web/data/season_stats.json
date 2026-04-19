@@ -60,7 +60,9 @@
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.619,
-    "ats_winner": "away"
+    "ats_winner": "away",
+    "home_team": "Charlotte Hornets",
+    "away_team": "Miami Heat"
    },
    {
     "date": "2026-04-15",
@@ -69,7 +71,9 @@
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.529,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Philadelphia 76ers",
+    "away_team": "Orlando Magic"
    },
    {
     "date": "2026-04-18",
@@ -78,7 +82,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.622,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Cleveland Cavaliers",
+    "away_team": "Toronto Raptors"
    },
    {
     "date": "2026-04-18",
@@ -87,7 +93,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Cleveland Cavaliers",
+    "away_team": "Toronto Raptors"
    },
    {
     "date": "2026-04-18",
@@ -96,7 +104,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Cleveland Cavaliers",
+    "away_team": "Toronto Raptors"
    },
    {
     "date": "2026-04-18",
@@ -105,7 +115,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Denver Nuggets",
+    "away_team": "Minnesota Timberwolves"
    },
    {
     "date": "2026-04-18",
@@ -114,7 +126,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "New York Knicks",
+    "away_team": "Atlanta Hawks"
    },
    {
     "date": "2026-04-18",
@@ -123,7 +137,9 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "home_team": "Los Angeles Lakers",
+    "away_team": "Houston Rockets"
    }
   ],
   "pending_by_game": [
@@ -161,7 +177,11 @@
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 73
+    "best_wr": 73,
+    "live_status": "06:40 2nd",
+    "live_home_score": 68,
+    "live_away_score": 50,
+    "live_home_covering": true
    },
    {
     "date": "2026-04-19",

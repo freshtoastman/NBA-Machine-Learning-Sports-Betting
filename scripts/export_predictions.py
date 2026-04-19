@@ -968,6 +968,8 @@ def main():
                         "tier": tier,
                         "backtest_wr": wr,
                         "ats_winner": alert.get("ats_winner"),
+                        "home_team": alert.get("home_team", ""),
+                        "away_team": alert.get("away_team", ""),
                     }
                     winner = alert.get("ats_winner")
                     if winner is None:
@@ -1021,13 +1023,38 @@ def main():
                 pass
         sc_decided = sc_hits + sc_misses
 
+        # Build a lookup of live scores keyed by (date, game_key) from daily JSONs.
+        _live_lookup: dict = {}
+        for jf in sorted(OUT_DIR.glob("????-??-??.json")):
+            try:
+                with open(jf, encoding="utf-8") as _jf:
+                    _jd = json.load(_jf)
+                for gk, gv in _jd.get("games", {}).items():
+                    if isinstance(gv, dict):
+                        _live_st = gv.get("live_status")
+                        _live_fin = gv.get("live_is_final", True)
+                        if _live_st and not _live_fin:
+                            _live_lookup[(_jd["date"], gk)] = {
+                                "live_status": _live_st,
+                                "live_home_score": gv.get("live_home_score"),
+                                "live_away_score": gv.get("live_away_score"),
+                                "live_home_covering": gv.get("live_home_covering"),
+                            }
+            except Exception:
+                pass
+
         # Group pending signals by game for display
         from collections import defaultdict as _dd
-        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": ""})
+        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": "", "game_key": ""})
         for r in po_pending:
             k = f'{r["date"]}|{r["game"]}'
             _pending_games[k]["date"] = r["date"]
             _pending_games[k]["game"] = r["game"]
+            # Build a game_key from away:home format (same as daily JSON keys)
+            _ht = r.get("home_team", "")
+            _at = r.get("away_team", "")
+            if _ht and _at:
+                _pending_games[k]["game_key"] = f"{_at}:{_ht}"
             _pending_games[k]["signals"].append(r["signal"])
             _pending_games[k]["sides"].add(r["side"])
             if r.get("backtest_wr"):
@@ -1036,14 +1063,20 @@ def main():
         for k, v in sorted(_pending_games.items()):
             sides = list(v["sides"])
             best_wr = max(v["wrs"]) if v["wrs"] else None
-            pending_by_game.append({
+            entry = {
                 "date": v["date"],
                 "game": v["game"],
                 "signals": v["signals"],
                 "consensus_side": sides[0] if len(sides) == 1 else None,
                 "has_conflict": len(sides) > 1,
                 "best_wr": round(best_wr * 100) if best_wr else None,
-            })
+            }
+            # Attach live score info if available
+            _game_key = v.get("game_key", "")
+            _live_info = _live_lookup.get((v["date"], _game_key))
+            if _live_info:
+                entry.update(_live_info)
+            pending_by_game.append(entry)
 
         stats["playoff_signals"] = {
             "hits": len(po_hits),

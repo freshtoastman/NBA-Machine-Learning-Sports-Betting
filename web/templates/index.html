@@ -316,8 +316,15 @@
                         {% else %}
                         <span style="color:#888;min-width:14px;">?</span>
                         {% endif %}
+                        {% if pg.live_status is defined %}
+                        <span style="font-size:9px;font-weight:700;color:#fff;background:#e53935;border-radius:3px;padding:1px 4px;white-space:nowrap;animation:livePulse 1.5s ease-in-out infinite;">🔴 {{ pg.live_status }}</span>
+                        {% else %}
                         <span style="color:{{ time_color }};min-width:40px;font-weight:{% if pg_date_iso == yesterday.isoformat() %}700{% else %}400{% endif %};">{{ time_label }}</span>
+                        {% endif %}
                         <span style="color:#ddd;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ pg.game }}">{{ pg.game }}</span>
+                        {% if pg.live_away_score is defined %}
+                        <span style="color:#e53935;font-size:9px;font-weight:700;white-space:nowrap;">{{ pg.live_away_score }}-{{ pg.live_home_score }}</span>
+                        {% endif %}
                         {% if pg.best_wr and not pg.has_conflict %}
                         <span style="color:#7fd69b;white-space:nowrap;font-size:9px;font-weight:700;margin-right:2px;">{{ pg.best_wr }}%</span>
                         {% endif %}
