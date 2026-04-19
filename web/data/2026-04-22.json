@@ -101,7 +101,6 @@
   "injury_alerts": [
    "Orlando Magic: Desmond Bane (可能出賽)",
    "Orlando Magic: Jonathan Isaac (存疑)",
-   "Phoenix Suns: Grayson Allen (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)"
   ],
   "ml_correct": 0,
@@ -286,7 +285,6 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Grayson Allen (缺陣)",
     "Mark Williams (缺陣)"
    ]
   }

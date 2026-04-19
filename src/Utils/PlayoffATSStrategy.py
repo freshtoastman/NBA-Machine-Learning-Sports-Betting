@@ -50,8 +50,8 @@ def _ml_high_conf_small_spread(pred, series_state, team_form) -> PlayoffATSPick 
     spread = pred.get("spread")
     if spread is None or abs(spread) > 5:
         return None
-    home_conf = pred.get("home_confidence", 50)
-    away_conf = pred.get("away_confidence", 50)
+    home_conf = pred.get("home_confidence") or 0
+    away_conf = pred.get("away_confidence") or 0
     # Which side does the ML model favor with ≥65%?
     if home_conf >= 65:
         side = "home"
@@ -84,8 +84,8 @@ def _ml_moderate_conf_small_spread(pred, series_state, team_form) -> PlayoffATSP
     spread = pred.get("spread")
     if spread is None or abs(spread) > 5:
         return None
-    home_conf = pred.get("home_confidence", 50)
-    away_conf = pred.get("away_confidence", 50)
+    home_conf = pred.get("home_confidence") or 0
+    away_conf = pred.get("away_confidence") or 0
     # 60-65 range — not caught by the ≥65 signal above
     if 60 <= home_conf < 65:
         side = "home"

@@ -606,12 +606,11 @@ def predict_historical_xgb(target_date):
                     "playoff_ats_strong_consensus": None,
                 }
                 # Apply playoff signals for upcoming games.
+                # NOTE: do NOT re-import evaluate_playoff_ats etc. here — doing so
+                # would make Python treat them as local vars for the whole function,
+                # causing UnboundLocalError in the historical branch.
                 try:
                     from src.Utils.PlayoffContext import is_playoff_date, get_series_state
-                    from src.Utils.PlayoffATSStrategy import (
-                        evaluate_playoff_ats, picks_to_dict, best_pick,
-                        consensus_side, has_conflict, strong_consensus_side,
-                    )
                     target_iso = target_date.isoformat()
                     if is_playoff_date(target_iso):
                         state = get_series_state(home_team, away_team, target_iso, as_of_date=None)
