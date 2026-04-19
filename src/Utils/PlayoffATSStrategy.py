@@ -362,29 +362,37 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     elif home_wins == 1 and away_wins == 0:
         # Home won G1 → consolidation scenario
         # Sub-group split: G1 ATS margin >7 = 64.3% (covered by _g2_blowout_followthrough);
-        # G1 ATS margin 0-7 = 47.8% (slight away lean, no real edge)
+        # G1 ATS margin 0-7 = 47.8% (n=88) — actual slight AWAY lean, not statistically significant.
+        # Return None for narrow wins (no useful edge), blowout case is covered by _g2_blowout_followthrough.
         g1_margin = series_state.get("g1_ats_margin")
         if g1_margin is not None and g1_margin > 7:
-            # Blowout case — G2大勝後延續 fires separately; show lower-confidence note
+            # Blowout case — show informational BRONZE; real bet is _g2_blowout_followthrough SILVER
             reason_zh = f"G1大勝 {g1_margin:.1f} ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
-            wr = 0.534
-        elif g1_margin is not None:
-            reason_zh = f"G1窄勝 {g1_margin:.1f} ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
-            wr = 0.478
+            return PlayoffATSPick(
+                signal_name="G2主場鞏固 (贏G1)",
+                side="home",
+                ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+                tier="BRONZE",
+                backtest_wr=0.534,
+                backtest_roi=4.8,
+                backtest_n=116,
+                reason_zh=reason_zh,
+            )
+        elif g1_margin is not None and g1_margin <= 7:
+            # Narrow win: 47.8% home cover (n=88) ≈ coin flip with slight away lean — no actionable edge
+            return None
         else:
-            reason_zh = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
-            wr = 0.534
-        n = 88 if (g1_margin is not None and g1_margin <= 7) else 116
-        return PlayoffATSPick(
-            signal_name="G2主場鞏固 (贏G1)",
-            side="home",
-            ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-            tier="BRONZE",
-            backtest_wr=wr,
-            backtest_roi=4.8,
-            backtest_n=n,
-            reason_zh=reason_zh,
-        )
+            # g1_ats_margin unknown: use overall 53.4% consolidation rate
+            return PlayoffATSPick(
+                signal_name="G2主場鞏固 (贏G1)",
+                side="home",
+                ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+                tier="BRONZE",
+                backtest_wr=0.534,
+                backtest_roi=4.8,
+                backtest_n=116,
+                reason_zh="第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)",
+            )
     return None
 
 
