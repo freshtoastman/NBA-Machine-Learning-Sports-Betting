@@ -363,15 +363,23 @@
                             <span class="model-stat-lbl">💎 鑽石</span>
                             <span class="model-stat-val">{{ a.value_bets }} 場</span>
                         </div>
+                        {% if a.filtered_bets and a.filtered_hit_rate %}
+                        <div class="model-stat-row" title="剔除劣質主場讓分陷阱後之實際命中率">
+                            <span class="model-stat-lbl">質量篩選後</span>
+                            <span class="model-stat-val big {% if a.filtered_hit_rate >= 80 %}good{% elif a.filtered_hit_rate < 65 %}bad{% endif %}">{{ a.filtered_hit_rate }}%</span>
+                            <span class="model-stat-sub">{{ a.filtered_wins }}/{{ a.filtered_bets }}</span>
+                        </div>
+                        {% else %}
                         <div class="model-stat-row">
                             <span class="model-stat-lbl">命中率</span>
                             <span class="model-stat-val big {% if a.value_hit_rate >= 65 %}good{% elif a.value_hit_rate < 53 %}bad{% endif %}">{{ a.value_hit_rate }}%</span>
                             <span class="model-stat-sub">{{ a.value_wins }}/{{ a.value_bets }}</span>
                         </div>
+                        {% endif %}
                         <div class="model-stat-row">
                             <span class="model-stat-lbl">$1k/注 ROI</span>
-                            <span class="model-stat-val {% if a.value_roi > 0 %}good{% else %}bad{% endif %}">{% if a.value_roi > 0 %}+{% endif %}{{ a.value_roi }}%</span>
-                            <span class="model-stat-sub">${% if a.value_pl > 0 %}+{% endif %}{{ '{:,.0f}'.format(a.value_pl) }}</span>
+                            <span class="model-stat-val {% if a.filtered_roi is defined and a.filtered_roi > 0 %}good{% elif a.value_roi > 0 %}good{% else %}bad{% endif %}">{% set roi = a.filtered_roi if a.filtered_roi is defined else a.value_roi %}{% if roi > 0 %}+{% endif %}{{ roi }}%</span>
+                            <span class="model-stat-sub">${% if a.filtered_pl is defined and a.filtered_pl > 0 %}+{% endif %}{{ '{:,.0f}'.format(a.filtered_pl if a.filtered_pl is defined else a.value_pl) }}</span>
                         </div>
                         {% else %}
                         <div class="model-empty">無鑽石場次</div>

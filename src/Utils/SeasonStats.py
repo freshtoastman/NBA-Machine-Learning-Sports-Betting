@@ -254,6 +254,13 @@ def _compute(season_key: str, _fingerprint: float):
             date_col = df["Date"].to_numpy()
             ats_v_bets = ats_v_wins = 0
             ats_v_pl = 0.0
+            # Quality-filtered stats: exclude away picks where home is bad but not
+            # hugely outclassed at small-medium spread (mirrors main.py filter).
+            ats_f_bets = ats_f_wins = 0
+            ats_f_pl = 0.0
+            _has_adv = "ADV_NET_RATING" in df.columns and "ADV_NET_RATING.1" in df.columns
+            _adv_home = df["ADV_NET_RATING"].to_numpy() if _has_adv else None
+            _adv_away = df["ADV_NET_RATING.1"].to_numpy() if _has_adv else None
             valid_idx = np.where(valid)[0]
             for j, i in enumerate(valid_idx):
                 p_home = float(probs_ats[i, 1])
@@ -266,11 +273,28 @@ def _compute(season_key: str, _fingerprint: float):
                 if home_cover_margin[j] == 0:
                     continue  # push
                 ats_v_bets += 1
-                if pred_side == actual_home_cover[j]:
+                won = pred_side == actual_home_cover[j]
+                if won:
                     ats_v_wins += 1
                     ats_v_pl += 900.0
                 else:
                     ats_v_pl -= 1000.0
+                # Away quality filter (mirrors main.py _ats_value_threshold logic)
+                quality_filtered = False
+                if is_away_pick and _has_adv:
+                    h_net = _adv_home[i]
+                    a_net = _adv_away[i]
+                    sp_i = float(sp[i]) if sp is not None and not pd.isna(sp[i]) else None
+                    if (not pd.isna(h_net) and not pd.isna(a_net) and sp_i is not None and
+                            h_net < -3 and abs(sp_i) <= 8 and (h_net - a_net) > -7):
+                        quality_filtered = True
+                if not quality_filtered:
+                    ats_f_bets += 1
+                    if won:
+                        ats_f_wins += 1
+                        ats_f_pl += 900.0
+                    else:
+                        ats_f_pl -= 1000.0
 
             ats_stats = {
                 "games": ats_total,
@@ -283,6 +307,13 @@ def _compute(season_key: str, _fingerprint: float):
                 "value_hit_rate": round(ats_v_wins / ats_v_bets * 100, 1) if ats_v_bets else None,
                 "value_pl": round(ats_v_pl, 0),
                 "value_roi": round(ats_v_pl / (ats_v_bets * 1000) * 100, 1) if ats_v_bets else None,
+                # Quality-filtered stats (excludes bad-home-team away traps)
+                "filtered_bets": ats_f_bets,
+                "filtered_wins": ats_f_wins,
+                "filtered_losses": ats_f_bets - ats_f_wins,
+                "filtered_hit_rate": round(ats_f_wins / ats_f_bets * 100, 1) if ats_f_bets else None,
+                "filtered_pl": round(ats_f_pl, 0),
+                "filtered_roi": round(ats_f_pl / (ats_f_bets * 1000) * 100, 1) if ats_f_bets else None,
             }
 
     # Value picks scan.

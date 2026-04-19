@@ -38,7 +38,13 @@
   "value_losses": 17,
   "value_hit_rate": 73.0,
   "value_pl": 24400.0,
-  "value_roi": 38.7
+  "value_roi": 38.7,
+  "filtered_bets": 55,
+  "filtered_wins": 41,
+  "filtered_losses": 14,
+  "filtered_hit_rate": 74.5,
+  "filtered_pl": 22900.0,
+  "filtered_roi": 41.6
  },
  "playoff_signals": {
   "hits": 6,
