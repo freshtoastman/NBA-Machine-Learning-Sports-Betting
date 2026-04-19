@@ -288,11 +288,11 @@
     "date": "2026-04-21",
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
-    "spread": null,
+    "spread": 13.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "away"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -7606,7 +7606,7 @@
     "date": "2026-04-19",
     "home": "Oklahoma City Thunder",
     "away": "Phoenix Suns",
-    "spread": 15.5,
+    "spread": 16.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
