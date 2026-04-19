@@ -352,13 +352,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場鞏固 (贏G1)",
+     "signal": "G2大勝後延續",
      "side": "home",
      "home_team": "Boston Celtics",
      "home_team_zh": "波士頓塞爾提克",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
     }
    }
   ]
@@ -641,13 +641,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2主場鞏固 (贏G1)",
+     "signal": "G2大勝後延續",
      "side": "home",
      "home_team": "Los Angeles Lakers",
      "home_team_zh": "洛杉磯湖人",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
     }
    },
    {

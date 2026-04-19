@@ -698,20 +698,26 @@ def build_bracket(target_date: date) -> dict | None:
             c["team"] for c in r1_resolved.values() if isinstance(c, dict)
         }
 
-        # Load today's game predictions for conflict detection (bracket is built after game JSONs).
+        # Load today + upcoming game predictions for signal lookup (bracket is built after game JSONs).
         _today_game_lookup: dict = {}
+        _upcoming_game_lookup: dict = {}  # frozenset({home, away}) -> game dict, next 5 days
         try:
-            _today_json = (
-                Path(__file__).resolve().parents[1] / "web" / "data"
-                / f"{target_date.isoformat()}.json"
-            )
-            if _today_json.exists():
-                with open(_today_json, encoding="utf-8") as _tf:
+            from datetime import timedelta as _tdelta
+            _data_dir = Path(__file__).resolve().parents[1] / "web" / "data"
+            for _day_offset in range(6):
+                _check_date = target_date + _tdelta(days=_day_offset)
+                _check_json = _data_dir / f"{_check_date.isoformat()}.json"
+                if not _check_json.exists():
+                    continue
+                with open(_check_json, encoding="utf-8") as _tf:
                     _td_data = json.load(_tf)
                 for _gk, _gv in _td_data.get("games", {}).items():
                     if isinstance(_gv, dict) and _gv.get("is_playoff"):
                         _parts = _gk.split(":")
-                        _today_game_lookup[frozenset(_parts)] = _gv
+                        _fkey = frozenset(_parts)
+                        if _day_offset == 0:
+                            _today_game_lookup[_fkey] = _gv
+                        _upcoming_game_lookup[_fkey] = _gv
         except Exception:
             pass
 
@@ -770,9 +776,20 @@ def build_bracket(target_date: date) -> dict | None:
                     g2_sig, g2_tier, g2_wr = "G2主場反彈 (輸G1)", "SILVER", 0.649
                     g2_reason = "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)"
                 else:
-                    # High seed won G1 → consolidation mode
-                    g2_sig, g2_tier, g2_wr = "G2主場鞏固 (贏G1)", "BRONZE", 0.534
-                    g2_reason = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+                    # High seed won G1 → check if blowout (G2大勝後延續 SILVER 64.3%)
+                    # or regular consolidation (G2主場鞏固 BRONZE 53.4%)
+                    _g2_game_key = frozenset({high_team["team"], low_team["team"]})
+                    _g2_game = _upcoming_game_lookup.get(_g2_game_key)
+                    _best_signal = _g2_game.get("playoff_ats_best_signal") if _g2_game else None
+                    _best_tier = _g2_game.get("playoff_ats_best_tier") if _g2_game else None
+                    _best_picks = _g2_game.get("playoff_ats_picks", []) if _g2_game else []
+                    if _best_signal == "G2大勝後延續" and _best_tier == "SILVER":
+                        g2_sig, g2_tier, g2_wr = "G2大勝後延續", "SILVER", 0.643
+                        _blowout_pick = next((p for p in _best_picks if p.get("signal") == "G2大勝後延續"), {})
+                        g2_reason = _blowout_pick.get("reason_zh", "G1大勝後主場延續優勢，12季R1回測主場cover率 64.3% (n=28)")
+                    else:
+                        g2_sig, g2_tier, g2_wr = "G2主場鞏固 (贏G1)", "BRONZE", 0.534
+                        g2_reason = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
                 entry["next_signal"] = {
                     "game_num": 2,
                     "signal": g2_sig,
