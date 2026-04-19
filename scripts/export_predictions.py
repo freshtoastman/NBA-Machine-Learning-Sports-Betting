@@ -574,6 +574,18 @@ def build_bracket(target_date: date) -> dict | None:
             lw = wins_by_team.get(low_team["team"], 0)
             gp = hw + lw
             entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
+            # G1 pre-game hint: R1 opener home-seed advantage (fires before any game played).
+            if gp == 0 and _stage_label == "首輪進行中":
+                entry["next_signal"] = {
+                    "game_num": 1,
+                    "signal": "首輪G1主場優勢",
+                    "side": "home",
+                    "home_team": high_team["team"],
+                    "home_team_zh": high_team["team_zh"],
+                    "tier": "SILVER",
+                    "backtest_wr": 0.60,
+                    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+                }
             # G2 home bounce signal: fires when exactly 1 game has been played.
             # G2 home is ALWAYS the actual higher seed regardless of G1 result.
             if gp == 1:
