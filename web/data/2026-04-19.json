@@ -798,6 +798,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Scott Foster",
+      "games": 56,
+      "home_cover_pct": 41.1
+     },
+     {
+      "name": "Pat Fraher",
+      "games": 71,
+      "home_cover_pct": 40.8
+     },
+     {
+      "name": "Tre Maddox",
+      "games": 60,
+      "home_cover_pct": 46.7
+     }
+    ],
+    "avg_home_cover_pct": 42.9,
+    "away_friendly": true,
+    "home_friendly": false
+   },
    "injuries_away": [
     "Joel Embiid (缺陣)"
    ]

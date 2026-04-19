@@ -557,6 +557,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Tony Brothers",
+      "games": 67,
+      "home_cover_pct": 50.7
+     },
+     {
+      "name": "Tyler Ford",
+      "games": 75,
+      "home_cover_pct": 38.7
+     },
+     {
+      "name": "Andy Nagy",
+      "games": 66,
+      "home_cover_pct": 43.9
+     }
+    ],
+    "avg_home_cover_pct": 44.4,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   },
   "Golden State Warriors:LA Clippers": {
@@ -1069,6 +1091,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Sean Corbin",
+      "games": 66,
+      "home_cover_pct": 50.0
+     },
+     {
+      "name": "Ben Taylor",
+      "games": 71,
+      "home_cover_pct": 46.5
+     },
+     {
+      "name": "Karl Lane",
+      "games": 64,
+      "home_cover_pct": 45.3
+     }
+    ],
+    "avg_home_cover_pct": 47.3,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   }
  },

@@ -577,6 +577,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Zach Zarba",
+      "games": 69,
+      "home_cover_pct": 52.2
+     },
+     {
+      "name": "Curtis Blair",
+      "games": 66,
+      "home_cover_pct": 45.5
+     },
+     {
+      "name": "Gediminas Petraitis",
+      "games": 74,
+      "home_cover_pct": 55.4
+     }
+    ],
+    "avg_home_cover_pct": 51.0,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   },
   "Portland Trail Blazers:Phoenix Suns": {
@@ -1078,6 +1100,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Eric Dalen",
+      "games": 53,
+      "home_cover_pct": 45.3
+     },
+     {
+      "name": "James Capers",
+      "games": 44,
+      "home_cover_pct": 63.6
+     },
+     {
+      "name": "Nick Buchert",
+      "games": 73,
+      "home_cover_pct": 53.4
+     }
+    ],
+    "avg_home_cover_pct": 54.1,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   }
  },

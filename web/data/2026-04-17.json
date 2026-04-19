@@ -528,6 +528,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Marc Davis",
+      "games": 74,
+      "home_cover_pct": 40.5
+     },
+     {
+      "name": "Sean Wright",
+      "games": 57,
+      "home_cover_pct": 52.6
+     },
+     {
+      "name": "Marat Kogut",
+      "games": 66,
+      "home_cover_pct": 48.5
+     }
+    ],
+    "avg_home_cover_pct": 47.2,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   },
   "Golden State Warriors:Phoenix Suns": {
@@ -1040,6 +1062,28 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Scott Foster",
+      "games": 56,
+      "home_cover_pct": 41.1
+     },
+     {
+      "name": "Tre Maddox",
+      "games": 60,
+      "home_cover_pct": 46.7
+     },
+     {
+      "name": "Mitchell Ervin",
+      "games": 70,
+      "home_cover_pct": 55.7
+     }
+    ],
+    "avg_home_cover_pct": 47.8,
+    "away_friendly": false,
+    "home_friendly": false
+   },
    "injuries_away": []
   }
  },

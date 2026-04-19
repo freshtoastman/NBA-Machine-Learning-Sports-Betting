@@ -198,6 +198,47 @@ def export_date(target_date: date) -> dict | None:
             today_opp_map[g["away_team"]] = g["home_team"]
         injury_report = fetch_injury_report(today_matchups=today_opp_map)
 
+    # Load referee crew data for all games (if available in referee_data.sqlite).
+    _ref_db_path = Path(__file__).resolve().parents[1] / "Data" / "referee_data.sqlite"
+    _ref_crew_map: dict[tuple, dict] = {}  # (home_team, away_team) -> crew_info
+    try:
+        import sqlite3 as _rsql
+        with _rsql.connect(str(_ref_db_path)) as _rcon:
+            for g in games_list:
+                _d = target_date.isoformat()
+                _rrow = _rcon.execute(
+                    'SELECT official1_name, official2_name, official3_name FROM referee_games'
+                    ' WHERE game_date = ? AND home_team = ? AND away_team = ?',
+                    (_d, g["home_team"], g["away_team"]),
+                ).fetchone()
+                if _rrow is None:
+                    continue
+                officials = [n for n in _rrow if n]
+                if not officials:
+                    continue
+                crew_stats = []
+                for _oname in officials:
+                    _orow = _rcon.execute(
+                        'SELECT games, home_covers, home_cover_pct FROM referee_ats'
+                        ' WHERE official_name = ?', (_oname,)
+                    ).fetchone()
+                    if _orow and _orow[0] >= 15:
+                        crew_stats.append({
+                            "name": _oname,
+                            "games": _orow[0],
+                            "home_cover_pct": round(_orow[2], 1),
+                        })
+                if crew_stats:
+                    avg_pct = sum(s["home_cover_pct"] for s in crew_stats) / len(crew_stats)
+                    _ref_crew_map[(g["home_team"], g["away_team"])] = {
+                        "officials": crew_stats,
+                        "avg_home_cover_pct": round(avg_pct, 1),
+                        "away_friendly": avg_pct < 44.0,
+                        "home_friendly": avg_pct > 56.0,
+                    }
+    except Exception:
+        pass
+
     games_dict = {}
     for g in games_list:
         key = f"{g['away_team']}:{g['home_team']}"
@@ -208,6 +249,10 @@ def export_date(target_date: date) -> dict | None:
         g["away_logo"] = team_logo_url(g["away_team"])
         # Injury data (today only).
         g["injuries_home"] = injury_report.get(g["home_team"], [])
+        # Referee crew analysis (when available).
+        _crew = _ref_crew_map.get((g["home_team"], g["away_team"]))
+        if _crew:
+            g["referee_crew"] = _crew
         g["injuries_away"] = injury_report.get(g["away_team"], [])
         games_dict[key] = g
 
