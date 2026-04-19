@@ -47,48 +47,12 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 10,
-  "misses": 1,
-  "pending": 15,
-  "decided": 11,
-  "hit_rate": 90.9,
+  "hits": 13,
+  "misses": 2,
+  "pending": 12,
+  "decided": 15,
+  "hit_rate": 86.7,
   "history": [
-   {
-    "date": "2026-04-14",
-    "game": "邁阿密熱火 @ 夏洛特黃蜂",
-    "signal": "客場ATS冷門反彈",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.619,
-    "ats_winner": "away",
-    "home_team": "Charlotte Hornets",
-    "away_team": "Miami Heat",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-15",
-    "game": "奧蘭多魔術 @ 費城七六人",
-    "signal": "小讓分客場受讓",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.529,
-    "ats_winner": "home",
-    "home_team": "Philadelphia 76ers",
-    "away_team": "Orlando Magic",
-    "result": "miss"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "R1G1大讓分主場",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.622,
-    "ats_winner": "home",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
    {
     "date": "2026-04-18",
     "game": "多倫多暴龍 @ 克里夫蘭騎士",
@@ -184,6 +148,54 @@
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
+    "signal": "R1G1大讓分主場",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.727,
+    "ats_winner": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Phoenix Suns",
+    "result": "hit"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
+    "signal": "附加賽升組客隊不利",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Phoenix Suns",
+    "result": "hit"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
+    "signal": "首輪G1主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Phoenix Suns",
+    "result": "hit"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
+    "signal": "客場ATS冷門反彈",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.619,
+    "ats_winner": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Phoenix Suns",
+    "result": "miss"
    }
   ],
   "pending_by_game": [
@@ -212,23 +224,6 @@
     "best_wr": 73
    },
    {
-    "date": "2026-04-19",
-    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
-    "signals": [
-     "R1G1大讓分主場",
-     "客場ATS冷門反彈",
-     "附加賽升組客隊不利",
-     "首輪G1主場優勢"
-    ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 73,
-    "live_status": "Halftime",
-    "live_home_score": 97,
-    "live_away_score": 66,
-    "live_home_covering": true
-   },
-   {
     "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
     "signals": [
@@ -253,11 +248,12 @@
     "date": "2026-04-22",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signals": [
+     "G2大勝後延續",
      "客場ATS冷門反彈"
     ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 62
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 64
    },
    {
     "date": "2026-04-23",
@@ -273,14 +269,22 @@
   "by_signal": [
    {
     "signal": "首輪G1主場優勢",
-    "hits": 5,
+    "hits": 6,
     "misses": 0,
-    "n": 5,
+    "n": 6,
     "tier": "SILVER",
     "hit_rate": 100.0
    },
    {
     "signal": "R1G1大讓分主場",
+    "hits": 3,
+    "misses": 0,
+    "n": 3,
+    "tier": "SILVER",
+    "hit_rate": 100.0
+   },
+   {
+    "signal": "附加賽升組客隊不利",
     "hits": 2,
     "misses": 0,
     "n": 2,
@@ -290,21 +294,13 @@
    {
     "signal": "客場ATS冷門反彈",
     "hits": 1,
-    "misses": 0,
-    "n": 1,
+    "misses": 1,
+    "n": 2,
     "tier": "SILVER",
-    "hit_rate": 100.0
+    "hit_rate": 50.0
    },
    {
     "signal": "主場ATS冷門反彈",
-    "hits": 1,
-    "misses": 0,
-    "n": 1,
-    "tier": "SILVER",
-    "hit_rate": 100.0
-   },
-   {
-    "signal": "附加賽升組客隊不利",
     "hits": 1,
     "misses": 0,
     "n": 1,
@@ -330,10 +326,10 @@
   }
  },
  "playoff_home_ats": {
-  "games": 11,
-  "home_covers": 8,
+  "games": 12,
+  "home_covers": 9,
   "away_covers": 3,
-  "home_cover_rate": 72.7,
-  "note_zh": "本季季後賽共 11 場有結果，主場覆蓋 8 場 (72.7%)"
+  "home_cover_rate": 75.0,
+  "note_zh": "本季季後賽共 12 場有結果，主場覆蓋 9 場 (75.0%)"
  }
 }
