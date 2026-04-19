@@ -1,6 +1,6 @@
 {
- "snapshot_date": "2026-04-19",
- "generated_for": "2026-04-19",
+ "snapshot_date": "2026-04-20",
+ "generated_for": "2026-04-20",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -249,13 +249,13 @@
     "games_played": 0,
     "next_signal": {
      "game_num": 1,
-     "signal": "R1G1大讓分主場",
+     "signal": "首輪G1主場優勢",
      "side": "home",
      "home_team": "Detroit Pistons",
      "home_team_zh": "底特律活塞",
      "tier": "SILVER",
-     "backtest_wr": 0.622,
-     "reason_zh": "首輪G1讓 8.5 分，歷史主場cover率 62.2% (n=37)，大讓分G1主場強壓",
+     "backtest_wr": 0.6,
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
      "playin_away": true
     }
    },
@@ -352,13 +352,13 @@
     "games_played": 0,
     "next_signal": {
      "game_num": 1,
-     "signal": "R1G1大讓分主場",
+     "signal": "首輪G1主場優勢",
      "side": "home",
      "home_team": "Boston Celtics",
      "home_team_zh": "波士頓塞爾提克",
      "tier": "SILVER",
-     "backtest_wr": 0.727,
-     "reason_zh": "首輪G1讓 12.5 分，歷史主場cover率 72.7% (n=22)，大讓分G1主場強壓",
+     "backtest_wr": 0.6,
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
      "playin_away": true
     }
    }
@@ -607,18 +607,14 @@
     "games_played": 0,
     "next_signal": {
      "game_num": 1,
-     "signal": "R1G1大讓分主場",
+     "signal": "首輪G1主場優勢",
      "side": "home",
      "home_team": "Oklahoma City Thunder",
      "home_team_zh": "奧克拉荷馬雷霆",
      "tier": "SILVER",
-     "backtest_wr": 0.727,
-     "reason_zh": "首輪G1讓 13.5 分，歷史主場cover率 72.7% (n=22)，大讓分G1主場強壓",
-     "playin_away": true,
-     "has_conflict": true,
-     "conflict_signal": "客場ATS冷門反彈",
-     "conflict_wr": 0.619,
-     "conflict_away_team": "鳳凰城太陽"
+     "backtest_wr": 0.6,
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+     "playin_away": true
     }
    },
    {
@@ -714,13 +710,13 @@
     "games_played": 0,
     "next_signal": {
      "game_num": 1,
-     "signal": "R1G1大讓分主場",
+     "signal": "首輪G1主場優勢",
      "side": "home",
      "home_team": "San Antonio Spurs",
      "home_team_zh": "聖安東尼奧馬刺",
      "tier": "SILVER",
-     "backtest_wr": 0.727,
-     "reason_zh": "首輪G1讓 10.5 分，歷史主場cover率 72.7% (n=22)，大讓分G1主場強壓",
+     "backtest_wr": 0.6,
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
      "playin_away": true
     }
    }

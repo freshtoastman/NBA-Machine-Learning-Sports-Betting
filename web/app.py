@@ -492,9 +492,12 @@ def index():
     import json as _json
     game_profiles_json = _json.dumps(game_profiles, ensure_ascii=False)
 
+    from datetime import timedelta as _td
+    yesterday = today - _td(days=1)
     return render_template(
         "index.html",
         today=today,
+        yesterday=yesterday,
         selected_date=selected_date,
         is_today=is_today,
         no_games_today=no_games_today,

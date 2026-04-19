@@ -1,6 +1,6 @@
 {
  "date": "2026-04-19",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 4,
   "home_picks": 4,
@@ -234,14 +234,21 @@
    }
   ],
   "playoff_ats_count": 13,
-  "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Phoenix Suns: Grayson Allen (存疑)",
-   "Phoenix Suns: Mark Williams (存疑)",
-   "Orlando Magic: Desmond Bane (可能出賽)",
-   "Orlando Magic: Jonathan Isaac (存疑)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Philadelphia 76ers:Boston Celtics": {
@@ -254,7 +261,7 @@
    "ou_value": 213.5,
    "ou_confidence": 51.2,
    "home_team_ev": -29.2,
-   "away_team_ev": 144.63,
+   "away_team_ev": 144.64,
    "home_team_odds": -800,
    "away_team_odds": 560,
    "home_kelly": 0,
@@ -784,9 +791,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Joel Embiid (缺陣)"
-   ]
+   "injuries_away": []
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -797,12 +802,12 @@
    "ou_pick": "OVER",
    "ou_value": 215.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -26.54,
-   "away_team_ev": 152.49,
+   "home_team_ev": -26.55,
+   "away_team_ev": 152.5,
    "home_team_odds": -1000,
    "away_team_odds": 660,
    "home_kelly": 0,
-   "away_kelly": 23.1,
+   "away_kelly": 23.11,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1338,10 +1343,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Grayson Allen (存疑)",
-    "Mark Williams (存疑)"
-   ]
+   "injuries_away": []
   },
   "Orlando Magic:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -1353,7 +1355,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.6,
    "home_team_ev": -15.5,
-   "away_team_ev": 30.14,
+   "away_team_ev": 30.15,
    "home_team_odds": -340,
    "away_team_odds": 275,
    "home_kelly": 0,
@@ -1873,10 +1875,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Desmond Bane (可能出賽)",
-    "Jonathan Isaac (存疑)"
-   ]
+   "injuries_away": []
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -1888,7 +1887,7 @@
    "ou_value": 221.5,
    "ou_confidence": 54.5,
    "home_team_ev": -15.79,
-   "away_team_ev": 48.54,
+   "away_team_ev": 48.55,
    "home_team_odds": -559,
    "away_team_odds": 420,
    "home_kelly": 0,
@@ -2417,9 +2416,7 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [
-    "Jordan McLaughlin (缺陣)"
-   ],
+   "injuries_home": [],
    "injuries_away": []
   }
  },

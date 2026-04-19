@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 7,
   "misses": 1,
-  "pending": 13,
+  "pending": 16,
   "decided": 8,
   "hit_rate": 87.5,
   "history": [
@@ -175,6 +175,36 @@
     "consensus_side": null,
     "has_conflict": true,
     "best_wr": 73
+   },
+   {
+    "date": "2026-04-20",
+    "game": "亞特蘭大老鷹 @ 紐約尼克",
+    "signals": [
+     "G2主場反彈/鞏固"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 59
+   },
+   {
+    "date": "2026-04-20",
+    "game": "多倫多暴龍 @ 克里夫蘭騎士",
+    "signals": [
+     "G2主場反彈/鞏固"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 59
+   },
+   {
+    "date": "2026-04-20",
+    "game": "明尼蘇達灰狼 @ 丹佛金塊",
+    "signals": [
+     "G2主場反彈/鞏固"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 59
    }
   ],
   "by_signal": [
