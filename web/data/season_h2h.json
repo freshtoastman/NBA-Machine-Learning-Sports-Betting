@@ -9963,10 +9963,10 @@
     "home": "New York Knicks",
     "away": "Atlanta Hawks",
     "spread": 5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 11,
+    "home_score": 113,
+    "away_score": 102,
+    "ats_result": "home"
    }
   ],
   "San Antonio Spurs:Utah Jazz": [
