@@ -271,9 +271,36 @@ def derive_series_for_season(season_key):
     sorted_series = sorted(grouped.items(), key=lambda kv: kv[1]["earliest_date"])
     bucketed = assign_rounds(sorted_series)
 
+    # Also collect scheduled-but-unplayed games whose matchup isn't in the played set.
+    # This ensures upcoming playoff series appear as 0-0 stubs so PlayoffContext can
+    # detect their round_num and fire correct pre-game signals (e.g. R1G1 home edge).
+    played_matchups = {m for m, _ in sorted_series}
+    pending_placeholders = []
+    for date_str, home, away, margin, points in rows:
+        if points not in (None, 0):
+            continue  # already captured above
+        key = frozenset({home, away})
+        if key in played_matchups:
+            continue  # part of an already-in-progress series
+        teams = sorted([home, away])
+        pending_placeholders.append((key, {
+            "team_a": teams[0],
+            "team_b": teams[1],
+            "wins_a": 0,
+            "wins_b": 0,
+            "earliest_date": date_str,
+            "num_games": 0,
+        }))
+        played_matchups.add(key)  # avoid duplicates if same matchup appears multiple days
+
+    # Assign round_num for pending placeholders by appending them after the bucketed series.
+    # The NBA first round always precedes later rounds, and unplayed R1 games that arrive
+    # after the already-played series list are almost always first-round stubs.
+    pending_bucketed = assign_rounds(sorted_series + pending_placeholders)
+
     # Build output rows.
     out = []
-    for idx, (_matchup, data, round_num) in enumerate(bucketed):
+    for idx, (_matchup, data, round_num) in enumerate(pending_bucketed):
         out.append({
             "series_id": f"{season_key}_{idx:03d}",
             "round_num": round_num,

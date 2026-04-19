@@ -17,21 +17,6 @@
     "away_team": "Orlando Magic",
     "home_team_zh": "費城七六人",
     "away_team_zh": "奧蘭多魔術",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "backtest_roi": 13.5,
-    "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-    "ats_winner": "home"
-   },
-   {
-    "game_key": "Orlando Magic:Philadelphia 76ers",
-    "home_team": "Philadelphia 76ers",
-    "away_team": "Orlando Magic",
-    "home_team_zh": "費城七六人",
-    "away_team_zh": "奧蘭多魔術",
     "signal": "小讓分客場受讓",
     "side": "away",
     "ats_side": "受讓(押dog)",
@@ -42,7 +27,7 @@
     "ats_winner": "home"
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 2,
@@ -69,12 +54,12 @@
    "ou_pick": "OVER",
    "ou_value": 222.5,
    "ou_confidence": 54.6,
-   "home_team_ev": -16.97,
+   "home_team_ev": -16.96,
    "away_team_ev": 10.51,
    "home_team_odds": -120,
    "away_team_odds": 102,
    "home_kelly": 0,
-   "away_kelly": 10.31,
+   "away_kelly": 10.3,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.5,
@@ -549,16 +534,6 @@
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "客場明顯強勢",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "backtest_roi": 13.5,
-     "backtest_n": 175,
-     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
-    },
-    {
      "signal": "小讓分客場受讓",
      "side": "away",
      "ats_side": "受讓(押dog)",
@@ -570,7 +545,7 @@
     }
    ],
    "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "客場明顯強勢",
+   "playoff_ats_best_signal": "小讓分客場受讓",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
    "home_team_zh": "費城七六人",
@@ -589,7 +564,7 @@
    "ou_pick": "OVER",
    "ou_value": 221.5,
    "ou_confidence": 53.7,
-   "home_team_ev": -19.76,
+   "home_team_ev": -19.75,
    "away_team_ev": 24.63,
    "home_team_odds": -200,
    "away_team_odds": 168,
@@ -1126,6 +1101,42 @@
    "low_seed": "Los Angeles Lakers",
    "high_wins": 0,
    "low_wins": 1,
+   "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Boston Celtics",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Phoenix Suns",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Orlando Magic",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Portland Trail Blazers",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 0,
+   "low_wins": 0,
    "conference": "west"
   },
   {

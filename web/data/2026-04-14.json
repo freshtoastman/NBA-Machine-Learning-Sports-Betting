@@ -54,7 +54,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.3,
+   "home_team_ev": -12.29,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -1110,6 +1110,42 @@
    "low_seed": "Los Angeles Lakers",
    "high_wins": 0,
    "low_wins": 1,
+   "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Boston Celtics",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Phoenix Suns",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Orlando Magic",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Portland Trail Blazers",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 0,
+   "low_wins": 0,
    "conference": "west"
   },
   {

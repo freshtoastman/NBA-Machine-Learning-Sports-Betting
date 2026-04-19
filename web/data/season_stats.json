@@ -42,10 +42,10 @@
  },
  "playoff_signals": {
   "hits": 6,
-  "misses": 3,
-  "pending": 1,
-  "decided": 9,
-  "hit_rate": 66.7,
+  "misses": 1,
+  "pending": 9,
+  "decided": 7,
+  "hit_rate": 85.7,
   "history": [
    {
     "date": "2026-04-14",
@@ -104,28 +104,10 @@
    {
     "date": "2026-04-15",
     "game": "奧蘭多魔術 @ 費城七六人",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-15",
-    "game": "奧蘭多魔術 @ 費城七六人",
     "signal": "小讓分客場受讓",
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.529,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "休士頓火箭 @ 洛杉磯湖人",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
     "ats_winner": "home"
    }
   ],
@@ -153,14 +135,6 @@
     "n": 1,
     "tier": "SILVER",
     "hit_rate": 100.0
-   },
-   {
-    "signal": "客場明顯強勢",
-    "hits": 0,
-    "misses": 2,
-    "n": 2,
-    "tier": "SILVER",
-    "hit_rate": 0.0
    },
    {
     "signal": "小讓分客場受讓",
