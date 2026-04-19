@@ -47,11 +47,11 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 6,
+  "hits": 7,
   "misses": 1,
-  "pending": 9,
-  "decided": 7,
-  "hit_rate": 85.7,
+  "pending": 13,
+  "decided": 8,
+  "hit_rate": 87.5,
   "history": [
    {
     "date": "2026-04-14",
@@ -69,6 +69,15 @@
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.529,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "多倫多暴龍 @ 克里夫蘭騎士",
+    "signal": "R1G1大讓分主場",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.622,
     "ats_winner": "home"
    },
    {
@@ -128,6 +137,14 @@
    },
    {
     "signal": "客場ATS冷門反彈",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0
+   },
+   {
+    "signal": "R1G1大讓分主場",
     "hits": 1,
     "misses": 0,
     "n": 1,

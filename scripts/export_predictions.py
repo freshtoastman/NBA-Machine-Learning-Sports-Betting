@@ -599,19 +599,30 @@ def build_bracket(target_date: date) -> dict | None:
             # G1 pre-game hint: R1 opener home-seed advantage (fires before any game played).
             if gp == 0 and _stage_label == "首輪進行中":
                 is_playin_away = low_team["team"] in playin_survivors
+                # Use large-spread signal WR if today's game has spread >= 8
+                _game = _today_game_lookup.get(key)
+                _spread = _game.get("spread") if _game else None
+                if _spread is not None and _spread >= 10:
+                    _ns_signal, _ns_wr = "R1G1大讓分主場", 0.727
+                    _ns_reason = f"首輪G1讓 {_spread:.1f} 分，歷史主場cover率 72.7% (n=22)，大讓分G1主場強壓"
+                elif _spread is not None and _spread >= 8:
+                    _ns_signal, _ns_wr = "R1G1大讓分主場", 0.622
+                    _ns_reason = f"首輪G1讓 {_spread:.1f} 分，歷史主場cover率 62.2% (n=37)，大讓分G1主場強壓"
+                else:
+                    _ns_signal, _ns_wr = "首輪G1主場優勢", 0.60
+                    _ns_reason = "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
                 ns = {
                     "game_num": 1,
-                    "signal": "首輪G1主場優勢",
+                    "signal": _ns_signal,
                     "side": "home",
                     "home_team": high_team["team"],
                     "home_team_zh": high_team["team_zh"],
                     "tier": "SILVER",
-                    "backtest_wr": 0.60,
-                    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+                    "backtest_wr": _ns_wr,
+                    "reason_zh": _ns_reason,
                     "playin_away": is_playin_away,
                 }
                 # Check today's game data for conflicts (e.g. away cold bounce vs home signals).
-                _game = _today_game_lookup.get(key)
                 if _game and _game.get("playoff_ats_has_conflict"):
                     ns["has_conflict"] = True
                     for _pick in _game.get("playoff_ats_picks", []):

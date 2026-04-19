@@ -438,6 +438,44 @@ def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None
     )
 
 
+def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R1G1 with home giving 8+ points → home team covers at elevated rate.
+
+    Targeted backtest (2012-2025, 13 seasons, only G1 of R1 matched via series_state):
+    - Spread 8-9.9:  62.2% home covers (n=37, ROI +18.7%)
+    - Spread 10+:    72.7% home covers (n=22, ROI +38.8%)
+    - Play-in era (2021-25, spread 8+): 66.7% home covers (n=12)
+
+    Structural reason: in R1G1, the heavy home favorite (often #1-3 seed) enters
+    with 7-14 extra rest days, home court, full scout prep.  Markets under-price
+    this gap for large-spread games where public money backs the underdog for value.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 1:
+        return None
+    if series_state.get("series_game_num", 0) != 1:
+        return None
+    spread = pred.get("spread")
+    if spread is None or spread < 8:
+        return None
+    # Use higher WR for bigger spreads
+    if spread >= 10:
+        wr, roi, n = 0.727, 38.8, 22
+    else:
+        wr, roi, n = 0.622, 18.7, 37
+    return PlayoffATSPick(
+        signal_name="R1G1大讓分主場",
+        side="home",
+        ats_side="讓分(押fav)",
+        tier="SILVER",
+        backtest_wr=wr,
+        backtest_roi=roi,
+        backtest_n=n,
+        reason_zh=f"首輪G1讓 {spread:.1f} 分，主場cover率 {wr*100:.0f}% (n={n}，13賽季)，大讓分G1主場強壓",
+    )
+
+
 def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Away team's recent win% is ≥15pp higher than home → away covers.
 
@@ -483,6 +521,7 @@ _SIGNALS = [
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _playin_survivor_visitor,         # SILVER estimated: 60.0% (n=32) — R1G1 vs play-in visitor
     _r1g1_high_seed_home,             # SILVER estimated: 60.0% (n=140) — R1G1 non-playin home; 2025-26: 4/4
+    _r1g1_large_spread_home,          # SILVER verified: 62.2%-72.7% (n=37/22) — R1G1 home giving 8+/10+ pts
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
