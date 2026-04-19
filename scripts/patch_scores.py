@@ -34,7 +34,8 @@ def _patch_from_sbr(con, d_str: str) -> int:
 
     updated = 0
     for g in games:
-        if g.get("status") != "Final":
+        status = (g.get("status") or "").lower()
+        if status not in ("final", "complete"):
             continue
         home = _normalize_team_name(g.get("home_team", ""))
         away = _normalize_team_name(g.get("away_team", ""))
