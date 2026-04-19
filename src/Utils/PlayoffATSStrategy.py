@@ -263,6 +263,31 @@ def _g3_tied_low_seed_home(pred, series_state, team_form) -> PlayoffATSPick | No
     )
 
 
+def _g4_away_edge(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Game 4 → Away team (high seed) covers 57.3%.
+
+    Full playoff backtest (171 games, 13 seasons): away team covers 57.3%.
+    G4 is at the low seed's home for the 4th consecutive game; away (high seed)
+    maintains edge regardless of series score.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 4:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="G4客場邊",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="BRONZE",
+        backtest_wr=0.573,
+        backtest_roi=9.2,
+        backtest_n=171,
+        reason_zh="第4場低種子主場，13季歷史高種子客場cover率 57.3% (n=171)，外客延伸優勢",
+    )
+
+
 def _g5_tied_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Game 5, series tied 2-2 → Home team covers.
 
@@ -626,6 +651,7 @@ _SIGNALS = [
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _g3_backs_against_wall,           # SILVER verified: 64.3% (n=28) — G3 away leads 2-0
     _g3_tied_low_seed_home,           # BRONZE: 51.6% (n=16) — G3 tied 1-1 no strong edge
+    _g4_away_edge,                    # BRONZE verified: 57.3% (n=171) — G4 away covers
     _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _playin_survivor_visitor,         # SILVER estimated: 60.0% (n=32) — R1G1 vs play-in visitor
