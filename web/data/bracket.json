@@ -289,8 +289,8 @@
      "home_team": "Cleveland Cavaliers",
      "home_team_zh": "克里夫蘭騎士",
      "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "backtest_wr": 0.478,
+     "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    },
    {
@@ -323,8 +323,8 @@
      "home_team": "New York Knicks",
      "home_team_zh": "紐約尼克",
      "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "backtest_wr": 0.478,
+     "reason_zh": "G1窄勝 5.5 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    },
    {
@@ -683,8 +683,8 @@
      "home_team": "Denver Nuggets",
      "home_team_zh": "丹佛金塊",
      "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "backtest_wr": 0.478,
+     "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    },
    {

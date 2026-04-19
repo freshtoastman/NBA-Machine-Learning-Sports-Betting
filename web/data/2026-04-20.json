@@ -514,10 +514,10 @@
      "side": "home",
      "ats_side": "讓分(押fav)",
      "tier": "BRONZE",
-     "backtest_wr": 0.534,
+     "backtest_wr": 0.478,
      "backtest_roi": 4.8,
      "backtest_n": 116,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
+     "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -1024,16 +1024,6 @@
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "backtest_roi": 4.8,
-     "backtest_n": 116,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
-    },
-    {
      "signal": "中等讓分押冷門",
      "side": "away",
      "ats_side": "受讓(押dog)",
@@ -1042,10 +1032,20 @@
      "backtest_roi": 4.2,
      "backtest_n": 290,
      "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
+    },
+    {
+     "signal": "G2主場鞏固 (贏G1)",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.478,
+     "backtest_roi": 4.8,
+     "backtest_n": 116,
+     "reason_zh": "G1窄勝 5.5 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G2主場鞏固 (贏G1)",
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "中等讓分押冷門",
    "playoff_ats_best_tier": "BRONZE",
    "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
@@ -1561,16 +1561,6 @@
      "reason_zh": "主場近期勝率領先客場 50pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
     },
     {
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "backtest_roi": 4.8,
-     "backtest_n": 116,
-     "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
-    },
-    {
      "signal": "中等讓分押冷門",
      "side": "away",
      "ats_side": "受讓(押dog)",
@@ -1579,6 +1569,16 @@
      "backtest_roi": 4.2,
      "backtest_n": 290,
      "reason_zh": "讓分 6.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
+    },
+    {
+     "signal": "G2主場鞏固 (贏G1)",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.478,
+     "backtest_roi": 4.8,
+     "backtest_n": 116,
+     "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
    "playoff_ats_best_side": "home",
