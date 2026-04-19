@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 10,
   "misses": 1,
-  "pending": 27,
+  "pending": 22,
   "decided": 11,
   "hit_rate": 90.9,
   "history": [
@@ -223,50 +223,19 @@
     "consensus_side": null,
     "has_conflict": true,
     "best_wr": 73,
-    "live_status": "04:53 1st",
-    "live_home_score": 37,
-    "live_away_score": 23,
-    "live_home_covering": false
-   },
-   {
-    "date": "2026-04-20",
-    "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signals": [
-     "G2主場反彈/鞏固"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 59
-   },
-   {
-    "date": "2026-04-20",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signals": [
-     "G2主場反彈/鞏固"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 59
-   },
-   {
-    "date": "2026-04-20",
-    "game": "明尼蘇達灰狼 @ 丹佛金塊",
-    "signals": [
-     "G2主場反彈/鞏固"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 59
+    "live_status": "06:30 1st",
+    "live_home_score": 45,
+    "live_away_score": 24,
+    "live_home_covering": true
    },
    {
     "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
     "signals": [
-     "客場明顯強勢",
-     "G2主場反彈/鞏固"
+     "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
+    "consensus_side": "away",
+    "has_conflict": false,
     "best_wr": 59
    },
    {
@@ -279,16 +248,6 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 60
-   },
-   {
-    "date": "2026-04-21",
-    "game": "費城七六人 @ 波士頓塞爾提克",
-    "signals": [
-     "G2主場反彈/鞏固"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 59
    },
    {
     "date": "2026-04-22",
@@ -317,32 +276,32 @@
     "date": "2026-04-23",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
-     "客場明顯強勢",
-     "G2主場反彈/鞏固"
+     "G2主場反彈 (輸G1)",
+     "客場明顯強勢"
     ],
     "consensus_side": null,
     "has_conflict": true,
-    "best_wr": 59
+    "best_wr": 65
    },
    {
     "date": "2026-04-23",
     "game": "克里夫蘭騎士 @ 多倫多暴龍",
     "signals": [
-     "G2主場反彈/鞏固"
+     "G2主場反彈 (輸G1)"
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 65
    },
    {
     "date": "2026-04-23",
     "game": "紐約尼克 @ 亞特蘭大老鷹",
     "signals": [
-     "G2主場反彈/鞏固"
+     "G2主場反彈 (輸G1)"
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 65
    }
   ],
   "by_signal": [

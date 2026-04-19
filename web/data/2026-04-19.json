@@ -1378,11 +1378,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 37,
-   "live_away_score": 23,
-   "live_status": "04:53 1st",
+   "live_home_score": 45,
+   "live_away_score": 24,
+   "live_status": "06:30 1st",
    "live_is_final": false,
-   "live_home_covering": false,
+   "live_home_covering": true,
    "injuries_away": [
     "Mark Williams (缺陣)"
    ]

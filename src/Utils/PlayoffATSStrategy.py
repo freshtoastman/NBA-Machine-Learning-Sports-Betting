@@ -292,13 +292,14 @@ def _g5_tied_home(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Game 2 → Home team covers regardless of G1 result.
+    """Game 2 → Home team covers, split by G1 result.
 
-    Full playoff backtest (174 games, 12 seasons): 58.6% home covers, ROI=+11.9%.
-    After G1, home team (higher seed) either bounces back from a loss or protects
-    their 1-0 lead at home. Both scenarios favor the home team covering G2.
-    Upgraded to SILVER — comparable WR and ROI to elimination underdog (58.8%, SILVER).
-    2025-26 live tracking: G2 games pending (~Apr 20+); G1 homes went 4/4 on Apr 18.
+    Full playoff backtest (173 games, 12 seasons): 57.2% home covers overall.
+    Split analysis (verified 2026-04-20):
+      - G2 after home WON G1 (home leads 1-0): 53.4% (62/116) → BRONZE
+      - G2 after home LOST G1 (away leads 1-0): 64.9% (37/57) → SILVER bounce-back
+    Home bounce-back is the stronger signal; consolidation games are weaker.
+    2025-26: G1 homes went 4/4 on Apr 18; G2 games live Apr 20+.
     """
     if series_state is None:
         return None
@@ -306,16 +307,34 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
         return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
-    return PlayoffATSPick(
-        signal_name="G2主場反彈/鞏固",
-        side="home",
-        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
-        backtest_wr=0.586,
-        backtest_roi=11.9,
-        backtest_n=174,
-        reason_zh="第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
-    )
+    home_wins = series_state.get("home_wins", 0)
+    away_wins = series_state.get("away_wins", 0)
+
+    if away_wins == 1 and home_wins == 0:
+        # Home lost G1 → bounce-back scenario (64.9%)
+        return PlayoffATSPick(
+            signal_name="G2主場反彈 (輸G1)",
+            side="home",
+            ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+            tier="SILVER",
+            backtest_wr=0.649,
+            backtest_roi=18.4,
+            backtest_n=57,
+            reason_zh="第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
+        )
+    elif home_wins == 1 and away_wins == 0:
+        # Home won G1 → consolidation scenario (53.4%)
+        return PlayoffATSPick(
+            signal_name="G2主場鞏固 (贏G1)",
+            side="home",
+            ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+            tier="BRONZE",
+            backtest_wr=0.534,
+            backtest_roi=4.8,
+            backtest_n=116,
+            reason_zh="第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)",
+        )
+    return None
 
 
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
@@ -587,7 +606,7 @@ _SIGNALS = [
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
-    _g2_home_bounce,                  # SILVER verified: 58.6% (n=174) — G2 home covers
+    _g2_home_bounce,                  # SILVER/BRONZE split: 64.9% bounce-back (n=57) / 53.4% consolidation (n=116)
     _home_form_dominant,              # BRONZE verified: 54.7% (n=170) — home clearly stronger
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
