@@ -2091,6 +2091,12 @@
    "actual_ou_result": "UNDER",
    "ou_correct": false,
    "is_playoff": true,
+   "series_round": "首輪",
+   "series_game_num": 1,
+   "series_home_wins": 1,
+   "series_away_wins": 0,
+   "series_status_text": "主隊領先 1-0",
+   "series_is_elimination": false,
    "playoff_ats_picks": [
     {
      "signal": "客場明顯強勢",
@@ -2156,37 +2162,10 @@
   {
    "round_num": 1,
    "round_label": "首輪",
-   "high_seed": "Boston Celtics",
-   "low_seed": "Philadelphia 76ers",
+   "high_seed": "Houston Rockets",
+   "low_seed": "Los Angeles Lakers",
    "high_wins": 0,
-   "low_wins": 0,
-   "conference": "east"
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Oklahoma City Thunder",
-   "low_seed": "Phoenix Suns",
-   "high_wins": 0,
-   "low_wins": 0,
-   "conference": "west"
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Detroit Pistons",
-   "low_seed": "Orlando Magic",
-   "high_wins": 0,
-   "low_wins": 0,
-   "conference": "east"
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "San Antonio Spurs",
-   "low_seed": "Portland Trail Blazers",
-   "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {
