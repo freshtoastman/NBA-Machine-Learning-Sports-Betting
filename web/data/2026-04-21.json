@@ -12,6 +12,40 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
+    "game_key": "Philadelphia 76ers:Boston Celtics",
+    "home_team": "Boston Celtics",
+    "away_team": "Philadelphia 76ers",
+    "home_team_zh": "波士頓塞爾提克",
+    "away_team_zh": "費城七六人",
+    "signal": "G2大勝後延續",
+    "side": "home",
+    "ats_side": "讓分(押fav)",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "backtest_roi": 21.5,
+    "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+    "ats_winner": null,
+    "strong_consensus": null,
+    "has_conflict": false
+   },
+   {
+    "game_key": "Houston Rockets:Los Angeles Lakers",
+    "home_team": "Los Angeles Lakers",
+    "away_team": "Houston Rockets",
+    "home_team_zh": "洛杉磯湖人",
+    "away_team_zh": "休士頓火箭",
+    "signal": "G2大勝後延續",
+    "side": "home",
+    "ats_side": "受讓(押dog)",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "backtest_roi": 21.5,
+    "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+    "ats_winner": null,
+    "strong_consensus": null,
+    "has_conflict": true
+   },
+   {
     "game_key": "Houston Rockets:Los Angeles Lakers",
     "home_team": "Los Angeles Lakers",
     "away_team": "Houston Rockets",
@@ -26,10 +60,10 @@
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
     "strong_consensus": null,
-    "has_conflict": false
+    "has_conflict": true
    }
   ],
-  "playoff_ats_count": 1,
+  "playoff_ats_count": 3,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)",
@@ -86,6 +120,16 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
+     "signal": "G2大勝後延續",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "backtest_roi": 21.5,
+     "backtest_n": 28,
+     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
+    },
+    {
      "signal": "主場明顯強勢",
      "side": "home",
      "ats_side": "讓分(押fav)",
@@ -107,8 +151,8 @@
     }
    ],
    "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "主場明顯強勢",
-   "playoff_ats_best_tier": "BRONZE",
+   "playoff_ats_best_signal": "G2大勝後延續",
+   "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
@@ -224,6 +268,16 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
+     "signal": "G2大勝後延續",
+     "side": "home",
+     "ats_side": "受讓(押dog)",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "backtest_roi": 21.5,
+     "backtest_n": 28,
+     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
+    },
+    {
      "signal": "客場明顯強勢",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -244,11 +298,11 @@
      "reason_zh": "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
     }
    ],
-   "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "客場明顯強勢",
+   "playoff_ats_best_side": "home",
+   "playoff_ats_best_signal": "G2大勝後延續",
    "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": null,
-   "playoff_ats_has_conflict": false,
+   "playoff_ats_consensus": "home",
+   "playoff_ats_has_conflict": true,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
    "series_game_num": 2,

@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 10,
   "misses": 1,
-  "pending": 13,
+  "pending": 15,
   "decided": 11,
   "hit_rate": 90.9,
   "history": [
@@ -224,19 +224,30 @@
     "has_conflict": true,
     "best_wr": 73,
     "live_status": "Halftime",
-    "live_home_score": 72,
-    "live_away_score": 53,
+    "live_home_score": 65,
+    "live_away_score": 44,
     "live_home_covering": true
    },
    {
     "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
     "signals": [
+     "G2大勝後延續",
      "客場明顯強勢"
     ],
-    "consensus_side": "away",
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 64
+   },
+   {
+    "date": "2026-04-21",
+    "game": "費城七六人 @ 波士頓塞爾提克",
+    "signals": [
+     "G2大勝後延續"
+    ],
+    "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 64
    },
    {
     "date": "2026-04-22",
