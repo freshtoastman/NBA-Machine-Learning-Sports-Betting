@@ -535,9 +535,13 @@ def build_bracket(target_date: date) -> dict | None:
             for home, away in rows:
                 if away in playin_names and away in team_card_map:
                     if home == seed1:
-                        resolved[8] = team_card_map[away]  # 8-seed plays at 1-seed home
+                        card = dict(team_card_map[away])
+                        card["seed"] = 8  # actual playoff seed after play-in
+                        resolved[8] = card
                     elif home == seed2:
-                        resolved[7] = team_card_map[away]  # 7-seed plays at 2-seed home
+                        card = dict(team_card_map[away])
+                        card["seed"] = 7  # actual playoff seed after play-in
+                        resolved[7] = card
         except Exception:
             pass
         return resolved
