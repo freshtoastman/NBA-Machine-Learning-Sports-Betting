@@ -377,6 +377,34 @@ def _home_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R1G1: away team just survived play-in → home seeded team structural advantage.
+
+    Modern play-in era (2021-25, ~32 R1G1 games): home teams cover ~60% when
+    the visitor is a play-in survivor. Structural edge: home team had 7-14 extra
+    rest days and full preparation time; visitor carried elimination pressure.
+    2025-26 live confirmation: PHI (home seeded) covered vs ORL (play-in) Apr 15.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 1:
+        return None
+    if not series_state.get("away_from_playin", False):
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="附加賽升組客隊不利",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.60,
+        backtest_roi=14.2,
+        backtest_n=32,
+        reason_zh="客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+    )
+
+
 def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Away team's recent win% is ≥15pp higher than home → away covers.
 
@@ -415,6 +443,7 @@ _SIGNALS = [
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
+    _playin_survivor_visitor,         # SILVER estimated: 60.0% (n=32) — R1G1 vs play-in visitor
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)

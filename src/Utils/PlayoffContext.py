@@ -161,6 +161,19 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
         leader_zh = None
         status_text = f"平手 {home_wins}-{away_wins}"
 
+    # Detect if away/home team came through a play-in (round_num=0) series.
+    # This fires the "附加賽升組客隊不利" signal for R1G1 where the visitor
+    # is a play-in survivor facing a rested, seeded home team.
+    away_from_playin = False
+    home_from_playin = False
+    if raw.get("round_num", 0) >= 1:
+        for key_pair, s_data in series_map.items():
+            if s_data.get("round_num", 0) == 0:
+                if away_team in key_pair:
+                    away_from_playin = True
+                if home_team in key_pair:
+                    home_from_playin = True
+
     return {
         "round_num": raw["round_num"],
         "round_label": raw["round_label"],
@@ -174,6 +187,8 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
         "is_elimination": is_elimination,
         "status_text": status_text,
         "leader": leader_zh,
+        "away_from_playin": away_from_playin,
+        "home_from_playin": home_from_playin,
     }
 
 

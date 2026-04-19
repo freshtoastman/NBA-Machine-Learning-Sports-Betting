@@ -43,7 +43,7 @@
  "playoff_signals": {
   "hits": 2,
   "misses": 2,
-  "pending": 2,
+  "pending": 6,
   "decided": 4,
   "hit_rate": 50.0,
   "history": [

@@ -1120,6 +1120,42 @@
    "conference": "east"
   },
   {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Boston Celtics",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Phoenix Suns",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Orlando Magic",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "San Antonio Spurs",
+   "low_seed": "Portland Trail Blazers",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
    "round_num": 0,
    "round_label": "附加賽",
    "high_seed": "Charlotte Hornets",
