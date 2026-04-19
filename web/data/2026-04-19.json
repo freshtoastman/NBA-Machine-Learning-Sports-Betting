@@ -1380,8 +1380,8 @@
    "injuries_home": [],
    "live_home_score": 119,
    "live_away_score": 84,
-   "live_status": "Halftime",
-   "live_is_final": false,
+   "live_status": "Final",
+   "live_is_final": true,
    "live_home_covering": true,
    "injuries_away": [
     "Jordan Goodwin (缺陣)",
