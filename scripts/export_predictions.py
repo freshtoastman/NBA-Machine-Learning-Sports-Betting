@@ -187,9 +187,10 @@ def export_date(target_date: date) -> dict | None:
     if not games_list:
         return None
 
-    # Fetch injury report once for all games (only for today — historical unavailable).
+    # Fetch injury report for today OR for past dates where games haven't been played yet.
+    has_unplayed = any(g.get("home_score") is None for g in games_list)
     injury_report: dict[str, list[str]] = {}
-    if is_today:
+    if is_today or has_unplayed:
         # Build opponent map for stale-comment filtering
         today_opp_map: dict[str, str] = {}
         for g in games_list:
@@ -242,7 +243,7 @@ def export_date(target_date: date) -> dict | None:
 
     # Build injury alert strings for the summary report section.
     injury_alerts = []
-    if is_today and injury_report:
+    if (is_today or has_unplayed) and injury_report:
         for g in games_list:
             home, away = g["home_team"], g["away_team"]
             home_inj = injury_report.get(home, [])
