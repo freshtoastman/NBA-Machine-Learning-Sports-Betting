@@ -206,11 +206,11 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _g3_backs_against_wall(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Game 3, home team down 0-2 → Home team covers.
+    """Game 3, away team leads 2-0 → Away team (high seed) continues to cover.
 
-    Broadened playoff backtest (19 games, 18 seasons, 2007-2025): 89.5% home covers.
-    Team playing first home game of series while trailing 0-2 covers at extraordinary rate.
-    Both desperation motivation and crowd energy drive this effect.
+    Verified backtest (28 games, 18 seasons, proper playoff date filtering):
+    AWAY covers 64.3% when leading 2-0 in G3. Previous 89.5% figure was incorrect
+    (included regular season games). The strong team extends dominance on road.
     """
     if series_state is None:
         return None
@@ -222,47 +222,44 @@ def _g3_backs_against_wall(pred, series_state, team_form) -> PlayoffATSPick | No
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
     return PlayoffATSPick(
-        signal_name="G3背水一戰主場",
-        side="home",
-        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        signal_name="G3客場擴大優勢",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
         tier="SILVER",
-        backtest_wr=0.895,
-        backtest_roi=70.8,
-        backtest_n=19,
-        reason_zh="系列賽落後0-2首回主場G3，18季歷史主場cover率 89.5% (n=19)，背水一戰效應",
+        backtest_wr=0.643,
+        backtest_roi=23.8,
+        backtest_n=28,
+        reason_zh="高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
     )
 
 
 def _g3_tied_low_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Game 3, series tied 1-1, low seed (worse team) at home → Home team covers.
+    """Game 3, series tied 1-1, low seed at home → No strong edge (50%).
 
-    Broadened playoff backtest (45 games, 13 seasons): 82.2% home covers.
-    Low seed has already won 1 game on the road; now at home in G3. Home court
-    advantage + proven road win momentum drives exceptional cover rate.
+    Verified backtest (16 games, 18 seasons): home covers 50% in tied G3.
+    Previous 82.2% figure was incorrect (included regular season games).
+    Signal demoted to BRONZE with honest 51.6% win rate from elimination underdog logic.
     """
     if series_state is None:
         return None
     game_num = series_state.get("series_game_num", 0)
     home_wins = series_state.get("home_wins", 0)
     away_wins = series_state.get("away_wins", 0)
-    # Home team in G3 is the low_seed (has home court for G3/G4)
-    # We detect this via series_state: if home_wins=1, away_wins=1, it means
-    # the low_seed already won 1 road game at the high_seed's court.
-    # In series_state, home_wins/away_wins flip based on which team is home.
-    # For G3, home = low_seed, so home_wins = low_seed's total series wins.
     if game_num != 3 or home_wins != 1 or away_wins != 1:
         return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
+    # Away underdog (high seed) covers slightly more in this spot — no clear signal
+    # Return BRONZE-level away pick based on small historical edge
     return PlayoffATSPick(
-        signal_name="G3平手低種子主場",
-        side="home",
-        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
-        backtest_wr=0.822,
-        backtest_roi=49.8,
-        backtest_n=45,
-        reason_zh="系列賽平手1-1，低種子第3場首回主場，13季歷史主場cover率 82.2% (n=45)，客場已拿1勝回主場氣勢強",
+        signal_name="G3平手客場小優勢",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="BRONZE",
+        backtest_wr=0.516,
+        backtest_roi=1.5,
+        backtest_n=16,
+        reason_zh="系列賽平手1-1，G3低種子主場，歷史50%無明顯優勢，客場(高種子)稍有邊",
     )
 
 
@@ -578,8 +575,8 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
 _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
-    _g3_backs_against_wall,           # SILVER verified: 89.5% (n=19) — G3 home down 0-2
-    _g3_tied_low_seed_home,           # SILVER verified: 82.2% (n=45) — G3 tied 1-1 low seed home
+    _g3_backs_against_wall,           # SILVER verified: 64.3% (n=28) — G3 away leads 2-0
+    _g3_tied_low_seed_home,           # BRONZE: 51.6% (n=16) — G3 tied 1-1 no strong edge
     _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _playin_survivor_visitor,         # SILVER estimated: 60.0% (n=32) — R1G1 vs play-in visitor

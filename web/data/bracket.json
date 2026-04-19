@@ -255,7 +255,7 @@
      "home_team_zh": "底特律活塞",
      "tier": "SILVER",
      "backtest_wr": 0.6,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 4/4",
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 5/5",
      "playin_away": true
     }
    },
@@ -347,19 +347,18 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 0,
+    "high_wins": 1,
     "low_wins": 0,
-    "games_played": 0,
+    "games_played": 1,
     "next_signal": {
-     "game_num": 1,
-     "signal": "首輪G1主場優勢",
+     "game_num": 2,
+     "signal": "G2主場反彈/鞏固",
      "side": "home",
      "home_team": "Boston Celtics",
      "home_team_zh": "波士頓塞爾提克",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 4/4",
-     "playin_away": true
+     "backtest_wr": 0.586,
+     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)"
     }
    }
   ]
@@ -613,7 +612,7 @@
      "home_team_zh": "奧克拉荷馬雷霆",
      "tier": "SILVER",
      "backtest_wr": 0.6,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 4/4",
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 5/5",
      "playin_away": true
     }
    },
@@ -716,7 +715,7 @@
      "home_team_zh": "聖安東尼奧馬刺",
      "tier": "SILVER",
      "backtest_wr": 0.6,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 4/4",
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季: 5/5",
      "playin_away": true
     }
    }

@@ -279,10 +279,10 @@
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
     "spread": 13.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 29,
+    "home_score": 120,
+    "away_score": 91,
+    "ats_result": "home"
    },
    {
     "date": "2026-04-21",
