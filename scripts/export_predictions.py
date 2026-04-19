@@ -794,7 +794,7 @@ def build_bracket(target_date: date) -> dict | None:
                     else:
                         g2_sig, g2_tier, g2_wr = "G2主場鞏固 (贏G1)", "BRONZE", 0.534
                         g2_reason = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
-                entry["next_signal"] = {
+                _g2_ns = {
                     "game_num": 2,
                     "signal": g2_sig,
                     "side": "home",
@@ -804,6 +804,16 @@ def build_bracket(target_date: date) -> dict | None:
                     "backtest_wr": g2_wr,
                     "reason_zh": g2_reason,
                 }
+                # Propagate conflict info from the upcoming G2 game card.
+                if _g2_game and _g2_game.get("playoff_ats_has_conflict"):
+                    _g2_ns["has_conflict"] = True
+                    for _cp in (_g2_game.get("playoff_ats_picks") or []):
+                        if _cp.get("side") == "away":
+                            _g2_ns["conflict_signal"] = _cp.get("signal")
+                            _g2_ns["conflict_wr"] = _cp.get("backtest_wr")
+                            _g2_ns["conflict_away_team"] = low_team.get("team_zh") or low_team.get("team")
+                            break
+                entry["next_signal"] = _g2_ns
             # G3 signals: fire based on series state when 2 games played.
             # G3 is at low_seed's home. hw=high_wins, lw=low_wins.
             # Verified backtest (18 seasons, proper playoff date filtering):

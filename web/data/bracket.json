@@ -612,7 +612,11 @@
      "home_team_zh": "奧克拉荷馬雷霆",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
+     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+     "has_conflict": true,
+     "conflict_signal": "客場ATS冷門反彈",
+     "conflict_wr": 0.619,
+     "conflict_away_team": "鳳凰城太陽"
     }
    },
    {
@@ -646,7 +650,11 @@
      "home_team_zh": "洛杉磯湖人",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
+     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+     "has_conflict": true,
+     "conflict_signal": "客場明顯強勢",
+     "conflict_wr": 0.594,
+     "conflict_away_team": "休士頓火箭"
     }
    },
    {
