@@ -236,8 +236,8 @@
   "playoff_ats_count": 13,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Phoenix Suns: Grayson Allen (存疑)",
-   "Phoenix Suns: Mark Williams (存疑)",
+   "Phoenix Suns: Grayson Allen (缺陣)",
+   "Phoenix Suns: Mark Williams (缺陣)",
    "Orlando Magic: Desmond Bane (可能出賽)",
    "Orlando Magic: Jonathan Isaac (存疑)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)"
@@ -798,6 +798,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 64,
+   "live_away_score": 46,
+   "live_status": "06:40 2nd",
+   "live_is_final": false,
+   "live_home_covering": true,
    "referee_crew": {
     "officials": [
      {
@@ -1375,8 +1380,8 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Grayson Allen (存疑)",
-    "Mark Williams (存疑)"
+    "Grayson Allen (缺陣)",
+    "Mark Williams (缺陣)"
    ]
   },
   "Orlando Magic:Detroit Pistons": {

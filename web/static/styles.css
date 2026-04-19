@@ -1339,9 +1339,37 @@ a {
 }
 
 .vs-divider {
-    height: 1px;
+    min-height: 1px;
     background: var(--stroke);
     margin: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vs-divider:has(.live-badge) {
+    background: transparent;
+    margin: 2px 8px;
+}
+
+.live-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: #e53935;
+    border-radius: 4px;
+    padding: 1px 6px;
+    white-space: nowrap;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.live-score {
+    color: #e53935;
 }
 
 .pick-meta {
@@ -1403,6 +1431,23 @@ a {
     background: rgba(255, 107, 107, 0.2);
     color: var(--negative);
     border: 1px solid rgba(255, 107, 107, 0.5);
+}
+
+.badge-mini.warn {
+    background: rgba(255, 180, 50, 0.2);
+    color: #f0a000;
+    border: 1px solid rgba(255, 180, 50, 0.5);
+    width: auto;
+    padding: 0 6px;
+    font-size: 10px;
+    border-radius: 4px;
+}
+
+.badge-mini.live-covering {
+    width: auto;
+    padding: 0 6px;
+    font-size: 10px;
+    border-radius: 4px;
 }
 
 .badge-mini.conflict {

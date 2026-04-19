@@ -597,11 +597,17 @@
                         {% endif %}
                         {% if game.away_score is defined and game.away_score is not none %}
                         <span class="team-score">{{ game.away_score }}</span>
+                        {% elif game.live_away_score is defined and game.live_away_score is not none %}
+                        <span class="team-score live-score">{{ game.live_away_score }}</span>
                         {% endif %}
                         <span class="team-conf">{{ away_conf|round(1) }}%</span>
                     </div>
-                    <div class="vs-divider"></div>
-                    
+                    <div class="vs-divider">
+                        {% if game.live_status is defined and not game.live_is_final %}
+                        <span class="live-badge">🔴 {{ game.live_status }}</span>
+                        {% endif %}
+                    </div>
+
                     <div class="team-row {% if game.actual_winner == 'home' %}team-won{% endif %} {% if game.ats_winner == 'home' %}team-covered{% endif %}">
                         <span class="ha-tag home-tag">主</span>
                         {% if team_logo_url(home_team) %}
@@ -615,6 +621,8 @@
                         {% endif %}
                         {% if game.home_score is defined and game.home_score is not none %}
                         <span class="team-score">{{ game.home_score }}</span>
+                        {% elif game.live_home_score is defined and game.live_home_score is not none %}
+                        <span class="team-score live-score">{{ game.live_home_score }}</span>
                         {% endif %}
                         <span class="team-conf">{{ home_conf|round(1) }}%</span>
                     </div>
@@ -684,6 +692,11 @@
                         <span class="badge-mini {% if game.playoff_ats_best_side == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.playoff_ats_best_side == game.ats_winner %}✓{% else %}✗{% endif %}</span>
                         {% elif game.ats_winner == 'push' %}
                         <span class="badge-mini push">PUSH</span>
+                        {% endif %}
+                        {# Live covering indicator when game is in progress #}
+                        {% if game.live_status is defined and not game.live_is_final and game.live_home_covering is defined and game.live_home_covering is not none %}
+                        {% set signal_covering = (game.playoff_ats_best_side == 'home' and game.live_home_covering) or (game.playoff_ats_best_side == 'away' and not game.live_home_covering) %}
+                        <span class="badge-mini live-covering {{ 'ok' if signal_covering else 'warn' }}" title="即時讓分狀況">{{ '✅ 即時領先' if signal_covering else '⚠️ 即時落後' }}</span>
                         {% endif %}
                     </div>
                     {% endif %}

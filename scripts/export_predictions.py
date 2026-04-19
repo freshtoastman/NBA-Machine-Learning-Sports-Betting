@@ -198,6 +198,39 @@ def export_date(target_date: date) -> dict | None:
             today_opp_map[g["away_team"]] = g["home_team"]
         injury_report = fetch_injury_report(today_matchups=today_opp_map)
 
+    # Fetch live scores from SBR for today's unplayed games.
+    _live_score_map: dict[tuple, dict] = {}  # (home_team, away_team) -> live info
+    if is_today or has_unplayed:
+        try:
+            from datetime import timedelta as _td
+            from sbrscrape import Scoreboard as _SBR
+            for _sbr_date in [target_date, target_date - _td(days=1)]:
+                try:
+                    _sb = _SBR(date=_sbr_date)
+                    _sbr_games = _sb.games if hasattr(_sb, "games") else []
+                except Exception:
+                    _sbr_games = []
+                for _sg in _sbr_games:
+                    _hs = _sg.get("home_score", 0) or 0
+                    _as = _sg.get("away_score", 0) or 0
+                    _st = _sg.get("status", "")
+                    _ht = _sg.get("home_team", "")
+                    _at = _sg.get("away_team", "")
+                    if not _st or _st in ("scheduled",):
+                        continue
+                    if _hs == 0 and _as == 0:
+                        continue
+                    _is_final = "Final" in _st or "final" in _st
+                    _live_score_map[(_ht, _at)] = {
+                        "live_home_score": _hs,
+                        "live_away_score": _as,
+                        "live_status": _st,
+                        "live_is_final": _is_final,
+                        "live_home_covering": None,
+                    }
+        except Exception:
+            pass
+
     # Load referee crew data for all games (if available in referee_data.sqlite).
     _ref_db_path = Path(__file__).resolve().parents[1] / "Data" / "referee_data.sqlite"
     _ref_crew_map: dict[tuple, dict] = {}  # (home_team, away_team) -> crew_info
@@ -249,6 +282,13 @@ def export_date(target_date: date) -> dict | None:
         g["away_logo"] = team_logo_url(g["away_team"])
         # Injury data (today only).
         g["injuries_home"] = injury_report.get(g["home_team"], [])
+        # Live score (today only, if game in progress or recently finished).
+        _live = _live_score_map.get((g["home_team"], g["away_team"]))
+        if _live and g.get("Win_Margin") in (None, 0):
+            spread = g.get("Spread") or g.get("spread") or 0
+            live_margin = _live["live_home_score"] - _live["live_away_score"]
+            _live["live_home_covering"] = (live_margin - spread) > 0
+            g.update(_live)
         # Referee crew analysis (when available).
         _crew = _ref_crew_map.get((g["home_team"], g["away_team"]))
         if _crew:
