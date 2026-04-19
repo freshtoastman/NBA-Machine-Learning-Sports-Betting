@@ -232,6 +232,14 @@
                         <div class="po-st-sub">場次</div>
                     </div>
                     {% endif %}
+                    {% if pos.strong_consensus and pos.strong_consensus.decided %}
+                    {% set sc = pos.strong_consensus %}
+                    <div class="po-st-stat" style="border-left:2px solid rgba(255,80,80,0.4);padding-left:8px;" title="{{ sc.note_zh }}">
+                        <div class="po-st-lbl">🔥 強共識</div>
+                        <div class="po-st-val {% if sc.hit_rate >= 70 %}good{% elif sc.hit_rate < 50 %}bad{% endif %}">{{ sc.hit_rate }}%</div>
+                        <div class="po-st-sub">{{ sc.hits }}/{{ sc.decided }}</div>
+                    </div>
+                    {% endif %}
                 </div>
                 {# 本季主客場 ATS 覆蓋率分析 #}
                 {% if season_stats.playoff_home_ats %}
@@ -594,7 +602,7 @@
                     {% set po_picked_team = home_team if po_pick_home else away_team %}
                     {% set po_is_fav = (po_pick_home and spread_val > 0) or (not po_pick_home and spread_val < 0) %}
                     {% set tier_class = 'gold' if game.playoff_ats_best_tier == 'GOLD' else ('silver' if game.playoff_ats_best_tier == 'SILVER' else 'bronze') %}
-                    <div class="pick-row playoff-ats-row tier-{{ tier_class }}">
+                    <div class="pick-row playoff-ats-row tier-{{ tier_class }}{% if game.playoff_ats_strong_consensus %} strong-consensus{% endif %}">
                         <span class="pick-label">季後賽策略</span>
                         <strong>
                             {% if po_is_fav %}
@@ -605,7 +613,9 @@
                         </strong>
                         <span class="pick-conf tier-{{ tier_class }}">{{ game.playoff_ats_best_tier }}</span>
                         <span class="pick-signal">{{ game.playoff_ats_best_signal }}</span>
-                        {% if (game.playoff_ats_has_conflict or (game.playoff_ats_picks|length > 1 and game.playoff_ats_consensus is none)) and not game.ats_winner %}
+                        {% if game.playoff_ats_strong_consensus and not game.ats_winner %}
+                        <span class="badge-mini strong-bet" title="2個以上SILVER信號一致，歷史勝率更高">🔥 強共識</span>
+                        {% elif (game.playoff_ats_has_conflict or (game.playoff_ats_picks|length > 1 and game.playoff_ats_consensus is none)) and not game.ats_winner %}
                         <span class="badge-mini conflict" title="多個信號指向不同方向，請見下方詳情">⚡ 分歧</span>
                         {% elif game.ats_winner and game.ats_winner != 'push' %}
                         <span class="badge-mini {% if game.playoff_ats_best_side == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.playoff_ats_best_side == game.ats_winner %}✓{% else %}✗{% endif %}</span>

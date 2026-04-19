@@ -144,7 +144,15 @@
     "tier": "SILVER",
     "hit_rate": 0.0
    }
-  ]
+  ],
+  "strong_consensus": {
+   "hits": 1,
+   "misses": 0,
+   "pending": 3,
+   "decided": 1,
+   "hit_rate": 100.0,
+   "note_zh": "強共識(2+SILVER一致): 1勝/1場決定 = 100.0%，3場待定"
+  }
  },
  "playoff_home_ats": {
   "games": 10,

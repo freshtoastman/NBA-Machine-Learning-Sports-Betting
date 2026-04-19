@@ -24,7 +24,9 @@
     "backtest_wr": 0.6,
     "backtest_roi": 15.5,
     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)",
-    "ats_winner": "home"
+    "ats_winner": "home",
+    "strong_consensus": "home",
+    "has_conflict": false
    },
    {
     "game_key": "Toronto Raptors:Cleveland Cavaliers",
@@ -38,8 +40,10 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 12.0,
-    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
-    "ats_winner": "home"
+    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
+    "ats_winner": "home",
+    "strong_consensus": "home",
+    "has_conflict": false
    },
    {
     "game_key": "Minnesota Timberwolves:Denver Nuggets",
@@ -53,8 +57,10 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 12.0,
-    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
-    "ats_winner": "home"
+    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
+    "ats_winner": "home",
+    "strong_consensus": null,
+    "has_conflict": false
    },
    {
     "game_key": "Atlanta Hawks:New York Knicks",
@@ -68,8 +74,10 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 12.0,
-    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
-    "ats_winner": "home"
+    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
+    "ats_winner": "home",
+    "strong_consensus": null,
+    "has_conflict": false
    },
    {
     "game_key": "Houston Rockets:Los Angeles Lakers",
@@ -83,8 +91,10 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 12.0,
-    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
-    "ats_winner": "home"
+    "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
+    "ats_winner": "home",
+    "strong_consensus": null,
+    "has_conflict": false
    }
   ],
   "playoff_ats_count": 5,
@@ -115,7 +125,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.13,
-   "away_team_ev": 63.67,
+   "away_team_ev": 63.68,
    "home_team_odds": -330,
    "away_team_odds": 265,
    "home_kelly": 0,
@@ -611,7 +621,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 12.0,
      "backtest_n": 140,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4"
     },
     {
      "signal": "主場明顯強勢",
@@ -629,6 +639,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "home",
    "home_team_zh": "克里夫蘭騎士",
    "away_team_zh": "多倫多暴龍",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
@@ -645,12 +656,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.48,
+   "home_team_ev": -19.49,
    "away_team_ev": 30.71,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 14.62,
+   "away_kelly": 14.63,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.5,
@@ -1132,7 +1143,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 12.0,
      "backtest_n": 140,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4"
     },
     {
      "signal": "主場明顯強勢",
@@ -1160,6 +1171,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "丹佛金塊",
    "away_team_zh": "明尼蘇達灰狼",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
@@ -1176,8 +1188,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -11.4,
-   "away_team_ev": 11.01,
+   "home_team_ev": -11.41,
+   "away_team_ev": 11.02,
    "home_team_odds": -220,
    "away_team_odds": 184,
    "home_kelly": 0,
@@ -1663,7 +1675,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 12.0,
      "backtest_n": 140,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4"
     },
     {
      "signal": "中等讓分押冷門",
@@ -1681,6 +1693,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "紐約尼克",
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
@@ -1697,7 +1710,7 @@
    "ou_pick": "OVER",
    "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 51.3,
+   "home_team_ev": 51.29,
    "away_team_ev": -32.03,
    "home_team_odds": 184,
    "away_team_odds": -220,
@@ -2184,7 +2197,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 12.0,
      "backtest_n": 140,
-     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4"
+     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4"
     },
     {
      "signal": "中等讓分押冷門",
@@ -2202,6 +2215,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "洛杉磯湖人",
    "away_team_zh": "休士頓火箭",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",

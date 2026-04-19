@@ -233,6 +233,8 @@ def export_date(target_date: date) -> dict | None:
                         "backtest_roi": pick.get("backtest_roi"),
                         "reason_zh": pick.get("reason_zh"),
                         "ats_winner": g.get("ats_winner"),
+                        "strong_consensus": g.get("playoff_ats_strong_consensus"),
+                        "has_conflict": g.get("playoff_ats_has_conflict", False),
                     })
 
     # Build injury alert strings for the summary report section.
@@ -805,6 +807,30 @@ def main():
                 "hit_rate": round(v["hits"] / n * 100, 1) if n else None,
             })
         sig_breakdown.sort(key=lambda x: -x["hits"])
+
+        # Strong consensus tracking (2+ SILVER agree, no conflict)
+        sc_hits, sc_misses, sc_pending = 0, 0, 0
+        for jf in sorted(OUT_DIR.glob("????-??-??.json")):
+            try:
+                with open(jf, encoding="utf-8") as _jf:
+                    _d = json.load(_jf)
+                games_data = _d.get("games", {})
+                games_iter = games_data.values() if isinstance(games_data, dict) else games_data
+                for g in games_iter:
+                    if not isinstance(g, dict): continue
+                    sc = g.get("playoff_ats_strong_consensus")
+                    if sc is None: continue
+                    winner = g.get("ats_winner")
+                    if winner is None:
+                        sc_pending += 1
+                    elif winner == sc:
+                        sc_hits += 1
+                    else:
+                        sc_misses += 1
+            except Exception:
+                pass
+        sc_decided = sc_hits + sc_misses
+
         stats["playoff_signals"] = {
             "hits": len(po_hits),
             "misses": len(po_misses),
@@ -813,6 +839,12 @@ def main():
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
             "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-12:],  # chronological, most recent
             "by_signal": sig_breakdown,
+            "strong_consensus": {
+                "hits": sc_hits, "misses": sc_misses, "pending": sc_pending,
+                "decided": sc_decided,
+                "hit_rate": round(sc_hits / sc_decided * 100, 1) if sc_decided else None,
+                "note_zh": f"強共識(2+SILVER一致): {sc_hits}勝/{sc_decided}場決定 = {round(sc_hits/sc_decided*100,1) if sc_decided else 'N/A'}%，{sc_pending}場待定",
+            },
         }
 
         # Augment with playoff home/away ATS split (scan decided playoff games this season).

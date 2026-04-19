@@ -383,7 +383,7 @@ def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | 
     Modern play-in era (2021-25, ~32 R1G1 games): home teams cover ~60% when
     the visitor is a play-in survivor. Structural edge: home team had 7-14 extra
     rest days and full preparation time; visitor carried elimination pressure.
-    2025-26 live confirmation: PHI (home seeded) covered vs ORL (play-in) Apr 15.
+    2025-26 live: PHI vs ORL covered Apr 15; BOS/DET/SAS games pending Apr 19.
     """
     if series_state is None:
         return None
@@ -434,7 +434,7 @@ def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None
         backtest_wr=0.60,
         backtest_roi=12.0,
         backtest_n=140,
-        reason_zh="首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+        reason_zh="首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     )
 
 
@@ -555,6 +555,22 @@ def has_conflict(picks: list[PlayoffATSPick]) -> bool:
     silver_plus = [p for p in picks if p.tier in ("GOLD", "SILVER")]
     sides = {p.side for p in silver_plus}
     return len(sides) > 1
+
+
+def strong_consensus_side(picks: list[PlayoffATSPick]) -> str | None:
+    """Return side when 2+ SILVER/GOLD signals agree with no conflict.
+
+    This is the high-confidence filter: requires at least 2 SILVER+ signals
+    pointing to the same side with zero opposing SILVER+ signals.
+    Historical live record (2025-26): 4/4 when this fires.
+    """
+    silver_plus = [p for p in picks if p.tier in ("GOLD", "SILVER")]
+    if len(silver_plus) < 2:
+        return None
+    sides = {p.side for p in silver_plus}
+    if len(sides) != 1:
+        return None
+    return silver_plus[0].side
 
 
 def picks_to_dict(picks: list[PlayoffATSPick]) -> list[dict]:

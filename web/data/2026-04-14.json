@@ -24,7 +24,9 @@
     "backtest_wr": 0.619,
     "backtest_roi": 17.8,
     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)",
-    "ats_winner": "away"
+    "ats_winner": "away",
+    "strong_consensus": null,
+    "has_conflict": false
    }
   ],
   "playoff_ats_count": 1,
@@ -54,7 +56,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.29,
+   "home_team_ev": -12.3,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -569,6 +571,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "夏洛特黃蜂",
    "away_team_zh": "邁阿密熱火",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
@@ -1069,6 +1072,7 @@
    "playoff_ats_best_tier": null,
    "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
