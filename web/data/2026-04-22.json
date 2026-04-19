@@ -26,27 +26,10 @@
     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
     "ats_winner": null,
     "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Phoenix Suns:Oklahoma City Thunder",
-    "home_team": "Oklahoma City Thunder",
-    "away_team": "Phoenix Suns",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "away_team_zh": "鳳凰城太陽",
-    "signal": "客場ATS冷門反彈",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.619,
-    "backtest_roi": 17.8,
-    "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)",
-    "ats_winner": null,
-    "strong_consensus": null,
-    "has_conflict": true
+    "has_conflict": false
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)",
@@ -164,16 +147,6 @@
      "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
     },
     {
-     "signal": "客場ATS冷門反彈",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.619,
-     "backtest_roi": 17.8,
-     "backtest_n": 21,
-     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)"
-    },
-    {
      "signal": "主場明顯強勢",
      "side": "home",
      "ats_side": "受讓(押dog)",
@@ -198,7 +171,7 @@
    "playoff_ats_best_signal": "G2大勝後延續",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
-   "playoff_ats_has_conflict": true,
+   "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
    "series_game_num": 2,

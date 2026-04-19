@@ -171,14 +171,23 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     Verified on playoff G1s (12 seasons): home 60.0% (n=30), away 61.9% (n=21).
     All playoff games: 55.7%/54.4% — effect strongest at series start.
     Original GOLD claim of 75% (n=20) was overstated; downgraded to SILVER.
+
+    Suppressed for G2+ when cold team was blown out in G1 (>10 ATS margin lost):
+    a blowout loss signals structural weakness, not random variance.
     """
     if team_form is None:
         return None
     h_ats = team_form.get("home_ats_l10")
     a_ats = team_form.get("away_ats_l10")
     spread = pred.get("spread")
+    g1_margin = series_state.get("g1_ats_margin") if series_state else None
+    game_num = series_state.get("series_game_num", 1) if series_state else 1
+
     # Home team bouncing back
     if h_ats is not None and h_ats <= 0.30:
+        # Suppress if home lost G1 by >10 ATS pts (away dominated — not just cold)
+        if game_num >= 2 and g1_margin is not None and g1_margin < -10:
+            return None
         home_fav = spread is not None and spread > 0
         return PlayoffATSPick(
             signal_name="主場ATS冷門反彈",
@@ -191,6 +200,9 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             reason_zh=f"主場近10場 ATS 僅 {h_ats*100:.0f}%，季後賽反彈 G1 勝率 60% (n=30)",
         )
     if a_ats is not None and a_ats <= 0.30:
+        # Suppress if away lost G1 by >10 ATS pts (home dominated — away not just cold)
+        if game_num >= 2 and g1_margin is not None and g1_margin > 10:
+            return None
         home_fav = spread is not None and spread > 0
         return PlayoffATSPick(
             signal_name="客場ATS冷門反彈",
