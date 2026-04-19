@@ -253,6 +253,21 @@
                     <div style="font-size:10px;color:#888;margin-top:4px;">{{ pha.note_zh }}</div>
                 </div>
                 {% endif %}
+                {# 按信號類型分解 #}
+                {% if pos.by_signal and pos.by_signal|length > 0 %}
+                <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size:11px;color:#aaa;margin-bottom:6px;">各信號命中率</div>
+                    {% for sig in pos.by_signal %}
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:11px;">
+                        <span style="color:#ccc;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ sig.signal }}">{{ sig.signal }}</span>
+                        <span style="margin-left:8px;white-space:nowrap;">
+                            <span style="color:{% if sig.hit_rate >= 60 %}#4caf50{% elif sig.hit_rate < 50 %}#e57373{% else %}#ffa726{% endif %};font-weight:600;">{{ sig.hit_rate }}%</span>
+                            <span style="color:#888;margin-left:4px;">{{ sig.hits }}/{{ sig.n }}</span>
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 

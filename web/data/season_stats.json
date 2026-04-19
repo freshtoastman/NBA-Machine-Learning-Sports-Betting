@@ -40,19 +40,12 @@
   "value_pl": 24400.0,
   "value_roi": 38.7
  },
- "playoff_home_ats": {
-  "games": 10,
-  "home_covers": 7,
-  "away_covers": 3,
-  "home_cover_rate": 70.0,
-  "note_zh": "2025-26 季後賽主場 ATS 覆蓋率（共10場，Apr 14-18）"
- },
  "playoff_signals": {
-  "hits": 2,
+  "hits": 6,
   "misses": 3,
   "pending": 1,
-  "decided": 5,
-  "hit_rate": 40.0,
+  "decided": 9,
+  "hit_rate": 66.7,
   "history": [
    {
     "date": "2026-04-14",
@@ -67,6 +60,42 @@
     "date": "2026-04-18",
     "game": "多倫多暴龍 @ 克里夫蘭騎士",
     "signal": "主場ATS冷門反彈",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "多倫多暴龍 @ 克里夫蘭騎士",
+    "signal": "首輪G1主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "明尼蘇達灰狼 @ 丹佛金塊",
+    "signal": "首輪G1主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "亞特蘭大老鷹 @ 紐約尼克",
+    "signal": "首輪G1主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "休士頓火箭 @ 洛杉磯湖人",
+    "signal": "首輪G1主場優勢",
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
@@ -99,6 +128,55 @@
     "backtest_wr": 0.594,
     "ats_winner": "home"
    }
+  ],
+  "by_signal": [
+   {
+    "signal": "首輪G1主場優勢",
+    "hits": 4,
+    "misses": 0,
+    "n": 4,
+    "tier": "SILVER",
+    "hit_rate": 100.0
+   },
+   {
+    "signal": "客場ATS冷門反彈",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0
+   },
+   {
+    "signal": "主場ATS冷門反彈",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0
+   },
+   {
+    "signal": "客場明顯強勢",
+    "hits": 0,
+    "misses": 2,
+    "n": 2,
+    "tier": "SILVER",
+    "hit_rate": 0.0
+   },
+   {
+    "signal": "小讓分客場受讓",
+    "hits": 0,
+    "misses": 1,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 0.0
+   }
   ]
+ },
+ "playoff_home_ats": {
+  "games": 10,
+  "home_covers": 7,
+  "away_covers": 3,
+  "home_cover_rate": 70.0,
+  "note_zh": "本季季後賽共 10 場有結果，主場覆蓋 7 場 (70.0%)"
  }
 }

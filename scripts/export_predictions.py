@@ -742,6 +742,24 @@ def main():
             except Exception:
                 pass
         decided = len(po_hits) + len(po_misses)
+        # Per-signal breakdown
+        from collections import defaultdict
+        _sig_stats: dict = defaultdict(lambda: {"hits": 0, "misses": 0, "tier": "SILVER"})
+        for r in po_hits:
+            _sig_stats[r["signal"]]["hits"] += 1
+            _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
+        for r in po_misses:
+            _sig_stats[r["signal"]]["misses"] += 1
+            _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
+        sig_breakdown = []
+        for sig, v in _sig_stats.items():
+            n = v["hits"] + v["misses"]
+            sig_breakdown.append({
+                "signal": sig, "hits": v["hits"], "misses": v["misses"],
+                "n": n, "tier": v["tier"],
+                "hit_rate": round(v["hits"] / n * 100, 1) if n else None,
+            })
+        sig_breakdown.sort(key=lambda x: -x["hits"])
         stats["playoff_signals"] = {
             "hits": len(po_hits),
             "misses": len(po_misses),
@@ -749,7 +767,36 @@ def main():
             "decided": decided,
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
             "history": po_hits[-10:] + po_misses[-5:],  # recent outcomes for display
+            "by_signal": sig_breakdown,
         }
+
+        # Augment with playoff home/away ATS split (scan decided playoff games this season).
+        po_home_covers, po_total = 0, 0
+        for jf in sorted(OUT_DIR.glob("????-??-??.json")):
+            try:
+                with open(jf, encoding="utf-8") as _jf:
+                    _d = json.load(_jf)
+                if not _d.get("is_playoff_view"):
+                    continue
+                for g in _d.get("games", {}).values():
+                    winner = g.get("ats_winner")
+                    if winner is None:
+                        continue
+                    po_total += 1
+                    if winner == "home":
+                        po_home_covers += 1
+            except Exception:
+                pass
+        if po_total:
+            home_pct = round(po_home_covers / po_total * 100, 1)
+            stats["playoff_home_ats"] = {
+                "games": po_total,
+                "home_covers": po_home_covers,
+                "away_covers": po_total - po_home_covers,
+                "home_cover_rate": home_pct,
+                "note_zh": f"本季季後賽共 {po_total} 場有結果，主場覆蓋 {po_home_covers} 場 ({home_pct}%)",
+            }
+
         stats_path = OUT_DIR / "season_stats.json"
         with open(stats_path, "w", encoding="utf-8") as f:
             json.dump(stats, f, ensure_ascii=False, indent=1, default=_serialize)
