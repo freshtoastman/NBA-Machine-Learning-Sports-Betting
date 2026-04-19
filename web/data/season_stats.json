@@ -47,11 +47,11 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 7,
+  "hits": 1,
   "misses": 1,
   "pending": 16,
-  "decided": 8,
-  "hit_rate": 87.5,
+  "decided": 2,
+  "hit_rate": 50.0,
   "history": [
    {
     "date": "2026-04-14",
@@ -69,60 +69,6 @@
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.529,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "R1G1大讓分主場",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.622,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "明尼蘇達灰狼 @ 丹佛金塊",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "休士頓火箭 @ 洛杉磯湖人",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
     "ats_winner": "home"
    }
   ],
@@ -209,31 +155,7 @@
   ],
   "by_signal": [
    {
-    "signal": "首輪G1主場優勢",
-    "hits": 4,
-    "misses": 0,
-    "n": 4,
-    "tier": "SILVER",
-    "hit_rate": 100.0
-   },
-   {
     "signal": "客場ATS冷門反彈",
-    "hits": 1,
-    "misses": 0,
-    "n": 1,
-    "tier": "SILVER",
-    "hit_rate": 100.0
-   },
-   {
-    "signal": "R1G1大讓分主場",
-    "hits": 1,
-    "misses": 0,
-    "n": 1,
-    "tier": "SILVER",
-    "hit_rate": 100.0
-   },
-   {
-    "signal": "主場ATS冷門反彈",
     "hits": 1,
     "misses": 0,
     "n": 1,
@@ -250,19 +172,19 @@
    }
   ],
   "strong_consensus": {
-   "hits": 1,
+   "hits": 0,
    "misses": 0,
    "pending": 3,
-   "decided": 1,
-   "hit_rate": 100.0,
-   "note_zh": "強共識(2+SILVER一致): 1勝/1場決定 = 100.0%，3場待定"
+   "decided": 0,
+   "hit_rate": null,
+   "note_zh": "強共識(2+SILVER一致): 0勝/0場決定 = N/A%，3場待定"
   }
  },
  "playoff_home_ats": {
-  "games": 10,
-  "home_covers": 7,
+  "games": 6,
+  "home_covers": 3,
   "away_covers": 3,
-  "home_cover_rate": 70.0,
-  "note_zh": "本季季後賽共 10 場有結果，主場覆蓋 7 場 (70.0%)"
+  "home_cover_rate": 50.0,
+  "note_zh": "本季季後賽共 6 場有結果，主場覆蓋 3 場 (50.0%)"
  }
 }
