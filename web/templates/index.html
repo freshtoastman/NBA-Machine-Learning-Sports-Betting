@@ -555,7 +555,9 @@
                         </strong>
                         <span class="pick-conf tier-{{ tier_class }}">{{ game.playoff_ats_best_tier }}</span>
                         <span class="pick-signal">{{ game.playoff_ats_best_signal }}</span>
-                        {% if game.ats_winner and game.ats_winner != 'push' %}
+                        {% if game.playoff_ats_picks|length > 1 and game.playoff_ats_consensus is none and not game.ats_winner %}
+                        <span class="badge-mini conflict" title="多個信號指向不同方向，請見下方詳情">⚡ 分歧</span>
+                        {% elif game.ats_winner and game.ats_winner != 'push' %}
                         <span class="badge-mini {% if game.playoff_ats_best_side == game.ats_winner %}ok{% else %}fail{% endif %}">{% if game.playoff_ats_best_side == game.ats_winner %}✓{% else %}✗{% endif %}</span>
                         {% elif game.ats_winner == 'push' %}
                         <span class="badge-mini push">PUSH</span>

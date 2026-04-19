@@ -42,10 +42,10 @@
  },
  "playoff_signals": {
   "hits": 2,
-  "misses": 1,
-  "pending": 1,
-  "decided": 3,
-  "hit_rate": 66.7,
+  "misses": 2,
+  "pending": 2,
+  "decided": 4,
+  "hit_rate": 50.0,
   "history": [
    {
     "date": "2026-04-14",
@@ -63,6 +63,15 @@
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-15",
+    "game": "奧蘭多魔術 @ 費城七六人",
+    "signal": "客場明顯強勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.594,
     "ats_winner": "home"
    },
    {

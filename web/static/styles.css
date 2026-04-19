@@ -1396,6 +1396,13 @@ a {
     border: 1px solid rgba(255, 107, 107, 0.5);
 }
 
+.badge-mini.conflict {
+    background: rgba(255, 180, 50, 0.2);
+    color: #f0a000;
+    border: 1px solid rgba(255, 180, 50, 0.5);
+    cursor: help;
+}
+
 .compact-footer {
     text-align: center;
     color: var(--muted);

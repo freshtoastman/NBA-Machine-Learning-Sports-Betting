@@ -344,6 +344,71 @@ def _medium_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _home_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Home team's recent win% is ≥15pp higher than away → home covers.
+
+    Full playoff backtest (170 games, 12 seasons): 54.7% home covers, ROI=+4.4%.
+    When home team is clearly better by regular-season performance, they cover at
+    higher rate even vs the spread.  Applies to series openers (R1G1) where the
+    top seeds host play-in graduates.
+
+    Condition: home_w20 - away_w20 ≥ 0.15 (15 percentage points).
+    """
+    if team_form is None:
+        return None
+    hw = team_form.get("home_w20")
+    aw = team_form.get("away_w20")
+    if hw is None or aw is None:
+        return None
+    delta = hw - aw
+    if delta < 0.15:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="主場明顯強勢",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="BRONZE",
+        backtest_wr=0.547,
+        backtest_roi=4.4,
+        backtest_n=170,
+        reason_zh=f"主場近期勝率領先客場 {delta*100:.0f}pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)",
+    )
+
+
+def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Away team's recent win% is ≥15pp higher than home → away covers.
+
+    Full playoff backtest (175 games, 12 seasons): 59.4% away covers, ROI=+13.5%.
+    When the visiting team has clearly better regular-season form, markets under-
+    adjust and the away team covers at strong rate.
+
+    Condition: away_w20 - home_w20 ≥ 0.15 (15 percentage points).
+    """
+    if team_form is None:
+        return None
+    hw = team_form.get("home_w20")
+    aw = team_form.get("away_w20")
+    if hw is None or aw is None:
+        return None
+    delta = aw - hw
+    if delta < 0.15:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="客場明顯強勢",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="SILVER",
+        backtest_wr=0.594,
+        backtest_roi=13.5,
+        backtest_n=175,
+        reason_zh=f"客場近期勝率領先主場 {delta*100:.0f}pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
+    )
+
+
 # Ordered by tier then verified WR — picks.sort() re-sorts by tier+WR anyway
 _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
@@ -351,10 +416,12 @@ _SIGNALS = [
     _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
+    _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
     _g2_home_bounce,                  # SILVER verified: 58.6% (n=174) — G2 home covers; 2025-26: 2/2
+    _home_form_dominant,              # BRONZE verified: 54.7% (n=170) — home clearly stronger
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]
