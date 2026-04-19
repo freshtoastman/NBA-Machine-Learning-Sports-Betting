@@ -239,6 +239,8 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     Full playoff backtest (174 games, 12 seasons): 58.6% home covers, ROI=+11.9%.
     After G1, home team (higher seed) either bounces back from a loss or protects
     their 1-0 lead at home. Both scenarios favor the home team covering G2.
+    Upgraded to SILVER — comparable WR and ROI to elimination underdog (58.8%, SILVER).
+    2025-26 confirmation: CLE+DEN both covered G2 on April 18 (2/2).
     """
     if series_state is None:
         return None
@@ -250,7 +252,7 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
         signal_name="G2主場反彈/鞏固",
         side="home",
         ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="BRONZE",
+        tier="SILVER",
         backtest_wr=0.586,
         backtest_roi=11.9,
         backtest_n=174,
@@ -352,7 +354,7 @@ _SIGNALS = [
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
-    _g2_home_bounce,                  # BRONZE verified: 58.6% (n=174) — G2 home covers
+    _g2_home_bounce,                  # SILVER verified: 58.6% (n=174) — G2 home covers; 2025-26: 2/2
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]

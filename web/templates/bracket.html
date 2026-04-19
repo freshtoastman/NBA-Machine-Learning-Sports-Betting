@@ -63,7 +63,11 @@
       .empty-banner { background:#1a1f2b; border:1px dashed #2a3040; border-radius:12px; padding:30px; text-align:center; color:#888; }
       .status-chip { display:inline-block; background:#1f2c1f; color:#7fd69b; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; }
       .next-signal { margin-top:6px; padding:5px 8px; background:#1f1f2c; border:1px solid #3a3a5c; border-radius:6px; font-size:11px; color:#bbb; }
+      .next-signal.tier-silver { background:#1f2520; border-color:#4a8060; }
+      .next-signal.tier-gold { background:#2a2010; border-color:#c8a030; }
       .next-signal .ns-badge { background:#2a2a4a; color:#8888ff; border-radius:4px; padding:1px 5px; font-size:10px; font-weight:700; margin-right:4px; }
+      .next-signal.tier-silver .ns-badge { background:#1a3a28; color:#7fd69b; }
+      .next-signal.tier-gold .ns-badge { background:#3a2a10; color:#f4bf50; }
       .next-signal .ns-wr { color:#f4bf50; font-weight:700; }
     </style>
 </head>
@@ -219,8 +223,9 @@
               {% endif %}
             </div>
             {% if m.next_signal %}
-            <div class="next-signal">
-              <span class="ns-badge">G{{ m.next_signal.game_num }} 預測</span>
+            {% set tier_cls = 'tier-' + (m.next_signal.tier or 'bronze')|lower %}
+            <div class="next-signal {{ tier_cls }}">
+              <span class="ns-badge">G{{ m.next_signal.game_num }} 信號</span>
               📊 {{ m.next_signal.home_team_zh }} 主場
               <span class="ns-wr">{{ (m.next_signal.backtest_wr * 100)|round(0)|int }}%</span>
               cover率 · {{ m.next_signal.reason_zh[:20] }}…

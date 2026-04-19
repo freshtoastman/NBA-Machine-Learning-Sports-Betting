@@ -146,6 +146,61 @@ def _patch_from_nba_cdn(con, d_str: str) -> int:
     return updated
 
 
+def _patch_from_espn(con, d_str: str) -> int:
+    """Fallback: fetch scores from ESPN public API when SBR/NBA-CDN fail."""
+    import datetime
+    d = date.fromisoformat(d_str)
+    date_param = d.strftime("%Y%m%d")
+    url = f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={date_param}&limit=20"
+    ua = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
+    try:
+        r = requests.get(url, headers=ua, timeout=20)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as exc:
+        print(f"{d_str}: espn error: {exc}")
+        return 0
+
+    updated = 0
+    for event in data.get("events", []):
+        comps = event.get("competitions", [{}])[0]
+        completed = comps.get("status", {}).get("type", {}).get("completed", False)
+        if not completed:
+            continue
+        teams = comps.get("competitors", [])
+        if len(teams) < 2:
+            continue
+        # ESPN: teams[0] is home, teams[1] is away
+        home_team_data = teams[0]
+        away_team_data = teams[1]
+        home_name = _normalize_team_name(home_team_data["team"]["displayName"])
+        away_name = _normalize_team_name(away_team_data["team"]["displayName"])
+        try:
+            hs = int(home_team_data["score"])
+            aws = int(away_team_data["score"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        points = hs + aws
+        win_margin = hs - aws
+
+        cur = con.execute(
+            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND Home = ? AND Away = ? '
+            "AND (Points IS NULL OR Points = 0)",
+            (d_str, home_name, away_name),
+        ).fetchone()
+        if not cur or cur[0] == 0:
+            continue
+        c = con.execute(
+            f'UPDATE "{SEASON_TABLE}" SET Points = ?, Win_Margin = ? '
+            "WHERE Date = ? AND Home = ? AND Away = ? AND (Points IS NULL OR Points = 0)",
+            (points, win_margin, d_str, home_name, away_name),
+        )
+        if c.rowcount:
+            print(f"{d_str}: espn patched {home_name} vs {away_name}: {hs}-{aws}")
+            updated += c.rowcount
+    return updated
+
+
 def main():
     con = sqlite3.connect(ODDS_DB)
     today = date.today()
@@ -177,10 +232,21 @@ def main():
             con.commit()
             if u2:
                 print(f"{d_str}: nba cdn patched {u2} games")
-        total_updated += u1 + u2
+
+        rows_left2 = con.execute(
+            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
+            (d_str,),
+        ).fetchone()
+        u3 = 0
+        if rows_left2 and rows_left2[0] > 0:
+            u3 = _patch_from_espn(con, d_str)
+            con.commit()
+            if u3:
+                print(f"{d_str}: espn patched {u3} games")
+        total_updated += u1 + u2 + u3
 
     con.close()
-    print(f"Done. Total patched (sbr + cdn): {total_updated}")
+    print(f"Done. Total patched (sbr + cdn + espn): {total_updated}")
 
 
 if __name__ == "__main__":

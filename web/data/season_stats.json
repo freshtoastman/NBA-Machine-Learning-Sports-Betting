@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1976,
- "calib_gap_mid": 0.1251,
+ "calib_gap_mid": 0.1252,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -33,12 +33,12 @@
   "hits": 627,
   "hit_rate": 51.2,
   "home_pick_pct": 50.8,
-  "value_bets": 73,
-  "value_wins": 52,
-  "value_losses": 21,
-  "value_hit_rate": 71.2,
-  "value_pl": 25800.0,
-  "value_roi": 35.3
+  "value_bets": 63,
+  "value_wins": 46,
+  "value_losses": 17,
+  "value_hit_rate": 73.0,
+  "value_pl": 24400.0,
+  "value_roi": 38.7
  },
  "playoff_signals": {
   "hits": 2,

@@ -580,7 +580,7 @@ def build_bracket(target_date: date) -> dict | None:
                     "side": "home",
                     "home_team": g2_home["team"],
                     "home_team_zh": g2_home["team_zh"],
-                    "tier": "BRONZE",
+                    "tier": "SILVER",
                     "backtest_wr": 0.586,
                     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
                 }
