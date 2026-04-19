@@ -794,10 +794,15 @@ def build_bracket(target_date: date) -> dict | None:
                         _blowout_pick = next((p for p in _best_picks if p.get("signal") == "G2大勝後延續"), {})
                         g2_reason = _blowout_pick.get("reason_zh", "G1大勝後主場延續優勢，12季R1回測主場cover率 64.3% (n=28)")
                     else:
-                        g2_sig, g2_tier = "G2主場鞏固 (贏G1)", "BRONZE"
-                        _consol_pick = next((p for p in _best_picks if p.get("signal") == "G2主場鞏固 (贏G1)"), {})
-                        g2_wr = _consol_pick.get("backtest_wr", 0.534)
-                        g2_reason = _consol_pick.get("reason_zh", "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)")
+                        _consol_pick = next((p for p in _best_picks if p.get("signal") == "G2主場鞏固 (贏G1)"), None)
+                        if _consol_pick:
+                            g2_sig, g2_tier = "G2主場鞏固 (贏G1)", "BRONZE"
+                            g2_wr = _consol_pick.get("backtest_wr", 0.534)
+                            g2_reason = _consol_pick.get("reason_zh", "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)")
+                        else:
+                            # Narrow G1 win (≤7 ATS margin): ~coin flip, no actionable signal
+                            g2_sig, g2_tier, g2_wr = "G2無明顯信號 (G1窄勝)", "NONE", 0.478
+                            g2_reason = "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向"
                 _g2_ns = {
                     "game_num": 2,
                     "signal": g2_sig,
