@@ -177,6 +177,33 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
                 if home_team in key_pair:
                     home_from_playin = True
 
+    # Compute G1 ATS margin for the current home team.
+    # Positive = home covered (home won by more than the spread).
+    # Used by the G2 blowout follow-through signal (>7 → 64.3% home covers).
+    g1_ats_margin: float | None = None
+    series_start = raw.get("earliest_date")
+    if series_game_num == 2 and series_start:
+        try:
+            tbl_od = season_key
+            with sqlite3.connect(ODDS_DB) as _con:
+                row = _con.execute(
+                    f'SELECT Home, Away, Win_Margin, Spread FROM "{tbl_od}"'
+                    f' WHERE Date = ? AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))'
+                    f' AND Points > 0',
+                    (series_start, home_team, away_team, away_team, home_team),
+                ).fetchone()
+                if row:
+                    _g1_home, _g1_away, _wm, _sp = row
+                    if _wm is not None and _sp is not None:
+                        # Normalise so margin is always relative to the G2 home team
+                        if _g1_home == home_team:
+                            g1_ats_margin = float(_wm) - float(_sp)
+                        else:
+                            # G1 home ≠ G2 home (series alternates courts)
+                            g1_ats_margin = -(float(_wm) - float(_sp))
+        except Exception:
+            pass
+
     return {
         "round_num": raw["round_num"],
         "round_label": raw["round_label"],
@@ -192,6 +219,7 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
         "leader": leader_zh,
         "away_from_playin": away_from_playin,
         "home_from_playin": home_from_playin,
+        "g1_ats_margin": g1_ats_margin,
     }
 
 

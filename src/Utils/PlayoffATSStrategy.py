@@ -337,6 +337,36 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     return None
 
 
+def _g2_blowout_followthrough(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """G2 after home blew out G1 by large ATS margin (>7 pts) → home covers again.
+
+    Backtest (28 games, 12 seasons, R1 only): 64.3% home covers when G1 ATS margin > 7.
+    When home barely covered G1 (margin 0–7), only 47.8% home covers — no edge.
+    The blowout signals that the home team has a genuine structural advantage.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 2:
+        return None
+    if series_state.get("home_wins", 0) != 1 or series_state.get("away_wins", 0) != 0:
+        return None
+    g1_margin = series_state.get("g1_ats_margin")
+    if g1_margin is None or g1_margin <= 7:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="G2大勝後延續",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.643,
+        backtest_roi=21.5,
+        backtest_n=28,
+        reason_zh=f"G1大勝 {g1_margin:.1f} ATS分，12季R1回測主場cover率 64.3% (n=28)",
+    )
+
+
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Game 6 → Away team covers.
 
@@ -606,6 +636,7 @@ _SIGNALS = [
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
+    _g2_blowout_followthrough,        # SILVER new: 64.3% (n=28) — G2 home won G1 by >7 ATS pts
     _g2_home_bounce,                  # SILVER/BRONZE split: 64.9% bounce-back (n=57) / 53.4% consolidation (n=116)
     _home_form_dominant,              # BRONZE verified: 54.7% (n=170) — home clearly stronger
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
