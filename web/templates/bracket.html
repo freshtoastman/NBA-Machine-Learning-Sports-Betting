@@ -232,7 +232,13 @@
             <div class="next-signal {{ tier_cls }}">
               <span class="ns-badge">{% if m.next_signal.game_num == 1 %}今日G1{% else %}G{{ m.next_signal.game_num }}{% endif %} 信號</span>
               {% if m.next_signal.has_conflict %}⚡{% endif %}
-              📊 {{ m.next_signal.home_team_zh }} 主場
+              📊
+              {% if m.next_signal.side == 'away' %}
+                {% set _ns_bet_team_zh = m.high.team_zh if m.next_signal.home_team == m.low.team else m.low.team_zh %}
+                {{ _ns_bet_team_zh }} 客場
+              {% else %}
+                {{ m.next_signal.home_team_zh }} 主場
+              {% endif %}
               <span class="ns-wr">{{ (m.next_signal.backtest_wr * 100)|round(0)|int }}%</span>
               cover率 · {{ m.next_signal.signal }}
               {% if m.next_signal.playin_away %}<span class="ns-playin-hint">（附加賽升組客隊）</span>{% endif %}

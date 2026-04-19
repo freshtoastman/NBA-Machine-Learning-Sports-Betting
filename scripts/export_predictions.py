@@ -774,6 +774,57 @@ def build_bracket(target_date: date) -> dict | None:
                     "backtest_wr": 0.586,
                     "reason_zh": "第2場主場優勢，無論G1結果，主場cover率 58.6% (n=174，12季歷史)",
                 }
+            # G3 signals: fire based on series state when 2 games played.
+            # G3 is at low_seed's home. hw=high_wins, lw=low_wins.
+            if gp == 2:
+                if hw == 2 and lw == 0:
+                    # High seed up 2-0: low seed (home in G3) is backs against wall
+                    entry["next_signal"] = {
+                        "game_num": 3,
+                        "signal": "G3背水一戰主場",
+                        "side": "home",
+                        "home_team": low_team["team"],
+                        "home_team_zh": low_team["team_zh"],
+                        "tier": "SILVER",
+                        "backtest_wr": 0.895,
+                        "reason_zh": f"系列賽落後0-2首回主場，18季歷史主場cover率 89.5% (n=19)，背水一戰",
+                    }
+                elif hw == 1 and lw == 1:
+                    # Tied 1-1: low seed (home in G3) has momentum from road win
+                    entry["next_signal"] = {
+                        "game_num": 3,
+                        "signal": "G3平手低種子主場",
+                        "side": "home",
+                        "home_team": low_team["team"],
+                        "home_team_zh": low_team["team_zh"],
+                        "tier": "SILVER",
+                        "backtest_wr": 0.822,
+                        "reason_zh": "系列賽平手1-1，低種子首回主場，13季歷史主場cover率 82.2% (n=45)",
+                    }
+                else:
+                    # Low seed up 2-0: high seed (away in G3) desperate, no strong signal
+                    entry["next_signal"] = {
+                        "game_num": 3,
+                        "signal": "G3客場反彈",
+                        "side": "away",
+                        "home_team": low_team["team"],
+                        "home_team_zh": low_team["team_zh"],
+                        "tier": "BRONZE",
+                        "backtest_wr": 0.568,
+                        "reason_zh": "系列賽高種子落後0-2，G3客場(高種子)反彈，歷史56.8%客場cover",
+                    }
+            # G4 signal: fires when 3 games played. G4 at low_seed home, away (high seed) covers 57.3%
+            if gp == 3:
+                entry["next_signal"] = {
+                    "game_num": 4,
+                    "signal": "G4客場優勢",
+                    "side": "away",
+                    "home_team": low_team["team"],
+                    "home_team_zh": low_team["team_zh"],
+                    "tier": "BRONZE",
+                    "backtest_wr": 0.573,
+                    "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)",
+                }
             return entry
 
         first_round = [
