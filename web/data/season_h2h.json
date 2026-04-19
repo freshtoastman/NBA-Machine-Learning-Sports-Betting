@@ -279,8 +279,8 @@
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
     "spread": 13.5,
-    "win_margin": 29,
-    "home_score": 120,
+    "win_margin": 32,
+    "home_score": 123,
     "away_score": 91,
     "ats_result": "home"
    },
