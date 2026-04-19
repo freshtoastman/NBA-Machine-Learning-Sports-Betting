@@ -778,7 +778,7 @@ def main():
             "pending": len(po_pending),
             "decided": decided,
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
-            "history": po_hits[-10:] + po_misses[-5:],  # recent outcomes for display
+            "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-12:],  # chronological, most recent
             "by_signal": sig_breakdown,
         }
 

@@ -268,6 +268,21 @@
                     {% endfor %}
                 </div>
                 {% endif %}
+                {# 歷史紀錄 — 已決定場次 #}
+                {% if pos.history and pos.history|length > 0 %}
+                <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size:11px;color:#aaa;margin-bottom:6px;">歷史戰績（已決定）</div>
+                    {% for rec in pos.history|reverse %}
+                    {% set is_hit = rec.side == rec.ats_winner %}
+                    <div style="display:flex;align-items:center;gap:6px;padding:2px 0;font-size:10px;">
+                        <span style="color:{% if is_hit %}#4caf50{% else %}#e57373{% endif %};font-weight:700;min-width:14px;">{% if is_hit %}✓{% else %}✗{% endif %}</span>
+                        <span style="color:#888;min-width:50px;">{{ rec.date[5:] }}</span>
+                        <span style="color:#bbb;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ rec.game }}">{{ rec.game }}</span>
+                        <span style="color:#999;white-space:nowrap;font-size:9px;">{{ rec.signal }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 
