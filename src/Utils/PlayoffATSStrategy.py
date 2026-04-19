@@ -550,6 +550,13 @@ def consensus_side(picks: list[PlayoffATSPick]) -> str | None:
     return None
 
 
+def has_conflict(picks: list[PlayoffATSPick]) -> bool:
+    """True when SILVER (or higher) picks disagree on direction."""
+    silver_plus = [p for p in picks if p.tier in ("GOLD", "SILVER")]
+    sides = {p.side for p in silver_plus}
+    return len(sides) > 1
+
+
 def picks_to_dict(picks: list[PlayoffATSPick]) -> list[dict]:
     """Serialize picks for JSON export."""
     return [

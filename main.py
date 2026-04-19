@@ -453,18 +453,21 @@ def predict_today_xgb(sportsbook):
                 pred["playoff_ats_best_signal"] = bp.signal_name if bp else None
                 pred["playoff_ats_best_tier"] = bp.tier if bp else None
                 pred["playoff_ats_consensus"] = consensus_side(ats_picks)
+                pred["playoff_ats_has_conflict"] = has_conflict(ats_picks)
             else:
                 pred["playoff_ats_picks"] = []
                 pred["playoff_ats_best_side"] = None
                 pred["playoff_ats_best_signal"] = None
                 pred["playoff_ats_best_tier"] = None
                 pred["playoff_ats_consensus"] = None
+                pred["playoff_ats_has_conflict"] = False
         except Exception:
             pred["playoff_ats_picks"] = []
             pred["playoff_ats_best_side"] = None
             pred["playoff_ats_best_signal"] = None
             pred["playoff_ats_best_tier"] = None
             pred["playoff_ats_consensus"] = None
+            pred["playoff_ats_has_conflict"] = False
     return predictions
 
 
@@ -474,7 +477,7 @@ import sqlite3  # noqa: E402
 
 from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E402
 from src.Utils.ValueFinder import evaluate_value  # noqa: E402
-from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict  # noqa: E402
+from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict, has_conflict  # noqa: E402
 
 def _build_team_form(home_team, away_team, date_str, pre_game=False):
     """Build team_form dict for PlayoffATSStrategy from AdvancedFeatures.
@@ -806,18 +809,21 @@ def predict_historical_xgb(target_date):
                 pred["playoff_ats_best_signal"] = bp.signal_name if bp else None
                 pred["playoff_ats_best_tier"] = bp.tier if bp else None
                 pred["playoff_ats_consensus"] = consensus_side(ats_picks)
+                pred["playoff_ats_has_conflict"] = has_conflict(ats_picks)
             else:
                 pred["playoff_ats_picks"] = []
                 pred["playoff_ats_best_side"] = None
                 pred["playoff_ats_best_signal"] = None
                 pred["playoff_ats_best_tier"] = None
                 pred["playoff_ats_consensus"] = None
+                pred["playoff_ats_has_conflict"] = False
         except Exception:
             pred["playoff_ats_picks"] = []
             pred["playoff_ats_best_side"] = None
             pred["playoff_ats_best_signal"] = None
             pred["playoff_ats_best_tier"] = None
             pred["playoff_ats_consensus"] = None
+            pred["playoff_ats_has_conflict"] = False
 
     return predictions
 
