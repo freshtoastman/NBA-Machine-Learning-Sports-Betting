@@ -613,7 +613,7 @@ def predict_historical_xgb(target_date):
                     from src.Utils.PlayoffContext import is_playoff_date, get_series_state
                     target_iso = target_date.isoformat()
                     if is_playoff_date(target_iso):
-                        state = get_series_state(home_team, away_team, target_iso, as_of_date=None)
+                        state = get_series_state(home_team, away_team, target_iso, as_of_date=target_date)
                         if state:
                             stub["is_playoff"] = True
                             stub["series_round"] = state["round_label"]

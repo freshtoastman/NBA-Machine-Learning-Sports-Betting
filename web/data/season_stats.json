@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 10,
   "misses": 1,
-  "pending": 22,
+  "pending": 13,
   "decided": 11,
   "hit_rate": 90.9,
   "history": [
@@ -224,8 +224,8 @@
     "has_conflict": true,
     "best_wr": 73,
     "live_status": "06:30 1st",
-    "live_home_score": 49,
-    "live_away_score": 26,
+    "live_home_score": 53,
+    "live_away_score": 31,
     "live_home_covering": true
    },
    {
@@ -239,69 +239,24 @@
     "best_wr": 59
    },
    {
-    "date": "2026-04-21",
-    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
-    "signals": [
-     "附加賽升組客隊不利",
-     "首輪G1主場優勢"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 60
-   },
-   {
-    "date": "2026-04-22",
-    "game": "奧蘭多魔術 @ 底特律活塞",
-    "signals": [
-     "附加賽升組客隊不利",
-     "首輪G1主場優勢"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 60
-   },
-   {
     "date": "2026-04-22",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signals": [
-     "客場ATS冷門反彈",
-     "附加賽升組客隊不利",
-     "首輪G1主場優勢"
+     "客場ATS冷門反彈"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
+    "consensus_side": "away",
+    "has_conflict": false,
     "best_wr": 62
    },
    {
     "date": "2026-04-23",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
-     "G2主場反彈 (輸G1)",
      "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 65
-   },
-   {
-    "date": "2026-04-23",
-    "game": "克里夫蘭騎士 @ 多倫多暴龍",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
+    "consensus_side": "away",
     "has_conflict": false,
-    "best_wr": 65
-   },
-   {
-    "date": "2026-04-23",
-    "game": "紐約尼克 @ 亞特蘭大老鷹",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 65
+    "best_wr": 59
    }
   ],
   "by_signal": [
@@ -357,10 +312,10 @@
   "strong_consensus": {
    "hits": 2,
    "misses": 0,
-   "pending": 4,
+   "pending": 2,
    "decided": 2,
    "hit_rate": 100.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，4場待定"
+   "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，2場待定"
   }
  },
  "playoff_home_ats": {

@@ -87,13 +87,16 @@ def _count_series_games_before(home_team: str, away_team: str, target_date, seas
     try:
         with sqlite3.connect(ODDS_DB) as con:
             if series_start:
+                # Count all scheduled games in this series before target_date
+                # (no Points check — unscored past games still happened)
                 row = con.execute(
                     f'SELECT COUNT(*) FROM {table} '
-                    f'WHERE Date >= ? AND Date < ? AND Points > 0 '
+                    f'WHERE Date >= ? AND Date < ? '
                     f'AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))',
                     (series_start, target_date.isoformat(), home_team, away_team, away_team, home_team),
                 ).fetchone()
             else:
+                # Legacy fallback: require Points > 0 to avoid counting regular-season games
                 row = con.execute(
                     f'SELECT COUNT(*) FROM {table} '
                     f'WHERE Date < ? AND Points > 0 '
