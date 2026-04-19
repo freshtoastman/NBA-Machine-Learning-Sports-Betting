@@ -469,10 +469,15 @@
         {% set west_series = active_series|selectattr('conference','equalto','west')|list %}
         {% set has_conf = east_series|length + west_series|length > 0 %}
         {% set has_playin = active_series|selectattr('round_num','equalto',0)|list|length > 0 %}
+        {% set r1_started = active_series|selectattr('round_num','equalto',1)|selectattr('high_wins')|list|length > 0 or active_series|selectattr('round_num','equalto',1)|selectattr('low_wins')|list|length > 0 %}
+        {% set display_series = active_series|rejectattr('round_num','equalto',0)|list if r1_started else active_series %}
+        {% set east_series = display_series|selectattr('conference','equalto','east')|list %}
+        {% set west_series = display_series|selectattr('conference','equalto','west')|list %}
+        {% set has_conf = east_series|length + west_series|length > 0 %}
         <section class="series-tracker">
             <div class="series-tracker-head">
                 <span>🏆 季後賽</span>
-                <span class="series-tracker-sub">{{ active_series|length }} 組系列賽 · {% if has_playin %}附加賽進行中{% else %}附加賽已結束{% endif %}</span>
+                <span class="series-tracker-sub">{{ display_series|length }} 組系列賽 · {% if r1_started %}首輪進行中{% elif has_playin %}附加賽進行中{% else %}附加賽已結束{% endif %}</span>
             </div>
             {% if has_conf %}
             <div class="series-conf-wrap">

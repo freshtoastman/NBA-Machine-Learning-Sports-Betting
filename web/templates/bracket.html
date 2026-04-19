@@ -146,6 +146,7 @@
           {% endfor %}
         </div>
 
+        {% if bracket.stage != 'first_round' %}
         <div class="section-label">附加賽（Play-In Tournament）{% if c.play_in.completed %} · 已結束{% endif %}</div>
         <div class="playin-block">
           <div class="playin-game">
@@ -190,6 +191,7 @@
             <div class="playin-note">勝者 → 第 8 種子；敗者 → 淘汰</div>
           {% endif %}
         </div>
+        {% endif %}
 
         <div class="section-label">第一輪對戰</div>
         <div class="matchup-list">
