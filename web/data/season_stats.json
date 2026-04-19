@@ -210,9 +210,9 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 62,
-    "live_status": "03:59 1st",
-    "live_home_score": 20,
-    "live_away_score": 27,
+    "live_status": "End",
+    "live_home_score": 31,
+    "live_away_score": 35,
     "live_home_covering": false
    },
    {
