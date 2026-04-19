@@ -42,10 +42,10 @@
  },
  "playoff_signals": {
   "hits": 2,
-  "misses": 2,
-  "pending": 6,
-  "decided": 4,
-  "hit_rate": 50.0,
+  "misses": 3,
+  "pending": 5,
+  "decided": 5,
+  "hit_rate": 40.0,
   "history": [
    {
     "date": "2026-04-14",
@@ -81,6 +81,15 @@
     "side": "away",
     "tier": "SILVER",
     "backtest_wr": 0.529,
+    "ats_winner": "home"
+   },
+   {
+    "date": "2026-04-18",
+    "game": "休士頓火箭 @ 洛杉磯湖人",
+    "signal": "客場明顯強勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.594,
     "ats_winner": "home"
    }
   ]

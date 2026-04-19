@@ -9793,9 +9793,9 @@
     "home": "Los Angeles Lakers",
     "away": "Houston Rockets",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 9,
+    "home_score": 107,
+    "away_score": 98,
     "ats_result": "home"
    }
   ],
