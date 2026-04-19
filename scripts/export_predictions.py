@@ -133,6 +133,7 @@ def fetch_injury_report(today_matchups: dict[str, str] | None = None) -> dict[st
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "web" / "data"
 DAYS_BACK = 7
+DAYS_FORWARD = 7  # export upcoming game predictions up to 7 days ahead
 
 EAST_TEAMS = {
     "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
@@ -300,7 +301,7 @@ def export_date(target_date: date) -> dict | None:
     n = len(games_list)
     home_picks = sum(1 for g in games_list if g.get("winner") == "home")
     over_picks = sum(1 for g in games_list if g.get("ou_pick") == "OVER")
-    avg_conf = sum(max(g.get("home_confidence", 0), g.get("away_confidence", 0)) for g in games_list) / n if n else 0
+    avg_conf = sum(max(g.get("home_confidence") or 0, g.get("away_confidence") or 0) for g in games_list) / n if n else 0
 
     # Collect GOLD/SILVER playoff ATS signals across all games.
     po_ats_alerts = []
@@ -932,6 +933,21 @@ def main():
 
     for offset in range(DAYS_BACK + 1):
         d = today - timedelta(days=offset)
+        print(f"Exporting {d}...")
+        data = export_date(d)
+        if data is None:
+            print(f"  skipped (no games)")
+            continue
+        out_path = OUT_DIR / f"{d.isoformat()}.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=1, default=_serialize)
+        n = data["summary"]["games"]
+        print(f"  wrote {n} games → {out_path.name}")
+        exported_dates.append(d.isoformat())
+
+    # Export upcoming future dates (predictions for scheduled games).
+    for offset in range(1, DAYS_FORWARD + 1):
+        d = today + timedelta(days=offset)
         print(f"Exporting {d}...")
         data = export_date(d)
         if data is None:

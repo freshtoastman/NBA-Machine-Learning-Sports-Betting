@@ -1468,6 +1468,28 @@ a {
     font-size: 11px;
 }
 
+.upcoming-row {
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.upcoming-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #90caf9;
+    background: rgba(33, 150, 243, 0.15);
+    border: 1px solid rgba(33, 150, 243, 0.35);
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+.rest-chip {
+    font-size: 10px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+
 .compact-footer {
     text-align: center;
     color: var(--muted);
@@ -2241,6 +2263,18 @@ h3 {
 
 .date-chip.selected .date-chip-weekday {
     color: rgba(255, 255, 255, 0.85);
+}
+
+.date-chip.is-upcoming {
+    border-color: rgba(33, 150, 243, 0.4);
+    background: rgba(33, 150, 243, 0.06);
+}
+.date-chip.is-upcoming .date-chip-label {
+    color: #90caf9;
+}
+.date-chip.is-upcoming.selected {
+    background: linear-gradient(145deg, #1565c0, #0d47a1);
+    border-color: #1976d2;
 }
 
 .result-badge {

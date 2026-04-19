@@ -22,7 +22,7 @@
             </div>
             <div class="date-chips">
                 {% for chip in date_chips %}
-                <a href="?date={{ chip.iso }}" class="date-chip {% if chip.is_selected %}selected{% endif %} {% if chip.is_today %}is-today{% endif %}">
+                <a href="?date={{ chip.iso }}" class="date-chip {% if chip.is_selected %}selected{% endif %} {% if chip.is_today %}is-today{% endif %} {% if chip.is_upcoming %}is-upcoming{% endif %}">
                     <span class="date-chip-label">{{ chip.label }}</span>
                     <span class="date-chip-weekday">{{ chip.weekday }}</span>
                 </a>
@@ -560,6 +560,7 @@
             {% set teams = game_key.split(':') %}
             {% set away_team = teams[0] %}
             {% set home_team = teams[1] %}
+            {% set is_upcoming = game.is_upcoming|default(false) %}
             {% set away_conf = game.away_confidence|default(0)|float %}
             {% set home_conf = game.home_confidence|default(0)|float %}
             {% set lean_is_home = home_conf >= away_conf %}
@@ -607,7 +608,9 @@
                         {% elif game.live_away_score is defined and game.live_away_score is not none %}
                         <span class="team-score live-score">{{ game.live_away_score }}</span>
                         {% endif %}
+                        {% if not is_upcoming %}
                         <span class="team-conf">{{ away_conf|round(1) }}%</span>
+                        {% endif %}
                     </div>
                     <div class="vs-divider">
                         {% if game.live_status is defined and not game.live_is_final %}
@@ -631,11 +634,24 @@
                         {% elif game.live_home_score is defined and game.live_home_score is not none %}
                         <span class="team-score live-score">{{ game.live_home_score }}</span>
                         {% endif %}
+                        {% if not is_upcoming %}
                         <span class="team-conf">{{ home_conf|round(1) }}%</span>
+                        {% endif %}
                     </div>
                 </div>
 
                 <div class="pick-meta">
+                    {% if is_upcoming %}
+                    <div class="pick-row upcoming-row">
+                        <span class="upcoming-badge">📅 即將比賽</span>
+                        {% if game.Days_Rest_Home is defined and game.Days_Rest_Home %}
+                        <span class="rest-chip">主隊休息 {{ game.Days_Rest_Home }} 天</span>
+                        {% endif %}
+                        {% if game.Days_Rest_Away is defined and game.Days_Rest_Away %}
+                        <span class="rest-chip">客隊休息 {{ game.Days_Rest_Away }} 天</span>
+                        {% endif %}
+                    </div>
+                    {% else %}
                     <div class="pick-row">
                         <span class="pick-label">模型勝</span>
                         <strong>{{ team_name_zh(lean_team) }}</strong>
@@ -644,7 +660,8 @@
                         <span class="badge-mini {% if game.ml_correct %}ok{% else %}fail{% endif %}">{% if game.ml_correct %}✓{% else %}✗{% endif %}</span>
                         {% endif %}
                     </div>
-                    {% if spread_val is not none and game.ats_model_pick %}
+                    {% endif %}
+                    {% if not is_upcoming and spread_val is not none and game.ats_model_pick %}
                     {# Choose wording based on which side the model picks:
                        - If model picks the favorite → "讓 X 分" (give X)
                        - If model picks the underdog → "受讓 X 分" (get X) #}

@@ -410,6 +410,21 @@ def load_season_stats() -> dict | None:
 def build_date_chips(selected_date, days=7):
     today = today_taipei()
     chips = []
+    # Future dates with games (from exported JSONs).
+    future_dates = sorted([
+        date.fromisoformat(iso)
+        for iso in load_dates_index().get("dates", [])
+        if iso > today.isoformat() and (DATA_DIR / f"{iso}.json").exists()
+    ])
+    for d in future_dates:
+        chips.append({
+            "iso": d.isoformat(),
+            "label": f"{d.month}/{d.day}",
+            "weekday": WEEKDAY_ZH[d.weekday()],
+            "is_today": False,
+            "is_upcoming": True,
+            "is_selected": d == selected_date,
+        })
     for offset in range(days + 1):
         d = today - timedelta(days=offset)
         chips.append({
@@ -417,6 +432,7 @@ def build_date_chips(selected_date, days=7):
             "label": "今天" if offset == 0 else f"{d.month}/{d.day}",
             "weekday": WEEKDAY_ZH[d.weekday()],
             "is_today": offset == 0,
+            "is_upcoming": False,
             "is_selected": d == selected_date,
         })
     return chips
