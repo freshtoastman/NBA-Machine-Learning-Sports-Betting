@@ -54,7 +54,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.29,
+   "home_team_ev": -12.3,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -1083,6 +1083,15 @@
    "high_wins": 1,
    "low_wins": 0,
    "conference": "west"
+  },
+  {
+   "round_num": 1,
+   "round_label": "首輪",
+   "high_seed": "Atlanta Hawks",
+   "low_seed": "New York Knicks",
+   "high_wins": 0,
+   "low_wins": 1,
+   "conference": "east"
   },
   {
    "round_num": 0,

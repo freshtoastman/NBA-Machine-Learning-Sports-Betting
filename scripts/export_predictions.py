@@ -467,7 +467,8 @@ def build_bracket(target_date: date) -> dict | None:
             ):
                 _hs, _ls, _hw, _lw, _rn = _row
                 if _rn >= 1:
-                    _series_wins[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
+                    # Map team_name → wins so _with_wins can look up by actual team
+                    _series_wins[frozenset({_hs, _ls})] = {_hs: (_hw or 0), _ls: (_lw or 0)}
                 else:
                     _playin_results[frozenset({_hs, _ls})] = (_hw or 0, _lw or 0)
         # Determine stage
@@ -568,12 +569,15 @@ def build_bracket(target_date: date) -> dict | None:
             if isinstance(high_team, str) or isinstance(low_team, str):
                 return {}
             key = frozenset({high_team["team"], low_team["team"]})
-            hw, lw = _series_wins.get(key, (0, 0))
+            wins_by_team = _series_wins.get(key, {})
+            hw = wins_by_team.get(high_team["team"], 0)
+            lw = wins_by_team.get(low_team["team"], 0)
             gp = hw + lw
             entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
-            # G2 home bounce signal: fires when exactly 1 game has been played
+            # G2 home bounce signal: fires when exactly 1 game has been played.
+            # G2 home is ALWAYS the actual higher seed regardless of G1 result.
             if gp == 1:
-                g2_home = high_team if hw > lw else low_team
+                g2_home = high_team
                 entry["next_signal"] = {
                     "game_num": 2,
                     "signal": "G2主場反彈/鞏固",
