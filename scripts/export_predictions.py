@@ -54,22 +54,25 @@ _NBA_TEAM_IDENTIFIERS = {
 }
 
 
-def _is_stale_comment(comment: str, today_opponent: str | None) -> bool:
+def _is_stale_comment(comment: str, today_opponent: str | None, short_comment: str = "") -> bool:
     """Return True if the injury comment references a different opponent than today's.
 
     ESPN entries from the last regular-season rest day persist into playoffs.
-    Callers should pass the combined shortComment + longComment as `comment` so that
-    richer context (e.g. 'regular-season finale' in longComment) is available here.
+    Pass combined shortComment + longComment as `comment` for team-name matching.
+    Pass shortComment alone as `short_comment` for unconditional stale markers so
+    that longComment background context (e.g. 'regular-season finale' history) does
+    not falsely filter out injuries that are still active in the playoffs.
 
-    Unconditional stale markers (regardless of opponent):
+    Unconditional stale markers (checked only in short_comment):
     - 'regular-season finale' / 'regular season finale'
     """
     if not comment or today_opponent is None:
         return False
-    c = comment.lower()
-    # Unconditional stale: comment explicitly says "regular-season finale" / rest context
-    if "regular-season finale" in c or "regular season finale" in c:
+    # Unconditional stale: shortComment explicitly says "regular-season finale"
+    check_for_finale = (short_comment or comment).lower()
+    if "regular-season finale" in check_for_finale or "regular season finale" in check_for_finale:
         return True
+    c = comment.lower()
     opp_lower = today_opponent.lower()
     # Check if any NBA team identifier appears in the comment
     mentioned_teams = [n for n in _NBA_TEAM_IDENTIFIERS if n in c]
@@ -115,12 +118,12 @@ def fetch_injury_report(today_matchups: dict[str, str] | None = None) -> dict[st
             if not name:
                 continue
             comment = inj.get("shortComment", "")
-            # longComment often contains richer context (e.g. "regular-season finale")
-            # that shortComment omits. Combine both for stale detection.
             long_comment = inj.get("longComment", "")
+            # Use combined text for team-name matching; shortComment only for
+            # unconditional stale markers ("regular-season finale") so that
+            # longComment background context doesn't falsely trigger the filter.
             stale_text = f"{comment} {long_comment}"
-            # Filter stale entries that reference a different opponent (e.g., April 12 rest day)
-            if _is_stale_comment(stale_text, today_opp):
+            if _is_stale_comment(stale_text, today_opp, short_comment=comment):
                 continue
             status_zh = _parse_injury_status(comment)
             player_injuries.append(f"{name} ({status_zh})")
