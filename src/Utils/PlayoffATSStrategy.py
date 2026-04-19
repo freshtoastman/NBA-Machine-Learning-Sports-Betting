@@ -374,6 +374,7 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
         else:
             reason_zh = "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)"
             wr = 0.534
+        n = 88 if (g1_margin is not None and g1_margin <= 7) else 116
         return PlayoffATSPick(
             signal_name="G2主場鞏固 (贏G1)",
             side="home",
@@ -381,7 +382,7 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             tier="BRONZE",
             backtest_wr=wr,
             backtest_roi=4.8,
-            backtest_n=116,
+            backtest_n=n,
             reason_zh=reason_zh,
         )
     return None

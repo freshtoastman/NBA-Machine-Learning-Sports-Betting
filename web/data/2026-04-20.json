@@ -516,7 +516,7 @@
      "tier": "BRONZE",
      "backtest_wr": 0.478,
      "backtest_roi": 4.8,
-     "backtest_n": 116,
+     "backtest_n": 88,
      "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
@@ -1040,7 +1040,7 @@
      "tier": "BRONZE",
      "backtest_wr": 0.478,
      "backtest_roi": 4.8,
-     "backtest_n": 116,
+     "backtest_n": 88,
      "reason_zh": "G1窄勝 5.5 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
@@ -1577,7 +1577,7 @@
      "tier": "BRONZE",
      "backtest_wr": 0.478,
      "backtest_roi": 4.8,
-     "backtest_n": 116,
+     "backtest_n": 88,
      "reason_zh": "G1窄勝 5.0 ATS分，G2主場cover率約 47.8% (n=88)，接近持平"
     }
    ],
