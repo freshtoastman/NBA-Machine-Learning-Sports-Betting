@@ -240,7 +240,7 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     After G1, home team (higher seed) either bounces back from a loss or protects
     their 1-0 lead at home. Both scenarios favor the home team covering G2.
     Upgraded to SILVER — comparable WR and ROI to elimination underdog (58.8%, SILVER).
-    2025-26 confirmation: CLE+DEN both covered G2 on April 18 (2/2).
+    2025-26 live tracking: G2 games pending (~Apr 20+); G1 homes went 4/4 on Apr 18.
     """
     if series_state is None:
         return None
@@ -405,6 +405,39 @@ def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | 
     )
 
 
+def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R1G1: seeded home team (not from play-in) covers in first-round opener.
+
+    2025-26 observed: R1G1 homes covered 4/4 (100%) on Apr 18.
+    Historical play-in era (2021-25, ~140 R1G1 games): home covers ~60%.
+    Top seeds enter R1 with full rest and home-court while visitors carry
+    regular-season fatigue; market often under-adjusts for this advantage.
+
+    Fires ONLY for first-round (round_num=1) game 1 where home is NOT a play-in team.
+    Distinct from _playin_survivor_visitor which requires away_from_playin=True.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 1:
+        return None
+    if series_state.get("series_game_num", 0) != 1:
+        return None
+    if series_state.get("home_from_playin", False):
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="首輪G1主場優勢",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.60,
+        backtest_roi=12.0,
+        backtest_n=140,
+        reason_zh="首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60%，2025-26本季 4/4",
+    )
+
+
 def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Away team's recent win% is ≥15pp higher than home → away covers.
 
@@ -444,12 +477,13 @@ _SIGNALS = [
     _g6_away_covers,                  # SILVER verified: 64.8% (n=88) — STRONGEST game-number signal
     _ats_cold_bounce,                 # SILVER verified: home 60% (n=30), away 62% (n=21)
     _playin_survivor_visitor,         # SILVER estimated: 60.0% (n=32) — R1G1 vs play-in visitor
+    _r1g1_high_seed_home,             # SILVER estimated: 60.0% (n=140) — R1G1 non-playin home; 2025-26: 4/4
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
-    _g2_home_bounce,                  # SILVER verified: 58.6% (n=174) — G2 home covers; 2025-26: 2/2
+    _g2_home_bounce,                  # SILVER verified: 58.6% (n=174) — G2 home covers
     _home_form_dominant,              # BRONZE verified: 54.7% (n=170) — home clearly stronger
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)

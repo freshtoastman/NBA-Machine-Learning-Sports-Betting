@@ -40,6 +40,13 @@
   "value_pl": 24400.0,
   "value_roi": 38.7
  },
+ "playoff_home_ats": {
+  "games": 10,
+  "home_covers": 7,
+  "away_covers": 3,
+  "home_cover_rate": 70.0,
+  "note_zh": "2025-26 季後賽主場 ATS 覆蓋率（共10場，Apr 14-18）"
+ },
  "playoff_signals": {
   "hits": 2,
   "misses": 3,
