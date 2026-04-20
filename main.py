@@ -421,6 +421,7 @@ def predict_today_xgb(sportsbook):
                 if state:
                     pred["is_playoff"] = True
                     pred["series_round"] = state["round_label"]
+                    pred["round_num"] = state.get("round_num")
                     pred["series_game_num"] = state["series_game_num"]
                     pred["series_home_wins"] = state["home_wins"]
                     pred["series_away_wins"] = state["away_wins"]
@@ -429,6 +430,7 @@ def predict_today_xgb(sportsbook):
                 else:
                     pred["is_playoff"] = True
                     pred["series_round"] = None
+                    pred["round_num"] = None
                     pred["series_game_num"] = None
                     pred["series_status_text"] = "尚無系列賽資料"
                     pred["series_is_elimination"] = False
@@ -617,6 +619,7 @@ def predict_historical_xgb(target_date):
                         if state:
                             stub["is_playoff"] = True
                             stub["series_round"] = state["round_label"]
+                            stub["round_num"] = state.get("round_num")
                             stub["series_game_num"] = state["series_game_num"]
                             stub["series_home_wins"] = state["home_wins"]
                             stub["series_away_wins"] = state["away_wins"]
@@ -879,6 +882,7 @@ def predict_historical_xgb(target_date):
                 if state:
                     pred["is_playoff"] = True
                     pred["series_round"] = state["round_label"]
+                    pred["round_num"] = state.get("round_num")
                     pred["series_game_num"] = state["series_game_num"]
                     pred["series_home_wins"] = state["home_wins"]
                     pred["series_away_wins"] = state["away_wins"]

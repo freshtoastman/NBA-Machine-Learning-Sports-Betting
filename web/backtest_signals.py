@@ -62,11 +62,30 @@ def build_backtest_signals(game: dict) -> list[dict]:
             signals.append({"text": "中讓分(5-10) → 冷門 cover 傾向（58.9%）", "tier": "base"})
 
     # ── Playoffs ──
+    # Round-specific base rates (re-measured 2026-04-20 across 13 seasons 2012-2025, n=1053):
+    #   R1 G1: home 58.0% (n=112)    R1 G2: home 55.4% (n=112)
+    #   R1 G3: away 59.6% (n=104)    R1 G4: away 60.8% (n=102)
+    #   R1 G5 2-2: home 53.1% (all)/60% (recent 2017+, n=35)
+    #   R1 G6: AWAY 80.4% (n=46) ★ strongest structural signal
+    #   R2 G1: away 60.4% (n=48)     R2+ G6: away 53.8% (n=52)
+    round_num = int(game.get("round_num") or 0)
     if is_po:
-        if series_gn >= 6:
-            signals.append({"text": f"Game {series_gn} → 押客場/冷門（63% WR, +20% ROI）", "tier": "hot"})
+        # R1 G6 — GOLD tier hot signal
+        if round_num == 1 and series_gn == 6:
+            signals.append({"text": "R1 G6 → 押客場（高種子）歷史 cover 率 80.4%（n=46，近5年 84.6%）", "tier": "hot"})
+        elif series_gn == 6 and round_num >= 2:
+            signals.append({"text": f"R{round_num} G6 → 押客場（53.8%，次輪後效果減弱）", "tier": "base"})
+        elif series_gn == 7:
+            signals.append({"text": "Game 7 → 主場 cover 率約 43%，客場小幅優勢", "tier": "base"})
+        # R1 G3/G4: away team (high seed) covers 60%
+        if round_num == 1 and series_gn in (3, 4):
+            signals.append({"text": f"R1 G{series_gn} → 押客場（高種子）歷史 cover 率 ~60%（n~100）", "tier": "warm"})
+        # G5 tied 2-2 home
         if series_gn == 5 and series_lead == 0:
-            signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%）", "tier": "hot"})
+            signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%，近7年）", "tier": "hot"})
+        # R2 G1 away
+        if round_num == 2 and series_gn == 1:
+            signals.append({"text": "R2 G1 → 押客場歷史 cover 率 60.4%（n=48）", "tier": "warm"})
         if is_elim:
             signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
         if is_elim and abs_sp <= 8:

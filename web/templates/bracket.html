@@ -72,6 +72,21 @@
       .next-signal .ns-conflict { margin-top:4px; padding:3px 6px; background:#2a1a1a; border:1px solid #8a4040; border-radius:4px; color:#e08080; font-size:10px; }
       .next-signal .ns-conflict .cf-badge { background:#5a2020; color:#e08080; border-radius:3px; padding:1px 4px; font-size:9px; font-weight:700; margin-right:4px; }
       .ns-playin-hint { font-size:10px; color:#f4bf50; margin-left:4px; opacity:0.8; }
+      .signal-ref { margin-top:24px; background:#141821; border:1px solid #222a36; border-radius:14px; padding:16px; }
+      .signal-ref h3 { font-size:16px; margin:0 0 6px; font-weight:700; color:#e8e8e8; }
+      .signal-ref .sr-sub { font-size:12px; color:#888; margin-bottom:10px; }
+      .signal-ref table { width:100%; border-collapse:collapse; font-size:12px; }
+      .signal-ref th { text-align:left; color:#888; font-weight:600; font-size:11px; padding:6px 8px; border-bottom:1px solid #2a3040; text-transform:uppercase; letter-spacing:0.5px; }
+      .signal-ref td { padding:6px 8px; border-bottom:1px solid #1a1f2b; color:#ccc; vertical-align:top; }
+      .signal-ref tr:hover td { background:#1a1f2b; }
+      .sr-tier { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:4px; }
+      .sr-tier.gold { background:#3a2a10; color:#f4bf50; }
+      .sr-tier.silver { background:#1a3a28; color:#7fd69b; }
+      .sr-tier.bronze { background:#2a1a28; color:#c88bb8; }
+      .sr-wr { color:#f4bf50; font-weight:700; font-variant-numeric: tabular-nums; }
+      .sr-n { color:#888; font-variant-numeric: tabular-nums; }
+      .sr-side-home { color:#7fd69b; font-weight:600; }
+      .sr-side-away { color:#ffb07a; font-weight:600; }
     </style>
 </head>
 <body>
@@ -268,6 +283,100 @@
     <div class="conf-wrap">
       {{ conf('east', '東區', 'east') }}
       {{ conf('west', '西區', 'west') }}
+    </div>
+
+    <div class="signal-ref">
+      <h3>📊 季後賽結構信號 · 歷史勝率參考</h3>
+      <div class="sr-sub">基於 13 季 NBA 季後賽 (2012-13 ~ 2024-25) 原始盤口數據，n = 樣本場次</div>
+      <table>
+        <thead>
+          <tr>
+            <th>場次</th>
+            <th>情境</th>
+            <th>方向</th>
+            <th>Cover 率</th>
+            <th>樣本</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>R1 G1</td>
+            <td>首輪第1場（非附加賽升組）</td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">58.0%</span></td>
+            <td><span class="sr-n">n=112</span></td>
+            <td>讓 10+ 分時 72.7%</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>R1 G2</td>
+            <td>主場輸 G1 → 反彈</td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">64.9%</span></td>
+            <td><span class="sr-n">n=57</span></td>
+            <td>12季</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>R1 G2</td>
+            <td>主場 G1 大勝延續</td>
+            <td><span class="sr-side-home">主場</span></td>
+            <td><span class="sr-wr">64.3%</span></td>
+            <td><span class="sr-n">n=28</span></td>
+            <td>ATS 分差 &gt;7</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>R1 G3</td>
+            <td>高種子領先 2-0 (擴大優勢)</td>
+            <td><span class="sr-side-away">客場 (高種子)</span></td>
+            <td><span class="sr-wr">64.3%</span></td>
+            <td><span class="sr-n">n=28</span></td>
+            <td>18 季回測</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier bronze">BRONZE</span>R1 G4</td>
+            <td>第 4 場（低種子主場）</td>
+            <td><span class="sr-side-away">客場 (高種子)</span></td>
+            <td><span class="sr-wr">57.3%</span></td>
+            <td><span class="sr-n">n=171</span></td>
+            <td>13 季歷史</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>R1 G5</td>
+            <td>系列賽平手 2-2</td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">60.0%</span></td>
+            <td><span class="sr-n">n=35</span></td>
+            <td>近7年 ROI +14.5%</td>
+          </tr>
+          <tr style="background:#2a2010;">
+            <td><span class="sr-tier gold">GOLD</span>R1 G6</td>
+            <td><b>首輪第6場（低種子主場）</b></td>
+            <td><span class="sr-side-away">客場 (高種子)</span></td>
+            <td><span class="sr-wr">80.4%</span></td>
+            <td><span class="sr-n">n=46</span></td>
+            <td><b>歷史最強結構信號</b> · 近5年 84.6%</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier bronze">BRONZE</span>R2 G1</td>
+            <td>次輪首戰</td>
+            <td><span class="sr-side-away">客場</span></td>
+            <td><span class="sr-wr">60.4%</span></td>
+            <td><span class="sr-n">n=48</span></td>
+            <td>12 季</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier bronze">BRONZE</span>R3+ G6</td>
+            <td>分區冠軍賽/總冠軍賽 G6</td>
+            <td><span class="sr-side-away">客場</span></td>
+            <td><span class="sr-wr">53.8%</span></td>
+            <td><span class="sr-n">n=52</span></td>
+            <td>效果較 R1 弱</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="sr-sub" style="margin-top:10px;font-size:11px;">
+        💡 <b>R1 G6</b> 是最強信號（80.4% 歷史命中），近5年甚至達 84.6%。當系列賽進行到 3-2 或 2-3 且 G6 在低種子主場時，押客場（高種子）有顯著歷史優勢。
+      </div>
     </div>
     {% endif %}
   </div>
