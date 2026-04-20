@@ -1065,7 +1065,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 7.5,
+   "spread": 6.5,
    "home_profile": {
     "weekday_name": "週一",
     "season": {
@@ -1548,7 +1548,7 @@
      "backtest_wr": 0.521,
      "backtest_roi": 4.2,
      "backtest_n": 290,
-     "reason_zh": "讓分 7.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
+     "reason_zh": "讓分 6.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "home",
