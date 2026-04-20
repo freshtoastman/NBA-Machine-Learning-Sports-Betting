@@ -4250,3 +4250,333 @@ h3 {
 @media (max-width: 600px) {
     .side-panel { width: 290px; }
 }
+
+/* ======================================================================= */
+/* 手機版專用版面 — Mobile-First Layout (index.html)                        */
+/* 目標: 讓分 + 信心% 放大強調, 比分清晰, 觸控 ≥44px, 日期橫向捲動置中      */
+/* 只影響 ≤480px 視窗; 桌機版視覺完全不變                                   */
+/* ======================================================================= */
+
+/* team-row-info wrapper: desktop 無影響 (contents), mobile 變成第二行       */
+.team-row-info {
+    display: contents;
+}
+
+@media (max-width: 480px) {
+
+    /* ---- Header / 導覽 ---- */
+    .compact-header {
+        padding: 10px 12px;
+    }
+    .compact-title {
+        gap: 8px;
+    }
+    .compact-title h1 {
+        font-size: 16px;
+    }
+    .brand-mark {
+        font-size: 14px;
+    }
+    .tz-chip {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+    .live-btn, .logout-btn {
+        min-height: 40px;
+        padding: 8px 14px;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* ---- 日期選單: 橫向 scroll-snap, 選中置中 ---- */
+    .date-chips {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px 4px 6px;
+        gap: 6px;
+        scrollbar-width: none;
+    }
+    .date-chips::-webkit-scrollbar {
+        display: none;
+    }
+    .date-chip {
+        flex: 0 0 auto;
+        min-height: 44px;
+        min-width: 56px;
+        padding: 6px 12px;
+        scroll-snap-align: center;
+        font-size: 13px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .date-chip-label {
+        font-size: 13px;
+    }
+    .date-chip-weekday {
+        font-size: 10px;
+    }
+
+    /* ---- Dashboard 摘要 ---- */
+    .dash-row {
+        gap: 8px;
+    }
+    .dash-chip,
+    .dash-tag {
+        font-size: 13px;
+        padding: 7px 12px;
+        min-height: 36px;
+    }
+    .dash-chip.golden,
+    .dash-chip.diamond,
+    .dash-chip.playoff-ats {
+        min-height: 40px;
+    }
+    .dash-chip b {
+        font-size: 15px;
+    }
+    .dash-sub {
+        font-size: 11px;
+    }
+
+    /* ---- 季後賽優勢投注 Alert ---- */
+    .po-ats-alert-panel {
+        padding: 12px;
+    }
+    .po-ats-gg-top {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .po-ats-gg-teams {
+        font-size: 14px;
+    }
+    .po-ats-gg-chips {
+        gap: 6px;
+        margin-top: 6px;
+    }
+    .po-ats-sig-chip {
+        font-size: 12px;
+    }
+    .daily-report-btn,
+    .pinned-analysis-btn {
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    /* ---- Game Cards: 單欄, 核心排版 ---- */
+    .compact-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .pick-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    /* 系列賽 chip */
+    .series-chip-row {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .series-chip,
+    .series-elim,
+    .series-status {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    /* 金鑽/價值 banner */
+    .value-banner {
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 8px 10px;
+    }
+
+    /* Team row: 第一行 = tag + logo + 隊名 (+score);
+       第二行 = team-row-info wrapper (spread + score + conf), 放大強調 */
+    .team-row {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 10px;
+        row-gap: 6px;
+    }
+    .team-name-text {
+        font-size: 16px;
+        font-weight: 700;
+        flex: 1;
+        min-width: 0;
+    }
+    .team-row-info {
+        display: flex;
+        flex: 0 0 100%;
+        align-items: center;
+        gap: 10px;
+        padding-left: 38px;      /* 對齊 logo 之後 (ha-tag 20 + gap 10 + 8 微調) */
+        margin-top: 2px;
+    }
+
+    /* 讓分 chip — 重點放大 */
+    .spread-chip {
+        font-size: 15px;
+        font-weight: 700;
+        padding: 4px 12px;
+        min-width: 56px;
+        min-height: 28px;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        font-variant-numeric: tabular-nums;
+    }
+    .spread-chip.covered {
+        background: rgba(82, 199, 122, 0.18);
+        border-color: rgba(82, 199, 122, 0.45);
+    }
+    .spread-chip.missed {
+        background: rgba(255, 107, 107, 0.12);
+        border-color: rgba(255, 107, 107, 0.35);
+    }
+
+    /* 比分 — 明顯但不搶讓分/信心% 焦點 */
+    .team-score {
+        font-size: 22px;
+        font-weight: 800;
+        min-width: 44px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* 信心% — 重點放大 */
+    .team-conf {
+        font-size: 15px;
+        font-weight: 700;
+        min-width: 60px;
+        text-align: right;
+        margin-left: auto;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: rgba(47, 124, 246, 0.12);
+        color: #aac8ff;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .vs-divider {
+        margin: 2px 4px;
+    }
+    .live-badge {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    /* Pick meta / odds sparkline 次要資訊 */
+    .pick-meta {
+        font-size: 12px;
+    }
+    .pick-row.spread-move-row,
+    .pick-row {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .spread-sparkline {
+        width: 72px !important;
+        height: 20px !important;
+    }
+    .pick-label {
+        font-size: 11px;
+    }
+
+    /* Action buttons in game card (AI 分析 / 買點 / 加入精選) */
+    .pin-btn {
+        min-width: 36px;
+        min-height: 36px;
+    }
+    .card-btn-row .ai-btn,
+    .card-btn-row .buy-btn {
+        min-height: 40px;
+        font-size: 13px;
+    }
+
+    /* ---- Modals (球隊名冊 / 球員 stats) ---- */
+    .modal-dialog {
+        max-width: calc(100% - 12px);
+        margin: 6px auto;
+    }
+    .modal-content {
+        border-radius: 14px;
+    }
+    .modal-body {
+        padding: 12px;
+    }
+    .player-card {
+        padding: 12px;
+    }
+    .player-headshot {
+        width: 64px;
+        height: 64px;
+    }
+    .stats-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .stats-table .table {
+        font-size: 12px;
+    }
+
+    /* Empty state & banners */
+    .no-games-banner {
+        padding: 12px;
+        gap: 10px;
+    }
+    .no-games-icon {
+        font-size: 28px;
+    }
+    .no-games-text strong {
+        font-size: 14px;
+    }
+    .no-games-text span {
+        font-size: 12px;
+    }
+}
+
+/* ---- 極窄螢幕 (≤360px): iPhone SE 1st gen, Android 小機 ---- */
+@media (max-width: 360px) {
+    .brand-mark,
+    .tz-chip {
+        display: none;
+    }
+    .compact-title h1 {
+        font-size: 15px;
+    }
+    .pick-card {
+        padding: 10px;
+    }
+    .team-score {
+        font-size: 20px;
+    }
+    .team-name-text {
+        font-size: 15px;
+    }
+    .spread-chip {
+        font-size: 14px;
+        min-width: 50px;
+    }
+    .team-conf {
+        font-size: 14px;
+        min-width: 54px;
+    }
+    .team-row-info {
+        padding-left: 30px;
+        gap: 8px;
+    }
+    .dash-row {
+        gap: 6px;
+    }
+    .dash-chip,
+    .dash-tag {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

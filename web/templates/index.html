@@ -627,17 +627,19 @@
                         <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ away_team|replace(' ', '-')|lower }}">
                             {{ team_name_zh(away_team) }}
                         </span>
-                        {% if spread_val is not none %}
-                        <span class="spread-chip {% if game.ats_winner == 'away' %}covered{% elif game.ats_winner == 'home' %}missed{% endif %}" title="客隊讓分">{{ away_spread }}</span>
-                        {% endif %}
-                        {% if game.away_score is defined and game.away_score is not none %}
-                        <span class="team-score">{{ game.away_score }}</span>
-                        {% elif game.live_away_score is defined and game.live_away_score is not none %}
-                        <span class="team-score live-score">{{ game.live_away_score }}</span>
-                        {% endif %}
-                        {% if not is_upcoming %}
-                        <span class="team-conf">{{ away_conf|round(1) }}%</span>
-                        {% endif %}
+                        <span class="team-row-info">
+                            {% if spread_val is not none %}
+                            <span class="spread-chip {% if game.ats_winner == 'away' %}covered{% elif game.ats_winner == 'home' %}missed{% endif %}" title="客隊讓分">{{ away_spread }}</span>
+                            {% endif %}
+                            {% if game.away_score is defined and game.away_score is not none %}
+                            <span class="team-score">{{ game.away_score }}</span>
+                            {% elif game.live_away_score is defined and game.live_away_score is not none %}
+                            <span class="team-score live-score">{{ game.live_away_score }}</span>
+                            {% endif %}
+                            {% if not is_upcoming %}
+                            <span class="team-conf">{{ away_conf|round(1) }}%</span>
+                            {% endif %}
+                        </span>
                     </div>
                     <div class="vs-divider">
                         {% if game.live_status is defined and not game.live_is_final %}
@@ -653,17 +655,19 @@
                         <span class="team-name-text" data-bs-toggle="modal" data-bs-target="#modal-{{ home_team|replace(' ', '-')|lower }}">
                             {{ team_name_zh(home_team) }}
                         </span>
-                        {% if spread_val is not none %}
-                        <span class="spread-chip {% if game.ats_winner == 'home' %}covered{% elif game.ats_winner == 'away' %}missed{% endif %}" title="主隊讓分">{{ home_spread }}</span>
-                        {% endif %}
-                        {% if game.home_score is defined and game.home_score is not none %}
-                        <span class="team-score">{{ game.home_score }}</span>
-                        {% elif game.live_home_score is defined and game.live_home_score is not none %}
-                        <span class="team-score live-score">{{ game.live_home_score }}</span>
-                        {% endif %}
-                        {% if not is_upcoming %}
-                        <span class="team-conf">{{ home_conf|round(1) }}%</span>
-                        {% endif %}
+                        <span class="team-row-info">
+                            {% if spread_val is not none %}
+                            <span class="spread-chip {% if game.ats_winner == 'home' %}covered{% elif game.ats_winner == 'away' %}missed{% endif %}" title="主隊讓分">{{ home_spread }}</span>
+                            {% endif %}
+                            {% if game.home_score is defined and game.home_score is not none %}
+                            <span class="team-score">{{ game.home_score }}</span>
+                            {% elif game.live_home_score is defined and game.live_home_score is not none %}
+                            <span class="team-score live-score">{{ game.live_home_score }}</span>
+                            {% endif %}
+                            {% if not is_upcoming %}
+                            <span class="team-conf">{{ home_conf|round(1) }}%</span>
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
 
@@ -2081,6 +2085,13 @@
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLiveStream();
     });
+
+    // Mobile: center the selected date chip on load so the user sees today's context.
+    (function centerSelectedDateChip() {
+        const sel = document.querySelector('.date-chips .date-chip.selected');
+        if (!sel) return;
+        try { sel.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (_) {}
+    })();
     </script>
 </body>
 </html>
