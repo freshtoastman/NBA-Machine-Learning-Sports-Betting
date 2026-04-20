@@ -213,29 +213,18 @@
    "ats_winner": null,
    "is_upcoming": true,
    "is_playoff": true,
-   "playoff_ats_picks": [
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 20pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
-    }
-   ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "主場明顯強勢",
-   "playoff_ats_best_tier": "BRONZE",
-   "playoff_ats_consensus": "home",
+   "playoff_ats_picks": [],
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
    "series_game_num": 2,
-   "series_home_wins": 0,
+   "series_home_wins": 1,
    "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
    "home_team_zh": "聖安東尼奧馬刺",
    "away_team_zh": "波特蘭拓荒者",
@@ -244,10 +233,10 @@
    "injuries_home": [
     "Jordan McLaughlin (缺陣)"
    ],
-   "live_home_score": 100,
-   "live_away_score": 81,
-   "live_status": "Q4 8:20",
-   "live_is_final": false,
+   "live_home_score": 111,
+   "live_away_score": 98,
+   "live_status": "Final               ",
+   "live_is_final": true,
    "live_home_covering": true,
    "injuries_away": []
   },
@@ -409,7 +398,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {
