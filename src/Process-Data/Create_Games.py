@@ -87,9 +87,21 @@ def get_team_index_map(season_key):
 
 
 def fetch_team_table(teams_con, date_str):
-    if not table_exists(teams_con, date_str):
-        return None
-    return pd.read_sql_query(f'SELECT * FROM "{date_str}"', teams_con)
+    if table_exists(teams_con, date_str):
+        return pd.read_sql_query(f'SELECT * FROM "{date_str}"', teams_con)
+    # For future dates (upcoming scheduled games), fall back to the most recent snapshot.
+    # Only consider plain YYYY-MM-DD tables (not _playoff suffix) so features match training.
+    try:
+        cursor = teams_con.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name <= ? AND name GLOB '????-??-??' ORDER BY name DESC LIMIT 1",
+            (date_str,),
+        )
+        row = cursor.fetchone()
+        if row:
+            return pd.read_sql_query(f'SELECT * FROM "{row[0]}"', teams_con)
+    except Exception:
+        pass
+    return None
 
 
 def fetch_advanced_table(adv_con, date_str):
@@ -276,6 +288,13 @@ def main():
                 if game is None:
                     continue
 
+                # Ensure game row carries the actual game date (not the stats snapshot date).
+                # Needed when the stats fallback returns an earlier snapshot for future games.
+                if "Date" in game.index:
+                    game["Date"] = date_str
+                if "Date.1" in game.index:
+                    game["Date.1"] = date_str
+
                 # Merge advanced efficiency stats if available for this date.
                 adv_df = fetch_advanced_table(adv_con, date_str)
                 game = _merge_advanced_into_game(game, adv_df, row.Home, row.Away, index_map)
@@ -286,9 +305,13 @@ def main():
                 days_rest_away.append(row.Days_Rest_Away)
                 win_margin.append(1 if row.Win_Margin > 0 else 0)
 
-                if row.Points < row.OU:
+                points = getattr(row, "Points", None)
+                ou = getattr(row, "OU", None)
+                if points is None or ou is None or points == 0:
+                    ou_cover.append(2)  # unplayed / unknown
+                elif points < ou:
                     ou_cover.append(0)
-                elif row.Points > row.OU:
+                elif points > ou:
                     ou_cover.append(1)
                 else:
                     ou_cover.append(2)
