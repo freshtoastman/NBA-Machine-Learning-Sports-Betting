@@ -58,12 +58,12 @@
    "ou_pick": "OVER",
    "ou_value": 222.5,
    "ou_confidence": 54.6,
-   "home_team_ev": -16.96,
+   "home_team_ev": -16.97,
    "away_team_ev": 10.51,
    "home_team_odds": -120,
    "away_team_odds": 102,
    "home_kelly": 0,
-   "away_kelly": 10.3,
+   "away_kelly": 10.31,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.5,
@@ -581,7 +581,22 @@
     "away_friendly": false,
     "home_friendly": false
    },
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 1.5,
+     "ou": 222.5,
+     "ml_home": -120,
+     "ml_away": 102,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 1.5,
+   "spread_last": 1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Golden State Warriors:LA Clippers": {
    "home_team": "LA Clippers",
@@ -592,7 +607,7 @@
    "ou_pick": "OVER",
    "ou_value": 221.5,
    "ou_confidence": 53.7,
-   "home_team_ev": -19.75,
+   "home_team_ev": -19.76,
    "away_team_ev": 24.63,
    "home_team_odds": -200,
    "away_team_odds": 168,
@@ -1115,7 +1130,22 @@
     "away_friendly": false,
     "home_friendly": false
    },
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 5.0,
+     "ou": 221.5,
+     "ml_home": -200,
+     "ml_away": 168,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 5.0,
+   "spread_last": 5.0,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

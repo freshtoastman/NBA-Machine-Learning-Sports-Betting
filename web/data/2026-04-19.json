@@ -287,11 +287,11 @@
    "ou_value": 216.5,
    "ou_confidence": 51.2,
    "home_team_ev": -29.39,
-   "away_team_ev": 148.33,
+   "away_team_ev": 148.35,
    "home_team_odds": -820,
    "away_team_odds": 570,
    "home_kelly": 0,
-   "away_kelly": 26.02,
+   "away_kelly": 26.03,
    "is_historical": true,
    "ats_model_pick": "home",
    "ats_model_home_prob": 50.4,
@@ -839,7 +839,22 @@
     "away_friendly": true,
     "home_friendly": false
    },
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 13.5,
+     "ou": 216.5,
+     "ml_home": -820,
+     "ml_away": 570,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 13.5,
+   "spread_last": 13.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -850,8 +865,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -29.01,
-   "away_team_ev": 258.8,
+   "home_team_ev": -29.02,
+   "away_team_ev": 258.82,
    "home_team_odds": -1587,
    "away_team_odds": 980,
    "home_kelly": 0,
@@ -1391,7 +1406,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 16.5,
+     "ou": 216.5,
+     "ml_home": -1587,
+     "ml_away": 980,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 16.5,
+   "spread_last": 16.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Orlando Magic:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -1403,7 +1433,7 @@
    "ou_value": 221.5,
    "ou_confidence": 58.6,
    "home_team_ev": -18.58,
-   "away_team_ev": 45.76,
+   "away_team_ev": 45.77,
    "home_team_odds": -405,
    "away_team_odds": 320,
    "home_kelly": 0,
@@ -1923,7 +1953,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 8.5,
+     "ou": 221.5,
+     "ml_home": -405,
+     "ml_away": 320,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 8.5,
+   "spread_last": 8.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -1935,7 +1980,7 @@
    "ou_value": 223.5,
    "ou_confidence": 54.5,
    "home_team_ev": -18.63,
-   "away_team_ev": 77.11,
+   "away_team_ev": 77.12,
    "home_team_odds": -719,
    "away_team_odds": 520,
    "home_kelly": 0,
@@ -2465,7 +2510,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 12.5,
+     "ou": 223.5,
+     "ml_home": -719,
+     "ml_away": 520,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 12.5,
+   "spread_last": 12.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

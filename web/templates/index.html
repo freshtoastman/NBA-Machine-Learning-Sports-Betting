@@ -667,6 +667,43 @@
                 </div>
 
                 <div class="pick-meta">
+                    {# Spread-movement chart: sparkline + first/last/move summary #}
+                    {% set _hist = game.odds_history|default([]) %}
+                    {% set _hist_points = _hist|selectattr('spread','defined')|list %}
+                    {% if _hist_points|length >= 1 and game.spread_first is defined and game.spread_last is defined %}
+                    {% set _move = game.spread_move|default(0) %}
+                    {% set _first_iso = game.spread_first_fetched_at %}
+                    {% set _last_iso = game.spread_last_fetched_at %}
+                    <div class="pick-row spread-move-row" title="讓分取得時間及變化歷史">
+                        <span class="pick-label">讓分走勢</span>
+                        <span class="spread-move-open">開盤 <b>{{ '%+.1f'|format(game.spread_first) }}</b></span>
+                        <span class="spread-move-arrow">→</span>
+                        <span class="spread-move-current">現在 <b>{{ '%+.1f'|format(game.spread_last) }}</b></span>
+                        {% if _move != 0 %}
+                        <span class="spread-move-delta {% if _move > 0 %}delta-up{% else %}delta-down{% endif %}">
+                            {% if _move > 0 %}▲{% else %}▼{% endif %} {{ '%.1f'|format(_move|abs) }}
+                        </span>
+                        {% else %}
+                        <span class="spread-move-delta delta-flat">— 無變動</span>
+                        {% endif %}
+                        {% if _hist_points|length >= 2 %}
+                        {% set _vals = [] %}
+                        {% for h in _hist_points %}{% set _ = _vals.append(h.spread) %}{% endfor %}
+                        {% set _min = _vals|min %}
+                        {% set _max = _vals|max %}
+                        {% set _range = (_max - _min) if (_max - _min) > 0 else 1 %}
+                        <svg class="spread-sparkline" width="96" height="24" viewBox="0 0 96 24" aria-hidden="true">
+                            <polyline fill="none" stroke="#69aaff" stroke-width="1.5"
+                                points="{% for v in _vals %}{{ loop.index0 * (96 / (_vals|length - 1)) }},{{ 22 - (v - _min) / _range * 18 }}{% if not loop.last %} {% endif %}{% endfor %}" />
+                            {% for v in _vals %}
+                            <circle cx="{{ loop.index0 * (96 / (_vals|length - 1)) }}" cy="{{ 22 - (v - _min) / _range * 18 }}" r="1.8" fill="#69aaff" />
+                            {% endfor %}
+                        </svg>
+                        <span class="spread-move-count">{{ _hist_points|length }} 次更新</span>
+                        {% endif %}
+                        <span class="spread-move-time" title="首次抓取: {{ _first_iso }}&#10;最新抓取: {{ _last_iso }}">🕒 {{ (_last_iso or '')[:16]|replace('T',' ') }} UTC</span>
+                    </div>
+                    {% endif %}
                     {% if is_upcoming %}
                     <div class="pick-row upcoming-row">
                         <span class="upcoming-badge">📅 即將比賽</span>

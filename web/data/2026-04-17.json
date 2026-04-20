@@ -38,11 +38,11 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 60.0,
-   "home_team_ev": 7.57,
-   "away_team_ev": -11.58,
+   "home_team_ev": 7.56,
+   "away_team_ev": -11.57,
    "home_team_odds": 144,
    "away_team_odds": -172,
-   "home_kelly": 5.26,
+   "home_kelly": 5.25,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -550,7 +550,22 @@
     "away_friendly": false,
     "home_friendly": false
    },
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": -3.5,
+     "ou": 218.5,
+     "ml_home": 144,
+     "ml_away": -172,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": -3.5,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Golden State Warriors:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1084,7 +1099,22 @@
     "away_friendly": false,
     "home_friendly": false
    },
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 2.5,
+     "ou": 218.5,
+     "ml_home": -144,
+     "ml_away": 122,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 2.5,
+   "spread_last": 2.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

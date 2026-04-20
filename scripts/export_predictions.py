@@ -304,6 +304,48 @@ def export_date(target_date: date) -> dict | None:
     except Exception:
         pass
 
+    # Load odds/spread history for all games on this date.
+    _odds_db_path = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+    _odds_history_map: dict[tuple, list] = {}
+    try:
+        import sqlite3 as _osql
+        with _osql.connect(str(_odds_db_path)) as _ocon:
+            _ocon.execute(
+                """
+                CREATE TABLE IF NOT EXISTS odds_history (
+                    fetched_at TEXT NOT NULL,
+                    season TEXT NOT NULL,
+                    Date TEXT NOT NULL,
+                    Home TEXT NOT NULL,
+                    Away TEXT NOT NULL,
+                    OU REAL, Spread REAL, ML_Home INTEGER, ML_Away INTEGER,
+                    source TEXT,
+                    PRIMARY KEY (fetched_at, Date, Home, Away)
+                )
+                """
+            )
+            _d_iso = target_date.isoformat()
+            for g in games_list:
+                _rows = _ocon.execute(
+                    "SELECT fetched_at, Spread, OU, ML_Home, ML_Away, source FROM odds_history "
+                    "WHERE Date=? AND Home=? AND Away=? ORDER BY fetched_at ASC",
+                    (_d_iso, g["home_team"], g["away_team"]),
+                ).fetchall()
+                if _rows:
+                    _odds_history_map[(g["home_team"], g["away_team"])] = [
+                        {
+                            "fetched_at": r[0],
+                            "spread": r[1],
+                            "ou": r[2],
+                            "ml_home": r[3],
+                            "ml_away": r[4],
+                            "source": r[5],
+                        }
+                        for r in _rows
+                    ]
+    except Exception:
+        pass
+
     games_dict = {}
     for g in games_list:
         key = f"{g['away_team']}:{g['home_team']}"
@@ -326,6 +368,17 @@ def export_date(target_date: date) -> dict | None:
         if _crew:
             g["referee_crew"] = _crew
         g["injuries_away"] = injury_report.get(g["away_team"], [])
+        # Odds/spread movement history.
+        _hist = _odds_history_map.get((g["home_team"], g["away_team"]))
+        if _hist:
+            g["odds_history"] = _hist
+            _sp_vals = [h["spread"] for h in _hist if h.get("spread") is not None]
+            if _sp_vals:
+                g["spread_first"] = _sp_vals[0]
+                g["spread_last"] = _sp_vals[-1]
+                g["spread_move"] = round(_sp_vals[-1] - _sp_vals[0], 2)
+                g["spread_first_fetched_at"] = _hist[0]["fetched_at"]
+                g["spread_last_fetched_at"] = _hist[-1]["fetched_at"]
         games_dict[key] = g
 
     # Summary stats.

@@ -5,7 +5,7 @@ Usage: PYTHONPATH=. python scripts/update_odds.py
 import sqlite3
 import subprocess
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -14,6 +14,63 @@ from src.Utils.tools import today_taipei
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DB_PATH = BASE_DIR / "Data" / "OddsData.sqlite"
+SOURCE_TAG = "sbr_fanduel"
+
+
+def _ensure_history_table(con: sqlite3.Connection) -> None:
+    con.execute(
+        """
+        CREATE TABLE IF NOT EXISTS odds_history (
+            fetched_at TEXT NOT NULL,
+            season TEXT NOT NULL,
+            Date TEXT NOT NULL,
+            Home TEXT NOT NULL,
+            Away TEXT NOT NULL,
+            OU REAL,
+            Spread REAL,
+            ML_Home INTEGER,
+            ML_Away INTEGER,
+            source TEXT,
+            PRIMARY KEY (fetched_at, Date, Home, Away)
+        )
+        """
+    )
+    con.execute(
+        "CREATE INDEX IF NOT EXISTS idx_odds_history_game ON odds_history(season, Date, Home, Away)"
+    )
+
+
+def _log_history_snapshot(
+    con: sqlite3.Connection,
+    season: str,
+    target_date: date,
+    home: str,
+    away: str,
+    ou,
+    spread,
+    ml_home,
+    ml_away,
+    fetched_at_iso: str,
+) -> None:
+    """Insert a row into odds_history only when spread/OU/ML differ from the last snapshot."""
+    row = con.execute(
+        "SELECT OU, Spread, ML_Home, ML_Away FROM odds_history "
+        "WHERE season=? AND Date=? AND Home=? AND Away=? "
+        "ORDER BY fetched_at DESC LIMIT 1",
+        (season, str(target_date), home, away),
+    ).fetchone()
+    changed = row is None or any(
+        (row[i] is None) != (v is None) or (v is not None and row[i] != v)
+        for i, v in enumerate([ou, spread, ml_home, ml_away])
+    )
+    if not changed:
+        return
+    con.execute(
+        "INSERT OR REPLACE INTO odds_history "
+        "(fetched_at, season, Date, Home, Away, OU, Spread, ML_Home, ML_Away, source) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (fetched_at_iso, season, str(target_date), home, away, ou, spread, ml_home, ml_away, SOURCE_TAG),
+    )
 
 
 def fetch_sbr_odds_for_date(target_date: date) -> list[dict]:
@@ -36,9 +93,14 @@ def get_unplayed_dates(con: sqlite3.Connection, season_key: str, from_date: date
     return [date.fromisoformat(r[0]) for r in rows]
 
 
-def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: date, games: list[dict], sportsbook: str = "fanduel") -> int:
-    """Update OU, Spread, ML_Home, ML_Away for unplayed games on target_date. Returns count updated."""
+def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: date, games: list[dict], sportsbook: str = "fanduel", fetched_at_iso: str | None = None) -> int:
+    """Update OU, Spread, ML_Home, ML_Away for unplayed games on target_date. Returns count updated.
+
+    Also appends a snapshot to odds_history whenever any value changes.
+    """
     updated = 0
+    if fetched_at_iso is None:
+        fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
     for game in games:
         home = game.get("home_team", "")
         away = game.get("away_team", "")
@@ -56,6 +118,9 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
             f'WHERE Date=? AND Home=? AND Away=? AND (Points IS NULL OR Points = 0)',
             (ou, spread, ml_home, ml_away, str(target_date), home, away),
         ).rowcount
+        _log_history_snapshot(
+            con, season_key, target_date, home, away, ou, spread, ml_home, ml_away, fetched_at_iso
+        )
         if n:
             print(f"  {home} vs {away}: spread={spread:+.1f}  OU={ou}")
             updated += n
@@ -74,7 +139,9 @@ def main():
         season_key = "2025-26"
 
     total_updated = 0
+    fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with sqlite3.connect(str(DB_PATH)) as con:
+        _ensure_history_table(con)
         unplayed = get_unplayed_dates(con, season_key, today - timedelta(days=2))
         if not unplayed:
             print("No unplayed games found in DB — nothing to update.")
@@ -84,7 +151,7 @@ def main():
             if not games:
                 print(f"  No games returned from SBR for {d}")
                 continue
-            n = update_odds_for_date(con, season_key, d, games)
+            n = update_odds_for_date(con, season_key, d, games, fetched_at_iso=fetched_at_iso)
             total_updated += n
             if n == 0:
                 print(f"  No rows updated for {d} (odds unchanged or names mismatch)")

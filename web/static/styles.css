@@ -1322,6 +1322,70 @@ a {
     opacity: 0.65;
 }
 
+.spread-move-row {
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.spread-move-row .pick-label {
+    color: #9ab3d9;
+}
+
+.spread-move-open b,
+.spread-move-current b {
+    color: #e7ecf3;
+}
+
+.spread-move-arrow {
+    color: #5a6878;
+}
+
+.spread-move-delta {
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.spread-move-delta.delta-up {
+    color: #ff8b6b;
+    background: rgba(255, 139, 107, 0.14);
+    border: 1px solid rgba(255, 139, 107, 0.35);
+}
+
+.spread-move-delta.delta-down {
+    color: #5be3a0;
+    background: rgba(91, 227, 160, 0.14);
+    border: 1px solid rgba(91, 227, 160, 0.35);
+}
+
+.spread-move-delta.delta-flat {
+    color: #7e8a99;
+    background: rgba(126, 138, 153, 0.1);
+    border: 1px solid rgba(126, 138, 153, 0.25);
+}
+
+.spread-sparkline {
+    vertical-align: middle;
+    margin: 0 4px;
+}
+
+.spread-move-count {
+    color: #6f8098;
+    font-size: 11px;
+}
+
+.spread-move-time {
+    color: #6f8098;
+    font-size: 11px;
+    margin-left: auto;
+    cursor: help;
+}
+
 /* Use full-row tint to mark which side covered the spread.
    Cleaner than a "蓋過" badge that breaks column alignment. */
 .team-row.team-covered {

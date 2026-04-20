@@ -103,7 +103,7 @@
    "ou_value": 216.5,
    "ou_confidence": 54.6,
    "home_team_ev": -28.48,
-   "away_team_ev": 130.73,
+   "away_team_ev": 130.74,
    "home_team_odds": -719,
    "away_team_odds": 520,
    "home_kelly": 0,
@@ -630,7 +630,22 @@
    "live_home_covering": true,
    "injuries_away": [
     "Joel Embiid (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 13.5,
+     "ou": 216.5,
+     "ml_home": -719,
+     "ml_away": 520,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 13.5,
+   "spread_last": 13.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -641,8 +656,8 @@
    "ou_pick": "UNDER",
    "ou_value": 220.5,
    "ou_confidence": 53.3,
-   "home_team_ev": -17.21,
-   "away_team_ev": 60.7,
+   "home_team_ev": -17.22,
+   "away_team_ev": 60.71,
    "home_team_odds": -621,
    "away_team_odds": 460,
    "home_kelly": 0,
@@ -1138,7 +1153,22 @@
    "live_status": "Final",
    "live_is_final": true,
    "live_home_covering": true,
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 11.5,
+     "ou": 220.5,
+     "ml_home": -621,
+     "ml_away": 460,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 11.5,
+   "spread_last": 11.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1150,7 +1180,7 @@
    "ou_value": 205.5,
    "ou_confidence": 51.5,
    "home_team_ev": 32.97,
-   "away_team_ev": -26.53,
+   "away_team_ev": -26.52,
    "home_team_odds": 152,
    "away_team_odds": -180,
    "home_kelly": 21.69,
@@ -1675,7 +1705,22 @@
    ],
    "injuries_away": [
     "Kevin Durant (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": -4.5,
+     "ou": 205.5,
+     "ml_home": 152,
+     "ml_away": -180,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": -4.5,
+   "spread_last": -4.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

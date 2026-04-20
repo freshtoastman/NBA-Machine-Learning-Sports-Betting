@@ -71,11 +71,11 @@
    "ou_value": 222.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.68,
-   "away_team_ev": 69.2,
+   "away_team_ev": 69.21,
    "home_team_odds": -350,
    "away_team_odds": 280,
    "home_kelly": 0,
-   "away_kelly": 24.71,
+   "away_kelly": 24.72,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.9,
@@ -573,7 +573,22 @@
    "injuries_home": [
     "Thomas Bryant (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 8.5,
+     "ou": 222.5,
+     "ml_home": -350,
+     "ml_away": 280,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 8.5,
+   "spread_last": 8.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Atlanta Hawks:New York Knicks": {
    "home_team": "New York Knicks",
@@ -589,7 +604,7 @@
    "home_team_odds": -225,
    "away_team_odds": 188,
    "home_kelly": 0,
-   "away_kelly": 6.92,
+   "away_kelly": 6.93,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.5,
@@ -1090,23 +1105,38 @@
    "injuries_away": [
     "Onyeka Okongwu (存疑)",
     "Jock Landale (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 5.5,
+     "ou": 217.5,
+     "ml_home": -225,
+     "ml_away": 188,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 5.5,
+   "spread_last": 5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
    "away_team": "Minnesota Timberwolves",
-   "home_confidence": 57.7,
-   "away_confidence": 42.3,
+   "home_confidence": 57.6,
+   "away_confidence": 42.4,
    "winner": "home",
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
    "home_team_ev": -21.0,
-   "away_team_ev": 35.51,
+   "away_team_ev": 35.52,
    "home_team_odds": -270,
    "away_team_odds": 220,
    "home_kelly": 0,
-   "away_kelly": 16.14,
+   "away_kelly": 16.15,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 45.8,
@@ -1626,7 +1656,22 @@
    ],
    "injuries_away": [
     "Anthony Edwards (存疑)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 6.5,
+     "ou": 231.5,
+     "ml_home": -270,
+     "ml_away": 220,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 6.5,
+   "spread_last": 6.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

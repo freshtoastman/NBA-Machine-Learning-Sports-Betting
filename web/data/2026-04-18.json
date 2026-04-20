@@ -154,7 +154,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.13,
-   "away_team_ev": 63.67,
+   "away_team_ev": 63.68,
    "home_team_odds": -330,
    "away_team_odds": 265,
    "home_kelly": 0,
@@ -684,7 +684,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 8.0,
+     "ou": 219.5,
+     "ml_home": -330,
+     "ml_away": 265,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 8.0,
+   "spread_last": 8.0,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
@@ -695,12 +710,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.48,
+   "home_team_ev": -19.49,
    "away_team_ev": 30.71,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 14.62,
+   "away_kelly": 14.63,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.5,
@@ -1216,7 +1231,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 6.0,
+     "ou": 231.5,
+     "ml_home": -255,
+     "ml_away": 210,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 6.0,
+   "spread_last": 6.0,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Atlanta Hawks:New York Knicks": {
    "home_team": "New York Knicks",
@@ -1227,8 +1257,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -11.4,
-   "away_team_ev": 11.01,
+   "home_team_ev": -11.41,
+   "away_team_ev": 11.02,
    "home_team_odds": -220,
    "away_team_odds": 184,
    "home_kelly": 0,
@@ -1738,7 +1768,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 5.5,
+     "ou": 216.5,
+     "ml_home": -220,
+     "ml_away": 184,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 5.5,
+   "spread_last": 5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1749,7 +1794,7 @@
    "ou_pick": "OVER",
    "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 51.3,
+   "home_team_ev": 51.29,
    "away_team_ev": -32.03,
    "home_team_odds": 184,
    "away_team_odds": -220,
@@ -2260,7 +2305,22 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": -5.5,
+     "ou": 206.5,
+     "ml_home": 184,
+     "ml_away": -220,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": -5.5,
+   "spread_last": -5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [

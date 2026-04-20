@@ -82,7 +82,7 @@
    "ou_value": 217.5,
    "ou_confidence": 65.0,
    "home_team_ev": -20.54,
-   "away_team_ev": 59.64,
+   "away_team_ev": 59.65,
    "home_team_odds": -461,
    "away_team_odds": 360,
    "home_kelly": 0,
@@ -589,7 +589,22 @@
    "live_home_covering": false,
    "injuries_away": [
     "Jonathan Isaac (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 9.5,
+     "ou": 217.5,
+     "ml_home": -461,
+     "ml_away": 360,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 9.5,
+   "spread_last": 9.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -601,11 +616,11 @@
    "ou_value": 213.5,
    "ou_confidence": 48.5,
    "home_team_ev": -29.63,
-   "away_team_ev": 260.33,
+   "away_team_ev": 260.35,
    "home_team_odds": -1786,
    "away_team_odds": 980,
    "home_kelly": 0,
-   "away_kelly": 26.56,
+   "away_kelly": 26.57,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1129,7 +1144,22 @@
    "injuries_away": [
     "Jordan Goodwin (缺陣)",
     "Mark Williams (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-20T13:54:45+00:00",
+     "spread": 16.5,
+     "ou": 213.5,
+     "ml_home": -1786,
+     "ml_away": 980,
+     "source": "seed_initial"
+    }
+   ],
+   "spread_first": 16.5,
+   "spread_last": 16.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },
  "active_series": [
