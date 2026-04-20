@@ -701,7 +701,7 @@
                         </svg>
                         <span class="spread-move-count">{{ _hist_points|length }} 次更新</span>
                         {% endif %}
-                        <span class="spread-move-time" title="首次抓取: {{ _first_iso }}&#10;最新抓取: {{ _last_iso }}">🕒 {{ (_last_iso or '')[:16]|replace('T',' ') }} UTC</span>
+                        <span class="spread-move-time" title="首次抓取: {{ _first_iso|tw_time }}&#10;最新抓取: {{ _last_iso|tw_time }} (台灣時間)">🕒 {{ _last_iso|tw_time }} 台灣時間</span>
                     </div>
                     {% endif %}
                     {% if is_upcoming %}

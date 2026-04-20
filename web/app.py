@@ -28,6 +28,20 @@ app.secret_key = os.environ.get("FLASK_SECRET_KEY", secrets.token_hex(32))
 app.jinja_env.add_extension("jinja2.ext.loopcontrols")
 
 
+@app.template_filter("tw_time")
+def _tw_time(iso_str, fmt="%Y-%m-%d %H:%M"):
+    """Render an ISO-8601 UTC timestamp as Taiwan time (UTC+8)."""
+    if not iso_str:
+        return ""
+    try:
+        dt = datetime.fromisoformat(str(iso_str).replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=ZoneInfo("UTC"))
+        return dt.astimezone(ZoneInfo("Asia/Taipei")).strftime(fmt)
+    except Exception:
+        return str(iso_str)
+
+
 # ---------------------------------------------------------------------------
 # Auth: whitelist-based access control
 # ---------------------------------------------------------------------------
