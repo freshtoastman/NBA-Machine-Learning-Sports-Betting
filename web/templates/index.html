@@ -821,14 +821,21 @@
                 {# Referee crew ATS signal — shown when officials data is available #}
                 {% if game.referee_crew %}
                 {% set crew = game.referee_crew %}
-                <div class="referee-row{% if crew.away_friendly %} ref-away-friendly{% elif crew.home_friendly %} ref-home-friendly{% endif %}">
-                    <span class="ref-label">👨‍⚖️ 裁判</span>
+                <div class="referee-row{% if crew.away_friendly or (crew.has_significant and crew.significant_officials|selectattr('direction','equalto','away')|list|length) %} ref-away-friendly{% elif crew.home_friendly or (crew.has_significant and crew.significant_officials|selectattr('direction','equalto','home')|list|length) %} ref-home-friendly{% endif %}">
+                    <span class="ref-label">👨‍⚖️ 裁判{% if crew.has_significant %} ⚠️{% endif %}</span>
                     <span class="ref-crew-avg {% if crew.away_friendly %}ref-away{% elif crew.home_friendly %}ref-home{% endif %}">
                         主隊蓋盤率 {{ crew.avg_home_cover_pct }}%
                         {% if crew.away_friendly %}▼ 客隊友好{% elif crew.home_friendly %}▲ 主隊友好{% endif %}
                     </span>
                     <span class="ref-officials">
-                        {% for off in crew.officials %}{{ off.name }}({{ off.home_cover_pct }}%){% if not loop.last %}, {% endif %}{% endfor %}
+                        {% for off in crew.officials -%}
+                        {%- if off.significant -%}
+                        <span class="ref-sig ref-sig-{{ off.direction }}" title="p={{ off.p_value }} (n={{ off.games }})">{{ off.name }} {% if off.direction == 'away' %}▼{% else %}▲{% endif %}{{ off.home_cover_pct }}%</span>
+                        {%- else -%}
+                        {{ off.name }}({{ off.home_cover_pct }}%)
+                        {%- endif -%}
+                        {%- if not loop.last %}, {% endif %}
+                        {%- endfor %}
                     </span>
                 </div>
                 {% endif %}

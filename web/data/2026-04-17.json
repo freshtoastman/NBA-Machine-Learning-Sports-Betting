@@ -38,11 +38,11 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 60.0,
-   "home_team_ev": 7.57,
-   "away_team_ev": -11.58,
+   "home_team_ev": 7.56,
+   "away_team_ev": -11.57,
    "home_team_odds": 144,
    "away_team_odds": -172,
-   "home_kelly": 5.26,
+   "home_kelly": 5.25,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -534,22 +534,33 @@
      {
       "name": "Marc Davis",
       "games": 74,
-      "home_cover_pct": 40.5
+      "home_cover_pct": 40.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1302
      },
      {
       "name": "Sean Wright",
       "games": 57,
-      "home_cover_pct": 52.6
+      "home_cover_pct": 52.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7914
      },
      {
       "name": "Marat Kogut",
       "games": 66,
-      "home_cover_pct": 48.5
+      "home_cover_pct": 48.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9022
      }
     ],
     "avg_home_cover_pct": 47.2,
     "away_friendly": false,
-    "home_friendly": false
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
    },
    "injuries_away": [],
    "odds_history": [
@@ -1084,22 +1095,33 @@
      {
       "name": "Scott Foster",
       "games": 56,
-      "home_cover_pct": 41.1
+      "home_cover_pct": 41.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2288
      },
      {
       "name": "Tre Maddox",
       "games": 60,
-      "home_cover_pct": 46.7
+      "home_cover_pct": 46.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6989
      },
      {
       "name": "Mitchell Ervin",
       "games": 70,
-      "home_cover_pct": 55.7
+      "home_cover_pct": 55.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.403
      }
     ],
     "avg_home_cover_pct": 47.8,
     "away_friendly": false,
-    "home_friendly": false
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
    },
    "injuries_away": [],
    "odds_history": [

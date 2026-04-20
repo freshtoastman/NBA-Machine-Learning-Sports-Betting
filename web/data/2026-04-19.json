@@ -287,11 +287,11 @@
    "ou_value": 216.5,
    "ou_confidence": 51.2,
    "home_team_ev": -29.39,
-   "away_team_ev": 148.33,
+   "away_team_ev": 148.35,
    "home_team_odds": -820,
    "away_team_odds": 570,
    "home_kelly": 0,
-   "away_kelly": 26.02,
+   "away_kelly": 26.03,
    "is_historical": true,
    "ats_model_pick": "home",
    "ats_model_home_prob": 50.4,
@@ -823,22 +823,33 @@
      {
       "name": "Scott Foster",
       "games": 56,
-      "home_cover_pct": 41.1
+      "home_cover_pct": 41.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2288
      },
      {
       "name": "Pat Fraher",
       "games": 71,
-      "home_cover_pct": 40.8
+      "home_cover_pct": 40.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1539
      },
      {
       "name": "Tre Maddox",
       "games": 60,
-      "home_cover_pct": 46.7
+      "home_cover_pct": 46.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6989
      }
     ],
     "avg_home_cover_pct": 42.9,
     "away_friendly": true,
-    "home_friendly": false
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
    },
    "injuries_away": [],
    "odds_history": [
@@ -866,8 +877,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -29.01,
-   "away_team_ev": 258.8,
+   "home_team_ev": -29.02,
+   "away_team_ev": 258.82,
    "home_team_odds": -1587,
    "away_team_odds": 980,
    "home_kelly": 0,
@@ -1435,7 +1446,7 @@
    "ou_value": 221.5,
    "ou_confidence": 58.6,
    "home_team_ev": -18.58,
-   "away_team_ev": 45.76,
+   "away_team_ev": 45.77,
    "home_team_odds": -405,
    "away_team_odds": 320,
    "home_kelly": 0,
@@ -1983,7 +1994,7 @@
    "ou_value": 223.5,
    "ou_confidence": 54.5,
    "home_team_ev": -18.63,
-   "away_team_ev": 77.11,
+   "away_team_ev": 77.12,
    "home_team_odds": -719,
    "away_team_odds": 520,
    "home_kelly": 0,

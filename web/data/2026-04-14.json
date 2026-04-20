@@ -58,7 +58,7 @@
    "ou_pick": "OVER",
    "ou_value": 228.5,
    "ou_confidence": 52.5,
-   "home_team_ev": -12.29,
+   "home_team_ev": -12.3,
    "away_team_ev": 12.02,
    "home_team_odds": -210,
    "away_team_odds": 176,
@@ -585,22 +585,33 @@
      {
       "name": "Zach Zarba",
       "games": 69,
-      "home_cover_pct": 52.2
+      "home_cover_pct": 52.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8099
      },
      {
       "name": "Curtis Blair",
       "games": 66,
-      "home_cover_pct": 45.5
+      "home_cover_pct": 45.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5386
      },
      {
       "name": "Gediminas Petraitis",
       "games": 74,
-      "home_cover_pct": 55.4
+      "home_cover_pct": 55.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.416
      }
     ],
     "avg_home_cover_pct": 51.0,
     "away_friendly": false,
-    "home_friendly": false
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
    },
    "injuries_away": [],
    "odds_history": [
@@ -1124,22 +1135,42 @@
      {
       "name": "Eric Dalen",
       "games": 53,
-      "home_cover_pct": 45.3
+      "home_cover_pct": 45.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5831
      },
      {
       "name": "James Capers",
       "games": 44,
-      "home_cover_pct": 63.6
+      "home_cover_pct": 63.6,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0961
      },
      {
       "name": "Nick Buchert",
       "games": 73,
-      "home_cover_pct": 53.4
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.64
      }
     ],
     "avg_home_cover_pct": 54.1,
     "away_friendly": false,
-    "home_friendly": false
+    "home_friendly": false,
+    "has_significant": true,
+    "significant_officials": [
+     {
+      "name": "James Capers",
+      "games": 44,
+      "home_cover_pct": 63.6,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0961
+     }
+    ]
    },
    "injuries_away": [],
    "odds_history": [

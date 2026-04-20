@@ -673,6 +673,9 @@ a {
 .ref-crew-avg.ref-away { color: #f4a261; }
 .ref-crew-avg.ref-home { color: #7fd69b; }
 .ref-officials { font-size: 10px; color: var(--muted); flex: 1; }
+.ref-sig { font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+.ref-sig-away { color: #f4a261; background: rgba(244,162,97,0.12); border: 1px solid rgba(244,162,97,0.3); }
+.ref-sig-home { color: #7fd69b; background: rgba(127,214,155,0.12); border: 1px solid rgba(127,214,155,0.3); }
 
 .ai-section-lbl { font-size: 11px; font-weight: 700; color: var(--accent-2); width: 100%; }
 .ai-factor { display: inline-block; padding: 2px 8px; border-radius: 6px; background: rgba(35, 214, 198, 0.1); border: 1px solid rgba(35, 214, 198, 0.25); color: var(--text); font-size: 11px; }

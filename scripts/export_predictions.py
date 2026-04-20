@@ -267,6 +267,10 @@ def export_date(target_date: date) -> dict | None:
     _ref_db_path = Path(__file__).resolve().parents[1] / "Data" / "referee_data.sqlite"
     _ref_crew_map: dict[tuple, dict] = {}  # (home_team, away_team) -> crew_info
     try:
+        try:
+            from scipy.stats import binomtest as _binomtest
+        except Exception:
+            _binomtest = None
         import sqlite3 as _rsql
         with _rsql.connect(str(_ref_db_path)) as _rcon:
             for g in games_list:
@@ -282,17 +286,35 @@ def export_date(target_date: date) -> dict | None:
                 if not officials:
                     continue
                 crew_stats = []
+                sig_officials = []
                 for _oname in officials:
                     _orow = _rcon.execute(
                         'SELECT games, home_covers, home_cover_pct FROM referee_ats'
                         ' WHERE official_name = ?', (_oname,)
                     ).fetchone()
                     if _orow and _orow[0] >= 15:
-                        crew_stats.append({
+                        _n, _hc, _pct = _orow
+                        _p = None
+                        _sig = False
+                        if _binomtest is not None and _n >= 30:
+                            try:
+                                _p = float(_binomtest(int(_hc), int(_n), 0.5).pvalue)
+                                _sig = _p < 0.10
+                            except Exception:
+                                pass
+                        _dir = "home" if _pct > 50 else "away"
+                        stat = {
                             "name": _oname,
-                            "games": _orow[0],
-                            "home_cover_pct": round(_orow[2], 1),
-                        })
+                            "games": _n,
+                            "home_cover_pct": round(_pct, 1),
+                            "significant": _sig,
+                            "direction": _dir if _sig else None,
+                        }
+                        if _p is not None:
+                            stat["p_value"] = round(_p, 4)
+                        crew_stats.append(stat)
+                        if _sig:
+                            sig_officials.append(stat)
                 if crew_stats:
                     avg_pct = sum(s["home_cover_pct"] for s in crew_stats) / len(crew_stats)
                     _ref_crew_map[(g["home_team"], g["away_team"])] = {
@@ -300,6 +322,8 @@ def export_date(target_date: date) -> dict | None:
                         "avg_home_cover_pct": round(avg_pct, 1),
                         "away_friendly": avg_pct < 44.0,
                         "home_friendly": avg_pct > 56.0,
+                        "has_significant": len(sig_officials) > 0,
+                        "significant_officials": sig_officials,
                     }
     except Exception:
         pass
