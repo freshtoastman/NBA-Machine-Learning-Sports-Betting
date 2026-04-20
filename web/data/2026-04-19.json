@@ -1920,7 +1920,7 @@
    "injuries_home": [],
    "live_home_score": 101,
    "live_away_score": 112,
-   "live_status": "05:15 4th",
+   "live_status": "01:33 4th",
    "live_is_final": false,
    "live_home_covering": false,
    "injuries_away": [
@@ -2469,6 +2469,11 @@
    "injuries_home": [
     "Jordan McLaughlin (缺陣)"
    ],
+   "live_home_score": 9,
+   "live_away_score": 9,
+   "live_status": "21:00 ET",
+   "live_is_final": false,
+   "live_home_covering": false,
    "injuries_away": []
   }
  },

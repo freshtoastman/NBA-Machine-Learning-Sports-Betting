@@ -1,5 +1,5 @@
 {
- "date": "2026-04-21",
+ "date": "2026-04-24",
  "is_today": false,
  "summary": {
   "games": 3,
@@ -12,45 +12,11 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
-    "game_key": "Philadelphia 76ers:Boston Celtics",
-    "home_team": "Boston Celtics",
-    "away_team": "Philadelphia 76ers",
-    "home_team_zh": "波士頓塞爾提克",
-    "away_team_zh": "費城七六人",
-    "signal": "G2大勝後延續",
-    "side": "home",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.643,
-    "backtest_roi": 21.5,
-    "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
-    "ats_winner": null,
-    "strong_consensus": null,
-    "has_conflict": false
-   },
-   {
-    "game_key": "Houston Rockets:Los Angeles Lakers",
-    "home_team": "Los Angeles Lakers",
-    "away_team": "Houston Rockets",
-    "home_team_zh": "洛杉磯湖人",
-    "away_team_zh": "休士頓火箭",
-    "signal": "G2大勝後延續",
-    "side": "home",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.643,
-    "backtest_roi": 21.5,
-    "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
-    "ats_winner": null,
-    "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Houston Rockets:Los Angeles Lakers",
-    "home_team": "Los Angeles Lakers",
-    "away_team": "Houston Rockets",
-    "home_team_zh": "洛杉磯湖人",
-    "away_team_zh": "休士頓火箭",
+    "game_key": "Boston Celtics:Philadelphia 76ers",
+    "home_team": "Philadelphia 76ers",
+    "away_team": "Boston Celtics",
+    "home_team_zh": "費城七六人",
+    "away_team_zh": "波士頓塞爾提克",
     "signal": "客場明顯強勢",
     "side": "away",
     "ats_side": "讓分(押fav)",
@@ -60,16 +26,33 @@
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
     "strong_consensus": null,
-    "has_conflict": true
+    "has_conflict": false
+   },
+   {
+    "game_key": "San Antonio Spurs:Portland Trail Blazers",
+    "home_team": "Portland Trail Blazers",
+    "away_team": "San Antonio Spurs",
+    "home_team_zh": "波特蘭拓荒者",
+    "away_team_zh": "聖安東尼奧馬刺",
+    "signal": "客場明顯強勢",
+    "side": "away",
+    "ats_side": "讓分(押fav)",
+    "tier": "SILVER",
+    "backtest_wr": 0.594,
+    "backtest_roi": 13.5,
+    "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
+    "ats_winner": null,
+    "strong_consensus": null,
+    "has_conflict": false
    }
   ],
-  "playoff_ats_count": 3,
+  "playoff_ats_count": 2,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
+   "Houston Rockets: Kevin Durant (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)",
-   "Houston Rockets: Kevin Durant (缺陣)"
+   "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -87,18 +70,18 @@
   "golden_hit_rate": null
  },
  "games": {
-  "Philadelphia 76ers:Boston Celtics": {
-   "home_team": "Boston Celtics",
-   "away_team": "Philadelphia 76ers",
+  "Boston Celtics:Philadelphia 76ers": {
+   "home_team": "Philadelphia 76ers",
+   "away_team": "Boston Celtics",
    "home_score": null,
    "away_score": null,
-   "spread": 13.5,
-   "Spread": 13.5,
-   "OU": 216.5,
-   "ML_Home": -699.0,
-   "ML_Away": 520.0,
-   "Days_Rest_Home": 2,
-   "Days_Rest_Away": 2,
+   "spread": null,
+   "Spread": null,
+   "OU": null,
+   "ML_Home": null,
+   "ML_Away": null,
+   "Days_Rest_Home": 5,
+   "Days_Rest_Away": 3,
    "home_confidence": null,
    "away_confidence": null,
    "value_side": null,
@@ -120,69 +103,49 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
-     "signal": "G2大勝後延續",
-     "side": "home",
+     "signal": "客場明顯強勢",
+     "side": "away",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "backtest_roi": 21.5,
-     "backtest_n": 28,
-     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
-    },
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 20pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
-    },
-    {
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "backtest_roi": 4.8,
-     "backtest_n": 116,
-     "reason_zh": "G1大勝 18.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
+     "backtest_wr": 0.594,
+     "backtest_roi": 13.5,
+     "backtest_n": 175,
+     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G2大勝後延續",
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "客場明顯強勢",
    "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": "home",
+   "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
-   "series_game_num": 2,
-   "series_home_wins": 1,
-   "series_away_wins": 0,
-   "series_status_text": "主隊領先 1-0",
+   "series_game_num": 3,
+   "series_home_wins": 0,
+   "series_away_wins": 1,
+   "series_status_text": "客隊領先 1-0",
    "series_is_elimination": false,
-   "home_team_zh": "波士頓塞爾提克",
-   "away_team_zh": "費城七六人",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "injuries_home": [],
-   "injuries_away": [
+   "home_team_zh": "費城七六人",
+   "away_team_zh": "波士頓塞爾提克",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+   "injuries_home": [
     "Joel Embiid (缺陣)"
-   ]
+   ],
+   "injuries_away": []
   },
-  "Portland Trail Blazers:San Antonio Spurs": {
-   "home_team": "San Antonio Spurs",
-   "away_team": "Portland Trail Blazers",
+  "Los Angeles Lakers:Houston Rockets": {
+   "home_team": "Houston Rockets",
+   "away_team": "Los Angeles Lakers",
    "home_score": null,
    "away_score": null,
    "spread": null,
    "Spread": null,
    "OU": null,
-   "ML_Home": NaN,
-   "ML_Away": NaN,
-   "Days_Rest_Home": 2,
-   "Days_Rest_Away": 2,
+   "ML_Home": null,
+   "ML_Away": null,
+   "Days_Rest_Home": 3,
+   "Days_Rest_Away": 3,
    "home_confidence": null,
    "away_confidence": null,
    "value_side": null,
@@ -221,31 +184,34 @@
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
-   "series_game_num": 2,
+   "series_game_num": 3,
    "series_home_wins": 0,
-   "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_away_wins": 1,
+   "series_status_text": "客隊領先 1-0",
    "series_is_elimination": false,
-   "home_team_zh": "聖安東尼奧馬刺",
-   "away_team_zh": "波特蘭拓荒者",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+   "home_team_zh": "休士頓火箭",
+   "away_team_zh": "洛杉磯湖人",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "injuries_home": [
-    "Jordan McLaughlin (缺陣)"
+    "Kevin Durant (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [
+    "Austin Reaves (缺陣)",
+    "Luka Doncic (缺陣)"
+   ]
   },
-  "Houston Rockets:Los Angeles Lakers": {
-   "home_team": "Los Angeles Lakers",
-   "away_team": "Houston Rockets",
+  "San Antonio Spurs:Portland Trail Blazers": {
+   "home_team": "Portland Trail Blazers",
+   "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": -4.5,
-   "Spread": -4.5,
-   "OU": 205.5,
-   "ML_Home": 152.0,
-   "ML_Away": -180.0,
-   "Days_Rest_Home": 3,
+   "spread": null,
+   "Spread": null,
+   "OU": null,
+   "ML_Home": null,
+   "ML_Away": null,
+   "Days_Rest_Home": 5,
    "Days_Rest_Away": 3,
    "home_confidence": null,
    "away_confidence": null,
@@ -268,16 +234,6 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
-     "signal": "G2大勝後延續",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "backtest_roi": 21.5,
-     "backtest_n": 28,
-     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
-    },
-    {
      "signal": "客場明顯強勢",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -286,40 +242,27 @@
      "backtest_roi": 13.5,
      "backtest_n": 175,
      "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
-    },
-    {
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "backtest_roi": 4.8,
-     "backtest_n": 116,
-     "reason_zh": "G1大勝 14.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G2大勝後延續",
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "客場明顯強勢",
    "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": "home",
-   "playoff_ats_has_conflict": true,
+   "playoff_ats_consensus": "away",
+   "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
-   "series_game_num": 2,
-   "series_home_wins": 1,
+   "series_game_num": 3,
+   "series_home_wins": 0,
    "series_away_wins": 0,
-   "series_status_text": "主隊領先 1-0",
+   "series_status_text": "平手 0-0",
    "series_is_elimination": false,
-   "home_team_zh": "洛杉磯湖人",
-   "away_team_zh": "休士頓火箭",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
-   "injuries_home": [
-    "Austin Reaves (缺陣)",
-    "Luka Doncic (缺陣)"
-   ],
+   "home_team_zh": "波特蘭拓荒者",
+   "away_team_zh": "聖安東尼奧馬刺",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "injuries_home": [],
    "injuries_away": [
-    "Kevin Durant (缺陣)"
+    "Jordan McLaughlin (缺陣)"
    ]
   }
  },
@@ -394,24 +337,6 @@
    "low_seed": "San Antonio Spurs",
    "high_wins": 0,
    "low_wins": 0,
-   "conference": "west"
-  },
-  {
-   "round_num": 0,
-   "round_label": "附加賽",
-   "high_seed": "Charlotte Hornets",
-   "low_seed": "Orlando Magic",
-   "high_wins": 0,
-   "low_wins": 1,
-   "conference": "east"
-  },
-  {
-   "round_num": 0,
-   "round_label": "附加賽",
-   "high_seed": "Golden State Warriors",
-   "low_seed": "Phoenix Suns",
-   "high_wins": 0,
-   "low_wins": 1,
    "conference": "west"
   }
  ],

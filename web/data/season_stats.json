@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 13,
   "misses": 5,
-  "pending": 9,
+  "pending": 14,
   "decided": 18,
   "hit_rate": 72.2,
   "history": [
@@ -209,7 +209,11 @@
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 73
+    "best_wr": 73,
+    "live_status": "21:00 ET",
+    "live_home_score": 9,
+    "live_away_score": 9,
+    "live_home_covering": false
    },
    {
     "date": "2026-04-21",
@@ -261,6 +265,47 @@
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 59
+   },
+   {
+    "date": "2026-04-24",
+    "game": "波士頓塞爾提克 @ 費城七六人",
+    "signals": [
+     "客場明顯強勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59
+   },
+   {
+    "date": "2026-04-24",
+    "game": "聖安東尼奧馬刺 @ 波特蘭拓荒者",
+    "signals": [
+     "客場明顯強勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59
+   },
+   {
+    "date": "2026-04-25",
+    "game": "丹佛金塊 @ 明尼蘇達灰狼",
+    "signals": [
+     "客場明顯強勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59
+   },
+   {
+    "date": "2026-04-25",
+    "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
+    "signals": [
+     "主場ATS冷門反彈",
+     "客場明顯強勢"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 60
    }
   ],
   "by_signal": [
