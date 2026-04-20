@@ -209,11 +209,7 @@
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 73,
-    "live_status": "21:00 ET",
-    "live_home_score": 9,
-    "live_away_score": 9,
-    "live_home_covering": false
+    "best_wr": 73
    },
    {
     "date": "2026-04-21",
