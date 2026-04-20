@@ -1072,13 +1072,17 @@ def main():
         decided = len(po_hits) + len(po_misses)
         # Per-signal breakdown
         from collections import defaultdict
-        _sig_stats: dict = defaultdict(lambda: {"hits": 0, "misses": 0, "tier": "SILVER"})
+        _sig_stats: dict = defaultdict(lambda: {"hits": 0, "misses": 0, "tier": "SILVER", "backtest_wr": None})
         for r in po_hits:
             _sig_stats[r["signal"]]["hits"] += 1
             _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
+            if r.get("backtest_wr"):
+                _sig_stats[r["signal"]]["backtest_wr"] = r["backtest_wr"]
         for r in po_misses:
             _sig_stats[r["signal"]]["misses"] += 1
             _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
+            if r.get("backtest_wr"):
+                _sig_stats[r["signal"]]["backtest_wr"] = r["backtest_wr"]
         sig_breakdown = []
         for sig, v in _sig_stats.items():
             n = v["hits"] + v["misses"]
@@ -1086,6 +1090,7 @@ def main():
                 "signal": sig, "hits": v["hits"], "misses": v["misses"],
                 "n": n, "tier": v["tier"],
                 "hit_rate": round(v["hits"] / n * 100, 1) if n else None,
+                "backtest_wr": round(v["backtest_wr"] * 100, 1) if v["backtest_wr"] else None,
             })
         sig_breakdown.sort(key=lambda x: -x["hits"])
 

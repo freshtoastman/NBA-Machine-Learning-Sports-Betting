@@ -210,7 +210,7 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 73,
-    "live_status": "03:54 2nd",
+    "live_status": "10:38 2nd",
     "live_home_score": 59,
     "live_away_score": 49,
     "live_home_covering": false
@@ -335,7 +335,8 @@
     "misses": 1,
     "n": 7,
     "tier": "SILVER",
-    "hit_rate": 85.7
+    "hit_rate": 85.7,
+    "backtest_wr": 60.0
    },
    {
     "signal": "R1G1大讓分主場",
@@ -343,7 +344,8 @@
     "misses": 1,
     "n": 4,
     "tier": "SILVER",
-    "hit_rate": 75.0
+    "hit_rate": 75.0,
+    "backtest_wr": 62.2
    },
    {
     "signal": "附加賽升組客隊不利",
@@ -351,7 +353,8 @@
     "misses": 1,
     "n": 3,
     "tier": "SILVER",
-    "hit_rate": 66.7
+    "hit_rate": 66.7,
+    "backtest_wr": 60.0
    },
    {
     "signal": "客場ATS冷門反彈",
@@ -359,7 +362,8 @@
     "misses": 1,
     "n": 2,
     "tier": "SILVER",
-    "hit_rate": 50.0
+    "hit_rate": 50.0,
+    "backtest_wr": 61.9
    },
    {
     "signal": "主場ATS冷門反彈",
@@ -367,7 +371,8 @@
     "misses": 0,
     "n": 1,
     "tier": "SILVER",
-    "hit_rate": 100.0
+    "hit_rate": 100.0,
+    "backtest_wr": 60.0
    },
    {
     "signal": "小讓分客場受讓",
@@ -375,7 +380,8 @@
     "misses": 1,
     "n": 1,
     "tier": "SILVER",
-    "hit_rate": 0.0
+    "hit_rate": 0.0,
+    "backtest_wr": 52.9
    }
   ],
   "strong_consensus": {
