@@ -325,6 +325,9 @@
                         <span style="color:{{ time_color }};min-width:40px;font-weight:{% if pg_date_iso == yesterday.isoformat() %}700{% else %}400{% endif %};">{{ time_label }}</span>
                         {% endif %}
                         <span style="color:#ddd;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ pg.game }}">{{ pg.game }}</span>
+                        {% if pg.spread is defined and pg.spread is not none %}
+                        <span style="color:#888;font-size:9px;white-space:nowrap;" title="主隊讓分">{% if pg.spread > 0 %}-{{ pg.spread }}{% else %}+{{ -pg.spread }}{% endif %}</span>
+                        {% endif %}
                         {% if pg.live_away_score is defined %}
                         {% set _covering = pg.get('live_home_covering') if pg.get is defined else none %}
                         {% set _signal_side = pg.consensus_side %}

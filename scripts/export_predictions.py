@@ -1148,14 +1148,18 @@ def main():
                 pass
         sc_decided = sc_hits + sc_misses
 
-        # Build a lookup of live scores keyed by (date, game_key) from daily JSONs.
+        # Build lookups keyed by (date, game_key) from daily JSONs.
         _live_lookup: dict = {}
+        _spread_lookup: dict = {}
         for jf in sorted(OUT_DIR.glob("????-??-??.json")):
             try:
                 with open(jf, encoding="utf-8") as _jf:
                     _jd = json.load(_jf)
                 for gk, gv in _jd.get("games", {}).items():
                     if isinstance(gv, dict):
+                        sp = gv.get("spread") or gv.get("Spread")
+                        if sp is not None:
+                            _spread_lookup[(_jd["date"], gk)] = sp
                         _live_st = gv.get("live_status")
                         _live_fin = gv.get("live_is_final", True)
                         if _live_st and not _live_fin:
@@ -1196,11 +1200,14 @@ def main():
                 "has_conflict": len(sides) > 1,
                 "best_wr": round(best_wr * 100) if best_wr else None,
             }
-            # Attach live score info if available
+            # Attach live score and spread info if available
             _game_key = v.get("game_key", "")
             _live_info = _live_lookup.get((v["date"], _game_key))
             if _live_info:
                 entry.update(_live_info)
+            _sp = _spread_lookup.get((v["date"], _game_key))
+            if _sp is not None:
+                entry["spread"] = _sp
             pending_by_game.append(entry)
 
         stats["playoff_signals"] = {
