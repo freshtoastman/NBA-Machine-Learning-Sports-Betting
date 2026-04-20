@@ -25,6 +25,7 @@
     "backtest_roi": 5.8,
     "reason_zh": "主場僅讓 1.5 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)",
     "ats_winner": "home",
+    "ats_cover_margin": 10.5,
     "strong_consensus": null,
     "has_conflict": false
    }

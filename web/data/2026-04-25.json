@@ -25,6 +25,7 @@
     "backtest_roi": 15.5,
     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -42,6 +43,7 @@
     "backtest_roi": 13.5,
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -59,6 +61,7 @@
     "backtest_roi": 13.5,
     "reason_zh": "客場近期勝率領先主場 50pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    }

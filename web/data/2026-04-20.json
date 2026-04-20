@@ -25,6 +25,7 @@
     "backtest_roi": 22.2,
     "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -42,6 +43,7 @@
     "backtest_roi": 22.2,
     "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    }

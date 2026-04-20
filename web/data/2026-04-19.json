@@ -25,6 +25,7 @@
     "backtest_roi": 38.8,
     "reason_zh": "首輪G1讓 13.5 分，主場cover率 73% (n=22，13賽季)，大讓分G1主場強壓",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -42,6 +43,7 @@
     "backtest_roi": 14.2,
     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -59,6 +61,7 @@
     "backtest_roi": 12.0,
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -76,6 +79,7 @@
     "backtest_roi": 38.8,
     "reason_zh": "首輪G1讓 16.5 分，主場cover率 73% (n=22，13賽季)，大讓分G1主場強壓",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -93,6 +97,7 @@
     "backtest_roi": 17.8,
     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -110,6 +115,7 @@
     "backtest_roi": 14.2,
     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -127,6 +133,7 @@
     "backtest_roi": 12.0,
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -144,6 +151,7 @@
     "backtest_roi": 18.7,
     "reason_zh": "首輪G1讓 8.5 分，主場cover率 62% (n=37，13賽季)，大讓分G1主場強壓",
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -161,6 +169,7 @@
     "backtest_roi": 14.2,
     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -178,6 +187,7 @@
     "backtest_roi": 12.0,
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -195,6 +205,7 @@
     "backtest_roi": 38.8,
     "reason_zh": "首輪G1讓 12.5 分，主場cover率 73% (n=22，13賽季)，大讓分G1主場強壓",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -212,6 +223,7 @@
     "backtest_roi": 14.2,
     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -229,6 +241,7 @@
     "backtest_roi": 12.0,
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": "home",
     "has_conflict": false
    }
@@ -2469,9 +2482,9 @@
    "injuries_home": [
     "Jordan McLaughlin (缺陣)"
    ],
-   "live_home_score": 83,
-   "live_away_score": 70,
-   "live_status": "Q3 1:40",
+   "live_home_score": 87,
+   "live_away_score": 72,
+   "live_status": "Q4 11:44",
    "live_is_final": false,
    "live_home_covering": true,
    "injuries_away": []

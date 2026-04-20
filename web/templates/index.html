@@ -358,10 +358,14 @@
                     <div style="font-size:11px;color:#aaa;margin-bottom:6px;">歷史戰績（已決定）</div>
                     {% for rec in pos.history|reverse %}
                     {% set is_hit = rec.side == rec.ats_winner %}
+                    {% set margin = rec.ats_cover_margin %}
                     <div style="display:flex;align-items:center;gap:6px;padding:2px 0;font-size:10px;">
                         <span style="color:{% if is_hit %}#4caf50{% else %}#e57373{% endif %};font-weight:700;min-width:14px;">{% if is_hit %}✓{% else %}✗{% endif %}</span>
                         <span style="color:#888;min-width:50px;">{{ rec.date[5:] }}</span>
                         <span style="color:#bbb;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ rec.game }}">{{ rec.game }}</span>
+                        {% if margin is not none and margin is defined %}
+                        <span style="color:{% if is_hit %}#4caf50{% else %}#e57373{% endif %};white-space:nowrap;font-size:9px;" title="ATS差距">{% if margin > 0 %}+{{ margin }}{% else %}{{ margin }}{% endif %}</span>
+                        {% endif %}
                         <span style="color:#999;white-space:nowrap;font-size:9px;">{{ rec.signal }}</span>
                     </div>
                     {% endfor %}

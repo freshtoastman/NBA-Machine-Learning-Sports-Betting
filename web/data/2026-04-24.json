@@ -25,6 +25,7 @@
     "backtest_roi": 13.5,
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -42,6 +43,7 @@
     "backtest_roi": 13.5,
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    }

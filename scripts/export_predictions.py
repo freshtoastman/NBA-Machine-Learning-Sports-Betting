@@ -354,6 +354,7 @@ def export_date(target_date: date) -> dict | None:
                         "backtest_roi": pick.get("backtest_roi"),
                         "reason_zh": pick.get("reason_zh"),
                         "ats_winner": g.get("ats_winner"),
+                        "ats_cover_margin": g.get("ats_cover_margin"),
                         "strong_consensus": g.get("playoff_ats_strong_consensus"),
                         "has_conflict": g.get("playoff_ats_has_conflict", False),
                     })
@@ -1086,6 +1087,7 @@ def main():
                         "tier": tier,
                         "backtest_wr": wr,
                         "ats_winner": alert.get("ats_winner"),
+                        "ats_cover_margin": alert.get("ats_cover_margin"),
                         "home_team": alert.get("home_team", ""),
                         "away_team": alert.get("away_team", ""),
                     }

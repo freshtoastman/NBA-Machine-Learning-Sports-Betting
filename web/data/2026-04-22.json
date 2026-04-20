@@ -25,6 +25,7 @@
     "backtest_roi": 18.4,
     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -42,6 +43,7 @@
     "backtest_roi": 21.5,
     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
     "ats_winner": null,
+    "ats_cover_margin": null,
     "strong_consensus": null,
     "has_conflict": false
    }

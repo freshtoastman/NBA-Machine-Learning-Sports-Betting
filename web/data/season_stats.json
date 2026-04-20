@@ -61,6 +61,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 5.5,
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
     "result": "hit"
@@ -73,6 +74,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 14.5,
     "home_team": "Los Angeles Lakers",
     "away_team": "Houston Rockets",
     "result": "hit"
@@ -85,6 +87,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.727,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -97,6 +100,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -109,6 +113,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -121,6 +126,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.727,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -133,6 +139,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -145,6 +152,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -157,6 +165,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.619,
     "ats_winner": "home",
+    "ats_cover_margin": 18.5,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "miss"
@@ -169,6 +178,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.622,
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -181,6 +191,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -193,6 +204,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "ats_winner": "away",
+    "ats_cover_margin": -19.5,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -210,9 +222,9 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 73,
-    "live_status": "Q3 1:40",
-    "live_home_score": 83,
-    "live_away_score": 70,
+    "live_status": "Q4 11:44",
+    "live_home_score": 87,
+    "live_away_score": 72,
     "live_home_covering": true,
     "spread": 12.5
    },
