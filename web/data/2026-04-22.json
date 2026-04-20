@@ -81,8 +81,8 @@
    "ou_pick": "UNDER",
    "ou_value": 217.5,
    "ou_confidence": 65.0,
-   "home_team_ev": -20.2,
-   "away_team_ev": 56.18,
+   "home_team_ev": -20.19,
+   "away_team_ev": 56.17,
    "home_team_odds": -450,
    "away_team_odds": 350,
    "home_kelly": 0,
@@ -583,11 +583,6 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 101,
-   "live_away_score": 112,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
    "injuries_away": [
     "Jonathan Isaac (缺陣)"
    ],
@@ -625,7 +620,7 @@
    "ou_value": 213.5,
    "ou_confidence": 48.5,
    "home_team_ev": -30.03,
-   "away_team_ev": 280.37,
+   "away_team_ev": 280.35,
    "home_team_odds": -2000,
    "away_team_odds": 1040,
    "home_kelly": 0,
@@ -1146,11 +1141,6 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 119,
-   "live_away_score": 84,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
    "injuries_away": [
     "Mark Williams (缺陣)",
     "Jordan Goodwin (缺陣)"

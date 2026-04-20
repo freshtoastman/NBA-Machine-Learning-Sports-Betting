@@ -1,6 +1,6 @@
 {
- "snapshot_date": "2026-04-20",
- "generated_for": "2026-04-20",
+ "snapshot_date": "2026-04-21",
+ "generated_for": "2026-04-21",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -284,14 +284,14 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "ML季後賽押客場",
-     "side": "away",
+     "signal": "G2無明顯信號 (G1窄勝)",
+     "side": "home",
      "home_team": "Cleveland Cavaliers",
      "home_team_zh": "克里夫蘭騎士",
-     "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-     "signal_team_zh": "多倫多暴龍"
+     "tier": "NONE",
+     "backtest_wr": 0.478,
+     "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
+     "signal_team_zh": "克里夫蘭騎士"
     }
    },
    {
@@ -683,14 +683,14 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "ML季後賽押客場",
-     "side": "away",
+     "signal": "G2無明顯信號 (G1窄勝)",
+     "side": "home",
      "home_team": "Denver Nuggets",
      "home_team_zh": "丹佛金塊",
-     "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-     "signal_team_zh": "明尼蘇達灰狼"
+     "tier": "NONE",
+     "backtest_wr": 0.478,
+     "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
+     "signal_team_zh": "丹佛金塊"
     }
    },
    {
