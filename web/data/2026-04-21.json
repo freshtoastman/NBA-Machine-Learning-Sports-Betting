@@ -26,6 +26,7 @@
     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
     "ats_winner": null,
     "ats_cover_margin": null,
+    "series_game_num": 2,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -44,6 +45,7 @@
     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
     "ats_winner": null,
     "ats_cover_margin": null,
+    "series_game_num": 2,
     "strong_consensus": null,
     "has_conflict": true
    },
@@ -62,6 +64,7 @@
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
     "ats_winner": null,
     "ats_cover_margin": null,
+    "series_game_num": 2,
     "strong_consensus": null,
     "has_conflict": true
    }
@@ -241,9 +244,9 @@
    "injuries_home": [
     "Jordan McLaughlin (缺陣)"
    ],
-   "live_home_score": 87,
+   "live_home_score": 93,
    "live_away_score": 72,
-   "live_status": "Q4 11:44",
+   "live_status": "Q4 10:47",
    "live_is_final": false,
    "live_home_covering": true,
    "injuries_away": []

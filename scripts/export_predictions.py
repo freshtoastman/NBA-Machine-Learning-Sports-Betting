@@ -355,6 +355,7 @@ def export_date(target_date: date) -> dict | None:
                         "reason_zh": pick.get("reason_zh"),
                         "ats_winner": g.get("ats_winner"),
                         "ats_cover_margin": g.get("ats_cover_margin"),
+                        "series_game_num": g.get("series_game_num"),
                         "strong_consensus": g.get("playoff_ats_strong_consensus"),
                         "has_conflict": g.get("playoff_ats_has_conflict", False),
                     })
@@ -1088,6 +1089,7 @@ def main():
                         "backtest_wr": wr,
                         "ats_winner": alert.get("ats_winner"),
                         "ats_cover_margin": alert.get("ats_cover_margin"),
+                        "series_game_num": alert.get("series_game_num"),
                         "home_team": alert.get("home_team", ""),
                         "away_team": alert.get("away_team", ""),
                     }
@@ -1176,7 +1178,7 @@ def main():
 
         # Group pending signals by game for display
         from collections import defaultdict as _dd
-        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": "", "game_key": ""})
+        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": "", "game_key": "", "series_game_num": None})
         for r in po_pending:
             k = f'{r["date"]}|{r["game"]}'
             _pending_games[k]["date"] = r["date"]
@@ -1190,6 +1192,8 @@ def main():
             _pending_games[k]["sides"].add(r["side"])
             if r.get("backtest_wr"):
                 _pending_games[k]["wrs"].append(r["backtest_wr"])
+            if r.get("series_game_num") is not None:
+                _pending_games[k]["series_game_num"] = r["series_game_num"]
         pending_by_game = []
         for k, v in sorted(_pending_games.items()):
             sides = list(v["sides"])
@@ -1201,6 +1205,7 @@ def main():
                 "consensus_side": sides[0] if len(sides) == 1 else None,
                 "has_conflict": len(sides) > 1,
                 "best_wr": round(best_wr * 100) if best_wr else None,
+                "series_game_num": v.get("series_game_num"),
             }
             # Attach live score and spread info if available
             _game_key = v.get("game_key", "")

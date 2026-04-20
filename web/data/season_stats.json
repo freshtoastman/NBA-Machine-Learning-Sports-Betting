@@ -62,6 +62,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 5.5,
+    "series_game_num": 1,
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
     "result": "hit"
@@ -75,6 +76,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 14.5,
+    "series_game_num": 1,
     "home_team": "Los Angeles Lakers",
     "away_team": "Houston Rockets",
     "result": "hit"
@@ -88,6 +90,7 @@
     "backtest_wr": 0.727,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -101,6 +104,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -114,6 +118,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -127,6 +132,7 @@
     "backtest_wr": 0.727,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -140,6 +146,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -153,6 +160,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -166,6 +174,7 @@
     "backtest_wr": 0.619,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
+    "series_game_num": 1,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "miss"
@@ -179,6 +188,7 @@
     "backtest_wr": 0.622,
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
+    "series_game_num": 1,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -192,6 +202,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
+    "series_game_num": 1,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -205,6 +216,7 @@
     "backtest_wr": 0.6,
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
+    "series_game_num": 1,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -222,8 +234,9 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 73,
-    "live_status": "Q4 11:44",
-    "live_home_score": 87,
+    "series_game_num": 1,
+    "live_status": "Q4 10:47",
+    "live_home_score": 93,
     "live_away_score": 72,
     "live_home_covering": true,
     "spread": 12.5
@@ -237,6 +250,7 @@
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 64,
+    "series_game_num": 2,
     "spread": 8.5
    },
    {
@@ -248,6 +262,7 @@
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 64,
+    "series_game_num": 2,
     "spread": 7.5
    },
    {
@@ -260,6 +275,7 @@
     "consensus_side": null,
     "has_conflict": true,
     "best_wr": 64,
+    "series_game_num": 2,
     "spread": -4.5
    },
    {
@@ -271,6 +287,7 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 64,
+    "series_game_num": 2,
     "spread": 13.5
    },
    {
@@ -282,6 +299,7 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 65,
+    "series_game_num": 2,
     "spread": 9.5
    },
    {
@@ -293,6 +311,7 @@
     "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 64,
+    "series_game_num": 2,
     "spread": 16.5
    },
    {
@@ -303,7 +322,8 @@
     ],
     "consensus_side": "away",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 59,
+    "series_game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -313,7 +333,8 @@
     ],
     "consensus_side": "away",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 59,
+    "series_game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -323,7 +344,8 @@
     ],
     "consensus_side": "away",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 59,
+    "series_game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -333,7 +355,8 @@
     ],
     "consensus_side": "away",
     "has_conflict": false,
-    "best_wr": 59
+    "best_wr": 59,
+    "series_game_num": 4
    },
    {
     "date": "2026-04-25",
@@ -344,7 +367,8 @@
     ],
     "consensus_side": null,
     "has_conflict": true,
-    "best_wr": 60
+    "best_wr": 60,
+    "series_game_num": 3
    }
   ],
   "by_signal": [

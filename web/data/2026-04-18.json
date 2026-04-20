@@ -26,6 +26,7 @@
     "reason_zh": "首輪G1讓 8.0 分，主場cover率 62% (n=37，13賽季)，大讓分G1主場強壓",
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
+    "series_game_num": 1,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -44,6 +45,7 @@
     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)",
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
+    "series_game_num": 1,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -62,6 +64,7 @@
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
+    "series_game_num": 1,
     "strong_consensus": "home",
     "has_conflict": false
    },
@@ -80,6 +83,7 @@
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
+    "series_game_num": 1,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -98,6 +102,7 @@
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
     "ats_cover_margin": 5.5,
+    "series_game_num": 1,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -116,6 +121,7 @@
     "reason_zh": "首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
     "ats_winner": "home",
     "ats_cover_margin": 14.5,
+    "series_game_num": 1,
     "strong_consensus": null,
     "has_conflict": false
    }
