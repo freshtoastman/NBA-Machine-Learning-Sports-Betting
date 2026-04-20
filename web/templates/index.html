@@ -835,15 +835,10 @@
 
                 <div class="ai-block" id="ai-{{ loop.index0 }}">
                     <div class="card-btn-row">
-                        <button class="ai-btn" onclick="loadAnalysis({{ loop.index0 }}, '{{ selected_date }}', '{{ home_team }}', '{{ away_team }}')">🤖 AI 分析</button>
                         {% if game.spread is defined and game.spread is not none %}
                         <button class="buy-btn" onclick="toggleBuyCalc({{ loop.index0 }}, {{ game.spread }}, '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}')">🎯 買點計算</button>
                         {% endif %}
                         <button class="h2h-btn" onclick="openH2H('{{ home_team }}', '{{ away_team }}', '{{ game.home_team_zh|default(home_team) }}', '{{ game.away_team_zh|default(away_team) }}', '{{ game_key }}')">🔄 對戰</button>
-                    </div>
-                    <div class="ai-content" style="display:none;">
-                        <div class="ai-loading">⏳ 搜尋傷兵資訊 + 生成分析中...</div>
-                        <div class="ai-result" style="display:none;"></div>
                     </div>
                     <div class="buy-calc" id="buy-{{ loop.index0 }}" style="display:none;"></div>
                 </div>
@@ -1290,47 +1285,6 @@
         </div>`;
     }
 
-    function loadAnalysis(idx, gameDate, home, away) {
-        const block = document.getElementById('ai-' + idx);
-        const btn = block.querySelector('.ai-btn');
-        const content = block.querySelector('.ai-content');
-        const loading = content.querySelector('.ai-loading');
-        const result = content.querySelector('.ai-result');
-
-        if (content.style.display === 'block' && result.style.display === 'block') {
-            content.style.display = 'none';
-            result.style.display = 'none';
-            btn.textContent = '🤖 AI 分析';
-            return;
-        }
-
-        btn.textContent = '⏳ 搜尋 + 分析中...';
-        btn.disabled = true;
-        content.style.display = 'block';
-        loading.style.display = 'block';
-        result.style.display = 'none';
-
-        fetch(`/api/analysis?date=${encodeURIComponent(gameDate)}&home=${encodeURIComponent(home)}&away=${encodeURIComponent(away)}`)
-            .then(r => r.json())
-            .then(data => {
-                loading.style.display = 'none';
-                if (data.error) {
-                    result.innerHTML = `<div class="ai-error">⚠️ ${data.error}</div>`;
-                } else {
-                    result.innerHTML = renderGameAnalysis(data);
-                }
-                result.style.display = 'block';
-                btn.textContent = '🤖 收合分析';
-            })
-            .catch(err => {
-                loading.style.display = 'none';
-                result.innerHTML = `<div class="ai-error">⚠️ ${err.message}</div>`;
-                result.style.display = 'block';
-                btn.textContent = '🤖 AI 分析';
-            })
-            .finally(() => { btn.disabled = false; });
-    }
-
     function markFeaturedCards(data) {
         // Clear previous marks
         document.querySelectorAll('.pick-card').forEach(c => {
@@ -1687,7 +1641,7 @@
                     }
                     tableHtml += '</div>';
                 } else {
-                    tableHtml = '<div class="ai-log-empty">尚無 AI 預測紀錄。點擊各場比賽的「🤖 AI 分析」按鈕產生預測後，紀錄會自動儲存。</div>';
+                    tableHtml = '<div class="ai-log-empty">尚無 AI 預測紀錄。點擊「📊 生成當日 AI 分析報告」後，紀錄會自動儲存。</div>';
                 }
 
                 content.innerHTML = statsHtml + tableHtml;

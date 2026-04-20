@@ -1172,6 +1172,43 @@ def api_daily_report():
         }
     else:
         result.setdefault("source", "gemini")
+
+    # Log each best_bet / lean_pick to the AI prediction log so the
+    # 歷史戰績 table keeps accumulating entries now that the per-game
+    # AI button is gone. Match picks back to games by zh team names.
+    if result.get("source") == "gemini":
+        picks = [(p, p.get("units")) for p in (result.get("best_bets") or [])]
+        picks += [(p, p.get("units")) for p in (result.get("lean_picks") or [])]
+        for pick_obj, units in picks:
+            game_str = (pick_obj.get("game") or "").strip()
+            pick_text = (pick_obj.get("pick") or "").strip()
+            if not game_str or not pick_text:
+                continue
+            matched = None
+            for key, g in games.items():
+                hz = g.get("home_team_zh") or ""
+                az = g.get("away_team_zh") or ""
+                if hz and az and hz in game_str and az in game_str:
+                    matched = (key, g)
+                    break
+            if not matched:
+                continue
+            _, g = matched
+            away = g.get("away_team", "")
+            home = g.get("home_team", "")
+            analysis_entry = {
+                "ats_pick": pick_text,
+                "ats_units": units,
+                "ats_reason": pick_obj.get("reason", ""),
+                "ou_pick": "",
+                "ou_reason": "",
+                "summary": pick_obj.get("model_support", ""),
+                "source": "daily-report",
+                "is_golden": bool(g.get("is_golden")),
+                "is_value": bool(g.get("is_value")),
+            }
+            _log_ai_prediction(game_date, home, away, analysis_entry, g)
+
     if result.get("source") == "gemini":
         _cache_put(cache_key, result)
     return jsonify(result)
