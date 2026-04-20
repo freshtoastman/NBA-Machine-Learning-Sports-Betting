@@ -128,6 +128,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 101,
+   "live_away_score": 112,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
     "Jonathan Isaac (缺陣)"
    ]
@@ -212,6 +217,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 119,
+   "live_away_score": 84,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [
     "Jordan Goodwin (缺陣)",
     "Mark Williams (缺陣)"

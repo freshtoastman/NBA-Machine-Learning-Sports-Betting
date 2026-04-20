@@ -167,6 +167,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 123,
+   "live_away_score": 91,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [
     "Joel Embiid (缺陣)"
    ]
@@ -233,6 +238,11 @@
    "injuries_home": [
     "Jordan McLaughlin (缺陣)"
    ],
+   "live_home_score": 59,
+   "live_away_score": 55,
+   "live_status": "Q3 9:58",
+   "live_is_final": false,
+   "live_home_covering": true,
    "injuries_away": []
   },
   "Houston Rockets:Los Angeles Lakers": {

@@ -199,9 +199,37 @@ def export_date(target_date: date) -> dict | None:
             today_opp_map[g["away_team"]] = g["home_team"]
         injury_report = fetch_injury_report(today_matchups=today_opp_map)
 
-    # Fetch live scores from SBR for today's unplayed games.
+    # Fetch live scores — NBA CDN live scoreboard (primary, fastest) + SBR fallback.
     _live_score_map: dict[tuple, dict] = {}  # (home_team, away_team) -> live info
     if is_today or has_unplayed:
+        # Primary: NBA CDN live scoreboard (real-time, no auth required)
+        try:
+            import requests as _req
+            _nba_url = "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+            _nba_r = _req.get(_nba_url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+            if _nba_r.status_code == 200:
+                _nba_games = _nba_r.json().get("scoreboard", {}).get("games", [])
+                for _ng in _nba_games:
+                    _ht_obj = _ng.get("homeTeam", {})
+                    _at_obj = _ng.get("awayTeam", {})
+                    _hs = _ht_obj.get("score", 0) or 0
+                    _as = _at_obj.get("score", 0) or 0
+                    _st = _ng.get("gameStatusText", "")
+                    _ht = _ht_obj.get("teamCity", "") + " " + _ht_obj.get("teamName", "")
+                    _at = _at_obj.get("teamCity", "") + " " + _at_obj.get("teamName", "")
+                    if not _st or _hs == 0 and _as == 0:
+                        continue
+                    _is_final = "Final" in _st
+                    _live_score_map[(_ht.strip(), _at.strip())] = {
+                        "live_home_score": _hs,
+                        "live_away_score": _as,
+                        "live_status": _st,
+                        "live_is_final": _is_final,
+                        "live_home_covering": None,
+                    }
+        except Exception:
+            pass
+        # Fallback: SBR scraper (covers previous-day late games not on today's NBA board)
         try:
             from datetime import timedelta as _td
             from sbrscrape import Scoreboard as _SBR
@@ -220,6 +248,9 @@ def export_date(target_date: date) -> dict | None:
                     if not _st or _st in ("scheduled",):
                         continue
                     if _hs == 0 and _as == 0:
+                        continue
+                    # Only use SBR if NBA CDN didn't already find this game
+                    if (_ht, _at) in _live_score_map:
                         continue
                     _is_final = "Final" in _st or "final" in _st
                     _live_score_map[(_ht, _at)] = {
