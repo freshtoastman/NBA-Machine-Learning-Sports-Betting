@@ -147,6 +147,60 @@ def _patch_from_nba_cdn(con, d_str: str) -> int:
     return updated
 
 
+def _patch_from_nba_live_scoreboard(con, d_str: str) -> int:
+    """Use NBA CDN todaysScoreboard_00.json (real-time, no auth) to patch finals.
+
+    Works when boxscore API returns 403 (playoff games). Only patches today's games.
+    """
+    today_str = date.today().isoformat()
+    yesterday_str = (date.today() - timedelta(days=1)).isoformat()
+    if d_str not in (today_str, yesterday_str):
+        return 0
+    ua = {"User-Agent": "Mozilla/5.0"}
+    try:
+        r = requests.get(
+            "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+            headers=ua, timeout=10,
+        )
+        r.raise_for_status()
+        games = r.json().get("scoreboard", {}).get("games", [])
+    except Exception as exc:
+        print(f"{d_str}: nba live scoreboard error: {exc}")
+        return 0
+
+    updated = 0
+    for g in games:
+        status_text = g.get("gameStatusText", "")
+        if "Final" not in status_text:
+            continue
+        home_t = g.get("homeTeam", {})
+        away_t = g.get("awayTeam", {})
+        hs = home_t.get("score")
+        aws = away_t.get("score")
+        if hs is None or aws is None:
+            continue
+        home = _normalize_team_name(f"{home_t.get('teamCity', '')} {home_t.get('teamName', '')}".strip())
+        away = _normalize_team_name(f"{away_t.get('teamCity', '')} {away_t.get('teamName', '')}".strip())
+        points = int(hs) + int(aws)
+        win_margin = int(hs) - int(aws)
+        cur = con.execute(
+            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND Home = ? AND Away = ? '
+            "AND (Points IS NULL OR Points = 0)",
+            (d_str, home, away),
+        ).fetchone()
+        if not cur or cur[0] == 0:
+            continue
+        c = con.execute(
+            f'UPDATE "{SEASON_TABLE}" SET Points = ?, Win_Margin = ? '
+            "WHERE Date = ? AND Home = ? AND Away = ? AND (Points IS NULL OR Points = 0)",
+            (points, win_margin, d_str, home, away),
+        )
+        if c.rowcount:
+            print(f"{d_str}: nba live patched {home} vs {away}: {hs}-{aws}")
+            updated += c.rowcount
+    return updated
+
+
 def _patch_from_espn(con, d_str: str) -> int:
     """Fallback: fetch scores from ESPN public API when SBR/NBA-CDN fail."""
     import datetime
@@ -218,6 +272,10 @@ def main():
         if not rows or rows[0] == 0:
             continue
 
+        # NBA live scoreboard (real-time, works for playoffs unlike boxscore 403)
+        u0 = _patch_from_nba_live_scoreboard(con, d_str)
+        con.commit()
+
         u1 = _patch_from_sbr(con, d_str)
         con.commit()
         if u1:
@@ -244,7 +302,7 @@ def main():
             con.commit()
             if u3:
                 print(f"{d_str}: espn patched {u3} games")
-        total_updated += u1 + u2 + u3
+        total_updated += u0 + u1 + u2 + u3
 
     con.close()
     print(f"Done. Total patched (sbr + cdn + espn): {total_updated}")
