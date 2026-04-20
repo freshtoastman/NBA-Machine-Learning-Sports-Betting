@@ -129,8 +129,8 @@
   "playoff_ats_count": 6,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)",
+   "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Atlanta Hawks: Onyeka Okongwu (存疑)",
    "Atlanta Hawks: Jock Landale (缺陣)",
    "New York Knicks: OG Anunoby (可能出賽)",
@@ -1197,8 +1197,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "injuries_home": [
-    "Jordan Goodwin (缺陣)",
-    "Mark Williams (缺陣)"
+    "Mark Williams (缺陣)",
+    "Jordan Goodwin (缺陣)"
    ],
    "injuries_away": []
   },

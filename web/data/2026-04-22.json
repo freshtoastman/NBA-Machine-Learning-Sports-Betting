@@ -53,8 +53,8 @@
   "playoff_ats_count": 2,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)",
-   "Phoenix Suns: Mark Williams (缺陣)"
+   "Phoenix Suns: Mark Williams (缺陣)",
+   "Phoenix Suns: Jordan Goodwin (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -81,12 +81,12 @@
    "ou_pick": "UNDER",
    "ou_value": 217.5,
    "ou_confidence": 65.0,
-   "home_team_ev": -20.54,
-   "away_team_ev": 59.65,
-   "home_team_odds": -461,
-   "away_team_odds": 360,
+   "home_team_ev": -20.19,
+   "away_team_ev": 56.17,
+   "home_team_odds": -450,
+   "away_team_odds": 350,
    "home_kelly": 0,
-   "away_kelly": 16.57,
+   "away_kelly": 16.05,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.3,
@@ -540,8 +540,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 79.1,
-   "fair_away": 20.9,
+   "fair_home": 78.6,
+   "fair_away": 21.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -598,13 +598,21 @@
      "ml_home": -461,
      "ml_away": 360,
      "source": "seed_initial"
+    },
+    {
+     "fetched_at": "2026-04-20T14:13:14+00:00",
+     "spread": 9.5,
+     "ou": 217.5,
+     "ml_home": -450,
+     "ml_away": 350,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -615,12 +623,12 @@
    "ou_pick": "OVER",
    "ou_value": 213.5,
    "ou_confidence": 48.5,
-   "home_team_ev": -29.63,
-   "away_team_ev": 260.35,
-   "home_team_odds": -1786,
-   "away_team_odds": 980,
+   "home_team_ev": -30.03,
+   "away_team_ev": 280.35,
+   "home_team_odds": -2000,
+   "away_team_odds": 1040,
    "home_kelly": 0,
-   "away_kelly": 26.57,
+   "away_kelly": 26.96,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -629,7 +637,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 16.5,
+   "spread": 17.5,
    "home_profile": {
     "weekday_name": "週三",
     "season": {
@@ -1074,8 +1082,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 91.1,
-   "fair_away": 8.9,
+   "fair_home": 91.6,
+   "fair_away": 8.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1142,8 +1150,8 @@
    "live_is_final": true,
    "live_home_covering": true,
    "injuries_away": [
-    "Jordan Goodwin (缺陣)",
-    "Mark Williams (缺陣)"
+    "Mark Williams (缺陣)",
+    "Jordan Goodwin (缺陣)"
    ],
    "odds_history": [
     {
@@ -1153,13 +1161,21 @@
      "ml_home": -1786,
      "ml_away": 980,
      "source": "seed_initial"
+    },
+    {
+     "fetched_at": "2026-04-20T14:13:14+00:00",
+     "spread": 17.5,
+     "ou": 213.5,
+     "ml_home": -2000,
+     "ml_away": 1040,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 16.5,
-   "spread_last": 16.5,
-   "spread_move": 0.0,
+   "spread_last": 17.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
   }
  },
  "active_series": [

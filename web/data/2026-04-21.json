@@ -102,12 +102,12 @@
    "ou_pick": "UNDER",
    "ou_value": 216.5,
    "ou_confidence": 54.6,
-   "home_team_ev": -28.48,
-   "away_team_ev": 130.74,
-   "home_team_odds": -719,
-   "away_team_odds": 520,
+   "home_team_ev": -30.62,
+   "away_team_ev": 175.38,
+   "home_team_odds": -952,
+   "away_team_odds": 640,
    "home_kelly": 0,
-   "away_kelly": 25.14,
+   "away_kelly": 27.4,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.2,
@@ -561,8 +561,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 84.5,
-   "fair_away": 15.5,
+   "fair_home": 87.0,
+   "fair_away": 13.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -639,13 +639,21 @@
      "ml_home": -719,
      "ml_away": 520,
      "source": "seed_initial"
+    },
+    {
+     "fetched_at": "2026-04-20T14:13:14+00:00",
+     "spread": 13.5,
+     "ou": 216.5,
+     "ml_home": -952,
+     "ml_away": 640,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 13.5,
    "spread_last": 13.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -656,12 +664,12 @@
    "ou_pick": "UNDER",
    "ou_value": 220.5,
    "ou_confidence": 53.3,
-   "home_team_ev": -17.22,
-   "away_team_ev": 60.71,
-   "home_team_odds": -621,
-   "away_team_odds": 460,
+   "home_team_ev": -18.5,
+   "away_team_ev": 72.18,
+   "home_team_odds": -699,
+   "away_team_odds": 500,
    "home_kelly": 0,
-   "away_kelly": 13.2,
+   "away_kelly": 14.44,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.2,
@@ -1115,8 +1123,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 82.8,
-   "fair_away": 17.2,
+   "fair_home": 84.0,
+   "fair_away": 16.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1162,13 +1170,21 @@
      "ml_home": -621,
      "ml_away": 460,
      "source": "seed_initial"
+    },
+    {
+     "fetched_at": "2026-04-20T14:13:14+00:00",
+     "spread": 11.5,
+     "ou": 220.5,
+     "ml_home": -699,
+     "ml_away": 500,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 11.5,
    "spread_last": 11.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1179,11 +1195,11 @@
    "ou_pick": "OVER",
    "ou_value": 205.5,
    "ou_confidence": 51.5,
-   "home_team_ev": 32.97,
-   "away_team_ev": -26.52,
-   "home_team_odds": 152,
-   "away_team_odds": -180,
-   "home_kelly": 21.69,
+   "home_team_ev": 36.14,
+   "away_team_ev": -27.64,
+   "home_team_odds": 158,
+   "away_team_odds": -188,
+   "home_kelly": 22.87,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -1638,8 +1654,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 38.2,
-   "fair_away": 61.8,
+   "fair_home": 37.3,
+   "fair_away": 62.7,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1714,13 +1730,21 @@
      "ml_home": 152,
      "ml_away": -180,
      "source": "seed_initial"
+    },
+    {
+     "fetched_at": "2026-04-20T14:13:14+00:00",
+     "spread": -4.5,
+     "ou": 205.5,
+     "ml_home": 158,
+     "ml_away": -188,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -4.5,
    "spread_last": -4.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
   }
  },
  "active_series": [
