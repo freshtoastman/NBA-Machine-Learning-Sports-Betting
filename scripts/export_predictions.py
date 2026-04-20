@@ -1287,7 +1287,7 @@ def main():
             "pending": len(po_pending),
             "decided": decided,
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
-            "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-12:],  # chronological, most recent
+            "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-60:],  # chronological, most recent (up to 60)
             "pending_by_game": pending_by_game,
             "by_signal": sig_breakdown,
             "strong_consensus": {

@@ -866,10 +866,11 @@ def predict_historical_xgb(target_date):
             pred["ats_cover_margin"] = None
 
         # Inject playoff series state for historical games too.
-        # Use as_of_date when the game has been played so series_game_num reflects
-        # the pre-game state (avoids G2 signal firing on a historical G1 game).
+        # Always pass as_of_date=target_date so series_game_num counts only games
+        # scheduled BEFORE target_date (avoids G2 signal firing on historical G1
+        # games, and correctly labels future G3/G4 games that are in the dataset).
         _game_played = pred.get("home_score") is not None
-        _as_of = target_date if _game_played else None
+        _as_of = target_date
         try:
             from src.Utils.PlayoffContext import is_playoff_date, get_series_state
             target_iso = target_date.isoformat()
