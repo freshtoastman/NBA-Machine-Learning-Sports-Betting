@@ -811,6 +811,7 @@ def build_bracket(target_date: date) -> dict | None:
             if gp == 1:
                 g2_home = high_team
                 _g2_game = None  # may be set in else branch; checked below for conflict
+                _g2_away_side = False
                 if lw == 1 and hw == 0:
                     # Low seed won G1 → high seed (home in G2) is in bounce-back mode
                     g2_sig, g2_tier, g2_wr = "G2主場反彈 (輸G1)", "SILVER", 0.649
@@ -826,6 +827,7 @@ def build_bracket(target_date: date) -> dict | None:
                     _best_signal = _g2_game.get("playoff_ats_best_signal") if _g2_game else None
                     _best_tier = _g2_game.get("playoff_ats_best_tier") if _g2_game else None
                     _best_picks = _g2_game.get("playoff_ats_picks", []) if _g2_game else []
+                    _g2_away_side = False
                     if _best_signal == "G2大勝後延續" and _best_tier == "SILVER":
                         g2_sig, g2_tier, g2_wr = "G2大勝後延續", "SILVER", 0.643
                         _blowout_pick = next((p for p in _best_picks if p.get("signal") == "G2大勝後延續"), {})
@@ -837,18 +839,27 @@ def build_bracket(target_date: date) -> dict | None:
                             g2_wr = _consol_pick.get("backtest_wr", 0.534)
                             g2_reason = _consol_pick.get("reason_zh", "第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)")
                         else:
-                            # Narrow G1 win (≤7 ATS margin): ~coin flip, no actionable signal
-                            g2_sig, g2_tier, g2_wr = "G2無明顯信號 (G1窄勝)", "NONE", 0.478
-                            g2_reason = "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向"
+                            # Narrow G1 win (≤7 ATS margin): check ML away lean first
+                            _ml_pick = next((p for p in _best_picks if p.get("signal") == "ML季後賽押客場"), None)
+                            if _ml_pick and _ml_pick.get("tier") == "SILVER":
+                                g2_sig, g2_tier, g2_wr = "ML季後賽押客場", "SILVER", _ml_pick.get("backtest_wr", 0.64)
+                                g2_reason = _ml_pick.get("reason_zh", "模型押客場，季後賽歷史客場cover率 64.0% (n=175)")
+                                _g2_away_side = True
+                            else:
+                                g2_sig, g2_tier, g2_wr = "G2無明顯信號 (G1窄勝)", "NONE", 0.478
+                                g2_reason = "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向"
+                _g2_ns_side = "away" if _g2_away_side else "home"
+                _g2_signal_team = low_team if _g2_away_side else g2_home
                 _g2_ns = {
                     "game_num": 2,
                     "signal": g2_sig,
-                    "side": "home",
+                    "side": _g2_ns_side,
                     "home_team": g2_home["team"],
                     "home_team_zh": g2_home["team_zh"],
                     "tier": g2_tier,
                     "backtest_wr": g2_wr,
                     "reason_zh": g2_reason,
+                    "signal_team_zh": _g2_signal_team.get("team_zh") or _g2_signal_team.get("team"),
                 }
                 # Propagate conflict info from the upcoming G2 game card.
                 if _g2_game and _g2_game.get("playoff_ats_has_conflict"):
