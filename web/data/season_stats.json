@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 13,
   "misses": 5,
-  "pending": 14,
+  "pending": 16,
   "decided": 18,
   "hit_rate": 72.2,
   "history": [
@@ -214,6 +214,26 @@
     "live_home_score": 59,
     "live_away_score": 49,
     "live_home_covering": false
+   },
+   {
+    "date": "2026-04-20",
+    "game": "多倫多暴龍 @ 克里夫蘭騎士",
+    "signals": [
+     "ML季後賽押客場"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 64
+   },
+   {
+    "date": "2026-04-20",
+    "game": "明尼蘇達灰狼 @ 丹佛金塊",
+    "signals": [
+     "ML季後賽押客場"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 64
    },
    {
     "date": "2026-04-21",
