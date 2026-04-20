@@ -777,10 +777,14 @@ def build_bracket(target_date: date) -> dict | None:
             # Home lost G1 (bounce-back): 64.9% SILVER; home won G1 (consolidation): 53.4% BRONZE
             if gp == 1:
                 g2_home = high_team
+                _g2_game = None  # may be set in else branch; checked below for conflict
                 if lw == 1 and hw == 0:
                     # Low seed won G1 → high seed (home in G2) is in bounce-back mode
                     g2_sig, g2_tier, g2_wr = "G2主場反彈 (輸G1)", "SILVER", 0.649
                     g2_reason = "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)"
+                    # Also look up G2 game for conflict info (same logic as else branch)
+                    _g2_game_key = frozenset({high_team["team"], low_team["team"]})
+                    _g2_game = _upcoming_game_lookup.get(_g2_game_key)
                 else:
                     # High seed won G1 → check if blowout (G2大勝後延續 SILVER 64.3%)
                     # or regular consolidation (G2主場鞏固 BRONZE 53.4%)

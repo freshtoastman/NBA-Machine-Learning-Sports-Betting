@@ -12,6 +12,23 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
+    "game_key": "Orlando Magic:Detroit Pistons",
+    "home_team": "Detroit Pistons",
+    "away_team": "Orlando Magic",
+    "home_team_zh": "底特律活塞",
+    "away_team_zh": "奧蘭多魔術",
+    "signal": "G2主場反彈 (輸G1)",
+    "side": "home",
+    "ats_side": "受讓(押dog)",
+    "tier": "SILVER",
+    "backtest_wr": 0.649,
+    "backtest_roi": 18.4,
+    "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
+    "ats_winner": null,
+    "strong_consensus": null,
+    "has_conflict": false
+   },
+   {
     "game_key": "Phoenix Suns:Oklahoma City Thunder",
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
@@ -29,7 +46,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 1,
+  "playoff_ats_count": 2,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)",
@@ -82,18 +99,29 @@
    "ats_winner": null,
    "is_upcoming": true,
    "is_playoff": true,
-   "playoff_ats_picks": [],
-   "playoff_ats_best_side": null,
-   "playoff_ats_best_signal": null,
-   "playoff_ats_best_tier": null,
-   "playoff_ats_consensus": null,
+   "playoff_ats_picks": [
+    {
+     "signal": "G2主場反彈 (輸G1)",
+     "side": "home",
+     "ats_side": "受讓(押dog)",
+     "tier": "SILVER",
+     "backtest_wr": 0.649,
+     "backtest_roi": 18.4,
+     "backtest_n": 57,
+     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)"
+    }
+   ],
+   "playoff_ats_best_side": "home",
+   "playoff_ats_best_signal": "G2主場反彈 (輸G1)",
+   "playoff_ats_best_tier": "SILVER",
+   "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "首輪",
    "series_game_num": 2,
    "series_home_wins": 0,
-   "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_away_wins": 1,
+   "series_status_text": "客隊領先 1-0",
    "series_is_elimination": false,
    "home_team_zh": "底特律活塞",
    "away_team_zh": "奧蘭多魔術",
@@ -112,8 +140,8 @@
    "spread": 16.5,
    "Spread": 16.5,
    "OU": 213.5,
-   "ML_Home": -1786.0,
-   "ML_Away": 980.0,
+   "ML_Home": -2000.0,
+   "ML_Away": 1040.0,
    "Days_Rest_Home": 3,
    "Days_Rest_Away": 3,
    "home_confidence": null,
@@ -251,7 +279,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "east"
   },
   {

@@ -48,47 +48,11 @@
  },
  "playoff_signals": {
   "hits": 13,
-  "misses": 2,
-  "pending": 11,
-  "decided": 15,
-  "hit_rate": 86.7,
+  "misses": 5,
+  "pending": 9,
+  "decided": 18,
+  "hit_rate": 72.2,
   "history": [
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "明尼蘇達灰狼 @ 丹佛金塊",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "home_team": "Denver Nuggets",
-    "away_team": "Minnesota Timberwolves",
-    "result": "hit"
-   },
    {
     "date": "2026-04-18",
     "game": "亞特蘭大老鷹 @ 紐約尼克",
@@ -196,25 +160,45 @@
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "miss"
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-04-19",
     "game": "奧蘭多魔術 @ 底特律活塞",
-    "signals": [
-     "R1G1大讓分主場",
-     "附加賽升組客隊不利",
-     "首輪G1主場優勢"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 62,
-    "live_status": "09:22 3rd",
-    "live_home_score": 70,
-    "live_away_score": 79,
-    "live_home_covering": false
+    "signal": "R1G1大讓分主場",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.622,
+    "ats_winner": "away",
+    "home_team": "Detroit Pistons",
+    "away_team": "Orlando Magic",
+    "result": "miss"
    },
+   {
+    "date": "2026-04-19",
+    "game": "奧蘭多魔術 @ 底特律活塞",
+    "signal": "附加賽升組客隊不利",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "away",
+    "home_team": "Detroit Pistons",
+    "away_team": "Orlando Magic",
+    "result": "miss"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "奧蘭多魔術 @ 底特律活塞",
+    "signal": "首輪G1主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "away",
+    "home_team": "Detroit Pistons",
+    "away_team": "Orlando Magic",
+    "result": "miss"
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-04-19",
     "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
@@ -250,6 +234,16 @@
    },
    {
     "date": "2026-04-22",
+    "game": "奧蘭多魔術 @ 底特律活塞",
+    "signals": [
+     "G2主場反彈 (輸G1)"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 65
+   },
+   {
+    "date": "2026-04-22",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signals": [
      "G2大勝後延續"
@@ -273,26 +267,26 @@
    {
     "signal": "首輪G1主場優勢",
     "hits": 6,
-    "misses": 0,
-    "n": 6,
+    "misses": 1,
+    "n": 7,
     "tier": "SILVER",
-    "hit_rate": 100.0
+    "hit_rate": 85.7
    },
    {
     "signal": "R1G1大讓分主場",
     "hits": 3,
-    "misses": 0,
-    "n": 3,
+    "misses": 1,
+    "n": 4,
     "tier": "SILVER",
-    "hit_rate": 100.0
+    "hit_rate": 75.0
    },
    {
     "signal": "附加賽升組客隊不利",
     "hits": 2,
-    "misses": 0,
-    "n": 2,
+    "misses": 1,
+    "n": 3,
     "tier": "SILVER",
-    "hit_rate": 100.0
+    "hit_rate": 66.7
    },
    {
     "signal": "客場ATS冷門反彈",
@@ -321,18 +315,18 @@
   ],
   "strong_consensus": {
    "hits": 2,
-   "misses": 0,
-   "pending": 2,
-   "decided": 2,
-   "hit_rate": 100.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，2場待定"
+   "misses": 1,
+   "pending": 1,
+   "decided": 3,
+   "hit_rate": 66.7,
+   "note_zh": "強共識(2+SILVER一致): 2勝/3場決定 = 66.7%，1場待定"
   }
  },
  "playoff_home_ats": {
-  "games": 12,
+  "games": 13,
   "home_covers": 9,
-  "away_covers": 3,
-  "home_cover_rate": 75.0,
-  "note_zh": "本季季後賽共 12 場有結果，主場覆蓋 9 場 (75.0%)"
+  "away_covers": 4,
+  "home_cover_rate": 69.2,
+  "note_zh": "本季季後賽共 13 場有結果，主場覆蓋 9 場 (69.2%)"
  }
 }

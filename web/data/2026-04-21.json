@@ -95,8 +95,8 @@
    "spread": 13.5,
    "Spread": 13.5,
    "OU": 216.5,
-   "ML_Home": -752.0,
-   "ML_Away": 530.0,
+   "ML_Home": -699.0,
+   "ML_Away": 500.0,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -384,7 +384,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "east"
   },
   {

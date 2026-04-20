@@ -2195,9 +2195,9 @@
     "home": "Detroit Pistons",
     "away": "Orlando Magic",
     "spread": 8.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -11,
+    "home_score": 101,
+    "away_score": 112,
     "ats_result": "away"
    },
    {
