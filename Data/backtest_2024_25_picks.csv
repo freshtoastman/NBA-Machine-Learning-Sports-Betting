@@ -1,0 +1,33 @@
+date,home,away,pick,edge,spread,win
+2024-10-25,Toronto Raptors,Philadelphia 76ers,home,13.0,-5.5,True
+2024-10-26,Denver Nuggets,LA Clippers,away,20.2,7.5,True
+2024-10-26,Charlotte Hornets,Miami Heat,home,8.2,-5.5,False
+2024-10-28,New York Knicks,Cleveland Cavaliers,away,9.9,3.0,True
+2024-10-30,Washington Wizards,Atlanta Hawks,home,13.9,-5.5,True
+2024-10-30,Memphis Grizzlies,Brooklyn Nets,away,11.3,12.0,True
+2024-10-31,Memphis Grizzlies,Milwaukee Bucks,home,23.4,-6.5,True
+2024-11-02,Philadelphia 76ers,Memphis Grizzlies,away,10.0,1.0,True
+2024-11-02,Houston Rockets,Golden State Warriors,away,16.2,5.0,True
+2024-11-10,Philadelphia 76ers,Charlotte Hornets,away,20.0,5.0,True
+2024-11-13,Los Angeles Lakers,Memphis Grizzlies,away,11.3,7.0,True
+2024-11-18,Milwaukee Bucks,Houston Rockets,away,11.2,3.5,True
+2024-11-19,Brooklyn Nets,Charlotte Hornets,home,8.2,-3.5,True
+2024-11-20,Memphis Grizzlies,Philadelphia 76ers,home,25.9,-5.0,True
+2024-11-22,Philadelphia 76ers,Brooklyn Nets,away,9.4,3.0,False
+2024-11-29,Minnesota Timberwolves,LA Clippers,away,10.3,6.5,True
+2024-12-01,Sacramento Kings,San Antonio Spurs,away,11.1,6.5,True
+2024-12-13,Philadelphia 76ers,Indiana Pacers,away,14.6,6.5,True
+2024-12-23,Philadelphia 76ers,San Antonio Spurs,away,10.4,5.5,True
+2024-12-28,Los Angeles Lakers,Sacramento Kings,home,8.5,-3.5,True
+2024-12-30,Sacramento Kings,Dallas Mavericks,away,20.2,8.0,False
+2024-12-31,Phoenix Suns,Memphis Grizzlies,away,17.0,5.5,True
+2025-01-01,Sacramento Kings,Philadelphia 76ers,away,9.9,6.5,True
+2025-01-03,New Orleans Pelicans,Washington Wizards,away,12.3,7.5,False
+2025-01-15,Chicago Bulls,Atlanta Hawks,away,10.3,6.5,True
+2025-01-15,New Orleans Pelicans,Dallas Mavericks,away,9.3,1.0,False
+2025-01-15,Utah Jazz,Charlotte Hornets,home,8.7,-5.5,True
+2025-02-07,Detroit Pistons,Philadelphia 76ers,home,10.0,-6.0,True
+2025-02-08,Los Angeles Lakers,Indiana Pacers,home,8.3,-5.0,True
+2025-02-12,LA Clippers,Memphis Grizzlies,away,10.8,6.5,False
+2025-02-22,Philadelphia 76ers,Brooklyn Nets,away,11.6,11.0,True
+2025-02-24,Philadelphia 76ers,Chicago Bulls,away,10.4,6.0,True
