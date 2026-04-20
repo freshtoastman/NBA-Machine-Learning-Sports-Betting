@@ -18,6 +18,7 @@
                 <span class="brand-mark">NBA</span>
                 <h1>機器學習預測</h1>
                 <span class="tz-chip">台灣時間 {{ today }}</span>
+                <button type="button" class="live-btn" onclick="openLiveStream()" title="在網頁中觀看直播">🔴 直播</button>
                 <a href="/logout" class="logout-btn">登出</a>
             </div>
             <div class="date-chips">
@@ -2048,6 +2049,38 @@
                 body.innerHTML = `<div class="sp-error">⚠️ ${err.message}</div>`;
             });
     }
+    </script>
+
+    <!-- ── Live-stream modal ─────────────────────────────────────── -->
+    <div id="live-modal" class="live-modal" style="display:none;" onclick="if(event.target===this)closeLiveStream()">
+        <div class="live-modal-inner">
+            <div class="live-modal-header">
+                <span class="live-modal-title">🔴 88zhibo 直播</span>
+                <a href="https://www.88zhibo.tv/match/1/live" target="_blank" rel="noopener" class="live-modal-open">在新視窗打開 ↗</a>
+                <button type="button" class="live-modal-close" onclick="closeLiveStream()">✕</button>
+            </div>
+            <iframe id="live-iframe" src="" allowfullscreen allow="autoplay; fullscreen"
+                    referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        </div>
+    </div>
+    <script>
+    function openLiveStream() {
+        const m = document.getElementById('live-modal');
+        const f = document.getElementById('live-iframe');
+        f.src = 'https://www.88zhibo.tv/match/1/live';
+        m.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLiveStream() {
+        const m = document.getElementById('live-modal');
+        const f = document.getElementById('live-iframe');
+        m.style.display = 'none';
+        f.src = '';
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLiveStream();
+    });
     </script>
 </body>
 </html>
