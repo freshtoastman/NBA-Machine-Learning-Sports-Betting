@@ -679,6 +679,42 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _away_leads_series(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Away team leads the series 2-0 → continues to cover in next game.
+
+    Playoff backtest (13 seasons, 155 games): when the away team (visiting) has
+    already won 2+ games in the series, they cover 55.5% (ROI=+5.9%).
+    Captures the dominant-team sweep/momentum effect — a team winning on the road
+    has demonstrated clear superiority and the market hasn't fully adjusted.
+
+    Conditions:
+    - series_away_wins ≥ 2 (away team already leads by 2)
+    - home_wins < away_wins (away team leading)
+    - Not an elimination game for the home team (covered by _elimination_underdog)
+    """
+    if series_state is None:
+        return None
+    away_wins = series_state.get("away_wins", 0)
+    home_wins = series_state.get("home_wins", 0)
+    if away_wins < 2 or home_wins >= away_wins:
+        return None
+    is_elim = series_state.get("is_elimination", False)
+    if is_elim:
+        return None
+    spread = pred.get("spread")
+    home_fav = spread is not None and spread > 0
+    return PlayoffATSPick(
+        signal_name="客場系列領先繼續",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="SILVER",
+        backtest_wr=0.555,
+        backtest_roi=5.9,
+        backtest_n=155,
+        reason_zh=f"客隊系列領先 {away_wins}-{home_wins}，歷史客場cover率 55.5% (n=155，13季)，強隊主宰效應",
+    )
+
+
 def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | None:
     """ML model leans AWAY in a playoff game → away covers 64.0% historically.
 
@@ -736,6 +772,7 @@ _SIGNALS = [
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _ml_playoff_away_lean,             # SILVER verified: 64.0% (n=175) — ML model picks away in playoffs
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
+    _away_leads_series,               # SILVER new: 55.5% (n=155) — away leads series 2-0+
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
     _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
