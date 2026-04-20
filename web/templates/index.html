@@ -323,7 +323,20 @@
                         {% endif %}
                         <span style="color:#ddd;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ pg.game }}">{{ pg.game }}</span>
                         {% if pg.live_away_score is defined %}
-                        <span style="color:#e53935;font-size:9px;font-weight:700;white-space:nowrap;">{{ pg.live_away_score }}-{{ pg.live_home_score }}</span>
+                        {% set _covering = pg.get('live_home_covering') if pg.get is defined else none %}
+                        {% set _signal_side = pg.consensus_side %}
+                        {% if _covering is not none %}
+                          {% if (_signal_side == 'home' and _covering) or (_signal_side == 'away' and not _covering) %}
+                            {% set _score_color = '#4caf50' %}
+                          {% elif (_signal_side == 'home' and not _covering) or (_signal_side == 'away' and _covering) %}
+                            {% set _score_color = '#e57373' %}
+                          {% else %}
+                            {% set _score_color = '#e53935' %}
+                          {% endif %}
+                        {% else %}
+                          {% set _score_color = '#e53935' %}
+                        {% endif %}
+                        <span style="color:{{ _score_color }};font-size:9px;font-weight:700;white-space:nowrap;">{{ pg.live_away_score }}-{{ pg.live_home_score }}</span>
                         {% endif %}
                         {% if pg.best_wr and not pg.has_conflict %}
                         <span style="color:#7fd69b;white-space:nowrap;font-size:9px;font-weight:700;margin-right:2px;">{{ pg.best_wr }}%</span>
