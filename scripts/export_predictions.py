@@ -1238,8 +1238,11 @@ def main():
             })
         sig_breakdown.sort(key=lambda x: -x["hits"])
 
-        # Strong consensus tracking (2+ SILVER agree, no conflict)
+        # Strong consensus tracking (2+ SILVER agree, no conflict) AND best-pick-per-game tracking
         sc_hits, sc_misses, sc_pending = 0, 0, 0
+        bp_hits, bp_misses, bp_pending = 0, 0, 0
+        bp_gold_hits, bp_gold_misses = 0, 0
+        bp_silver_hits, bp_silver_misses = 0, 0
         for jf in sorted(OUT_DIR.glob("????-??-??.json")):
             try:
                 with open(jf, encoding="utf-8") as _jf:
@@ -1248,18 +1251,34 @@ def main():
                 games_iter = games_data.values() if isinstance(games_data, dict) else games_data
                 for g in games_iter:
                     if not isinstance(g, dict): continue
-                    sc = g.get("playoff_ats_strong_consensus")
-                    if sc is None: continue
                     winner = g.get("ats_winner")
-                    if winner is None:
-                        sc_pending += 1
-                    elif winner == sc:
-                        sc_hits += 1
-                    else:
-                        sc_misses += 1
+                    sc = g.get("playoff_ats_strong_consensus")
+                    if sc is not None:
+                        if winner is None:
+                            sc_pending += 1
+                        elif winner == sc:
+                            sc_hits += 1
+                        else:
+                            sc_misses += 1
+                    bp = g.get("playoff_ats_best_side")
+                    bp_tier = g.get("playoff_ats_best_tier")
+                    if bp is not None and bp_tier in ("GOLD", "SILVER"):
+                        if winner is None:
+                            bp_pending += 1
+                        else:
+                            hit = (winner == bp)
+                            if hit:
+                                bp_hits += 1
+                                if bp_tier == "GOLD": bp_gold_hits += 1
+                                else: bp_silver_hits += 1
+                            else:
+                                bp_misses += 1
+                                if bp_tier == "GOLD": bp_gold_misses += 1
+                                else: bp_silver_misses += 1
             except Exception:
                 pass
         sc_decided = sc_hits + sc_misses
+        bp_decided = bp_hits + bp_misses
 
         # Build lookups keyed by (date, game_key) from daily JSONs.
         _live_lookup: dict = {}
@@ -1340,6 +1359,14 @@ def main():
                 "decided": sc_decided,
                 "hit_rate": round(sc_hits / sc_decided * 100, 1) if sc_decided else None,
                 "note_zh": f"強共識(2+SILVER一致): {sc_hits}勝/{sc_decided}場決定 = {round(sc_hits/sc_decided*100,1) if sc_decided else 'N/A'}%，{sc_pending}場待定",
+            },
+            "best_pick": {
+                "hits": bp_hits, "misses": bp_misses, "pending": bp_pending,
+                "decided": bp_decided,
+                "hit_rate": round(bp_hits / bp_decided * 100, 1) if bp_decided else None,
+                "gold_hits": bp_gold_hits, "gold_misses": bp_gold_misses,
+                "silver_hits": bp_silver_hits, "silver_misses": bp_silver_misses,
+                "note_zh": f"單場最佳信號(GOLD/SILVER): {bp_hits}勝/{bp_decided}場決定 = {round(bp_hits/bp_decided*100,1) if bp_decided else 'N/A'}%",
             },
         }
 

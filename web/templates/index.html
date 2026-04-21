@@ -255,6 +255,14 @@
                         <div class="po-st-sub">{{ sc.hits }}/{{ sc.decided }}</div>
                     </div>
                     {% endif %}
+                    {% if pos.best_pick and pos.best_pick.decided %}
+                    {% set bp = pos.best_pick %}
+                    <div class="po-st-stat" style="border-left:2px solid rgba(66,165,245,0.4);padding-left:8px;" title="{{ bp.note_zh }}">
+                        <div class="po-st-lbl">🎯 單場最佳</div>
+                        <div class="po-st-val {% if bp.hit_rate >= 75 %}good{% elif bp.hit_rate < 50 %}bad{% endif %}">{{ bp.hit_rate }}%</div>
+                        <div class="po-st-sub">{{ bp.hits }}/{{ bp.decided }}</div>
+                    </div>
+                    {% endif %}
                 </div>
                 {# 本季主客場 ATS 覆蓋率分析 #}
                 {% if season_stats.playoff_home_ats %}

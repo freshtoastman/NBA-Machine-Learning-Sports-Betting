@@ -590,6 +590,18 @@
    "decided": 4,
    "hit_rate": 75.0,
    "note_zh": "強共識(2+SILVER一致): 3勝/4場決定 = 75.0%，1場待定"
+  },
+  "best_pick": {
+   "hits": 8,
+   "misses": 2,
+   "pending": 15,
+   "decided": 10,
+   "hit_rate": 80.0,
+   "gold_hits": 0,
+   "gold_misses": 0,
+   "silver_hits": 8,
+   "silver_misses": 2,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 8勝/10場決定 = 80.0%"
   }
  },
  "playoff_home_ats": {
