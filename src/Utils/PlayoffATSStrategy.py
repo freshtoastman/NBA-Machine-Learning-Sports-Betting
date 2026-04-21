@@ -200,6 +200,13 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
     g1_margin = series_state.get("g1_ats_margin") if series_state else None
     game_num = series_state.get("series_game_num", 1) if series_state else 1
 
+    # STRUCTURAL WEAKNESS FILTER: if the matchup spread exceeds 12, the cold team
+    # is structurally weaker, not just variance-cold. Historical G1 dog cover rate
+    # at |spread|>12 is 11.1% (1/9), so this signal must not fire there.
+    # Re-validated 2025-26: PHX @ OKC (sp 16.5) → cold bounce MISS, PHX lost ATS by 18.5.
+    if spread is not None and abs(spread) > 12:
+        return None
+
     # Home team bouncing back
     if h_ats is not None and h_ats <= 0.30:
         # Suppress if home lost G1 by >10 ATS pts (away dominated — not just cold)
@@ -214,7 +221,7 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             backtest_wr=0.60,
             backtest_roi=15.5,
             backtest_n=30,
-            reason_zh=f"主場近10場 ATS 僅 {h_ats*100:.0f}%，季後賽反彈 G1 勝率 60% (n=30)",
+            reason_zh=f"主場近10場 ATS 僅 {h_ats*100:.0f}%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
         )
     if a_ats is not None and a_ats <= 0.30:
         # Suppress if away lost G1 by >10 ATS pts (home dominated — away not just cold)
@@ -229,7 +236,7 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             backtest_wr=0.619,
             backtest_roi=17.8,
             backtest_n=21,
-            reason_zh=f"客場近10場 ATS 僅 {a_ats*100:.0f}%，季後賽反彈 G1 勝率 61.9% (n=21)",
+            reason_zh=f"客場近10場 ATS 僅 {a_ats*100:.0f}%，季後賽反彈 G1 勝率 61.9% (n=21，排除大讓分結構性弱)",
         )
     return None
 
@@ -600,16 +607,23 @@ def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None
 
 
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Home team giving ≤2 pts → bet away to cover.
+    """Home team giving ≤2 pts → bet away to cover (R1+ only, not play-in).
 
     Full historical (155 games, 12 seasons): 52.9% away covers overall.
     Recent 5 seasons (2020-25, n=58): 58.6% — positive trend.
+
+    Suppress for play-in games (round_num=0): different dynamics — home court
+    elimination pressure strengthens the favorite. 2025-26 live: ORL @ PHI
+    play-in (sp 1.5) → signal missed, PHI covered by 10.5.
     """
     spread = pred.get("spread")
     if spread is None:
         return None
     # Home is giving 0-2 pts (home is slight favorite)
     if not (0 < spread <= 2):
+        return None
+    # Suppress for play-in games — different dynamics
+    if series_state is not None and series_state.get("round_num", 1) == 0:
         return None
     return PlayoffATSPick(
         signal_name="小讓分客場受讓",
@@ -619,7 +633,7 @@ def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | No
         backtest_wr=0.529,
         backtest_roi=5.8,
         backtest_n=155,
-        reason_zh=f"主場僅讓 {spread:.1f} 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155)",
+        reason_zh=f"主場僅讓 {spread:.1f} 分，客場 cover 率 52.9% 整體 / 近5季 58.6% (n=155，附加賽不觸發)",
     )
 
 
@@ -684,12 +698,17 @@ def _home_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """R1G1: away team just survived play-in → home seeded team structural advantage.
+    """R1G1: away team just survived play-in → home covers (spread-bucket-specific).
 
-    Modern play-in era (2021-25, ~32 R1G1 games): home teams cover ~60% when
-    the visitor is a play-in survivor. Structural edge: home team had 7-14 extra
-    rest days and full preparation time; visitor carried elimination pressure.
-    2025-26 live: PHI vs ORL covered Apr 15; BOS/DET/SAS games pending Apr 19.
+    Re-backtest on strict play-in era 2020-21 to 2024-25 (n=20 R1G1 with play-in away):
+      - |spread| ≥12: **100% home cover (n=4)** — GOLD-worthy but tiny sample
+      - |spread| 8-12: 57.1% home (n=7) — SILVER
+      - |spread| 5-8:  **40% home (n=5)** — SIGNAL FAILS, suppress
+      - |spread| <5:   50% home (n=4) — coin flip, suppress
+
+    Prior claim of 60% (n=32) was correct overall but averaged strong ≥12 samples
+    with weak <8 samples. 2025-26 ORL @ DET (sp 8.5) miss validates: signal weakest
+    at 5-8 spread. Now fires only at spread ≥8 with tier tied to bucket.
     """
     if series_state is None:
         return None
@@ -698,16 +717,28 @@ def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | 
     if not series_state.get("away_from_playin", False):
         return None
     spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
+    if spread is None:
+        return None
+    # Suppress for small spread (signal has no edge)
+    if abs(spread) < 8:
+        return None
+    home_fav = spread > 0
+    # Tier by spread size
+    if abs(spread) >= 12:
+        wr, roi, n, tier = 0.75, 50.0, 4, "SILVER"  # 100% in 4 games but keep SILVER for small n
+        note = f"客隊附加賽升組+大讓分{spread:.1f}，近5季play-in era主場cover率 100% (n=4)，樣本小"
+    else:  # 8-12
+        wr, roi, n, tier = 0.571, 14.2, 7, "SILVER"
+        note = f"客隊附加賽升組+中讓分{spread:.1f}，近5季play-in era主場cover率 57.1% (n=7)"
     return PlayoffATSPick(
         signal_name="附加賽升組客隊不利",
         side="home",
         ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
-        backtest_wr=0.60,
-        backtest_roi=14.2,
-        backtest_n=32,
-        reason_zh="客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+        tier=tier,
+        backtest_wr=wr,
+        backtest_roi=roi,
+        backtest_n=n,
+        reason_zh=note,
     )
 
 
