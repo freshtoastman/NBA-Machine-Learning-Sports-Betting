@@ -352,13 +352,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2大勝後延續",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Boston Celtics",
      "home_team_zh": "波士頓塞爾提克",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "G1大勝 18.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)",
      "signal_team_zh": "波士頓塞爾提克"
     }
    }
@@ -607,13 +607,13 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2大勝後延續",
+     "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "home_team": "Oklahoma City Thunder",
      "home_team_zh": "奧克拉荷馬雷霆",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.534,
+     "reason_zh": "G1大勝 18.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)",
      "signal_team_zh": "奧克拉荷馬雷霆"
     }
    },
@@ -648,7 +648,7 @@
      "home_team_zh": "洛杉磯湖人",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+     "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)",
      "signal_team_zh": "洛杉磯湖人",
      "has_conflict": true,
      "conflict_signal": "客場明顯強勢",

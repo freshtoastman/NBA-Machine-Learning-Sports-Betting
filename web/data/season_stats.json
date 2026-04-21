@@ -47,11 +47,11 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 18,
-  "misses": 5,
-  "pending": 18,
-  "decided": 23,
-  "hit_rate": 78.3,
+  "hits": 10,
+  "misses": 3,
+  "pending": 15,
+  "decided": 13,
+  "hit_rate": 76.9,
   "history": [
    {
     "date": "2026-04-14",
@@ -90,23 +90,6 @@
    {
     "date": "2026-04-18",
     "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "R1G1大讓分主場",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.622,
-    "ats_winner": "home",
-    "ats_cover_margin": 5.0,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
     "signal": "主場ATS冷門反彈",
     "side": "home",
     "tier": "SILVER",
@@ -116,77 +99,9 @@
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
-    "strong_consensus": "home",
+    "strong_consensus": null,
     "home_team": "Cleveland Cavaliers",
     "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 5.0,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "明尼蘇達灰狼 @ 丹佛金塊",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 5.0,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "Denver Nuggets",
-    "away_team": "Minnesota Timberwolves",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 5.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "New York Knicks",
-    "away_team": "Atlanta Hawks",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-18",
-    "game": "休士頓火箭 @ 洛杉磯湖人",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 14.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "Los Angeles Lakers",
-    "away_team": "Houston Rockets",
     "result": "hit"
    },
    {
@@ -194,8 +109,8 @@
     "game": "費城七六人 @ 波士頓塞爾提克",
     "signal": "R1G1大讓分主場",
     "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.727,
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
@@ -225,28 +140,11 @@
    },
    {
     "date": "2026-04-19",
-    "game": "費城七六人 @ 波士頓塞爾提克",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 18.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "Boston Celtics",
-    "away_team": "Philadelphia 76ers",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-19",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signal": "R1G1大讓分主場",
     "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.727,
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
@@ -261,23 +159,6 @@
     "date": "2026-04-19",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signal": "附加賽升組客隊不利",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 18.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "Oklahoma City Thunder",
-    "away_team": "Phoenix Suns",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-19",
-    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
-    "signal": "首輪G1主場優勢",
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
@@ -296,8 +177,8 @@
     "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
     "signal": "R1G1大讓分主場",
     "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.727,
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
     "ats_winner": "home",
     "ats_cover_margin": 0.5,
     "series_game_num": 1,
@@ -312,23 +193,6 @@
     "date": "2026-04-19",
     "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
     "signal": "附加賽升組客隊不利",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 0.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "San Antonio Spurs",
-    "away_team": "Portland Trail Blazers",
-    "result": "hit"
-   },
-   {
-    "date": "2026-04-19",
-    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
-    "signal": "首輪G1主場優勢",
     "side": "home",
     "tier": "SILVER",
     "backtest_wr": 0.6,
@@ -362,23 +226,6 @@
    {
     "date": "2026-04-19",
     "game": "奧蘭多魔術 @ 底特律活塞",
-    "signal": "R1G1大讓分主場",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.622,
-    "ats_winner": "away",
-    "ats_cover_margin": -19.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "Detroit Pistons",
-    "away_team": "Orlando Magic",
-    "result": "miss"
-   },
-   {
-    "date": "2026-04-19",
-    "game": "奧蘭多魔術 @ 底特律活塞",
     "signal": "附加賽升組客隊不利",
     "side": "home",
     "tier": "SILVER",
@@ -388,24 +235,7 @@
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "Detroit Pistons",
-    "away_team": "Orlando Magic",
-    "result": "miss"
-   },
-   {
-    "date": "2026-04-19",
-    "game": "奧蘭多魔術 @ 底特律活塞",
-    "signal": "首輪G1主場優勢",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "away",
-    "ats_cover_margin": -19.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
+    "strong_consensus": null,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -462,20 +292,6 @@
    },
    {
     "date": "2026-04-21",
-    "game": "費城七六人 @ 波士頓塞爾提克",
-    "signals": [
-     "G2大勝後延續"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 2,
-    "series_score": "0-1",
-    "has_strong_consensus": false,
-    "spread": 13.5
-   },
-   {
-    "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
     "signals": [
      "G2大勝後延續",
@@ -483,7 +299,7 @@
     ],
     "consensus_side": null,
     "has_conflict": true,
-    "best_wr": 64,
+    "best_wr": 67,
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
@@ -502,20 +318,6 @@
     "series_score": "1-0",
     "has_strong_consensus": false,
     "spread": 9.5
-   },
-   {
-    "date": "2026-04-22",
-    "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
-    "signals": [
-     "G2大勝後延續"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 2,
-    "series_score": "0-1",
-    "has_strong_consensus": false,
-    "spread": 17.5
    },
    {
     "date": "2026-04-23",
@@ -587,19 +389,6 @@
    },
    {
     "date": "2026-04-25",
-    "game": "底特律活塞 @ 奧蘭多魔術",
-    "signals": [
-     "G2大勝後延續"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 2,
-    "series_score": "0-1",
-    "has_strong_consensus": false
-   },
-   {
-    "date": "2026-04-25",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
      "客場明顯強勢"
@@ -628,22 +417,13 @@
   ],
   "by_signal": [
    {
-    "signal": "首輪G1主場優勢",
-    "hits": 7,
-    "misses": 1,
-    "n": 8,
-    "tier": "SILVER",
-    "hit_rate": 87.5,
-    "backtest_wr": 60.0
-   },
-   {
     "signal": "R1G1大讓分主場",
-    "hits": 4,
-    "misses": 1,
-    "n": 5,
-    "tier": "SILVER",
-    "hit_rate": 80.0,
-    "backtest_wr": 62.2
+    "hits": 3,
+    "misses": 0,
+    "n": 3,
+    "tier": "GOLD",
+    "hit_rate": 100.0,
+    "backtest_wr": 87.5
    },
    {
     "signal": "附加賽升組客隊不利",
@@ -692,24 +472,24 @@
    }
   ],
   "strong_consensus": {
-   "hits": 3,
-   "misses": 1,
+   "hits": 2,
+   "misses": 0,
    "pending": 1,
-   "decided": 4,
-   "hit_rate": 75.0,
-   "note_zh": "強共識(2+SILVER一致): 3勝/4場決定 = 75.0%，1場待定"
+   "decided": 2,
+   "hit_rate": 100.0,
+   "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，1場待定"
   },
   "best_pick": {
-   "hits": 10,
+   "hits": 7,
    "misses": 2,
-   "pending": 13,
-   "decided": 12,
-   "hit_rate": 83.3,
-   "gold_hits": 0,
+   "pending": 10,
+   "decided": 9,
+   "hit_rate": 77.8,
+   "gold_hits": 3,
    "gold_misses": 0,
-   "silver_hits": 10,
+   "silver_hits": 4,
    "silver_misses": 2,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 10勝/12場決定 = 83.3%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 7勝/9場決定 = 77.8%"
   }
  },
  "playoff_home_ats": {

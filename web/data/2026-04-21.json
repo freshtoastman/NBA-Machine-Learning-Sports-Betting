@@ -12,27 +12,6 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
-    "game_key": "Philadelphia 76ers:Boston Celtics",
-    "home_team": "Boston Celtics",
-    "away_team": "Philadelphia 76ers",
-    "home_team_zh": "波士頓塞爾提克",
-    "away_team_zh": "費城七六人",
-    "signal": "G2大勝後延續",
-    "side": "home",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.643,
-    "backtest_roi": 21.5,
-    "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 2,
-    "series_home_wins": 1,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "has_conflict": false
-   },
-   {
     "game_key": "Portland Trail Blazers:San Antonio Spurs",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
@@ -63,9 +42,9 @@
     "side": "home",
     "ats_side": "受讓(押dog)",
     "tier": "SILVER",
-    "backtest_wr": 0.643,
-    "backtest_roi": 21.5,
-    "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)",
+    "backtest_wr": 0.667,
+    "backtest_roi": 33.3,
+    "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)",
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 2,
@@ -96,7 +75,7 @@
     "has_conflict": true
    }
   ],
-  "playoff_ats_count": 4,
+  "playoff_ats_count": 3,
   "injury_alerts": [
    "Boston Celtics: Ron Harper Jr. (可能出賽)",
    "Philadelphia 76ers: Joel Embiid (缺陣)",
@@ -597,16 +576,6 @@
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "G2大勝後延續",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "backtest_roi": 21.5,
-     "backtest_n": 28,
-     "reason_zh": "G1大勝 18.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
-    },
-    {
      "signal": "主場明顯強勢",
      "side": "home",
      "ats_side": "讓分(押fav)",
@@ -628,8 +597,8 @@
     }
    ],
    "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G2大勝後延續",
-   "playoff_ats_best_tier": "SILVER",
+   "playoff_ats_best_signal": "主場明顯強勢",
+   "playoff_ats_best_tier": "BRONZE",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
@@ -1699,10 +1668,10 @@
      "side": "home",
      "ats_side": "受讓(押dog)",
      "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "backtest_roi": 21.5,
-     "backtest_n": 28,
-     "reason_zh": "G1大勝 14.5 ATS分，12季R1回測主場cover率 64.3% (n=28)"
+     "backtest_wr": 0.667,
+     "backtest_roi": 33.3,
+     "backtest_n": 24,
+     "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)"
     },
     {
      "signal": "客場明顯強勢",
