@@ -38,11 +38,11 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 60.0,
-   "home_team_ev": 7.56,
-   "away_team_ev": -11.57,
+   "home_team_ev": 7.57,
+   "away_team_ev": -11.58,
    "home_team_odds": 144,
    "away_team_odds": -172,
-   "home_kelly": 5.25,
+   "home_kelly": 5.26,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -1094,30 +1094,30 @@
     "officials": [
      {
       "name": "Scott Foster",
-      "games": 56,
-      "home_cover_pct": 41.1,
+      "games": 57,
+      "home_cover_pct": 42.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.2288
+      "p_value": 0.2892
      },
      {
       "name": "Tre Maddox",
-      "games": 60,
-      "home_cover_pct": 46.7,
+      "games": 61,
+      "home_cover_pct": 47.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.6989
+      "p_value": 0.7982
      },
      {
       "name": "Mitchell Ervin",
-      "games": 70,
-      "home_cover_pct": 55.7,
+      "games": 71,
+      "home_cover_pct": 54.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.403
+      "p_value": 0.4767
      }
     ],
-    "avg_home_cover_pct": 47.8,
+    "avg_home_cover_pct": 48.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

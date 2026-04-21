@@ -81,8 +81,8 @@
    "ou_pick": "OVER",
    "ou_value": 222.5,
    "ou_confidence": 58.0,
-   "home_team_ev": -29.54,
-   "away_team_ev": 75.89,
+   "home_team_ev": -29.53,
+   "away_team_ev": 75.88,
    "home_team_odds": -370,
    "away_team_odds": 295,
    "home_kelly": 0,
@@ -657,7 +657,7 @@
    "ou_value": 217.5,
    "ou_confidence": 61.6,
    "home_team_ev": -15.42,
-   "away_team_ev": 21.66,
+   "away_team_ev": 21.65,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
@@ -1237,14 +1237,14 @@
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
    "away_team": "Minnesota Timberwolves",
-   "home_confidence": 57.6,
-   "away_confidence": 42.4,
+   "home_confidence": 57.7,
+   "away_confidence": 42.3,
    "winner": "home",
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
    "home_team_ev": -22.81,
-   "away_team_ev": 43.99,
+   "away_team_ev": 43.98,
    "home_team_odds": -295,
    "away_team_odds": 240,
    "home_kelly": 0,
@@ -1769,29 +1769,29 @@
     "officials": [
      {
       "name": "Tony Brothers",
-      "games": 68,
-      "home_cover_pct": 51.5,
+      "games": 69,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.9036
+      "p_value": 1.0
      },
      {
       "name": "Mitchell Ervin",
-      "games": 70,
-      "home_cover_pct": 55.7,
+      "games": 71,
+      "home_cover_pct": 54.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.403
+      "p_value": 0.4767
      },
      {
       "name": "Dedric Taylor",
-      "games": 21,
-      "home_cover_pct": 66.7,
+      "games": 22,
+      "home_cover_pct": 63.6,
       "significant": false,
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 58.0,
+    "avg_home_cover_pct": 56.4,
     "away_friendly": false,
     "home_friendly": true,
     "has_significant": false,

@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1978,
- "calib_gap_mid": 0.1246,
+ "calib_gap_mid": 0.1245,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,

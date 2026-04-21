@@ -38,12 +38,12 @@
    "ou_pick": "OVER",
    "ou_value": 222.5,
    "ou_confidence": 54.6,
-   "home_team_ev": -16.97,
+   "home_team_ev": -16.96,
    "away_team_ev": 10.51,
    "home_team_odds": -120,
    "away_team_odds": 102,
    "home_kelly": 0,
-   "away_kelly": 10.31,
+   "away_kelly": 10.3,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.5,
@@ -533,11 +533,11 @@
     "officials": [
      {
       "name": "Tony Brothers",
-      "games": 68,
-      "home_cover_pct": 51.5,
+      "games": 69,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.9036
+      "p_value": 1.0
      },
      {
       "name": "Tyler Ford",
@@ -556,7 +556,7 @@
       "p_value": 0.3891
      }
     ],
-    "avg_home_cover_pct": 45.0,
+    "avg_home_cover_pct": 44.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
@@ -597,7 +597,7 @@
    "ou_pick": "OVER",
    "ou_value": 221.5,
    "ou_confidence": 53.7,
-   "home_team_ev": -19.76,
+   "home_team_ev": -19.75,
    "away_team_ev": 24.63,
    "home_team_odds": -200,
    "away_team_odds": 168,
