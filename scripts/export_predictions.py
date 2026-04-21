@@ -1222,14 +1222,60 @@ def main():
             except Exception:
                 pass
         decided = len(po_hits) + len(po_misses)
-        # Per-signal breakdown
-        from collections import defaultdict
-        _sig_stats: dict = defaultdict(lambda: {"hits": 0, "misses": 0, "tier": "SILVER", "backtest_wr": None})
+
+        # Cover-margin conviction classifier: dominant (>8) / moderate (3-8) / narrow (<3)
+        def _conviction(cover_margin):
+            if cover_margin is None:
+                return None
+            m = abs(cover_margin)
+            if m >= 8:
+                return "dominant"   # 💪 碾壓
+            if m >= 3:
+                return "moderate"   # 📏 普通
+            return "narrow"         # 🎲 險過
+
+        # Annotate each hit/miss record with conviction band
+        for r in po_hits + po_misses:
+            r["conviction"] = _conviction(r.get("ats_cover_margin"))
+
+        # Overall conviction tallies across all SILVER+ signals
+        conv_tally = {"dominant": 0, "moderate": 0, "narrow": 0}
         for r in po_hits:
-            _sig_stats[r["signal"]]["hits"] += 1
-            _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
+            c = r.get("conviction")
+            if c: conv_tally[c] += 1
+        total_hits_for_conv = sum(conv_tally.values())
+        # "True conviction" WR excludes narrow hits (they're lucky covers)
+        true_conviction_hits = conv_tally["dominant"] + conv_tally["moderate"]
+        # Denominator stays as decided (n) — narrow hits become "half-credit" style
+        conv_summary = {
+            "dominant_hits": conv_tally["dominant"],
+            "moderate_hits": conv_tally["moderate"],
+            "narrow_hits": conv_tally["narrow"],
+            "total_hits": total_hits_for_conv,
+            "true_conviction_hits": true_conviction_hits,
+            "raw_hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
+            "true_conviction_rate": round(true_conviction_hits / decided * 100, 1) if decided else None,
+            "note_zh": (
+                f"{conv_tally['dominant']} 碾壓 (>8) + {conv_tally['moderate']} 普通 (3-8) + "
+                f"{conv_tally['narrow']} 險過 (<3)；真實信心率 "
+                f"{round(true_conviction_hits/decided*100,1) if decided else 0}% (不含險過)"
+            ),
+        }
+
+        # Per-signal breakdown with conviction split
+        from collections import defaultdict
+        _sig_stats: dict = defaultdict(lambda: {
+            "hits": 0, "misses": 0, "tier": "SILVER", "backtest_wr": None,
+            "dominant_hits": 0, "moderate_hits": 0, "narrow_hits": 0,
+        })
+        for r in po_hits:
+            s = _sig_stats[r["signal"]]
+            s["hits"] += 1
+            s["tier"] = r.get("tier", "SILVER")
             if r.get("backtest_wr"):
-                _sig_stats[r["signal"]]["backtest_wr"] = r["backtest_wr"]
+                s["backtest_wr"] = r["backtest_wr"]
+            c = r.get("conviction")
+            if c: s[f"{c}_hits"] += 1
         for r in po_misses:
             _sig_stats[r["signal"]]["misses"] += 1
             _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
@@ -1238,11 +1284,16 @@ def main():
         sig_breakdown = []
         for sig, v in _sig_stats.items():
             n = v["hits"] + v["misses"]
+            true_hits = v["dominant_hits"] + v["moderate_hits"]
             sig_breakdown.append({
                 "signal": sig, "hits": v["hits"], "misses": v["misses"],
                 "n": n, "tier": v["tier"],
                 "hit_rate": round(v["hits"] / n * 100, 1) if n else None,
                 "backtest_wr": round(v["backtest_wr"] * 100, 1) if v["backtest_wr"] else None,
+                "dominant_hits": v["dominant_hits"],
+                "moderate_hits": v["moderate_hits"],
+                "narrow_hits": v["narrow_hits"],
+                "true_hit_rate": round(true_hits / n * 100, 1) if n else None,
             })
         sig_breakdown.sort(key=lambda x: -x["hits"])
 
@@ -1251,6 +1302,9 @@ def main():
         bp_hits, bp_misses, bp_pending = 0, 0, 0
         bp_gold_hits, bp_gold_misses = 0, 0
         bp_silver_hits, bp_silver_misses = 0, 0
+        # Conviction-banded best-pick tracking
+        bp_conv = {"dominant": 0, "moderate": 0, "narrow": 0}
+        sc_conv = {"dominant": 0, "moderate": 0, "narrow": 0}
         for jf in sorted(OUT_DIR.glob("????-??-??.json")):
             try:
                 with open(jf, encoding="utf-8") as _jf:
@@ -1260,6 +1314,7 @@ def main():
                 for g in games_iter:
                     if not isinstance(g, dict): continue
                     winner = g.get("ats_winner")
+                    cm = g.get("ats_cover_margin")
                     sc = g.get("playoff_ats_strong_consensus")
                     if sc is not None:
                         if winner is None:
@@ -1268,6 +1323,8 @@ def main():
                             pass  # push: refund, not a miss
                         elif winner == sc:
                             sc_hits += 1
+                            conv_band = _conviction(cm)
+                            if conv_band: sc_conv[conv_band] += 1
                         else:
                             sc_misses += 1
                     bp = g.get("playoff_ats_best_side")
@@ -1283,6 +1340,8 @@ def main():
                                 bp_hits += 1
                                 if bp_tier == "GOLD": bp_gold_hits += 1
                                 else: bp_silver_hits += 1
+                                conv_band = _conviction(cm)
+                                if conv_band: bp_conv[conv_band] += 1
                             else:
                                 bp_misses += 1
                                 if bp_tier == "GOLD": bp_gold_misses += 1
@@ -1378,6 +1437,7 @@ def main():
             "pending": len(po_pending),
             "decided": decided,
             "hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
+            "conviction": conv_summary,
             "history": sorted(po_hits + po_misses, key=lambda r: r["date"])[-60:],  # chronological, most recent (up to 60)
             "pending_by_game": pending_by_game,
             "by_signal": sig_breakdown,
@@ -1385,6 +1445,10 @@ def main():
                 "hits": sc_hits, "misses": sc_misses, "pending": sc_pending,
                 "decided": sc_decided,
                 "hit_rate": round(sc_hits / sc_decided * 100, 1) if sc_decided else None,
+                "dominant_hits": sc_conv["dominant"],
+                "moderate_hits": sc_conv["moderate"],
+                "narrow_hits": sc_conv["narrow"],
+                "true_hit_rate": round((sc_conv["dominant"] + sc_conv["moderate"]) / sc_decided * 100, 1) if sc_decided else None,
                 "note_zh": f"強共識(2+SILVER一致): {sc_hits}勝/{sc_decided}場決定 = {round(sc_hits/sc_decided*100,1) if sc_decided else 'N/A'}%，{sc_pending}場待定",
             },
             "best_pick": {
@@ -1393,6 +1457,10 @@ def main():
                 "hit_rate": round(bp_hits / bp_decided * 100, 1) if bp_decided else None,
                 "gold_hits": bp_gold_hits, "gold_misses": bp_gold_misses,
                 "silver_hits": bp_silver_hits, "silver_misses": bp_silver_misses,
+                "dominant_hits": bp_conv["dominant"],
+                "moderate_hits": bp_conv["moderate"],
+                "narrow_hits": bp_conv["narrow"],
+                "true_hit_rate": round((bp_conv["dominant"] + bp_conv["moderate"]) / bp_decided * 100, 1) if bp_decided else None,
                 "note_zh": f"單場最佳信號(GOLD/SILVER): {bp_hits}勝/{bp_decided}場決定 = {round(bp_hits/bp_decided*100,1) if bp_decided else 'N/A'}%",
             },
         }

@@ -52,6 +52,16 @@
   "pending": 15,
   "decided": 13,
   "hit_rate": 76.9,
+  "conviction": {
+   "dominant_hits": 5,
+   "moderate_hits": 3,
+   "narrow_hits": 2,
+   "total_hits": 10,
+   "true_conviction_hits": 8,
+   "raw_hit_rate": 76.9,
+   "true_conviction_rate": 61.5,
+   "note_zh": "5 碾壓 (>8) + 3 普通 (3-8) + 2 險過 (<3)；真實信心率 61.5% (不含險過)"
+  },
   "history": [
    {
     "date": "2026-04-14",
@@ -68,7 +78,8 @@
     "strong_consensus": null,
     "home_team": "Charlotte Hornets",
     "away_team": "Miami Heat",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "moderate"
    },
    {
     "date": "2026-04-15",
@@ -85,7 +96,8 @@
     "strong_consensus": null,
     "home_team": "Philadelphia 76ers",
     "away_team": "Orlando Magic",
-    "result": "miss"
+    "result": "miss",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-18",
@@ -102,7 +114,8 @@
     "strong_consensus": null,
     "home_team": "Cleveland Cavaliers",
     "away_team": "Toronto Raptors",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "moderate"
    },
    {
     "date": "2026-04-19",
@@ -119,7 +132,8 @@
     "strong_consensus": "home",
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-19",
@@ -136,7 +150,8 @@
     "strong_consensus": "home",
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-19",
@@ -153,7 +168,8 @@
     "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-19",
@@ -170,7 +186,8 @@
     "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-19",
@@ -187,7 +204,8 @@
     "strong_consensus": "home",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "narrow"
    },
    {
     "date": "2026-04-19",
@@ -204,7 +222,8 @@
     "strong_consensus": "home",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "narrow"
    },
    {
     "date": "2026-04-19",
@@ -221,7 +240,8 @@
     "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
-    "result": "miss"
+    "result": "miss",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-19",
@@ -238,7 +258,8 @@
     "strong_consensus": null,
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
-    "result": "miss"
+    "result": "miss",
+    "conviction": "dominant"
    },
    {
     "date": "2026-04-20",
@@ -255,7 +276,8 @@
     "strong_consensus": null,
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "moderate"
    },
    {
     "date": "2026-04-20",
@@ -272,7 +294,8 @@
     "strong_consensus": null,
     "home_team": "Denver Nuggets",
     "away_team": "Minnesota Timberwolves",
-    "result": "hit"
+    "result": "hit",
+    "conviction": "dominant"
    }
   ],
   "pending_by_game": [
@@ -423,7 +446,11 @@
     "n": 3,
     "tier": "GOLD",
     "hit_rate": 100.0,
-    "backtest_wr": 87.5
+    "backtest_wr": 87.5,
+    "dominant_hits": 2,
+    "moderate_hits": 0,
+    "narrow_hits": 1,
+    "true_hit_rate": 66.7
    },
    {
     "signal": "附加賽升組客隊不利",
@@ -432,7 +459,11 @@
     "n": 4,
     "tier": "SILVER",
     "hit_rate": 75.0,
-    "backtest_wr": 60.0
+    "backtest_wr": 60.0,
+    "dominant_hits": 2,
+    "moderate_hits": 0,
+    "narrow_hits": 1,
+    "true_hit_rate": 50.0
    },
    {
     "signal": "ML季後賽押客場",
@@ -441,7 +472,11 @@
     "n": 2,
     "tier": "SILVER",
     "hit_rate": 100.0,
-    "backtest_wr": 64.0
+    "backtest_wr": 64.0,
+    "dominant_hits": 1,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "true_hit_rate": 100.0
    },
    {
     "signal": "客場ATS冷門反彈",
@@ -450,7 +485,11 @@
     "n": 2,
     "tier": "SILVER",
     "hit_rate": 50.0,
-    "backtest_wr": 61.9
+    "backtest_wr": 61.9,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "true_hit_rate": 50.0
    },
    {
     "signal": "主場ATS冷門反彈",
@@ -459,7 +498,11 @@
     "n": 1,
     "tier": "SILVER",
     "hit_rate": 100.0,
-    "backtest_wr": 60.0
+    "backtest_wr": 60.0,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "true_hit_rate": 100.0
    },
    {
     "signal": "小讓分客場受讓",
@@ -468,7 +511,11 @@
     "n": 1,
     "tier": "SILVER",
     "hit_rate": 0.0,
-    "backtest_wr": 52.9
+    "backtest_wr": 52.9,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "true_hit_rate": 0.0
    }
   ],
   "strong_consensus": {
@@ -477,6 +524,10 @@
    "pending": 1,
    "decided": 2,
    "hit_rate": 100.0,
+   "dominant_hits": 1,
+   "moderate_hits": 0,
+   "narrow_hits": 1,
+   "true_hit_rate": 50.0,
    "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，1場待定"
   },
   "best_pick": {
@@ -489,6 +540,10 @@
    "gold_misses": 0,
    "silver_hits": 4,
    "silver_misses": 2,
+   "dominant_hits": 3,
+   "moderate_hits": 3,
+   "narrow_hits": 1,
+   "true_hit_rate": 66.7,
    "note_zh": "單場最佳信號(GOLD/SILVER): 7勝/9場決定 = 77.8%"
   }
  },

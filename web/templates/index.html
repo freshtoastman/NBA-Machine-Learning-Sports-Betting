@@ -231,11 +231,29 @@
                         <div class="po-st-val {% if pos.hit_rate >= 85 %}good{% elif pos.hit_rate >= 60 %}good{% elif pos.hit_rate < 50 %}bad{% endif %}" {% if pos.hit_rate >= 85 %}style="font-size:20px;"{% endif %}>{{ pos.hit_rate }}%</div>
                         <div class="po-st-sub">{{ pos.hits }}/{{ pos.decided }}</div>
                     </div>
+                    {% if pos.conviction %}
+                    {% set cv = pos.conviction %}
+                    <div class="po-st-stat" style="border-left:2px solid rgba(127,214,155,0.4);padding-left:8px;" title="真實信心率 = 碾壓(>8) + 普通(3-8) 命中，排除險過(<3)的運氣成分">
+                        <div class="po-st-lbl">真信心率</div>
+                        <div class="po-st-val {% if cv.true_conviction_rate >= 60 %}good{% elif cv.true_conviction_rate < 50 %}bad{% endif %}">{{ cv.true_conviction_rate }}%</div>
+                        <div class="po-st-sub">{{ cv.true_conviction_hits }}/{{ pos.decided }}（排除險過）</div>
+                    </div>
+                    <div class="po-st-stat" title="各命中按過盤幅度分級">
+                        <div class="po-st-lbl">命中分級</div>
+                        <div style="font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center;line-height:1.2;">
+                            <span style="color:#7fd69b;" title="過盤 >8 ATS 分">💪{{ cv.dominant_hits }}</span>
+                            <span style="color:#ffa726;" title="過盤 3-8 ATS 分">📏{{ cv.moderate_hits }}</span>
+                            <span style="color:#e57373;" title="過盤 &lt;3 ATS 分（運氣成分）">🎲{{ cv.narrow_hits }}</span>
+                        </div>
+                        <div class="po-st-sub" style="font-size:9px;">碾壓/普通/險過</div>
+                    </div>
+                    {% else %}
                     <div class="po-st-stat">
                         <div class="po-st-lbl">命中</div>
                         <div class="po-st-val good">{{ pos.hits }}</div>
                         <div class="po-st-sub">場次</div>
                     </div>
+                    {% endif %}
                     <div class="po-st-stat">
                         <div class="po-st-lbl">失敗</div>
                         <div class="po-st-val {% if pos.misses > pos.hits %}bad{% endif %}">{{ pos.misses }}</div>
@@ -295,6 +313,13 @@
                         <span style="margin-left:8px;white-space:nowrap;display:flex;align-items:center;gap:4px;">
                             {% if sig.backtest_wr %}
                             <span style="color:#666;font-size:9px;" title="回測期望勝率">回測{{ sig.backtest_wr }}%</span>
+                            {% endif %}
+                            {% if sig.dominant_hits is defined and (sig.dominant_hits or sig.moderate_hits or sig.narrow_hits) %}
+                            <span style="font-size:9px;display:inline-flex;gap:3px;" title="碾壓/普通/險過">
+                                {% if sig.dominant_hits %}<span style="color:#7fd69b;">💪{{ sig.dominant_hits }}</span>{% endif %}
+                                {% if sig.moderate_hits %}<span style="color:#ffa726;">📏{{ sig.moderate_hits }}</span>{% endif %}
+                                {% if sig.narrow_hits %}<span style="color:#e57373;" title="險過(<3 ATS分) — 運氣成分">🎲{{ sig.narrow_hits }}</span>{% endif %}
+                            </span>
                             {% endif %}
                             <span style="color:{% if sig.hit_rate >= 60 %}#4caf50{% elif sig.hit_rate < 50 %}#e57373{% else %}#ffa726{% endif %};font-weight:600;">{{ sig.hit_rate }}%</span>
                             <span style="color:#888;">{{ sig.hits }}/{{ sig.n }}</span>
