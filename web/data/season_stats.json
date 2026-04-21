@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1978,
- "calib_gap_mid": 0.1245,
+ "calib_gap_mid": 0.1246,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -393,7 +393,7 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
-    "spread": 11.5
+    "spread": 10.5
    },
    {
     "date": "2026-04-21",
@@ -408,7 +408,7 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
-    "spread": -4.5
+    "spread": -5.5
    },
    {
     "date": "2026-04-22",
@@ -422,7 +422,7 @@
     "series_game_num": 2,
     "series_score": "1-0",
     "has_strong_consensus": false,
-    "spread": 9.5
+    "spread": 8.5
    },
    {
     "date": "2026-04-23",

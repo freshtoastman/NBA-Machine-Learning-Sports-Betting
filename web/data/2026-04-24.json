@@ -99,10 +99,8 @@
   "playoff_ats_count": 4,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Boston Celtics: Ron Harper Jr. (可能出賽)",
    "Houston Rockets: Kevin Durant (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)",
-   "Los Angeles Lakers: Luka Doncic (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ],
   "ml_correct": 0,
@@ -644,9 +642,7 @@
    "injuries_home": [
     "Joel Embiid (缺陣)"
    ],
-   "injuries_away": [
-    "Ron Harper Jr. (可能出賽)"
-   ]
+   "injuries_away": []
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -1172,8 +1168,7 @@
     "Kevin Durant (缺陣)"
    ],
    "injuries_away": [
-    "Austin Reaves (缺陣)",
-    "Luka Doncic (缺陣)"
+    "Austin Reaves (缺陣)"
    ]
   },
   "San Antonio Spurs:Portland Trail Blazers": {

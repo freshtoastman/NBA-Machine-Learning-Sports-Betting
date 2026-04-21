@@ -35,9 +35,10 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Phoenix Suns: Mark Williams (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)"
+   "Orlando Magic: Jonathan Isaac (可能缺陣)",
+   "Phoenix Suns: Jordan Goodwin (存疑)",
+   "Phoenix Suns: Grayson Allen (存疑)",
+   "Phoenix Suns: Mark Williams (存疑)"
   ]
  },
  "games": {
@@ -50,21 +51,21 @@
    "ou_pick": "UNDER",
    "ou_value": 218.5,
    "ou_confidence": 58.6,
-   "home_team_ev": -20.19,
-   "away_team_ev": 56.17,
-   "home_team_odds": -450,
-   "away_team_odds": 350,
+   "home_team_ev": -17.06,
+   "away_team_ev": 37.09,
+   "home_team_odds": -370,
+   "away_team_odds": 295,
    "home_kelly": 0,
-   "away_kelly": 16.05,
+   "away_kelly": 12.57,
    "is_historical": true,
    "ats_model_pick": "away",
-   "ats_model_home_prob": 49.3,
-   "ats_model_confidence": 50.7,
-   "ats_value_edge": 0.7,
+   "ats_model_home_prob": 49.4,
+   "ats_model_confidence": 50.6,
+   "ats_value_edge": 0.6,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 9.5,
+   "spread": 8.5,
    "home_profile": {
     "weekday_name": "週三",
     "season": {
@@ -509,8 +510,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 78.6,
-   "fair_away": 21.4,
+   "fair_home": 75.7,
+   "fair_away": 24.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -553,7 +554,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Jonathan Isaac (缺陣)"
+    "Jonathan Isaac (可能缺陣)"
    ],
    "odds_history": [
     {
@@ -595,13 +596,21 @@
      "ml_home": -450,
      "ml_away": 350,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": 8.5,
+     "ou": 218.5,
+     "ml_home": -370,
+     "ml_away": 295,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
-   "spread_last": 9.5,
-   "spread_move": 0.0,
+   "spread_last": 8.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -610,11 +619,11 @@
    "away_confidence": 33.4,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 214.5,
+   "ou_value": 215.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -30.03,
-   "away_team_ev": 300.37,
-   "home_team_odds": -2000,
+   "home_team_ev": -30.37,
+   "away_team_ev": 300.39,
+   "home_team_odds": -2222,
    "away_team_odds": 1100,
    "home_kelly": 0,
    "away_kelly": 27.31,
@@ -1125,8 +1134,9 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Mark Williams (缺陣)",
-    "Jordan Goodwin (缺陣)"
+    "Jordan Goodwin (存疑)",
+    "Grayson Allen (存疑)",
+    "Mark Williams (存疑)"
    ],
    "odds_history": [
     {
@@ -1160,13 +1170,21 @@
      "ml_home": -2000,
      "ml_away": 1100,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": 17.5,
+     "ou": 215.5,
+     "ml_home": -2222,
+     "ml_away": 1100,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 16.5,
    "spread_last": 17.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   }
  },
  "active_series": [

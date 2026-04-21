@@ -23,7 +23,7 @@
     "tier": "GOLD",
     "backtest_wr": 0.889,
     "backtest_roi": 77.8,
-    "reason_zh": "G1僅贏 -1.0 ATS分但G2讓 11.5 分，市場高估。7季回測冷門cover率 88.9% (8/9)",
+    "reason_zh": "G1僅贏 -1.0 ATS分但G2讓 10.5 分，市場高估。7季回測冷門cover率 88.9% (8/9)",
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 2,
@@ -77,11 +77,9 @@
   ],
   "playoff_ats_count": 3,
   "injury_alerts": [
-   "Boston Celtics: Ron Harper Jr. (可能出賽)",
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)",
-   "Los Angeles Lakers: Luka Doncic (缺陣)",
    "Houston Rockets: Kevin Durant (缺陣)"
   ],
   "ml_correct": 0,
@@ -109,12 +107,12 @@
    "ou_pick": "OVER",
    "ou_value": 217.5,
    "ou_confidence": 51.2,
-   "home_team_ev": -31.5,
-   "away_team_ev": 197.71,
-   "home_team_odds": -1099,
-   "away_team_odds": 700,
+   "home_team_ev": -29.8,
+   "away_team_ev": 156.79,
+   "home_team_odds": -847,
+   "away_team_odds": 590,
    "home_kelly": 0,
-   "away_kelly": 28.24,
+   "away_kelly": 26.57,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.2,
@@ -123,7 +121,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 14.5,
+   "spread": 13.5,
    "home_profile": {
     "weekday_name": "週二",
     "season": {
@@ -568,8 +566,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 88.0,
-   "fair_away": 12.0,
+   "fair_home": 86.1,
+   "fair_away": 13.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -620,9 +618,12 @@
    "away_team_zh": "費城七六人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "injuries_home": [
-    "Ron Harper Jr. (可能出賽)"
-   ],
+   "injuries_home": [],
+   "live_home_score": 26,
+   "live_away_score": 13,
+   "live_status": "Q1 3:15",
+   "live_is_final": false,
+   "live_home_covering": false,
    "injuries_away": [
     "Joel Embiid (缺陣)"
    ],
@@ -658,13 +659,21 @@
      "ml_home": -1099,
      "ml_away": 700,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": 13.5,
+     "ou": 217.5,
+     "ml_home": -847,
+     "ml_away": 590,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 13.5,
-   "spread_last": 14.5,
-   "spread_move": 1.0,
+   "spread_last": 13.5,
+   "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -675,12 +684,12 @@
    "ou_pick": "OVER",
    "ou_value": 220.5,
    "ou_confidence": 54.5,
-   "home_team_ev": -18.5,
-   "away_team_ev": 72.18,
-   "home_team_odds": -699,
-   "away_team_odds": 500,
+   "home_team_ev": -15.71,
+   "away_team_ev": 46.36,
+   "home_team_odds": -549,
+   "away_team_odds": 410,
    "home_kelly": 0,
-   "away_kelly": 14.44,
+   "away_kelly": 11.31,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.2,
@@ -689,7 +698,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 11.5,
+   "spread": 10.5,
    "home_profile": {
     "weekday_name": "週二",
     "season": {
@@ -1134,8 +1143,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 84.0,
-   "fair_away": 16.0,
+   "fair_home": 81.2,
+   "fair_away": 18.8,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1163,7 +1172,7 @@
      "backtest_wr": 0.889,
      "backtest_roi": 77.8,
      "backtest_n": 9,
-     "reason_zh": "G1僅贏 -1.0 ATS分但G2讓 11.5 分，市場高估。7季回測冷門cover率 88.9% (8/9)"
+     "reason_zh": "G1僅贏 -1.0 ATS分但G2讓 10.5 分，市場高估。7季回測冷門cover率 88.9% (8/9)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1212,13 +1221,21 @@
      "ml_home": -699,
      "ml_away": 500,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": 10.5,
+     "ou": 220.5,
+     "ml_home": -549,
+     "ml_away": 410,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 11.5,
-   "spread_last": 11.5,
-   "spread_move": 0.0,
+   "spread_last": 10.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1229,21 +1246,21 @@
    "ou_pick": "OVER",
    "ou_value": 207.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 41.42,
-   "away_team_ev": -29.15,
-   "home_team_odds": 168,
-   "away_team_odds": -200,
-   "home_kelly": 24.65,
+   "home_team_ev": 49.85,
+   "away_team_ev": -31.29,
+   "home_team_odds": 184,
+   "away_team_odds": -220,
+   "home_kelly": 27.09,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
-   "ats_model_home_prob": 52.7,
-   "ats_model_confidence": 52.7,
-   "ats_value_edge": 2.7,
+   "ats_model_home_prob": 52.9,
+   "ats_model_confidence": 52.9,
+   "ats_value_edge": 2.9,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -4.5,
+   "spread": -5.5,
    "home_profile": {
     "weekday_name": "週二",
     "season": {
@@ -1688,8 +1705,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 35.9,
-   "fair_away": 64.1,
+   "fair_home": 33.9,
+   "fair_away": 66.1,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1738,6 +1755,16 @@
      "backtest_roi": 4.8,
      "backtest_n": 116,
      "reason_zh": "G1大勝 14.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
+    },
+    {
+     "signal": "中等讓分押冷門",
+     "side": "home",
+     "ats_side": "受讓(押dog)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.521,
+     "backtest_roi": 4.2,
+     "backtest_n": 290,
+     "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -1751,8 +1778,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "injuries_home": [
-    "Austin Reaves (缺陣)",
-    "Luka Doncic (缺陣)"
+    "Austin Reaves (缺陣)"
    ],
    "injuries_away": [
     "Kevin Durant (缺陣)"
@@ -1797,13 +1823,21 @@
      "ml_home": 168,
      "ml_away": -200,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": -5.5,
+     "ou": 207.5,
+     "ml_home": 184,
+     "ml_away": -220,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -4.5,
-   "spread_last": -4.5,
-   "spread_move": 0.0,
+   "spread_last": -5.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   }
  },
  "active_series": [

@@ -128,12 +128,12 @@
    "ou_pick": "UNDER",
    "ou_value": 216.5,
    "ou_confidence": 53.4,
-   "home_team_ev": -10.24,
-   "away_team_ev": 2.67,
-   "home_team_odds": -104,
-   "away_team_odds": -112,
+   "home_team_ev": -11.08,
+   "away_team_ev": 3.56,
+   "home_team_odds": -106,
+   "away_team_odds": -110,
    "home_kelly": 0,
-   "away_kelly": 2.83,
+   "away_kelly": 3.96,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.6,
@@ -587,8 +587,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 49.1,
-   "fair_away": 50.9,
+   "fair_home": 49.6,
+   "fair_away": 50.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -641,13 +641,21 @@
      "ml_home": -104,
      "ml_away": -112,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": -1.5,
+     "ou": 216.5,
+     "ml_home": -106,
+     "ml_away": -110,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-21T14:08:15+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -662,7 +670,7 @@
    "away_team_ev": -17.92,
    "home_team_odds": 130,
    "away_team_odds": -154,
-   "home_kelly": 11.96,
+   "home_kelly": 11.95,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -1210,10 +1218,10 @@
    "ou_pick": "UNDER",
    "ou_value": 233.5,
    "ou_confidence": 76.0,
-   "home_team_ev": -3.87,
-   "away_team_ev": -3.65,
-   "home_team_odds": 106,
-   "away_team_odds": -124,
+   "home_team_ev": -2.01,
+   "away_team_ev": -5.63,
+   "home_team_odds": 110,
+   "away_team_odds": -130,
    "home_kelly": 0,
    "away_kelly": 0,
    "is_historical": true,
@@ -1669,8 +1677,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 46.7,
-   "fair_away": 53.3,
+   "fair_home": 45.7,
+   "fair_away": 54.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1733,13 +1741,21 @@
      "ml_home": 106,
      "ml_away": -124,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T23:30:20+00:00",
+     "spread": -1.5,
+     "ou": 233.5,
+     "ml_home": 110,
+     "ml_away": -130,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-21T14:08:15+00:00"
+   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
   }
  },
  "active_series": [

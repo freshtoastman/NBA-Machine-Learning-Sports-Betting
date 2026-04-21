@@ -77,9 +77,10 @@
   ],
   "playoff_ats_count": 3,
   "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Phoenix Suns: Mark Williams (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)",
+   "Orlando Magic: Jonathan Isaac (可能缺陣)",
+   "Phoenix Suns: Jordan Goodwin (存疑)",
+   "Phoenix Suns: Grayson Allen (存疑)",
+   "Phoenix Suns: Mark Williams (存疑)",
    "Atlanta Hawks: Jock Landale (缺陣)",
    "Denver Nuggets: Peyton Watson (缺陣)"
   ],
@@ -610,7 +611,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "injuries_home": [
-    "Jonathan Isaac (缺陣)"
+    "Jonathan Isaac (可能缺陣)"
    ],
    "injuries_away": []
   },
@@ -1135,8 +1136,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "injuries_home": [
-    "Mark Williams (缺陣)",
-    "Jordan Goodwin (缺陣)"
+    "Jordan Goodwin (存疑)",
+    "Grayson Allen (存疑)",
+    "Mark Williams (存疑)"
    ],
    "injuries_away": []
   },
