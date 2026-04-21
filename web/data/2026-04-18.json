@@ -23,7 +23,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 15.5,
-    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)",
+    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
     "series_game_num": 1,
@@ -548,7 +548,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 15.5,
      "backtest_n": 30,
-     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30)"
+     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
     },
     {
      "signal": "主場明顯強勢",

@@ -42,9 +42,9 @@
     "side": "home",
     "ats_side": "讓分(押fav)",
     "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 14.2,
-    "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+    "backtest_wr": 0.75,
+    "backtest_roi": 50.0,
+    "reason_zh": "客隊附加賽升組+大讓分13.5，近5季play-in era主場cover率 100% (n=4)，樣本小",
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
@@ -71,29 +71,8 @@
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
-    "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Phoenix Suns:Oklahoma City Thunder",
-    "home_team": "Oklahoma City Thunder",
-    "away_team": "Phoenix Suns",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "away_team_zh": "鳳凰城太陽",
-    "signal": "客場ATS冷門反彈",
-    "side": "away",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.619,
-    "backtest_roi": 17.8,
-    "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)",
-    "ats_winner": "home",
-    "ats_cover_margin": 18.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "home",
+    "has_conflict": false
    },
    {
     "game_key": "Phoenix Suns:Oklahoma City Thunder",
@@ -105,16 +84,16 @@
     "side": "home",
     "ats_side": "讓分(押fav)",
     "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 14.2,
-    "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+    "backtest_wr": 0.75,
+    "backtest_roi": 50.0,
+    "reason_zh": "客隊附加賽升組+大讓分16.5，近5季play-in era主場cover率 100% (n=4)，樣本小",
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "home",
+    "has_conflict": false
    },
    {
     "game_key": "Orlando Magic:Detroit Pistons",
@@ -126,9 +105,9 @@
     "side": "home",
     "ats_side": "讓分(押fav)",
     "tier": "SILVER",
-    "backtest_wr": 0.6,
+    "backtest_wr": 0.571,
     "backtest_roi": 14.2,
-    "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+    "reason_zh": "客隊附加賽升組+中讓分8.5，近5季play-in era主場cover率 57.1% (n=7)",
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
     "series_game_num": 1,
@@ -168,9 +147,9 @@
     "side": "home",
     "ats_side": "讓分(押fav)",
     "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 14.2,
-    "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
+    "backtest_wr": 0.75,
+    "backtest_roi": 50.0,
+    "reason_zh": "客隊附加賽升組+大讓分14.0，近5季play-in era主場cover率 100% (n=4)，樣本小",
     "ats_winner": "away",
     "ats_cover_margin": -1.0,
     "series_game_num": 1,
@@ -180,7 +159,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 8,
+  "playoff_ats_count": 7,
   "injury_alerts": [],
   "ml_correct": 3,
   "ml_graded": 4,
@@ -702,10 +681,10 @@
      "side": "home",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 14.2,
-     "backtest_n": 32,
-     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)"
+     "backtest_wr": 0.75,
+     "backtest_roi": 50.0,
+     "backtest_n": 4,
+     "reason_zh": "客隊附加賽升組+大讓分13.5，近5季play-in era主場cover率 100% (n=4)，樣本小"
     },
     {
      "signal": "主場明顯強勢",
@@ -1279,24 +1258,14 @@
      "reason_zh": "首輪G1讓 16.5 分，13季修正回測主場cover率 88% (n=8)"
     },
     {
-     "signal": "客場ATS冷門反彈",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.619,
-     "backtest_roi": 17.8,
-     "backtest_n": 21,
-     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21)"
-    },
-    {
      "signal": "附加賽升組客隊不利",
      "side": "home",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 14.2,
-     "backtest_n": 32,
-     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)"
+     "backtest_wr": 0.75,
+     "backtest_roi": 50.0,
+     "backtest_n": 4,
+     "reason_zh": "客隊附加賽升組+大讓分16.5，近5季play-in era主場cover率 100% (n=4)，樣本小"
     },
     {
      "signal": "主場明顯強勢",
@@ -1313,8 +1282,8 @@
    "playoff_ats_best_signal": "R1G1大讓分主場",
    "playoff_ats_best_tier": "GOLD",
    "playoff_ats_consensus": "home",
-   "playoff_ats_has_conflict": true,
-   "playoff_ats_strong_consensus": null,
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "home",
    "home_team_zh": "奧克拉荷馬雷霆",
    "away_team_zh": "鳳凰城太陽",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
@@ -1864,10 +1833,10 @@
      "side": "home",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
+     "backtest_wr": 0.571,
      "backtest_roi": 14.2,
-     "backtest_n": 32,
-     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)"
+     "backtest_n": 7,
+     "reason_zh": "客隊附加賽升組+中讓分8.5，近5季play-in era主場cover率 57.1% (n=7)"
     },
     {
      "signal": "首輪G1主場優勢",
@@ -2454,10 +2423,10 @@
      "side": "home",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 14.2,
-     "backtest_n": 32,
-     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)"
+     "backtest_wr": 0.75,
+     "backtest_roi": 50.0,
+     "backtest_n": 4,
+     "reason_zh": "客隊附加賽升組+大讓分14.0，近5季play-in era主場cover率 100% (n=4)，樣本小"
     },
     {
      "signal": "主場明顯強勢",
