@@ -30,7 +30,7 @@
  "perfect_hits": 32,
  "ats_model": {
   "games": 1234,
-  "hits": 630,
+  "hits": 631,
   "hit_rate": 51.1,
   "home_pick_pct": 50.6,
   "value_bets": 63,
@@ -47,20 +47,20 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 10,
-  "misses": 3,
+  "hits": 8,
+  "misses": 5,
   "pending": 15,
   "decided": 13,
-  "hit_rate": 76.9,
+  "hit_rate": 61.5,
   "conviction": {
    "dominant_hits": 5,
    "moderate_hits": 3,
-   "narrow_hits": 2,
-   "total_hits": 10,
+   "narrow_hits": 0,
+   "total_hits": 8,
    "true_conviction_hits": 8,
-   "raw_hit_rate": 76.9,
+   "raw_hit_rate": 61.5,
    "true_conviction_rate": 61.5,
-   "note_zh": "5 碾壓 (>8) + 3 普通 (3-8) + 2 險過 (<3)；真實信心率 61.5% (不含險過)"
+   "note_zh": "5 碾壓 (>8) + 3 普通 (3-8) + 0 險過 (<3)；真實信心率 61.5% (不含險過)"
   },
   "history": [
    {
@@ -191,42 +191,6 @@
    },
    {
     "date": "2026-04-19",
-    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
-    "signal": "R1G1大讓分主場",
-    "side": "home",
-    "tier": "GOLD",
-    "backtest_wr": 0.875,
-    "ats_winner": "home",
-    "ats_cover_margin": 0.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "San Antonio Spurs",
-    "away_team": "Portland Trail Blazers",
-    "result": "hit",
-    "conviction": "narrow"
-   },
-   {
-    "date": "2026-04-19",
-    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
-    "signal": "附加賽升組客隊不利",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 0.5,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "San Antonio Spurs",
-    "away_team": "Portland Trail Blazers",
-    "result": "hit",
-    "conviction": "narrow"
-   },
-   {
-    "date": "2026-04-19",
     "game": "鳳凰城太陽 @ 奧克拉荷馬雷霆",
     "signal": "客場ATS冷門反彈",
     "side": "away",
@@ -260,6 +224,42 @@
     "away_team": "Orlando Magic",
     "result": "miss",
     "conviction": "dominant"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
+    "signal": "R1G1大讓分主場",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
+    "ats_winner": "away",
+    "ats_cover_margin": -1.0,
+    "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
+    "home_team": "San Antonio Spurs",
+    "away_team": "Portland Trail Blazers",
+    "result": "miss",
+    "conviction": "narrow"
+   },
+   {
+    "date": "2026-04-19",
+    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
+    "signal": "附加賽升組客隊不利",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "away",
+    "ats_cover_margin": -1.0,
+    "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
+    "home_team": "San Antonio Spurs",
+    "away_team": "Portland Trail Blazers",
+    "result": "miss",
+    "conviction": "narrow"
    },
    {
     "date": "2026-04-20",
@@ -441,28 +441,28 @@
   "by_signal": [
    {
     "signal": "R1G1大讓分主場",
-    "hits": 3,
-    "misses": 0,
+    "hits": 2,
+    "misses": 1,
     "n": 3,
     "tier": "GOLD",
-    "hit_rate": 100.0,
+    "hit_rate": 66.7,
     "backtest_wr": 87.5,
     "dominant_hits": 2,
     "moderate_hits": 0,
-    "narrow_hits": 1,
+    "narrow_hits": 0,
     "true_hit_rate": 66.7
    },
    {
     "signal": "附加賽升組客隊不利",
-    "hits": 3,
-    "misses": 1,
+    "hits": 2,
+    "misses": 2,
     "n": 4,
     "tier": "SILVER",
-    "hit_rate": 75.0,
+    "hit_rate": 50.0,
     "backtest_wr": 60.0,
     "dominant_hits": 2,
     "moderate_hits": 0,
-    "narrow_hits": 1,
+    "narrow_hits": 0,
     "true_hit_rate": 50.0
    },
    {
@@ -519,39 +519,39 @@
    }
   ],
   "strong_consensus": {
-   "hits": 2,
-   "misses": 0,
+   "hits": 1,
+   "misses": 1,
    "pending": 1,
    "decided": 2,
-   "hit_rate": 100.0,
+   "hit_rate": 50.0,
    "dominant_hits": 1,
    "moderate_hits": 0,
-   "narrow_hits": 1,
+   "narrow_hits": 0,
    "true_hit_rate": 50.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/2場決定 = 100.0%，1場待定"
+   "note_zh": "強共識(2+SILVER一致): 1勝/2場決定 = 50.0%，1場待定"
   },
   "best_pick": {
-   "hits": 7,
-   "misses": 2,
+   "hits": 6,
+   "misses": 3,
    "pending": 10,
    "decided": 9,
-   "hit_rate": 77.8,
-   "gold_hits": 3,
-   "gold_misses": 0,
+   "hit_rate": 66.7,
+   "gold_hits": 2,
+   "gold_misses": 1,
    "silver_hits": 4,
    "silver_misses": 2,
    "dominant_hits": 3,
    "moderate_hits": 3,
-   "narrow_hits": 1,
+   "narrow_hits": 0,
    "true_hit_rate": 66.7,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 7勝/9場決定 = 77.8%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 6勝/9場決定 = 66.7%"
   }
  },
  "playoff_home_ats": {
   "games": 17,
-  "home_covers": 11,
-  "away_covers": 6,
-  "home_cover_rate": 64.7,
-  "note_zh": "本季季後賽共 17 場有結果，主場覆蓋 11 場 (64.7%)"
+  "home_covers": 10,
+  "away_covers": 7,
+  "home_cover_rate": 58.8,
+  "note_zh": "本季季後賽共 17 場有結果，主場覆蓋 10 場 (58.8%)"
  }
 }

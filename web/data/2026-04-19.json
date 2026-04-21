@@ -149,9 +149,9 @@
     "tier": "GOLD",
     "backtest_wr": 0.875,
     "backtest_roi": 75.0,
-    "reason_zh": "首輪G1讓 12.5 分，13季修正回測主場cover率 88% (n=8)",
-    "ats_winner": "home",
-    "ats_cover_margin": 0.5,
+    "reason_zh": "首輪G1讓 14.0 分，13季修正回測主場cover率 88% (n=8)",
+    "ats_winner": "away",
+    "ats_cover_margin": -1.0,
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
@@ -171,8 +171,8 @@
     "backtest_wr": 0.6,
     "backtest_roi": 14.2,
     "reason_zh": "客隊剛完成附加賽升組，主場備戰充分，現代附加賽制(4季)R1G1主場cover率 60% (n=32)",
-    "ats_winner": "home",
-    "ats_cover_margin": 0.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -1.0,
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
@@ -1973,7 +1973,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 12.5,
+   "spread": 14.0,
    "home_profile": {
     "weekday_name": "週日",
     "season": {
@@ -2426,8 +2426,8 @@
    "actual_home_win": true,
    "actual_winner": "home",
    "ml_correct": true,
-   "ats_winner": "home",
-   "ats_cover_margin": 0.5,
+   "ats_winner": "away",
+   "ats_cover_margin": -1.0,
    "actual_ou_result": "UNDER",
    "ou_correct": false,
    "is_playoff": true,
@@ -2447,7 +2447,7 @@
      "backtest_wr": 0.875,
      "backtest_roi": 75.0,
      "backtest_n": 8,
-     "reason_zh": "首輪G1讓 12.5 分，13季修正回測主場cover率 88% (n=8)"
+     "reason_zh": "首輪G1讓 14.0 分，13季修正回測主場cover率 88% (n=8)"
     },
     {
      "signal": "附加賽升組客隊不利",
@@ -2525,6 +2525,14 @@
    "injuries_away": [],
    "odds_history": [
     {
+     "fetched_at": "2026-04-19T19:30:00+00:00",
+     "spread": 14.0,
+     "ou": 223.5,
+     "ml_home": -800,
+     "ml_away": 580,
+     "source": "closing_line_manual"
+    },
+    {
      "fetched_at": "2026-04-20T13:54:45+00:00",
      "spread": 12.5,
      "ou": 223.5,
@@ -2533,10 +2541,10 @@
      "source": "seed_initial"
     }
    ],
-   "spread_first": 12.5,
+   "spread_first": 14.0,
    "spread_last": 12.5,
-   "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
+   "spread_move": -1.5,
+   "spread_first_fetched_at": "2026-04-19T19:30:00+00:00",
    "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
   }
  },

@@ -7406,11 +7406,11 @@
     "date": "2026-04-19",
     "home": "San Antonio Spurs",
     "away": "Portland Trail Blazers",
-    "spread": 12.5,
+    "spread": 14.0,
     "win_margin": 13,
     "home_score": 111,
     "away_score": 98,
-    "ats_result": "home"
+    "ats_result": "away"
    },
    {
     "date": "2026-04-21",
