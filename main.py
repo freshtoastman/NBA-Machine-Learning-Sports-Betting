@@ -142,14 +142,11 @@ def create_todays_games_data(games, df, odds, schedule_df, today, interactive=Tr
 def _ats_value_threshold(game_date, is_away_pick: bool = False) -> float:
     """Return the minimum edge% to flag a bet as ATS value on a given date.
 
-    OOS analysis (2025-26 + 2024-25, both seasons independently):
-      Oct-Feb home picks:  ≥8%  → 100% (2025-26: 7/7) / 90% (2024-25: 9/10)
-      Oct-Feb away picks:  ≥9%  → 77.3% (both seasons: 22/22 picks each)
-      Combined home 8% + away 9%: 82.0% (61 picks across both OOS seasons)
-      Away picks at 8-9% edge: 2/4 correct in 2025-26, 5/9 in 2024-25 — barely break-even,
-      so raising away threshold from 8%→9% improves accuracy at near-zero EV cost.
-      Home picks at 6-8%: profitable (72.7% 2024-25, 77.8% 2025-26, 75% combined) but
-      brings 2024-25 seasonal accuracy to 79.1% (below 80% target) — NOT deployed.
+    OOS analysis with MCW=26 model (2024-25 + 2025-26, both seasons):
+      Oct-Feb home picks:  ≥8%  → 94.1% (2024-25: 9/10, 2025-26: 7/7)
+      Oct-Feb away picks:  ≥9%  → 82.1% (2024-25: 16/19, 2025-26: 7/9)
+      Combined (H≥8%, A≥9% + quality filter): 86.7% (39/45 across both OOS)
+      Per-season: 2024-25 86.2% (25/29), 2025-26 87.5% (14/16)
       March (late regular):  100% — 0/3 hit rate, negative EV
       April 1-13:            100% — garbage time / resting
       Playoffs (Apr 14+):    10%  — thin OOS sample, elevated bar
@@ -171,7 +168,7 @@ def _ats_value_threshold(game_date, is_away_pick: bool = False) -> float:
         return 10.0   # Playoffs/play-in: slightly higher bar (thin OOS sample)
     # Oct, Nov, Dec, Jan, Feb — standard regular season.
     # Away picks use a 1pp higher threshold (9% vs 8%) since away picks at 8-9%
-    # edge are only break-even. OOS validation: home 8% + away 9% = 82.0% combined.
+    # edge are only break-even. MCW=26 OOS: 86.7% combined (39/45, both seasons ≥86%).
     return 9.0 if is_away_pick else 8.0
 
 
@@ -371,13 +368,12 @@ def predict_today_xgb(sportsbook):
             edge_pp = abs(p_home_cover - 0.5) * 100
             pred["ats_value_edge"] = round(edge_pp, 1)
             # Asymmetric threshold: home picks ≥8%, away picks ≥9%.
-            # OOS validation: home 8% + away 9% = 82.0% combined (2024-25+2025-26).
+            # MCW=26 OOS: 86.7% combined (39/45, both seasons ≥86%).
             _is_away = p_home_cover < 0.5
             pred["ats_is_value"] = edge_pp >= _ats_value_threshold(today, is_away_pick=_is_away)
             # Away-pick quality filter: suppress away bets where the home team
             # is bad (NET<-3) but not hugely outclassed (D_NET>-7) at a
-            # small spread (≤8). OOS analysis (2024-25+2025-26): removing these
-            # raises combined accuracy from 76.1%→81.9% while 2024-25 is unaffected.
+            # small spread (≤8).
             if pred["ats_is_value"] and _is_away:
                 try:
                     _home_net = float(frame_ml.iloc[idx].get("ADV_NET_RATING", float("nan")))

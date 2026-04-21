@@ -698,17 +698,16 @@ def _home_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """R1G1: away team just survived play-in → home covers (spread-bucket-specific).
+    """R1G1: away team just survived play-in → home covers (large spread only).
 
-    Re-backtest on strict play-in era 2020-21 to 2024-25 (n=20 R1G1 with play-in away):
-      - |spread| ≥12: **100% home cover (n=4)** — GOLD-worthy but tiny sample
-      - |spread| 8-12: 57.1% home (n=7) — SILVER
-      - |spread| 5-8:  **40% home (n=5)** — SIGNAL FAILS, suppress
-      - |spread| <5:   50% home (n=4) — coin flip, suppress
+    Re-backtest on strict play-in era 2020-21 to 2024-25 + 2025-26 OOS:
+      - |spread| ≥12: 80% home cover (4/5 incl. OOS POR@SAS miss by 1pt) — SILVER
+      - |spread| 8-12: 50% home (4/8 incl. OOS ORL@DET miss) — SUPPRESSED
+      - |spread| 5-8:  40% home (n=5) — SUPPRESSED
+      - |spread| <5:   50% home (n=4) — SUPPRESSED
 
-    Prior claim of 60% (n=32) was correct overall but averaged strong ≥12 samples
-    with weak <8 samples. 2025-26 ORL @ DET (sp 8.5) miss validates: signal weakest
-    at 5-8 spread. Now fires only at spread ≥8 with tier tied to bucket.
+    2025-26 OOS: ORL@DET (sp 8.5) blowout miss confirms 8-12 range is noise.
+    Now fires only at spread ≥12.
     """
     if series_state is None:
         return None
@@ -719,17 +718,11 @@ def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | 
     spread = pred.get("spread")
     if spread is None:
         return None
-    # Suppress for small spread (signal has no edge)
-    if abs(spread) < 8:
+    if abs(spread) < 12:
         return None
     home_fav = spread > 0
-    # Tier by spread size
-    if abs(spread) >= 12:
-        wr, roi, n, tier = 0.75, 50.0, 4, "SILVER"  # 100% in 4 games but keep SILVER for small n
-        note = f"客隊附加賽升組+大讓分{spread:.1f}，近5季play-in era主場cover率 100% (n=4)，樣本小"
-    else:  # 8-12
-        wr, roi, n, tier = 0.571, 14.2, 7, "SILVER"
-        note = f"客隊附加賽升組+中讓分{spread:.1f}，近5季play-in era主場cover率 57.1% (n=7)"
+    wr, roi, n, tier = 0.80, 60.0, 5, "SILVER"
+    note = f"客隊附加賽升組+大讓分{spread:.1f}，play-in era主場cover率 80% (n=5，含OOS)"
     return PlayoffATSPick(
         signal_name="附加賽升組客隊不利",
         side="home",
@@ -790,15 +783,11 @@ def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None
 def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     """R1G1 with home giving large points → home covers (spread-bucket-specific).
 
-    Re-backtest (13 seasons) with finer buckets:
-      - Spread 8-10:   **46.7%** home (n=15) — NO EDGE, signal suppressed
+    Re-backtest (13 seasons) + 2025-26 OOS:
+      - Spread 8-10:   46.7% home (n=15) — SUPPRESSED
       - Spread 10-12:  61.5% home (n=13) — SILVER
-      - Spread 12-15:  **87.5%** home (n=8) — GOLD
-      - Spread ≥15:    100% home (n=1) — too small but directionally consistent
-
-    Prior code used 62.2% for 8-10 range but the actual WR is coin-flip. Only
-    genuine edges are at spread ≥10, and the signal strengthens materially at ≥12.
-    This refinement removes false R1G1 picks in the 8-10 pt range.
+      - Spread ≥12:    81.8% home (9/11 incl. 2025-26 OOS 2/3) — GOLD
+        OOS: BOS+18.5✓, OKC+18.5✓, SAS-1.0✗ (missed by 1pt)
     """
     if series_state is None:
         return None
@@ -809,9 +798,8 @@ def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | N
     spread = pred.get("spread")
     if spread is None or spread < 10:
         return None
-    # Tier by spread size
     if spread >= 12:
-        wr, roi, n, tier = 0.875, 75.0, 8, "GOLD"
+        wr, roi, n, tier = 0.818, 63.6, 11, "GOLD"
     else:  # 10-12
         wr, roi, n, tier = 0.615, 23.1, 13, "SILVER"
     return PlayoffATSPick(

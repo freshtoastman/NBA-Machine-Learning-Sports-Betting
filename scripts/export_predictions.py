@@ -552,6 +552,7 @@ def build_bracket(target_date: date) -> dict | None:
         with sqlite3.connect(db) as con:
             row = con.execute(
                 "SELECT name FROM sqlite_master WHERE type='table' AND name <= ? "
+                "AND name NOT LIKE '%_playoff%' "
                 "ORDER BY name DESC LIMIT 1", (iso,),
             ).fetchone()
             if not row:

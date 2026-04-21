@@ -1,3 +1,4 @@
+import math
 import re
 from pathlib import Path
 
@@ -281,8 +282,10 @@ def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_tea
 
         home_odds = home_team_odds[idx]
         away_odds = away_team_odds[idx]
+        _ho_valid = home_odds and not (isinstance(home_odds, float) and math.isnan(home_odds))
+        _ao_valid = away_odds and not (isinstance(away_odds, float) and math.isnan(away_odds))
         ev_home = ev_away = 0.0
-        if home_odds and away_odds:
+        if _ho_valid and _ao_valid:
             ev_home = float(Expected_Value.expected_value(ml_probs[1], int(home_odds)))
             ev_away = float(Expected_Value.expected_value(ml_probs[0], int(away_odds)))
 
@@ -297,10 +300,10 @@ def xgb_predict(data, todays_games_uo, frame_ml, games, home_team_odds, away_tea
             "ou_confidence": round(float(ou_probs[under_over]) * 100, 1),
             "home_team_ev": ev_home,
             "away_team_ev": ev_away,
-            "home_team_odds": int(home_odds) if home_odds else None,
-            "away_team_odds": int(away_odds) if away_odds else None,
-            "home_kelly": kc.calculate_kelly_criterion(home_odds, ml_probs[1]) if (home_odds and away_odds) else None,
-            "away_kelly": kc.calculate_kelly_criterion(away_odds, ml_probs[0]) if (home_odds and away_odds) else None,
+            "home_team_odds": int(home_odds) if _ho_valid else None,
+            "away_team_odds": int(away_odds) if _ao_valid else None,
+            "home_kelly": kc.calculate_kelly_criterion(home_odds, ml_probs[1]) if (_ho_valid and _ao_valid) else None,
+            "away_kelly": kc.calculate_kelly_criterion(away_odds, ml_probs[0]) if (_ho_valid and _ao_valid) else None,
         })
 
     return results
