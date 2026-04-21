@@ -843,14 +843,13 @@
                         {% if crew.away_friendly %}▼ 客隊友好{% elif crew.home_friendly %}▲ 主隊友好{% endif %}
                     </span>
                     <span class="ref-officials">
-                        {% for off in crew.officials -%}
-                        {%- if off.significant -%}
-                        <span class="ref-sig ref-sig-{{ off.direction }}" title="p={{ off.p_value }} (n={{ off.games }})">{{ off.name }} {% if off.direction == 'away' %}▼{% else %}▲{% endif %}{{ off.home_cover_pct }}%</span>
-                        {%- else -%}
-                        {{ off.name }}({{ off.home_cover_pct }}%)
-                        {%- endif -%}
-                        {%- if not loop.last %}, {% endif %}
-                        {%- endfor %}
+                        {% for off in crew.officials %}
+                        {% if off.significant %}
+                        <span class="ref-chip ref-sig ref-sig-{{ off.direction }}" title="p={{ off.p_value }} · n={{ off.games }} 場">{{ off.name }}&nbsp;{% if off.direction == 'away' %}▼{% else %}▲{% endif %}{{ off.home_cover_pct }}%</span>
+                        {% else %}
+                        <span class="ref-chip ref-chip-neutral" title="n={{ off.games }} 場">{{ off.name }}&nbsp;{{ off.home_cover_pct }}%</span>
+                        {% endif %}
+                        {% endfor %}
                     </span>
                 </div>
                 {% endif %}

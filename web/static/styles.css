@@ -665,17 +665,19 @@ a {
 .inj-badges { display: flex; flex-wrap: wrap; gap: 3px; }
 .inj-badge { font-size: 10px; color: var(--muted); background: rgba(255,107,107,0.12); border: 1px solid rgba(255,107,107,0.25); border-radius: 4px; padding: 1px 5px; }
 
-.referee-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 5px 10px; background: rgba(111,184,255,0.05); border-radius: 8px; margin: 4px 0; border: 1px solid rgba(111,184,255,0.15); }
+.referee-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; padding: 6px 10px; background: rgba(111,184,255,0.05); border-radius: 8px; margin: 4px 0; border: 1px solid rgba(111,184,255,0.15); }
 .referee-row.ref-away-friendly { background: rgba(255,165,0,0.06); border-color: rgba(255,165,0,0.2); }
 .referee-row.ref-home-friendly { background: rgba(127,214,155,0.06); border-color: rgba(127,214,155,0.2); }
-.ref-label { font-size: 10px; font-weight: 700; color: var(--muted); }
-.ref-crew-avg { font-size: 11px; font-weight: 700; color: var(--text); }
+.ref-label { font-size: 10px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.ref-crew-avg { font-size: 11px; font-weight: 700; color: var(--text); white-space: nowrap; }
 .ref-crew-avg.ref-away { color: #f4a261; }
 .ref-crew-avg.ref-home { color: #7fd69b; }
-.ref-officials { font-size: 10px; color: var(--muted); flex: 1; }
-.ref-sig { font-weight: 700; padding: 1px 5px; border-radius: 4px; }
-.ref-sig-away { color: #f4a261; background: rgba(244,162,97,0.12); border: 1px solid rgba(244,162,97,0.3); }
-.ref-sig-home { color: #7fd69b; background: rgba(127,214,155,0.12); border: 1px solid rgba(127,214,155,0.3); }
+.ref-officials { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; justify-content: flex-end; }
+.ref-chip { padding: 2px 7px; border-radius: 999px; white-space: nowrap; font-size: 10px; line-height: 1.5; }
+.ref-chip-neutral { color: var(--muted); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+.ref-sig { font-weight: 700; }
+.ref-sig-away { color: #f4a261; background: rgba(244,162,97,0.12); border: 1px solid rgba(244,162,97,0.35); }
+.ref-sig-home { color: #7fd69b; background: rgba(127,214,155,0.12); border: 1px solid rgba(127,214,155,0.35); }
 
 .ai-section-lbl { font-size: 11px; font-weight: 700; color: var(--accent-2); width: 100%; }
 .ai-factor { display: inline-block; padding: 2px 8px; border-radius: 6px; background: rgba(35, 214, 198, 0.1); border: 1px solid rgba(35, 214, 198, 0.25); color: var(--text); font-size: 11px; }
