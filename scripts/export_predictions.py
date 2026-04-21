@@ -1186,11 +1186,19 @@ def main():
             try:
                 with open(jf, encoding="utf-8") as _jf:
                     _d = json.load(_jf)
+                # Spread lookup per game for Q3 dominance calculation
+                _spread_by_game = {}
+                for _gk, _gv in _d.get("games", {}).items():
+                    if isinstance(_gv, dict):
+                        _sp = _gv.get("spread")
+                        if _sp is not None:
+                            _spread_by_game[f"{_gv.get('away_team','')}:{_gv.get('home_team','')}"] = _sp
                 for alert in _d.get("summary", {}).get("playoff_ats_alerts", []):
                     tier = alert.get("tier")
                     if tier not in ("GOLD", "SILVER"):
                         continue
                     wr = alert.get("backtest_wr", 0)
+                    _game_key = alert.get("game_key") or f"{alert.get('away_team','')}:{alert.get('home_team','')}"
                     record = {
                         "date": _d["date"],
                         "game": f'{alert.get("away_team_zh", alert.get("away_team", "?"))} @ {alert.get("home_team_zh", alert.get("home_team", "?"))}',
@@ -1206,6 +1214,7 @@ def main():
                         "strong_consensus": alert.get("strong_consensus"),
                         "home_team": alert.get("home_team", ""),
                         "away_team": alert.get("away_team", ""),
+                        "spread": _spread_by_game.get(_game_key),
                     }
                     winner = alert.get("ats_winner")
                     if winner is None:
@@ -1223,42 +1232,121 @@ def main():
                 pass
         decided = len(po_hits) + len(po_misses)
 
-        # Cover-margin conviction classifier: dominant (>8) / moderate (3-8) / narrow (<3)
-        def _conviction(cover_margin):
+        # Load quarter-by-quarter data if available (Q3 lead captures true dominance
+        # better than final margin — garbage-time comebacks tighten final ATS margin
+        # but don't reflect the signal's real conviction).
+        _quarters_lookup = {}
+        try:
+            qf = OUT_DIR / "playoff_quarters.json"
+            if qf.exists():
+                with open(qf, encoding="utf-8") as _qf:
+                    _qdata = json.load(_qf)
+                for _g in _qdata:
+                    _key = (_g["date"], _g["home_name"], _g["away_name"])
+                    _hq = _g["q_home"]; _aq = _g["q_away"]
+                    _q3_home_lead = sum(_hq[:3]) - sum(_aq[:3])
+                    _final = sum(_hq) - sum(_aq)
+                    _q4_swing = _final - _q3_home_lead
+                    _quarters_lookup[_key] = {
+                        "q3_home_lead": _q3_home_lead,
+                        "final_margin": _final,
+                        "q4_swing": _q4_swing,
+                    }
+        except Exception:
+            pass
+
+        # Conviction classifier: prefers Q3 dominance (when available) over final ATS margin.
+        # For the signal's picked side, use their Q3 lead vs proportional 3/4-spread.
+        # Garbage-time flag: |Q4 swing| >= 8 indicates final margin masks true game flow.
+        def _conviction(cover_margin, date=None, home_team=None, away_team=None,
+                        spread=None, picked_side=None):
+            # Try Q3 dominance first
+            q = _quarters_lookup.get((date, home_team, away_team)) if date and home_team and away_team else None
+            if q is not None and spread is not None and picked_side is not None:
+                q3_lead = q["q3_home_lead"]
+                # Proportional 3Q spread (3 of 4 quarters played)
+                threeq_threshold = spread * 0.75
+                # Q3 ATS margin for picked side: did the pick cover through 3Q?
+                if picked_side == "home":
+                    q3_picked_margin = q3_lead - threeq_threshold
+                    final_picked_margin = (cover_margin if cover_margin is not None else 0)
+                else:  # away
+                    q3_picked_margin = -(q3_lead - threeq_threshold)
+                    final_picked_margin = -(cover_margin if cover_margin is not None else 0)
+                q4_swing = q["q4_swing"]
+                # Garbage time = picked side's advantage shrunk from Q3 to final by ≥5 pts
+                # (e.g. CLE +15 Q3 ATS margin → +5 final = 10-pt shrinkage → ⚡)
+                shrinkage = q3_picked_margin - final_picked_margin
+                garbage_time = shrinkage >= 5
+                m = abs(q3_picked_margin)
+                # Use Q3 band
+                if m >= 15:
+                    band = "crushing"   # 🔥
+                elif m >= 8:
+                    band = "dominant"   # 💪
+                elif m >= 3:
+                    band = "moderate"   # 📏
+                else:
+                    band = "narrow"     # 🎲
+                return {"band": band, "source": "q3", "q3_picked_margin": round(q3_picked_margin, 1),
+                        "final_picked_margin": round(final_picked_margin, 1),
+                        "q4_swing": q4_swing, "shrinkage": round(shrinkage, 1),
+                        "garbage_time": garbage_time}
+            # Fallback to final ATS margin
             if cover_margin is None:
                 return None
             m = abs(cover_margin)
             if m >= 8:
-                return "dominant"   # 💪 碾壓
-            if m >= 3:
-                return "moderate"   # 📏 普通
-            return "narrow"         # 🎲 險過
+                band = "dominant"
+            elif m >= 3:
+                band = "moderate"
+            else:
+                band = "narrow"
+            return {"band": band, "source": "final", "garbage_time": False}
 
         # Annotate each hit/miss record with conviction band
         for r in po_hits + po_misses:
-            r["conviction"] = _conviction(r.get("ats_cover_margin"))
+            c = _conviction(
+                r.get("ats_cover_margin"),
+                date=r.get("date"), home_team=r.get("home_team"),
+                away_team=r.get("away_team"),
+                spread=r.get("spread"),
+                picked_side=r.get("side"),
+            )
+            r["conviction_obj"] = c
+            r["conviction"] = c["band"] if c else None
+            r["garbage_time"] = c.get("garbage_time", False) if c else False
+            r["conviction_source"] = c.get("source", "final") if c else None
+            if c and c.get("source") == "q3":
+                r["q3_picked_margin"] = c.get("q3_picked_margin")
+                r["q4_swing"] = c.get("q4_swing")
 
         # Overall conviction tallies across all SILVER+ signals
-        conv_tally = {"dominant": 0, "moderate": 0, "narrow": 0}
+        # Bands: crushing (Q3+15), dominant (Q3+8 or final>8), moderate, narrow
+        conv_tally = {"crushing": 0, "dominant": 0, "moderate": 0, "narrow": 0}
+        garbage_time_hits = 0  # hits where Q3 was dominant but final tightened (user's point)
         for r in po_hits:
             c = r.get("conviction")
-            if c: conv_tally[c] += 1
+            if c and c in conv_tally: conv_tally[c] += 1
+            if r.get("garbage_time"): garbage_time_hits += 1
         total_hits_for_conv = sum(conv_tally.values())
-        # "True conviction" WR excludes narrow hits (they're lucky covers)
-        true_conviction_hits = conv_tally["dominant"] + conv_tally["moderate"]
-        # Denominator stays as decided (n) — narrow hits become "half-credit" style
+        # "True conviction" WR: crushing + dominant + moderate (exclude narrow)
+        true_conviction_hits = conv_tally["crushing"] + conv_tally["dominant"] + conv_tally["moderate"]
         conv_summary = {
+            "crushing_hits": conv_tally["crushing"],
             "dominant_hits": conv_tally["dominant"],
             "moderate_hits": conv_tally["moderate"],
             "narrow_hits": conv_tally["narrow"],
+            "garbage_time_hits": garbage_time_hits,
             "total_hits": total_hits_for_conv,
             "true_conviction_hits": true_conviction_hits,
             "raw_hit_rate": round(len(po_hits) / decided * 100, 1) if decided else None,
             "true_conviction_rate": round(true_conviction_hits / decided * 100, 1) if decided else None,
             "note_zh": (
-                f"{conv_tally['dominant']} 碾壓 (>8) + {conv_tally['moderate']} 普通 (3-8) + "
-                f"{conv_tally['narrow']} 險過 (<3)；真實信心率 "
-                f"{round(true_conviction_hits/decided*100,1) if decided else 0}% (不含險過)"
+                f"{conv_tally['crushing']} 碾壓主導 + {conv_tally['dominant']} 主導 + "
+                f"{conv_tally['moderate']} 普通 + {conv_tally['narrow']} 險過；"
+                f"{garbage_time_hits} 場受垃圾時間影響；真實信心率 "
+                f"{round(true_conviction_hits/decided*100,1) if decided else 0}%"
             ),
         }
 
@@ -1266,7 +1354,8 @@ def main():
         from collections import defaultdict
         _sig_stats: dict = defaultdict(lambda: {
             "hits": 0, "misses": 0, "tier": "SILVER", "backtest_wr": None,
-            "dominant_hits": 0, "moderate_hits": 0, "narrow_hits": 0,
+            "crushing_hits": 0, "dominant_hits": 0, "moderate_hits": 0, "narrow_hits": 0,
+            "garbage_time_hits": 0,
         })
         for r in po_hits:
             s = _sig_stats[r["signal"]]
@@ -1276,6 +1365,7 @@ def main():
                 s["backtest_wr"] = r["backtest_wr"]
             c = r.get("conviction")
             if c: s[f"{c}_hits"] += 1
+            if r.get("garbage_time"): s["garbage_time_hits"] += 1
         for r in po_misses:
             _sig_stats[r["signal"]]["misses"] += 1
             _sig_stats[r["signal"]]["tier"] = r.get("tier", "SILVER")
@@ -1284,15 +1374,17 @@ def main():
         sig_breakdown = []
         for sig, v in _sig_stats.items():
             n = v["hits"] + v["misses"]
-            true_hits = v["dominant_hits"] + v["moderate_hits"]
+            true_hits = v["crushing_hits"] + v["dominant_hits"] + v["moderate_hits"]
             sig_breakdown.append({
                 "signal": sig, "hits": v["hits"], "misses": v["misses"],
                 "n": n, "tier": v["tier"],
                 "hit_rate": round(v["hits"] / n * 100, 1) if n else None,
                 "backtest_wr": round(v["backtest_wr"] * 100, 1) if v["backtest_wr"] else None,
+                "crushing_hits": v["crushing_hits"],
                 "dominant_hits": v["dominant_hits"],
                 "moderate_hits": v["moderate_hits"],
                 "narrow_hits": v["narrow_hits"],
+                "garbage_time_hits": v["garbage_time_hits"],
                 "true_hit_rate": round(true_hits / n * 100, 1) if n else None,
             })
         sig_breakdown.sort(key=lambda x: -x["hits"])
