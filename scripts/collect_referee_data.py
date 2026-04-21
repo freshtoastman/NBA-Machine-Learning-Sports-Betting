@@ -195,11 +195,12 @@ def collect_for_date(d: date, con_ref, con_odds) -> int:
 
     collected = 0
     for game_id, home_id, away_id in game_ids:
-        # Skip if already stored
+        # Skip if already stored WITH officials. Re-fetch when officials are null
+        # (e.g., playoff games that returned 403 before but are now retrievable).
         existing = con_ref.execute(
-            "SELECT 1 FROM referee_games WHERE game_id=?", (game_id,)
+            "SELECT official1_name FROM referee_games WHERE game_id=?", (game_id,)
         ).fetchone()
-        if existing:
+        if existing and existing[0]:
             continue
 
         home = _TEAM_ID_MAP.get(home_id, str(home_id))
