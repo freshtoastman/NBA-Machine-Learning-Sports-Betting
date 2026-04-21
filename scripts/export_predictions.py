@@ -433,6 +433,8 @@ def export_date(target_date: date) -> dict | None:
                         "ats_winner": g.get("ats_winner"),
                         "ats_cover_margin": g.get("ats_cover_margin"),
                         "series_game_num": g.get("series_game_num"),
+                        "series_home_wins": g.get("series_home_wins"),
+                        "series_away_wins": g.get("series_away_wins"),
                         "strong_consensus": g.get("playoff_ats_strong_consensus"),
                         "has_conflict": g.get("playoff_ats_has_conflict", False),
                     })
@@ -1199,6 +1201,9 @@ def main():
                         "ats_winner": alert.get("ats_winner"),
                         "ats_cover_margin": alert.get("ats_cover_margin"),
                         "series_game_num": alert.get("series_game_num"),
+                        "series_home_wins": alert.get("series_home_wins"),
+                        "series_away_wins": alert.get("series_away_wins"),
+                        "strong_consensus": alert.get("strong_consensus"),
                         "home_team": alert.get("home_team", ""),
                         "away_team": alert.get("away_team", ""),
                     }
@@ -1313,12 +1318,11 @@ def main():
 
         # Group pending signals by game for display
         from collections import defaultdict as _dd
-        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": "", "game_key": "", "series_game_num": None})
+        _pending_games: dict = _dd(lambda: {"signals": [], "sides": set(), "wrs": [], "date": "", "game": "", "game_key": "", "series_game_num": None, "series_home_wins": None, "series_away_wins": None, "has_strong_consensus": False})
         for r in po_pending:
             k = f'{r["date"]}|{r["game"]}'
             _pending_games[k]["date"] = r["date"]
             _pending_games[k]["game"] = r["game"]
-            # Build a game_key from away:home format (same as daily JSON keys)
             _ht = r.get("home_team", "")
             _at = r.get("away_team", "")
             if _ht and _at:
@@ -1329,20 +1333,28 @@ def main():
                 _pending_games[k]["wrs"].append(r["backtest_wr"])
             if r.get("series_game_num") is not None:
                 _pending_games[k]["series_game_num"] = r["series_game_num"]
+            if r.get("series_home_wins") is not None:
+                _pending_games[k]["series_home_wins"] = r["series_home_wins"]
+            if r.get("series_away_wins") is not None:
+                _pending_games[k]["series_away_wins"] = r["series_away_wins"]
+            if r.get("strong_consensus"):
+                _pending_games[k]["has_strong_consensus"] = True
         pending_by_game = []
         for k, v in sorted(_pending_games.items()):
             sides = list(v["sides"])
             best_wr = max(v["wrs"]) if v["wrs"] else None
+            has_conflict = len(sides) > 1
             entry = {
                 "date": v["date"],
                 "game": v["game"],
                 "signals": v["signals"],
                 "consensus_side": sides[0] if len(sides) == 1 else None,
-                "has_conflict": len(sides) > 1,
+                "has_conflict": has_conflict,
                 "best_wr": round(best_wr * 100) if best_wr else None,
                 "series_game_num": v.get("series_game_num"),
+                "series_score": f'{v["series_away_wins"]}-{v["series_home_wins"]}' if v.get("series_away_wins") is not None and v.get("series_home_wins") is not None else None,
+                "has_strong_consensus": v.get("has_strong_consensus", False),
             }
-            # Attach live score and spread info if available
             _game_key = v.get("game_key", "")
             _live_info = _live_lookup.get((v["date"], _game_key))
             if _live_info:
@@ -1351,6 +1363,14 @@ def main():
             if _sp is not None:
                 entry["spread"] = _sp
             pending_by_game.append(entry)
+        # Sort: today first, then by conviction (strong consensus > no conflict + high WR > conflict)
+        def _pending_sort_key(e):
+            d = e["date"]
+            sc = 1 if e.get("has_strong_consensus") else 0
+            nc = 0 if e.get("has_conflict") else 1
+            wr = e.get("best_wr") or 0
+            return (d, -sc, -nc, -wr)
+        pending_by_game.sort(key=_pending_sort_key)
 
         stats["playoff_signals"] = {
             "hits": len(po_hits),

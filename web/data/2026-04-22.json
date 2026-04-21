@@ -27,6 +27,8 @@
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 2,
+    "series_home_wins": 0,
+    "series_away_wins": 1,
     "strong_consensus": null,
     "has_conflict": false
    },
@@ -46,6 +48,8 @@
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 2,
+    "series_home_wins": 1,
+    "series_away_wins": 0,
     "strong_consensus": null,
     "has_conflict": false
    }
@@ -81,8 +85,8 @@
    "ou_pick": "UNDER",
    "ou_value": 218.5,
    "ou_confidence": 65.0,
-   "home_team_ev": -20.2,
-   "away_team_ev": 56.18,
+   "home_team_ev": -20.19,
+   "away_team_ev": 56.17,
    "home_team_odds": -450,
    "away_team_odds": 350,
    "home_kelly": 0,
@@ -628,7 +632,7 @@
    "ou_value": 213.5,
    "ou_confidence": 48.5,
    "home_team_ev": -30.03,
-   "away_team_ev": 280.37,
+   "away_team_ev": 280.35,
    "home_team_odds": -2000,
    "away_team_odds": 1040,
    "home_kelly": 0,

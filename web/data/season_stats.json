@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1978,
- "calib_gap_mid": 0.1246,
+ "calib_gap_mid": 0.1245,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -63,6 +63,9 @@
     "ats_winner": "away",
     "ats_cover_margin": -4.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Charlotte Hornets",
     "away_team": "Miami Heat",
     "result": "hit"
@@ -77,6 +80,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 10.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Philadelphia 76ers",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -91,6 +97,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Cleveland Cavaliers",
     "away_team": "Toronto Raptors",
     "result": "hit"
@@ -105,6 +114,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Cleveland Cavaliers",
     "away_team": "Toronto Raptors",
     "result": "hit"
@@ -119,6 +131,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Cleveland Cavaliers",
     "away_team": "Toronto Raptors",
     "result": "hit"
@@ -133,6 +148,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 5.0,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Denver Nuggets",
     "away_team": "Minnesota Timberwolves",
     "result": "hit"
@@ -147,6 +165,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 5.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
     "result": "hit"
@@ -161,6 +182,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 14.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Los Angeles Lakers",
     "away_team": "Houston Rockets",
     "result": "hit"
@@ -175,6 +199,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -189,6 +216,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -203,6 +233,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Boston Celtics",
     "away_team": "Philadelphia 76ers",
     "result": "hit"
@@ -217,6 +250,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -231,6 +267,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -245,6 +284,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "hit"
@@ -259,6 +301,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 0.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
     "result": "hit"
@@ -273,6 +318,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 0.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
     "result": "hit"
@@ -287,6 +335,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 0.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "San Antonio Spurs",
     "away_team": "Portland Trail Blazers",
     "result": "hit"
@@ -301,6 +352,9 @@
     "ats_winner": "home",
     "ats_cover_margin": 18.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Oklahoma City Thunder",
     "away_team": "Phoenix Suns",
     "result": "miss"
@@ -315,6 +369,9 @@
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -329,6 +386,9 @@
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -343,6 +403,9 @@
     "ats_winner": "away",
     "ats_cover_margin": -19.5,
     "series_game_num": 1,
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": "home",
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
@@ -357,6 +420,9 @@
     "ats_winner": "away",
     "ats_cover_margin": -7.0,
     "series_game_num": 2,
+    "series_home_wins": 1,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
     "result": "hit"
@@ -371,12 +437,29 @@
     "ats_winner": "away",
     "ats_cover_margin": -12.5,
     "series_game_num": 2,
+    "series_home_wins": 1,
+    "series_away_wins": 0,
+    "strong_consensus": null,
     "home_team": "Denver Nuggets",
     "away_team": "Minnesota Timberwolves",
     "result": "hit"
    }
   ],
   "pending_by_game": [
+   {
+    "date": "2026-04-21",
+    "game": "費城七六人 @ 波士頓塞爾提克",
+    "signals": [
+     "G2大勝後延續"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 64,
+    "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false,
+    "spread": 13.5
+   },
    {
     "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
@@ -388,19 +471,9 @@
     "has_conflict": true,
     "best_wr": 64,
     "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false,
     "spread": -4.5
-   },
-   {
-    "date": "2026-04-21",
-    "game": "費城七六人 @ 波士頓塞爾提克",
-    "signals": [
-     "G2大勝後延續"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 2,
-    "spread": 13.5
    },
    {
     "date": "2026-04-22",
@@ -412,6 +485,8 @@
     "has_conflict": false,
     "best_wr": 65,
     "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": false,
     "spread": 9.5
    },
    {
@@ -424,18 +499,9 @@
     "has_conflict": false,
     "best_wr": 64,
     "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false,
     "spread": 17.5
-   },
-   {
-    "date": "2026-04-23",
-    "game": "丹佛金塊 @ 明尼蘇達灰狼",
-    "signals": [
-     "客場明顯強勢"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 59,
-    "series_game_num": 3
    },
    {
     "date": "2026-04-23",
@@ -448,7 +514,48 @@
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 64,
-    "series_game_num": 3
+    "series_game_num": 3,
+    "series_score": "2-0",
+    "has_strong_consensus": true
+   },
+   {
+    "date": "2026-04-23",
+    "game": "丹佛金塊 @ 明尼蘇達灰狼",
+    "signals": [
+     "客場明顯強勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
+    "series_game_num": 3,
+    "series_score": "1-1",
+    "has_strong_consensus": false
+   },
+   {
+    "date": "2026-04-24",
+    "game": "洛杉磯湖人 @ 休士頓火箭",
+    "signals": [
+     "G2主場反彈 (輸G1)"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 65,
+    "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": false
+   },
+   {
+    "date": "2026-04-24",
+    "game": "聖安東尼奧馬刺 @ 波特蘭拓荒者",
+    "signals": [
+     "G2主場反彈 (輸G1)"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 65,
+    "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": false
    },
    {
     "date": "2026-04-24",
@@ -460,29 +567,22 @@
     "consensus_side": null,
     "has_conflict": true,
     "best_wr": 65,
-    "series_game_num": 2
+    "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": false
    },
    {
-    "date": "2026-04-24",
-    "game": "洛杉磯湖人 @ 休士頓火箭",
+    "date": "2026-04-25",
+    "game": "底特律活塞 @ 奧蘭多魔術",
     "signals": [
-     "G2主場反彈 (輸G1)"
+     "G2大勝後延續"
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 65,
-    "series_game_num": 2
-   },
-   {
-    "date": "2026-04-24",
-    "game": "聖安東尼奧馬刺 @ 波特蘭拓荒者",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 65,
-    "series_game_num": 2
+    "best_wr": 64,
+    "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false
    },
    {
     "date": "2026-04-25",
@@ -493,7 +593,9 @@
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 59,
-    "series_game_num": 3
+    "series_game_num": 3,
+    "series_score": "1-1",
+    "has_strong_consensus": false
    },
    {
     "date": "2026-04-25",
@@ -505,18 +607,9 @@
     "consensus_side": null,
     "has_conflict": true,
     "best_wr": 65,
-    "series_game_num": 2
-   },
-   {
-    "date": "2026-04-25",
-    "game": "底特律活塞 @ 奧蘭多魔術",
-    "signals": [
-     "G2大勝後延續"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 2
+    "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": false
    }
   ],
   "by_signal": [
