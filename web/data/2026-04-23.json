@@ -126,23 +126,23 @@
    "away_confidence": 54.2,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": null,
+   "ou_value": 216.5,
    "ou_confidence": 53.4,
-   "home_team_ev": 0.0,
-   "away_team_ev": 0.0,
-   "home_team_odds": null,
-   "away_team_odds": null,
-   "home_kelly": null,
-   "away_kelly": null,
+   "home_team_ev": -10.25,
+   "away_team_ev": 2.68,
+   "home_team_odds": -104,
+   "away_team_odds": -112,
+   "home_kelly": 0,
+   "away_kelly": 2.83,
    "is_historical": true,
-   "ats_model_pick": null,
-   "ats_model_home_prob": null,
-   "ats_model_confidence": null,
-   "ats_value_edge": null,
+   "ats_model_pick": "away",
+   "ats_model_home_prob": 49.6,
+   "ats_model_confidence": 50.4,
+   "ats_value_edge": 0.4,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": null,
+   "spread": -1.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -587,8 +587,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": null,
-   "fair_away": null,
+   "fair_home": 49.1,
+   "fair_away": 50.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -632,7 +632,22 @@
    "injuries_home": [
     "Jock Landale (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-21T14:08:15+00:00",
+     "spread": -1.5,
+     "ou": 216.5,
+     "ml_home": -104,
+     "ml_away": -112,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -1.5,
+   "spread_last": -1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
+   "spread_last_fetched_at": "2026-04-21T14:08:15+00:00"
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -641,23 +656,23 @@
    "away_confidence": 49.8,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": null,
+   "ou_value": 220.5,
    "ou_confidence": 56.4,
-   "home_team_ev": 0.0,
-   "away_team_ev": 0.0,
-   "home_team_odds": null,
-   "away_team_odds": null,
-   "home_kelly": null,
-   "away_kelly": null,
+   "home_team_ev": 15.54,
+   "away_team_ev": -17.92,
+   "home_team_odds": 130,
+   "away_team_odds": -154,
+   "home_kelly": 11.95,
+   "away_kelly": 0,
    "is_historical": true,
-   "ats_model_pick": null,
-   "ats_model_home_prob": null,
-   "ats_model_confidence": null,
-   "ats_value_edge": null,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 51.4,
+   "ats_model_confidence": 51.4,
+   "ats_value_edge": 1.4,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": null,
+   "spread": -3.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -1102,8 +1117,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": null,
-   "fair_away": null,
+   "fair_home": 41.8,
+   "fair_away": 58.2,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1169,7 +1184,22 @@
    ],
    "injuries_away": [
     "Thomas Bryant (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-21T16:36:54+00:00",
+     "spread": -3.5,
+     "ou": 220.5,
+     "ml_home": 130,
+     "ml_away": -154,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -3.5,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-21T16:36:54+00:00",
+   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
   },
   "Denver Nuggets:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1178,23 +1208,23 @@
    "away_confidence": 53.3,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": null,
+   "ou_value": 233.5,
    "ou_confidence": 76.0,
-   "home_team_ev": 0.0,
-   "away_team_ev": 0.0,
-   "home_team_odds": null,
-   "away_team_odds": null,
-   "home_kelly": null,
-   "away_kelly": null,
+   "home_team_ev": -3.87,
+   "away_team_ev": -3.65,
+   "home_team_odds": 106,
+   "away_team_odds": -124,
+   "home_kelly": 0,
+   "away_kelly": 0,
    "is_historical": true,
-   "ats_model_pick": null,
-   "ats_model_home_prob": null,
-   "ats_model_confidence": null,
-   "ats_value_edge": null,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 50.3,
+   "ats_model_confidence": 50.3,
+   "ats_value_edge": 0.3,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": null,
+   "spread": -1.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -1639,8 +1669,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": null,
-   "fair_away": null,
+   "fair_home": 46.7,
+   "fair_away": 53.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1694,7 +1724,22 @@
    "injuries_home": [],
    "injuries_away": [
     "Peyton Watson (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-21T14:08:15+00:00",
+     "spread": -1.5,
+     "ou": 233.5,
+     "ml_home": 106,
+     "ml_away": -124,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -1.5,
+   "spread_last": -1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
+   "spread_last_fetched_at": "2026-04-21T14:08:15+00:00"
   }
  },
  "active_series": [

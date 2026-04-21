@@ -288,7 +288,7 @@
     "date": "2026-04-21",
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
-    "spread": 13.5,
+    "spread": 14.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1856,11 +1856,11 @@
     "date": "2026-04-23",
     "home": "Minnesota Timberwolves",
     "away": "Denver Nuggets",
-    "spread": null,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    },
    {
     "date": "2026-04-25",
@@ -2670,11 +2670,11 @@
     "date": "2026-04-23",
     "home": "Toronto Raptors",
     "away": "Cleveland Cavaliers",
-    "spread": null,
+    "spread": -3.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "Chicago Bulls:New York Knicks": [
@@ -10132,11 +10132,11 @@
     "date": "2026-04-23",
     "home": "Atlanta Hawks",
     "away": "New York Knicks",
-    "spread": null,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    },
    {
     "date": "2026-04-25",

@@ -1,6 +1,6 @@
 {
  "date": "2026-04-22",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 2,
   "home_picks": 2,
@@ -38,21 +38,7 @@
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  ]
  },
  "games": {
   "Orlando Magic:Detroit Pistons": {
@@ -593,13 +579,29 @@
      "ml_home": -450,
      "ml_away": 350,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T14:08:15+00:00",
+     "spread": 9.5,
+     "ou": 218.5,
+     "ml_home": -420,
+     "ml_away": 330,
+     "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T16:36:54+00:00",
+     "spread": 9.5,
+     "ou": 218.5,
+     "ml_home": -450,
+     "ml_away": 350,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
+   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -608,14 +610,14 @@
    "away_confidence": 33.4,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 213.5,
+   "ou_value": 214.5,
    "ou_confidence": 48.5,
    "home_team_ev": -30.03,
-   "away_team_ev": 280.37,
+   "away_team_ev": 300.39,
    "home_team_odds": -2000,
-   "away_team_odds": 1040,
+   "away_team_odds": 1100,
    "home_kelly": 0,
-   "away_kelly": 26.96,
+   "away_kelly": 27.31,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1069,8 +1071,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 91.6,
-   "fair_away": 8.4,
+   "fair_home": 92.0,
+   "fair_away": 8.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1142,13 +1144,29 @@
      "ml_home": -2000,
      "ml_away": 1040,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T14:08:15+00:00",
+     "spread": 17.5,
+     "ou": 214.5,
+     "ml_home": -2222,
+     "ml_away": 1100,
+     "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T16:36:54+00:00",
+     "spread": 17.5,
+     "ou": 214.5,
+     "ml_home": -2000,
+     "ml_away": 1100,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 16.5,
    "spread_last": 17.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
+   "spread_last_fetched_at": "2026-04-21T16:36:54+00:00"
   }
  },
  "active_series": [

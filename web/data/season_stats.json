@@ -463,7 +463,8 @@
     "best_wr": 64,
     "series_game_num": 3,
     "series_score": "2-0",
-    "has_strong_consensus": true
+    "has_strong_consensus": true,
+    "spread": -3.5
    },
    {
     "date": "2026-04-23",
@@ -476,7 +477,8 @@
     "best_wr": 59,
     "series_game_num": 3,
     "series_score": "1-1",
-    "has_strong_consensus": false
+    "has_strong_consensus": false,
+    "spread": -1.5
    },
    {
     "date": "2026-04-24",
