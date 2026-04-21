@@ -723,7 +723,7 @@ def build_bracket(target_date: date) -> dict | None:
                 _home, _away, _wm, _sp = _row
                 if _wm is None or _sp is None:
                     continue
-                _cover = float(_wm) + float(_sp)
+                _cover = float(_wm) - float(_sp)
                 if _cover == 0:
                     continue  # push
                 r1g1_total += 1

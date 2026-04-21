@@ -426,6 +426,42 @@ def _g2_blowout_followthrough(pred, series_state, team_form) -> PlayoffATSPick |
     )
 
 
+def _g2_narrow_win_big_spread_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """G2 after home covered G1 by narrow ATS margin (≤7), G2 spread ≥10 → dog covers.
+
+    Backtest (9 games, 7 seasons, all rounds): dog covers 88.9% (8/9), ROI=+77.8%.
+    When the home team BARELY covered G1 but has a huge G2 spread (≥10), the market
+    over-reacts to the G1 win. The narrow G1 result signals the matchup is actually
+    competitive, yet the spread implies a blowout — creating value for the dog.
+
+    Only miss: 2023 ATL @ BOS (dog lost by 3 ATS pts).
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 2:
+        return None
+    if series_state.get("home_wins", 0) != 1 or series_state.get("away_wins", 0) != 0:
+        return None
+    g1_margin = series_state.get("g1_ats_margin")
+    if g1_margin is None or g1_margin > 7:
+        return None
+    spread = pred.get("spread")
+    if spread is None or spread < 10:
+        return None
+    home_fav = spread > 0
+    side = "away" if home_fav else "home"
+    return PlayoffATSPick(
+        signal_name="G2窄勝大讓分押冷門",
+        side=side,
+        ats_side="受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.889,
+        backtest_roi=77.8,
+        backtest_n=9,
+        reason_zh=f"G1僅贏 {g1_margin:.1f} ATS分但G2讓 {spread:.1f} 分，市場高估。7季回測冷門cover率 88.9% (8/9)",
+    )
+
+
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Game 6 → Away team covers.
 
@@ -760,6 +796,7 @@ def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | Non
 # Ordered by tier then verified WR — picks.sort() re-sorts by tier+WR anyway
 _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
+    _g2_narrow_win_big_spread_dog,    # GOLD verified: 88.9% (n=9) — G2 narrow G1 cover + spread ≥10 → dog
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _g3_backs_against_wall,           # SILVER verified: 64.3% (n=28) — G3 away leads 2-0
     _g3_tied_low_seed_home,           # BRONZE: 51.6% (n=16) — G3 tied 1-1 no strong edge
