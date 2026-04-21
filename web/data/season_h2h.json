@@ -1847,9 +1847,9 @@
     "home": "Denver Nuggets",
     "away": "Minnesota Timberwolves",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -5,
+    "home_score": 114,
+    "away_score": 119,
     "ats_result": "away"
    },
    {

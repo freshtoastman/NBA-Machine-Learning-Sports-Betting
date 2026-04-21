@@ -584,19 +584,19 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 69,
-      "home_cover_pct": 52.2,
+      "games": 71,
+      "home_cover_pct": 52.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.8099
+      "p_value": 0.8126
      },
      {
       "name": "Curtis Blair",
-      "games": 66,
-      "home_cover_pct": 45.5,
+      "games": 67,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.5386
+      "p_value": 0.6254
      },
      {
       "name": "Gediminas Petraitis",
@@ -607,7 +607,7 @@
       "p_value": 0.416
      }
     ],
-    "avg_home_cover_pct": 51.0,
+    "avg_home_cover_pct": 51.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1134,41 +1134,41 @@
     "officials": [
      {
       "name": "Eric Dalen",
-      "games": 53,
-      "home_cover_pct": 45.3,
+      "games": 54,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.5831
+      "p_value": 0.6835
      },
      {
       "name": "James Capers",
-      "games": 44,
-      "home_cover_pct": 63.6,
+      "games": 46,
+      "home_cover_pct": 65.2,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0961
+      "p_value": 0.0541
      },
      {
       "name": "Nick Buchert",
-      "games": 73,
-      "home_cover_pct": 53.4,
+      "games": 74,
+      "home_cover_pct": 54.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.64
+      "p_value": 0.5614
      }
     ],
-    "avg_home_cover_pct": 54.1,
+    "avg_home_cover_pct": 55.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
     "significant_officials": [
      {
       "name": "James Capers",
-      "games": 44,
-      "home_cover_pct": 63.6,
+      "games": 46,
+      "home_cover_pct": 65.2,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0961
+      "p_value": 0.0541
      }
     ]
    },
@@ -1206,7 +1206,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {

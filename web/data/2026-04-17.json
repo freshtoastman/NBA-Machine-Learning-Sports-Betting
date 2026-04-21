@@ -541,11 +541,11 @@
      },
      {
       "name": "Sean Wright",
-      "games": 57,
-      "home_cover_pct": 52.6,
+      "games": 58,
+      "home_cover_pct": 53.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.7914
+      "p_value": 0.694
      },
      {
       "name": "Marat Kogut",
@@ -556,7 +556,7 @@
       "p_value": 0.9022
      }
     ],
-    "avg_home_cover_pct": 47.2,
+    "avg_home_cover_pct": 47.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1157,7 +1157,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {

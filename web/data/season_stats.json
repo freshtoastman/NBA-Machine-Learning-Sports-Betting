@@ -1,10 +1,10 @@
 {
  "season": "2025-26",
- "games": 1233,
+ "games": 1234,
  "ml_hits": 879,
- "ml_hit_rate": 71.3,
+ "ml_hit_rate": 71.2,
  "ou_hits": 574,
- "ou_hit_rate": 46.6,
+ "ou_hit_rate": 46.5,
  "value_picks": 49,
  "value_wins": 39,
  "value_losses": 10,
@@ -17,8 +17,8 @@
  "golden_hit_rate": 79.1,
  "golden_pl": 11.08,
  "golden_roi": 25.8,
- "brier": 0.1977,
- "calib_gap_mid": 0.1257,
+ "brier": 0.1978,
+ "calib_gap_mid": 0.1245,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -29,9 +29,9 @@
  "elite_total_stake": 49000,
  "perfect_hits": 32,
  "ats_model": {
-  "games": 1233,
-  "hits": 629,
-  "hit_rate": 51.0,
+  "games": 1234,
+  "hits": 630,
+  "hit_rate": 51.1,
   "home_pick_pct": 50.6,
   "value_bets": 63,
   "value_wins": 46,
@@ -47,11 +47,11 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 17,
+  "hits": 18,
   "misses": 5,
-  "pending": 20,
-  "decided": 22,
-  "hit_rate": 77.3,
+  "pending": 17,
+  "decided": 23,
+  "hit_rate": 78.3,
   "history": [
    {
     "date": "2026-04-14",
@@ -360,21 +360,23 @@
     "home_team": "New York Knicks",
     "away_team": "Atlanta Hawks",
     "result": "hit"
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-04-20",
     "game": "明尼蘇達灰狼 @ 丹佛金塊",
-    "signals": [
-     "ML季後賽押客場"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 64,
+    "signal": "ML季後賽押客場",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.64,
+    "ats_winner": "away",
+    "ats_cover_margin": -12.5,
     "series_game_num": 2,
-    "spread": 7.5
-   },
+    "home_team": "Denver Nuggets",
+    "away_team": "Minnesota Timberwolves",
+    "result": "hit"
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-04-21",
     "game": "休士頓火箭 @ 洛杉磯湖人",
@@ -428,13 +430,12 @@
     "date": "2026-04-23",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
-     "G2主場反彈 (輸G1)",
      "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 65,
-    "series_game_num": 2
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
+    "series_game_num": 3
    },
    {
     "date": "2026-04-23",
@@ -487,13 +488,12 @@
     "date": "2026-04-25",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
-     "G2主場反彈 (輸G1)",
      "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 65,
-    "series_game_num": 2
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
+    "series_game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -548,6 +548,15 @@
     "backtest_wr": 60.0
    },
    {
+    "signal": "ML季後賽押客場",
+    "hits": 2,
+    "misses": 0,
+    "n": 2,
+    "tier": "SILVER",
+    "hit_rate": 100.0,
+    "backtest_wr": 64.0
+   },
+   {
     "signal": "客場ATS冷門反彈",
     "hits": 1,
     "misses": 1,
@@ -564,15 +573,6 @@
     "tier": "SILVER",
     "hit_rate": 100.0,
     "backtest_wr": 60.0
-   },
-   {
-    "signal": "ML季後賽押客場",
-    "hits": 1,
-    "misses": 0,
-    "n": 1,
-    "tier": "SILVER",
-    "hit_rate": 100.0,
-    "backtest_wr": 64.0
    },
    {
     "signal": "小讓分客場受讓",
@@ -593,23 +593,23 @@
    "note_zh": "強共識(2+SILVER一致): 3勝/4場決定 = 75.0%，1場待定"
   },
   "best_pick": {
-   "hits": 9,
+   "hits": 10,
    "misses": 2,
-   "pending": 13,
-   "decided": 11,
-   "hit_rate": 81.8,
+   "pending": 12,
+   "decided": 12,
+   "hit_rate": 83.3,
    "gold_hits": 0,
    "gold_misses": 0,
-   "silver_hits": 9,
+   "silver_hits": 10,
    "silver_misses": 2,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 9勝/11場決定 = 81.8%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 10勝/12場決定 = 83.3%"
   }
  },
  "playoff_home_ats": {
-  "games": 16,
+  "games": 17,
   "home_covers": 11,
-  "away_covers": 5,
-  "home_cover_rate": 68.8,
-  "note_zh": "本季季後賽共 16 場有結果，主場覆蓋 11 場 (68.8%)"
+  "away_covers": 6,
+  "home_cover_rate": 64.7,
+  "note_zh": "本季季後賽共 17 場有結果，主場覆蓋 11 場 (64.7%)"
  }
 }

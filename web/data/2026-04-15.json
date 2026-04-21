@@ -564,19 +564,19 @@
     "officials": [
      {
       "name": "Tony Brothers",
-      "games": 67,
-      "home_cover_pct": 50.7,
+      "games": 68,
+      "home_cover_pct": 51.5,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9036
      },
      {
       "name": "Tyler Ford",
-      "games": 75,
-      "home_cover_pct": 38.7,
+      "games": 76,
+      "home_cover_pct": 39.5,
       "significant": true,
       "direction": "away",
-      "p_value": 0.0639
+      "p_value": 0.0846
      },
      {
       "name": "Andy Nagy",
@@ -587,18 +587,18 @@
       "p_value": 0.3891
      }
     ],
-    "avg_home_cover_pct": 44.4,
+    "avg_home_cover_pct": 45.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
     "significant_officials": [
      {
       "name": "Tyler Ford",
-      "games": 75,
-      "home_cover_pct": 38.7,
+      "games": 76,
+      "home_cover_pct": 39.5,
       "significant": true,
       "direction": "away",
-      "p_value": 0.0639
+      "p_value": 0.0846
      }
     ]
    },
@@ -1134,8 +1134,8 @@
     "officials": [
      {
       "name": "Sean Corbin",
-      "games": 66,
-      "home_cover_pct": 50.0,
+      "games": 67,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -1150,11 +1150,11 @@
      },
      {
       "name": "Karl Lane",
-      "games": 64,
-      "home_cover_pct": 45.3,
+      "games": 65,
+      "home_cover_pct": 44.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.5323
+      "p_value": 0.457
      }
     ],
     "avg_home_cover_pct": 47.3,
@@ -1197,7 +1197,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {

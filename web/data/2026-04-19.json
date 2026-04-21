@@ -1419,6 +1419,39 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Mark Lindsay",
+      "games": 70,
+      "home_cover_pct": 45.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5504
+     },
+     {
+      "name": "Nate Green",
+      "games": 55,
+      "home_cover_pct": 54.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5901
+     },
+     {
+      "name": "Sean Wright",
+      "games": 58,
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.694
+     }
+    ],
+    "avg_home_cover_pct": 51.2,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -1967,6 +2000,48 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Brian Forte",
+      "games": 70,
+      "home_cover_pct": 55.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.403
+     },
+     {
+      "name": "James Williams",
+      "games": 71,
+      "home_cover_pct": 60.6,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0959
+     },
+     {
+      "name": "Kevin Scott",
+      "games": 68,
+      "home_cover_pct": 47.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7163
+     }
+    ],
+    "avg_home_cover_pct": 54.5,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": true,
+    "significant_officials": [
+     {
+      "name": "James Williams",
+      "games": 71,
+      "home_cover_pct": 60.6,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0959
+     }
+    ]
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -2525,6 +2600,47 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "JB DeRosa",
+      "games": 47,
+      "home_cover_pct": 63.8,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0789
+     },
+     {
+      "name": "Aaron Smith",
+      "games": 22,
+      "home_cover_pct": 59.1,
+      "significant": false,
+      "direction": null
+     },
+     {
+      "name": "Josh Tiven",
+      "games": 73,
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.64
+     }
+    ],
+    "avg_home_cover_pct": 58.8,
+    "away_friendly": false,
+    "home_friendly": true,
+    "has_significant": true,
+    "significant_officials": [
+     {
+      "name": "JB DeRosa",
+      "games": 47,
+      "home_cover_pct": 63.8,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.0789
+     }
+    ]
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -2559,7 +2675,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {
