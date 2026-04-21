@@ -111,7 +111,10 @@
                     {% set consensus = first.strong_consensus %}
                     {% set best_wr = ga | map(attribute='backtest_wr') | max %}
                     {% set result = first.ats_winner %}
-                    {% set result_correct = (consensus == result) if (consensus and result) else none %}
+                    {# Graded side: use strong_consensus if present, else the single SILVER+ signal's side.
+                       For conflict games there's no directional bet, so no grade/badge is shown. #}
+                    {% set graded_side = consensus if consensus else (first.side if not has_conflict else none) %}
+                    {% set result_correct = (graded_side == result) if (graded_side and result and result != 'push') else none %}
                     <a class="po-ats-game-group {% if has_conflict %}has-conflict{% elif consensus %}has-consensus{% endif %}" href="#pick-{{ game_key }}">
                         <div class="po-ats-gg-top">
                             <span class="po-ats-gg-teams">{{ first.away_team_zh }} @ {{ first.home_team_zh }}</span>
@@ -120,8 +123,12 @@
                             {% elif consensus %}
                             <span class="po-ats-gg-badge strong-{{ consensus }}">🔥 {{ ga | length }}× SILVER {{ '主場' if consensus == 'home' else '客場' }}</span>
                             {% endif %}
-                            {% if result %}
+                            {% if result == 'push' and graded_side %}
+                            <span class="badge-mini">➖ 和局</span>
+                            {% elif result and graded_side %}
                             <span class="badge-mini {% if result_correct %}ok{% else %}fail{% endif %}">{% if result_correct %}✓ 命中{% else %}✗ 失敗{% endif %}</span>
+                            {% elif result and has_conflict %}
+                            <span class="badge-mini" style="opacity:0.6;">— 未下注</span>
                             {% endif %}
                         </div>
                         <div class="po-ats-gg-pick">

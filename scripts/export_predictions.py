@@ -1205,6 +1205,9 @@ def main():
                     winner = alert.get("ats_winner")
                     if winner is None:
                         po_pending.append(record)
+                    elif winner == "push":
+                        # Push is a refund, not a graded outcome — skip from hit/miss totals.
+                        record["result"] = "push"
                     elif winner == alert.get("side"):
                         record["result"] = "hit"
                         po_hits.append(record)
@@ -1256,6 +1259,8 @@ def main():
                     if sc is not None:
                         if winner is None:
                             sc_pending += 1
+                        elif winner == "push":
+                            pass  # push: refund, not a miss
                         elif winner == sc:
                             sc_hits += 1
                         else:
@@ -1265,6 +1270,8 @@ def main():
                     if bp is not None and bp_tier in ("GOLD", "SILVER"):
                         if winner is None:
                             bp_pending += 1
+                        elif winner == "push":
+                            pass  # push: refund, not a miss
                         else:
                             hit = (winner == bp)
                             if hit:
