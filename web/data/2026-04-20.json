@@ -1709,6 +1709,11 @@
    "injuries_home": [
     "Peyton Watson (缺陣)"
    ],
+   "live_home_score": 114,
+   "live_away_score": 119,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [],
    "odds_history": [
     {
