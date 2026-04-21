@@ -462,6 +462,72 @@ def _g2_narrow_win_big_spread_dog(pred, series_state, team_form) -> PlayoffATSPi
     )
 
 
+def _g4_home_2_1_away(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """G4 with home up 2-1 in series → AWAY covers.
+
+    Backtest (85 games, 13 seasons): away covers 61.2% (52/85), ROI=+22.4%.
+    95% CI: 50.8%-71.5%. Consistent across rounds (R1 60.8%, R2 57.9%, CF 55.6%, Finals 83.3%).
+    Pattern: after home takes commanding 2-1 lead, market over-adjusts for G4 — away team
+    plays with desperation, home team protects but doesn't blow out.
+
+    More specific than _g4_away_edge (57.3%/n=171); when home is the series leader at G4,
+    the away-cover edge is stronger (61.2% vs 57.3%).
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 4:
+        return None
+    if series_state.get("home_wins", 0) != 2 or series_state.get("away_wins", 0) != 1:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="G4領先方複雜壓力",
+        side="away",
+        ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
+        tier="SILVER",
+        backtest_wr=0.612,
+        backtest_roi=22.4,
+        backtest_n=85,
+        reason_zh="G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估",
+    )
+
+
+def _g6_home_clinch_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """G6 with home up 3-2 (trying to clinch at home) → DOG covers.
+
+    Backtest (39 games, 12 seasons): dog covers 66.7% (26/39), ROI=+33.3%.
+    95% CI: 51.9%-81.5%. Most are home-favored (35/39) → away dog typically covers.
+    Pattern: home team trying to close out at home faces complacency/nerves;
+    visiting team plays elimination desperation. Classic "easy clinch" trap.
+
+    Complements existing _g6_away_covers (64.8%/n=88) with specific series state.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("series_game_num", 0) != 6:
+        return None
+    if series_state.get("home_wins", 0) != 3 or series_state.get("away_wins", 0) != 2:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    side = "away" if home_fav else "home"
+    return PlayoffATSPick(
+        signal_name="G6主場收官陷阱",
+        side=side,
+        ats_side="受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.667,
+        backtest_roi=33.3,
+        backtest_n=39,
+        reason_zh="G6主場領先3-2欲收官，12季歷史冷門cover率 66.7% (n=39)，收官局壓力反差",
+    )
+
+
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Game 6 → Away team covers.
 
@@ -797,6 +863,8 @@ def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | Non
 _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
     _g2_narrow_win_big_spread_dog,    # GOLD verified: 88.9% (n=9) — G2 narrow G1 cover + spread ≥10 → dog
+    _g6_home_clinch_dog,              # SILVER verified: 66.7% (n=39) — G6 home up 3-2 → dog
+    _g4_home_2_1_away,                # SILVER verified: 61.2% (n=85) — G4 home up 2-1 → away
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _g3_backs_against_wall,           # SILVER verified: 64.3% (n=28) — G3 away leads 2-0
     _g3_tied_low_seed_home,           # BRONZE: 51.6% (n=16) — G3 tied 1-1 no strong edge
