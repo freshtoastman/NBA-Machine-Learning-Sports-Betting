@@ -279,19 +279,18 @@
      "win_pct": 0.561,
      "seed": 5
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 0,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "G2無明顯信號 (G1窄勝)",
-     "side": "home",
-     "home_team": "Cleveland Cavaliers",
-     "home_team_zh": "克里夫蘭騎士",
-     "tier": "NONE",
-     "backtest_wr": 0.478,
-     "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
-     "signal_team_zh": "克里夫蘭騎士"
+     "game_num": 3,
+     "signal": "G3客場擴大優勢",
+     "side": "away",
+     "home_team": "Toronto Raptors",
+     "home_team_zh": "多倫多暴龍",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
@@ -690,7 +689,11 @@
      "tier": "NONE",
      "backtest_wr": 0.478,
      "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
-     "signal_team_zh": "丹佛金塊"
+     "signal_team_zh": "丹佛金塊",
+     "has_conflict": true,
+     "conflict_signal": "客場明顯強勢",
+     "conflict_wr": 0.594,
+     "conflict_away_team": "明尼蘇達灰狼"
     }
    },
    {

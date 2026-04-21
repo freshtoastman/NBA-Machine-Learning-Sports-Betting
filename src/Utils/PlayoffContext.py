@@ -108,6 +108,47 @@ def _count_series_games_before(home_team: str, away_team: str, target_date, seas
         return None
 
 
+def _count_series_wins_before(home_team: str, away_team: str, target_date, season_key: str, series_start: str | None = None) -> tuple[int, int] | None:
+    """Return (home_wins, away_wins) in the series before target_date.
+
+    Counts games where Win_Margin > 0 (home won) or < 0 (away won).
+    Returns None if the query fails.
+    """
+    if isinstance(target_date, str):
+        target_date = datetime.strptime(target_date, "%Y-%m-%d").date()
+    table = f"[{season_key}]"
+    try:
+        with sqlite3.connect(ODDS_DB) as con:
+            clause_date = "Date >= ? AND Date < ?" if series_start else "Date < ?"
+            params_date = (series_start, target_date.isoformat()) if series_start else (target_date.isoformat(),)
+            rows = con.execute(
+                f'SELECT Home, Win_Margin FROM {table} '
+                f'WHERE {clause_date} '
+                f'AND ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?))',
+                (*params_date, home_team, away_team, away_team, home_team),
+            ).fetchall()
+        hw = aw = 0
+        for row_home, wm in rows:
+            if wm is None:
+                continue
+            wm = float(wm)
+            if wm == 0:
+                continue
+            if row_home == home_team:
+                if wm > 0:
+                    hw += 1
+                else:
+                    aw += 1
+            else:
+                if wm > 0:
+                    aw += 1
+                else:
+                    hw += 1
+        return hw, aw
+    except Exception:
+        return None
+
+
 def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None) -> dict | None:
     """Return the series state for this matchup at game time.
 
@@ -139,11 +180,15 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
 
     if as_of_date is not None:
         series_start = raw.get("earliest_date")
-        games_before = _count_series_games_before(home_team, away_team, as_of_date, season_key, series_start)
-        if games_before is not None:
-            total_played = games_before
-        else:
+        # Recompute per-team wins from actual game results before as_of_date
+        # so that signals see the correct pre-game series lead, not the post-series state.
+        wins_before = _count_series_wins_before(home_team, away_team, as_of_date, season_key, series_start)
+        if wins_before is not None:
+            home_wins, away_wins = wins_before
             total_played = home_wins + away_wins
+        else:
+            games_before = _count_series_games_before(home_team, away_team, as_of_date, season_key, series_start)
+            total_played = games_before if games_before is not None else home_wins + away_wins
     else:
         total_played = home_wins + away_wins
     series_game_num = total_played + 1  # the upcoming game

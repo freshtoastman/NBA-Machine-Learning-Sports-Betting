@@ -513,9 +513,9 @@
    "series_round": "附加賽",
    "round_num": 0,
    "series_game_num": 1,
-   "series_home_wins": 1,
+   "series_home_wins": 0,
    "series_away_wins": 0,
-   "series_status_text": "主隊領先 1-0",
+   "series_status_text": "平手 0-0",
    "series_is_elimination": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1063,9 +1063,9 @@
    "series_round": "附加賽",
    "round_num": 0,
    "series_game_num": 1,
-   "series_home_wins": 1,
+   "series_home_wins": 0,
    "series_away_wins": 0,
-   "series_status_text": "主隊領先 1-0",
+   "series_status_text": "平手 0-0",
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
@@ -1147,7 +1147,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },

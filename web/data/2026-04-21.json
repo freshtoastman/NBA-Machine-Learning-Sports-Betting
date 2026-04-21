@@ -71,6 +71,7 @@
   ],
   "playoff_ats_count": 3,
   "injury_alerts": [
+   "Boston Celtics: Ron Harper Jr. (可能出賽)",
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)",
@@ -609,7 +610,9 @@
    "away_team_zh": "費城七六人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Ron Harper Jr. (可能出賽)"
+   ],
    "injuries_away": [
     "Joel Embiid (缺陣)"
    ],
@@ -1732,7 +1735,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },

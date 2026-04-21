@@ -2661,10 +2661,10 @@
     "home": "Cleveland Cavaliers",
     "away": "Toronto Raptors",
     "spread": 8.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 10,
+    "home_score": 115,
+    "away_score": 105,
+    "ats_result": "home"
    },
    {
     "date": "2026-04-23",

@@ -12,25 +12,6 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
-    "game_key": "Toronto Raptors:Cleveland Cavaliers",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "home_team_zh": "克里夫蘭騎士",
-    "away_team_zh": "多倫多暴龍",
-    "signal": "ML季後賽押客場",
-    "side": "away",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.64,
-    "backtest_roi": 22.2,
-    "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 2,
-    "strong_consensus": null,
-    "has_conflict": false
-   },
-   {
     "game_key": "Minnesota Timberwolves:Denver Nuggets",
     "home_team": "Denver Nuggets",
     "away_team": "Minnesota Timberwolves",
@@ -50,21 +31,19 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [
    "Cleveland Cavaliers: Thomas Bryant (缺陣)",
-   "New York Knicks: OG Anunoby (可能出賽)",
-   "Atlanta Hawks: Onyeka Okongwu (存疑)",
+   "Toronto Raptors: Immanuel Quickley (缺陣)",
    "Atlanta Hawks: Jock Landale (缺陣)",
-   "Denver Nuggets: Peyton Watson (缺陣)",
-   "Minnesota Timberwolves: Anthony Edwards (存疑)"
+   "Denver Nuggets: Peyton Watson (缺陣)"
   ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
+  "ml_correct": 1,
+  "ml_graded": 1,
+  "ml_hit_rate": 100.0,
   "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
+  "ou_graded": 1,
+  "ou_hit_rate": 0.0,
   "value_decided": 0,
   "value_wins": 0,
   "value_losses": 0,
@@ -92,9 +71,9 @@
    "away_kelly": 25.72,
    "is_historical": true,
    "ats_model_pick": "away",
-   "ats_model_home_prob": 47.9,
-   "ats_model_confidence": 52.1,
-   "ats_value_edge": 2.1,
+   "ats_model_home_prob": 48.1,
+   "ats_model_confidence": 51.9,
+   "ats_value_edge": 1.9,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
@@ -545,16 +524,16 @@
    "value_prob": null,
    "fair_home": 75.7,
    "fair_away": 24.3,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 115,
+   "away_score": 105,
+   "actual_total": 220,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 1.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": true,
    "series_round": "首輪",
    "round_num": 1,
@@ -563,22 +542,11 @@
    "series_away_wins": 0,
    "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
-   "playoff_ats_picks": [
-    {
-     "signal": "ML季後賽押客場",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "backtest_roi": 22.2,
-     "backtest_n": 175,
-     "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    }
-   ],
-   "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "ML季後賽押客場",
-   "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": "away",
+   "playoff_ats_picks": [],
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "home_team_zh": "克里夫蘭騎士",
@@ -588,7 +556,14 @@
    "injuries_home": [
     "Thomas Bryant (缺陣)"
    ],
-   "injuries_away": [],
+   "live_home_score": 115,
+   "live_away_score": 105,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
+   "injuries_away": [
+    "Immanuel Quickley (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-04-20T13:54:45+00:00",
@@ -1123,11 +1098,13 @@
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
-   "injuries_home": [
-    "OG Anunoby (可能出賽)"
-   ],
+   "injuries_home": [],
+   "live_home_score": 80,
+   "live_away_score": 69,
+   "live_status": "Q3 5:34",
+   "live_is_final": false,
+   "live_home_covering": true,
    "injuries_away": [
-    "Onyeka Okongwu (存疑)",
     "Jock Landale (缺陣)"
    ],
    "odds_history": [
@@ -1687,9 +1664,7 @@
    "injuries_home": [
     "Peyton Watson (缺陣)"
    ],
-   "injuries_away": [
-    "Anthony Edwards (存疑)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-20T13:54:45+00:00",
@@ -1721,7 +1696,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
