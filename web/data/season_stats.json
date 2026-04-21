@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1978,
- "calib_gap_mid": 0.1245,
+ "calib_gap_mid": 0.1246,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 18,
   "misses": 5,
-  "pending": 17,
+  "pending": 18,
   "decided": 23,
   "hit_rate": 78.3,
   "history": [
@@ -448,6 +448,20 @@
   "pending_by_game": [
    {
     "date": "2026-04-21",
+    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
+    "signals": [
+     "G2窄勝大讓分押冷門"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 89,
+    "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false,
+    "spread": 11.5
+   },
+   {
+    "date": "2026-04-21",
     "game": "費城七六人 @ 波士頓塞爾提克",
     "signals": [
      "G2大勝後延續"
@@ -688,7 +702,7 @@
   "best_pick": {
    "hits": 10,
    "misses": 2,
-   "pending": 12,
+   "pending": 13,
    "decided": 12,
    "hit_rate": 83.3,
    "gold_hits": 0,
