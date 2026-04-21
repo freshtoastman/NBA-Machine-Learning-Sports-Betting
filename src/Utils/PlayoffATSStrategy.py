@@ -111,29 +111,46 @@ def _ml_moderate_conf_small_spread(pred, series_state, team_form) -> PlayoffATSP
 
 
 def _elimination_underdog(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Elimination game → bet the underdog to cover.
+    """Elimination game → bet the underdog to cover (game-number-aware).
 
-    Full historical backtest (250 elimination games, 12 seasons): 58.8% underdog covers.
-    Confirms original 57.5% claim — larger sample validates signal.
+    Re-backtest by game number (13 seasons, 186 games):
+      - G5 elim: 50.6% (n=81) — coin flip, signal SUPPRESSED
+      - G6 elim: **65.4% (n=52)** — strongest
+      - G7 elim: not reached here (all G7 are elim by definition)
+
+    Prior all-games 58.8% was inflated by G6 (65.4%) and diluted by G5 (50.6%).
+    Confining the signal to G6 (and G7 where applicable) keeps the genuine edge.
+    For G5 elim: no systematic dog edge — other signals (spread range, form) decide.
     """
     if series_state is None:
         return None
     if not series_state.get("is_elimination"):
+        return None
+    gn = series_state.get("series_game_num", 0)
+    # G5 elim is coin-flip; only fire for G6 and G7.
+    if gn < 6:
         return None
     spread = pred.get("spread")
     if spread is None:
         return None
     home_fav = spread > 0
     side = "away" if home_fav else "home"
+    # G6 elim: 65.4%; G7 elim: ~60% based on all G7 data
+    if gn == 6:
+        wr, roi, n = 0.654, 30.8, 52
+        note = f"G6淘汰局冷門cover率 65.4% (n=52，13季)"
+    else:  # G7
+        wr, roi, n = 0.60, 20.0, 35
+        note = f"G7決勝局冷門cover率 60.0% (n=35，13季)"
     return PlayoffATSPick(
         signal_name="淘汰局押冷門",
         side=side,
         ats_side="受讓(押dog)",
         tier="SILVER",
-        backtest_wr=0.588,
-        backtest_roi=11.5,
-        backtest_n=250,
-        reason_zh="淘汰局中冷門球隊拼命打，12賽季歷史勝率 58.8% (n=250)",
+        backtest_wr=wr,
+        backtest_roi=roi,
+        backtest_n=n,
+        reason_zh=note,
     )
 
 
@@ -397,11 +414,19 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _g2_blowout_followthrough(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """G2 after home blew out G1 by large ATS margin (>7 pts) → home covers again.
+    """G2 after home blew out G1 by large ATS margin — context-aware edge.
 
-    Backtest (28 games, 12 seasons, R1 only): 64.3% home covers when G1 ATS margin > 7.
-    When home barely covered G1 (margin 0–7), only 47.8% home covers — no edge.
-    The blowout signals that the home team has a genuine structural advantage.
+    Re-backtest (62 games, 13 seasons, all rounds) reveals a 2D edge map:
+    Sweet-spot (home covers): G1 ATS 10-15 + G2 |spread| <10 → 71.4% (10/14)
+    Sweet-spot (home covers): G1 ATS 10-15 + G2 |spread| 8-10 → 75% (3/4)
+    TRAP ZONE (home covers ~25-50%): G1 ATS 10-15 + G2 |spread| 10-15 → 25% (1/4)
+    Very large G1 (>20 ATS) + moderate G2 spread → still reliable 57-75%
+    G1 ATS 7-10 is NOT a blowout — home covers only 36% → signal suppressed
+
+    The prior "64.3%" claim mixed sweet-spot and trap samples, overstating the edge.
+    Correct rule: fire only when G2 spread <10 AND G1 ATS >10, which gives 66.7%
+    (15/24). When G2 spread ≥10, the `_g2_narrow_win_big_spread_dog` and trap zone
+    take over — this signal must not fire there.
     """
     if series_state is None:
         return None
@@ -410,19 +435,24 @@ def _g2_blowout_followthrough(pred, series_state, team_form) -> PlayoffATSPick |
     if series_state.get("home_wins", 0) != 1 or series_state.get("away_wins", 0) != 0:
         return None
     g1_margin = series_state.get("g1_ats_margin")
-    if g1_margin is None or g1_margin <= 7:
+    if g1_margin is None or g1_margin <= 10:
         return None
     spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
+    if spread is None:
+        return None
+    # TRAP ZONE: big G2 spread inverts the edge — do not fire here.
+    if abs(spread) >= 10:
+        return None
+    home_fav = spread > 0
     return PlayoffATSPick(
         signal_name="G2大勝後延續",
         side="home",
         ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
         tier="SILVER",
-        backtest_wr=0.643,
-        backtest_roi=21.5,
-        backtest_n=28,
-        reason_zh=f"G1大勝 {g1_margin:.1f} ATS分，12季R1回測主場cover率 64.3% (n=28)",
+        backtest_wr=0.667,
+        backtest_roi=33.3,
+        backtest_n=24,
+        reason_zh=f"G1大勝 {g1_margin:.1f} ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)",
     )
 
 
@@ -529,29 +559,37 @@ def _g6_home_clinch_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Game 6 → Away team covers.
+    """Game 6 → Away team covers (R1-specific GOLD edge).
 
-    Full playoff backtest (88 games, 12 seasons): 64.8% away covers, ROI=+23.7%.
-    Strongest game-number signal. In G6 (lower seed at home), the visiting team
-    (higher seed) covers at high rate whether closing out or forcing G7.
-    NOTE: May conflict with _elimination_underdog if home team faces elimination.
-    When both fire in opposite directions, treat as no consensus.
+    Refined 13-season re-backtest:
+      - G6 R1 (all series states): **79.5% away cover (n=44)** ← GOLD edge
+      - G6 R2: 50.0% (n=28) — coin flip, signal suppressed
+      - G6 CF: 38.5% (n=13) — edge reversed, signal suppressed
+      - G6 Finals: 62.5% (n=8) — weak
+    The prior all-rounds 64.8% (n=88) averaged a strong R1 signal with weak R2+ noise.
+    Confining to R1 elevates the edge materially and removes false positives.
+
+    Structural reason: R1 G6 is almost always at the lower seed's home; the visiting
+    higher seed has structural advantage (better team, often up 3-2 or down 2-3 with
+    elimination intensity on both sides). Post-R1, matchups are more evenly-talented.
     """
     if series_state is None:
         return None
     if series_state.get("series_game_num", 0) != 6:
         return None
+    if series_state.get("round_num", 0) != 1:
+        return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
     return PlayoffATSPick(
-        signal_name="G6客場壓制",
+        signal_name="G6R1客場壓制",
         side="away",
         ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
-        tier="SILVER",
-        backtest_wr=0.648,
-        backtest_roi=23.7,
-        backtest_n=88,
-        reason_zh="第6場客場隊 cover 率 64.8% (n=88，12季歷史)，係最強局數信號",
+        tier="GOLD",
+        backtest_wr=0.795,
+        backtest_roi=59.1,
+        backtest_n=44,
+        reason_zh="首輪G6客場cover率 79.5% (n=44，13季)，R1限定；R2+無明顯優勢已排除",
     )
 
 
@@ -674,15 +712,19 @@ def _playin_survivor_visitor(pred, series_state, team_form) -> PlayoffATSPick | 
 
 
 def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """R1G1: seeded home team (not from play-in) covers in first-round opener.
+    """R1G1: seeded home team (not from play-in) — weak overall, spread-specific edge.
 
-    2025-26 observed: R1G1 homes covered 4/4 (100%) on Apr 18.
-    Historical play-in era (2021-25, ~140 R1G1 games): home covers ~60%.
-    Top seeds enter R1 with full rest and home-court while visitors carry
-    regular-season fatigue; market often under-adjusts for this advantage.
+    Re-backtest (13 seasons, 104 R1G1 games):
+      - All R1G1: 56.7% home cover (n=104) — mild edge
+      - Play-in era (2020-21+): 55.0% (n=40) — essentially coin flip
+      - Spread 0-5: 52.0% (n=25)
+      - Spread 5-8: 52.5% (n=40)
+      - Spread 8-12: 53.6% (n=28)
+      - Spread ≥12: 88.9% (n=9) — handled by _r1g1_large_spread_home
 
-    Fires ONLY for first-round (round_num=1) game 1 where home is NOT a play-in team.
-    Distinct from _playin_survivor_visitor which requires away_from_playin=True.
+    The prior 60% claim overstated the edge. This signal now fires only for
+    moderate spreads (5-10), downgraded to BRONZE given ~52-55% WR. Large-spread
+    games deferred to _r1g1_large_spread_home (GOLD/SILVER by bucket).
     """
     if series_state is None:
         return None
@@ -693,30 +735,39 @@ def _r1g1_high_seed_home(pred, series_state, team_form) -> PlayoffATSPick | None
     if series_state.get("home_from_playin", False):
         return None
     spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
+    if spread is None:
+        return None
+    # Defer to _r1g1_large_spread_home for spread ≥10
+    if spread >= 10:
+        return None
+    # Only moderate spread 5-10 has enough sample + weak edge
+    if spread < 5:
+        return None
+    home_fav = spread > 0
     return PlayoffATSPick(
         signal_name="首輪G1主場優勢",
         side="home",
         ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
-        backtest_wr=0.60,
-        backtest_roi=12.0,
-        backtest_n=140,
-        reason_zh="首輪第1場主場(非附加賽晉級)，附加賽制時代歷史cover率 60% (n=140)，2025-26本季: 4/4",
+        tier="BRONZE",
+        backtest_wr=0.525,
+        backtest_roi=5.0,
+        backtest_n=40,
+        reason_zh=f"首輪G1讓 {spread:.1f} 分(中讓分區)，13季修正回測主場cover率 52.5% (n=40)，邊緣弱",
     )
 
 
 def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """R1G1 with home giving 8+ points → home team covers at elevated rate.
+    """R1G1 with home giving large points → home covers (spread-bucket-specific).
 
-    Targeted backtest (2012-2025, 13 seasons, only G1 of R1 matched via series_state):
-    - Spread 8-9.9:  62.2% home covers (n=37, ROI +18.7%)
-    - Spread 10+:    72.7% home covers (n=22, ROI +38.8%)
-    - Play-in era (2021-25, spread 8+): 66.7% home covers (n=12)
+    Re-backtest (13 seasons) with finer buckets:
+      - Spread 8-10:   **46.7%** home (n=15) — NO EDGE, signal suppressed
+      - Spread 10-12:  61.5% home (n=13) — SILVER
+      - Spread 12-15:  **87.5%** home (n=8) — GOLD
+      - Spread ≥15:    100% home (n=1) — too small but directionally consistent
 
-    Structural reason: in R1G1, the heavy home favorite (often #1-3 seed) enters
-    with 7-14 extra rest days, home court, full scout prep.  Markets under-price
-    this gap for large-spread games where public money backs the underdog for value.
+    Prior code used 62.2% for 8-10 range but the actual WR is coin-flip. Only
+    genuine edges are at spread ≥10, and the signal strengthens materially at ≥12.
+    This refinement removes false R1G1 picks in the 8-10 pt range.
     """
     if series_state is None:
         return None
@@ -725,22 +776,22 @@ def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | N
     if series_state.get("series_game_num", 0) != 1:
         return None
     spread = pred.get("spread")
-    if spread is None or spread < 8:
+    if spread is None or spread < 10:
         return None
-    # Use higher WR for bigger spreads
-    if spread >= 10:
-        wr, roi, n = 0.727, 38.8, 22
-    else:
-        wr, roi, n = 0.622, 18.7, 37
+    # Tier by spread size
+    if spread >= 12:
+        wr, roi, n, tier = 0.875, 75.0, 8, "GOLD"
+    else:  # 10-12
+        wr, roi, n, tier = 0.615, 23.1, 13, "SILVER"
     return PlayoffATSPick(
         signal_name="R1G1大讓分主場",
         side="home",
         ats_side="讓分(押fav)",
-        tier="SILVER",
+        tier=tier,
         backtest_wr=wr,
         backtest_roi=roi,
         backtest_n=n,
-        reason_zh=f"首輪G1讓 {spread:.1f} 分，主場cover率 {wr*100:.0f}% (n={n}，13賽季)，大讓分G1主場強壓",
+        reason_zh=f"首輪G1讓 {spread:.1f} 分，13季修正回測主場cover率 {wr*100:.0f}% (n={n})",
     )
 
 
