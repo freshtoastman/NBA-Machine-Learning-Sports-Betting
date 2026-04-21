@@ -10123,9 +10123,9 @@
     "home": "New York Knicks",
     "away": "Atlanta Hawks",
     "spread": 6.0,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -1,
+    "home_score": 106,
+    "away_score": 107,
     "ats_result": "away"
    },
    {

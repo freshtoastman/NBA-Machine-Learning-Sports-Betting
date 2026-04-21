@@ -1,7 +1,7 @@
 {
  "season": "2025-26",
- "games": 1231,
- "ml_hits": 878,
+ "games": 1233,
+ "ml_hits": 879,
  "ml_hit_rate": 71.3,
  "ou_hits": 574,
  "ou_hit_rate": 46.6,
@@ -17,8 +17,8 @@
  "golden_hit_rate": 79.1,
  "golden_pl": 11.08,
  "golden_roi": 25.8,
- "brier": 0.1975,
- "calib_gap_mid": 0.1263,
+ "brier": 0.1977,
+ "calib_gap_mid": 0.1257,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -29,10 +29,10 @@
  "elite_total_stake": 49000,
  "perfect_hits": 32,
  "ats_model": {
-  "games": 1231,
-  "hits": 628,
+  "games": 1233,
+  "hits": 629,
   "hit_rate": 51.0,
-  "home_pick_pct": 50.7,
+  "home_pick_pct": 50.6,
   "value_bets": 63,
   "value_wins": 46,
   "value_losses": 17,
@@ -47,11 +47,11 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 16,
+  "hits": 17,
   "misses": 5,
-  "pending": 22,
-  "decided": 21,
-  "hit_rate": 76.2,
+  "pending": 20,
+  "decided": 22,
+  "hit_rate": 77.3,
   "history": [
    {
     "date": "2026-04-14",
@@ -346,6 +346,20 @@
     "home_team": "Detroit Pistons",
     "away_team": "Orlando Magic",
     "result": "miss"
+   },
+   {
+    "date": "2026-04-20",
+    "game": "亞特蘭大老鷹 @ 紐約尼克",
+    "signal": "ML季後賽押客場",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.64,
+    "ats_winner": "away",
+    "ats_cover_margin": -7.0,
+    "series_game_num": 2,
+    "home_team": "New York Knicks",
+    "away_team": "Atlanta Hawks",
+    "result": "hit"
    }
   ],
   "pending_by_game": [
@@ -436,17 +450,6 @@
     "series_game_num": 3
    },
    {
-    "date": "2026-04-23",
-    "game": "紐約尼克 @ 亞特蘭大老鷹",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 65,
-    "series_game_num": 2
-   },
-   {
     "date": "2026-04-24",
     "game": "波士頓塞爾提克 @ 費城七六人",
     "signals": [
@@ -514,17 +517,6 @@
     "has_conflict": false,
     "best_wr": 64,
     "series_game_num": 2
-   },
-   {
-    "date": "2026-04-25",
-    "game": "紐約尼克 @ 亞特蘭大老鷹",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 65,
-    "series_game_num": 2
    }
   ],
   "by_signal": [
@@ -574,6 +566,15 @@
     "backtest_wr": 60.0
    },
    {
+    "signal": "ML季後賽押客場",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0,
+    "backtest_wr": 64.0
+   },
+   {
     "signal": "小讓分客場受讓",
     "hits": 0,
     "misses": 1,
@@ -592,23 +593,23 @@
    "note_zh": "強共識(2+SILVER一致): 3勝/4場決定 = 75.0%，1場待定"
   },
   "best_pick": {
-   "hits": 8,
+   "hits": 9,
    "misses": 2,
-   "pending": 15,
-   "decided": 10,
-   "hit_rate": 80.0,
+   "pending": 13,
+   "decided": 11,
+   "hit_rate": 81.8,
    "gold_hits": 0,
    "gold_misses": 0,
-   "silver_hits": 8,
+   "silver_hits": 9,
    "silver_misses": 2,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 8勝/10場決定 = 80.0%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 9勝/11場決定 = 81.8%"
   }
  },
  "playoff_home_ats": {
-  "games": 15,
+  "games": 16,
   "home_covers": 11,
-  "away_covers": 4,
-  "home_cover_rate": 73.3,
-  "note_zh": "本季季後賽共 15 場有結果，主場覆蓋 11 場 (73.3%)"
+  "away_covers": 5,
+  "home_cover_rate": 68.8,
+  "note_zh": "本季季後賽共 16 場有結果，主場覆蓋 11 場 (68.8%)"
  }
 }
