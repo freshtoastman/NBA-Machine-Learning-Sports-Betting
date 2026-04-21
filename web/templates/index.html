@@ -135,7 +135,7 @@
                             {% if has_conflict %}
                             <span style="color:#e08080;font-size:12px;">信號分歧 — 無強勢方向</span>
                             {% elif consensus %}
-                            <span class="po-ats-gg-direction">{{ '主場' if consensus == 'home' else '客場' }} 覆蓋讓分</span>
+                            <span class="po-ats-gg-direction">{{ '主場' if consensus == 'home' else '客場' }} 過盤讓分</span>
                             <span class="po-ats-gg-wr">最高 {{ (best_wr * 100)|round(0)|int }}% WR</span>
                             {% endif %}
                         </div>
@@ -285,19 +285,19 @@
                     </div>
                     {% endif %}
                 </div>
-                {# 本季主客場 ATS 覆蓋率分析 #}
+                {# 本季主客場 ATS 過盤率分析 #}
                 {% if season_stats.playoff_home_ats %}
                 {% set pha = season_stats.playoff_home_ats %}
                 <div class="po-st-ats-split" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
                     <div style="font-size:11px;color:#aaa;margin-bottom:6px;">本季主客場 ATS（共 {{ pha.games }} 場）</div>
                     <div style="display:flex;gap:8px;">
                         <div class="po-st-stat" style="flex:1;">
-                            <div class="po-st-lbl">主場覆蓋</div>
+                            <div class="po-st-lbl">主場過盤</div>
                             <div class="po-st-val {% if pha.home_cover_rate >= 60 %}good{% elif pha.home_cover_rate < 50 %}bad{% endif %}">{{ pha.home_cover_rate }}%</div>
                             <div class="po-st-sub">{{ pha.home_covers }}/{{ pha.games }}</div>
                         </div>
                         <div class="po-st-stat" style="flex:1;">
-                            <div class="po-st-lbl">客場覆蓋</div>
+                            <div class="po-st-lbl">客場過盤</div>
                             <div class="po-st-val {% if (100 - pha.home_cover_rate) >= 60 %}good{% elif (100 - pha.home_cover_rate) < 50 %}bad{% endif %}">{{ (100 - pha.home_cover_rate)|round(0)|int }}%</div>
                             <div class="po-st-sub">{{ pha.away_covers }}/{{ pha.games }}</div>
                         </div>

@@ -1581,7 +1581,7 @@ def main():
                 "home_covers": po_home_covers,
                 "away_covers": po_total - po_home_covers,
                 "home_cover_rate": home_pct,
-                "note_zh": f"本季季後賽共 {po_total} 場有結果，主場覆蓋 {po_home_covers} 場 ({home_pct}%)",
+                "note_zh": f"本季季後賽共 {po_total} 場有結果，主場過盤 {po_home_covers} 場 ({home_pct}%)",
             }
 
         stats_path = OUT_DIR / "season_stats.json"
