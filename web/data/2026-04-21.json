@@ -1174,13 +1174,13 @@
    "away_confidence": 47.2,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 205.5,
+   "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 36.13,
-   "away_team_ev": -27.64,
-   "home_team_odds": 158,
-   "away_team_odds": -188,
-   "home_kelly": 22.87,
+   "home_team_ev": 34.02,
+   "away_team_ev": -27.09,
+   "home_team_odds": 154,
+   "away_team_odds": -184,
+   "home_kelly": 22.09,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -1635,8 +1635,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 37.3,
-   "fair_away": 62.7,
+   "fair_home": 37.8,
+   "fair_away": 62.2,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1720,13 +1720,21 @@
      "ml_home": 158,
      "ml_away": -188,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T02:06:05+00:00",
+     "spread": -4.5,
+     "ou": 206.5,
+     "ml_home": 154,
+     "ml_away": -184,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -4.5,
    "spread_last": -4.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
   }
  },
  "active_series": [

@@ -580,13 +580,21 @@
      "ml_home": -370,
      "ml_away": 295,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T02:06:05+00:00",
+     "spread": 9.5,
+     "ou": 222.5,
+     "ml_home": -420,
+     "ml_away": 330,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 8.5,
-   "spread_last": 8.5,
-   "spread_move": 0.0,
+   "spread_last": 9.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
   },
   "Atlanta Hawks:New York Knicks": {
    "home_team": "New York Knicks",
@@ -597,21 +605,21 @@
    "ou_pick": "OVER",
    "ou_value": 217.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -13.93,
-   "away_team_ev": 16.95,
-   "home_team_odds": -240,
-   "away_team_odds": 198,
+   "home_team_ev": -15.42,
+   "away_team_ev": 21.66,
+   "home_team_odds": -255,
+   "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 8.56,
+   "away_kelly": 10.31,
    "is_historical": true,
    "ats_model_pick": "away",
-   "ats_model_home_prob": 48.5,
-   "ats_model_confidence": 51.5,
-   "ats_value_edge": 1.5,
+   "ats_model_home_prob": 48.3,
+   "ats_model_confidence": 51.7,
+   "ats_value_edge": 1.7,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 5.5,
+   "spread": 6.0,
    "home_profile": {
     "weekday_name": "週一",
     "season": {
@@ -1056,8 +1064,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 67.8,
-   "fair_away": 32.2,
+   "fair_home": 69.0,
+   "fair_away": 31.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1085,7 +1093,7 @@
      "backtest_wr": 0.521,
      "backtest_roi": 4.2,
      "backtest_n": 290,
-     "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
+     "reason_zh": "讓分 6.0 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1099,9 +1107,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 80,
-   "live_away_score": 69,
-   "live_status": "Q3 5:34",
+   "live_home_score": 89,
+   "live_away_score": 79,
+   "live_status": "Q3 1:34",
    "live_is_final": false,
    "live_home_covering": true,
    "injuries_away": [
@@ -1123,13 +1131,21 @@
      "ml_home": -240,
      "ml_away": 198,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T02:06:05+00:00",
+     "spread": 6.0,
+     "ou": 217.5,
+     "ml_home": -255,
+     "ml_away": 210,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 5.5,
-   "spread_last": 5.5,
-   "spread_move": 0.0,
+   "spread_last": 6.0,
+   "spread_move": 0.5,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
   },
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
@@ -1140,12 +1156,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.74,
-   "away_team_ev": 31.29,
-   "home_team_odds": -255,
-   "away_team_odds": 210,
+   "home_team_ev": -22.81,
+   "away_team_ev": 43.99,
+   "home_team_odds": -295,
+   "away_team_odds": 240,
    "home_kelly": 0,
-   "away_kelly": 14.9,
+   "away_kelly": 18.33,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 45.8,
@@ -1154,7 +1170,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 6.5,
+   "spread": 7.5,
    "home_profile": {
     "weekday_name": "週一",
     "season": {
@@ -1599,8 +1615,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 69.0,
-   "fair_away": 31.0,
+   "fair_home": 71.7,
+   "fair_away": 28.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1648,7 +1664,7 @@
      "backtest_wr": 0.521,
      "backtest_roi": 4.2,
      "backtest_n": 290,
-     "reason_zh": "讓分 6.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
+     "reason_zh": "讓分 7.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1681,13 +1697,21 @@
      "ml_home": -255,
      "ml_away": 210,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-21T02:06:05+00:00",
+     "spread": 7.5,
+     "ou": 231.5,
+     "ml_home": -295,
+     "ml_away": 240,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 6.5,
-   "spread_last": 6.5,
-   "spread_move": 0.0,
+   "spread_last": 7.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T14:13:14+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
   }
  },
  "active_series": [
