@@ -751,9 +751,9 @@
    "ou_pick": "UNDER",
    "ou_value": 205.5,
    "ou_confidence": 69.0,
-   "home_team_ev": -29.35,
+   "home_team_ev": -29.68,
    "away_team_ev": 79.34,
-   "home_team_odds": -391,
+   "home_team_odds": -400,
    "away_team_odds": 310,
    "home_kelly": 0,
    "away_kelly": 25.59,
@@ -1285,13 +1285,21 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T06:32:56+00:00",
+     "spread": 9.5,
+     "ou": 205.5,
+     "ml_home": -400,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-22T06:21:22+00:00"
+   "spread_last_fetched_at": "2026-04-22T06:32:56+00:00"
   },
   "San Antonio Spurs:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
@@ -1899,7 +1907,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "east"
   },
   {
@@ -1925,7 +1933,7 @@
    "round_label": "首輪",
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   }

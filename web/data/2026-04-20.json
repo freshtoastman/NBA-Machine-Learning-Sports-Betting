@@ -1864,7 +1864,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 1,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "east"
   },
   {
@@ -1890,7 +1890,7 @@
    "round_label": "首輪",
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   },
