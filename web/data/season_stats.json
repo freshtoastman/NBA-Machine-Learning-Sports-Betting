@@ -48,10 +48,10 @@
  },
  "playoff_signals": {
   "hits": 10,
-  "misses": 3,
+  "misses": 2,
   "pending": 15,
-  "decided": 13,
-  "hit_rate": 76.9,
+  "decided": 12,
+  "hit_rate": 83.3,
   "conviction": {
    "crushing_hits": 3,
    "dominant_hits": 3,
@@ -60,9 +60,9 @@
    "garbage_time_hits": 1,
    "total_hits": 10,
    "true_conviction_hits": 8,
-   "raw_hit_rate": 76.9,
-   "true_conviction_rate": 61.5,
-   "note_zh": "3 碾壓主導 + 3 主導 + 2 普通 + 2 險過；1 場受垃圾時間影響；真實信心率 61.5%"
+   "raw_hit_rate": 83.3,
+   "true_conviction_rate": 66.7,
+   "note_zh": "3 碾壓主導 + 3 主導 + 2 普通 + 2 險過；1 場受垃圾時間影響；真實信心率 66.7%"
   },
   "history": [
    {
@@ -448,38 +448,6 @@
     "conviction_source": "q3",
     "q3_picked_margin": 11.1,
     "q4_swing": 0
-   },
-   {
-    "date": "2026-04-21",
-    "game": "休士頓火箭 @ 洛杉磯湖人",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "ats_winner": "home",
-    "ats_cover_margin": 12.5,
-    "series_game_num": 2,
-    "series_home_wins": 1,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "Los Angeles Lakers",
-    "away_team": "Houston Rockets",
-    "spread": -5.5,
-    "result": "miss",
-    "conviction_obj": {
-     "band": "dominant",
-     "source": "q3",
-     "q3_picked_margin": -11.1,
-     "final_picked_margin": -12.5,
-     "q4_swing": 0,
-     "shrinkage": 1.4,
-     "garbage_time": false
-    },
-    "conviction": "dominant",
-    "garbage_time": false,
-    "conviction_source": "q3",
-    "q3_picked_margin": -11.1,
-    "q4_swing": 0
    }
   ],
   "pending_by_game": [
@@ -706,21 +674,6 @@
     "narrow_hits": 0,
     "garbage_time_hits": 0,
     "true_hit_rate": 100.0
-   },
-   {
-    "signal": "客場明顯強勢",
-    "hits": 0,
-    "misses": 1,
-    "n": 1,
-    "tier": "SILVER",
-    "hit_rate": 0.0,
-    "backtest_wr": 59.4,
-    "crushing_hits": 0,
-    "dominant_hits": 0,
-    "moderate_hits": 0,
-    "narrow_hits": 0,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 0.0
    }
   ],
   "strong_consensus": {

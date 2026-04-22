@@ -824,6 +824,8 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     Condition: away_w20 - home_w20 ≥ 0.15 (15 percentage points).
     G1 exclusion: in series openers (game_num=1) the R1G1 home advantage signal
     dominates; both 2025-26 live misses were G1 games → suppress to avoid conflict.
+    Home-leads exclusion: when home team leads the series, series momentum + home
+    court overrides regular-season form; 2025-26 HOU@LAL G2 miss confirmed this.
     """
     if team_form is None:
         return None
@@ -837,6 +839,12 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
     # Suppress in series openers — G1 home advantage overwrites form signal
     if series_state and series_state.get("series_game_num", 0) == 1:
         return None
+    # Suppress when home team leads the series — momentum + home court overrides form
+    if series_state:
+        hw_s = series_state.get("home_wins", 0)
+        aw_s = series_state.get("away_wins", 0)
+        if hw_s > aw_s:
+            return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
     return PlayoffATSPick(

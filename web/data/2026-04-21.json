@@ -51,31 +51,10 @@
     "series_home_wins": 1,
     "series_away_wins": 0,
     "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Houston Rockets:Los Angeles Lakers",
-    "home_team": "Los Angeles Lakers",
-    "away_team": "Houston Rockets",
-    "home_team_zh": "洛杉磯湖人",
-    "away_team_zh": "休士頓火箭",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "backtest_roi": 13.5,
-    "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-    "ats_winner": "home",
-    "ats_cover_margin": 12.5,
-    "series_game_num": 2,
-    "series_home_wins": 1,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "has_conflict": true
+    "has_conflict": false
    }
   ],
-  "playoff_ats_count": 3,
+  "playoff_ats_count": 2,
   "injury_alerts": [],
   "ml_correct": 1,
   "ml_graded": 3,
@@ -1754,16 +1733,6 @@
      "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)"
     },
     {
-     "signal": "客場明顯強勢",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "backtest_roi": 13.5,
-     "backtest_n": 175,
-     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
-    },
-    {
      "signal": "G2主場鞏固 (贏G1)",
      "side": "home",
      "ats_side": "受讓(押dog)",
@@ -1788,7 +1757,7 @@
    "playoff_ats_best_signal": "G2大勝後延續",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
-   "playoff_ats_has_conflict": true,
+   "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "home_team_zh": "洛杉磯湖人",
    "away_team_zh": "休士頓火箭",
