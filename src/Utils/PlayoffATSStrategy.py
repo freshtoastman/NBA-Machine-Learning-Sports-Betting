@@ -953,7 +953,7 @@ _SIGNALS = [
     _complacent_leader,               # BRONZE verified: 54.9% (n=71)
     _g2_blowout_followthrough,        # SILVER new: 64.3% (n=28) — G2 home won G1 by >7 ATS pts
     _g2_home_bounce,                  # SILVER/BRONZE split: 64.9% bounce-back (n=57) / 53.4% consolidation (n=116)
-    _home_form_dominant,              # BRONZE verified: 54.7% (n=170) — home clearly stronger
+    # _home_form_dominant,             # DISABLED: 54.7% backtest but 50% OOS (5/10) — noise
     _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]

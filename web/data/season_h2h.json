@@ -7417,9 +7417,9 @@
     "home": "San Antonio Spurs",
     "away": "Portland Trail Blazers",
     "spread": 10.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -3,
+    "home_score": 103,
+    "away_score": 106,
     "ats_result": "away"
    },
    {

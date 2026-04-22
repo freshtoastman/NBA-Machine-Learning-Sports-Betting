@@ -664,16 +664,6 @@
      "backtest_roi": 60.0,
      "backtest_n": 5,
      "reason_zh": "客隊附加賽升組+大讓分13.5，play-in era主場cover率 80% (n=5，含OOS)"
-    },
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 20pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -1245,16 +1235,6 @@
      "backtest_roi": 60.0,
      "backtest_n": 5,
      "reason_zh": "客隊附加賽升組+大讓分16.5，play-in era主場cover率 80% (n=5，含OOS)"
-    },
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 30pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -2396,16 +2376,6 @@
      "backtest_roi": 60.0,
      "backtest_n": 5,
      "reason_zh": "客隊附加賽升組+大讓分14.0，play-in era主場cover率 80% (n=5，含OOS)"
-    },
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 20pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
     }
    ],
    "playoff_ats_best_side": "home",

@@ -1734,16 +1734,6 @@
      "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
     },
     {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 50pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
-    },
-    {
      "signal": "中等讓分押冷門",
      "side": "away",
      "ats_side": "受讓(押dog)",

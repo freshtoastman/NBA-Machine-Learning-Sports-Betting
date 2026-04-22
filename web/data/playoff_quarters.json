@@ -394,5 +394,27 @@
     ],
     "home_score": 97,
     "away_score": 111
+  },
+  {
+    "gameId": "0042500172",
+    "date": "2026-04-21",
+    "home_tri": "SAS",
+    "away_tri": "POR",
+    "home_name": "San Antonio Spurs",
+    "away_name": "Portland Trail Blazers",
+    "q_home": [
+      28,
+      29,
+      23,
+      23
+    ],
+    "q_away": [
+      27,
+      30,
+      22,
+      27
+    ],
+    "home_score": 103,
+    "away_score": 106
   }
 ]
