@@ -87,6 +87,23 @@
       .sr-n { color:#888; font-variant-numeric: tabular-nums; }
       .sr-side-home { color:#7fd69b; font-weight:600; }
       .sr-side-away { color:#ffb07a; font-weight:600; }
+      .st-box { margin-top:24px; background:#141821; border:1px solid #222a36; border-radius:14px; padding:16px; }
+      .st-box h3 { font-size:16px; margin:0 0 10px; font-weight:700; color:#e8e8e8; }
+      .st-kpis { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:12px; }
+      .st-kpi { background:#1a1f2b; border-radius:10px; padding:10px 16px; min-width:80px; text-align:center; }
+      .st-kpi-val { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; }
+      .st-kpi-val.green { color:#7fd69b; }
+      .st-kpi-val.gold { color:#f4bf50; }
+      .st-kpi-val.red { color:#e08080; }
+      .st-kpi-val.muted { color:#888; }
+      .st-kpi-label { font-size:11px; color:#888; margin-top:2px; }
+      .st-details { max-height:200px; overflow-y:auto; }
+      .st-details table { width:100%; border-collapse:collapse; font-size:12px; }
+      .st-details th { text-align:left; color:#888; font-weight:600; font-size:10px; padding:4px 6px; border-bottom:1px solid #2a3040; text-transform:uppercase; letter-spacing:0.5px; position:sticky; top:0; background:#141821; }
+      .st-details td { padding:4px 6px; border-bottom:1px solid #1a1f2b; color:#ccc; }
+      .st-result-win { color:#7fd69b; font-weight:700; }
+      .st-result-loss { color:#e08080; font-weight:700; }
+      .st-result-pending { color:#888; }
     </style>
 </head>
 <body>
@@ -378,6 +395,64 @@
         💡 <b>R1 G6</b> 是最強信號（80.4% 歷史命中），近5年甚至達 84.6%。當系列賽進行到 3-2 或 2-3 且 G6 在低種子主場時，押客場（高種子）有顯著歷史優勢。
       </div>
     </div>
+
+    {% if bracket.signal_tracker and bracket.signal_tracker.total > 0 %}
+    {% set st = bracket.signal_tracker %}
+    <div class="st-box">
+      <h3>📈 本季信號即時追蹤</h3>
+      <div class="st-kpis">
+        <div class="st-kpi">
+          <div class="st-kpi-val gold">{{ st.hit_rate|default('—') }}{% if st.hit_rate is not none %}%{% endif %}</div>
+          <div class="st-kpi-label">命中率</div>
+        </div>
+        <div class="st-kpi">
+          <div class="st-kpi-val green">{{ st.wins }}</div>
+          <div class="st-kpi-label">命中</div>
+        </div>
+        <div class="st-kpi">
+          <div class="st-kpi-val red">{{ st.losses }}</div>
+          <div class="st-kpi-label">未中</div>
+        </div>
+        <div class="st-kpi">
+          <div class="st-kpi-val muted">{{ st.pending }}</div>
+          <div class="st-kpi-label">待定</div>
+        </div>
+        <div class="st-kpi">
+          <div class="st-kpi-val muted">{{ st.total }}</div>
+          <div class="st-kpi-label">總信號</div>
+        </div>
+      </div>
+      {% if st.details %}
+      <details>
+        <summary style="cursor:pointer;color:#888;font-size:12px;margin-bottom:8px;">展開每筆信號明細 ({{ st.decided }} 筆已結算)</summary>
+        <div class="st-details">
+          <table>
+            <thead>
+              <tr><th>日期</th><th>對戰</th><th>信號</th><th>Tier</th><th>方向</th><th>回測</th><th>結果</th></tr>
+            </thead>
+            <tbody>
+              {% for d in st.details|reverse %}
+              <tr>
+                <td>{{ d.date[5:] }}</td>
+                <td>{{ d.away }}@{{ d.home }}</td>
+                <td>{{ d.signal }}</td>
+                <td><span class="sr-tier {{ d.tier|lower }}">{{ d.tier }}</span></td>
+                <td>{% if d.side == 'home' %}<span class="sr-side-home">主</span>{% else %}<span class="sr-side-away">客</span>{% endif %}</td>
+                <td><span class="sr-wr">{{ (d.backtest_wr * 100)|round(0)|int }}%</span></td>
+                <td>
+                  {% if d.result == 'win' %}<span class="st-result-win">✓ {{ d.margin|round(1) if d.margin is not none }}</span>
+                  {% elif d.result == 'loss' %}<span class="st-result-loss">✗ {{ d.margin|round(1) if d.margin is not none }}</span>
+                  {% else %}<span class="st-result-pending">⏳</span>{% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </details>
+      {% endif %}
+    </div>
+    {% endif %}
     {% endif %}
   </div>
 </div>

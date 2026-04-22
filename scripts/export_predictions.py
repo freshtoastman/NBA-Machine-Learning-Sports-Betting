@@ -537,6 +537,57 @@ def _team_card(team, wins, losses):
     }
 
 
+def _build_signal_tracker(data_dir: Path) -> dict:
+    """Scan date JSONs for playoff ATS signal results and compile performance."""
+    from collections import defaultdict
+    total = wins = losses = pending = 0
+    by_tier = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
+    details = []
+    for f in sorted(data_dir.glob("2026-04-*.json")):
+        try:
+            with open(f, encoding="utf-8") as fh:
+                d = json.load(fh)
+        except Exception:
+            continue
+        for a in d.get("summary", {}).get("playoff_ats_alerts", []):
+            tier = a.get("tier", "?")
+            side = a.get("side")
+            winner = a.get("ats_winner")
+            total += 1
+            if winner is not None:
+                if winner == side:
+                    wins += 1
+                    by_tier[tier]["wins"] += 1
+                else:
+                    losses += 1
+                    by_tier[tier]["losses"] += 1
+            else:
+                pending += 1
+                by_tier[tier]["pending"] += 1
+            details.append({
+                "date": d.get("date", ""),
+                "away": a.get("away_team_zh", a.get("away_team", "")),
+                "home": a.get("home_team_zh", a.get("home_team", "")),
+                "signal": a.get("signal", ""),
+                "tier": tier,
+                "side": side,
+                "backtest_wr": a.get("backtest_wr"),
+                "result": "win" if winner == side else ("loss" if winner is not None else "pending"),
+                "margin": a.get("ats_cover_margin"),
+            })
+    decided = wins + losses
+    return {
+        "total": total,
+        "decided": decided,
+        "wins": wins,
+        "losses": losses,
+        "pending": pending,
+        "hit_rate": round(wins / decided * 100, 1) if decided else None,
+        "by_tier": dict(by_tier),
+        "details": details,
+    }
+
+
 def build_bracket(target_date: date) -> dict | None:
     """Build East/West seedings, play-in matchups and round 1 matchups.
 
@@ -1696,6 +1747,7 @@ def main():
     if near_playoffs:
         bracket = build_bracket(today)
         if bracket:
+            bracket["signal_tracker"] = _build_signal_tracker(OUT_DIR)
             bracket_path = OUT_DIR / "bracket.json"
             with open(bracket_path, "w", encoding="utf-8") as f:
                 json.dump(bracket, f, ensure_ascii=False, indent=1, default=_serialize)
