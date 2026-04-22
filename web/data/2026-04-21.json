@@ -45,8 +45,8 @@
     "backtest_wr": 0.667,
     "backtest_roi": 33.3,
     "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 12.5,
     "series_game_num": 2,
     "series_home_wins": 1,
     "series_away_wins": 0,
@@ -66,8 +66,8 @@
     "backtest_wr": 0.594,
     "backtest_roi": 13.5,
     "reason_zh": "客場近期勝率領先主場 20pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 12.5,
     "series_game_num": 2,
     "series_home_wins": 1,
     "series_away_wins": 0,
@@ -76,19 +76,12 @@
    }
   ],
   "playoff_ats_count": 3,
-  "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "San Antonio Spurs: Victor Wembanyama (缺陣)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
-   "San Antonio Spurs: Harrison Barnes (缺陣)",
-   "Los Angeles Lakers: Jake LaRavia (缺陣)",
-   "Los Angeles Lakers: Austin Reaves (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 2,
-  "ml_hit_rate": 0.0,
+  "injury_alerts": [],
+  "ml_correct": 1,
+  "ml_graded": 3,
+  "ml_hit_rate": 33.3,
   "ou_correct": 0,
-  "ou_graded": 2,
+  "ou_graded": 3,
   "ou_hit_rate": 0.0,
   "value_decided": 0,
   "value_wins": 0,
@@ -611,11 +604,6 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 97,
-   "live_away_score": 111,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
    "referee_crew": {
     "officials": [
      {
@@ -649,9 +637,7 @@
     "has_significant": false,
     "significant_officials": []
    },
-   "injuries_away": [
-    "Joel Embiid (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-20T13:54:45+00:00",
@@ -1210,16 +1196,7 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [
-    "Victor Wembanyama (缺陣)",
-    "Jordan McLaughlin (缺陣)",
-    "Harrison Barnes (缺陣)"
-   ],
-   "live_home_score": 103,
-   "live_away_score": 106,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -1294,9 +1271,9 @@
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
-   "ats_model_home_prob": 52.9,
-   "ats_model_confidence": 52.9,
-   "ats_value_edge": 2.9,
+   "ats_model_home_prob": 53.2,
+   "ats_model_confidence": 53.2,
+   "ats_value_edge": 3.2,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
@@ -1747,16 +1724,16 @@
    "value_prob": null,
    "fair_home": 32.2,
    "fair_away": 67.8,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 101,
+   "away_score": 94,
+   "actual_total": 195,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 12.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": true,
    "series_round": "首輪",
    "round_num": 1,
@@ -1817,15 +1794,7 @@
    "away_team_zh": "休士頓火箭",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
-   "injuries_home": [
-    "Jake LaRavia (缺陣)",
-    "Austin Reaves (缺陣)"
-   ],
-   "live_home_score": 101,
-   "live_away_score": 94,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -1934,7 +1903,7 @@
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
    "high_wins": 0,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {

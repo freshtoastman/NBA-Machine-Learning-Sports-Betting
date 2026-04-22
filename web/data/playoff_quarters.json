@@ -416,5 +416,27 @@
     ],
     "home_score": 103,
     "away_score": 106
+  },
+  {
+    "gameId": "401869397",
+    "date": "2026-04-21",
+    "home_tri": "LAL",
+    "away_tri": "HOU",
+    "home_name": "Los Angeles Lakers",
+    "away_name": "Houston Rockets",
+    "q_home": [
+      33,
+      21,
+      21,
+      26
+    ],
+    "q_away": [
+      26,
+      25,
+      17,
+      26
+    ],
+    "home_score": 101,
+    "away_score": 94
   }
 ]

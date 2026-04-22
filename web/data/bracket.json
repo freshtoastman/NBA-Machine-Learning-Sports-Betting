@@ -637,23 +637,18 @@
      "win_pct": 0.634,
      "seed": 5
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 0,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "ML季後賽押客場",
+     "game_num": 3,
+     "signal": "G3客場擴大優勢",
      "side": "away",
-     "home_team": "Los Angeles Lakers",
-     "home_team_zh": "洛杉磯湖人",
+     "home_team": "Houston Rockets",
+     "home_team_zh": "休士頓火箭",
      "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-     "signal_team_zh": "休士頓火箭",
-     "has_conflict": true,
-     "conflict_signal": "ML季後賽押客場",
-     "conflict_wr": 0.64,
-     "conflict_away_team": "休士頓火箭"
+     "backtest_wr": 0.643,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
