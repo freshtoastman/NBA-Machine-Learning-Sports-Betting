@@ -49,7 +49,7 @@
    "away_confidence": 34.7,
    "winner": "home",
    "ou_pick": "UNDER",
-   "ou_value": 218.5,
+   "ou_value": 217.5,
    "ou_confidence": 58.6,
    "home_team_ev": -18.01,
    "away_team_ev": 42.3,
@@ -612,13 +612,21 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T14:09:53+00:00",
+     "spread": 8.5,
+     "ou": 217.5,
+     "ml_home": -391,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 8.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-22T02:29:36+00:00"
+   "spread_last_fetched_at": "2026-04-22T14:09:53+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
