@@ -55,14 +55,14 @@
   "conviction": {
    "crushing_hits": 3,
    "dominant_hits": 2,
-   "moderate_hits": 2,
-   "narrow_hits": 1,
+   "moderate_hits": 1,
+   "narrow_hits": 2,
    "garbage_time_hits": 1,
    "total_hits": 8,
-   "true_conviction_hits": 7,
+   "true_conviction_hits": 6,
    "raw_hit_rate": 80.0,
-   "true_conviction_rate": 70.0,
-   "note_zh": "3 碾壓主導 + 2 主導 + 2 普通 + 1 險過；1 場受垃圾時間影響；真實信心率 70.0%"
+   "true_conviction_rate": 60.0,
+   "note_zh": "3 碾壓主導 + 2 主導 + 1 普通 + 2 險過；1 場受垃圾時間影響；真實信心率 60.0%"
   },
   "history": [
    {
@@ -83,13 +83,19 @@
     "spread": 5.5,
     "result": "hit",
     "conviction_obj": {
-     "band": "moderate",
-     "source": "final",
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": -1.9,
+     "final_picked_margin": 4.5,
+     "q4_swing": -6,
+     "shrinkage": -6.4,
      "garbage_time": false
     },
-    "conviction": "moderate",
+    "conviction": "narrow",
     "garbage_time": false,
-    "conviction_source": "final"
+    "conviction_source": "q3",
+    "q3_picked_margin": -1.9,
+    "q4_swing": -6
    },
    {
     "date": "2026-04-18",
@@ -393,10 +399,6 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
-    "live_status": "Q4 2:39",
-    "live_home_score": 101,
-    "live_away_score": 100,
-    "live_home_covering": false,
     "spread": 10.5
    },
    {
@@ -582,10 +584,10 @@
     "backtest_wr": 61.9,
     "crushing_hits": 0,
     "dominant_hits": 0,
-    "moderate_hits": 1,
-    "narrow_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 1,
     "garbage_time_hits": 0,
-    "true_hit_rate": 100.0
+    "true_hit_rate": 0.0
    },
    {
     "signal": "主場ATS冷門反彈",

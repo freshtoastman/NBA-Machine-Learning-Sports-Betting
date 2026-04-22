@@ -1,25 +1,135 @@
 [
   {
-    "gameId": "0042500121",
-    "date": "2026-04-18",
-    "home_tri": "NYK",
-    "away_tri": "ATL",
-    "home_name": "New York Knicks",
-    "away_name": "Atlanta Hawks",
+    "gameId": "401866755",
+    "date": "2026-04-14",
+    "home_tri": "CHA",
+    "away_tri": "MIA",
+    "home_name": "Charlotte Hornets",
+    "away_name": "Miami Heat",
     "q_home": [
-      30,
-      27,
       26,
+      26,
+      37,
+      25
+    ],
+    "q_away": [
+      24,
+      30,
+      29,
+      31
+    ],
+    "home_score": 127,
+    "away_score": 126
+  },
+  {
+    "gameId": "401866754",
+    "date": "2026-04-14",
+    "home_tri": "PHX",
+    "away_tri": "POR",
+    "home_name": "Phoenix Suns",
+    "away_name": "Portland Trail Blazers",
+    "q_home": [
+      33,
+      29,
+      20,
+      28
+    ],
+    "q_away": [
+      31,
+      34,
+      18,
+      31
+    ],
+    "home_score": 110,
+    "away_score": 114
+  },
+  {
+    "gameId": "401866756",
+    "date": "2026-04-15",
+    "home_tri": "LAC",
+    "away_tri": "GS",
+    "home_name": "LA Clippers",
+    "away_name": "Golden State Warriors",
+    "q_home": [
+      31,
+      30,
+      28,
+      32
+    ],
+    "q_away": [
+      22,
+      31,
+      30,
+      43
+    ],
+    "home_score": 121,
+    "away_score": 126
+  },
+  {
+    "gameId": "401866757",
+    "date": "2026-04-15",
+    "home_tri": "PHI",
+    "away_tri": "ORL",
+    "home_name": "Philadelphia 76ers",
+    "away_name": "Orlando Magic",
+    "q_home": [
+      28,
+      31,
+      20,
       30
     ],
     "q_away": [
       24,
       31,
       19,
-      28
+      23
     ],
-    "home_score": 113,
-    "away_score": 102
+    "home_score": 109,
+    "away_score": 97
+  },
+  {
+    "gameId": "401866758",
+    "date": "2026-04-17",
+    "home_tri": "ORL",
+    "away_tri": "CHA",
+    "home_name": "Orlando Magic",
+    "away_name": "Charlotte Hornets",
+    "q_home": [
+      38,
+      30,
+      34,
+      19
+    ],
+    "q_away": [
+      16,
+      21,
+      34,
+      19
+    ],
+    "home_score": 121,
+    "away_score": 90
+  },
+  {
+    "gameId": "401866759",
+    "date": "2026-04-17",
+    "home_tri": "PHX",
+    "away_tri": "GS",
+    "home_name": "Phoenix Suns",
+    "away_name": "Golden State Warriors",
+    "q_home": [
+      33,
+      17,
+      28,
+      33
+    ],
+    "q_away": [
+      15,
+      30,
+      24,
+      27
+    ],
+    "home_score": 111,
+    "away_score": 96
   },
   {
     "gameId": "0042500131",
@@ -66,6 +176,50 @@
     "away_score": 105
   },
   {
+    "gameId": "0042500171",
+    "date": "2026-04-18",
+    "home_tri": "LAL",
+    "away_tri": "HOU",
+    "home_name": "Los Angeles Lakers",
+    "away_name": "Houston Rockets",
+    "q_home": [
+      33,
+      17,
+      25,
+      32
+    ],
+    "q_away": [
+      29,
+      19,
+      18,
+      32
+    ],
+    "home_score": 107,
+    "away_score": 98
+  },
+  {
+    "gameId": "0042500121",
+    "date": "2026-04-18",
+    "home_tri": "NYK",
+    "away_tri": "ATL",
+    "home_name": "New York Knicks",
+    "away_name": "Atlanta Hawks",
+    "q_home": [
+      30,
+      27,
+      26,
+      30
+    ],
+    "q_away": [
+      24,
+      31,
+      19,
+      28
+    ],
+    "home_score": 113,
+    "away_score": 102
+  },
+  {
     "gameId": "0042500111",
     "date": "2026-04-19",
     "home_tri": "BOS",
@@ -86,6 +240,28 @@
     ],
     "home_score": 123,
     "away_score": 91
+  },
+  {
+    "gameId": "0042500181",
+    "date": "2026-04-19",
+    "home_tri": "DET",
+    "away_tri": "ORL",
+    "home_name": "Detroit Pistons",
+    "away_name": "Orlando Magic",
+    "q_home": [
+      27,
+      24,
+      23,
+      27
+    ],
+    "q_away": [
+      35,
+      20,
+      26,
+      31
+    ],
+    "home_score": 101,
+    "away_score": 112
   },
   {
     "gameId": "0042500141",
@@ -132,28 +308,6 @@
     "away_score": 98
   },
   {
-    "gameId": "0042500122",
-    "date": "2026-04-20",
-    "home_tri": "NYK",
-    "away_tri": "ATL",
-    "home_name": "New York Knicks",
-    "away_name": "Atlanta Hawks",
-    "q_home": [
-      32,
-      29,
-      30,
-      15
-    ],
-    "q_away": [
-      23,
-      31,
-      25,
-      28
-    ],
-    "home_score": 106,
-    "away_score": 107
-  },
-  {
     "gameId": "0042500132",
     "date": "2026-04-20",
     "home_tri": "CLE",
@@ -196,5 +350,49 @@
     ],
     "home_score": 114,
     "away_score": 119
+  },
+  {
+    "gameId": "0042500122",
+    "date": "2026-04-20",
+    "home_tri": "NYK",
+    "away_tri": "ATL",
+    "home_name": "New York Knicks",
+    "away_name": "Atlanta Hawks",
+    "q_home": [
+      32,
+      29,
+      30,
+      15
+    ],
+    "q_away": [
+      23,
+      31,
+      25,
+      28
+    ],
+    "home_score": 106,
+    "away_score": 107
+  },
+  {
+    "gameId": "0042500112",
+    "date": "2026-04-21",
+    "home_tri": "BOS",
+    "away_tri": "PHI",
+    "home_name": "Boston Celtics",
+    "away_name": "Philadelphia 76ers",
+    "q_home": [
+      28,
+      26,
+      23,
+      20
+    ],
+    "q_away": [
+      25,
+      37,
+      22,
+      27
+    ],
+    "home_score": 97,
+    "away_score": 111
   }
 ]

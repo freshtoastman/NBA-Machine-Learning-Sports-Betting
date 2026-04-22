@@ -1142,6 +1142,97 @@ def build_season_h2h(season_key: str) -> dict | None:
     return {"season": season_key, "pairs": pairs}
 
 
+def _update_playoff_quarters(today: date) -> None:
+    """Fetch Q-by-Q scores from ESPN for completed playoff games missing from playoff_quarters.json."""
+    import sqlite3
+    qf = OUT_DIR / "playoff_quarters.json"
+    existing = []
+    if qf.exists():
+        try:
+            with open(qf, encoding="utf-8") as f:
+                existing = json.load(f)
+        except Exception:
+            existing = []
+    seen = {(g["date"], g["home_name"], g["away_name"]) for g in existing}
+
+    season_key = current_nba_season(today)
+    odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+    if not odds_db.exists():
+        return
+    con = sqlite3.connect(str(odds_db))
+    rows = con.execute(
+        f'SELECT Date, Home, Away, Win_Margin FROM "{season_key}" '
+        f'WHERE Date >= ? AND Win_Margin != 0 ORDER BY Date',
+        ((today - timedelta(days=30)).isoformat(),),
+    ).fetchall()
+    con.close()
+
+    from src.Utils.PlayoffContext import is_playoff_date
+    missing = []
+    for d_str, home, away, wm in rows:
+        d = date.fromisoformat(d_str)
+        if not is_playoff_date(d):
+            continue
+        if (d_str, home, away) in seen:
+            continue
+        missing.append((d_str, home, away))
+
+    if not missing:
+        return
+
+    try:
+        import urllib.request
+    except ImportError:
+        return
+
+    added = 0
+    dates_needed = sorted({d for d, _, _ in missing})
+    for d_str in dates_needed:
+        try:
+            url = f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={d_str.replace('-', '')}"
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            resp = urllib.request.urlopen(req, timeout=15)
+            espn = json.loads(resp.read())
+        except Exception:
+            continue
+        for ev in espn.get("events", []):
+            comp = ev.get("competitions", [{}])[0]
+            if comp.get("status", {}).get("type", {}).get("name") != "STATUS_FINAL":
+                continue
+            teams = comp.get("competitors", [])
+            home_t = next((t for t in teams if t.get("homeAway") == "home"), None)
+            away_t = next((t for t in teams if t.get("homeAway") == "away"), None)
+            if not home_t or not away_t:
+                continue
+            h_name = home_t["team"]["displayName"]
+            a_name = away_t["team"]["displayName"]
+            if (d_str, h_name, a_name) not in [(d, h, a) for d, h, a in missing]:
+                continue
+            h_qs = [int(ls.get("value", 0)) for ls in home_t.get("linescores", [])]
+            a_qs = [int(ls.get("value", 0)) for ls in away_t.get("linescores", [])]
+            if len(h_qs) < 4 or len(a_qs) < 4:
+                continue
+            existing.append({
+                "gameId": ev.get("id", ""),
+                "date": d_str,
+                "home_tri": home_t["team"].get("abbreviation", ""),
+                "away_tri": away_t["team"].get("abbreviation", ""),
+                "home_name": h_name,
+                "away_name": a_name,
+                "q_home": h_qs[:4],
+                "q_away": a_qs[:4],
+                "home_score": int(home_t["score"]),
+                "away_score": int(away_t["score"]),
+            })
+            added += 1
+
+    if added:
+        existing.sort(key=lambda g: (g["date"], g["home_name"]))
+        with open(qf, "w", encoding="utf-8") as f:
+            json.dump(existing, f, ensure_ascii=False, indent=2)
+        print(f"Playoff quarters: added {added} games → {qf.name}")
+
+
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     today = today_taipei()
@@ -1175,6 +1266,9 @@ def main():
         n = data["summary"]["games"]
         print(f"  wrote {n} games → {out_path.name}")
         exported_dates.append(d.isoformat())
+
+    # Auto-update playoff quarter scores for conviction classifier.
+    _update_playoff_quarters(today)
 
     # Season stats.
     season_key = current_nba_season(today)
