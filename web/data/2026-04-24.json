@@ -751,9 +751,9 @@
    "ou_pick": "UNDER",
    "ou_value": 205.5,
    "ou_confidence": 69.0,
-   "home_team_ev": -29.68,
+   "home_team_ev": -29.35,
    "away_team_ev": 79.34,
-   "home_team_odds": -400,
+   "home_team_odds": -391,
    "away_team_odds": 310,
    "home_kelly": 0,
    "away_kelly": 25.59,
@@ -1293,13 +1293,21 @@
      "ml_home": -400,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T09:51:15+00:00",
+     "spread": 9.5,
+     "ou": 205.5,
+     "ml_home": -391,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-22T06:32:56+00:00"
+   "spread_last_fetched_at": "2026-04-22T09:51:15+00:00"
   },
   "San Antonio Spurs:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
@@ -1310,12 +1318,12 @@
    "ou_pick": "OVER",
    "ou_value": 220.5,
    "ou_confidence": 55.0,
-   "home_team_ev": -38.64,
-   "away_team_ev": 28.06,
-   "home_team_odds": 100,
-   "away_team_odds": -118,
+   "home_team_ev": -38.02,
+   "away_team_ev": 27.08,
+   "home_team_odds": 102,
+   "away_team_odds": -120,
    "home_kelly": 0,
-   "away_kelly": 33.22,
+   "away_kelly": 32.35,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.2,
@@ -1769,8 +1777,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 48.0,
-   "fair_away": 52.0,
+   "fair_home": 47.6,
+   "fair_away": 52.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1855,13 +1863,21 @@
      "ml_home": 100,
      "ml_away": -118,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T09:51:15+00:00",
+     "spread": -1.5,
+     "ou": 220.5,
+     "ml_home": 102,
+     "ml_away": -120,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T03:29:22+00:00",
-   "spread_last_fetched_at": "2026-04-22T03:29:22+00:00"
+   "spread_last_fetched_at": "2026-04-22T09:51:15+00:00"
   }
  },
  "active_series": [
