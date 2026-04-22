@@ -81,6 +81,7 @@
    "San Antonio Spurs: Victor Wembanyama (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)",
    "San Antonio Spurs: Harrison Barnes (缺陣)",
+   "Los Angeles Lakers: Jake LaRavia (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)"
   ],
   "ml_correct": 0,
@@ -1817,12 +1818,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "injuries_home": [
+    "Jake LaRavia (缺陣)",
     "Austin Reaves (缺陣)"
    ],
-   "live_home_score": 49,
-   "live_away_score": 34,
-   "live_status": "Q2 5:03",
-   "live_is_final": false,
+   "live_home_score": 101,
+   "live_away_score": 94,
+   "live_status": "Final",
+   "live_is_final": true,
    "live_home_covering": true,
    "injuries_away": [],
    "odds_history": [

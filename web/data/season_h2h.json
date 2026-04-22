@@ -2670,7 +2670,7 @@
     "date": "2026-04-23",
     "home": "Toronto Raptors",
     "away": "Cleveland Cavaliers",
-    "spread": -3.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -9942,11 +9942,11 @@
     "date": "2026-04-24",
     "home": "Houston Rockets",
     "away": "Los Angeles Lakers",
-    "spread": null,
+    "spread": 9.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "away"
    }
   ],
   "Atlanta Hawks:Miami Heat": [

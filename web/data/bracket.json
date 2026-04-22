@@ -642,14 +642,18 @@
     "games_played": 1,
     "next_signal": {
      "game_num": 2,
-     "signal": "G2無明顯信號 (G1窄勝)",
-     "side": "home",
+     "signal": "ML季後賽押客場",
+     "side": "away",
      "home_team": "Los Angeles Lakers",
      "home_team_zh": "洛杉磯湖人",
-     "tier": "NONE",
-     "backtest_wr": 0.478,
-     "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
-     "signal_team_zh": "洛杉磯湖人"
+     "tier": "SILVER",
+     "backtest_wr": 0.64,
+     "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
+     "signal_team_zh": "休士頓火箭",
+     "has_conflict": true,
+     "conflict_signal": "ML季後賽押客場",
+     "conflict_wr": 0.64,
+     "conflict_away_team": "休士頓火箭"
     }
    },
    {
