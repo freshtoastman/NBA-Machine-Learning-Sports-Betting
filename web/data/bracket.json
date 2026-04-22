@@ -359,11 +359,7 @@
      "tier": "NONE",
      "backtest_wr": 0.478,
      "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
-     "signal_team_zh": "波士頓塞爾提克",
-     "has_conflict": true,
-     "conflict_signal": "客場明顯強勢",
-     "conflict_wr": 0.594,
-     "conflict_away_team": "費城七六人"
+     "signal_team_zh": "波士頓塞爾提克"
     }
    }
   ]

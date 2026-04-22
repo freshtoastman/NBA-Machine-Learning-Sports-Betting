@@ -51,12 +51,12 @@
    "ou_pick": "UNDER",
    "ou_value": 218.5,
    "ou_confidence": 58.6,
-   "home_team_ev": -17.06,
-   "away_team_ev": 37.09,
-   "home_team_odds": -370,
-   "away_team_odds": 295,
+   "home_team_ev": -18.01,
+   "away_team_ev": 42.3,
+   "home_team_odds": -391,
+   "away_team_odds": 310,
    "home_kelly": 0,
-   "away_kelly": 12.57,
+   "away_kelly": 13.64,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.4,
@@ -510,8 +510,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 75.7,
-   "fair_away": 24.3,
+   "fair_home": 76.6,
+   "fair_away": 23.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -604,13 +604,21 @@
      "ml_home": -370,
      "ml_away": 295,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T02:29:36+00:00",
+     "spread": 8.5,
+     "ou": 218.5,
+     "ml_home": -391,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 8.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
+   "spread_last_fetched_at": "2026-04-22T02:29:36+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",

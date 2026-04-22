@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 8,
   "misses": 2,
-  "pending": 15,
+  "pending": 14,
   "decided": 10,
   "hit_rate": 80.0,
   "conviction": {
@@ -393,6 +393,10 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
+    "live_status": "Q4 2:39",
+    "live_home_score": 101,
+    "live_away_score": 100,
+    "live_home_covering": false,
     "spread": 10.5
    },
    {
@@ -408,7 +412,7 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
-    "spread": -5.5
+    "spread": -6.5
    },
    {
     "date": "2026-04-22",
@@ -484,15 +488,15 @@
     "date": "2026-04-24",
     "game": "波士頓塞爾提克 @ 費城七六人",
     "signals": [
-     "G2主場反彈 (輸G1)",
      "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 65,
-    "series_game_num": 2,
-    "series_score": "1-0",
-    "has_strong_consensus": false
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
+    "series_game_num": 3,
+    "series_score": "1-1",
+    "has_strong_consensus": false,
+    "spread": -7.5
    },
    {
     "date": "2026-04-25",
@@ -629,10 +633,10 @@
   }
  },
  "playoff_home_ats": {
-  "games": 17,
+  "games": 18,
   "home_covers": 10,
-  "away_covers": 7,
-  "home_cover_rate": 58.8,
-  "note_zh": "本季季後賽共 17 場有結果，主場過盤 10 場 (58.8%)"
+  "away_covers": 8,
+  "home_cover_rate": 55.6,
+  "note_zh": "本季季後賽共 18 場有結果，主場過盤 10 場 (55.6%)"
  }
 }
