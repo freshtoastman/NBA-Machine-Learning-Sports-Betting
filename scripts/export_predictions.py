@@ -1093,6 +1093,42 @@ def build_bracket(target_date: date) -> dict | None:
                     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
                     "signal_team_zh": g6_away.get("team_zh") or g6_away.get("team"),
                 }
+            # Upgrade next_signal if actual game data has a higher-tier signal.
+            _tier_rank = {"GOLD": 3, "SILVER": 2, "BRONZE": 1, "NONE": 0}
+            ns = entry.get("next_signal")
+            if ns and gp >= 2:
+                _ns_key = frozenset({high_team["team"], low_team["team"]})
+                _ns_game = _upcoming_game_lookup.get(_ns_key)
+                if _ns_game:
+                    _best_tier = _ns_game.get("playoff_ats_best_tier")
+                    _best_signal = _ns_game.get("playoff_ats_best_signal")
+                    _best_side = _ns_game.get("playoff_ats_best_side")
+                    if _best_tier and _tier_rank.get(_best_tier, 0) > _tier_rank.get(ns.get("tier"), 0):
+                        _best_pick = next(
+                            (p for p in _ns_game.get("playoff_ats_picks", [])
+                             if p.get("signal") == _best_signal),
+                            None,
+                        )
+                        if _best_pick:
+                            ns["signal"] = _best_signal
+                            ns["tier"] = _best_tier
+                            ns["backtest_wr"] = _best_pick.get("backtest_wr", ns.get("backtest_wr"))
+                            ns["reason_zh"] = _best_pick.get("reason_zh", ns.get("reason_zh"))
+                            ns["side"] = _best_side or ns.get("side")
+                    # Add consensus count and conflict info from game data.
+                    _picks = _ns_game.get("playoff_ats_picks", [])
+                    _silver_plus = [p for p in _picks if _tier_rank.get(p.get("tier"), 0) >= 2]
+                    if len(_silver_plus) >= 2:
+                        ns["consensus_count"] = len(_silver_plus)
+                    if _ns_game.get("playoff_ats_has_conflict"):
+                        ns["has_conflict"] = True
+                        for _cp in _picks:
+                            if _cp.get("side") != ns.get("side") and _tier_rank.get(_cp.get("tier"), 0) >= 2:
+                                ns["conflict_signal"] = _cp.get("signal")
+                                ns["conflict_wr"] = _cp.get("backtest_wr")
+                                if _cp.get("side") == "away":
+                                    ns["conflict_away_team"] = low_team.get("team_zh") or low_team.get("team")
+                                break
             return entry
 
         first_round = [

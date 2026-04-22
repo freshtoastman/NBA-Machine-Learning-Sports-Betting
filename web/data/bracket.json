@@ -290,7 +290,8 @@
      "home_team_zh": "多倫多暴龍",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
+     "consensus_count": 3
     }
    },
    {
@@ -352,13 +353,13 @@
     "games_played": 2,
     "next_signal": {
      "game_num": 3,
-     "signal": "G3平手客場冷門",
+     "signal": "客場明顯強勢",
      "side": "away",
      "home_team": "Philadelphia 76ers",
      "home_team_zh": "費城七六人",
-     "tier": "BRONZE",
-     "backtest_wr": 0.516,
-     "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
+     "tier": "SILVER",
+     "backtest_wr": 0.594,
+     "reason_zh": "客場近期勝率領先主場 30pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
     }
    }
   ]
@@ -651,7 +652,8 @@
      "home_team_zh": "休士頓火箭",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
+     "consensus_count": 3
     }
    },
    {
@@ -679,13 +681,13 @@
     "games_played": 2,
     "next_signal": {
      "game_num": 3,
-     "signal": "G3平手客場冷門",
+     "signal": "客場明顯強勢",
      "side": "away",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
-     "tier": "BRONZE",
-     "backtest_wr": 0.516,
-     "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
+     "tier": "SILVER",
+     "backtest_wr": 0.594,
+     "reason_zh": "客場近期勝率領先主場 60pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
     }
    },
    {
@@ -713,13 +715,14 @@
     "games_played": 2,
     "next_signal": {
      "game_num": 3,
-     "signal": "G3平手客場冷門",
+     "signal": "ML高信心+小讓分",
      "side": "away",
      "home_team": "Portland Trail Blazers",
      "home_team_zh": "波特蘭拓荒者",
-     "tier": "BRONZE",
-     "backtest_wr": 0.516,
-     "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
+     "tier": "GOLD",
+     "backtest_wr": 0.8,
+     "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%",
+     "consensus_count": 3
     }
    }
   ]

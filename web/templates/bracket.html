@@ -279,6 +279,7 @@
               {% endif %}
               <span class="ns-wr">{{ (m.next_signal.backtest_wr * 100)|round(0)|int }}%</span>
               cover率 · {{ m.next_signal.signal }}
+              {% if m.next_signal.consensus_count and m.next_signal.consensus_count >= 2 %}<span class="ns-consensus" style="background:#2a3810;color:#7fd69b;padding:1px 5px;border-radius:4px;font-size:10px;margin-left:4px;">{{ m.next_signal.consensus_count }}x 共識</span>{% endif %}
               {% if m.next_signal.playin_away %}<span class="ns-playin-hint">（附加賽升組客隊）</span>{% endif %}
               {% if m.next_signal.has_conflict and m.next_signal.conflict_signal %}
               <div class="ns-conflict">
