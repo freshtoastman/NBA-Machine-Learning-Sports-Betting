@@ -1,6 +1,6 @@
 {
  "date": "2026-04-23",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 3,
   "home_picks": 1,
@@ -102,21 +102,7 @@
    "Toronto Raptors: Immanuel Quickley (缺陣)",
    "Cleveland Cavaliers: Thomas Bryant (缺陣)",
    "Denver Nuggets: Peyton Watson (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  ]
  },
  "games": {
   "New York Knicks:Atlanta Hawks": {
@@ -128,12 +114,12 @@
    "ou_pick": "UNDER",
    "ou_value": 216.5,
    "ou_confidence": 53.4,
-   "home_team_ev": -11.08,
-   "away_team_ev": 3.56,
-   "home_team_odds": -106,
-   "away_team_odds": -110,
+   "home_team_ev": -8.49,
+   "away_team_ev": 0.21,
+   "home_team_odds": 100,
+   "away_team_odds": -118,
    "home_kelly": 0,
-   "away_kelly": 3.96,
+   "away_kelly": 0.41,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.6,
@@ -587,8 +573,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 49.6,
-   "fair_away": 50.4,
+   "fair_home": 48.0,
+   "fair_away": 52.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -649,13 +635,21 @@
      "ml_home": -106,
      "ml_away": -110,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T17:03:19+00:00",
+     "spread": -1.5,
+     "ou": 216.5,
+     "ml_home": 100,
+     "ml_away": -118,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -666,21 +660,21 @@
    "ou_pick": "OVER",
    "ou_value": 220.5,
    "ou_confidence": 56.4,
-   "home_team_ev": 16.54,
-   "away_team_ev": -18.33,
-   "home_team_odds": 132,
-   "away_team_odds": -156,
-   "home_kelly": 12.53,
+   "home_team_ev": 15.54,
+   "away_team_ev": -17.92,
+   "home_team_odds": 130,
+   "away_team_odds": -154,
+   "home_kelly": 11.95,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
-   "ats_model_home_prob": 50.3,
-   "ats_model_confidence": 50.3,
-   "ats_value_edge": 0.3,
+   "ats_model_home_prob": 51.4,
+   "ats_model_confidence": 51.4,
+   "ats_value_edge": 1.4,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -2.5,
+   "spread": -3.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -1125,8 +1119,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 41.4,
-   "fair_away": 58.6,
+   "fair_home": 41.8,
+   "fair_away": 58.2,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1209,13 +1203,21 @@
      "ml_home": 132,
      "ml_away": -156,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T17:03:19+00:00",
+     "spread": -3.5,
+     "ou": 220.5,
+     "ml_home": 130,
+     "ml_away": -154,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -3.5,
-   "spread_last": -2.5,
-   "spread_move": 1.0,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T16:36:54+00:00",
-   "spread_last_fetched_at": "2026-04-22T06:21:22+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
   },
   "Denver Nuggets:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1226,10 +1228,10 @@
    "ou_pick": "UNDER",
    "ou_value": 234.5,
    "ou_confidence": 76.0,
-   "home_team_ev": -2.01,
-   "away_team_ev": -5.63,
-   "home_team_odds": 110,
-   "away_team_odds": -130,
+   "home_team_ev": -2.94,
+   "away_team_ev": -4.33,
+   "home_team_odds": 108,
+   "away_team_odds": -126,
    "home_kelly": 0,
    "away_kelly": 0,
    "is_historical": true,
@@ -1685,8 +1687,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 45.7,
-   "fair_away": 54.3,
+   "fair_home": 46.3,
+   "fair_away": 53.7,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1765,13 +1767,21 @@
      "ml_home": 110,
      "ml_away": -130,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T17:03:19+00:00",
+     "spread": -1.5,
+     "ou": 234.5,
+     "ml_home": 108,
+     "ml_away": -126,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-22T06:21:22+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
   }
  },
  "active_series": [

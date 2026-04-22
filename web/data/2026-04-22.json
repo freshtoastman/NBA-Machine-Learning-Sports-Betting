@@ -1,6 +1,6 @@
 {
  "date": "2026-04-22",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 2,
   "home_picks": 2,
@@ -35,11 +35,25 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (可能缺陣)",
+   "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Jordan Goodwin (存疑)",
    "Phoenix Suns: Grayson Allen (存疑)",
    "Phoenix Suns: Mark Williams (存疑)"
-  ]
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Orlando Magic:Detroit Pistons": {
@@ -49,7 +63,7 @@
    "away_confidence": 34.7,
    "winner": "home",
    "ou_pick": "UNDER",
-   "ou_value": 217.5,
+   "ou_value": 218.5,
    "ou_confidence": 58.6,
    "home_team_ev": -18.01,
    "away_team_ev": 42.3,
@@ -554,7 +568,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Jonathan Isaac (可能缺陣)"
+    "Jonathan Isaac (缺陣)"
    ],
    "odds_history": [
     {
@@ -620,13 +634,21 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T17:03:19+00:00",
+     "spread": 8.5,
+     "ou": 218.5,
+     "ml_home": -391,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 8.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-22T14:09:53+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -637,12 +659,12 @@
    "ou_pick": "OVER",
    "ou_value": 215.5,
    "ou_confidence": 56.0,
-   "home_team_ev": -30.37,
-   "away_team_ev": 300.39,
-   "home_team_odds": -2222,
-   "away_team_odds": 1100,
+   "home_team_ev": -29.63,
+   "away_team_ev": 260.35,
+   "home_team_odds": -1786,
+   "away_team_odds": 980,
    "home_kelly": 0,
-   "away_kelly": 27.31,
+   "away_kelly": 26.57,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1096,8 +1118,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 92.0,
-   "fair_away": 8.0,
+   "fair_home": 91.1,
+   "fair_away": 8.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1184,13 +1206,21 @@
      "ml_home": -2222,
      "ml_away": 1100,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-22T17:03:19+00:00",
+     "spread": 17.5,
+     "ou": 215.5,
+     "ml_home": -1786,
+     "ml_away": 980,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 16.5,
    "spread_last": 17.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T23:30:20+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
   }
  },
  "active_series": [
