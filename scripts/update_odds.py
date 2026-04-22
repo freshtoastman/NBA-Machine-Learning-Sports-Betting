@@ -127,6 +127,45 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
     return updated
 
 
+def _sync_series_states(con: sqlite3.Connection, season_key: str) -> int:
+    """Derive series wins from game results and update series_state table.
+
+    Returns the number of series rows updated.
+    """
+    ss_tbl = f"series_state_{season_key}"
+    try:
+        series = con.execute(
+            f'SELECT series_id, high_seed, low_seed, high_wins, low_wins, earliest_date '
+            f'FROM "{ss_tbl}" WHERE round_num >= 1'
+        ).fetchall()
+    except Exception:
+        return 0
+
+    updated = 0
+    now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    for sid, hs, ls, old_hw, old_lw, earliest in series:
+        rows = con.execute(
+            f'SELECT Home, Away, Win_Margin FROM "{season_key}" '
+            f'WHERE Date >= ? AND Win_Margin IS NOT NULL AND Win_Margin != 0 '
+            f'AND ((Home=? AND Away=?) OR (Home=? AND Away=?))',
+            (earliest, hs, ls, ls, hs),
+        ).fetchall()
+        hw, lw = 0, 0
+        for home, away, margin in rows:
+            winner = home if margin > 0 else away
+            if winner == hs:
+                hw += 1
+            elif winner == ls:
+                lw += 1
+        if hw != (old_hw or 0) or lw != (old_lw or 0):
+            con.execute(
+                f'UPDATE "{ss_tbl}" SET high_wins=?, low_wins=?, last_updated=? WHERE series_id=?',
+                (hw, lw, now_iso, sid),
+            )
+            updated += 1
+    return updated
+
+
 def main():
     today = today_taipei()
     # Check today and yesterday (Taipei +8 → may cover ET "today")
@@ -155,6 +194,12 @@ def main():
             total_updated += n
             if n == 0:
                 print(f"  No rows updated for {d} (odds unchanged or names mismatch)")
+
+        ss_fixed = _sync_series_states(con, season_key)
+        if ss_fixed:
+            print(f"Synced {ss_fixed} series state(s) from game results.")
+            total_updated += ss_fixed
+
         con.commit()
 
     if total_updated == 0:
