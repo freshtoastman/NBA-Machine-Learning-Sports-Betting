@@ -7426,11 +7426,11 @@
     "date": "2026-04-24",
     "home": "Portland Trail Blazers",
     "away": "San Antonio Spurs",
-    "spread": null,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Houston Rockets": [
@@ -9932,7 +9932,7 @@
     "date": "2026-04-21",
     "home": "Los Angeles Lakers",
     "away": "Houston Rockets",
-    "spread": -6.5,
+    "spread": -5.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
