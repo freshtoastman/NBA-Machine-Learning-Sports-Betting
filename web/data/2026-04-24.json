@@ -128,7 +128,7 @@
     "tier": "SILVER",
     "backtest_wr": 0.64,
     "backtest_roi": 22.2,
-    "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
+    "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 3,
@@ -160,14 +160,7 @@
    }
   ],
   "playoff_ats_count": 7,
-  "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Los Angeles Lakers: Jake LaRavia (缺陣)",
-   "Los Angeles Lakers: Austin Reaves (缺陣)",
-   "San Antonio Spurs: Victor Wembanyama (缺陣)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
-   "San Antonio Spurs: Harrison Barnes (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -193,17 +186,17 @@
    "ou_pick": "OVER",
    "ou_value": 205.5,
    "ou_confidence": 59.1,
-   "home_team_ev": 13.84,
-   "away_team_ev": -11.82,
+   "home_team_ev": 13.85,
+   "away_team_ev": -11.83,
    "home_team_odds": 225,
    "away_team_odds": -280,
-   "home_kelly": 6.15,
+   "home_kelly": 6.16,
    "away_kelly": 0,
    "is_historical": true,
-   "ats_model_pick": "away",
-   "ats_model_home_prob": 49.8,
-   "ats_model_confidence": 50.2,
-   "ats_value_edge": 0.2,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 50.3,
+   "ats_model_confidence": 50.3,
+   "ats_value_edge": 0.3,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
@@ -714,9 +707,7 @@
    "away_team_zh": "波士頓塞爾提克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "injuries_home": [
-    "Joel Embiid (缺陣)"
-   ],
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -776,7 +767,7 @@
    "ou_value": 205.5,
    "ou_confidence": 69.0,
    "home_team_ev": -29.35,
-   "away_team_ev": 79.34,
+   "away_team_ev": 79.33,
    "home_team_odds": -391,
    "away_team_odds": 310,
    "home_kelly": 0,
@@ -1297,10 +1288,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Jake LaRavia (缺陣)",
-    "Austin Reaves (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-22T06:21:22+00:00",
@@ -1366,9 +1354,9 @@
    "away_kelly": 30.48,
    "is_historical": true,
    "ats_model_pick": "away",
-   "ats_model_home_prob": 47.2,
-   "ats_model_confidence": 52.8,
-   "ats_value_edge": 2.8,
+   "ats_model_home_prob": 47.7,
+   "ats_model_confidence": 52.3,
+   "ats_value_edge": 2.3,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
@@ -1856,7 +1844,7 @@
      "backtest_wr": 0.64,
      "backtest_roi": 22.2,
      "backtest_n": 175,
-     "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
+     "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
     },
     {
      "signal": "客場明顯強勢",
@@ -1890,11 +1878,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Victor Wembanyama (缺陣)",
-    "Jordan McLaughlin (缺陣)",
-    "Harrison Barnes (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-22T03:29:22+00:00",
@@ -1987,7 +1971,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "west"
   },

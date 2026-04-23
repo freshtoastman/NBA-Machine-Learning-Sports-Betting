@@ -34,17 +34,12 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)",
-   "Phoenix Suns: Mark Williams (缺陣)"
-  ],
-  "ml_correct": 1,
-  "ml_graded": 1,
+  "injury_alerts": [],
+  "ml_correct": 2,
+  "ml_graded": 2,
   "ml_hit_rate": 100.0,
-  "ou_correct": 1,
-  "ou_graded": 1,
+  "ou_correct": 2,
+  "ou_graded": 2,
   "ou_hit_rate": 100.0,
   "value_decided": 0,
   "value_wins": 0,
@@ -66,7 +61,7 @@
    "ou_value": 218.5,
    "ou_confidence": 58.6,
    "home_team_ev": -18.01,
-   "away_team_ev": 42.3,
+   "away_team_ev": 42.29,
    "home_team_odds": -391,
    "away_team_odds": 310,
    "home_kelly": 0,
@@ -567,14 +562,49 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 98,
-   "live_away_score": 83,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
-   "injuries_away": [
-    "Jonathan Isaac (缺陣)"
-   ],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Capers",
+      "games": 47,
+      "home_cover_pct": 66.0,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.04
+     },
+     {
+      "name": "Ed Malloy",
+      "games": 67,
+      "home_cover_pct": 59.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1421
+     },
+     {
+      "name": "Tyler Ford",
+      "games": 77,
+      "home_cover_pct": 40.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.11
+     }
+    ],
+    "avg_home_cover_pct": 55.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": true,
+    "significant_officials": [
+     {
+      "name": "James Capers",
+      "games": 47,
+      "home_cover_pct": 66.0,
+      "significant": true,
+      "direction": "home",
+      "p_value": 0.04
+     }
+    ]
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-20T13:54:45+00:00",
@@ -665,11 +695,11 @@
    "ou_value": 216.5,
    "ou_confidence": 56.0,
    "home_team_ev": -29.63,
-   "away_team_ev": 260.35,
+   "away_team_ev": 260.33,
    "home_team_odds": -1786,
    "away_team_odds": 980,
    "home_kelly": 0,
-   "away_kelly": 26.57,
+   "away_kelly": 26.56,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.8,
@@ -1125,16 +1155,16 @@
    "value_prob": null,
    "fair_home": 91.1,
    "fair_away": 8.9,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 120,
+   "away_score": 107,
+   "actual_total": 227,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -4.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": true,
    "is_playoff": true,
    "series_round": "首輪",
    "round_num": 1,
@@ -1165,18 +1195,41 @@
    "away_team_zh": "鳳凰城太陽",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-   "injuries_home": [
-    "Jalen Williams (缺陣)"
-   ],
-   "live_home_score": 120,
-   "live_away_score": 107,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
-   "injuries_away": [
-    "Jordan Goodwin (缺陣)",
-    "Mark Williams (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Nate Green",
+      "games": 56,
+      "home_cover_pct": 53.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6889
+     },
+     {
+      "name": "Jason Goldenberg",
+      "games": 59,
+      "home_cover_pct": 50.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "James Williams",
+      "games": 72,
+      "home_cover_pct": 59.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1249
+     }
+    ],
+    "avg_home_cover_pct": 54.7,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": []
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-20T13:54:45+00:00",
@@ -1293,7 +1346,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "west"
   },

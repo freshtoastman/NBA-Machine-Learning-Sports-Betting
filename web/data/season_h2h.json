@@ -7657,9 +7657,9 @@
     "home": "Oklahoma City Thunder",
     "away": "Phoenix Suns",
     "spread": 17.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 13,
+    "home_score": 120,
+    "away_score": 107,
     "ats_result": "away"
    },
    {

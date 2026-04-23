@@ -61,7 +61,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.13,
-   "away_team_ev": 63.68,
+   "away_team_ev": 63.67,
    "home_team_odds": -330,
    "away_team_odds": 265,
    "home_kelly": 0,
@@ -631,12 +631,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.49,
+   "home_team_ev": -19.48,
    "away_team_ev": 30.71,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 14.63,
+   "away_kelly": 14.62,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.5,
@@ -1202,8 +1202,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -11.41,
-   "away_team_ev": 11.02,
+   "home_team_ev": -11.4,
+   "away_team_ev": 11.01,
    "home_team_odds": -220,
    "away_team_odds": 184,
    "home_kelly": 0,
@@ -1773,7 +1773,7 @@
    "ou_pick": "OVER",
    "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 51.29,
+   "home_team_ev": 51.3,
    "away_team_ev": -32.03,
    "home_team_odds": 184,
    "away_team_odds": -220,
@@ -2279,49 +2279,41 @@
     "officials": [
      {
       "name": "Ed Malloy",
-      "games": 66,
-      "home_cover_pct": 59.1,
+      "games": 67,
+      "home_cover_pct": 59.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.1753
+      "p_value": 0.1421
      },
      {
       "name": "Tyler Ford",
-      "games": 76,
-      "home_cover_pct": 39.5,
-      "significant": true,
-      "direction": "away",
-      "p_value": 0.0846
+      "games": 77,
+      "home_cover_pct": 40.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.11
      },
      {
       "name": "James Capers",
-      "games": 46,
-      "home_cover_pct": 65.2,
+      "games": 47,
+      "home_cover_pct": 66.0,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0541
+      "p_value": 0.04
      }
     ],
-    "avg_home_cover_pct": 54.6,
+    "avg_home_cover_pct": 55.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
     "significant_officials": [
      {
-      "name": "Tyler Ford",
-      "games": 76,
-      "home_cover_pct": 39.5,
-      "significant": true,
-      "direction": "away",
-      "p_value": 0.0846
-     },
-     {
       "name": "James Capers",
-      "games": 46,
-      "home_cover_pct": 65.2,
+      "games": 47,
+      "home_cover_pct": 66.0,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0541
+      "p_value": 0.04
      }
     ]
    },
@@ -2394,7 +2386,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "west"
   },

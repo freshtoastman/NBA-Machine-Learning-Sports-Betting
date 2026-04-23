@@ -1,5 +1,5 @@
 {
- "snapshot_date": "2026-04-22",
+ "snapshot_date": "2026-04-23",
  "generated_for": "2026-04-23",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
@@ -601,19 +601,18 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 0,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "home_team": "Oklahoma City Thunder",
-     "home_team_zh": "奧克拉荷馬雷霆",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "reason_zh": "G1大勝 18.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)",
-     "signal_team_zh": "奧克拉荷馬雷霆"
+     "game_num": 3,
+     "signal": "G3客場擴大優勢",
+     "side": "away",
+     "home_team": "Phoenix Suns",
+     "home_team_zh": "鳳凰城太陽",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
@@ -723,17 +722,17 @@
   ]
  },
  "signal_tracker": {
-  "total": 28,
+  "total": 30,
   "decided": 13,
   "wins": 11,
   "losses": 2,
-  "pending": 15,
+  "pending": 17,
   "hit_rate": 84.6,
   "by_tier": {
    "SILVER": {
     "wins": 8,
     "losses": 1,
-    "pending": 14
+    "pending": 16
    },
    "GOLD": {
     "wins": 3,
@@ -1021,10 +1020,21 @@
     "date": "2026-04-25",
     "away": "奧克拉荷馬雷霆",
     "home": "鳳凰城太陽",
-    "signal": "G2主場反彈 (輸G1)",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "pending",
+    "margin": null
+   },
+   {
+    "date": "2026-04-25",
+    "away": "奧克拉荷馬雷霆",
+    "home": "鳳凰城太陽",
+    "signal": "主場ATS冷門反彈",
     "tier": "SILVER",
     "side": "home",
-    "backtest_wr": 0.649,
+    "backtest_wr": 0.6,
     "result": "pending",
     "margin": null
    },
@@ -1036,6 +1046,17 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
+    "result": "pending",
+    "margin": null
+   },
+   {
+    "date": "2026-04-25",
+    "away": "奧克拉荷馬雷霆",
+    "home": "鳳凰城太陽",
+    "signal": "客場系列領先繼續",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.555,
     "result": "pending",
     "margin": null
    },

@@ -1,9 +1,9 @@
 {
  "season": "2025-26",
- "games": 1234,
- "ml_hits": 879,
+ "games": 1239,
+ "ml_hits": 882,
  "ml_hit_rate": 71.2,
- "ou_hits": 574,
+ "ou_hits": 576,
  "ou_hit_rate": 46.5,
  "value_picks": 49,
  "value_wins": 39,
@@ -17,8 +17,8 @@
  "golden_hit_rate": 79.1,
  "golden_pl": 11.08,
  "golden_roi": 25.8,
- "brier": 0.1978,
- "calib_gap_mid": 0.1246,
+ "brier": 0.1981,
+ "calib_gap_mid": 0.1233,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -29,9 +29,9 @@
  "elite_total_stake": 49000,
  "perfect_hits": 32,
  "ats_model": {
-  "games": 1234,
-  "hits": 631,
-  "hit_rate": 51.1,
+  "games": 1239,
+  "hits": 635,
+  "hit_rate": 51.3,
   "home_pick_pct": 50.6,
   "value_bets": 63,
   "value_wins": 46,
@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 11,
   "misses": 2,
-  "pending": 15,
+  "pending": 17,
   "decided": 13,
   "hit_rate": 84.6,
   "conviction": {
@@ -590,14 +590,16 @@
     "date": "2026-04-25",
     "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
     "signals": [
-     "G2主場反彈 (輸G1)",
-     "客場明顯強勢"
+     "G3客場擴大優勢",
+     "主場ATS冷門反彈",
+     "客場明顯強勢",
+     "客場系列領先繼續"
     ],
     "consensus_side": null,
     "has_conflict": true,
-    "best_wr": 65,
-    "series_game_num": 2,
-    "series_score": "1-0",
+    "best_wr": 64,
+    "series_game_num": 3,
+    "series_score": "2-0",
     "has_strong_consensus": false
    }
   ],
@@ -753,10 +755,10 @@
   }
  },
  "playoff_home_ats": {
-  "games": 21,
+  "games": 22,
   "home_covers": 12,
-  "away_covers": 9,
-  "home_cover_rate": 57.1,
-  "note_zh": "本季季後賽共 21 場有結果，主場過盤 12 場 (57.1%)"
+  "away_covers": 10,
+  "home_cover_rate": 54.5,
+  "note_zh": "本季季後賽共 22 場有結果，主場過盤 12 場 (54.5%)"
  }
 }
