@@ -36,6 +36,7 @@
   "playoff_ats_count": 1,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
+   "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)"
   ],
@@ -1164,11 +1165,13 @@
    "away_team_zh": "鳳凰城太陽",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-   "injuries_home": [],
-   "live_home_score": 65,
-   "live_away_score": 57,
-   "live_status": "Half",
-   "live_is_final": false,
+   "injuries_home": [
+    "Jalen Williams (缺陣)"
+   ],
+   "live_home_score": 120,
+   "live_away_score": 107,
+   "live_status": "Final",
+   "live_is_final": true,
    "live_home_covering": false,
    "injuries_away": [
     "Jordan Goodwin (缺陣)",

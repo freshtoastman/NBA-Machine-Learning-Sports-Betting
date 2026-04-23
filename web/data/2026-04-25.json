@@ -101,6 +101,7 @@
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)",
+   "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Atlanta Hawks: Jock Landale (缺陣)",
    "Minnesota Timberwolves: Anthony Edwards (存疑)",
    "Denver Nuggets: Peyton Watson (缺陣)",
@@ -131,12 +132,12 @@
    "ou_pick": "UNDER",
    "ou_value": 213.5,
    "ou_confidence": 50.3,
-   "home_team_ev": -17.41,
-   "away_team_ev": 6.41,
-   "home_team_odds": 122,
-   "away_team_odds": -144,
+   "home_team_ev": -18.16,
+   "away_team_ev": 7.02,
+   "home_team_odds": 120,
+   "away_team_odds": -142,
    "home_kelly": 0,
-   "away_kelly": 8.88,
+   "away_kelly": 9.65,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.0,
@@ -590,8 +591,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 43.3,
-   "fair_away": 56.7,
+   "fair_home": 43.7,
+   "fair_away": 56.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -654,13 +655,21 @@
      "ml_home": 122,
      "ml_away": -144,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T04:22:07+00:00",
+     "spread": -2.5,
+     "ou": 213.5,
+     "ml_home": 120,
+     "ml_away": -142,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -2.5,
    "spread_last": -2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-23T02:40:05+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00"
+   "spread_last_fetched_at": "2026-04-23T04:22:07+00:00"
   },
   "Oklahoma City Thunder:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1186,7 +1195,9 @@
     "Jordan Goodwin (缺陣)",
     "Mark Williams (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [
+    "Jalen Williams (缺陣)"
+   ]
   },
   "New York Knicks:Atlanta Hawks": {
    "home_team": "Atlanta Hawks",
