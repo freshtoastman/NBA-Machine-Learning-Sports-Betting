@@ -872,7 +872,7 @@ def build_bracket(target_date: date) -> dict | None:
         try:
             from datetime import timedelta as _tdelta
             _data_dir = Path(__file__).resolve().parents[1] / "web" / "data"
-            for _day_offset in range(6):
+            for _day_offset in range(-1, 6):
                 _check_date = target_date + _tdelta(days=_day_offset)
                 _check_json = _data_dir / f"{_check_date.isoformat()}.json"
                 if not _check_json.exists():
