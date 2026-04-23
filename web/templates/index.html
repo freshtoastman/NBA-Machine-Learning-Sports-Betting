@@ -817,6 +817,12 @@
                         </strong>
                         <span class="pick-conf tier-{{ tier_class }}">{{ game.playoff_ats_best_tier }}</span>
                         <span class="pick-signal">{{ game.playoff_ats_best_signal }}</span>
+                        {% if game.playoff_ats_picks|length > 1 and not game.playoff_ats_has_conflict %}
+                        <span class="badge-mini" style="background:rgba(255,255,255,0.08);color:#aaa;font-size:9px;" title="{{ game.playoff_ats_picks|length }}個信號一致指向{{ game.playoff_ats_consensus }}">{{ game.playoff_ats_picks|length }}x</span>
+                        {% endif %}
+                        {% if game.playoff_ats_picks and game.playoff_ats_picks[0].backtest_wr is defined %}
+                        <span style="font-size:10px;color:#78909c;margin-left:2px;">{{ (game.playoff_ats_picks[0].backtest_wr * 100)|round(0)|int }}%</span>
+                        {% endif %}
                         {% if game.playoff_ats_strong_consensus and not game.ats_winner %}
                         <span class="badge-mini strong-bet" title="2個以上SILVER信號一致，歷史勝率更高">🔥 強共識</span>
                         {% elif (game.playoff_ats_has_conflict or (game.playoff_ats_picks|length > 1 and game.playoff_ats_consensus is none)) and not game.ats_winner %}
