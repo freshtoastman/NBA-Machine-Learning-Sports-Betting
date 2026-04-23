@@ -770,10 +770,7 @@
                         {% endif %}
                     </div>
                     {% endif %}
-                    {% if not is_upcoming and spread_val is not none and game.ats_model_pick %}
-                    {# Choose wording based on which side the model picks:
-                       - If model picks the favorite → "讓 X 分" (give X)
-                       - If model picks the underdog → "受讓 X 分" (get X) #}
+                    {% if not is_upcoming and spread_val is not none and game.ats_model_pick and (not game.is_playoff|default(false) or game.ats_model_confidence|default(50)|float >= 55) %}
                     {% set pick_home = game.ats_model_pick == 'home' %}
                     {% set picked_team = home_team if pick_home else away_team %}
                     {% set abs_spread = spread_val if spread_val > 0 else -spread_val %}
