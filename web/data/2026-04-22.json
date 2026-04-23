@@ -1176,22 +1176,11 @@
    "series_away_wins": 0,
    "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
-   "playoff_ats_picks": [
-    {
-     "signal": "G2主場鞏固 (贏G1)",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.534,
-     "backtest_roi": 4.8,
-     "backtest_n": 116,
-     "reason_zh": "G1大勝 18.5 ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
-    }
-   ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G2主場鞏固 (贏G1)",
-   "playoff_ats_best_tier": "BRONZE",
-   "playoff_ats_consensus": "home",
+   "playoff_ats_picks": [],
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "home_team_zh": "奧克拉荷馬雷霆",

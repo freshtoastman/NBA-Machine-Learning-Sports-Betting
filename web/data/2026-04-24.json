@@ -1,6 +1,6 @@
 {
  "date": "2026-04-24",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 3,
   "home_picks": 1,
@@ -40,7 +40,7 @@
     "away_team_zh": "洛杉磯湖人",
     "signal": "G3客場擴大優勢",
     "side": "away",
-    "ats_side": "受讓(押dog)",
+    "ats_side": "讓分(押fav)",
     "tier": "SILVER",
     "backtest_wr": 0.643,
     "backtest_roi": 23.8,
@@ -59,30 +59,9 @@
     "away_team": "Los Angeles Lakers",
     "home_team_zh": "休士頓火箭",
     "away_team_zh": "洛杉磯湖人",
-    "signal": "ML季後賽押客場",
-    "side": "away",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.64,
-    "backtest_roi": 22.2,
-    "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 3,
-    "series_home_wins": 0,
-    "series_away_wins": 2,
-    "strong_consensus": "away",
-    "has_conflict": false
-   },
-   {
-    "game_key": "Los Angeles Lakers:Houston Rockets",
-    "home_team": "Houston Rockets",
-    "away_team": "Los Angeles Lakers",
-    "home_team_zh": "休士頓火箭",
-    "away_team_zh": "洛杉磯湖人",
     "signal": "客場系列領先繼續",
     "side": "away",
-    "ats_side": "受讓(押dog)",
+    "ats_side": "讓分(押fav)",
     "tier": "SILVER",
     "backtest_wr": 0.555,
     "backtest_roi": 5.9,
@@ -159,7 +138,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 7,
+  "playoff_ats_count": 6,
   "injury_alerts": [
    "Philadelphia 76ers: Joel Embiid (缺陣)",
    "Los Angeles Lakers: Jake LaRavia (缺陣)",
@@ -167,21 +146,7 @@
    "San Antonio Spurs: Victor Wembanyama (缺陣)",
    "San Antonio Spurs: Jordan McLaughlin (缺陣)",
    "San Antonio Spurs: Harrison Barnes (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  ]
  },
  "games": {
   "Boston Celtics:Philadelphia 76ers": {
@@ -809,14 +774,14 @@
    "home_kelly": 0,
    "away_kelly": 25.59,
    "is_historical": true,
-   "ats_model_pick": "away",
-   "ats_model_home_prob": 46.4,
-   "ats_model_confidence": 53.6,
-   "ats_value_edge": 3.6,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 53.5,
+   "ats_model_confidence": 53.5,
+   "ats_value_edge": 3.5,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 9.5,
+   "spread": -15.5,
    "home_profile": {
     "weekday_name": "週五",
     "season": {
@@ -1285,7 +1250,7 @@
     {
      "signal": "G3客場擴大優勢",
      "side": "away",
-     "ats_side": "受讓(押dog)",
+     "ats_side": "讓分(押fav)",
      "tier": "SILVER",
      "backtest_wr": 0.643,
      "backtest_roi": 23.8,
@@ -1293,19 +1258,9 @@
      "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     },
     {
-     "signal": "ML季後賽押客場",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "backtest_roi": 22.2,
-     "backtest_n": 175,
-     "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    },
-    {
      "signal": "客場系列領先繼續",
      "side": "away",
-     "ats_side": "受讓(押dog)",
+     "ats_side": "讓分(押fav)",
      "tier": "SILVER",
      "backtest_wr": 0.555,
      "backtest_roi": 5.9,
@@ -1368,13 +1323,21 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T16:00:20+00:00",
+     "spread": -15.5,
+     "ou": 205.5,
+     "ml_home": -391,
+     "ml_away": 310,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
-   "spread_last": 9.5,
-   "spread_move": 0.0,
+   "spread_last": -15.5,
+   "spread_move": -25.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00",
+   "spread_last_fetched_at": "2026-04-23T16:00:20+00:00",
    "ou_first": 205.5,
    "ou_last": 205.5,
    "ou_move": 0.0

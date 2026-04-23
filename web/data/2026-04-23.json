@@ -1,6 +1,6 @@
 {
  "date": "2026-04-23",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 3,
   "home_picks": 1,
@@ -105,7 +105,21 @@
    "Minnesota Timberwolves: Anthony Edwards (存疑)",
    "Denver Nuggets: Peyton Watson (缺陣)",
    "Denver Nuggets: Aaron Gordon (可能出賽)"
-  ]
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "New York Knicks:Atlanta Hawks": {
