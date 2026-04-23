@@ -160,7 +160,14 @@
    }
   ],
   "playoff_ats_count": 7,
-  "injury_alerts": [],
+  "injury_alerts": [
+   "Philadelphia 76ers: Joel Embiid (缺陣)",
+   "Los Angeles Lakers: Jake LaRavia (缺陣)",
+   "Los Angeles Lakers: Austin Reaves (缺陣)",
+   "San Antonio Spurs: Victor Wembanyama (缺陣)",
+   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
+   "San Antonio Spurs: Harrison Barnes (缺陣)"
+  ],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -184,13 +191,13 @@
    "away_confidence": 65.0,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 205.5,
+   "ou_value": 215.5,
    "ou_confidence": 59.1,
-   "home_team_ev": 13.85,
-   "away_team_ev": -11.83,
+   "home_team_ev": 13.84,
+   "away_team_ev": -11.4,
    "home_team_odds": 225,
-   "away_team_odds": -280,
-   "home_kelly": 6.16,
+   "away_team_odds": -275,
+   "home_kelly": 6.15,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -645,8 +652,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 29.5,
-   "fair_away": 70.5,
+   "fair_home": 29.6,
+   "fair_away": 70.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -707,7 +714,9 @@
    "away_team_zh": "波士頓塞爾提克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Joel Embiid (缺陣)"
+   ],
    "injuries_away": [],
    "odds_history": [
     {
@@ -749,13 +758,21 @@
      "ml_home": 225,
      "ml_away": -280,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T07:13:56+00:00",
+     "spread": -7.5,
+     "ou": 215.5,
+     "ml_home": 225,
+     "ml_away": -275,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -7.5,
    "spread_last": -7.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T02:29:36+00:00",
-   "spread_last_fetched_at": "2026-04-23T04:22:07+00:00"
+   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -767,7 +784,7 @@
    "ou_value": 205.5,
    "ou_confidence": 69.0,
    "home_team_ev": -29.35,
-   "away_team_ev": 79.33,
+   "away_team_ev": 79.34,
    "home_team_odds": -391,
    "away_team_odds": 310,
    "home_kelly": 0,
@@ -1288,7 +1305,10 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [],
+   "injuries_away": [
+    "Jake LaRavia (缺陣)",
+    "Austin Reaves (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-04-22T06:21:22+00:00",
@@ -1344,14 +1364,14 @@
    "away_confidence": 69.3,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 225.5,
+   "ou_value": 220.5,
    "ou_confidence": 55.0,
-   "home_team_ev": -36.18,
-   "away_team_ev": 24.33,
-   "home_team_odds": 108,
-   "away_team_odds": -126,
+   "home_team_ev": -35.57,
+   "away_team_ev": 22.64,
+   "home_team_odds": 110,
+   "away_team_odds": -130,
    "home_kelly": 0,
-   "away_kelly": 30.48,
+   "away_kelly": 29.47,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.7,
@@ -1805,8 +1825,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 46.3,
-   "fair_away": 53.7,
+   "fair_home": 45.7,
+   "fair_away": 54.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1878,7 +1898,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [],
+   "injuries_away": [
+    "Victor Wembanyama (缺陣)",
+    "Jordan McLaughlin (缺陣)",
+    "Harrison Barnes (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-04-22T03:29:22+00:00",
@@ -1911,13 +1935,21 @@
      "ml_home": 108,
      "ml_away": -126,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T07:13:56+00:00",
+     "spread": -1.5,
+     "ou": 220.5,
+     "ml_home": 110,
+     "ml_away": -130,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T03:29:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T04:22:07+00:00"
+   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
   }
  },
  "active_series": [

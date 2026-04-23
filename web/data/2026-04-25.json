@@ -139,7 +139,16 @@
    }
   ],
   "playoff_ats_count": 6,
-  "injury_alerts": [],
+  "injury_alerts": [
+   "Orlando Magic: Jonathan Isaac (缺陣)",
+   "Phoenix Suns: Jordan Goodwin (缺陣)",
+   "Phoenix Suns: Mark Williams (缺陣)",
+   "Oklahoma City Thunder: Jalen Williams (缺陣)",
+   "Atlanta Hawks: Jock Landale (缺陣)",
+   "Minnesota Timberwolves: Anthony Edwards (存疑)",
+   "Denver Nuggets: Peyton Watson (缺陣)",
+   "Denver Nuggets: Aaron Gordon (可能出賽)"
+  ],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -165,7 +174,7 @@
    "ou_pick": "UNDER",
    "ou_value": 213.5,
    "ou_confidence": 50.3,
-   "home_team_ev": -18.15,
+   "home_team_ev": -18.16,
    "away_team_ev": 7.02,
    "home_team_odds": 120,
    "away_team_odds": -142,
@@ -676,7 +685,9 @@
    "away_team_zh": "底特律活塞",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Jonathan Isaac (缺陣)"
+   ],
    "injuries_away": [],
    "odds_history": [
     {
@@ -709,23 +720,23 @@
    "away_confidence": 67.0,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": NaN,
+   "ou_value": 214.5,
    "ou_confidence": 53.9,
-   "home_team_ev": 0.0,
-   "away_team_ev": 0.0,
-   "home_team_odds": null,
-   "away_team_odds": null,
-   "home_kelly": null,
-   "away_kelly": null,
+   "home_team_ev": 41.93,
+   "away_team_ev": -17.06,
+   "home_team_odds": 330,
+   "away_team_odds": -420,
+   "home_kelly": 12.71,
+   "away_kelly": 0,
    "is_historical": true,
-   "ats_model_pick": "away",
-   "ats_model_home_prob": 44.7,
-   "ats_model_confidence": 55.3,
-   "ats_value_edge": 5.3,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 50.7,
+   "ats_model_confidence": 50.7,
+   "ats_value_edge": 0.7,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": null,
+   "spread": -9.5,
    "home_profile": {
     "weekday_name": "週六",
     "season": {
@@ -1170,8 +1181,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": null,
-   "fair_away": null,
+   "fair_home": 22.4,
+   "fair_away": 77.6,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1242,8 +1253,28 @@
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "injuries_home": [],
-   "injuries_away": []
+   "injuries_home": [
+    "Jordan Goodwin (缺陣)",
+    "Mark Williams (缺陣)"
+   ],
+   "injuries_away": [
+    "Jalen Williams (缺陣)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-23T07:13:56+00:00",
+     "spread": -9.5,
+     "ou": 214.5,
+     "ml_home": 330,
+     "ml_away": -420,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -9.5,
+   "spread_last": -9.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-23T07:13:56+00:00",
+   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
   },
   "New York Knicks:Atlanta Hawks": {
    "home_team": "Atlanta Hawks",
@@ -1755,7 +1786,9 @@
    "away_team_zh": "紐約尼克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Jock Landale (缺陣)"
+   ],
    "injuries_away": []
   },
   "Denver Nuggets:Minnesota Timberwolves": {
@@ -2278,8 +2311,13 @@
    "away_team_zh": "丹佛金塊",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
-   "injuries_home": [],
-   "injuries_away": []
+   "injuries_home": [
+    "Anthony Edwards (存疑)"
+   ],
+   "injuries_away": [
+    "Peyton Watson (缺陣)",
+    "Aaron Gordon (可能出賽)"
+   ]
   }
  },
  "active_series": [

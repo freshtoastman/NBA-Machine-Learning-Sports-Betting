@@ -600,7 +600,8 @@
     "best_wr": 64,
     "series_game_num": 3,
     "series_score": "2-0",
-    "has_strong_consensus": false
+    "has_strong_consensus": false,
+    "spread": -9.5
    }
   ],
   "by_signal": [

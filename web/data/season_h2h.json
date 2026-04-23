@@ -7666,11 +7666,11 @@
     "date": "2026-04-25",
     "home": "Phoenix Suns",
     "away": "Oklahoma City Thunder",
-    "spread": null,
+    "spread": -9.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "LA Clippers:Memphis Grizzlies": [

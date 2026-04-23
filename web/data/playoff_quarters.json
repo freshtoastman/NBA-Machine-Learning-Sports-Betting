@@ -460,5 +460,27 @@
     ],
     "home_score": 98,
     "away_score": 83
+  },
+  {
+    "gameId": "401869368",
+    "date": "2026-04-22",
+    "home_tri": "OKC",
+    "away_tri": "PHX",
+    "home_name": "Oklahoma City Thunder",
+    "away_name": "Phoenix Suns",
+    "q_home": [
+      30,
+      35,
+      35,
+      20
+    ],
+    "q_away": [
+      29,
+      28,
+      20,
+      30
+    ],
+    "home_score": 120,
+    "away_score": 107
   }
 ]
