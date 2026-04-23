@@ -422,6 +422,16 @@
           <div class="st-kpi-val muted">{{ st.total }}</div>
           <div class="st-kpi-label">總信號</div>
         </div>
+        {% if st.pnl is defined and st.pnl is not none %}
+        <div class="st-kpi">
+          <div class="st-kpi-val {{ 'green' if st.pnl >= 0 else 'red' }}">{{ '%+.1f'|format(st.pnl) }}u</div>
+          <div class="st-kpi-label">損益 (flat)</div>
+        </div>
+        <div class="st-kpi">
+          <div class="st-kpi-val {{ 'green' if st.roi is defined and st.roi >= 0 else 'red' }}">{{ '%+.1f'|format(st.roi) }}%</div>
+          <div class="st-kpi-label">ROI</div>
+        </div>
+        {% endif %}
       </div>
       {% if st.details %}
       <details>

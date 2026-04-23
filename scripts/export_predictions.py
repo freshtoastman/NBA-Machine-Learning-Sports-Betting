@@ -581,6 +581,8 @@ def _build_signal_tracker(data_dir: Path) -> dict:
                 "margin": a.get("ats_cover_margin"),
             })
     decided = wins + losses
+    pnl = round(wins * 0.91 - losses * 1.0, 2) if decided else 0
+    roi = round(pnl / decided * 100, 1) if decided else None
     return {
         "total": total,
         "decided": decided,
@@ -588,6 +590,8 @@ def _build_signal_tracker(data_dir: Path) -> dict:
         "losses": losses,
         "pending": pending,
         "hit_rate": round(wins / decided * 100, 1) if decided else None,
+        "pnl": pnl,
+        "roi": roi,
         "by_tier": dict(by_tier),
         "details": details,
     }
