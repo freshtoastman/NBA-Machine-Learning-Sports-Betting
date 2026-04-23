@@ -651,7 +651,7 @@
      "tier": "SILVER",
      "backtest_wr": 0.643,
      "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
-     "consensus_count": 2
+     "consensus_count": 3
     }
    },
    {
@@ -726,17 +726,17 @@
   ]
  },
  "signal_tracker": {
-  "total": 29,
+  "total": 30,
   "decided": 13,
   "wins": 11,
   "losses": 2,
-  "pending": 16,
+  "pending": 17,
   "hit_rate": 84.6,
   "by_tier": {
    "SILVER": {
     "wins": 8,
     "losses": 1,
-    "pending": 15
+    "pending": 16
    },
    "GOLD": {
     "wins": 3,
@@ -951,6 +951,17 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.643,
+    "result": "pending",
+    "margin": null
+   },
+   {
+    "date": "2026-04-24",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
     "result": "pending",
     "margin": null
    },

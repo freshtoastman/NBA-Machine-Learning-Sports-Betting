@@ -9942,11 +9942,11 @@
     "date": "2026-04-24",
     "home": "Houston Rockets",
     "away": "Los Angeles Lakers",
-    "spread": -15.5,
+    "spread": 9.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    }
   ],
   "Atlanta Hawks:Miami Heat": [

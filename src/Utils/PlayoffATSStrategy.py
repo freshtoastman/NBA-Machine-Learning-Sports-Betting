@@ -384,39 +384,11 @@ def _g2_home_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
             reason_zh="第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
         )
     elif home_wins == 1 and away_wins == 0:
-        # Home won G1 → consolidation scenario
-        # Sub-group split: G1 ATS margin >7 = 64.3% (covered by _g2_blowout_followthrough);
-        # G1 ATS margin 0-7 = 47.8% (n=88) — actual slight AWAY lean, not statistically significant.
-        # Return None for narrow wins (no useful edge), blowout case is covered by _g2_blowout_followthrough.
-        g1_margin = series_state.get("g1_ats_margin")
-        if g1_margin is not None and g1_margin > 7:
-            # Blowout case — show informational BRONZE; real bet is _g2_blowout_followthrough SILVER
-            reason_zh = f"G1大勝 {g1_margin:.1f} ATS分後鞏固，主場cover率 53.4% (n=116，見G2大勝後延續 SILVER 64.3%)"
-            return PlayoffATSPick(
-                signal_name="G2主場鞏固 (贏G1)",
-                side="home",
-                ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-                tier="BRONZE",
-                backtest_wr=0.534,
-                backtest_roi=4.8,
-                backtest_n=116,
-                reason_zh=reason_zh,
-            )
-        elif g1_margin is not None and g1_margin <= 7:
-            # Narrow win: 47.8% home cover (n=88) ≈ coin flip with slight away lean — no actionable edge
-            return None
-        else:
-            # g1_ats_margin unknown: use overall 53.4% consolidation rate
-            return PlayoffATSPick(
-                signal_name="G2主場鞏固 (贏G1)",
-                side="home",
-                ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-                tier="BRONZE",
-                backtest_wr=0.534,
-                backtest_roi=4.8,
-                backtest_n=116,
-                reason_zh="第2場主場贏G1後鞏固，主場cover率 53.4% (n=116，12季歷史)",
-            )
+        # Home won G1: overall 53.4% home cover (n=116) ≈ coin flip — no edge.
+        # Sub-group: narrow win (margin ≤7) = 47.8% (n=88), blowout (>7) = 64.3%
+        # but the blowout case is fully covered by _g2_blowout_followthrough SILVER.
+        # Removed BRONZE "G2主場鞏固" after live 1/3 confirmed no edge.
+        pass
     return None
 
 

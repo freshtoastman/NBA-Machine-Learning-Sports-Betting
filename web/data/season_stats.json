@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 11,
   "misses": 2,
-  "pending": 16,
+  "pending": 17,
   "decided": 13,
   "hit_rate": 84.6,
   "conviction": {
@@ -534,6 +534,7 @@
     "game": "洛杉磯湖人 @ 休士頓火箭",
     "signals": [
      "G3客場擴大優勢",
+     "ML季後賽押客場",
      "客場系列領先繼續"
     ],
     "consensus_side": "away",
@@ -542,7 +543,7 @@
     "series_game_num": 3,
     "series_score": "2-0",
     "has_strong_consensus": true,
-    "spread": -15.5
+    "spread": 9.5
    },
    {
     "date": "2026-04-24",
