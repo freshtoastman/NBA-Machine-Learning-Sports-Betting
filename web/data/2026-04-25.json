@@ -146,9 +146,10 @@
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Atlanta Hawks: Jock Landale (缺陣)",
    "Minnesota Timberwolves: Terrence Shannon Jr. (存疑)",
+   "Minnesota Timberwolves: Jaylen Clark (存疑)",
    "Minnesota Timberwolves: Anthony Edwards (存疑)",
-   "Denver Nuggets: Peyton Watson (缺陣)",
-   "Denver Nuggets: Aaron Gordon (可能出賽)"
+   "Denver Nuggets: Aaron Gordon (存疑)",
+   "Denver Nuggets: Peyton Watson (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -175,7 +176,7 @@
    "ou_pick": "UNDER",
    "ou_value": 213.5,
    "ou_confidence": 50.3,
-   "home_team_ev": -18.16,
+   "home_team_ev": -18.15,
    "away_team_ev": 7.02,
    "home_team_odds": 120,
    "away_team_odds": -142,
@@ -726,7 +727,7 @@
    "ou_pick": "UNDER",
    "ou_value": 214.5,
    "ou_confidence": 53.9,
-   "home_team_ev": 55.13,
+   "home_team_ev": 55.14,
    "away_team_ev": -19.08,
    "home_team_odds": 370,
    "away_team_odds": -481,
@@ -2344,11 +2345,12 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
    "injuries_home": [
     "Terrence Shannon Jr. (存疑)",
+    "Jaylen Clark (存疑)",
     "Anthony Edwards (存疑)"
    ],
    "injuries_away": [
-    "Peyton Watson (缺陣)",
-    "Aaron Gordon (可能出賽)"
+    "Aaron Gordon (存疑)",
+    "Peyton Watson (缺陣)"
    ]
   }
  },

@@ -165,8 +165,7 @@
    "Los Angeles Lakers: Jake LaRavia (缺陣)",
    "Los Angeles Lakers: Austin Reaves (缺陣)",
    "San Antonio Spurs: Victor Wembanyama (缺陣)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
-   "San Antonio Spurs: Harrison Barnes (缺陣)"
+   "San Antonio Spurs: Jordan McLaughlin (缺陣)"
   ]
  },
  "games": {
@@ -177,10 +176,10 @@
    "away_confidence": 65.0,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 215.5,
+   "ou_value": 216.5,
    "ou_confidence": 59.1,
    "home_team_ev": 19.1,
-   "away_team_ev": -13.0,
+   "away_team_ev": -13.01,
    "home_team_odds": 240,
    "away_team_odds": -295,
    "home_kelly": 7.96,
@@ -768,16 +767,24 @@
      "ml_home": 240,
      "ml_away": -295,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T20:10:52+00:00",
+     "spread": -7.5,
+     "ou": 216.5,
+     "ml_home": 240,
+     "ml_away": -295,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -7.5,
    "spread_last": -7.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T02:29:36+00:00",
-   "spread_last_fetched_at": "2026-04-23T15:57:24+00:00",
+   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
    "ou_first": 216.5,
-   "ou_last": 215.5,
-   "ou_move": -1.0
+   "ou_last": 216.5,
+   "ou_move": 0.0
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -788,12 +795,12 @@
    "ou_pick": "UNDER",
    "ou_value": 205.5,
    "ou_confidence": 69.0,
-   "home_team_ev": -29.35,
-   "away_team_ev": 79.34,
-   "home_team_odds": -391,
-   "away_team_odds": 310,
+   "home_team_ev": -30.34,
+   "away_team_ev": 88.08,
+   "home_team_odds": -420,
+   "away_team_odds": 330,
    "home_kelly": 0,
-   "away_kelly": 25.59,
+   "away_kelly": 26.69,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.4,
@@ -802,7 +809,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 9.5,
+   "spread": 10.5,
    "home_profile": {
     "weekday_name": "週五",
     "season": {
@@ -1247,8 +1254,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 76.6,
-   "fair_away": 23.4,
+   "fair_home": 77.6,
+   "fair_away": 22.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1354,13 +1361,21 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T20:10:52+00:00",
+     "spread": 10.5,
+     "ou": 205.5,
+     "ml_home": -420,
+     "ml_away": 330,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
-   "spread_last": 9.5,
-   "spread_move": 0.0,
+   "spread_last": 10.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00",
+   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
    "ou_first": 205.5,
    "ou_last": 205.5,
    "ou_move": 0.0
@@ -1374,12 +1389,12 @@
    "ou_pick": "OVER",
    "ou_value": 220.5,
    "ou_confidence": 55.0,
-   "home_team_ev": -34.95,
-   "away_team_ev": 21.83,
-   "home_team_odds": 112,
-   "away_team_odds": -132,
+   "home_team_ev": -35.56,
+   "away_team_ev": 22.64,
+   "home_team_odds": 110,
+   "away_team_odds": -130,
    "home_kelly": 0,
-   "away_kelly": 28.95,
+   "away_kelly": 29.47,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.7,
@@ -1833,8 +1848,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 45.3,
-   "fair_away": 54.7,
+   "fair_home": 45.7,
+   "fair_away": 54.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1908,8 +1923,7 @@
    "injuries_home": [],
    "injuries_away": [
     "Victor Wembanyama (缺陣)",
-    "Jordan McLaughlin (缺陣)",
-    "Harrison Barnes (缺陣)"
+    "Jordan McLaughlin (缺陣)"
    ],
    "odds_history": [
     {
@@ -1959,13 +1973,21 @@
      "ml_home": 112,
      "ml_away": -132,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T20:10:52+00:00",
+     "spread": -1.5,
+     "ou": 220.5,
+     "ml_home": 110,
+     "ml_away": -130,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T03:29:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T14:13:25+00:00",
+   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
    "ou_first": 220.5,
    "ou_last": 220.5,
    "ou_move": 0.0
