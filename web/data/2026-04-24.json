@@ -193,11 +193,11 @@
    "ou_pick": "OVER",
    "ou_value": 215.5,
    "ou_confidence": 59.1,
-   "home_team_ev": 13.84,
-   "away_team_ev": -11.4,
-   "home_team_odds": 225,
-   "away_team_odds": -275,
-   "home_kelly": 6.15,
+   "home_team_ev": 12.09,
+   "away_team_ev": -10.97,
+   "home_team_odds": 220,
+   "away_team_odds": -270,
+   "home_kelly": 5.5,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -652,8 +652,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 29.6,
-   "fair_away": 70.4,
+   "fair_home": 30.0,
+   "fair_away": 70.0,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -766,13 +766,21 @@
      "ml_home": 225,
      "ml_away": -275,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T11:12:44+00:00",
+     "spread": -7.5,
+     "ou": 215.5,
+     "ml_home": 220,
+     "ml_away": -270,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -7.5,
    "spread_last": -7.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T02:29:36+00:00",
-   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",

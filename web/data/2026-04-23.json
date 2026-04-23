@@ -115,7 +115,7 @@
    "away_confidence": 54.2,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 208.5,
+   "ou_value": 216.5,
    "ou_confidence": 57.8,
    "home_team_ev": -10.25,
    "away_team_ev": 2.68,
@@ -662,13 +662,21 @@
      "ml_home": -104,
      "ml_away": -112,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T11:12:44+00:00",
+     "spread": -1.5,
+     "ou": 216.5,
+     "ml_home": -104,
+     "ml_away": -112,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -1262,7 +1270,7 @@
    "away_confidence": 53.3,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": 234.5,
+   "ou_value": 233.5,
    "ou_confidence": 67.1,
    "home_team_ev": -2.01,
    "away_team_ev": -5.63,
@@ -1822,13 +1830,21 @@
      "ml_home": 110,
      "ml_away": -130,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T11:12:44+00:00",
+     "spread": -1.5,
+     "ou": 233.5,
+     "ml_home": 110,
+     "ml_away": -130,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
   }
  },
  "active_series": [

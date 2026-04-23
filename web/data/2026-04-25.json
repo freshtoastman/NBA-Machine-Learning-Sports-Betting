@@ -720,7 +720,7 @@
    "away_confidence": 67.0,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": 214.5,
+   "ou_value": 215.5,
    "ou_confidence": 53.9,
    "home_team_ev": 41.93,
    "away_team_ev": -17.06,
@@ -1268,13 +1268,21 @@
      "ml_home": 330,
      "ml_away": -420,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-23T11:12:44+00:00",
+     "spread": -9.5,
+     "ou": 215.5,
+     "ml_home": 330,
+     "ml_away": -420,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -9.5,
    "spread_last": -9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-23T07:13:56+00:00",
-   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
   },
   "New York Knicks:Atlanta Hawks": {
    "home_team": "Atlanta Hawks",
