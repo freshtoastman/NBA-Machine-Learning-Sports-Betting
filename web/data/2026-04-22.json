@@ -1165,9 +1165,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 60,
-   "live_away_score": 51,
-   "live_status": "Q2 2:31",
+   "live_home_score": 65,
+   "live_away_score": 57,
+   "live_status": "Half",
    "live_is_final": false,
    "live_home_covering": false,
    "injuries_away": [
