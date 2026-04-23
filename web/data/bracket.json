@@ -244,19 +244,18 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 0,
+    "high_wins": 1,
     "low_wins": 1,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "G2主場反彈 (輸G1)",
-     "side": "home",
-     "home_team": "Detroit Pistons",
-     "home_team_zh": "底特律活塞",
+     "game_num": 3,
+     "signal": "ML中信心+小讓分",
+     "side": "away",
+     "home_team": "Orlando Magic",
+     "home_team_zh": "奧蘭多魔術",
      "tier": "SILVER",
-     "backtest_wr": 0.649,
-     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
-     "signal_team_zh": "底特律活塞"
+     "backtest_wr": 0.667,
+     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%"
     }
    },
    {
@@ -728,15 +727,15 @@
   ]
  },
  "signal_tracker": {
-  "total": 27,
-  "decided": 12,
-  "wins": 10,
+  "total": 28,
+  "decided": 13,
+  "wins": 11,
   "losses": 2,
   "pending": 15,
-  "hit_rate": 83.3,
+  "hit_rate": 84.6,
   "by_tier": {
    "SILVER": {
-    "wins": 7,
+    "wins": 8,
     "losses": 1,
     "pending": 14
    },
@@ -887,8 +886,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.649,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": 6.5
    },
    {
     "date": "2026-04-23",
@@ -1008,6 +1007,17 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
+    "result": "pending",
+    "margin": null
+   },
+   {
+    "date": "2026-04-25",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "ML中信心+小讓分",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.667,
     "result": "pending",
     "margin": null
    },

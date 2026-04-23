@@ -2225,20 +2225,20 @@
     "home": "Detroit Pistons",
     "away": "Orlando Magic",
     "spread": 8.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 15,
+    "home_score": 98,
+    "away_score": 83,
+    "ats_result": "home"
    },
    {
     "date": "2026-04-25",
     "home": "Orlando Magic",
     "away": "Detroit Pistons",
-    "spread": null,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "Boston Celtics:Cleveland Cavaliers": [
@@ -2670,7 +2670,7 @@
     "date": "2026-04-23",
     "home": "Toronto Raptors",
     "away": "Cleveland Cavaliers",
-    "spread": -3.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,

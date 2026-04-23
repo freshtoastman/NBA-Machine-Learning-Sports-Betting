@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 10,
+  "hits": 11,
   "misses": 2,
   "pending": 15,
-  "decided": 12,
-  "hit_rate": 83.3,
+  "decided": 13,
+  "hit_rate": 84.6,
   "conviction": {
-   "crushing_hits": 3,
+   "crushing_hits": 4,
    "dominant_hits": 3,
    "moderate_hits": 2,
    "narrow_hits": 2,
-   "garbage_time_hits": 1,
-   "total_hits": 10,
-   "true_conviction_hits": 8,
-   "raw_hit_rate": 83.3,
-   "true_conviction_rate": 66.7,
-   "note_zh": "3 碾壓主導 + 3 主導 + 2 普通 + 2 險過；1 場受垃圾時間影響；真實信心率 66.7%"
+   "garbage_time_hits": 2,
+   "total_hits": 11,
+   "true_conviction_hits": 9,
+   "raw_hit_rate": 84.6,
+   "true_conviction_rate": 69.2,
+   "note_zh": "4 碾壓主導 + 3 主導 + 2 普通 + 2 險過；2 場受垃圾時間影響；真實信心率 69.2%"
   },
   "history": [
    {
@@ -448,23 +448,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": 11.1,
     "q4_swing": 0
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-04-22",
     "game": "奧蘭多魔術 @ 底特律活塞",
-    "signals": [
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 65,
+    "signal": "G2主場反彈 (輸G1)",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.649,
+    "ats_winner": "home",
+    "ats_cover_margin": 6.5,
     "series_game_num": 2,
-    "series_score": "1-0",
-    "has_strong_consensus": false,
-    "spread": 8.5
-   },
+    "series_home_wins": 0,
+    "series_away_wins": 1,
+    "strong_consensus": null,
+    "home_team": "Detroit Pistons",
+    "away_team": "Orlando Magic",
+    "spread": 8.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": 15.6,
+     "final_picked_margin": 6.5,
+     "q4_swing": -7,
+     "shrinkage": 9.1,
+     "garbage_time": true
+    },
+    "conviction": "crushing",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": 15.6,
+    "q4_swing": -7
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-04-23",
     "game": "克里夫蘭騎士 @ 多倫多暴龍",
@@ -479,7 +497,7 @@
     "series_game_num": 3,
     "series_score": "2-0",
     "has_strong_consensus": true,
-    "spread": -3.5
+    "spread": -2.5
    },
    {
     "date": "2026-04-23",
@@ -540,6 +558,20 @@
     "series_score": "1-1",
     "has_strong_consensus": false,
     "spread": -7.5
+   },
+   {
+    "date": "2026-04-25",
+    "game": "底特律活塞 @ 奧蘭多魔術",
+    "signals": [
+     "ML中信心+小讓分"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 67,
+    "series_game_num": 3,
+    "series_score": "1-1",
+    "has_strong_consensus": false,
+    "spread": -2.5
    },
    {
     "date": "2026-04-25",
@@ -674,6 +706,21 @@
     "narrow_hits": 0,
     "garbage_time_hits": 0,
     "true_hit_rate": 100.0
+   },
+   {
+    "signal": "G2主場反彈 (輸G1)",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0,
+    "backtest_wr": 64.9,
+    "crushing_hits": 1,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 1,
+    "true_hit_rate": 100.0
    }
   ],
   "strong_consensus": {
@@ -689,27 +736,27 @@
    "note_zh": "強共識(2+SILVER一致): 1勝/1場決定 = 100.0%，3場待定"
   },
   "best_pick": {
-   "hits": 4,
+   "hits": 5,
    "misses": 0,
    "pending": 8,
-   "decided": 4,
+   "decided": 5,
    "hit_rate": 100.0,
    "gold_hits": 1,
    "gold_misses": 0,
-   "silver_hits": 3,
+   "silver_hits": 4,
    "silver_misses": 0,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 4勝/4場決定 = 100.0%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/5場決定 = 100.0%"
   }
  },
  "playoff_home_ats": {
-  "games": 20,
-  "home_covers": 11,
+  "games": 21,
+  "home_covers": 12,
   "away_covers": 9,
-  "home_cover_rate": 55.0,
-  "note_zh": "本季季後賽共 20 場有結果，主場過盤 11 場 (55.0%)"
+  "home_cover_rate": 57.1,
+  "note_zh": "本季季後賽共 21 場有結果，主場過盤 12 場 (57.1%)"
  }
 }

@@ -396,6 +396,28 @@
     "away_score": 111
   },
   {
+    "gameId": "401869397",
+    "date": "2026-04-21",
+    "home_tri": "LAL",
+    "away_tri": "HOU",
+    "home_name": "Los Angeles Lakers",
+    "away_name": "Houston Rockets",
+    "q_home": [
+      33,
+      21,
+      21,
+      26
+    ],
+    "q_away": [
+      26,
+      25,
+      17,
+      26
+    ],
+    "home_score": 101,
+    "away_score": 94
+  },
+  {
     "gameId": "0042500172",
     "date": "2026-04-21",
     "home_tri": "SAS",
@@ -418,25 +440,25 @@
     "away_score": 106
   },
   {
-    "gameId": "401869397",
-    "date": "2026-04-21",
-    "home_tri": "LAL",
-    "away_tri": "HOU",
-    "home_name": "Los Angeles Lakers",
-    "away_name": "Houston Rockets",
+    "gameId": "401869411",
+    "date": "2026-04-22",
+    "home_tri": "DET",
+    "away_tri": "ORL",
+    "home_name": "Detroit Pistons",
+    "away_name": "Orlando Magic",
     "q_home": [
-      33,
+      25,
       21,
-      21,
-      26
+      38,
+      14
     ],
     "q_away": [
-      26,
+      21,
       25,
-      17,
-      26
+      16,
+      21
     ],
-    "home_score": 101,
-    "away_score": 94
+    "home_score": 98,
+    "away_score": 83
   }
 ]
