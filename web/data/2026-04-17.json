@@ -577,7 +577,10 @@
    "spread_last": -3.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 218.5,
+   "ou_last": 218.5,
+   "ou_move": 0.0
   },
   "Golden State Warriors:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1127,7 +1130,10 @@
    "spread_last": 2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 218.5,
+   "ou_last": 218.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

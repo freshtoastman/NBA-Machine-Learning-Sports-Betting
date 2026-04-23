@@ -711,7 +711,10 @@
    "spread_last": -2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-23T02:40:05+00:00",
-   "spread_last_fetched_at": "2026-04-23T04:22:07+00:00"
+   "spread_last_fetched_at": "2026-04-23T04:22:07+00:00",
+   "ou_first": 213.5,
+   "ou_last": 213.5,
+   "ou_move": 0.0
   },
   "Oklahoma City Thunder:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1282,7 +1285,10 @@
    "spread_last": -9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-23T07:13:56+00:00",
-   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00",
+   "ou_first": 214.5,
+   "ou_last": 215.5,
+   "ou_move": 1.0
   },
   "New York Knicks:Atlanta Hawks": {
    "home_team": "Atlanta Hawks",

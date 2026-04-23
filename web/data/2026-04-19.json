@@ -725,7 +725,10 @@
    "spread_last": 13.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 216.5,
+   "ou_last": 216.5,
+   "ou_move": 0.0
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -1296,7 +1299,10 @@
    "spread_last": 16.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 216.5,
+   "ou_last": 216.5,
+   "ou_move": 0.0
   },
   "Orlando Magic:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -1857,7 +1863,10 @@
    "spread_last": 8.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 221.5,
+   "ou_last": 221.5,
+   "ou_move": 0.0
   },
   "Portland Trail Blazers:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -2444,7 +2453,10 @@
    "spread_last": 12.5,
    "spread_move": -1.5,
    "spread_first_fetched_at": "2026-04-19T19:30:00+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 223.5,
+   "ou_last": 223.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

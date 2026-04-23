@@ -676,7 +676,10 @@
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00",
+   "ou_first": 216.5,
+   "ou_last": 216.5,
+   "ou_move": 0.0
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -1261,7 +1264,10 @@
    "spread_last": -2.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-21T16:36:54+00:00",
-   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
+   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00",
+   "ou_first": 220.5,
+   "ou_last": 220.5,
+   "ou_move": 0.0
   },
   "Denver Nuggets:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1844,7 +1850,10 @@
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-21T14:08:15+00:00",
-   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00",
+   "ou_first": 233.5,
+   "ou_last": 233.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

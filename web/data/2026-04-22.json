@@ -683,7 +683,10 @@
    "spread_last": 8.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00"
+   "spread_last_fetched_at": "2026-04-22T17:03:19+00:00",
+   "ou_first": 217.5,
+   "ou_last": 218.5,
+   "ou_move": 1.0
   },
   "Phoenix Suns:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
@@ -1292,7 +1295,10 @@
    "spread_last": 17.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00"
+   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00",
+   "ou_first": 213.5,
+   "ou_last": 216.5,
+   "ou_move": 3.0
   }
  },
  "active_series": [

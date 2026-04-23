@@ -780,7 +780,10 @@
    "spread_last": -7.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T02:29:36+00:00",
-   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00"
+   "spread_last_fetched_at": "2026-04-23T11:12:44+00:00",
+   "ou_first": 216.5,
+   "ou_last": 215.5,
+   "ou_move": -1.0
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -1363,7 +1366,10 @@
    "spread_last": 9.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00"
+   "spread_last_fetched_at": "2026-04-23T02:40:05+00:00",
+   "ou_first": 205.5,
+   "ou_last": 205.5,
+   "ou_move": 0.0
   },
   "San Antonio Spurs:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
@@ -1957,7 +1963,10 @@
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T03:29:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00"
+   "spread_last_fetched_at": "2026-04-23T07:13:56+00:00",
+   "ou_first": 220.5,
+   "ou_last": 220.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

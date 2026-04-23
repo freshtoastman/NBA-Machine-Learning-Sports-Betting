@@ -1472,6 +1472,17 @@ a {
     border: 1px solid rgba(126, 138, 153, 0.25);
 }
 
+.ou-big-move {
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgba(255, 160, 50, 0.18);
+    color: #e68a00;
+    border: 1px solid rgba(255, 160, 50, 0.35);
+}
+
 .spread-sparkline {
     vertical-align: middle;
     margin: 0 4px;

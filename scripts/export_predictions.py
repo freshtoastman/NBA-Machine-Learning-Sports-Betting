@@ -403,6 +403,11 @@ def export_date(target_date: date) -> dict | None:
                 g["spread_move"] = round(_sp_vals[-1] - _sp_vals[0], 2)
                 g["spread_first_fetched_at"] = _hist[0]["fetched_at"]
                 g["spread_last_fetched_at"] = _hist[-1]["fetched_at"]
+            _ou_vals = [h["ou"] for h in _hist if h.get("ou") is not None]
+            if _ou_vals:
+                g["ou_first"] = _ou_vals[0]
+                g["ou_last"] = _ou_vals[-1]
+                g["ou_move"] = round(_ou_vals[-1] - _ou_vals[0], 1)
         games_dict[key] = g
 
     # Summary stats.

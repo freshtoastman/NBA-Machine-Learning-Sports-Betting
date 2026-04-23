@@ -750,6 +750,22 @@
                         <span class="spread-move-time" title="首次抓取: {{ _first_iso|tw_time }}&#10;最新抓取: {{ _last_iso|tw_time }} (台灣時間)">🕒 {{ _last_iso|tw_time }} 台灣時間</span>
                     </div>
                     {% endif %}
+                    {# OU (total) movement #}
+                    {% if game.ou_first is defined and game.ou_last is defined %}
+                    {% set _ou_move = game.ou_move|default(0) %}
+                    {% if _ou_move != 0 %}
+                    <div class="pick-row spread-move-row" title="大小分走勢">
+                        <span class="pick-label">大小分走勢</span>
+                        <span class="spread-move-open">開盤 <b>{{ '%.1f'|format(game.ou_first) }}</b></span>
+                        <span class="spread-move-arrow">→</span>
+                        <span class="spread-move-current">現在 <b>{{ '%.1f'|format(game.ou_last) }}</b></span>
+                        <span class="spread-move-delta {% if _ou_move > 0 %}delta-up{% else %}delta-down{% endif %}">
+                            {% if _ou_move > 0 %}▲{% else %}▼{% endif %} {{ '%.1f'|format(_ou_move|abs) }}
+                            {% if _ou_move|abs >= 5 %}<span class="ou-big-move">大幅變動</span>{% endif %}
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% endif %}
                     {% if is_upcoming %}
                     <div class="pick-row upcoming-row">
                         <span class="upcoming-badge">📅 即將比賽</span>

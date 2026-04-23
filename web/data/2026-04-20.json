@@ -645,7 +645,10 @@
    "spread_last": 9.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00",
+   "ou_first": 222.5,
+   "ou_last": 222.5,
+   "ou_move": 0.0
   },
   "Atlanta Hawks:New York Knicks": {
    "home_team": "New York Knicks",
@@ -1232,7 +1235,10 @@
    "spread_last": 6.0,
    "spread_move": 0.5,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00",
+   "ou_first": 217.5,
+   "ou_last": 217.5,
+   "ou_move": 0.0
   },
   "Minnesota Timberwolves:Denver Nuggets": {
    "home_team": "Denver Nuggets",
@@ -1818,7 +1824,10 @@
    "spread_last": 7.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00"
+   "spread_last_fetched_at": "2026-04-21T02:06:05+00:00",
+   "ou_first": 231.5,
+   "ou_last": 231.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
