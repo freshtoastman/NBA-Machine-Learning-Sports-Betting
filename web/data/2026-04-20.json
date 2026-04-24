@@ -1148,16 +1148,6 @@
      "backtest_roi": 22.2,
      "backtest_n": 175,
      "reason_zh": "模型押客場 (主場cover率 48%，客場讓 2pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    },
-    {
-     "signal": "中等讓分押冷門",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.521,
-     "backtest_roi": 4.2,
-     "backtest_n": 290,
-     "reason_zh": "讓分 6.0 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1738,16 +1728,6 @@
      "backtest_roi": 22.2,
      "backtest_n": 175,
      "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    },
-    {
-     "signal": "中等讓分押冷門",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.521,
-     "backtest_roi": 4.2,
-     "backtest_n": 290,
-     "reason_zh": "讓分 7.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1846,7 +1826,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {

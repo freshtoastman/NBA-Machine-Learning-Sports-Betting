@@ -1857,10 +1857,10 @@
     "home": "Minnesota Timberwolves",
     "away": "Denver Nuggets",
     "spread": 1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 17,
+    "home_score": 113,
+    "away_score": 96,
+    "ats_result": "home"
    },
    {
     "date": "2026-04-25",

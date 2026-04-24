@@ -1726,16 +1726,6 @@
      "backtest_roi": 33.3,
      "backtest_n": 24,
      "reason_zh": "G1大勝 14.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)"
-    },
-    {
-     "signal": "中等讓分押冷門",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.521,
-     "backtest_roi": 4.2,
-     "backtest_n": 290,
-     "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -1842,7 +1832,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {

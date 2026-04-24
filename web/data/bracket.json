@@ -352,13 +352,13 @@
     "games_played": 2,
     "next_signal": {
      "game_num": 3,
-     "signal": "客場明顯強勢",
+     "signal": "G3平手客場冷門",
      "side": "away",
      "home_team": "Philadelphia 76ers",
      "home_team_zh": "費城七六人",
-     "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "reason_zh": "客場近期勝率領先主場 30pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
+     "tier": "BRONZE",
+     "backtest_wr": 0.516,
+     "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
     }
    }
   ]
@@ -675,18 +675,17 @@
      "seed": 6
     },
     "high_wins": 1,
-    "low_wins": 1,
-    "games_played": 2,
+    "low_wins": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
-     "signal": "客場明顯強勢",
+     "game_num": 4,
+     "signal": "ML季後賽押客場",
      "side": "away",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
      "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "reason_zh": "客場近期勝率領先主場 60pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-     "consensus_count": 2
+     "backtest_wr": 0.64,
+     "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
     }
    },
    {
@@ -721,25 +720,25 @@
      "tier": "GOLD",
      "backtest_wr": 0.8,
      "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%",
-     "consensus_count": 3
+     "consensus_count": 2
     }
    }
   ]
  },
  "signal_tracker": {
-  "total": 29,
-  "decided": 15,
+  "total": 26,
+  "decided": 16,
   "wins": 11,
-  "losses": 4,
-  "pending": 14,
-  "hit_rate": 73.3,
-  "pnl": 6.01,
-  "roi": 40.1,
+  "losses": 5,
+  "pending": 10,
+  "hit_rate": 68.8,
+  "pnl": 5.01,
+  "roi": 31.3,
   "by_tier": {
    "SILVER": {
     "wins": 8,
-    "losses": 3,
-    "pending": 13
+    "losses": 4,
+    "pending": 9
    },
    "GOLD": {
     "wins": 3,
@@ -748,14 +747,14 @@
    }
   },
   "by_game": {
-   "total": 19,
-   "decided": 11,
+   "total": 18,
+   "decided": 12,
    "wins": 9,
-   "losses": 2,
-   "pending": 8,
-   "hit_rate": 81.8,
-   "pnl": 6.19,
-   "roi": 56.3
+   "losses": 3,
+   "pending": 6,
+   "hit_rate": 75.0,
+   "pnl": 5.19,
+   "roi": 43.3
   },
   "details": [
    {
@@ -927,34 +926,12 @@
     "date": "2026-04-23",
     "away": "丹佛金塊",
     "home": "明尼蘇達灰狼",
-    "signal": "客場明顯強勢",
+    "signal": "ML季後賽押客場",
     "tier": "SILVER",
     "side": "away",
-    "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null
-   },
-   {
-    "date": "2026-04-23",
-    "away": "丹佛金塊",
-    "home": "明尼蘇達灰狼",
-    "signal": "小讓分客場受讓",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.529,
-    "result": "pending",
-    "margin": null
-   },
-   {
-    "date": "2026-04-24",
-    "away": "波士頓塞爾提克",
-    "home": "費城七六人",
-    "signal": "客場明顯強勢",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null
+    "backtest_wr": 0.64,
+    "result": "loss",
+    "margin": 15.5
    },
    {
     "date": "2026-04-24",
@@ -997,17 +974,6 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null
-   },
-   {
-    "date": "2026-04-24",
-    "away": "聖安東尼奧馬刺",
-    "home": "波特蘭拓荒者",
-    "signal": "客場明顯強勢",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.594,
     "result": "pending",
     "margin": null
    },
@@ -1070,10 +1036,10 @@
     "date": "2026-04-25",
     "away": "丹佛金塊",
     "home": "明尼蘇達灰狼",
-    "signal": "客場明顯強勢",
+    "signal": "G4領先方複雜壓力",
     "tier": "SILVER",
     "side": "away",
-    "backtest_wr": 0.594,
+    "backtest_wr": 0.612,
     "result": "pending",
     "margin": null
    }

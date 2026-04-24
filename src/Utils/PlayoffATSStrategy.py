@@ -817,6 +817,10 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
         aw_s = series_state.get("away_wins", 0)
         if hw_s > aw_s:
             return None
+        # Suppress G3 tied 1-1: home court + desperation overrides form (0/2 live)
+        gn = series_state.get("series_game_num", 0)
+        if gn == 3 and hw_s == 1 and aw_s == 1:
+            return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
     return PlayoffATSPick(
@@ -926,15 +930,15 @@ _SIGNALS = [
     _r1g1_large_spread_home,          # SILVER verified: 62.2%-72.7% (n=37/22) — R1G1 home giving 8+/10+ pts
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
     _ml_playoff_away_lean,             # SILVER verified: 64.0% (n=175) — ML model picks away in playoffs
-    _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger
+    _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger; 0/2 live (both G3 tied series), monitor
     # _away_leads_series,              # DISABLED: 55.5% (n=155) barely above noise, highly correlated with G3/form signals; 0/3 live (CLE@TOR blowout)
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)
-    _small_spread_away_dog,           # SILVER verified: 52.9%/58.6% recent (n=155)
-    _complacent_leader,               # BRONZE verified: 54.9% (n=71)
+    # _small_spread_away_dog,           # DISABLED: 52.9% backtest barely above coin flip; 0/1 live
+    # _complacent_leader,               # DISABLED: 54.9% (n=71) too weak for actionable signal
     _g2_blowout_followthrough,        # SILVER new: 64.3% (n=28) — G2 home won G1 by >7 ATS pts
     _g2_home_bounce,                  # SILVER/BRONZE split: 64.9% bounce-back (n=57) / 53.4% consolidation (n=116)
     # _home_form_dominant,             # DISABLED: 54.7% backtest but 50% OOS (5/10) — noise
-    _medium_spread_dog,               # BRONZE verified: 52.1% (n=290)
+    # _medium_spread_dog,               # DISABLED: 52.1% (n=290) coin flip level, no edge
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
 ]
 

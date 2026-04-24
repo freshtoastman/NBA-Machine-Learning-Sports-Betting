@@ -506,6 +506,28 @@
     "away_score": 108
   },
   {
+    "gameId": "401869398",
+    "date": "2026-04-23",
+    "home_tri": "MIN",
+    "away_tri": "DEN",
+    "home_name": "Minnesota Timberwolves",
+    "away_name": "Denver Nuggets",
+    "q_home": [
+      25,
+      36,
+      27,
+      25
+    ],
+    "q_away": [
+      11,
+      28,
+      29,
+      28
+    ],
+    "home_score": 113,
+    "away_score": 96
+  },
+  {
     "gameId": "401869375",
     "date": "2026-04-23",
     "home_tri": "TOR",

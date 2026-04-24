@@ -122,17 +122,17 @@
     "away_team": "Denver Nuggets",
     "home_team_zh": "明尼蘇達灰狼",
     "away_team_zh": "丹佛金塊",
-    "signal": "客場明顯強勢",
+    "signal": "G4領先方複雜壓力",
     "side": "away",
     "ats_side": "讓分(押fav)",
     "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "backtest_roi": 13.5,
-    "reason_zh": "客場近期勝率領先主場 60pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
+    "backtest_wr": 0.612,
+    "backtest_roi": 22.4,
+    "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估",
     "ats_winner": null,
     "ats_cover_margin": null,
-    "series_game_num": 3,
-    "series_home_wins": 1,
+    "series_game_num": 4,
+    "series_home_wins": 2,
     "series_away_wins": 1,
     "strong_consensus": null,
     "has_conflict": false
@@ -1906,17 +1906,17 @@
     "weekday_name": "週六",
     "season": {
      "overall": {
-      "games": 84,
-      "wins": 50,
+      "games": 85,
+      "wins": 51,
       "losses": 34,
-      "win_rate": 59.5,
-      "avg_for": 117.9,
-      "avg_against": 114.7,
-      "avg_total": 232.5,
-      "ats_wins": 37,
+      "win_rate": 60.0,
+      "avg_for": 117.8,
+      "avg_against": 114.4,
+      "avg_total": 232.2,
+      "ats_wins": 38,
       "ats_losses": 47,
       "ats_pushes": 0,
-      "ats_rate": 44.0
+      "ats_rate": 44.7
      },
      "weekday": {
       "games": 12,
@@ -1945,32 +1945,32 @@
       "ats_rate": 54.5
      },
      "vs_weak": {
-      "games": 62,
-      "wins": 41,
+      "games": 63,
+      "wins": 42,
       "losses": 21,
-      "win_rate": 66.1,
-      "avg_for": 119.1,
-      "avg_against": 113.7,
-      "avg_total": 232.9,
-      "ats_wins": 25,
+      "win_rate": 66.7,
+      "avg_for": 119.0,
+      "avg_against": 113.4,
+      "avg_total": 232.5,
+      "ats_wins": 26,
       "ats_losses": 37,
       "ats_pushes": 0,
-      "ats_rate": 40.3
+      "ats_rate": 41.3
      }
     },
     "last_3m": {
      "overall": {
-      "games": 39,
-      "wins": 23,
+      "games": 40,
+      "wins": 24,
       "losses": 16,
-      "win_rate": 59.0,
-      "avg_for": 115.4,
-      "avg_against": 114.1,
-      "avg_total": 229.5,
-      "ats_wins": 18,
+      "win_rate": 60.0,
+      "avg_for": 115.3,
+      "avg_against": 113.7,
+      "avg_total": 229.0,
+      "ats_wins": 19,
       "ats_losses": 21,
       "ats_pushes": 0,
-      "ats_rate": 46.2
+      "ats_rate": 47.5
      },
      "weekday": {
       "games": 4,
@@ -1999,32 +1999,32 @@
       "ats_rate": 53.8
      },
      "vs_weak": {
-      "games": 26,
-      "wins": 17,
+      "games": 27,
+      "wins": 18,
       "losses": 9,
-      "win_rate": 65.4,
-      "avg_for": 117.7,
-      "avg_against": 114.0,
-      "avg_total": 231.7,
-      "ats_wins": 11,
+      "win_rate": 66.7,
+      "avg_for": 117.5,
+      "avg_against": 113.3,
+      "avg_total": 230.8,
+      "ats_wins": 12,
       "ats_losses": 15,
       "ats_pushes": 0,
-      "ats_rate": 42.3
+      "ats_rate": 44.4
      }
     },
     "last_2m": {
      "overall": {
-      "games": 26,
-      "wins": 15,
+      "games": 27,
+      "wins": 16,
       "losses": 11,
-      "win_rate": 57.7,
-      "avg_for": 114.2,
-      "avg_against": 113.8,
-      "avg_total": 228.0,
-      "ats_wins": 12,
+      "win_rate": 59.3,
+      "avg_for": 114.1,
+      "avg_against": 113.1,
+      "avg_total": 227.3,
+      "ats_wins": 13,
       "ats_losses": 14,
       "ats_pushes": 0,
-      "ats_rate": 46.2
+      "ats_rate": 48.1
      },
      "weekday": {
       "games": 3,
@@ -2053,32 +2053,32 @@
       "ats_rate": 50.0
      },
      "vs_weak": {
-      "games": 14,
-      "wins": 10,
+      "games": 15,
+      "wins": 11,
       "losses": 4,
-      "win_rate": 71.4,
-      "avg_for": 117.9,
-      "avg_against": 113.0,
-      "avg_total": 230.9,
-      "ats_wins": 6,
+      "win_rate": 73.3,
+      "avg_for": 117.5,
+      "avg_against": 111.9,
+      "avg_total": 229.4,
+      "ats_wins": 7,
       "ats_losses": 8,
       "ats_pushes": 0,
-      "ats_rate": 42.9
+      "ats_rate": 46.7
      }
     },
     "last_1m": {
      "overall": {
-      "games": 11,
-      "wins": 5,
+      "games": 12,
+      "wins": 6,
       "losses": 6,
-      "win_rate": 45.5,
-      "avg_for": 115.1,
-      "avg_against": 116.1,
-      "avg_total": 231.2,
-      "ats_wins": 5,
+      "win_rate": 50.0,
+      "avg_for": 114.9,
+      "avg_against": 114.4,
+      "avg_total": 229.3,
+      "ats_wins": 6,
       "ats_losses": 6,
       "ats_pushes": 0,
-      "ats_rate": 45.5
+      "ats_rate": 50.0
      },
      "weekday": {
       "games": 2,
@@ -2107,17 +2107,17 @@
       "ats_rate": 37.5
      },
      "vs_weak": {
-      "games": 3,
-      "wins": 3,
+      "games": 4,
+      "wins": 4,
       "losses": 0,
       "win_rate": 100.0,
-      "avg_for": 126.7,
-      "avg_against": 108.0,
-      "avg_total": 234.7,
-      "ats_wins": 2,
+      "avg_for": 123.2,
+      "avg_against": 105.0,
+      "avg_total": 228.2,
+      "ats_wins": 3,
       "ats_losses": 1,
       "ats_pushes": 0,
-      "ats_rate": 66.7
+      "ats_rate": 75.0
      }
     }
    },
@@ -2125,17 +2125,17 @@
     "weekday_name": "週六",
     "season": {
      "overall": {
-      "games": 84,
+      "games": 85,
       "wins": 55,
-      "losses": 29,
-      "win_rate": 65.5,
-      "avg_for": 121.9,
+      "losses": 30,
+      "win_rate": 64.7,
+      "avg_for": 121.6,
       "avg_against": 116.8,
-      "avg_total": 238.7,
+      "avg_total": 238.4,
       "ats_wins": 46,
-      "ats_losses": 38,
+      "ats_losses": 39,
       "ats_pushes": 0,
-      "ats_rate": 54.8
+      "ats_rate": 54.1
      },
      "weekday": {
       "games": 12,
@@ -2164,32 +2164,32 @@
       "ats_rate": 69.6
      },
      "vs_weak": {
-      "games": 61,
+      "games": 62,
       "wins": 44,
-      "losses": 17,
-      "win_rate": 72.1,
-      "avg_for": 124.6,
+      "losses": 18,
+      "win_rate": 71.0,
+      "avg_for": 124.1,
       "avg_against": 116.4,
-      "avg_total": 241.0,
+      "avg_total": 240.5,
       "ats_wins": 30,
-      "ats_losses": 31,
+      "ats_losses": 32,
       "ats_pushes": 0,
-      "ats_rate": 49.2
+      "ats_rate": 48.4
      }
     },
     "last_3m": {
      "overall": {
-      "games": 38,
+      "games": 39,
       "wins": 24,
-      "losses": 14,
-      "win_rate": 63.2,
-      "avg_for": 123.4,
-      "avg_against": 117.6,
-      "avg_total": 241.0,
+      "losses": 15,
+      "win_rate": 61.5,
+      "avg_for": 122.7,
+      "avg_against": 117.5,
+      "avg_total": 240.2,
       "ats_wins": 18,
-      "ats_losses": 20,
+      "ats_losses": 21,
       "ats_pushes": 0,
-      "ats_rate": 47.4
+      "ats_rate": 46.2
      },
      "weekday": {
       "games": 4,
@@ -2218,32 +2218,32 @@
       "ats_rate": 80.0
      },
      "vs_weak": {
-      "games": 28,
+      "games": 29,
       "wins": 20,
-      "losses": 8,
-      "win_rate": 71.4,
-      "avg_for": 123.4,
-      "avg_against": 115.4,
-      "avg_total": 238.8,
+      "losses": 9,
+      "win_rate": 69.0,
+      "avg_for": 122.4,
+      "avg_against": 115.3,
+      "avg_total": 237.8,
       "ats_wins": 10,
-      "ats_losses": 18,
+      "ats_losses": 19,
       "ats_pushes": 0,
-      "ats_rate": 35.7
+      "ats_rate": 34.5
      }
     },
     "last_2m": {
      "overall": {
-      "games": 26,
+      "games": 27,
       "wins": 19,
-      "losses": 7,
-      "win_rate": 73.1,
-      "avg_for": 124.3,
-      "avg_against": 118.0,
-      "avg_total": 242.3,
+      "losses": 8,
+      "win_rate": 70.4,
+      "avg_for": 123.3,
+      "avg_against": 117.8,
+      "avg_total": 241.0,
       "ats_wins": 13,
-      "ats_losses": 13,
+      "ats_losses": 14,
       "ats_pushes": 0,
-      "ats_rate": 50.0
+      "ats_rate": 48.1
      },
      "weekday": {
       "games": 3,
@@ -2272,32 +2272,32 @@
       "ats_rate": 100.0
      },
      "vs_weak": {
-      "games": 21,
+      "games": 22,
       "wins": 16,
-      "losses": 5,
-      "win_rate": 76.2,
-      "avg_for": 123.1,
-      "avg_against": 115.6,
-      "avg_total": 238.7,
+      "losses": 6,
+      "win_rate": 72.7,
+      "avg_for": 121.9,
+      "avg_against": 115.5,
+      "avg_total": 237.4,
       "ats_wins": 8,
-      "ats_losses": 13,
+      "ats_losses": 14,
       "ats_pushes": 0,
-      "ats_rate": 38.1
+      "ats_rate": 36.4
      }
     },
     "last_1m": {
      "overall": {
-      "games": 10,
+      "games": 11,
       "wins": 9,
-      "losses": 1,
-      "win_rate": 90.0,
-      "avg_for": 127.5,
-      "avg_against": 117.3,
-      "avg_total": 244.8,
+      "losses": 2,
+      "win_rate": 81.8,
+      "avg_for": 124.6,
+      "avg_against": 116.9,
+      "avg_total": 241.5,
       "ats_wins": 5,
-      "ats_losses": 5,
+      "ats_losses": 6,
       "ats_pushes": 0,
-      "ats_rate": 50.0
+      "ats_rate": 45.5
      },
      "weekday": {
       "games": 2,
@@ -2326,17 +2326,17 @@
       "ats_rate": 100.0
      },
      "vs_weak": {
-      "games": 8,
+      "games": 9,
       "wins": 7,
-      "losses": 1,
-      "win_rate": 87.5,
-      "avg_for": 126.4,
-      "avg_against": 115.1,
-      "avg_total": 241.5,
+      "losses": 2,
+      "win_rate": 77.8,
+      "avg_for": 123.0,
+      "avg_against": 114.9,
+      "avg_total": 237.9,
       "ats_wins": 3,
-      "ats_losses": 5,
+      "ats_losses": 6,
       "ats_pushes": 0,
-      "ats_rate": 37.5
+      "ats_rate": 33.3
      }
     }
    },
@@ -2361,35 +2361,35 @@
    "is_playoff": true,
    "series_round": "首輪",
    "round_num": 1,
-   "series_game_num": 3,
-   "series_home_wins": 1,
+   "series_game_num": 4,
+   "series_home_wins": 2,
    "series_away_wins": 1,
-   "series_status_text": "平手 1-1",
+   "series_status_text": "主隊領先 2-1",
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "客場明顯強勢",
+     "signal": "G4領先方複雜壓力",
      "side": "away",
      "ats_side": "讓分(押fav)",
      "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "backtest_roi": 13.5,
-     "backtest_n": 175,
-     "reason_zh": "客場近期勝率領先主場 60pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
+     "backtest_wr": 0.612,
+     "backtest_roi": 22.4,
+     "backtest_n": 85,
+     "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估"
     },
     {
-     "signal": "G3平手客場小優勢",
+     "signal": "G4客場邊",
      "side": "away",
      "ats_side": "讓分(押fav)",
      "tier": "BRONZE",
-     "backtest_wr": 0.516,
-     "backtest_roi": 1.5,
-     "backtest_n": 16,
-     "reason_zh": "系列賽平手1-1，G3低種子主場，歷史50%無明顯優勢，客場(高種子)稍有邊"
+     "backtest_wr": 0.573,
+     "backtest_roi": 9.2,
+     "backtest_n": 171,
+     "reason_zh": "第4場低種子主場，13季歷史高種子客場cover率 57.3% (n=171)，外客延伸優勢"
     }
    ],
    "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "客場明顯強勢",
+   "playoff_ats_best_signal": "G4領先方複雜壓力",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
@@ -2448,7 +2448,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 1,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {
