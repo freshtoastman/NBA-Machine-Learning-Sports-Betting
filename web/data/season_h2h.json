@@ -1866,11 +1866,11 @@
     "date": "2026-04-25",
     "home": "Minnesota Timberwolves",
     "away": "Denver Nuggets",
-    "spread": null,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Memphis Grizzlies": [
@@ -7426,7 +7426,7 @@
     "date": "2026-04-24",
     "home": "Portland Trail Blazers",
     "away": "San Antonio Spurs",
-    "spread": -1.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -10142,7 +10142,7 @@
     "date": "2026-04-25",
     "home": "Atlanta Hawks",
     "away": "New York Knicks",
-    "spread": -2.0,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
