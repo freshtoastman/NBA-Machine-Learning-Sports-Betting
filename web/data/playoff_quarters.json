@@ -482,5 +482,49 @@
     ],
     "home_score": 120,
     "away_score": 107
+  },
+  {
+    "gameId": "401869389",
+    "date": "2026-04-23",
+    "home_tri": "ATL",
+    "away_tri": "NY",
+    "home_name": "Atlanta Hawks",
+    "away_name": "New York Knicks",
+    "q_home": [
+      33,
+      25,
+      30,
+      21
+    ],
+    "q_away": [
+      21,
+      29,
+      30,
+      28
+    ],
+    "home_score": 109,
+    "away_score": 108
+  },
+  {
+    "gameId": "401869375",
+    "date": "2026-04-23",
+    "home_tri": "TOR",
+    "away_tri": "CLE",
+    "home_name": "Toronto Raptors",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      31,
+      23,
+      29,
+      43
+    ],
+    "q_away": [
+      25,
+      29,
+      27,
+      23
+    ],
+    "home_score": 126,
+    "away_score": 104
   }
 ]

@@ -1856,11 +1856,11 @@
     "date": "2026-04-23",
     "home": "Minnesota Timberwolves",
     "away": "Denver Nuggets",
-    "spread": -1.5,
+    "spread": 1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    },
    {
     "date": "2026-04-25",
@@ -2671,9 +2671,9 @@
     "home": "Toronto Raptors",
     "away": "Cleveland Cavaliers",
     "spread": -2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 22,
+    "home_score": 126,
+    "away_score": 104,
     "ats_result": "home"
    }
   ],
@@ -9942,7 +9942,7 @@
     "date": "2026-04-24",
     "home": "Houston Rockets",
     "away": "Los Angeles Lakers",
-    "spread": 10.5,
+    "spread": 9.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -10133,20 +10133,20 @@
     "home": "Atlanta Hawks",
     "away": "New York Knicks",
     "spread": -1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 1,
+    "home_score": 109,
+    "away_score": 108,
     "ats_result": "home"
    },
    {
     "date": "2026-04-25",
     "home": "Atlanta Hawks",
     "away": "New York Knicks",
-    "spread": null,
+    "spread": -2.0,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": null
+    "ats_result": "home"
    }
   ],
   "San Antonio Spurs:Utah Jazz": [

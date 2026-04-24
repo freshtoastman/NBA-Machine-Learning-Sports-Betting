@@ -48,10 +48,10 @@
  },
  "playoff_signals": {
   "hits": 11,
-  "misses": 2,
-  "pending": 17,
-  "decided": 13,
-  "hit_rate": 84.6,
+  "misses": 4,
+  "pending": 14,
+  "decided": 15,
+  "hit_rate": 73.3,
   "conviction": {
    "crushing_hits": 4,
    "dominant_hits": 3,
@@ -60,9 +60,9 @@
    "garbage_time_hits": 2,
    "total_hits": 11,
    "true_conviction_hits": 9,
-   "raw_hit_rate": 84.6,
-   "true_conviction_rate": 69.2,
-   "note_zh": "4 碾壓主導 + 3 主導 + 2 普通 + 2 險過；2 場受垃圾時間影響；真實信心率 69.2%"
+   "raw_hit_rate": 73.3,
+   "true_conviction_rate": 60.0,
+   "note_zh": "4 碾壓主導 + 3 主導 + 2 普通 + 2 險過；2 場受垃圾時間影響；真實信心率 60.0%"
   },
   "history": [
    {
@@ -480,38 +480,91 @@
     "conviction_source": "q3",
     "q3_picked_margin": 15.6,
     "q4_swing": -7
+   },
+   {
+    "date": "2026-04-23",
+    "game": "克里夫蘭騎士 @ 多倫多暴龍",
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "ats_winner": "home",
+    "ats_cover_margin": 24.5,
+    "series_game_num": 3,
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": "away",
+    "home_team": "Toronto Raptors",
+    "away_team": "Cleveland Cavaliers",
+    "spread": -2.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": -3.9,
+     "final_picked_margin": -24.5,
+     "q4_swing": 20,
+     "shrinkage": 20.6,
+     "garbage_time": true
+    },
+    "conviction": "moderate",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": -3.9,
+    "q4_swing": 20
+   },
+   {
+    "date": "2026-04-23",
+    "game": "克里夫蘭騎士 @ 多倫多暴龍",
+    "signal": "客場明顯強勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.594,
+    "ats_winner": "home",
+    "ats_cover_margin": 24.5,
+    "series_game_num": 3,
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": "away",
+    "home_team": "Toronto Raptors",
+    "away_team": "Cleveland Cavaliers",
+    "spread": -2.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": -3.9,
+     "final_picked_margin": -24.5,
+     "q4_swing": 20,
+     "shrinkage": 20.6,
+     "garbage_time": true
+    },
+    "conviction": "moderate",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": -3.9,
+    "q4_swing": 20
    }
   ],
   "pending_by_game": [
    {
     "date": "2026-04-23",
-    "game": "克里夫蘭騎士 @ 多倫多暴龍",
-    "signals": [
-     "G3客場擴大優勢",
-     "客場明顯強勢",
-     "客場系列領先繼續"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 64,
-    "series_game_num": 3,
-    "series_score": "2-0",
-    "has_strong_consensus": true,
-    "spread": -2.5
-   },
-   {
-    "date": "2026-04-23",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
-     "客場明顯強勢"
+     "客場明顯強勢",
+     "小讓分客場受讓"
     ],
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 59,
     "series_game_num": 3,
     "series_score": "1-1",
-    "has_strong_consensus": false,
-    "spread": -1.5
+    "has_strong_consensus": true,
+    "live_status": "Q3 2:07",
+    "live_home_score": 82,
+    "live_away_score": 58,
+    "live_home_covering": true,
+    "spread": 1.5
    },
    {
     "date": "2026-04-24",
@@ -534,8 +587,7 @@
     "game": "洛杉磯湖人 @ 休士頓火箭",
     "signals": [
      "G3客場擴大優勢",
-     "ML季後賽押客場",
-     "客場系列領先繼續"
+     "ML季後賽押客場"
     ],
     "consensus_side": "away",
     "has_conflict": false,
@@ -543,7 +595,7 @@
     "series_game_num": 3,
     "series_score": "2-0",
     "has_strong_consensus": true,
-    "spread": 10.5
+    "spread": 9.5
    },
    {
     "date": "2026-04-24",
@@ -575,6 +627,20 @@
    },
    {
     "date": "2026-04-25",
+    "game": "紐約尼克 @ 亞特蘭大老鷹",
+    "signals": [
+     "G4領先方複雜壓力"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 61,
+    "series_game_num": 4,
+    "series_score": "1-2",
+    "has_strong_consensus": false,
+    "spread": -2.0
+   },
+   {
+    "date": "2026-04-25",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signals": [
      "客場明顯強勢"
@@ -584,7 +650,11 @@
     "best_wr": 59,
     "series_game_num": 3,
     "series_score": "1-1",
-    "has_strong_consensus": false
+    "has_strong_consensus": false,
+    "live_status": "Q3 2:07",
+    "live_home_score": 82,
+    "live_away_score": 58,
+    "live_home_covering": true
    },
    {
     "date": "2026-04-25",
@@ -592,8 +662,7 @@
     "signals": [
      "G3客場擴大優勢",
      "主場ATS冷門反彈",
-     "客場明顯強勢",
-     "客場系列領先繼續"
+     "客場明顯強勢"
     ],
     "consensus_side": null,
     "has_conflict": true,
@@ -724,42 +793,72 @@
     "narrow_hits": 0,
     "garbage_time_hits": 1,
     "true_hit_rate": 100.0
+   },
+   {
+    "signal": "G3客場擴大優勢",
+    "hits": 0,
+    "misses": 1,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 0.0,
+    "backtest_wr": 64.3,
+    "crushing_hits": 0,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 0.0
+   },
+   {
+    "signal": "客場明顯強勢",
+    "hits": 0,
+    "misses": 1,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 0.0,
+    "backtest_wr": 59.4,
+    "crushing_hits": 0,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 0.0
    }
   ],
   "strong_consensus": {
    "hits": 1,
-   "misses": 0,
+   "misses": 1,
    "pending": 3,
-   "decided": 1,
-   "hit_rate": 100.0,
+   "decided": 2,
+   "hit_rate": 50.0,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "強共識(2+SILVER一致): 1勝/1場決定 = 100.0%，3場待定"
+   "note_zh": "強共識(2+SILVER一致): 1勝/2場決定 = 50.0%，3場待定"
   },
   "best_pick": {
    "hits": 5,
-   "misses": 0,
+   "misses": 1,
    "pending": 8,
-   "decided": 5,
-   "hit_rate": 100.0,
+   "decided": 6,
+   "hit_rate": 83.3,
    "gold_hits": 1,
    "gold_misses": 0,
    "silver_hits": 4,
-   "silver_misses": 0,
+   "silver_misses": 1,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/5場決定 = 100.0%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/6場決定 = 83.3%"
   }
  },
  "playoff_home_ats": {
-  "games": 22,
-  "home_covers": 12,
+  "games": 24,
+  "home_covers": 14,
   "away_covers": 10,
-  "home_cover_rate": 54.5,
-  "note_zh": "本季季後賽共 22 場有結果，主場過盤 12 場 (54.5%)"
+  "home_cover_rate": 58.3,
+  "note_zh": "本季季後賽共 24 場有結果，主場過盤 14 場 (58.3%)"
  }
 }

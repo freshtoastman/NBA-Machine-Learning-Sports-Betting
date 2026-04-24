@@ -583,6 +583,24 @@ def _build_signal_tracker(data_dir: Path) -> dict:
     decided = wins + losses
     pnl = round(wins * 0.91 - losses * 1.0, 2) if decided else 0
     roi = round(pnl / decided * 100, 1) if decided else None
+
+    game_results: dict[str, str] = {}
+    for d in details:
+        key = f"{d['date']}|{d['away']}|{d['home']}"
+        if d["result"] == "pending":
+            game_results.setdefault(key, "pending")
+        elif d["result"] == "win":
+            game_results.setdefault(key, "win")
+        else:
+            if game_results.get(key) != "win":
+                game_results[key] = "loss"
+
+    game_decided = {k: v for k, v in game_results.items() if v != "pending"}
+    game_wins = sum(1 for v in game_decided.values() if v == "win")
+    game_losses = sum(1 for v in game_decided.values() if v == "loss")
+    game_total = len(game_decided)
+    game_pnl = round(game_wins * 0.91 - game_losses * 1.0, 2) if game_total else 0
+
     return {
         "total": total,
         "decided": decided,
@@ -593,6 +611,16 @@ def _build_signal_tracker(data_dir: Path) -> dict:
         "pnl": pnl,
         "roi": roi,
         "by_tier": dict(by_tier),
+        "by_game": {
+            "total": len(game_results),
+            "decided": game_total,
+            "wins": game_wins,
+            "losses": game_losses,
+            "pending": len(game_results) - game_total,
+            "hit_rate": round(game_wins / game_total * 100, 1) if game_total else None,
+            "pnl": game_pnl,
+            "roi": round(game_pnl / game_total * 100, 1) if game_total else None,
+        },
         "details": details,
     }
 

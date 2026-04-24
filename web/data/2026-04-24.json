@@ -75,27 +75,6 @@
     "has_conflict": false
    },
    {
-    "game_key": "Los Angeles Lakers:Houston Rockets",
-    "home_team": "Houston Rockets",
-    "away_team": "Los Angeles Lakers",
-    "home_team_zh": "休士頓火箭",
-    "away_team_zh": "洛杉磯湖人",
-    "signal": "客場系列領先繼續",
-    "side": "away",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.555,
-    "backtest_roi": 5.9,
-    "reason_zh": "客隊系列領先 2-0，歷史客場cover率 55.5% (n=155，13季)，強隊主宰效應",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 3,
-    "series_home_wins": 0,
-    "series_away_wins": 2,
-    "strong_consensus": "away",
-    "has_conflict": false
-   },
-   {
     "game_key": "San Antonio Spurs:Portland Trail Blazers",
     "home_team": "Portland Trail Blazers",
     "away_team": "San Antonio Spurs",
@@ -159,13 +138,13 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 7,
+  "playoff_ats_count": 6,
   "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "Los Angeles Lakers: Jake LaRavia (缺陣)",
-   "Los Angeles Lakers: Austin Reaves (缺陣)",
-   "San Antonio Spurs: Victor Wembanyama (缺陣)",
-   "San Antonio Spurs: Jordan McLaughlin (缺陣)"
+   "Philadelphia 76ers: Joel Embiid (可能缺陣)",
+   "Houston Rockets: Kevin Durant (存疑)",
+   "Los Angeles Lakers: Austin Reaves (存疑)",
+   "San Antonio Spurs: Jordan McLaughlin (缺陣)",
+   "San Antonio Spurs: Victor Wembanyama (存疑)"
   ]
  },
  "games": {
@@ -176,13 +155,13 @@
    "away_confidence": 65.0,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 216.5,
+   "ou_value": 215.5,
    "ou_confidence": 59.1,
-   "home_team_ev": 19.1,
-   "away_team_ev": -13.01,
-   "home_team_odds": 240,
-   "away_team_odds": -295,
-   "home_kelly": 7.96,
+   "home_team_ev": 17.350000381469727,
+   "away_team_ev": -12.619999885559082,
+   "home_team_odds": 235,
+   "away_team_odds": -290,
+   "home_kelly": 7.380000114440918,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -637,8 +616,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 28.3,
-   "fair_away": 71.7,
+   "fair_home": 28.6,
+   "fair_away": 71.4,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -700,7 +679,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "injuries_home": [
-    "Joel Embiid (缺陣)"
+    "Joel Embiid (可能缺陣)"
    ],
    "injuries_away": [],
    "odds_history": [
@@ -775,16 +754,24 @@
      "ml_home": 240,
      "ml_away": -295,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-24T03:22:14+00:00",
+     "spread": -7.5,
+     "ou": 215.5,
+     "ml_home": 235,
+     "ml_away": -290,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -7.5,
    "spread_last": -7.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T02:29:36+00:00",
-   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
+   "spread_last_fetched_at": "2026-04-24T03:22:14+00:00",
    "ou_first": 216.5,
-   "ou_last": 216.5,
-   "ou_move": 0.0
+   "ou_last": 215.5,
+   "ou_move": -1.0
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
@@ -793,14 +780,14 @@
    "away_confidence": 43.7,
    "winner": "home",
    "ou_pick": "UNDER",
-   "ou_value": 205.5,
+   "ou_value": 206.5,
    "ou_confidence": 69.0,
-   "home_team_ev": -30.34,
-   "away_team_ev": 88.08,
-   "home_team_odds": -420,
-   "away_team_odds": 330,
+   "home_team_ev": -28.110000610351562,
+   "away_team_ev": 70.58999633789062,
+   "home_team_odds": -360,
+   "away_team_odds": 290,
    "home_kelly": 0,
-   "away_kelly": 26.69,
+   "away_kelly": 24.34000015258789,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.4,
@@ -809,7 +796,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 10.5,
+   "spread": 9.5,
    "home_profile": {
     "weekday_name": "週五",
     "season": {
@@ -1254,8 +1241,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 77.6,
-   "fair_away": 22.4,
+   "fair_home": 75.3,
+   "fair_away": 24.7,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1294,16 +1281,6 @@
      "backtest_roi": 22.2,
      "backtest_n": 175,
      "reason_zh": "模型押客場 (主場cover率 46%，客場讓 4pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    },
-    {
-     "signal": "客場系列領先繼續",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.555,
-     "backtest_roi": 5.9,
-     "backtest_n": 155,
-     "reason_zh": "客隊系列領先 2-0，歷史客場cover率 55.5% (n=155，13季)，強隊主宰效應"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1316,10 +1293,11 @@
    "away_team_zh": "洛杉磯湖人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Kevin Durant (存疑)"
+   ],
    "injuries_away": [
-    "Jake LaRavia (缺陣)",
-    "Austin Reaves (缺陣)"
+    "Austin Reaves (存疑)"
    ],
    "odds_history": [
     {
@@ -1369,16 +1347,24 @@
      "ml_home": -420,
      "ml_away": 330,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-24T03:22:14+00:00",
+     "spread": 9.5,
+     "ou": 206.5,
+     "ml_home": -360,
+     "ml_away": 290,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
-   "spread_last": 10.5,
-   "spread_move": 1.0,
+   "spread_last": 9.5,
+   "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T06:21:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
+   "spread_last_fetched_at": "2026-04-24T03:22:14+00:00",
    "ou_first": 205.5,
-   "ou_last": 205.5,
-   "ou_move": 0.0
+   "ou_last": 206.5,
+   "ou_move": 1.0
   },
   "San Antonio Spurs:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
@@ -1389,12 +1375,12 @@
    "ou_pick": "OVER",
    "ou_value": 220.5,
    "ou_confidence": 55.0,
-   "home_team_ev": -35.56,
-   "away_team_ev": 22.64,
-   "home_team_odds": 110,
-   "away_team_odds": -130,
+   "home_team_ev": -33.72999954223633,
+   "away_team_ev": 20.290000915527344,
+   "home_team_odds": 116,
+   "away_team_odds": -136,
    "home_kelly": 0,
-   "away_kelly": 29.47,
+   "away_kelly": 27.860000610351562,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.7,
@@ -1848,8 +1834,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 45.7,
-   "fair_away": 54.3,
+   "fair_home": 44.5,
+   "fair_away": 55.5,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1922,8 +1908,8 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Victor Wembanyama (缺陣)",
-    "Jordan McLaughlin (缺陣)"
+    "Jordan McLaughlin (缺陣)",
+    "Victor Wembanyama (存疑)"
    ],
    "odds_history": [
     {
@@ -1981,13 +1967,21 @@
      "ml_home": 110,
      "ml_away": -130,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-24T03:22:14+00:00",
+     "spread": -1.5,
+     "ou": 220.5,
+     "ml_home": 116,
+     "ml_away": -136,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-22T03:29:22+00:00",
-   "spread_last_fetched_at": "2026-04-23T20:10:52+00:00",
+   "spread_last_fetched_at": "2026-04-24T03:22:14+00:00",
    "ou_first": 220.5,
    "ou_last": 220.5,
    "ou_move": 0.0
@@ -2000,7 +1994,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 2,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "east"
   },
   {
@@ -2017,7 +2011,7 @@
    "round_label": "首輪",
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 1,
    "conference": "east"
   },
