@@ -922,8 +922,8 @@ def build_bracket(target_date: date) -> dict | None:
                         _fkey = frozenset(_parts)
                         if _day_offset == 0:
                             _today_game_lookup[_fkey] = _gv
-                        # Keep soonest upcoming game (first occurrence wins)
-                        if _fkey not in _upcoming_game_lookup:
+                        _already_played = _gv.get("home_score") is not None and _gv.get("away_score") is not None
+                        if _fkey not in _upcoming_game_lookup and not _already_played:
                             _upcoming_game_lookup[_fkey] = _gv
         except Exception:
             pass

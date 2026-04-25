@@ -643,14 +643,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G3客場擴大優勢",
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Houston Rockets",
      "home_team_zh": "休士頓火箭",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
-     "consensus_count": 2
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -712,14 +711,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "ML高信心+小讓分",
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Portland Trail Blazers",
      "home_team_zh": "波特蘭拓荒者",
-     "tier": "GOLD",
-     "backtest_wr": 0.8,
-     "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%",
-     "consensus_count": 2
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    }
   ]

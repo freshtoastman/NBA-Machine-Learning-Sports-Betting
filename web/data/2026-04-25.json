@@ -140,7 +140,7 @@
   ],
   "playoff_ats_count": 6,
   "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (可能缺陣)",
+   "Orlando Magic: Jonathan Isaac (缺陣)",
    "Phoenix Suns: Jordan Goodwin (存疑)",
    "Phoenix Suns: Mark Williams (缺陣)",
    "Oklahoma City Thunder: Isaiah Joe (可能缺陣)",
@@ -672,7 +672,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "injuries_home": [
-    "Jonathan Isaac (可能缺陣)"
+    "Jonathan Isaac (缺陣)"
    ],
    "injuries_away": [],
    "odds_history": [
