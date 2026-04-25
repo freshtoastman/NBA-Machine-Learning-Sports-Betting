@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 15,
   "misses": 5,
-  "pending": 6,
+  "pending": 7,
   "decided": 20,
   "hit_rate": 75.0,
   "conviction": {
@@ -711,15 +711,16 @@
     "date": "2026-04-25",
     "game": "底特律活塞 @ 奧蘭多魔術",
     "signals": [
-     "ML中信心+小讓分"
+     "ML中信心+小讓分",
+     "ML季後賽押客場"
     ],
     "consensus_side": "away",
     "has_conflict": false,
     "best_wr": 67,
     "series_game_num": 3,
     "series_score": "1-1",
-    "has_strong_consensus": false,
-    "spread": -2.5
+    "has_strong_consensus": true,
+    "spread": -1.5
    },
    {
     "date": "2026-04-25",
@@ -763,7 +764,11 @@
     "series_game_num": 3,
     "series_score": "2-0",
     "has_strong_consensus": false,
-    "spread": -9.5
+    "live_status": "Q2 4:46",
+    "live_home_score": 47,
+    "live_away_score": 48,
+    "live_home_covering": true,
+    "spread": -8.5
    }
   ],
   "by_signal": [
@@ -936,14 +941,14 @@
   "strong_consensus": {
    "hits": 2,
    "misses": 1,
-   "pending": 0,
+   "pending": 1,
    "decided": 3,
    "hit_rate": 66.7,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/3場決定 = 66.7%，0場待定"
+   "note_zh": "強共識(2+SILVER一致): 2勝/3場決定 = 66.7%，1場待定"
   },
   "best_pick": {
    "hits": 5,

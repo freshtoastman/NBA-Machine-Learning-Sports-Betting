@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-23",
- "generated_for": "2026-04-25",
+ "generated_for": "2026-04-26",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -255,7 +255,8 @@
      "home_team_zh": "奧蘭多魔術",
      "tier": "SILVER",
      "backtest_wr": 0.667,
-     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%"
+     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%",
+     "consensus_count": 2
     }
    },
    {
@@ -723,11 +724,11 @@
   ]
  },
  "signal_tracker": {
-  "total": 26,
+  "total": 27,
   "decided": 20,
   "wins": 15,
   "losses": 5,
-  "pending": 6,
+  "pending": 7,
   "hit_rate": 75.0,
   "pnl": 8.65,
   "roi": 43.2,
@@ -735,7 +736,7 @@
    "SILVER": {
     "wins": 11,
     "losses": 4,
-    "pending": 6
+    "pending": 7
    },
    "GOLD": {
     "wins": 4,
@@ -982,6 +983,17 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.667,
+    "result": "pending",
+    "margin": null
+   },
+   {
+    "date": "2026-04-25",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
     "result": "pending",
     "margin": null
    },
