@@ -82,7 +82,7 @@
    "ou_value": 217.5,
    "ou_confidence": 51.2,
    "home_team_ev": -29.8,
-   "away_team_ev": 156.79,
+   "away_team_ev": 156.78,
    "home_team_odds": -847,
    "away_team_odds": 590,
    "home_kelly": 0,
@@ -667,7 +667,7 @@
    "ou_value": 221.5,
    "ou_confidence": 54.5,
    "home_team_ev": -15.94,
-   "away_team_ev": 49.23,
+   "away_team_ev": 49.22,
    "home_team_odds": -559,
    "away_team_odds": 420,
    "home_kelly": 0,
@@ -1237,8 +1237,8 @@
    "ou_pick": "OVER",
    "ou_value": 208.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 57.24,
-   "away_team_ev": -33.08,
+   "home_team_ev": 57.25,
+   "away_team_ev": -33.09,
    "home_team_odds": 198,
    "away_team_odds": -240,
    "home_kelly": 28.91,
@@ -1850,7 +1850,7 @@
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
    "high_wins": 0,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -1858,7 +1858,7 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 1,
    "conference": "east"
   },
@@ -1886,7 +1886,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {

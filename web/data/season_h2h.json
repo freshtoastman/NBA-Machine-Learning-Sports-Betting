@@ -299,10 +299,10 @@
     "home": "Philadelphia 76ers",
     "away": "Boston Celtics",
     "spread": -7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -8,
+    "home_score": 100,
+    "away_score": 108,
+    "ats_result": "away"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -7427,10 +7427,10 @@
     "home": "Portland Trail Blazers",
     "away": "San Antonio Spurs",
     "spread": -2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -12,
+    "home_score": 108,
+    "away_score": 120,
+    "ats_result": "away"
    }
   ],
   "Golden State Warriors:Houston Rockets": [
@@ -9943,9 +9943,9 @@
     "home": "Houston Rockets",
     "away": "Los Angeles Lakers",
     "spread": 9.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -4,
+    "home_score": 108,
+    "away_score": 112,
     "ats_result": "away"
    }
   ],

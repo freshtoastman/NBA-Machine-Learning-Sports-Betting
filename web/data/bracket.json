@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-23",
- "generated_for": "2026-04-24",
+ "generated_for": "2026-04-25",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -283,14 +283,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G3客場擴大優勢",
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Toronto Raptors",
      "home_team_zh": "多倫多暴龍",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
-     "consensus_count": 2
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -318,13 +317,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G4客場優勢",
+     "signal": "G4領先方複雜壓力",
      "side": "away",
      "home_team": "Atlanta Hawks",
      "home_team_zh": "亞特蘭大老鷹",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
+     "tier": "SILVER",
+     "backtest_wr": 0.612,
+     "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估"
     }
    },
    {
@@ -347,18 +346,18 @@
      "win_pct": 0.549,
      "seed": 7
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 1,
-    "games_played": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
-     "signal": "G3平手客場冷門",
+     "game_num": 4,
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Philadelphia 76ers",
      "home_team_zh": "費城七六人",
      "tier": "BRONZE",
-     "backtest_wr": 0.516,
-     "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    }
   ]
@@ -639,11 +638,11 @@
      "win_pct": 0.634,
      "seed": 5
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 0,
-    "games_played": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
+     "game_num": 4,
      "signal": "G3客場擴大優勢",
      "side": "away",
      "home_team": "Houston Rockets",
@@ -679,13 +678,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "ML季後賽押客場",
+     "signal": "G4領先方複雜壓力",
      "side": "away",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
      "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
+     "backtest_wr": 0.612,
+     "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估"
     }
    },
    {
@@ -708,11 +707,11 @@
      "win_pct": 0.512,
      "seed": 7
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 1,
-    "games_played": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
+     "game_num": 4,
      "signal": "ML高信心+小讓分",
      "side": "away",
      "home_team": "Portland Trail Blazers",
@@ -727,34 +726,34 @@
  },
  "signal_tracker": {
   "total": 26,
-  "decided": 16,
-  "wins": 11,
+  "decided": 20,
+  "wins": 15,
   "losses": 5,
-  "pending": 10,
-  "hit_rate": 68.8,
-  "pnl": 5.01,
-  "roi": 31.3,
+  "pending": 6,
+  "hit_rate": 75.0,
+  "pnl": 8.65,
+  "roi": 43.2,
   "by_tier": {
    "SILVER": {
-    "wins": 8,
+    "wins": 11,
     "losses": 4,
-    "pending": 9
+    "pending": 6
    },
    "GOLD": {
-    "wins": 3,
+    "wins": 4,
     "losses": 1,
-    "pending": 1
+    "pending": 0
    }
   },
   "by_game": {
    "total": 18,
-   "decided": 12,
-   "wins": 9,
+   "decided": 14,
+   "wins": 11,
    "losses": 3,
-   "pending": 6,
-   "hit_rate": 75.0,
-   "pnl": 5.19,
-   "roi": 43.3
+   "pending": 4,
+   "hit_rate": 78.6,
+   "pnl": 7.01,
+   "roi": 50.1
   },
   "details": [
    {
@@ -941,8 +940,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.643,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -13.5
    },
    {
     "date": "2026-04-24",
@@ -952,8 +951,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -13.5
    },
    {
     "date": "2026-04-24",
@@ -963,8 +962,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.8,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -9.5
    },
    {
     "date": "2026-04-24",
@@ -974,8 +973,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -9.5
    },
    {
     "date": "2026-04-25",
