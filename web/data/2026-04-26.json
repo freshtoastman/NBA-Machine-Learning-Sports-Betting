@@ -33,27 +33,6 @@
     "has_conflict": false
    },
    {
-    "game_key": "San Antonio Spurs:Portland Trail Blazers",
-    "home_team": "Portland Trail Blazers",
-    "away_team": "San Antonio Spurs",
-    "home_team_zh": "波特蘭拓荒者",
-    "away_team_zh": "聖安東尼奧馬刺",
-    "signal": "ML高信心+小讓分",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "GOLD",
-    "backtest_wr": 0.8,
-    "backtest_roi": 52.7,
-    "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 4,
-    "series_home_wins": 1,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": false
-   },
-   {
     "game_key": "Los Angeles Lakers:Houston Rockets",
     "home_team": "Houston Rockets",
     "away_team": "Los Angeles Lakers",
@@ -75,7 +54,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 3,
+  "playoff_ats_count": 2,
   "injury_alerts": [
    "Toronto Raptors: Immanuel Quickley (缺陣)",
    "San Antonio Spurs: Victor Wembanyama (存疑)",
@@ -639,21 +618,21 @@
    "ou_pick": "OVER",
    "ou_value": 218.5,
    "ou_confidence": 55.0,
-   "home_team_ev": -18.36,
-   "away_team_ev": 4.31,
-   "home_team_odds": 168,
-   "away_team_odds": -200,
+   "home_team_ev": -18.97,
+   "away_team_ev": 4.66,
+   "home_team_odds": 166,
+   "away_team_odds": -198,
    "home_kelly": 0,
-   "away_kelly": 8.62,
+   "away_kelly": 9.81,
    "is_historical": true,
-   "ats_model_pick": "away",
-   "ats_model_home_prob": 49.8,
-   "ats_model_confidence": 50.2,
-   "ats_value_edge": 0.2,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 50.1,
+   "ats_model_confidence": 50.1,
+   "ats_value_edge": 0.1,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -4.5,
+   "spread": -5.5,
    "home_profile": {
     "weekday_name": "週日",
     "season": {
@@ -1098,8 +1077,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 35.9,
-   "fair_away": 64.1,
+   "fair_home": 36.1,
+   "fair_away": 63.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1120,16 +1099,6 @@
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "ML高信心+小讓分",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "GOLD",
-     "backtest_wr": 0.8,
-     "backtest_roi": 52.7,
-     "backtest_n": 15,
-     "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%"
-    },
-    {
      "signal": "G4客場邊",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -1141,8 +1110,8 @@
     }
    ],
    "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "ML高信心+小讓分",
-   "playoff_ats_best_tier": "GOLD",
+   "playoff_ats_best_signal": "G4客場邊",
+   "playoff_ats_best_tier": "BRONZE",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
@@ -1163,13 +1132,21 @@
      "ml_home": 168,
      "ml_away": -200,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-26T15:48:47+00:00",
+     "spread": -5.5,
+     "ou": 218.5,
+     "ml_home": 166,
+     "ml_away": -198,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -4.5,
-   "spread_last": -4.5,
-   "spread_move": 0.0,
+   "spread_last": -5.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-26T15:37:47+00:00",
-   "spread_last_fetched_at": "2026-04-26T15:37:47+00:00",
+   "spread_last_fetched_at": "2026-04-26T15:48:47+00:00",
    "ou_first": 218.5,
    "ou_last": 218.5,
    "ou_move": 0.0

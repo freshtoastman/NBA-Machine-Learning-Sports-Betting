@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 18,
   "misses": 8,
-  "pending": 8,
+  "pending": 7,
   "decided": 26,
   "hit_rate": 69.2,
   "conviction": {
@@ -901,20 +901,6 @@
   "pending_by_game": [
    {
     "date": "2026-04-26",
-    "game": "聖安東尼奧馬刺 @ 波特蘭拓荒者",
-    "signals": [
-     "ML高信心+小讓分"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 80,
-    "series_game_num": 4,
-    "series_score": "2-1",
-    "has_strong_consensus": false,
-    "spread": -4.5
-   },
-   {
-    "date": "2026-04-26",
     "game": "洛杉磯湖人 @ 休士頓火箭",
     "signals": [
      "ML季後賽押客場"
@@ -1211,7 +1197,7 @@
   "best_pick": {
    "hits": 5,
    "misses": 3,
-   "pending": 7,
+   "pending": 6,
    "decided": 8,
    "hit_rate": 62.5,
    "gold_hits": 1,
