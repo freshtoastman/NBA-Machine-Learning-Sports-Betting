@@ -1,10 +1,10 @@
 {
  "season": "2025-26",
- "games": 1239,
- "ml_hits": 882,
- "ml_hit_rate": 71.2,
- "ou_hits": 576,
- "ou_hit_rate": 46.5,
+ "games": 1249,
+ "ml_hits": 887,
+ "ml_hit_rate": 71.0,
+ "ou_hits": 582,
+ "ou_hit_rate": 46.6,
  "value_picks": 49,
  "value_wins": 39,
  "value_losses": 10,
@@ -17,8 +17,8 @@
  "golden_hit_rate": 79.1,
  "golden_pl": 11.08,
  "golden_roi": 25.8,
- "brier": 0.1981,
- "calib_gap_mid": 0.1233,
+ "brier": 0.1984,
+ "calib_gap_mid": 0.1228,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -29,10 +29,10 @@
  "elite_total_stake": 49000,
  "perfect_hits": 32,
  "ats_model": {
-  "games": 1239,
-  "hits": 635,
-  "hit_rate": 51.3,
-  "home_pick_pct": 50.6,
+  "games": 1249,
+  "hits": 638,
+  "hit_rate": 51.1,
+  "home_pick_pct": 50.4,
   "value_bets": 63,
   "value_wins": 46,
   "value_losses": 17,
@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 18,
   "misses": 9,
-  "pending": 0,
+  "pending": 9,
   "decided": 27,
   "hit_rate": 66.7,
   "conviction": {
@@ -930,7 +930,82 @@
     "q4_swing": 12
    }
   ],
-  "pending_by_game": [],
+  "pending_by_game": [
+   {
+    "date": "2026-04-26",
+    "game": "洛杉磯湖人 @ 休士頓火箭",
+    "signals": [
+     "ML季後賽押客場"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 64,
+    "series_game_num": 4,
+    "series_score": "3-0",
+    "has_strong_consensus": false,
+    "spread": 4.5
+   },
+   {
+    "date": "2026-04-26",
+    "game": "克里夫蘭騎士 @ 多倫多暴龍",
+    "signals": [
+     "客場明顯強勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
+    "series_game_num": 4,
+    "series_score": "2-1",
+    "has_strong_consensus": false,
+    "spread": -3.5
+   },
+   {
+    "date": "2026-04-27",
+    "game": "底特律活塞 @ 奧蘭多魔術",
+    "signals": [
+     "ML中信心+小讓分",
+     "ML季後賽押客場",
+     "G4領先方複雜壓力"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 67,
+    "series_game_num": 4,
+    "series_score": "1-2",
+    "has_strong_consensus": true,
+    "spread": 2.5
+   },
+   {
+    "date": "2026-04-27",
+    "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
+    "signals": [
+     "ML季後賽押客場",
+     "主場ATS冷門反彈",
+     "客場明顯強勢"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 64,
+    "series_game_num": 4,
+    "series_score": "3-0",
+    "has_strong_consensus": false,
+    "spread": 11.5
+   },
+   {
+    "date": "2026-04-28",
+    "game": "亞特蘭大老鷹 @ 紐約尼克",
+    "signals": [
+     "G5平手主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 60,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": -6.5
+   }
+  ],
   "by_signal": [
    {
     "signal": "ML季後賽押客場",
@@ -1131,19 +1206,19 @@
   "strong_consensus": {
    "hits": 2,
    "misses": 2,
-   "pending": 0,
+   "pending": 1,
    "decided": 4,
    "hit_rate": 50.0,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/4場決定 = 50.0%，0場待定"
+   "note_zh": "強共識(2+SILVER一致): 2勝/4場決定 = 50.0%，1場待定"
   },
   "best_pick": {
    "hits": 6,
    "misses": 3,
-   "pending": 0,
+   "pending": 5,
    "decided": 9,
    "hit_rate": 66.7,
    "gold_hits": 1,
