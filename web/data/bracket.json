@@ -312,18 +312,18 @@
      "win_pct": 0.561,
      "seed": 6
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 2,
-    "games_played": 3,
+    "games_played": 4,
     "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Atlanta Hawks",
-     "home_team_zh": "亞特蘭大老鷹",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
+     "game_num": 5,
+     "signal": "G5平手主場壓制",
+     "side": "home",
+     "home_team": "New York Knicks",
+     "home_team_zh": "紐約尼克",
+     "tier": "SILVER",
+     "backtest_wr": 0.6,
+     "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)，最強結構信號"
     }
    },
    {
@@ -600,18 +600,18 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 0,
-    "games_played": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
-     "signal": "G3客場擴大優勢",
+     "game_num": 4,
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Phoenix Suns",
      "home_team_zh": "鳳凰城太陽",
-     "tier": "SILVER",
-     "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -669,18 +669,8 @@
      "seed": 6
     },
     "high_wins": 1,
-    "low_wins": 2,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Minnesota Timberwolves",
-     "home_team_zh": "明尼蘇達灰狼",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-    }
+    "low_wins": 3,
+    "games_played": 4
    },
    {
     "label": "2 vs 7",
