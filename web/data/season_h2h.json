@@ -1867,9 +1867,9 @@
     "home": "Minnesota Timberwolves",
     "away": "Denver Nuggets",
     "spread": -1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 16,
+    "home_score": 112,
+    "away_score": 96,
     "ats_result": "home"
    }
   ],
@@ -7667,10 +7667,10 @@
     "home": "Phoenix Suns",
     "away": "Oklahoma City Thunder",
     "spread": -8.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -12,
+    "home_score": 109,
+    "away_score": 121,
+    "ats_result": "away"
    }
   ],
   "LA Clippers:Memphis Grizzlies": [
@@ -10143,10 +10143,10 @@
     "home": "Atlanta Hawks",
     "away": "New York Knicks",
     "spread": -1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -16,
+    "home_score": 98,
+    "away_score": 114,
+    "ats_result": "away"
    }
   ],
   "San Antonio Spurs:Utah Jazz": [

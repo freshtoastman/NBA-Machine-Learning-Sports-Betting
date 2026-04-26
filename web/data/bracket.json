@@ -317,13 +317,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G4領先方複雜壓力",
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Atlanta Hawks",
      "home_team_zh": "亞特蘭大老鷹",
-     "tier": "SILVER",
-     "backtest_wr": 0.612,
-     "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估"
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -611,11 +611,7 @@
      "home_team_zh": "鳳凰城太陽",
      "tier": "SILVER",
      "backtest_wr": 0.643,
-     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
-     "consensus_count": 3,
-     "has_conflict": true,
-     "conflict_signal": "主場ATS冷門反彈",
-     "conflict_wr": 0.6
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
@@ -677,13 +673,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G4領先方複雜壓力",
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
-     "tier": "SILVER",
-     "backtest_wr": 0.612,
-     "reason_zh": "G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估"
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -724,18 +720,18 @@
  },
  "signal_tracker": {
   "total": 27,
-  "decided": 22,
-  "wins": 15,
-  "losses": 7,
-  "pending": 5,
-  "hit_rate": 68.2,
-  "pnl": 6.65,
-  "roi": 30.2,
+  "decided": 27,
+  "wins": 18,
+  "losses": 9,
+  "pending": 0,
+  "hit_rate": 66.7,
+  "pnl": 7.38,
+  "roi": 27.3,
   "by_tier": {
    "SILVER": {
-    "wins": 11,
-    "losses": 6,
-    "pending": 5
+    "wins": 14,
+    "losses": 8,
+    "pending": 0
    },
    "GOLD": {
     "wins": 4,
@@ -743,15 +739,41 @@
     "pending": 0
    }
   },
+  "by_game_num": {
+   "G1": {
+    "wins": 6,
+    "losses": 2,
+    "pending": 0,
+    "hit_rate": 75.0
+   },
+   "G2": {
+    "wins": 5,
+    "losses": 0,
+    "pending": 0,
+    "hit_rate": 100.0
+   },
+   "G3": {
+    "wins": 6,
+    "losses": 6,
+    "pending": 0,
+    "hit_rate": 50.0
+   },
+   "G4": {
+    "wins": 1,
+    "losses": 1,
+    "pending": 0,
+    "hit_rate": 50.0
+   }
+  },
   "by_game": {
    "total": 18,
-   "decided": 15,
-   "wins": 11,
-   "losses": 4,
-   "pending": 3,
-   "hit_rate": 73.3,
-   "pnl": 6.01,
-   "roi": 40.1
+   "decided": 18,
+   "wins": 13,
+   "losses": 5,
+   "pending": 0,
+   "hit_rate": 72.2,
+   "pnl": 6.83,
+   "roi": 37.9
   },
   "details": [
    {
@@ -763,7 +785,8 @@
     "side": "away",
     "backtest_wr": 0.619,
     "result": "win",
-    "margin": -4.5
+    "margin": -4.5,
+    "game_num": 1
    },
    {
     "date": "2026-04-18",
@@ -774,7 +797,8 @@
     "side": "home",
     "backtest_wr": 0.6,
     "result": "win",
-    "margin": 5.0
+    "margin": 5.0,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -785,7 +809,8 @@
     "side": "home",
     "backtest_wr": 0.818,
     "result": "win",
-    "margin": 18.5
+    "margin": 18.5,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -796,7 +821,8 @@
     "side": "home",
     "backtest_wr": 0.8,
     "result": "win",
-    "margin": 18.5
+    "margin": 18.5,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -807,7 +833,8 @@
     "side": "home",
     "backtest_wr": 0.818,
     "result": "win",
-    "margin": 18.5
+    "margin": 18.5,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -818,7 +845,8 @@
     "side": "home",
     "backtest_wr": 0.8,
     "result": "win",
-    "margin": 18.5
+    "margin": 18.5,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -829,7 +857,8 @@
     "side": "home",
     "backtest_wr": 0.818,
     "result": "loss",
-    "margin": -1.0
+    "margin": -1.0,
+    "game_num": 1
    },
    {
     "date": "2026-04-19",
@@ -840,7 +869,8 @@
     "side": "home",
     "backtest_wr": 0.8,
     "result": "loss",
-    "margin": -1.0
+    "margin": -1.0,
+    "game_num": 1
    },
    {
     "date": "2026-04-20",
@@ -851,7 +881,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "win",
-    "margin": -7.0
+    "margin": -7.0,
+    "game_num": 2
    },
    {
     "date": "2026-04-20",
@@ -862,7 +893,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "win",
-    "margin": -12.5
+    "margin": -12.5,
+    "game_num": 2
    },
    {
     "date": "2026-04-21",
@@ -873,7 +905,8 @@
     "side": "away",
     "backtest_wr": 0.889,
     "result": "win",
-    "margin": -13.5
+    "margin": -13.5,
+    "game_num": 2
    },
    {
     "date": "2026-04-21",
@@ -884,7 +917,8 @@
     "side": "home",
     "backtest_wr": 0.667,
     "result": "win",
-    "margin": 12.5
+    "margin": 12.5,
+    "game_num": 2
    },
    {
     "date": "2026-04-22",
@@ -895,7 +929,8 @@
     "side": "home",
     "backtest_wr": 0.649,
     "result": "win",
-    "margin": 6.5
+    "margin": 6.5,
+    "game_num": 2
    },
    {
     "date": "2026-04-23",
@@ -906,7 +941,8 @@
     "side": "away",
     "backtest_wr": 0.643,
     "result": "loss",
-    "margin": 24.5
+    "margin": 24.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-23",
@@ -917,7 +953,8 @@
     "side": "away",
     "backtest_wr": 0.594,
     "result": "loss",
-    "margin": 24.5
+    "margin": 24.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-23",
@@ -928,7 +965,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "loss",
-    "margin": 15.5
+    "margin": 15.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -939,7 +977,8 @@
     "side": "away",
     "backtest_wr": 0.643,
     "result": "win",
-    "margin": -13.5
+    "margin": -13.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -950,7 +989,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "win",
-    "margin": -13.5
+    "margin": -13.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -961,7 +1001,8 @@
     "side": "away",
     "backtest_wr": 0.8,
     "result": "win",
-    "margin": -9.5
+    "margin": -9.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-24",
@@ -972,7 +1013,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "win",
-    "margin": -9.5
+    "margin": -9.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -983,7 +1025,8 @@
     "side": "away",
     "backtest_wr": 0.667,
     "result": "loss",
-    "margin": 9.5
+    "margin": 9.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -994,7 +1037,8 @@
     "side": "away",
     "backtest_wr": 0.64,
     "result": "loss",
-    "margin": 9.5
+    "margin": 9.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -1004,8 +1048,9 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.643,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -3.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -1015,8 +1060,9 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null
+    "result": "loss",
+    "margin": -3.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -1026,8 +1072,9 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -3.5,
+    "game_num": 3
    },
    {
     "date": "2026-04-25",
@@ -1037,8 +1084,9 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.612,
-    "result": "pending",
-    "margin": null
+    "result": "win",
+    "margin": -14.5,
+    "game_num": 4
    },
    {
     "date": "2026-04-25",
@@ -1048,8 +1096,9 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.612,
-    "result": "pending",
-    "margin": null
+    "result": "loss",
+    "margin": 17.5,
+    "game_num": 4
    }
   ]
  }

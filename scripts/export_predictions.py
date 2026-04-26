@@ -547,6 +547,7 @@ def _build_signal_tracker(data_dir: Path) -> dict:
     from collections import defaultdict
     total = wins = losses = pending = 0
     by_tier = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
+    by_game_num = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
     details = []
     for f in sorted(data_dir.glob("2026-04-*.json")):
         try:
@@ -558,17 +559,22 @@ def _build_signal_tracker(data_dir: Path) -> dict:
             tier = a.get("tier", "?")
             side = a.get("side")
             winner = a.get("ats_winner")
+            gn = a.get("series_game_num")
+            gn_key = f"G{gn}" if gn else "?"
             total += 1
             if winner is not None:
                 if winner == side:
                     wins += 1
                     by_tier[tier]["wins"] += 1
+                    by_game_num[gn_key]["wins"] += 1
                 else:
                     losses += 1
                     by_tier[tier]["losses"] += 1
+                    by_game_num[gn_key]["losses"] += 1
             else:
                 pending += 1
                 by_tier[tier]["pending"] += 1
+                by_game_num[gn_key]["pending"] += 1
             details.append({
                 "date": d.get("date", ""),
                 "away": a.get("away_team_zh", a.get("away_team", "")),
@@ -579,27 +585,50 @@ def _build_signal_tracker(data_dir: Path) -> dict:
                 "backtest_wr": a.get("backtest_wr"),
                 "result": "win" if winner == side else ("loss" if winner is not None else "pending"),
                 "margin": a.get("ats_cover_margin"),
+                "game_num": gn,
             })
     decided = wins + losses
     pnl = round(wins * 0.91 - losses * 1.0, 2) if decided else 0
     roi = round(pnl / decided * 100, 1) if decided else None
 
-    game_results: dict[str, str] = {}
+    # Game-level: use majority-vote consensus per game (not "any signal wins")
+    game_votes: dict[str, dict] = {}
     for d in details:
         key = f"{d['date']}|{d['away']}|{d['home']}"
+        if key not in game_votes:
+            game_votes[key] = {"home": 0, "away": 0, "pending": False, "ats_winner": None}
         if d["result"] == "pending":
-            game_results.setdefault(key, "pending")
-        elif d["result"] == "win":
-            game_results.setdefault(key, "win")
+            game_votes[key]["pending"] = True
         else:
-            if game_results.get(key) != "win":
-                game_results[key] = "loss"
+            # Derive the actual ATS winner from any decided signal
+            if d["result"] == "win":
+                game_votes[key]["ats_winner"] = d["side"]
+            elif game_votes[key]["ats_winner"] is None:
+                game_votes[key]["ats_winner"] = "home" if d["side"] == "away" else "away"
+            game_votes[key][d["side"]] += 1
 
-    game_decided = {k: v for k, v in game_results.items() if v != "pending"}
-    game_wins = sum(1 for v in game_decided.values() if v == "win")
-    game_losses = sum(1 for v in game_decided.values() if v == "loss")
-    game_total = len(game_decided)
+    game_wins = game_losses = 0
+    for gv in game_votes.values():
+        if gv["pending"] or gv["ats_winner"] is None:
+            continue
+        consensus = "home" if gv["home"] > gv["away"] else "away" if gv["away"] > gv["home"] else None
+        if consensus is None:
+            continue
+        if consensus == gv["ats_winner"]:
+            game_wins += 1
+        else:
+            game_losses += 1
+    game_total = game_wins + game_losses
     game_pnl = round(game_wins * 0.91 - game_losses * 1.0, 2) if game_total else 0
+
+    by_gn_sorted = {}
+    for gn_key in sorted(by_game_num.keys()):
+        v = by_game_num[gn_key]
+        d = v["wins"] + v["losses"]
+        by_gn_sorted[gn_key] = {
+            **v,
+            "hit_rate": round(v["wins"] / d * 100, 1) if d else None,
+        }
 
     return {
         "total": total,
@@ -611,12 +640,13 @@ def _build_signal_tracker(data_dir: Path) -> dict:
         "pnl": pnl,
         "roi": roi,
         "by_tier": dict(by_tier),
+        "by_game_num": by_gn_sorted,
         "by_game": {
-            "total": len(game_results),
+            "total": len(game_votes),
             "decided": game_total,
             "wins": game_wins,
             "losses": game_losses,
-            "pending": len(game_results) - game_total,
+            "pending": len(game_votes) - game_total,
             "hit_rate": round(game_wins / game_total * 100, 1) if game_total else None,
             "pnl": game_pnl,
             "roi": round(game_pnl / game_total * 100, 1) if game_total else None,

@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 15,
-  "misses": 7,
-  "pending": 5,
-  "decided": 22,
-  "hit_rate": 68.2,
+  "hits": 18,
+  "misses": 9,
+  "pending": 0,
+  "decided": 27,
+  "hit_rate": 66.7,
   "conviction": {
-   "crushing_hits": 4,
+   "crushing_hits": 5,
    "dominant_hits": 5,
    "moderate_hits": 2,
-   "narrow_hits": 4,
-   "garbage_time_hits": 2,
-   "total_hits": 15,
-   "true_conviction_hits": 11,
-   "raw_hit_rate": 68.2,
-   "true_conviction_rate": 50.0,
-   "note_zh": "4 碾壓主導 + 5 主導 + 2 普通 + 4 險過；2 場受垃圾時間影響；真實信心率 50.0%"
+   "narrow_hits": 6,
+   "garbage_time_hits": 3,
+   "total_hits": 18,
+   "true_conviction_hits": 12,
+   "raw_hit_rate": 66.7,
+   "true_conviction_rate": 44.4,
+   "note_zh": "5 碾壓主導 + 5 主導 + 2 普通 + 6 險過；3 場受垃圾時間影響；真實信心率 44.4%"
   },
   "history": [
    {
@@ -707,6 +707,102 @@
    },
    {
     "date": "2026-04-25",
+    "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "ats_winner": "away",
+    "ats_cover_margin": -3.5,
+    "series_game_num": 3,
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Phoenix Suns",
+    "away_team": "Oklahoma City Thunder",
+    "spread": -8.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": 1.6,
+     "final_picked_margin": 3.5,
+     "q4_swing": -4,
+     "shrinkage": -1.9,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 1.6,
+    "q4_swing": -4
+   },
+   {
+    "date": "2026-04-25",
+    "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
+    "signal": "客場明顯強勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.594,
+    "ats_winner": "away",
+    "ats_cover_margin": -3.5,
+    "series_game_num": 3,
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Phoenix Suns",
+    "away_team": "Oklahoma City Thunder",
+    "spread": -8.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": 1.6,
+     "final_picked_margin": 3.5,
+     "q4_swing": -4,
+     "shrinkage": -1.9,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 1.6,
+    "q4_swing": -4
+   },
+   {
+    "date": "2026-04-25",
+    "game": "紐約尼克 @ 亞特蘭大老鷹",
+    "signal": "G4領先方複雜壓力",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.612,
+    "ats_winner": "away",
+    "ats_cover_margin": -14.5,
+    "series_game_num": 4,
+    "series_home_wins": 2,
+    "series_away_wins": 1,
+    "strong_consensus": null,
+    "home_team": "Atlanta Hawks",
+    "away_team": "New York Knicks",
+    "spread": -1.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": 19.9,
+     "final_picked_margin": 14.5,
+     "q4_swing": 5,
+     "shrinkage": 5.4,
+     "garbage_time": true
+    },
+    "conviction": "crushing",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": 19.9,
+    "q4_swing": 5
+   },
+   {
+    "date": "2026-04-25",
     "game": "底特律活塞 @ 奧蘭多魔術",
     "signal": "ML中信心+小讓分",
     "side": "away",
@@ -768,54 +864,73 @@
     "conviction_source": "q3",
     "q3_picked_margin": -9.1,
     "q4_swing": 0
-   }
-  ],
-  "pending_by_game": [
-   {
-    "date": "2026-04-25",
-    "game": "丹佛金塊 @ 明尼蘇達灰狼",
-    "signals": [
-     "G4領先方複雜壓力"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 61,
-    "series_game_num": 4,
-    "series_score": "1-2",
-    "has_strong_consensus": false,
-    "spread": -1.5
-   },
-   {
-    "date": "2026-04-25",
-    "game": "紐約尼克 @ 亞特蘭大老鷹",
-    "signals": [
-     "G4領先方複雜壓力"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 61,
-    "series_game_num": 4,
-    "series_score": "1-2",
-    "has_strong_consensus": false,
-    "spread": -1.5
    },
    {
     "date": "2026-04-25",
     "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
-    "signals": [
-     "G3客場擴大優勢",
-     "主場ATS冷門反彈",
-     "客場明顯強勢"
-    ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 64,
+    "signal": "主場ATS冷門反彈",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "away",
+    "ats_cover_margin": -3.5,
     "series_game_num": 3,
-    "series_score": "2-0",
-    "has_strong_consensus": false,
-    "spread": -8.5
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Phoenix Suns",
+    "away_team": "Oklahoma City Thunder",
+    "spread": -8.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": -1.6,
+     "final_picked_margin": -3.5,
+     "q4_swing": -4,
+     "shrinkage": 1.9,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": -1.6,
+    "q4_swing": -4
+   },
+   {
+    "date": "2026-04-25",
+    "game": "丹佛金塊 @ 明尼蘇達灰狼",
+    "signal": "G4領先方複雜壓力",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.612,
+    "ats_winner": "home",
+    "ats_cover_margin": 17.5,
+    "series_game_num": 4,
+    "series_home_wins": 2,
+    "series_away_wins": 1,
+    "strong_consensus": null,
+    "home_team": "Minnesota Timberwolves",
+    "away_team": "Denver Nuggets",
+    "spread": -1.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": -5.1,
+     "final_picked_margin": -17.5,
+     "q4_swing": 12,
+     "shrinkage": 12.4,
+     "garbage_time": true
+    },
+    "conviction": "moderate",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": -5.1,
+    "q4_swing": 12
    }
   ],
+  "pending_by_game": [],
   "by_signal": [
    {
     "signal": "ML季後賽押客場",
@@ -863,6 +978,21 @@
     "true_hit_rate": 66.7
    },
    {
+    "signal": "G3客場擴大優勢",
+    "hits": 2,
+    "misses": 1,
+    "n": 3,
+    "tier": "SILVER",
+    "hit_rate": 66.7,
+    "backtest_wr": 64.3,
+    "crushing_hits": 0,
+    "dominant_hits": 1,
+    "moderate_hits": 0,
+    "narrow_hits": 1,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 33.3
+   },
+   {
     "signal": "客場ATS冷門反彈",
     "hits": 1,
     "misses": 0,
@@ -880,17 +1010,17 @@
    {
     "signal": "主場ATS冷門反彈",
     "hits": 1,
-    "misses": 0,
-    "n": 1,
+    "misses": 1,
+    "n": 2,
     "tier": "SILVER",
-    "hit_rate": 100.0,
+    "hit_rate": 50.0,
     "backtest_wr": 60.0,
     "crushing_hits": 1,
     "dominant_hits": 0,
     "moderate_hits": 0,
     "narrow_hits": 0,
     "garbage_time_hits": 1,
-    "true_hit_rate": 100.0
+    "true_hit_rate": 50.0
    },
    {
     "signal": "G2窄勝大讓分押冷門",
@@ -938,21 +1068,6 @@
     "true_hit_rate": 100.0
    },
    {
-    "signal": "G3客場擴大優勢",
-    "hits": 1,
-    "misses": 1,
-    "n": 2,
-    "tier": "SILVER",
-    "hit_rate": 50.0,
-    "backtest_wr": 64.3,
-    "crushing_hits": 0,
-    "dominant_hits": 1,
-    "moderate_hits": 0,
-    "narrow_hits": 0,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 50.0
-   },
-   {
     "signal": "ML高信心+小讓分",
     "hits": 1,
     "misses": 0,
@@ -969,18 +1084,33 @@
    },
    {
     "signal": "客場明顯強勢",
-    "hits": 0,
+    "hits": 1,
     "misses": 1,
-    "n": 1,
+    "n": 2,
     "tier": "SILVER",
-    "hit_rate": 0.0,
+    "hit_rate": 50.0,
     "backtest_wr": 59.4,
     "crushing_hits": 0,
     "dominant_hits": 0,
     "moderate_hits": 0,
-    "narrow_hits": 0,
+    "narrow_hits": 1,
     "garbage_time_hits": 0,
     "true_hit_rate": 0.0
+   },
+   {
+    "signal": "G4領先方複雜壓力",
+    "hits": 1,
+    "misses": 1,
+    "n": 2,
+    "tier": "SILVER",
+    "hit_rate": 50.0,
+    "backtest_wr": 61.2,
+    "crushing_hits": 1,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 1,
+    "true_hit_rate": 50.0
    },
    {
     "signal": "ML中信心+小讓分",
@@ -1011,27 +1141,27 @@
    "note_zh": "強共識(2+SILVER一致): 2勝/4場決定 = 50.0%，0場待定"
   },
   "best_pick": {
-   "hits": 5,
+   "hits": 6,
    "misses": 3,
-   "pending": 3,
-   "decided": 8,
-   "hit_rate": 62.5,
+   "pending": 0,
+   "decided": 9,
+   "hit_rate": 66.7,
    "gold_hits": 1,
    "gold_misses": 0,
-   "silver_hits": 4,
+   "silver_hits": 5,
    "silver_misses": 3,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/8場決定 = 62.5%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 6勝/9場決定 = 66.7%"
   }
  },
  "playoff_home_ats": {
-  "games": 29,
-  "home_covers": 16,
-  "away_covers": 13,
-  "home_cover_rate": 55.2,
-  "note_zh": "本季季後賽共 29 場有結果，主場過盤 16 場 (55.2%)"
+  "games": 32,
+  "home_covers": 17,
+  "away_covers": 15,
+  "home_cover_rate": 53.1,
+  "note_zh": "本季季後賽共 32 場有結果，主場過盤 17 場 (53.1%)"
  }
 }

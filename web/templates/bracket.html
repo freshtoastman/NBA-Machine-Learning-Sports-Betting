@@ -436,7 +436,7 @@
       {% if st.by_game is defined and st.by_game.decided %}
       {% set bg = st.by_game %}
       <div style="margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:6px;border:1px solid rgba(255,255,255,0.06);">
-        <div style="font-size:11px;color:#888;margin-bottom:4px;">📊 依場次計 (每場只算一次)</div>
+        <div style="font-size:11px;color:#888;margin-bottom:4px;">📊 依場次計 (共識多數決)</div>
         <div class="st-kpis" style="gap:12px;">
           <div class="st-kpi">
             <div class="st-kpi-val gold" style="font-size:18px;">{{ bg.hit_rate|default('—') }}{% if bg.hit_rate is not none %}%{% endif %}</div>
@@ -450,6 +450,23 @@
             <div class="st-kpi-val {{ 'green' if bg.pnl >= 0 else 'red' }}" style="font-size:14px;">{{ '%+.1f'|format(bg.pnl) }}u</div>
             <div class="st-kpi-label">場次損益</div>
           </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if st.by_game_num is defined %}
+      <div style="margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:6px;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-size:11px;color:#888;margin-bottom:4px;">🎯 依局數分析</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          {% for gn, gv in st.by_game_num.items() %}
+          {% set gd = gv.wins + gv.losses %}
+          {% if gd > 0 %}
+          <div style="padding:3px 8px;border-radius:4px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);font-size:12px;">
+            <span style="color:#aaa;font-weight:600;">{{ gn }}</span>
+            <span style="color:{{ '#4caf50' if gv.hit_rate >= 65 else '#ff9800' if gv.hit_rate >= 50 else '#ef5350' }};">{{ gv.wins }}W/{{ gv.losses }}L</span>
+            <span style="color:#666;font-size:10px;">({{ gv.hit_rate }}%)</span>
+          </div>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
       {% endif %}
