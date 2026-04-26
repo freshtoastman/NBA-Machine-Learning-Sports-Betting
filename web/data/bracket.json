@@ -245,18 +245,17 @@
      "seed": 8
     },
     "high_wins": 1,
-    "low_wins": 1,
-    "games_played": 2,
+    "low_wins": 2,
+    "games_played": 3,
     "next_signal": {
-     "game_num": 3,
-     "signal": "ML中信心+小讓分",
+     "game_num": 4,
+     "signal": "G4客場優勢",
      "side": "away",
      "home_team": "Orlando Magic",
      "home_team_zh": "奧蘭多魔術",
-     "tier": "SILVER",
-     "backtest_wr": 0.667,
-     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%",
-     "consensus_count": 2
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
     }
    },
    {
@@ -725,18 +724,18 @@
  },
  "signal_tracker": {
   "total": 27,
-  "decided": 20,
+  "decided": 22,
   "wins": 15,
-  "losses": 5,
-  "pending": 7,
-  "hit_rate": 75.0,
-  "pnl": 8.65,
-  "roi": 43.2,
+  "losses": 7,
+  "pending": 5,
+  "hit_rate": 68.2,
+  "pnl": 6.65,
+  "roi": 30.2,
   "by_tier": {
    "SILVER": {
     "wins": 11,
-    "losses": 4,
-    "pending": 7
+    "losses": 6,
+    "pending": 5
    },
    "GOLD": {
     "wins": 4,
@@ -746,13 +745,13 @@
   },
   "by_game": {
    "total": 18,
-   "decided": 14,
+   "decided": 15,
    "wins": 11,
-   "losses": 3,
-   "pending": 4,
-   "hit_rate": 78.6,
-   "pnl": 7.01,
-   "roi": 50.1
+   "losses": 4,
+   "pending": 3,
+   "hit_rate": 73.3,
+   "pnl": 6.01,
+   "roi": 40.1
   },
   "details": [
    {
@@ -983,8 +982,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.667,
-    "result": "pending",
-    "margin": null
+    "result": "loss",
+    "margin": 9.5
    },
    {
     "date": "2026-04-25",
@@ -994,8 +993,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null
+    "result": "loss",
+    "margin": 9.5
    },
    {
     "date": "2026-04-25",

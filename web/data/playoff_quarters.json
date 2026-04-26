@@ -614,5 +614,27 @@
     ],
     "home_score": 108,
     "away_score": 120
+  },
+  {
+    "gameId": "401869414",
+    "date": "2026-04-25",
+    "home_tri": "ORL",
+    "away_tri": "DET",
+    "home_name": "Orlando Magic",
+    "away_name": "Detroit Pistons",
+    "q_home": [
+      26,
+      35,
+      26,
+      26
+    ],
+    "q_away": [
+      26,
+      28,
+      25,
+      26
+    ],
+    "home_score": 113,
+    "away_score": 105
   }
 ]
