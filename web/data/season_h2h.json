@@ -1886,11 +1886,11 @@
     "date": "2026-04-27",
     "home": "Denver Nuggets",
     "away": "Minnesota Timberwolves",
-    "spread": -11.5,
+    "spread": 10.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    }
   ],
   "Golden State Warriors:Memphis Grizzlies": [
@@ -2264,11 +2264,11 @@
     "date": "2026-04-27",
     "home": "Orlando Magic",
     "away": "Detroit Pistons",
-    "spread": 2.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "away"
+    "ats_result": "home"
    }
   ],
   "Boston Celtics:Cleveland Cavaliers": [
@@ -7476,7 +7476,7 @@
     "date": "2026-04-26",
     "home": "Portland Trail Blazers",
     "away": "San Antonio Spurs",
-    "spread": -5.5,
+    "spread": -4.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -7726,11 +7726,11 @@
     "date": "2026-04-27",
     "home": "Phoenix Suns",
     "away": "Oklahoma City Thunder",
-    "spread": 11.5,
+    "spread": -11.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "away"
+    "ats_result": "home"
    }
   ],
   "LA Clippers:Memphis Grizzlies": [
@@ -10222,11 +10222,11 @@
     "date": "2026-04-28",
     "home": "New York Knicks",
     "away": "Atlanta Hawks",
-    "spread": -6.5,
+    "spread": 6.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    }
   ],
   "San Antonio Spurs:Utah Jazz": [

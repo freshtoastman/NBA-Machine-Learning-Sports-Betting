@@ -256,7 +256,7 @@
      "tier": "SILVER",
      "backtest_wr": 0.667,
      "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%",
-     "consensus_count": 3
+     "consensus_count": 2
     }
    },
    {
@@ -606,17 +606,18 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "ML季後賽押客場",
-     "side": "away",
+     "signal": "主場ATS冷門反彈",
+     "side": "home",
      "home_team": "Phoenix Suns",
      "home_team_zh": "鳳凰城太陽",
      "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 33%，客場讓 17pp)，季後賽歷史客場cover率 64.0% (n=175，13季)",
-     "consensus_count": 3,
+     "backtest_wr": 0.6,
+     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
+     "consensus_count": 2,
      "has_conflict": true,
-     "conflict_signal": "主場ATS冷門反彈",
-     "conflict_wr": 0.6
+     "conflict_signal": "客場明顯強勢",
+     "conflict_wr": 0.594,
+     "conflict_away_team": "鳳凰城太陽"
     }
    },
    {
@@ -702,13 +703,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "G4客場優勢",
+     "signal": "ML高信心+小讓分",
      "side": "away",
      "home_team": "Portland Trail Blazers",
      "home_team_zh": "波特蘭拓荒者",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
+     "tier": "GOLD",
+     "backtest_wr": 0.8,
+     "reason_zh": "模型對客場信心 ≥65%，且讓分 ≤5，回測勝率 80%"
     }
    }
   ]
@@ -726,12 +727,12 @@
    "SILVER": {
     "wins": 14,
     "losses": 8,
-    "pending": 9
+    "pending": 8
    },
    "GOLD": {
     "wins": 4,
     "losses": 1,
-    "pending": 0
+    "pending": 1
    }
   },
   "by_game_num": {
@@ -756,22 +757,22 @@
    "G4": {
     "wins": 1,
     "losses": 1,
-    "pending": 8,
+    "pending": 7,
     "hit_rate": 50.0
    },
    "G5": {
     "wins": 0,
     "losses": 0,
-    "pending": 1,
+    "pending": 2,
     "hit_rate": null
    }
   },
   "by_game": {
-   "total": 23,
+   "total": 25,
    "decided": 18,
    "wins": 13,
    "losses": 5,
-   "pending": 5,
+   "pending": 7,
    "hit_rate": 72.2,
    "pnl": 6.83,
    "roi": 37.9
@@ -1115,6 +1116,18 @@
    },
    {
     "date": "2026-04-26",
+    "away": "聖安東尼奧馬刺",
+    "home": "波特蘭拓荒者",
+    "signal": "ML高信心+小讓分",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.8,
+    "result": "pending",
+    "margin": null,
+    "game_num": 4
+   },
+   {
+    "date": "2026-04-26",
     "away": "洛杉磯湖人",
     "home": "休士頓火箭",
     "signal": "ML季後賽押客場",
@@ -1141,34 +1154,10 @@
     "date": "2026-04-27",
     "away": "底特律活塞",
     "home": "奧蘭多魔術",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "底特律活塞",
-    "home": "奧蘭多魔術",
     "signal": "G4領先方複雜壓力",
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.612,
-    "result": "pending",
-    "margin": null,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "奧克拉荷馬雷霆",
-    "home": "鳳凰城太陽",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
     "result": "pending",
     "margin": null,
     "game_num": 4
@@ -1196,6 +1185,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 4
+   },
+   {
+    "date": "2026-04-27",
+    "away": "明尼蘇達灰狼",
+    "home": "丹佛金塊",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
    },
    {
     "date": "2026-04-28",
