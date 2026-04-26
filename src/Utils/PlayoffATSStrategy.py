@@ -212,6 +212,12 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
         # Suppress if home lost G1 by >10 ATS pts (away dominated — not just cold)
         if game_num >= 2 and g1_margin is not None and g1_margin < -10:
             return None
+        # Suppress if home trails by 2+: cold + down 0-2 = genuine weakness (0/1 live PHX@OKC G3)
+        if series_state:
+            hw = series_state.get("home_wins", 0)
+            aw = series_state.get("away_wins", 0)
+            if aw - hw >= 2:
+                return None
         home_fav = spread is not None and spread > 0
         return PlayoffATSPick(
             signal_name="主場ATS冷門反彈",
@@ -227,6 +233,12 @@ def _ats_cold_bounce(pred, series_state, team_form) -> PlayoffATSPick | None:
         # Suppress if away lost G1 by >10 ATS pts (home dominated — away not just cold)
         if game_num >= 2 and g1_margin is not None and g1_margin > 10:
             return None
+        # Suppress if away trails by 2+: cold + down 0-2 = genuine weakness
+        if series_state:
+            hw = series_state.get("home_wins", 0)
+            aw = series_state.get("away_wins", 0)
+            if hw - aw >= 2:
+                return None
         home_fav = spread is not None and spread > 0
         return PlayoffATSPick(
             signal_name="客場ATS冷門反彈",

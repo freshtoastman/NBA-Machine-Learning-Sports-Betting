@@ -59,27 +59,6 @@
     "away_team": "Oklahoma City Thunder",
     "home_team_zh": "鳳凰城太陽",
     "away_team_zh": "奧克拉荷馬雷霆",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 15.5,
-    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 4,
-    "series_home_wins": 0,
-    "series_away_wins": 3,
-    "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Oklahoma City Thunder:Phoenix Suns",
-    "home_team": "Phoenix Suns",
-    "away_team": "Oklahoma City Thunder",
-    "home_team_zh": "鳳凰城太陽",
-    "away_team_zh": "奧克拉荷馬雷霆",
     "signal": "客場明顯強勢",
     "side": "away",
     "ats_side": "讓分(押fav)",
@@ -93,7 +72,7 @@
     "series_home_wins": 0,
     "series_away_wins": 3,
     "strong_consensus": null,
-    "has_conflict": true
+    "has_conflict": false
    },
    {
     "game_key": "Minnesota Timberwolves:Denver Nuggets",
@@ -117,7 +96,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 5,
+  "playoff_ats_count": 4,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Detroit Pistons: Kevin Huerter (缺陣)",
@@ -1194,16 +1173,6 @@
    "series_is_elimination": true,
    "playoff_ats_picks": [
     {
-     "signal": "主場ATS冷門反彈",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 15.5,
-     "backtest_n": 30,
-     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
-    },
-    {
      "signal": "客場明顯強勢",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -1224,11 +1193,11 @@
      "reason_zh": "第4場低種子主場，13季歷史高種子客場cover率 57.3% (n=171)，外客延伸優勢"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "主場ATS冷門反彈",
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "客場明顯強勢",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
-   "playoff_ats_has_conflict": true,
+   "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "奧克拉荷馬雷霆",

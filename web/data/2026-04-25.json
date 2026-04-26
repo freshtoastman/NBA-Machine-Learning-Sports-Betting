@@ -71,29 +71,8 @@
     "series_game_num": 3,
     "series_home_wins": 0,
     "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Oklahoma City Thunder:Phoenix Suns",
-    "home_team": "Phoenix Suns",
-    "away_team": "Oklahoma City Thunder",
-    "home_team_zh": "鳳凰城太陽",
-    "away_team_zh": "奧克拉荷馬雷霆",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "ats_side": "受讓(押dog)",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 15.5,
-    "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
-    "ats_winner": "away",
-    "ats_cover_margin": -3.5,
-    "series_game_num": 3,
-    "series_home_wins": 0,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    },
    {
     "game_key": "Oklahoma City Thunder:Phoenix Suns",
@@ -113,8 +92,8 @@
     "series_game_num": 3,
     "series_home_wins": 0,
     "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    },
    {
     "game_key": "New York Knicks:Atlanta Hawks",
@@ -159,7 +138,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 7,
+  "playoff_ats_count": 6,
   "injury_alerts": [],
   "ml_correct": 2,
   "ml_graded": 4,
@@ -1260,16 +1239,6 @@
      "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     },
     {
-     "signal": "主場ATS冷門反彈",
-     "side": "home",
-     "ats_side": "受讓(押dog)",
-     "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 15.5,
-     "backtest_n": 30,
-     "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
-    },
-    {
      "signal": "客場明顯強勢",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -1284,8 +1253,8 @@
    "playoff_ats_best_signal": "G3客場擴大優勢",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
-   "playoff_ats_has_conflict": true,
-   "playoff_ats_strong_consensus": null,
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "away",
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",

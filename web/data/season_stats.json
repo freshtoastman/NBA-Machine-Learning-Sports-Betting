@@ -48,10 +48,10 @@
  },
  "playoff_signals": {
   "hits": 18,
-  "misses": 9,
-  "pending": 9,
-  "decided": 27,
-  "hit_rate": 66.7,
+  "misses": 8,
+  "pending": 8,
+  "decided": 26,
+  "hit_rate": 69.2,
   "conviction": {
    "crushing_hits": 5,
    "dominant_hits": 5,
@@ -60,9 +60,9 @@
    "garbage_time_hits": 3,
    "total_hits": 18,
    "true_conviction_hits": 12,
-   "raw_hit_rate": 66.7,
-   "true_conviction_rate": 44.4,
-   "note_zh": "5 碾壓主導 + 5 主導 + 2 普通 + 6 險過；3 場受垃圾時間影響；真實信心率 44.4%"
+   "raw_hit_rate": 69.2,
+   "true_conviction_rate": 46.2,
+   "note_zh": "5 碾壓主導 + 5 主導 + 2 普通 + 6 險過；3 場受垃圾時間影響；真實信心率 46.2%"
   },
   "history": [
    {
@@ -717,7 +717,7 @@
     "series_game_num": 3,
     "series_home_wins": 0,
     "series_away_wins": 2,
-    "strong_consensus": null,
+    "strong_consensus": "away",
     "home_team": "Phoenix Suns",
     "away_team": "Oklahoma City Thunder",
     "spread": -8.5,
@@ -749,7 +749,7 @@
     "series_game_num": 3,
     "series_home_wins": 0,
     "series_away_wins": 2,
-    "strong_consensus": null,
+    "strong_consensus": "away",
     "home_team": "Phoenix Suns",
     "away_team": "Oklahoma City Thunder",
     "spread": -8.5,
@@ -867,38 +867,6 @@
    },
    {
     "date": "2026-04-25",
-    "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "away",
-    "ats_cover_margin": -3.5,
-    "series_game_num": 3,
-    "series_home_wins": 0,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "home_team": "Phoenix Suns",
-    "away_team": "Oklahoma City Thunder",
-    "spread": -8.5,
-    "result": "miss",
-    "conviction_obj": {
-     "band": "narrow",
-     "source": "q3",
-     "q3_picked_margin": -1.6,
-     "final_picked_margin": -3.5,
-     "q4_swing": -4,
-     "shrinkage": 1.9,
-     "garbage_time": false
-    },
-    "conviction": "narrow",
-    "garbage_time": false,
-    "conviction_source": "q3",
-    "q3_picked_margin": -1.6,
-    "q4_swing": -4
-   },
-   {
-    "date": "2026-04-25",
     "game": "丹佛金塊 @ 明尼蘇達灰狼",
     "signal": "G4領先方複雜壓力",
     "side": "away",
@@ -1006,12 +974,11 @@
     "date": "2026-04-27",
     "game": "奧克拉荷馬雷霆 @ 鳳凰城太陽",
     "signals": [
-     "主場ATS冷門反彈",
      "客場明顯強勢"
     ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 60,
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 59,
     "series_game_num": 4,
     "series_score": "3-0",
     "has_strong_consensus": false,
@@ -1111,17 +1078,17 @@
    {
     "signal": "主場ATS冷門反彈",
     "hits": 1,
-    "misses": 1,
-    "n": 2,
+    "misses": 0,
+    "n": 1,
     "tier": "SILVER",
-    "hit_rate": 50.0,
+    "hit_rate": 100.0,
     "backtest_wr": 60.0,
     "crushing_hits": 1,
     "dominant_hits": 0,
     "moderate_hits": 0,
     "narrow_hits": 0,
     "garbage_time_hits": 1,
-    "true_hit_rate": 50.0
+    "true_hit_rate": 100.0
    },
    {
     "signal": "G2窄勝大讓分押冷門",
@@ -1230,32 +1197,32 @@
    }
   ],
   "strong_consensus": {
-   "hits": 2,
+   "hits": 3,
    "misses": 2,
    "pending": 1,
-   "decided": 4,
-   "hit_rate": 50.0,
+   "decided": 5,
+   "hit_rate": 60.0,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/4場決定 = 50.0%，1場待定"
+   "note_zh": "強共識(2+SILVER一致): 3勝/5場決定 = 60.0%，1場待定"
   },
   "best_pick": {
-   "hits": 6,
+   "hits": 5,
    "misses": 3,
    "pending": 7,
-   "decided": 9,
-   "hit_rate": 66.7,
+   "decided": 8,
+   "hit_rate": 62.5,
    "gold_hits": 1,
    "gold_misses": 0,
-   "silver_hits": 5,
+   "silver_hits": 4,
    "silver_misses": 3,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 6勝/9場決定 = 66.7%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/8場決定 = 62.5%"
   }
  },
  "playoff_home_ats": {

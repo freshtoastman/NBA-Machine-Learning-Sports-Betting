@@ -606,18 +606,13 @@
     "games_played": 3,
     "next_signal": {
      "game_num": 4,
-     "signal": "主場ATS冷門反彈",
-     "side": "home",
+     "signal": "客場明顯強勢",
+     "side": "away",
      "home_team": "Phoenix Suns",
      "home_team_zh": "鳳凰城太陽",
      "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
-     "consensus_count": 2,
-     "has_conflict": true,
-     "conflict_signal": "客場明顯強勢",
-     "conflict_wr": 0.594,
-     "conflict_away_team": "鳳凰城太陽"
+     "backtest_wr": 0.594,
+     "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
     }
    },
    {
@@ -715,19 +710,19 @@
   ]
  },
  "signal_tracker": {
-  "total": 36,
-  "decided": 27,
+  "total": 34,
+  "decided": 26,
   "wins": 18,
-  "losses": 9,
-  "pending": 9,
-  "hit_rate": 66.7,
-  "pnl": 7.38,
-  "roi": 27.3,
+  "losses": 8,
+  "pending": 8,
+  "hit_rate": 69.2,
+  "pnl": 8.38,
+  "roi": 32.2,
   "by_tier": {
    "SILVER": {
     "wins": 14,
-    "losses": 8,
-    "pending": 8
+    "losses": 7,
+    "pending": 7
    },
    "GOLD": {
     "wins": 4,
@@ -750,14 +745,14 @@
    },
    "G3": {
     "wins": 6,
-    "losses": 6,
+    "losses": 5,
     "pending": 0,
-    "hit_rate": 50.0
+    "hit_rate": 54.5
    },
    "G4": {
     "wins": 1,
     "losses": 1,
-    "pending": 7,
+    "pending": 6,
     "hit_rate": 50.0
    },
    "G5": {
@@ -1058,18 +1053,6 @@
     "date": "2026-04-25",
     "away": "奧克拉荷馬雷霆",
     "home": "鳳凰城太陽",
-    "signal": "主場ATS冷門反彈",
-    "tier": "SILVER",
-    "side": "home",
-    "backtest_wr": 0.6,
-    "result": "loss",
-    "margin": -3.5,
-    "game_num": 3
-   },
-   {
-    "date": "2026-04-25",
-    "away": "奧克拉荷馬雷霆",
-    "home": "鳳凰城太陽",
     "signal": "客場明顯強勢",
     "tier": "SILVER",
     "side": "away",
@@ -1158,18 +1141,6 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.612,
-    "result": "pending",
-    "margin": null,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "奧克拉荷馬雷霆",
-    "home": "鳳凰城太陽",
-    "signal": "主場ATS冷門反彈",
-    "tier": "SILVER",
-    "side": "home",
-    "backtest_wr": 0.6,
     "result": "pending",
     "margin": null,
     "game_num": 4
