@@ -1823,7 +1823,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1849,7 +1849,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1858,7 +1858,7 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 1,
    "conference": "east"
   },
@@ -1886,7 +1886,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {

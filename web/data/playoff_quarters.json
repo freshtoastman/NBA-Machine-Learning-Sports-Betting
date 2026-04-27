@@ -702,5 +702,93 @@
     ],
     "home_score": 109,
     "away_score": 121
+  },
+  {
+    "gameId": "401869405",
+    "date": "2026-04-26",
+    "home_tri": "HOU",
+    "away_tri": "LAL",
+    "home_name": "Houston Rockets",
+    "away_name": "Los Angeles Lakers",
+    "q_home": [
+      26,
+      30,
+      34,
+      25
+    ],
+    "q_away": [
+      21,
+      26,
+      18,
+      31
+    ],
+    "home_score": 115,
+    "away_score": 96
+  },
+  {
+    "gameId": "401869406",
+    "date": "2026-04-26",
+    "home_tri": "PHI",
+    "away_tri": "BOS",
+    "home_name": "Philadelphia 76ers",
+    "away_name": "Boston Celtics",
+    "q_home": [
+      18,
+      20,
+      36,
+      22
+    ],
+    "q_away": [
+      34,
+      22,
+      39,
+      33
+    ],
+    "home_score": 96,
+    "away_score": 128
+  },
+  {
+    "gameId": "401869385",
+    "date": "2026-04-26",
+    "home_tri": "POR",
+    "away_tri": "SA",
+    "home_name": "Portland Trail Blazers",
+    "away_name": "San Antonio Spurs",
+    "q_home": [
+      25,
+      33,
+      16,
+      19
+    ],
+    "q_away": [
+      23,
+      18,
+      33,
+      40
+    ],
+    "home_score": 93,
+    "away_score": 114
+  },
+  {
+    "gameId": "401869377",
+    "date": "2026-04-26",
+    "home_tri": "TOR",
+    "away_tri": "CLE",
+    "home_name": "Toronto Raptors",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      14,
+      24,
+      22,
+      33
+    ],
+    "q_away": [
+      17,
+      19,
+      22,
+      31
+    ],
+    "home_score": 93,
+    "away_score": 89
   }
 ]

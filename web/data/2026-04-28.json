@@ -60,14 +60,14 @@
    "away_confidence": 39.2,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 213.5,
+   "ou_value": 212.5,
    "ou_confidence": 51.1,
-   "home_team_ev": -15.88,
-   "away_team_ev": 23.62,
-   "home_team_odds": -260,
-   "away_team_odds": 215,
+   "home_team_ev": -18.29,
+   "away_team_ev": 31.47,
+   "home_team_odds": -290,
+   "away_team_odds": 235,
    "home_kelly": 0,
-   "away_kelly": 10.99,
+   "away_kelly": 13.39,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 48.3,
@@ -521,8 +521,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 69.5,
-   "fair_away": 30.5,
+   "fair_home": 71.4,
+   "fair_away": 28.6,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -575,16 +575,24 @@
      "ml_home": -260,
      "ml_away": 215,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-27T14:11:46+00:00",
+     "spread": 6.5,
+     "ou": 212.5,
+     "ml_home": -290,
+     "ml_away": 235,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 6.5,
    "spread_last": 6.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-26T15:37:47+00:00",
-   "spread_last_fetched_at": "2026-04-26T15:37:47+00:00",
+   "spread_last_fetched_at": "2026-04-27T14:11:46+00:00",
    "ou_first": 213.5,
-   "ou_last": 213.5,
-   "ou_move": 0.0
+   "ou_last": 212.5,
+   "ou_move": -1.0
   }
  },
  "active_series": [
@@ -594,7 +602,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -620,7 +628,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 3,
    "conference": "west"
   },
@@ -629,7 +637,7 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 1,
    "conference": "east"
   },
@@ -657,7 +665,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   }
  ],

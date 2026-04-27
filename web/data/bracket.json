@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-23",
- "generated_for": "2026-04-26",
+ "generated_for": "2026-04-27",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -280,17 +280,17 @@
      "seed": 5
     },
     "high_wins": 2,
-    "low_wins": 1,
-    "games_played": 3,
+    "low_wins": 2,
+    "games_played": 4,
     "next_signal": {
-     "game_num": 4,
-     "signal": "客場明顯強勢",
-     "side": "away",
-     "home_team": "Toronto Raptors",
-     "home_team_zh": "多倫多暴龍",
+     "game_num": 5,
+     "signal": "G5平手主場壓制",
+     "side": "home",
+     "home_team": "Cleveland Cavaliers",
+     "home_team_zh": "克里夫蘭騎士",
      "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
+     "backtest_wr": 0.6,
+     "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)，最強結構信號"
     }
    },
    {
@@ -347,19 +347,9 @@
      "win_pct": 0.549,
      "seed": 7
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 1,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Philadelphia 76ers",
-     "home_team_zh": "費城七六人",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-    }
+    "games_played": 4
    }
   ]
  },
@@ -636,18 +626,8 @@
      "seed": 5
     },
     "high_wins": 3,
-    "low_wins": 0,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "ML季後賽押客場",
-     "side": "away",
-     "home_team": "Houston Rockets",
-     "home_team_zh": "休士頓火箭",
-     "tier": "SILVER",
-     "backtest_wr": 0.64,
-     "reason_zh": "模型押客場 (主場cover率 47%，客場讓 3pp)，季後賽歷史客場cover率 64.0% (n=175，13季)"
-    }
+    "low_wins": 1,
+    "games_played": 4
    },
    {
     "label": "3 vs 6",
@@ -693,36 +673,26 @@
      "win_pct": 0.512,
      "seed": 7
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 1,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Portland Trail Blazers",
-     "home_team_zh": "波特蘭拓荒者",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-    }
+    "games_played": 4
    }
   ]
  },
  "signal_tracker": {
   "total": 33,
-  "decided": 26,
+  "decided": 28,
   "wins": 18,
-  "losses": 8,
-  "pending": 7,
-  "hit_rate": 69.2,
-  "pnl": 8.38,
-  "roi": 32.2,
+  "losses": 10,
+  "pending": 5,
+  "hit_rate": 64.3,
+  "pnl": 6.38,
+  "roi": 22.8,
   "by_tier": {
    "SILVER": {
     "wins": 14,
-    "losses": 7,
-    "pending": 7
+    "losses": 9,
+    "pending": 5
    },
    "GOLD": {
     "wins": 4,
@@ -751,9 +721,9 @@
    },
    "G4": {
     "wins": 1,
-    "losses": 1,
-    "pending": 5,
-    "hit_rate": 50.0
+    "losses": 3,
+    "pending": 3,
+    "hit_rate": 25.0
    },
    "G5": {
     "wins": 0,
@@ -764,13 +734,13 @@
   },
   "by_game": {
    "total": 24,
-   "decided": 18,
+   "decided": 20,
    "wins": 13,
-   "losses": 5,
-   "pending": 6,
-   "hit_rate": 72.2,
-   "pnl": 6.83,
-   "roi": 37.9
+   "losses": 7,
+   "pending": 4,
+   "hit_rate": 65.0,
+   "pnl": 4.83,
+   "roi": 24.1
   },
   "details": [
    {
@@ -1093,8 +1063,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 7.5,
     "game_num": 4
    },
    {
@@ -1105,8 +1075,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 14.5,
     "game_num": 4
    },
    {
