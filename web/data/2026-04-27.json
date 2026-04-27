@@ -54,27 +54,6 @@
     "has_conflict": false
    },
    {
-    "game_key": "Oklahoma City Thunder:Phoenix Suns",
-    "home_team": "Phoenix Suns",
-    "away_team": "Oklahoma City Thunder",
-    "home_team_zh": "鳳凰城太陽",
-    "away_team_zh": "奧克拉荷馬雷霆",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "backtest_roi": 13.5,
-    "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 4,
-    "series_home_wins": 0,
-    "series_away_wins": 3,
-    "strong_consensus": null,
-    "has_conflict": false
-   },
-   {
     "game_key": "Minnesota Timberwolves:Denver Nuggets",
     "home_team": "Denver Nuggets",
     "away_team": "Minnesota Timberwolves",
@@ -96,7 +75,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 4,
+  "playoff_ats_count": 3,
   "injury_alerts": [
    "Orlando Magic: Jonathan Isaac (可能缺陣)",
    "Detroit Pistons: Kevin Huerter (存疑)",
@@ -1163,16 +1142,6 @@
    "series_is_elimination": true,
    "playoff_ats_picks": [
     {
-     "signal": "客場明顯強勢",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "backtest_roi": 13.5,
-     "backtest_n": 175,
-     "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
-    },
-    {
      "signal": "G4客場邊",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -1184,8 +1153,8 @@
     }
    ],
    "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "客場明顯強勢",
-   "playoff_ats_best_tier": "SILVER",
+   "playoff_ats_best_signal": "G4客場邊",
+   "playoff_ats_best_tier": "BRONZE",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,

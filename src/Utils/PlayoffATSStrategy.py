@@ -829,9 +829,12 @@ def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
         aw_s = series_state.get("away_wins", 0)
         if hw_s > aw_s:
             return None
-        # Suppress G3 tied 1-1: home court + desperation overrides form (0/2 live)
         gn = series_state.get("series_game_num", 0)
+        # Suppress G3 tied 1-1: home court + desperation overrides form (0/2 live)
         if gn == 3 and hw_s == 1 and aw_s == 1:
+            return None
+        # Suppress G4: dedicated G4 signals better calibrated; generic form 0/1 live
+        if gn == 4:
             return None
     spread = pred.get("spread")
     home_fav = spread is not None and spread > 0
@@ -902,6 +905,11 @@ def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | Non
     if series_state is None:
         return None
     if series_state.get("series_game_num", 0) == 1:
+        return None
+    # Suppress sweep attempts (away 3-0): sweep resistance overrides ML signal
+    aw = series_state.get("away_wins", 0)
+    hw = series_state.get("home_wins", 0)
+    if aw == 3 and hw == 0:
         return None
     ats_prob = pred.get("ats_model_home_prob")
     if ats_prob is None or ats_prob <= 0:
