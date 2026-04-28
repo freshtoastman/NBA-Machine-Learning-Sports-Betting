@@ -1887,10 +1887,10 @@
     "home": "Denver Nuggets",
     "away": "Minnesota Timberwolves",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 12,
+    "home_score": 125,
+    "away_score": 113,
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Memphis Grizzlies": [
@@ -2265,9 +2265,9 @@
     "home": "Orlando Magic",
     "away": "Detroit Pistons",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 6,
+    "home_score": 94,
+    "away_score": 88,
     "ats_result": "home"
    }
   ],
@@ -7727,9 +7727,9 @@
     "home": "Phoenix Suns",
     "away": "Oklahoma City Thunder",
     "spread": -10.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -9,
+    "home_score": 122,
+    "away_score": 131,
     "ats_result": "home"
    }
   ],

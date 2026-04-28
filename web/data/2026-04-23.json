@@ -1922,7 +1922,7 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1958,7 +1958,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -1968,7 +1968,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {

@@ -245,19 +245,8 @@
      "seed": 8
     },
     "high_wins": 1,
-    "low_wins": 2,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "ML中信心+小讓分",
-     "side": "away",
-     "home_team": "Orlando Magic",
-     "home_team_zh": "奧蘭多魔術",
-     "tier": "SILVER",
-     "backtest_wr": 0.667,
-     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%",
-     "consensus_count": 2
-    }
+    "low_wins": 3,
+    "games_played": 4
    },
    {
     "label": "4 vs 5",
@@ -591,19 +580,9 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 0,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Phoenix Suns",
-     "home_team_zh": "鳳凰城太陽",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-    }
+    "games_played": 4
    },
    {
     "label": "4 vs 5",
@@ -649,9 +628,20 @@
      "win_pct": 0.598,
      "seed": 6
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 3,
-    "games_played": 4
+    "games_played": 5,
+    "next_signal": {
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Minnesota Timberwolves",
+     "home_team_zh": "明尼蘇達灰狼",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "丹佛金塊"
+    }
    },
    {
     "label": "2 vs 7",
@@ -680,19 +670,19 @@
   ]
  },
  "signal_tracker": {
-  "total": 30,
-  "decided": 26,
+  "total": 28,
+  "decided": 27,
   "wins": 18,
-  "losses": 8,
-  "pending": 4,
-  "hit_rate": 69.2,
-  "pnl": 8.38,
-  "roi": 32.2,
+  "losses": 9,
+  "pending": 1,
+  "hit_rate": 66.7,
+  "pnl": 7.38,
+  "roi": 27.3,
   "by_tier": {
    "SILVER": {
     "wins": 14,
-    "losses": 7,
-    "pending": 4
+    "losses": 8,
+    "pending": 1
    },
    "GOLD": {
     "wins": 4,
@@ -715,32 +705,32 @@
    },
    "G3": {
     "wins": 6,
-    "losses": 5,
+    "losses": 4,
     "pending": 0,
-    "hit_rate": 54.5
+    "hit_rate": 60.0
    },
    "G4": {
     "wins": 1,
-    "losses": 1,
-    "pending": 2,
-    "hit_rate": 50.0
+    "losses": 2,
+    "pending": 0,
+    "hit_rate": 33.3
    },
    "G5": {
     "wins": 0,
-    "losses": 0,
-    "pending": 2,
-    "hit_rate": null
+    "losses": 1,
+    "pending": 1,
+    "hit_rate": 0.0
    }
   },
   "by_game": {
    "total": 21,
-   "decided": 18,
+   "decided": 20,
    "wins": 13,
-   "losses": 5,
-   "pending": 3,
-   "hit_rate": 72.2,
-   "pnl": 6.83,
-   "roi": 37.9
+   "losses": 7,
+   "pending": 1,
+   "hit_rate": 65.0,
+   "pnl": 4.83,
+   "roi": 24.1
   },
   "details": [
    {
@@ -987,18 +977,6 @@
     "date": "2026-04-25",
     "away": "底特律活塞",
     "home": "奧蘭多魔術",
-    "signal": "ML中信心+小讓分",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.667,
-    "result": "loss",
-    "margin": 9.5,
-    "game_num": 3
-   },
-   {
-    "date": "2026-04-25",
-    "away": "底特律活塞",
-    "home": "奧蘭多魔術",
     "signal": "ML季後賽押客場",
     "tier": "SILVER",
     "side": "away",
@@ -1059,24 +1037,12 @@
     "date": "2026-04-27",
     "away": "底特律活塞",
     "home": "奧蘭多魔術",
-    "signal": "ML中信心+小讓分",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.667,
-    "result": "pending",
-    "margin": null,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "底特律活塞",
-    "home": "奧蘭多魔術",
     "signal": "G4領先方複雜壓力",
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.612,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 9.5,
     "game_num": 4
    },
    {
@@ -1087,8 +1053,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.64,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 0.5,
     "game_num": 5
    },
    {

@@ -17,27 +17,6 @@
     "away_team": "Detroit Pistons",
     "home_team_zh": "奧蘭多魔術",
     "away_team_zh": "底特律活塞",
-    "signal": "ML中信心+小讓分",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.667,
-    "backtest_roi": 27.3,
-    "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%",
-    "ats_winner": "home",
-    "ats_cover_margin": 9.5,
-    "series_game_num": 3,
-    "series_home_wins": 1,
-    "series_away_wins": 1,
-    "strong_consensus": "away",
-    "has_conflict": false
-   },
-   {
-    "game_key": "Detroit Pistons:Orlando Magic",
-    "home_team": "Orlando Magic",
-    "away_team": "Detroit Pistons",
-    "home_team_zh": "奧蘭多魔術",
-    "away_team_zh": "底特律活塞",
     "signal": "ML季後賽押客場",
     "side": "away",
     "ats_side": "讓分(押fav)",
@@ -50,7 +29,7 @@
     "series_game_num": 3,
     "series_home_wins": 1,
     "series_away_wins": 1,
-    "strong_consensus": "away",
+    "strong_consensus": null,
     "has_conflict": false
    },
    {
@@ -138,7 +117,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 6,
+  "playoff_ats_count": 5,
   "injury_alerts": [],
   "ml_correct": 2,
   "ml_graded": 4,
@@ -646,16 +625,6 @@
    "series_is_elimination": false,
    "playoff_ats_picks": [
     {
-     "signal": "ML中信心+小讓分",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.667,
-     "backtest_roi": 27.3,
-     "backtest_n": 33,
-     "reason_zh": "模型對客場信心 60-65%，讓分 ≤5，回測勝率 66.7%"
-    },
-    {
      "signal": "ML季後賽押客場",
      "side": "away",
      "ats_side": "讓分(押fav)",
@@ -677,11 +646,11 @@
     }
    ],
    "playoff_ats_best_side": "away",
-   "playoff_ats_best_signal": "ML中信心+小讓分",
+   "playoff_ats_best_signal": "ML季後賽押客場",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
-   "playoff_ats_strong_consensus": "away",
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "奧蘭多魔術",
    "away_team_zh": "底特律活塞",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
@@ -2474,7 +2443,7 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -2510,7 +2479,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -2520,7 +2489,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {

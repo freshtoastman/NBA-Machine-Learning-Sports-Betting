@@ -80,7 +80,11 @@ def _ml_moderate_conf_small_spread(pred, series_state, team_form) -> PlayoffATSP
     """ML model 60-65% confidence + |spread| ≤ 5 → bet the ML side.
 
     Backtest: 66.7% WR, +27.3% ROI, n=33.
+    Suppressed G3+: 0/2 live (DET@ORL G3, G4) — moderate ML confidence doesn't
+    overcome home-court momentum in later playoff games. G1-G2 only.
     """
+    if series_state and series_state.get("series_game_num", 0) >= 3:
+        return None
     spread = pred.get("spread")
     if spread is None or abs(spread) > 5:
         return None
@@ -904,7 +908,12 @@ def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | Non
     """
     if series_state is None:
         return None
-    if series_state.get("series_game_num", 0) == 1:
+    gn = series_state.get("series_game_num", 0)
+    if gn == 1:
+        return None
+    # Suppress G4: dedicated G4 signals (G4領先方複雜壓力, G4客場邊) are better calibrated;
+    # generic ML away lean adds noise. Live: 0/1 (MIN@DEN G4 loss by 23.5 ATS).
+    if gn == 4:
         return None
     # Suppress sweep attempts (away 3-0): sweep resistance overrides ML signal
     aw = series_state.get("away_wins", 0)
