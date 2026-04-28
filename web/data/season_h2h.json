@@ -313,6 +313,16 @@
     "home_score": 96,
     "away_score": 128,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-04-28",
+    "home": "Boston Celtics",
+    "away": "Philadelphia 76ers",
+    "spread": 11.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -7480,6 +7490,16 @@
     "win_margin": -21,
     "home_score": 93,
     "away_score": 114,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-04-28",
+    "home": "San Antonio Spurs",
+    "away": "Portland Trail Blazers",
+    "spread": 11.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "away"
    }
   ],

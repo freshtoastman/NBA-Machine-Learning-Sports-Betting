@@ -549,9 +549,9 @@ def predict_historical_xgb(target_date):
             params=(target_date.isoformat(),),
         )
 
-    # For future dates (upcoming scheduled games), dataset has no rows yet.
+    # For future/today dates (upcoming scheduled games), dataset may have no rows.
     # Return game stubs from OddsData so playoff signals + injury reports still show.
-    if df.empty and target_date > _today:
+    if df.empty and target_date >= _today:
         season_table = _season_table_for_date(target_date)
         stubs = []
         try:
@@ -925,6 +925,93 @@ def predict_historical_xgb(target_date):
             pred["playoff_ats_consensus"] = None
             pred["playoff_ats_has_conflict"] = False
             pred["playoff_ats_strong_consensus"] = None
+
+    # Append stubs for today's/future games in odds table but missing from dataset.
+    if target_date >= _today:
+        predicted_teams = {(p["home_team"], p["away_team"]) for p in predictions}
+        season_table = _season_table_for_date(target_date)
+        try:
+            with sqlite3.connect(_ODDS_DB) as _con:
+                _odds = pd.read_sql_query(
+                    f'SELECT * FROM "{season_table}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
+                    _con,
+                    params=(target_date.isoformat(),),
+                )
+            for _, row in _odds.iterrows():
+                home_team = row["Home"]
+                away_team = row["Away"]
+                if (home_team, away_team) in predicted_teams:
+                    continue
+                stub = {
+                    "home_team": home_team,
+                    "away_team": away_team,
+                    "home_score": None,
+                    "away_score": None,
+                    "spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
+                    "Spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
+                    "OU": float(row["OU"]) if pd.notna(row.get("OU")) else None,
+                    "ML_Home": row.get("ML_Home"),
+                    "ML_Away": row.get("ML_Away"),
+                    "Days_Rest_Home": row.get("Days_Rest_Home"),
+                    "Days_Rest_Away": row.get("Days_Rest_Away"),
+                    "home_confidence": None,
+                    "away_confidence": None,
+                    "value_side": None,
+                    "is_value": False,
+                    "ats_model_pick": None,
+                    "ats_model_home_prob": None,
+                    "ats_model_confidence": None,
+                    "ats_value_edge": None,
+                    "ats_is_value": False,
+                    "is_historical": True,
+                    "actual_home_win": None,
+                    "actual_winner": None,
+                    "actual_total": None,
+                    "actual_ou_result": None,
+                    "ml_correct": None,
+                    "ou_correct": None,
+                    "ats_winner": None,
+                    "is_upcoming": True,
+                    "is_playoff": False,
+                    "playoff_ats_picks": [],
+                    "playoff_ats_best_side": None,
+                    "playoff_ats_best_signal": None,
+                    "playoff_ats_best_tier": None,
+                    "playoff_ats_consensus": None,
+                    "playoff_ats_has_conflict": False,
+                    "playoff_ats_strong_consensus": None,
+                }
+                try:
+                    from src.Utils.PlayoffContext import is_playoff_date, get_series_state
+                    target_iso = target_date.isoformat()
+                    if is_playoff_date(target_iso):
+                        state = get_series_state(home_team, away_team, target_iso, as_of_date=target_date)
+                        if state:
+                            stub["is_playoff"] = True
+                            stub["series_round"] = state["round_label"]
+                            stub["round_num"] = state.get("round_num")
+                            stub["series_game_num"] = state["series_game_num"]
+                            stub["series_home_wins"] = state["home_wins"]
+                            stub["series_away_wins"] = state["away_wins"]
+                            stub["series_status_text"] = state["status_text"]
+                            stub["series_is_elimination"] = state["is_elimination"]
+                        else:
+                            stub["is_playoff"] = True
+                        team_form = _build_team_form(home_team, away_team, target_iso, pre_game=False)
+                        ats_picks = evaluate_playoff_ats(stub, state, team_form)
+                        stub["playoff_ats_picks"] = picks_to_dict(ats_picks)
+                        bp = best_pick(ats_picks)
+                        stub["playoff_ats_best_side"] = bp.side if bp else None
+                        stub["playoff_ats_best_signal"] = bp.signal_name if bp else None
+                        stub["playoff_ats_best_tier"] = bp.tier if bp else None
+                        stub["playoff_ats_consensus"] = consensus_side(ats_picks)
+                        stub["playoff_ats_has_conflict"] = has_conflict(ats_picks)
+                        stub["playoff_ats_strong_consensus"] = strong_consensus_side(ats_picks)
+                except Exception:
+                    pass
+                predictions.append(stub)
+        except Exception:
+            pass
 
     return predictions
 
