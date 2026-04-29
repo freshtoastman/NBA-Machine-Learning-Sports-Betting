@@ -323,6 +323,16 @@
     "home_score": 97,
     "away_score": 113,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-04-30",
+    "home": "Philadelphia 76ers",
+    "away": "Boston Celtics",
+    "spread": -5.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -1900,6 +1910,16 @@
     "win_margin": 12,
     "home_score": 125,
     "away_score": 113,
+    "ats_result": "home"
+   },
+   {
+    "date": "2026-04-30",
+    "home": "Minnesota Timberwolves",
+    "away": "Denver Nuggets",
+    "spread": -5.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "home"
    }
   ],
@@ -10276,6 +10296,16 @@
     "win_margin": 29,
     "home_score": 126,
     "away_score": 97,
+    "ats_result": "home"
+   },
+   {
+    "date": "2026-04-30",
+    "home": "Atlanta Hawks",
+    "away": "New York Knicks",
+    "spread": -2.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "home"
    }
   ],

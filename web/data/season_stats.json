@@ -1,10 +1,10 @@
 {
  "season": "2025-26",
- "games": 1249,
- "ml_hits": 887,
- "ml_hit_rate": 71.0,
- "ou_hits": 582,
- "ou_hit_rate": 46.6,
+ "games": 1259,
+ "ml_hits": 895,
+ "ml_hit_rate": 71.1,
+ "ou_hits": 586,
+ "ou_hit_rate": 46.5,
  "value_picks": 49,
  "value_wins": 39,
  "value_losses": 10,
@@ -18,7 +18,7 @@
  "golden_pl": 11.08,
  "golden_roi": 25.8,
  "brier": 0.1984,
- "calib_gap_mid": 0.1228,
+ "calib_gap_mid": 0.1238,
  "elite_bets": 49,
  "elite_wins": 32,
  "elite_losses": 17,
@@ -29,9 +29,9 @@
  "elite_total_stake": 49000,
  "perfect_hits": 32,
  "ats_model": {
-  "games": 1249,
-  "hits": 638,
-  "hit_rate": 51.1,
+  "games": 1259,
+  "hits": 642,
+  "hit_rate": 51.0,
   "home_pick_pct": 50.4,
   "value_bets": 63,
   "value_wins": 46,
@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 16,
   "misses": 4,
-  "pending": 1,
+  "pending": 11,
   "decided": 20,
   "hit_rate": 80.0,
   "conviction": {
@@ -720,6 +720,55 @@
     "series_score": "2-2",
     "has_strong_consensus": false,
     "spread": 8.5
+   },
+   {
+    "date": "2026-04-30",
+    "game": "丹佛金塊 @ 明尼蘇達灰狼",
+    "signals": [
+     "G6R1客場壓制",
+     "G6主場收官陷阱",
+     "淘汰局押冷門"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 80,
+    "series_game_num": 6,
+    "series_score": "2-3",
+    "has_strong_consensus": false,
+    "spread": -5.5
+   },
+   {
+    "date": "2026-04-30",
+    "game": "波士頓塞爾提克 @ 費城七六人",
+    "signals": [
+     "G6R1客場壓制",
+     "淘汰局押冷門",
+     "主場ATS冷門反彈",
+     "客場明顯強勢"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 80,
+    "series_game_num": 6,
+    "series_score": "3-2",
+    "has_strong_consensus": false,
+    "spread": -5.5
+   },
+   {
+    "date": "2026-04-30",
+    "game": "紐約尼克 @ 亞特蘭大老鷹",
+    "signals": [
+     "G6R1客場壓制",
+     "淘汰局押冷門",
+     "客場明顯強勢"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 80,
+    "series_game_num": 6,
+    "series_score": "3-2",
+    "has_strong_consensus": false,
+    "spread": -2.5
    }
   ],
   "by_signal": [
@@ -919,7 +968,7 @@
   "best_pick": {
    "hits": 7,
    "misses": 1,
-   "pending": 1,
+   "pending": 4,
    "decided": 8,
    "hit_rate": 87.5,
    "gold_hits": 1,
