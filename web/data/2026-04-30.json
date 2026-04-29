@@ -765,7 +765,25 @@
    "injuries_home": [
     "Jock Landale (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-29T19:18:08+00:00",
+     "spread": -2.5,
+     "ou": 213.5,
+     "ml_home": 114,
+     "ml_away": -134,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -2.5,
+   "spread_last": -2.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "ou_first": 213.5,
+   "ou_last": 213.5,
+   "ou_move": 0.0
   },
   "Boston Celtics:Philadelphia 76ers": {
    "home_team": "Philadelphia 76ers",
@@ -1308,7 +1326,25 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-29T19:18:08+00:00",
+     "spread": -5.5,
+     "ou": 212.5,
+     "ml_home": 184,
+     "ml_away": -220,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -5.5,
+   "spread_last": -5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "ou_first": 212.5,
+   "ou_last": 212.5,
+   "ou_move": 0.0
   },
   "Denver Nuggets:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1847,7 +1883,25 @@
    "injuries_away": [
     "Aaron Gordon (缺陣)",
     "Peyton Watson (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-04-29T19:18:08+00:00",
+     "spread": -5.5,
+     "ou": 224.5,
+     "ml_home": 188,
+     "ml_away": -225,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -5.5,
+   "spread_last": -5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "ou_first": 224.5,
+   "ou_last": 224.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
