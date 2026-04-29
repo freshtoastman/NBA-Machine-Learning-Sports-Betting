@@ -512,11 +512,11 @@ def _g4_home_2_1_away(pred, series_state, team_form) -> PlayoffATSPick | None:
         signal_name="G4領先方複雜壓力",
         side="away",
         ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
-        tier="SILVER",
+        tier="BRONZE",
         backtest_wr=0.612,
         backtest_roi=22.4,
         backtest_n=85,
-        reason_zh="G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估",
+        reason_zh="G4主場領先2-1，13季歷史客場cover率 61.2% (n=85)，領先方易受市場高估（2025-26：1W/2L，降級觀察）",
     )
 
 
@@ -911,9 +911,9 @@ def _ml_playoff_away_lean(pred, series_state, team_form) -> PlayoffATSPick | Non
     gn = series_state.get("series_game_num", 0)
     if gn == 1:
         return None
-    # Suppress G4: dedicated G4 signals (G4領先方複雜壓力, G4客場邊) are better calibrated;
-    # generic ML away lean adds noise. Live: 0/1 (MIN@DEN G4 loss by 23.5 ATS).
-    if gn == 4:
+    # Suppress G3+: generic ML away lean loses edge in later games.
+    # Live: G3 2W/2L (coin flip), G4 0/1, G5 0W/2L. Only G2 is profitable (2W/0L).
+    if gn >= 3:
         return None
     # Suppress sweep attempts (away 3-0): sweep resistance overrides ML signal
     aw = series_state.get("away_wins", 0)
@@ -947,7 +947,7 @@ _SIGNALS = [
     _ml_high_conf_small_spread,       # GOLD (unverified, n=15)
     _g2_narrow_win_big_spread_dog,    # GOLD verified: 88.9% (n=9) — G2 narrow G1 cover + spread ≥10 → dog
     _g6_home_clinch_dog,              # SILVER verified: 66.7% (n=39) — G6 home up 3-2 → dog
-    _g4_home_2_1_away,                # SILVER verified: 61.2% (n=85) — G4 home up 2-1 → away
+    _g4_home_2_1_away,                # BRONZE (downgraded): 61.2% (n=85) — G4 home up 2-1 → away; 1W/2L live
     _ml_moderate_conf_small_spread,   # SILVER (unverified, n=33)
     _g3_backs_against_wall,           # SILVER verified: 64.3% (n=28) — G3 away leads 2-0
     _g3_tied_low_seed_home,           # BRONZE: 51.6% (n=16) — G3 tied 1-1 no strong edge
@@ -958,7 +958,7 @@ _SIGNALS = [
     _r1g1_high_seed_home,             # SILVER estimated: 60.0% (n=140) — R1G1 non-playin home; 2025-26: 4/4
     _r1g1_large_spread_home,          # SILVER verified: 62.2%-72.7% (n=37/22) — R1G1 home giving 8+/10+ pts
     _g5_tied_home,                    # SILVER verified: 60.0% (n=60) — G5 tied 2-2 home
-    _ml_playoff_away_lean,             # SILVER verified: 64.0% (n=175) — ML model picks away in playoffs
+    _ml_playoff_away_lean,             # SILVER verified: 64.0% (n=175) — ML away; suppressed G3+ (G2 only: 2W/0L; G3 2W/2L; G5 0W/2L)
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger; 0/2 live (both G3 tied series), monitor
     # _away_leads_series,              # DISABLED: 55.5% (n=155) barely above noise, highly correlated with G3/form signals; 0/3 live (CLE@TOR blowout)
     _elimination_underdog,            # SILVER verified: 58.8% (n=250)

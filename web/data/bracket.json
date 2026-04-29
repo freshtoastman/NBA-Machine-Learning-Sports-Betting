@@ -693,19 +693,19 @@
   ]
  },
  "signal_tracker": {
-  "total": 29,
-  "decided": 29,
-  "wins": 19,
-  "losses": 10,
-  "pending": 0,
-  "hit_rate": 65.5,
-  "pnl": 7.29,
-  "roi": 25.1,
+  "total": 21,
+  "decided": 20,
+  "wins": 16,
+  "losses": 4,
+  "pending": 1,
+  "hit_rate": 80.0,
+  "pnl": 10.56,
+  "roi": 52.8,
   "by_tier": {
    "SILVER": {
-    "wins": 15,
-    "losses": 9,
-    "pending": 0
+    "wins": 12,
+    "losses": 3,
+    "pending": 1
    },
    "GOLD": {
     "wins": 4,
@@ -727,33 +727,27 @@
     "hit_rate": 100.0
    },
    "G3": {
-    "wins": 6,
-    "losses": 4,
-    "pending": 0,
-    "hit_rate": 60.0
-   },
-   "G4": {
-    "wins": 1,
+    "wins": 4,
     "losses": 2,
     "pending": 0,
-    "hit_rate": 33.3
+    "hit_rate": 66.7
    },
    "G5": {
     "wins": 1,
-    "losses": 2,
-    "pending": 0,
-    "hit_rate": 33.3
+    "losses": 0,
+    "pending": 1,
+    "hit_rate": 100.0
    }
   },
   "by_game": {
-   "total": 21,
-   "decided": 20,
+   "total": 16,
+   "decided": 15,
    "wins": 13,
-   "losses": 7,
+   "losses": 2,
    "pending": 1,
-   "hit_rate": 65.0,
-   "pnl": 4.83,
-   "roi": 24.1
+   "hit_rate": 86.7,
+   "pnl": 9.83,
+   "roi": 65.5
   },
   "details": [
    {
@@ -937,18 +931,6 @@
     "game_num": 3
    },
    {
-    "date": "2026-04-23",
-    "away": "丹佛金塊",
-    "home": "明尼蘇達灰狼",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "loss",
-    "margin": 15.5,
-    "game_num": 3
-   },
-   {
     "date": "2026-04-24",
     "away": "洛杉磯湖人",
     "home": "休士頓火箭",
@@ -956,18 +938,6 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.643,
-    "result": "win",
-    "margin": -13.5,
-    "game_num": 3
-   },
-   {
-    "date": "2026-04-24",
-    "away": "洛杉磯湖人",
-    "home": "休士頓火箭",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
     "result": "win",
     "margin": -13.5,
     "game_num": 3
@@ -982,30 +952,6 @@
     "backtest_wr": 0.8,
     "result": "win",
     "margin": -9.5,
-    "game_num": 3
-   },
-   {
-    "date": "2026-04-24",
-    "away": "聖安東尼奧馬刺",
-    "home": "波特蘭拓荒者",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "win",
-    "margin": -9.5,
-    "game_num": 3
-   },
-   {
-    "date": "2026-04-25",
-    "away": "底特律活塞",
-    "home": "奧蘭多魔術",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "loss",
-    "margin": 9.5,
     "game_num": 3
    },
    {
@@ -1033,66 +979,6 @@
     "game_num": 3
    },
    {
-    "date": "2026-04-25",
-    "away": "紐約尼克",
-    "home": "亞特蘭大老鷹",
-    "signal": "G4領先方複雜壓力",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.612,
-    "result": "win",
-    "margin": -14.5,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-25",
-    "away": "丹佛金塊",
-    "home": "明尼蘇達灰狼",
-    "signal": "G4領先方複雜壓力",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.612,
-    "result": "loss",
-    "margin": 17.5,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "底特律活塞",
-    "home": "奧蘭多魔術",
-    "signal": "G4領先方複雜壓力",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.612,
-    "result": "loss",
-    "margin": 9.5,
-    "game_num": 4
-   },
-   {
-    "date": "2026-04-27",
-    "away": "明尼蘇達灰狼",
-    "home": "丹佛金塊",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "loss",
-    "margin": 0.5,
-    "game_num": 5
-   },
-   {
-    "date": "2026-04-28",
-    "away": "亞特蘭大老鷹",
-    "home": "紐約尼克",
-    "signal": "ML季後賽押客場",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.64,
-    "result": "loss",
-    "margin": 22.5,
-    "game_num": 5
-   },
-   {
     "date": "2026-04-28",
     "away": "亞特蘭大老鷹",
     "home": "紐約尼克",
@@ -1102,6 +988,18 @@
     "backtest_wr": 0.6,
     "result": "win",
     "margin": 22.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-04-29",
+    "away": "多倫多暴龍",
+    "home": "克里夫蘭騎士",
+    "signal": "G5平手主場壓制",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.6,
+    "result": "pending",
+    "margin": null,
     "game_num": 5
    }
   ]

@@ -926,14 +926,14 @@ def predict_historical_xgb(target_date):
             pred["playoff_ats_has_conflict"] = False
             pred["playoff_ats_strong_consensus"] = None
 
-    # Append stubs for today's/future games in odds table but missing from dataset.
-    if target_date >= _today:
+    # Append stubs for games in odds table but missing from the ML dataset.
+    if True:
         predicted_teams = {(p["home_team"], p["away_team"]) for p in predictions}
         season_table = _season_table_for_date(target_date)
         try:
             with sqlite3.connect(_ODDS_DB) as _con:
                 _odds = pd.read_sql_query(
-                    f'SELECT * FROM "{season_table}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
+                    f'SELECT * FROM "{season_table}" WHERE Date = ?',
                     _con,
                     params=(target_date.isoformat(),),
                 )
@@ -942,14 +942,34 @@ def predict_historical_xgb(target_date):
                 away_team = row["Away"]
                 if (home_team, away_team) in predicted_teams:
                     continue
+                _pts = row.get("Points")
+                _wm = row.get("Win_Margin")
+                _sp = float(row["Spread"]) if pd.notna(row.get("Spread")) else None
+                _ou_v = float(row["OU"]) if pd.notna(row.get("OU")) else None
+                _played = _pts is not None and pd.notna(_pts) and _pts > 0
+                if _played:
+                    _hs = round((_pts + _wm) / 2)
+                    _as = round((_pts - _wm) / 2)
+                    _ats_w = _ats_m = None
+                    if _sp is not None:
+                        _diff = _wm - _sp
+                        if _diff > 0:
+                            _ats_w, _ats_m = "home", round(_diff, 1)
+                        elif _diff < 0:
+                            _ats_w, _ats_m = "away", round(_diff, 1)
+                        else:
+                            _ats_w, _ats_m = "push", 0.0
+                else:
+                    _hs = _as = None
+                    _ats_w = _ats_m = None
                 stub = {
                     "home_team": home_team,
                     "away_team": away_team,
-                    "home_score": None,
-                    "away_score": None,
-                    "spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
-                    "Spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
-                    "OU": float(row["OU"]) if pd.notna(row.get("OU")) else None,
+                    "home_score": _hs,
+                    "away_score": _as,
+                    "spread": _sp,
+                    "Spread": _sp,
+                    "OU": _ou_v,
                     "ML_Home": row.get("ML_Home"),
                     "ML_Away": row.get("ML_Away"),
                     "Days_Rest_Home": row.get("Days_Rest_Home"),
@@ -964,14 +984,15 @@ def predict_historical_xgb(target_date):
                     "ats_value_edge": None,
                     "ats_is_value": False,
                     "is_historical": True,
-                    "actual_home_win": None,
-                    "actual_winner": None,
-                    "actual_total": None,
-                    "actual_ou_result": None,
+                    "actual_home_win": _hs > _as if _played else None,
+                    "actual_winner": (home_team if _wm > 0 else away_team) if _played else None,
+                    "actual_total": int(_pts) if _played else None,
+                    "actual_ou_result": ("OVER" if _pts > _ou_v else "UNDER") if (_played and _ou_v) else None,
                     "ml_correct": None,
                     "ou_correct": None,
-                    "ats_winner": None,
-                    "is_upcoming": True,
+                    "ats_winner": _ats_w,
+                    "ats_cover_margin": _ats_m,
+                    "is_upcoming": not _played,
                     "is_playoff": False,
                     "playoff_ats_picks": [],
                     "playoff_ats_best_side": None,
