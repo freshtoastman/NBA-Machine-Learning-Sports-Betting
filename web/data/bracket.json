@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-23",
- "generated_for": "2026-04-28",
+ "generated_for": "2026-04-29",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -302,18 +302,19 @@
      "win_pct": 0.561,
      "seed": 6
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 2,
-    "games_played": 4,
+    "games_played": 5,
     "next_signal": {
-     "game_num": 5,
-     "signal": "G5平手主場壓制",
-     "side": "home",
-     "home_team": "New York Knicks",
-     "home_team_zh": "紐約尼克",
-     "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)，最強結構信號"
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Atlanta Hawks",
+     "home_team_zh": "亞特蘭大老鷹",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "紐約尼克"
     }
    },
    {
@@ -337,8 +338,19 @@
      "seed": 7
     },
     "high_wins": 3,
-    "low_wins": 1,
-    "games_played": 4
+    "low_wins": 2,
+    "games_played": 5,
+    "next_signal": {
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Philadelphia 76ers",
+     "home_team_zh": "費城七六人",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "波士頓塞爾提克"
+    }
    }
   ]
  },
@@ -663,26 +675,37 @@
      "win_pct": 0.512,
      "seed": 7
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 1,
-    "games_played": 4
+    "games_played": 5,
+    "next_signal": {
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Portland Trail Blazers",
+     "home_team_zh": "波特蘭拓荒者",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "聖安東尼奧馬刺"
+    }
    }
   ]
  },
  "signal_tracker": {
-  "total": 28,
-  "decided": 27,
-  "wins": 18,
-  "losses": 9,
-  "pending": 1,
-  "hit_rate": 66.7,
-  "pnl": 7.38,
-  "roi": 27.3,
+  "total": 29,
+  "decided": 29,
+  "wins": 19,
+  "losses": 10,
+  "pending": 0,
+  "hit_rate": 65.5,
+  "pnl": 7.29,
+  "roi": 25.1,
   "by_tier": {
    "SILVER": {
-    "wins": 14,
-    "losses": 8,
-    "pending": 1
+    "wins": 15,
+    "losses": 9,
+    "pending": 0
    },
    "GOLD": {
     "wins": 4,
@@ -716,10 +739,10 @@
     "hit_rate": 33.3
    },
    "G5": {
-    "wins": 0,
-    "losses": 1,
-    "pending": 1,
-    "hit_rate": 0.0
+    "wins": 1,
+    "losses": 2,
+    "pending": 0,
+    "hit_rate": 33.3
    }
   },
   "by_game": {
@@ -1061,12 +1084,24 @@
     "date": "2026-04-28",
     "away": "亞特蘭大老鷹",
     "home": "紐約尼克",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "loss",
+    "margin": 22.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-04-28",
+    "away": "亞特蘭大老鷹",
+    "home": "紐約尼克",
     "signal": "G5平手主場壓制",
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 22.5,
     "game_num": 5
    }
   ]

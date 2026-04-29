@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 18,
-  "misses": 9,
-  "pending": 1,
-  "decided": 27,
-  "hit_rate": 66.7,
+  "hits": 19,
+  "misses": 10,
+  "pending": 0,
+  "decided": 29,
+  "hit_rate": 65.5,
   "conviction": {
    "crushing_hits": 5,
-   "dominant_hits": 5,
+   "dominant_hits": 6,
    "moderate_hits": 2,
    "narrow_hits": 6,
    "garbage_time_hits": 3,
-   "total_hits": 18,
-   "true_conviction_hits": 12,
-   "raw_hit_rate": 66.7,
-   "true_conviction_rate": 44.4,
-   "note_zh": "5 碾壓主導 + 5 主導 + 2 普通 + 6 險過；3 場受垃圾時間影響；真實信心率 44.4%"
+   "total_hits": 19,
+   "true_conviction_hits": 13,
+   "raw_hit_rate": 65.5,
+   "true_conviction_rate": 44.8,
+   "note_zh": "5 碾壓主導 + 6 主導 + 2 普通 + 6 險過；3 場受垃圾時間影響；真實信心率 44.8%"
   },
   "history": [
    {
@@ -928,39 +928,88 @@
     "conviction_source": "q3",
     "q3_picked_margin": -13.4,
     "q4_swing": -10
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-04-28",
     "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signals": [
-     "G5平手主場壓制"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 60,
+    "signal": "G5平手主場壓制",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "home",
+    "ats_cover_margin": 22.5,
     "series_game_num": 5,
-    "series_score": "2-2",
-    "has_strong_consensus": false,
-    "spread": 6.5
+    "series_home_wins": 2,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "New York Knicks",
+    "away_team": "Atlanta Hawks",
+    "spread": 6.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "dominant",
+     "source": "q3",
+     "q3_picked_margin": 13.1,
+     "final_picked_margin": 22.5,
+     "q4_swing": 11,
+     "shrinkage": -9.4,
+     "garbage_time": false
+    },
+    "conviction": "dominant",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 13.1,
+    "q4_swing": 11
+   },
+   {
+    "date": "2026-04-28",
+    "game": "亞特蘭大老鷹 @ 紐約尼克",
+    "signal": "ML季後賽押客場",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.64,
+    "ats_winner": "home",
+    "ats_cover_margin": 22.5,
+    "series_game_num": 5,
+    "series_home_wins": 2,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "New York Knicks",
+    "away_team": "Atlanta Hawks",
+    "spread": 6.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "dominant",
+     "source": "q3",
+     "q3_picked_margin": -13.1,
+     "final_picked_margin": -22.5,
+     "q4_swing": 11,
+     "shrinkage": 9.4,
+     "garbage_time": true
+    },
+    "conviction": "dominant",
+    "garbage_time": true,
+    "conviction_source": "q3",
+    "q3_picked_margin": -13.1,
+    "q4_swing": 11
    }
   ],
+  "pending_by_game": [],
   "by_signal": [
    {
     "signal": "ML季後賽押客場",
     "hits": 4,
-    "misses": 3,
-    "n": 7,
+    "misses": 4,
+    "n": 8,
     "tier": "SILVER",
-    "hit_rate": 57.1,
+    "hit_rate": 50.0,
     "backtest_wr": 64.0,
     "crushing_hits": 0,
     "dominant_hits": 1,
     "moderate_hits": 1,
     "narrow_hits": 2,
     "garbage_time_hits": 0,
-    "true_hit_rate": 28.6
+    "true_hit_rate": 25.0
    },
    {
     "signal": "R1G1大讓分主場",
@@ -1126,6 +1175,21 @@
     "narrow_hits": 0,
     "garbage_time_hits": 1,
     "true_hit_rate": 33.3
+   },
+   {
+    "signal": "G5平手主場壓制",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 100.0,
+    "backtest_wr": 60.0,
+    "crushing_hits": 0,
+    "dominant_hits": 1,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 100.0
    }
   ],
   "strong_consensus": {
@@ -1142,26 +1206,26 @@
   },
   "best_pick": {
    "hits": 5,
-   "misses": 5,
-   "pending": 1,
-   "decided": 10,
-   "hit_rate": 50.0,
+   "misses": 6,
+   "pending": 0,
+   "decided": 11,
+   "hit_rate": 45.5,
    "gold_hits": 1,
    "gold_misses": 0,
    "silver_hits": 4,
-   "silver_misses": 5,
+   "silver_misses": 6,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/10場決定 = 50.0%"
+   "note_zh": "單場最佳信號(GOLD/SILVER): 5勝/11場決定 = 45.5%"
   }
  },
  "playoff_home_ats": {
-  "games": 39,
-  "home_covers": 22,
+  "games": 40,
+  "home_covers": 23,
   "away_covers": 17,
-  "home_cover_rate": 56.4,
-  "note_zh": "本季季後賽共 39 場有結果，主場過盤 22 場 (56.4%)"
+  "home_cover_rate": 57.5,
+  "note_zh": "本季季後賽共 40 場有結果，主場過盤 23 場 (57.5%)"
  }
 }

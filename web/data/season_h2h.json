@@ -319,9 +319,9 @@
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -16,
+    "home_score": 97,
+    "away_score": 113,
     "ats_result": "away"
    }
   ],
@@ -7497,10 +7497,10 @@
     "home": "San Antonio Spurs",
     "away": "Portland Trail Blazers",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 19,
+    "home_score": 114,
+    "away_score": 95,
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Houston Rockets": [
@@ -10243,10 +10243,10 @@
     "home": "New York Knicks",
     "away": "Atlanta Hawks",
     "spread": 6.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 29,
+    "home_score": 126,
+    "away_score": 97,
+    "ats_result": "home"
    }
   ],
   "San Antonio Spurs:Utah Jazz": [
