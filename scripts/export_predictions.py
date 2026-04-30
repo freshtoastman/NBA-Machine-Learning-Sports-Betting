@@ -1145,7 +1145,7 @@ def build_bracket(target_date: date) -> dict | None:
             # Away team = high_seed. Signal: bet AWAY (the visiting team).
             # Recent validation: 2019-2024 = 87.5% (14/16), 2020+ = 84.6% (11/13).
             # Robust across home-dog buckets: dog 0-5: 76.5%(26/34), dog 5+: 100%(10/10).
-            if gp == 5:
+            if gp == 5 and hw < 4 and lw < 4:
                 # Determine signal team (away in G6) - high_seed is visiting
                 g6_away = high_team
                 g6_home = low_team

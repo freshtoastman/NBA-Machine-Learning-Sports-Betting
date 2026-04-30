@@ -576,11 +576,11 @@
     "officials": [
      {
       "name": "Marc Davis",
-      "games": 74,
-      "home_cover_pct": 40.5,
+      "games": 75,
+      "home_cover_pct": 41.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.1302
+      "p_value": 0.1654
      },
      {
       "name": "Sean Wright",
@@ -599,7 +599,7 @@
       "p_value": 0.9022
      }
     ],
-    "avg_home_cover_pct": 47.5,
+    "avg_home_cover_pct": 47.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1822,7 +1822,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "east"
   },
@@ -1841,7 +1841,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1849,7 +1849,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1859,7 +1859,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1876,7 +1876,7 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "east"
   },
@@ -1886,7 +1886,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {

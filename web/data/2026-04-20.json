@@ -592,14 +592,14 @@
      },
      {
       "name": "Nick Buchert",
-      "games": 74,
-      "home_cover_pct": 54.1,
+      "games": 75,
+      "home_cover_pct": 54.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5614
+      "p_value": 0.4887
      }
     ],
-    "avg_home_cover_pct": 54.7,
+    "avg_home_cover_pct": 54.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
@@ -1816,7 +1816,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "east"
   },
@@ -1825,7 +1825,7 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1835,7 +1835,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1843,7 +1843,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1853,7 +1853,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1861,7 +1861,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -1870,8 +1870,8 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 1,
-   "low_wins": 2,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1880,7 +1880,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {

@@ -1208,14 +1208,14 @@
      },
      {
       "name": "James Williams",
-      "games": 72,
-      "home_cover_pct": 59.7,
+      "games": 73,
+      "home_cover_pct": 58.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.1249
+      "p_value": 0.1597
      }
     ],
-    "avg_home_cover_pct": 54.7,
+    "avg_home_cover_pct": 54.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1296,7 +1296,7 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "east"
   },
@@ -1323,7 +1323,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -1350,7 +1350,7 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "east"
   },

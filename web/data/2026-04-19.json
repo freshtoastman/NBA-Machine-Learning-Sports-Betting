@@ -1819,30 +1819,30 @@
     "officials": [
      {
       "name": "Brian Forte",
-      "games": 70,
-      "home_cover_pct": 55.7,
+      "games": 71,
+      "home_cover_pct": 54.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.403
+      "p_value": 0.4767
      },
      {
       "name": "James Williams",
-      "games": 72,
-      "home_cover_pct": 59.7,
+      "games": 73,
+      "home_cover_pct": 58.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.1249
+      "p_value": 0.1597
      },
      {
       "name": "Kevin Scott",
-      "games": 68,
-      "home_cover_pct": 47.1,
+      "games": 69,
+      "home_cover_pct": 46.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.7163
+      "p_value": 0.6305
      }
     ],
-    "avg_home_cover_pct": 54.2,
+    "avg_home_cover_pct": 53.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2408,14 +2408,14 @@
      },
      {
       "name": "Josh Tiven",
-      "games": 73,
-      "home_cover_pct": 53.4,
+      "games": 74,
+      "home_cover_pct": 54.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.64
+      "p_value": 0.5614
      }
     ],
-    "avg_home_cover_pct": 58.8,
+    "avg_home_cover_pct": 59.0,
     "away_friendly": false,
     "home_friendly": true,
     "has_significant": true,
@@ -2465,8 +2465,8 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
-   "low_wins": 1,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -2474,7 +2474,7 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -2484,7 +2484,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -2492,7 +2492,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -2501,8 +2501,8 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 2,
-   "low_wins": 1,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -2510,7 +2510,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -2519,8 +2519,8 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 1,
-   "low_wins": 2,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -2529,7 +2529,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 4,
    "conference": "west"
   },
   {

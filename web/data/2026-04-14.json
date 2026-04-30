@@ -549,26 +549,6 @@
      "backtest_roi": 17.8,
      "backtest_n": 21,
      "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21，排除大讓分結構性弱)"
-    },
-    {
-     "signal": "主場明顯強勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.547,
-     "backtest_roi": 4.4,
-     "backtest_n": 170,
-     "reason_zh": "主場近期勝率領先客場 20pp (≥15pp)，12季歷史主場cover率 54.7% (n=170)"
-    },
-    {
-     "signal": "中等讓分押冷門",
-     "side": "away",
-     "ats_side": "受讓(押dog)",
-     "tier": "BRONZE",
-     "backtest_wr": 0.521,
-     "backtest_roi": 4.2,
-     "backtest_n": 290,
-     "reason_zh": "讓分 5.5 在 5.5-8 區間，歷史12季冷門 cover 率 52.1% (近3季 61.2%，波動大)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -630,7 +610,10 @@
    "spread_last": 5.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 228.5,
+   "ou_last": 228.5,
+   "ou_move": 0.0
   },
   "Portland Trail Blazers:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1144,33 +1127,33 @@
      },
      {
       "name": "James Capers",
-      "games": 46,
-      "home_cover_pct": 65.2,
+      "games": 47,
+      "home_cover_pct": 66.0,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0541
+      "p_value": 0.04
      },
      {
       "name": "Nick Buchert",
-      "games": 74,
-      "home_cover_pct": 54.1,
+      "games": 75,
+      "home_cover_pct": 54.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5614
+      "p_value": 0.4887
      }
     ],
-    "avg_home_cover_pct": 55.2,
+    "avg_home_cover_pct": 55.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": true,
     "significant_officials": [
      {
       "name": "James Capers",
-      "games": 46,
-      "home_cover_pct": 65.2,
+      "games": 47,
+      "home_cover_pct": 66.0,
       "significant": true,
       "direction": "home",
-      "p_value": 0.0541
+      "p_value": 0.04
      }
     ]
    },
@@ -1189,7 +1172,10 @@
    "spread_last": 4.0,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 217.5,
+   "ou_last": 217.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
@@ -1198,8 +1184,8 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
-   "low_wins": 0,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1207,8 +1193,8 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -1216,8 +1202,8 @@
    "round_label": "首輪",
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1225,8 +1211,8 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -1234,8 +1220,8 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
-   "low_wins": 0,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1243,7 +1229,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 1,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -1252,8 +1238,8 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 0,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1261,8 +1247,8 @@
    "round_label": "首輪",
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 0,
-   "low_wins": 1,
+   "high_wins": 1,
+   "low_wins": 4,
    "conference": "west"
   },
   {

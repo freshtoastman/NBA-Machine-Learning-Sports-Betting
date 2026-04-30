@@ -244,9 +244,24 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 3,
-    "games_played": 4
+    "games_played": 5,
+    "next_signal": {
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Orlando Magic",
+     "home_team_zh": "奧蘭多魔術",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "底特律活塞",
+     "consensus_count": 3,
+     "has_conflict": true,
+     "conflict_signal": "G6主場收官陷阱",
+     "conflict_wr": 0.667
+    }
    },
    {
     "label": "4 vs 5",
@@ -268,18 +283,23 @@
      "win_pct": 0.561,
      "seed": 5
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 2,
-    "games_played": 4,
+    "games_played": 5,
     "next_signal": {
-     "game_num": 5,
-     "signal": "G5平手主場壓制",
-     "side": "home",
-     "home_team": "Cleveland Cavaliers",
-     "home_team_zh": "克里夫蘭騎士",
-     "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)，最強結構信號"
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Toronto Raptors",
+     "home_team_zh": "多倫多暴龍",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "克里夫蘭騎士",
+     "consensus_count": 2,
+     "has_conflict": true,
+     "conflict_signal": "淘汰局押冷門",
+     "conflict_wr": 0.654
     }
    },
    {
@@ -625,8 +645,23 @@
      "seed": 5
     },
     "high_wins": 3,
-    "low_wins": 1,
-    "games_played": 4
+    "low_wins": 2,
+    "games_played": 5,
+    "next_signal": {
+     "game_num": 6,
+     "signal": "R1G6客場優勢",
+     "side": "away",
+     "home_team": "Houston Rockets",
+     "home_team_zh": "休士頓火箭",
+     "tier": "GOLD",
+     "backtest_wr": 0.804,
+     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+     "signal_team_zh": "洛杉磯湖人",
+     "consensus_count": 2,
+     "has_conflict": true,
+     "conflict_signal": "淘汰局押冷門",
+     "conflict_wr": 0.654
+    }
    },
    {
     "label": "3 vs 6",
@@ -689,35 +724,24 @@
     },
     "high_wins": 4,
     "low_wins": 1,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Portland Trail Blazers",
-     "home_team_zh": "波特蘭拓荒者",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "聖安東尼奧馬刺"
-    }
+    "games_played": 5
    }
   ]
  },
  "signal_tracker": {
   "total": 31,
-  "decided": 20,
+  "decided": 21,
   "wins": 16,
-  "losses": 4,
-  "pending": 11,
-  "hit_rate": 80.0,
-  "pnl": 10.56,
-  "roi": 52.8,
+  "losses": 5,
+  "pending": 10,
+  "hit_rate": 76.2,
+  "pnl": 9.56,
+  "roi": 45.5,
   "by_tier": {
    "SILVER": {
     "wins": 12,
-    "losses": 3,
-    "pending": 8
+    "losses": 4,
+    "pending": 7
    },
    "GOLD": {
     "wins": 4,
@@ -746,9 +770,9 @@
    },
    "G5": {
     "wins": 1,
-    "losses": 0,
-    "pending": 1,
-    "hit_rate": 100.0
+    "losses": 1,
+    "pending": 0,
+    "hit_rate": 50.0
    },
    "G6": {
     "wins": 0,
@@ -759,13 +783,13 @@
   },
   "by_game": {
    "total": 19,
-   "decided": 15,
+   "decided": 16,
    "wins": 13,
-   "losses": 2,
-   "pending": 4,
-   "hit_rate": 86.7,
-   "pnl": 9.83,
-   "roi": 65.5
+   "losses": 3,
+   "pending": 3,
+   "hit_rate": 81.2,
+   "pnl": 8.83,
+   "roi": 55.2
   },
   "details": [
    {
@@ -1016,8 +1040,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -5.5,
     "game_num": 5
    },
    {

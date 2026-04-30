@@ -541,35 +541,26 @@
      },
      {
       "name": "Tyler Ford",
-      "games": 76,
-      "home_cover_pct": 39.5,
-      "significant": true,
-      "direction": "away",
-      "p_value": 0.0846
+      "games": 77,
+      "home_cover_pct": 40.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.11
      },
      {
       "name": "Andy Nagy",
-      "games": 66,
-      "home_cover_pct": 43.9,
+      "games": 67,
+      "home_cover_pct": 44.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.3891
+      "p_value": 0.4638
      }
     ],
-    "avg_home_cover_pct": 44.7,
+    "avg_home_cover_pct": 45.3,
     "away_friendly": false,
     "home_friendly": false,
-    "has_significant": true,
-    "significant_officials": [
-     {
-      "name": "Tyler Ford",
-      "games": 76,
-      "home_cover_pct": 39.5,
-      "significant": true,
-      "direction": "away",
-      "p_value": 0.0846
-     }
-    ]
+    "has_significant": false,
+    "significant_officials": []
    },
    "injuries_away": [],
    "odds_history": [
@@ -586,7 +577,10 @@
    "spread_last": 1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 222.5,
+   "ou_last": 222.5,
+   "ou_move": 0.0
   },
   "Golden State Warriors:LA Clippers": {
    "home_team": "LA Clippers",
@@ -1136,7 +1130,10 @@
    "spread_last": 5.0,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-20T13:54:45+00:00",
-   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00"
+   "spread_last_fetched_at": "2026-04-20T13:54:45+00:00",
+   "ou_first": 221.5,
+   "ou_last": 221.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
@@ -1145,8 +1142,8 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
-   "low_wins": 0,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1154,8 +1151,8 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -1163,8 +1160,8 @@
    "round_label": "首輪",
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1172,8 +1169,8 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
-   "low_wins": 2,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -1181,8 +1178,8 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -1190,7 +1187,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 1,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -1199,8 +1196,8 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 0,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -1209,7 +1206,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 1,
+   "low_wins": 4,
    "conference": "west"
   },
   {

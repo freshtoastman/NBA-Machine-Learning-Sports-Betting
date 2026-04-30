@@ -61,7 +61,7 @@
    "ou_value": 219.5,
    "ou_confidence": 58.0,
    "home_team_ev": -28.13,
-   "away_team_ev": 63.67,
+   "away_team_ev": 63.68,
    "home_team_odds": -330,
    "away_team_odds": 265,
    "home_kelly": 0,
@@ -634,12 +634,12 @@
    "ou_pick": "UNDER",
    "ou_value": 231.5,
    "ou_confidence": 57.6,
-   "home_team_ev": -19.48,
+   "home_team_ev": -19.49,
    "away_team_ev": 30.71,
    "home_team_odds": -255,
    "away_team_odds": 210,
    "home_kelly": 0,
-   "away_kelly": 14.62,
+   "away_kelly": 14.63,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 46.5,
@@ -1198,8 +1198,8 @@
    "ou_pick": "OVER",
    "ou_value": 216.5,
    "ou_confidence": 61.6,
-   "home_team_ev": -11.4,
-   "away_team_ev": 11.01,
+   "home_team_ev": -11.41,
+   "away_team_ev": 11.02,
    "home_team_odds": -220,
    "away_team_odds": 184,
    "home_kelly": 0,
@@ -1720,14 +1720,14 @@
      },
      {
       "name": "Ray Acosta",
-      "games": 71,
-      "home_cover_pct": 49.3,
+      "games": 72,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.5,
+    "avg_home_cover_pct": 49.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1762,7 +1762,7 @@
    "ou_pick": "OVER",
    "ou_value": 206.5,
    "ou_confidence": 53.7,
-   "home_team_ev": 51.3,
+   "home_team_ev": 51.29,
    "away_team_ev": -32.03,
    "home_team_odds": 184,
    "away_team_odds": -220,
@@ -2322,8 +2322,8 @@
    "round_label": "首輪",
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
-   "high_wins": 2,
-   "low_wins": 1,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -2331,8 +2331,8 @@
    "round_label": "首輪",
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
-   "low_wins": 2,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   },
   {
@@ -2341,7 +2341,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -2349,7 +2349,7 @@
    "round_label": "首輪",
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
+   "high_wins": 2,
    "low_wins": 3,
    "conference": "west"
   },
@@ -2358,8 +2358,8 @@
    "round_label": "首輪",
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 2,
-   "low_wins": 1,
+   "high_wins": 3,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -2367,7 +2367,7 @@
    "round_label": "首輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Phoenix Suns",
-   "high_wins": 2,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },
@@ -2376,8 +2376,8 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 1,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -2386,7 +2386,7 @@
    "high_seed": "Portland Trail Blazers",
    "low_seed": "San Antonio Spurs",
    "high_wins": 1,
-   "low_wins": 2,
+   "low_wins": 4,
    "conference": "west"
   },
   {
