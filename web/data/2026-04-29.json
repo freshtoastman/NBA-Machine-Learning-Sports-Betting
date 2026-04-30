@@ -35,12 +35,12 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (存疑)",
+   "Detroit Pistons: Kevin Huerter (缺陣)",
    "Orlando Magic: Franz Wagner (缺陣)",
-   "Orlando Magic: Jonathan Isaac (可能缺陣)",
+   "Orlando Magic: Jonathan Isaac (缺陣)",
+   "Toronto Raptors: Brandon Ingram (缺陣)",
    "Toronto Raptors: Immanuel Quickley (缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)",
-   "Los Angeles Lakers: Austin Reaves (存疑)",
    "Houston Rockets: Kevin Durant (缺陣)"
   ],
   "ml_correct": 0,
@@ -66,14 +66,14 @@
    "away_confidence": 34.7,
    "winner": "home",
    "ou_pick": "UNDER",
-   "ou_value": 211.5,
+   "ou_value": 210.5,
    "ou_confidence": 58.6,
-   "home_team_ev": -17.29,
-   "away_team_ev": 38.82,
-   "home_team_odds": -375,
-   "away_team_odds": 300,
+   "home_team_ev": -20.54,
+   "away_team_ev": 59.65,
+   "home_team_odds": -461,
+   "away_team_odds": 360,
    "home_kelly": 0,
-   "away_kelly": 12.94,
+   "away_kelly": 16.57,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 49.3,
@@ -527,8 +527,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 75.9,
-   "fair_away": 24.1,
+   "fair_home": 79.1,
+   "fair_away": 20.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -559,11 +559,16 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Huerter (存疑)"
+    "Kevin Huerter (缺陣)"
    ],
+   "live_home_score": 116,
+   "live_away_score": 109,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
     "Franz Wagner (缺陣)",
-    "Jonathan Isaac (可能缺陣)"
+    "Jonathan Isaac (缺陣)"
    ],
    "odds_history": [
     {
@@ -581,16 +586,24 @@
      "ml_home": -375,
      "ml_away": 300,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-30T14:12:01+00:00",
+     "spread": 10.5,
+     "ou": 210.5,
+     "ml_home": -461,
+     "ml_away": 360,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 9.5,
    "spread_last": 10.5,
    "spread_move": 1.0,
    "spread_first_fetched_at": "2026-04-29T14:14:31+00:00",
-   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
    "ou_first": 211.5,
-   "ou_last": 211.5,
-   "ou_move": 0.0
+   "ou_last": 210.5,
+   "ou_move": -1.0
   },
   "Toronto Raptors:Cleveland Cavaliers": {
    "home_team": "Cleveland Cavaliers",
@@ -599,14 +612,14 @@
    "away_confidence": 44.5,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 217.5,
+   "ou_value": 219.5,
    "ou_confidence": 58.0,
-   "home_team_ev": -30.34,
-   "away_team_ev": 82.56,
-   "home_team_odds": -391,
-   "away_team_odds": 310,
+   "home_team_ev": -31.6,
+   "away_team_ev": 95.92,
+   "home_team_odds": -429,
+   "away_team_odds": 340,
    "home_kelly": 0,
-   "away_kelly": 26.63,
+   "away_kelly": 28.21,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.8,
@@ -615,7 +628,7 @@
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": 9.5,
+   "spread": 10.5,
    "home_profile": {
     "weekday_name": "週三",
     "season": {
@@ -1060,8 +1073,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 76.6,
-   "fair_away": 23.4,
+   "fair_home": 78.1,
+   "fair_away": 21.9,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1103,7 +1116,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 125,
+   "live_away_score": 120,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
+    "Brandon Ingram (缺陣)",
     "Immanuel Quickley (缺陣)"
    ],
    "odds_history": [
@@ -1122,16 +1141,24 @@
      "ml_home": -391,
      "ml_away": 310,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-30T14:12:01+00:00",
+     "spread": 10.5,
+     "ou": 219.5,
+     "ml_home": -429,
+     "ml_away": 340,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 8.5,
-   "spread_last": 9.5,
-   "spread_move": 1.0,
+   "spread_last": 10.5,
+   "spread_move": 2.0,
    "spread_first_fetched_at": "2026-04-29T14:14:31+00:00",
-   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
    "ou_first": 217.5,
-   "ou_last": 217.5,
-   "ou_move": 0.0
+   "ou_last": 219.5,
+   "ou_move": 2.0
   },
   "Houston Rockets:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -1142,12 +1169,12 @@
    "ou_pick": "OVER",
    "ou_value": 208.5,
    "ou_confidence": 53.7,
-   "home_team_ev": -16.96,
-   "away_team_ev": 15.88,
-   "home_team_odds": -172,
-   "away_team_odds": 144,
+   "home_team_ev": -13.4,
+   "away_team_ev": 10.19,
+   "home_team_odds": -154,
+   "away_team_odds": 132,
    "home_kelly": 0,
-   "away_kelly": 11.03,
+   "away_kelly": 7.72,
    "is_historical": true,
    "ats_model_pick": "away",
    "ats_model_home_prob": 47.0,
@@ -1601,8 +1628,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 60.7,
-   "fair_away": 39.3,
+   "fair_home": 58.4,
+   "fair_away": 41.6,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1633,9 +1660,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "injuries_home": [
-    "Luka Doncic (缺陣)",
-    "Austin Reaves (存疑)"
+    "Luka Doncic (缺陣)"
    ],
+   "live_home_score": 93,
+   "live_away_score": 99,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
     "Kevin Durant (缺陣)"
    ],
@@ -1655,13 +1686,21 @@
      "ml_home": -172,
      "ml_away": 144,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-04-30T14:12:01+00:00",
+     "spread": 3.5,
+     "ou": 208.5,
+     "ml_home": -154,
+     "ml_away": 132,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 4.5,
    "spread_last": 3.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-29T14:14:31+00:00",
-   "spread_last_fetched_at": "2026-04-29T19:18:08+00:00",
+   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
    "ou_first": 208.5,
    "ou_last": 208.5,
    "ou_move": 0.0

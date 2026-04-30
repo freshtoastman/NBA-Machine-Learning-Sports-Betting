@@ -719,7 +719,7 @@
     "series_game_num": 5,
     "series_score": "2-2",
     "has_strong_consensus": false,
-    "spread": 9.5
+    "spread": 10.5
    },
    {
     "date": "2026-04-30",
@@ -752,7 +752,7 @@
     "series_game_num": 6,
     "series_score": "3-2",
     "has_strong_consensus": false,
-    "spread": -5.5
+    "spread": -6.5
    },
    {
     "date": "2026-04-30",
