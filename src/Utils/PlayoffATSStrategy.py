@@ -806,6 +806,10 @@ def _r1g1_large_spread_home(pred, series_state, team_form) -> PlayoffATSPick | N
 
 
 def _away_form_dominant(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """DISABLED — 59.4% backtest (n=175) is marginal; 2W/2L live (50%).
+    After multiple suppressions (G1/G3-tied/G4/home-leads), remaining sample
+    is small and the signal adds noise rather than edge. Kept as stub."""
+    return None
     """Away team's recent win% is ≥15pp higher than home → away covers.
 
     Full playoff backtest (175 games, 12 seasons): 59.4% away covers, ROI=+13.5%.

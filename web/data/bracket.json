@@ -681,18 +681,18 @@
   ]
  },
  "signal_tracker": {
-  "total": 29,
-  "decided": 29,
-  "wins": 22,
-  "losses": 7,
+  "total": 26,
+  "decided": 26,
+  "wins": 20,
+  "losses": 6,
   "pending": 0,
-  "hit_rate": 75.9,
-  "pnl": 13.02,
-  "roi": 44.9,
+  "hit_rate": 76.9,
+  "pnl": 12.2,
+  "roi": 46.9,
   "by_tier": {
    "SILVER": {
-    "wins": 17,
-    "losses": 6,
+    "wins": 15,
+    "losses": 5,
     "pending": 0
    },
    "GOLD": {
@@ -715,10 +715,10 @@
     "hit_rate": 100.0
    },
    "G3": {
-    "wins": 4,
+    "wins": 3,
     "losses": 2,
     "pending": 0,
-    "hit_rate": 66.7
+    "hit_rate": 60.0
    },
    "G5": {
     "wins": 1,
@@ -727,21 +727,21 @@
     "hit_rate": 50.0
    },
    "G6": {
-    "wins": 6,
-    "losses": 2,
+    "wins": 5,
+    "losses": 1,
     "pending": 0,
-    "hit_rate": 75.0
+    "hit_rate": 83.3
    }
   },
   "by_game": {
    "total": 19,
-   "decided": 19,
-   "wins": 16,
+   "decided": 18,
+   "wins": 15,
    "losses": 3,
-   "pending": 0,
-   "hit_rate": 84.2,
-   "pnl": 11.56,
-   "roi": 60.8
+   "pending": 1,
+   "hit_rate": 83.3,
+   "pnl": 10.65,
+   "roi": 59.2
   },
   "details": [
    {
@@ -961,18 +961,6 @@
     "game_num": 3
    },
    {
-    "date": "2026-04-25",
-    "away": "奧克拉荷馬雷霆",
-    "home": "鳳凰城太陽",
-    "signal": "客場明顯強勢",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.594,
-    "result": "win",
-    "margin": -3.5,
-    "game_num": 3
-   },
-   {
     "date": "2026-04-28",
     "away": "亞特蘭大老鷹",
     "home": "紐約尼克",
@@ -1022,18 +1010,6 @@
    },
    {
     "date": "2026-04-30",
-    "away": "紐約尼克",
-    "home": "亞特蘭大老鷹",
-    "signal": "客場明顯強勢",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.594,
-    "result": "win",
-    "margin": -47.5,
-    "game_num": 6
-   },
-   {
-    "date": "2026-04-30",
     "away": "波士頓塞爾提克",
     "home": "費城七六人",
     "signal": "淘汰局押冷門",
@@ -1053,18 +1029,6 @@
     "side": "home",
     "backtest_wr": 0.6,
     "result": "win",
-    "margin": 18.5,
-    "game_num": 6
-   },
-   {
-    "date": "2026-04-30",
-    "away": "波士頓塞爾提克",
-    "home": "費城七六人",
-    "signal": "客場明顯強勢",
-    "tier": "SILVER",
-    "side": "away",
-    "backtest_wr": 0.594,
-    "result": "loss",
     "margin": 18.5,
     "game_num": 6
    },
