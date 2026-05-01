@@ -378,8 +378,8 @@
    "away_team": "Los Angeles Lakers",
    "home_score": null,
    "away_score": null,
-   "spread": 3.5,
-   "Spread": 3.5,
+   "spread": 4.5,
+   "Spread": 4.5,
    "OU": 205.5,
    "ML_Home": -172,
    "ML_Away": 144,
@@ -457,13 +457,21 @@
      "ml_home": -172,
      "ml_away": 144,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-01T14:16:51+00:00",
+     "spread": 4.5,
+     "ou": 205.5,
+     "ml_home": -172,
+     "ml_away": 144,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 3.5,
-   "spread_last": 3.5,
-   "spread_move": 0.0,
+   "spread_last": 4.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-05-01T14:09:07+00:00",
-   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:16:51+00:00",
    "ou_first": 205.5,
    "ou_last": 205.5,
    "ou_move": 0.0
@@ -485,7 +493,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {
@@ -494,7 +502,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {
@@ -512,7 +520,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {

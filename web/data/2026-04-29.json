@@ -1687,7 +1687,7 @@
    "high_seed": "Denver Nuggets",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {
@@ -1696,7 +1696,7 @@
    "high_seed": "Atlanta Hawks",
    "low_seed": "New York Knicks",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {
@@ -1714,7 +1714,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {

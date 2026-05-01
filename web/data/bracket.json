@@ -322,24 +322,9 @@
      "win_pct": 0.561,
      "seed": 6
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 2,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Atlanta Hawks",
-     "home_team_zh": "亞特蘭大老鷹",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "紐約尼克",
-     "consensus_count": 3,
-     "has_conflict": true,
-     "conflict_signal": "淘汰局押冷門",
-     "conflict_wr": 0.654
-    }
+    "games_played": 6
    },
    {
     "label": "2 vs 7",
@@ -362,23 +347,8 @@
      "seed": 7
     },
     "high_wins": 3,
-    "low_wins": 2,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Philadelphia 76ers",
-     "home_team_zh": "費城七六人",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "波士頓塞爾提克",
-     "consensus_count": 4,
-     "has_conflict": true,
-     "conflict_signal": "淘汰局押冷門",
-     "conflict_wr": 0.654
-    }
+    "low_wins": 3,
+    "games_played": 6
    }
   ]
  },
@@ -681,23 +651,8 @@
      "seed": 6
     },
     "high_wins": 2,
-    "low_wins": 3,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Minnesota Timberwolves",
-     "home_team_zh": "明尼蘇達灰狼",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "丹佛金塊",
-     "consensus_count": 3,
-     "has_conflict": true,
-     "conflict_signal": "G6主場收官陷阱",
-     "conflict_wr": 0.667
-    }
+    "low_wins": 4,
+    "games_played": 6
    },
    {
     "label": "2 vs 7",
@@ -727,23 +682,23 @@
  },
  "signal_tracker": {
   "total": 31,
-  "decided": 21,
-  "wins": 16,
-  "losses": 5,
-  "pending": 10,
-  "hit_rate": 76.2,
-  "pnl": 9.56,
-  "roi": 45.5,
+  "decided": 31,
+  "wins": 22,
+  "losses": 9,
+  "pending": 0,
+  "hit_rate": 71.0,
+  "pnl": 11.02,
+  "roi": 35.5,
   "by_tier": {
    "SILVER": {
-    "wins": 12,
-    "losses": 4,
-    "pending": 7
+    "wins": 17,
+    "losses": 6,
+    "pending": 0
    },
    "GOLD": {
-    "wins": 4,
-    "losses": 1,
-    "pending": 3
+    "wins": 5,
+    "losses": 3,
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -772,21 +727,21 @@
     "hit_rate": 50.0
    },
    "G6": {
-    "wins": 0,
-    "losses": 0,
-    "pending": 10,
-    "hit_rate": null
+    "wins": 6,
+    "losses": 4,
+    "pending": 0,
+    "hit_rate": 60.0
    }
   },
   "by_game": {
    "total": 19,
-   "decided": 16,
-   "wins": 13,
+   "decided": 18,
+   "wins": 15,
    "losses": 3,
-   "pending": 3,
-   "hit_rate": 81.2,
-   "pnl": 8.83,
-   "roi": 55.2
+   "pending": 1,
+   "hit_rate": 83.3,
+   "pnl": 10.65,
+   "roi": 59.2
   },
   "details": [
    {
@@ -1049,8 +1004,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.795,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -47.5,
     "game_num": 6
    },
    {
@@ -1061,8 +1016,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -47.5,
     "game_num": 6
    },
    {
@@ -1073,8 +1028,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -47.5,
     "game_num": 6
    },
    {
@@ -1085,8 +1040,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.795,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 18.5,
     "game_num": 6
    },
    {
@@ -1097,8 +1052,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 18.5,
     "game_num": 6
    },
    {
@@ -1109,8 +1064,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 18.5,
     "game_num": 6
    },
    {
@@ -1121,8 +1076,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.594,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 18.5,
     "game_num": 6
    },
    {
@@ -1133,8 +1088,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.795,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 19.5,
     "game_num": 6
    },
    {
@@ -1145,8 +1100,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.667,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 19.5,
     "game_num": 6
    },
    {
@@ -1157,8 +1112,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 19.5,
     "game_num": 6
    }
   ]
