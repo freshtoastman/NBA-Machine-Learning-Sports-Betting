@@ -1,6 +1,6 @@
 {
  "date": "2026-04-30",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 3,
   "home_picks": 0,
@@ -225,14 +225,27 @@
   "playoff_ats_count": 10,
   "injury_alerts": [
    "Atlanta Hawks: Jock Landale (缺陣)",
-   "New York Knicks: Josh Hart (存疑)",
-   "Philadelphia 76ers: Joel Embiid (可能出賽)",
-   "Minnesota Timberwolves: Bones Hyland (存疑)",
+   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)",
+   "Minnesota Timberwolves: Kyle Anderson (缺陣)",
    "Minnesota Timberwolves: Donte DiVincenzo (缺陣)",
    "Minnesota Timberwolves: Anthony Edwards (缺陣)",
-   "Denver Nuggets: Peyton Watson (缺陣)",
-   "Denver Nuggets: Aaron Gordon (存疑)"
-  ]
+   "Denver Nuggets: Aaron Gordon (缺陣)",
+   "Denver Nuggets: Peyton Watson (缺陣)"
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "New York Knicks:Atlanta Hawks": {
@@ -242,23 +255,23 @@
    "away_confidence": 54.9,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 213.5,
+   "ou_value": 214.5,
    "ou_confidence": 57.8,
-   "home_team_ev": 2.92,
-   "away_team_ev": -9.05,
-   "home_team_odds": 128,
-   "away_team_odds": -152,
-   "home_kelly": 2.28,
+   "home_team_ev": 6.53,
+   "away_team_ev": -11.28,
+   "home_team_odds": 136,
+   "away_team_odds": -162,
+   "home_kelly": 4.8,
    "away_kelly": 0,
    "is_historical": true,
-   "ats_model_pick": "away",
-   "ats_model_home_prob": 49.6,
+   "ats_model_pick": "home",
+   "ats_model_home_prob": 50.4,
    "ats_model_confidence": 50.4,
    "ats_value_edge": 0.4,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -2.5,
+   "spread": -3.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -703,8 +716,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 42.1,
-   "fair_away": 57.9,
+   "fair_home": 40.7,
+   "fair_away": 59.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -768,9 +781,12 @@
    "injuries_home": [
     "Jock Landale (缺陣)"
    ],
-   "injuries_away": [
-    "Josh Hart (存疑)"
-   ],
+   "live_home_score": 89,
+   "live_away_score": 140,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-04-29T19:18:08+00:00",
@@ -787,16 +803,24 @@
      "ml_home": 128,
      "ml_away": -152,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": -3.5,
+     "ou": 214.5,
+     "ml_home": 136,
+     "ml_away": -162,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -2.5,
-   "spread_last": -2.5,
-   "spread_move": 0.0,
+   "spread_last": -3.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
-   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
    "ou_first": 213.5,
-   "ou_last": 213.5,
-   "ou_move": 0.0
+   "ou_last": 214.5,
+   "ou_move": 1.0
   },
   "Boston Celtics:Philadelphia 76ers": {
    "home_team": "Philadelphia 76ers",
@@ -805,23 +829,23 @@
    "away_confidence": 65.5,
    "winner": "away",
    "ou_pick": "OVER",
-   "ou_value": 212.5,
+   "ou_value": 213.5,
    "ou_confidence": 66.3,
-   "home_team_ev": -0.05,
-   "away_team_ev": -5.97,
-   "home_team_odds": 190,
-   "away_team_odds": -230,
-   "home_kelly": 0,
+   "home_team_ev": 2.71,
+   "away_team_ev": -7.16,
+   "home_team_odds": 198,
+   "away_team_odds": -240,
+   "home_kelly": 1.37,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "away",
-   "ats_model_home_prob": 49.8,
-   "ats_model_confidence": 50.2,
-   "ats_value_edge": 0.2,
+   "ats_model_home_prob": 49.9,
+   "ats_model_confidence": 50.1,
+   "ats_value_edge": 0.1,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -6.5,
+   "spread": -5.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -1266,8 +1290,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 33.1,
-   "fair_away": 66.9,
+   "fair_home": 32.2,
+   "fair_away": 67.8,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1338,9 +1362,12 @@
    "away_team_zh": "波士頓塞爾提克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "injuries_home": [
-    "Joel Embiid (可能出賽)"
-   ],
+   "injuries_home": [],
+   "live_home_score": 106,
+   "live_away_score": 93,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [],
    "odds_history": [
     {
@@ -1358,16 +1385,24 @@
      "ml_home": 190,
      "ml_away": -230,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": -5.5,
+     "ou": 213.5,
+     "ml_home": 198,
+     "ml_away": -240,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -5.5,
-   "spread_last": -6.5,
-   "spread_move": -1.0,
+   "spread_last": -5.5,
+   "spread_move": 0.0,
    "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
-   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
    "ou_first": 212.5,
-   "ou_last": 212.5,
-   "ou_move": 0.0
+   "ou_last": 213.5,
+   "ou_move": 1.0
   },
   "Denver Nuggets:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1376,23 +1411,23 @@
    "away_confidence": 53.7,
    "winner": "away",
    "ou_pick": "UNDER",
-   "ou_value": 224.5,
+   "ou_value": 223.5,
    "ou_confidence": 67.1,
-   "home_team_ev": 37.96,
-   "away_team_ev": -23.92,
-   "home_team_odds": 198,
-   "away_team_odds": -240,
-   "home_kelly": 19.17,
+   "home_team_ev": 59.72,
+   "away_team_ev": -28.39,
+   "home_team_odds": 245,
+   "away_team_odds": -300,
+   "home_kelly": 24.37,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
-   "ats_model_home_prob": 52.0,
-   "ats_model_confidence": 52.0,
-   "ats_value_edge": 2.0,
+   "ats_model_home_prob": 52.3,
+   "ats_model_confidence": 52.3,
+   "ats_value_edge": 2.3,
    "ats_is_value": false,
    "consensus_pick": null,
    "is_consensus": false,
-   "spread": -5.5,
+   "spread": -7.5,
    "home_profile": {
     "weekday_name": "週四",
     "season": {
@@ -1837,8 +1872,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 32.2,
-   "fair_away": 67.8,
+   "fair_home": 27.9,
+   "fair_away": 72.1,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -1900,13 +1935,19 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
    "injuries_home": [
-    "Bones Hyland (存疑)",
+    "Ayo Dosunmu (缺陣)",
+    "Kyle Anderson (缺陣)",
     "Donte DiVincenzo (缺陣)",
     "Anthony Edwards (缺陣)"
    ],
+   "live_home_score": 110,
+   "live_away_score": 98,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [
-    "Peyton Watson (缺陣)",
-    "Aaron Gordon (存疑)"
+    "Aaron Gordon (缺陣)",
+    "Peyton Watson (缺陣)"
    ],
    "odds_history": [
     {
@@ -1924,16 +1965,24 @@
      "ml_home": 198,
      "ml_away": -240,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": -7.5,
+     "ou": 223.5,
+     "ml_home": 245,
+     "ml_away": -300,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -5.5,
-   "spread_last": -5.5,
-   "spread_move": 0.0,
+   "spread_last": -7.5,
+   "spread_move": -2.0,
    "spread_first_fetched_at": "2026-04-29T19:18:08+00:00",
-   "spread_last_fetched_at": "2026-04-30T14:12:01+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
    "ou_first": 224.5,
-   "ou_last": 224.5,
-   "ou_move": 0.0
+   "ou_last": 223.5,
+   "ou_move": -1.0
   }
  },
  "active_series": [

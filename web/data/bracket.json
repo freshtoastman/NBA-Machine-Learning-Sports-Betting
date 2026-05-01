@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-04-30",
+ "generated_for": "2026-05-01",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -657,10 +657,7 @@
      "backtest_wr": 0.804,
      "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
      "signal_team_zh": "洛杉磯湖人",
-     "consensus_count": 2,
-     "has_conflict": true,
-     "conflict_signal": "淘汰局押冷門",
-     "conflict_wr": 0.654
+     "consensus_count": 2
     }
    },
    {

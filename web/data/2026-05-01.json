@@ -1,6 +1,6 @@
 {
  "date": "2026-05-01",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 3,
   "home_picks": 0,
@@ -124,7 +124,7 @@
     "away_team_zh": "洛杉磯湖人",
     "signal": "G6R1客場壓制",
     "side": "away",
-    "ats_side": "讓分(押fav)",
+    "ats_side": "受讓(押dog)",
     "tier": "GOLD",
     "backtest_wr": 0.795,
     "backtest_roi": 59.1,
@@ -134,8 +134,8 @@
     "series_game_num": 6,
     "series_home_wins": 2,
     "series_away_wins": 3,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    },
    {
     "game_key": "Los Angeles Lakers:Houston Rockets",
@@ -144,7 +144,7 @@
     "home_team_zh": "休士頓火箭",
     "away_team_zh": "洛杉磯湖人",
     "signal": "淘汰局押冷門",
-    "side": "home",
+    "side": "away",
     "ats_side": "受讓(押dog)",
     "tier": "SILVER",
     "backtest_wr": 0.654,
@@ -155,34 +155,21 @@
     "series_game_num": 6,
     "series_home_wins": 2,
     "series_away_wins": 3,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    }
   ],
   "playoff_ats_count": 7,
   "injury_alerts": [
+   "Orlando Magic: Jonathan Isaac (可能缺陣)",
    "Orlando Magic: Franz Wagner (缺陣)",
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Detroit Pistons: Kevin Huerter (缺陣)",
-   "Toronto Raptors: Brandon Ingram (缺陣)",
+   "Detroit Pistons: Kevin Huerter (存疑)",
+   "Detroit Pistons: Tobias Harris (存疑)",
+   "Toronto Raptors: Brandon Ingram (存疑)",
    "Toronto Raptors: Immanuel Quickley (缺陣)",
-   "Houston Rockets: Kevin Durant (缺陣)",
+   "Houston Rockets: Kevin Durant (可能缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  ]
  },
  "games": {
   "Detroit Pistons:Orlando Magic": {
@@ -190,11 +177,11 @@
    "away_team": "Detroit Pistons",
    "home_score": null,
    "away_score": null,
-   "spread": 0.0,
-   "Spread": 0.0,
-   "OU": 0.0,
-   "ML_Home": 0,
-   "ML_Away": 0,
+   "spread": -3.5,
+   "Spread": -3.5,
+   "OU": 209.5,
+   "ML_Home": 138,
+   "ML_Away": -164,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -266,23 +253,42 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "injuries_home": [
-    "Franz Wagner (缺陣)",
-    "Jonathan Isaac (缺陣)"
+    "Jonathan Isaac (可能缺陣)",
+    "Franz Wagner (缺陣)"
    ],
    "injuries_away": [
-    "Kevin Huerter (缺陣)"
-   ]
+    "Kevin Huerter (存疑)",
+    "Tobias Harris (存疑)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": -3.5,
+     "ou": 209.5,
+     "ml_home": 138,
+     "ml_away": -164,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -3.5,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-01T14:09:07+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
+   "ou_first": 209.5,
+   "ou_last": 209.5,
+   "ou_move": 0.0
   },
   "Cleveland Cavaliers:Toronto Raptors": {
    "home_team": "Toronto Raptors",
    "away_team": "Cleveland Cavaliers",
    "home_score": null,
    "away_score": null,
-   "spread": 0.0,
-   "Spread": 0.0,
-   "OU": 0.0,
-   "ML_Home": 0,
-   "ML_Away": 0,
+   "spread": -3.5,
+   "Spread": -3.5,
+   "OU": 219.5,
+   "ML_Home": 148,
+   "ML_Away": -176,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -344,21 +350,39 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Brandon Ingram (缺陣)",
+    "Brandon Ingram (存疑)",
     "Immanuel Quickley (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": -3.5,
+     "ou": 219.5,
+     "ml_home": 148,
+     "ml_away": -176,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -3.5,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-01T14:09:07+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
+   "ou_first": 219.5,
+   "ou_last": 219.5,
+   "ou_move": 0.0
   },
   "Los Angeles Lakers:Houston Rockets": {
    "home_team": "Houston Rockets",
    "away_team": "Los Angeles Lakers",
    "home_score": null,
    "away_score": null,
-   "spread": 0.0,
-   "Spread": 0.0,
-   "OU": 0.0,
-   "ML_Home": 0,
-   "ML_Away": 0,
+   "spread": 3.5,
+   "Spread": 3.5,
+   "OU": 205.5,
+   "ML_Home": -172,
+   "ML_Away": 144,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -384,7 +408,7 @@
     {
      "signal": "G6R1客場壓制",
      "side": "away",
-     "ats_side": "讓分(押fav)",
+     "ats_side": "受讓(押dog)",
      "tier": "GOLD",
      "backtest_wr": 0.795,
      "backtest_roi": 59.1,
@@ -393,7 +417,7 @@
     },
     {
      "signal": "淘汰局押冷門",
-     "side": "home",
+     "side": "away",
      "ats_side": "受讓(押dog)",
      "tier": "SILVER",
      "backtest_wr": 0.654,
@@ -405,9 +429,9 @@
    "playoff_ats_best_side": "away",
    "playoff_ats_best_signal": "G6R1客場壓制",
    "playoff_ats_best_tier": "GOLD",
-   "playoff_ats_consensus": null,
-   "playoff_ats_has_conflict": true,
-   "playoff_ats_strong_consensus": null,
+   "playoff_ats_consensus": "away",
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "away",
    "series_round": "首輪",
    "round_num": 1,
    "series_game_num": 6,
@@ -420,11 +444,29 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Durant (缺陣)"
+    "Kevin Durant (可能缺陣)"
    ],
    "injuries_away": [
     "Luka Doncic (缺陣)"
-   ]
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-01T14:09:07+00:00",
+     "spread": 3.5,
+     "ou": 205.5,
+     "ml_home": -172,
+     "ml_away": 144,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 3.5,
+   "spread_last": 3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-01T14:09:07+00:00",
+   "spread_last_fetched_at": "2026-05-01T14:09:07+00:00",
+   "ou_first": 205.5,
+   "ou_last": 205.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

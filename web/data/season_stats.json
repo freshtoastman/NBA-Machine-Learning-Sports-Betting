@@ -753,7 +753,7 @@
     "series_game_num": 6,
     "series_score": "2-3",
     "has_strong_consensus": false,
-    "spread": -5.5
+    "spread": -7.5
    },
    {
     "date": "2026-04-30",
@@ -770,7 +770,7 @@
     "series_game_num": 6,
     "series_score": "3-2",
     "has_strong_consensus": false,
-    "spread": -6.5
+    "spread": -5.5
    },
    {
     "date": "2026-04-30",
@@ -786,7 +786,22 @@
     "series_game_num": 6,
     "series_score": "3-2",
     "has_strong_consensus": false,
-    "spread": -2.5
+    "spread": -3.5
+   },
+   {
+    "date": "2026-05-01",
+    "game": "洛杉磯湖人 @ 休士頓火箭",
+    "signals": [
+     "G6R1客場壓制",
+     "淘汰局押冷門"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 80,
+    "series_game_num": 6,
+    "series_score": "3-2",
+    "has_strong_consensus": true,
+    "spread": 3.5
    },
    {
     "date": "2026-05-01",
@@ -801,7 +816,7 @@
     "series_game_num": 6,
     "series_score": "3-2",
     "has_strong_consensus": false,
-    "spread": 0.0
+    "spread": -3.5
    },
    {
     "date": "2026-05-01",
@@ -817,22 +832,7 @@
     "series_game_num": 6,
     "series_score": "2-3",
     "has_strong_consensus": false,
-    "spread": 0.0
-   },
-   {
-    "date": "2026-05-01",
-    "game": "洛杉磯湖人 @ 休士頓火箭",
-    "signals": [
-     "G6R1客場壓制",
-     "淘汰局押冷門"
-    ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 80,
-    "series_game_num": 6,
-    "series_score": "3-2",
-    "has_strong_consensus": false,
-    "spread": 0.0
+    "spread": -3.5
    }
   ],
   "by_signal": [
@@ -1020,14 +1020,14 @@
   "strong_consensus": {
    "hits": 2,
    "misses": 1,
-   "pending": 0,
+   "pending": 1,
    "decided": 3,
    "hit_rate": 66.7,
    "dominant_hits": 0,
    "moderate_hits": 0,
    "narrow_hits": 0,
    "true_hit_rate": 0.0,
-   "note_zh": "強共識(2+SILVER一致): 2勝/3場決定 = 66.7%，0場待定"
+   "note_zh": "強共識(2+SILVER一致): 2勝/3場決定 = 66.7%，1場待定"
   },
   "best_pick": {
    "hits": 7,
