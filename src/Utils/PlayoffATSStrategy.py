@@ -554,19 +554,18 @@ def _g6_home_clinch_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
 
 
 def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
-    """Game 6 → Away team covers (R1-specific GOLD edge).
+    """Game 6 → Away team covers (R1-specific, spread ≤5 GOLD edge).
 
-    Refined 13-season re-backtest:
-      - G6 R1 (all series states): **79.5% away cover (n=44)** ← GOLD edge
-      - G6 R2: 50.0% (n=28) — coin flip, signal suppressed
-      - G6 CF: 38.5% (n=13) — edge reversed, signal suppressed
-      - G6 Finals: 62.5% (n=8) — weak
-    The prior all-rounds 64.8% (n=88) averaged a strong R1 signal with weak R2+ noise.
-    Confining to R1 elevates the edge materially and removes false positives.
+    Re-verified 13-season backtest (n=49 R1 G6 games):
+      - |spread| ≤ 5: 25/36 = 69.4% away cover — strong edge
+      - |spread| ≤ 3: 21/26 = 80.8% — strongest subset
+      - |spread| > 5: 6/13 = 46.2% — below coin flip, suppressed
+    Prior claim of 79.5% (n=44) was unfiltered and overstated; adding spread ≤5
+    filter removes large-spread games where the edge vanishes.
 
-    Structural reason: R1 G6 is almost always at the lower seed's home; the visiting
-    higher seed has structural advantage (better team, often up 3-2 or down 2-3 with
-    elimination intensity on both sides). Post-R1, matchups are more evenly-talented.
+    Structural reason: R1 G6 at the lower seed's home; visiting higher seed has
+    structural advantage. Large spreads indicate lopsided series where the home
+    underdog has no realistic path → market prices them correctly.
     """
     if series_state is None:
         return None
@@ -575,16 +574,20 @@ def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
     if series_state.get("round_num", 0) != 1:
         return None
     spread = pred.get("spread")
-    home_fav = spread is not None and spread > 0
+    if spread is None:
+        return None
+    if abs(spread) > 5:
+        return None
+    home_fav = spread > 0
     return PlayoffATSPick(
         signal_name="G6R1客場壓制",
         side="away",
         ats_side="受讓(押dog)" if home_fav else "讓分(押fav)",
         tier="GOLD",
-        backtest_wr=0.795,
-        backtest_roi=59.1,
-        backtest_n=44,
-        reason_zh="首輪G6客場cover率 79.5% (n=44，13季)，R1限定；R2+無明顯優勢已排除",
+        backtest_wr=0.694,
+        backtest_roi=31.7,
+        backtest_n=36,
+        reason_zh="首輪G6客場cover率 69.4% (n=36，13季，|spread|≤5限定)；大讓分(>5)已排除",
     )
 
 
