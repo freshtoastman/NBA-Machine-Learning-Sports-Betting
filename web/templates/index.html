@@ -276,6 +276,14 @@
                         <div class="po-st-sub">{{ sc.hits }}/{{ sc.decided }}</div>
                     </div>
                     {% endif %}
+                    {% if pos.no_conflict and pos.no_conflict.decided %}
+                    {% set nc = pos.no_conflict %}
+                    <div class="po-st-stat" style="border-left:2px solid rgba(76,175,80,0.6);padding-left:8px;" title="{{ nc.note_zh }}">
+                        <div class="po-st-lbl">✅ 無衝突</div>
+                        <div class="po-st-val {% if nc.hit_rate >= 85 %}good{% elif nc.hit_rate >= 75 %}good{% elif nc.hit_rate < 50 %}bad{% endif %}" {% if nc.hit_rate >= 85 %}style="font-size:20px;"{% endif %}>{{ nc.hit_rate }}%</div>
+                        <div class="po-st-sub">{{ nc.hits }}/{{ nc.decided }}</div>
+                    </div>
+                    {% endif %}
                     {% if pos.best_pick and pos.best_pick.decided %}
                     {% set bp = pos.best_pick %}
                     <div class="po-st-stat" style="border-left:2px solid rgba(66,165,245,0.4);padding-left:8px;" title="{{ bp.note_zh }}">

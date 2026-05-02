@@ -1643,6 +1643,8 @@ def main():
         bp_hits, bp_misses, bp_pending = 0, 0, 0
         bp_gold_hits, bp_gold_misses = 0, 0
         bp_silver_hits, bp_silver_misses = 0, 0
+        # No-conflict tracking: games where all signals point same direction
+        nc_hits, nc_misses, nc_pending = 0, 0, 0
         # Conviction-banded best-pick tracking
         bp_conv = {"dominant": 0, "moderate": 0, "narrow": 0}
         sc_conv = {"dominant": 0, "moderate": 0, "narrow": 0}
@@ -1664,7 +1666,8 @@ def main():
                             pass  # push: refund, not a miss
                         elif winner == sc:
                             sc_hits += 1
-                            conv_band = _conviction(cm)
+                            conv_obj = _conviction(cm)
+                            conv_band = conv_obj["band"] if conv_obj else None
                             if conv_band: sc_conv[conv_band] += 1
                         else:
                             sc_misses += 1
@@ -1681,16 +1684,29 @@ def main():
                                 bp_hits += 1
                                 if bp_tier == "GOLD": bp_gold_hits += 1
                                 else: bp_silver_hits += 1
-                                conv_band = _conviction(cm)
+                                conv_obj = _conviction(cm)
+                                conv_band = conv_obj["band"] if conv_obj else None
                                 if conv_band: bp_conv[conv_band] += 1
                             else:
                                 bp_misses += 1
                                 if bp_tier == "GOLD": bp_gold_misses += 1
                                 else: bp_silver_misses += 1
+                    # No-conflict: game has signals, none conflicting
+                    has_conflict = g.get("playoff_ats_has_conflict", False)
+                    if bp is not None and bp_tier in ("GOLD", "SILVER") and not has_conflict:
+                        if winner is None:
+                            nc_pending += 1
+                        elif winner == "push":
+                            pass
+                        elif winner == bp:
+                            nc_hits += 1
+                        else:
+                            nc_misses += 1
             except Exception:
                 pass
         sc_decided = sc_hits + sc_misses
         bp_decided = bp_hits + bp_misses
+        nc_decided = nc_hits + nc_misses
 
         # Build lookups keyed by (date, game_key) from daily JSONs.
         _live_lookup: dict = {}
@@ -1803,6 +1819,12 @@ def main():
                 "narrow_hits": bp_conv["narrow"],
                 "true_hit_rate": round((bp_conv["dominant"] + bp_conv["moderate"]) / bp_decided * 100, 1) if bp_decided else None,
                 "note_zh": f"單場最佳信號(GOLD/SILVER): {bp_hits}勝/{bp_decided}場決定 = {round(bp_hits/bp_decided*100,1) if bp_decided else 'N/A'}%",
+            },
+            "no_conflict": {
+                "hits": nc_hits, "misses": nc_misses, "pending": nc_pending,
+                "decided": nc_decided,
+                "hit_rate": round(nc_hits / nc_decided * 100, 1) if nc_decided else None,
+                "note_zh": f"無衝突場次(所有信號同向): {nc_hits}勝/{nc_decided}場決定 = {round(nc_hits/nc_decided*100,1) if nc_decided else 'N/A'}%",
             },
         }
 
