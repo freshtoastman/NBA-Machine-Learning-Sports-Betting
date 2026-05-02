@@ -1,6 +1,6 @@
 {
  "date": "2026-05-02",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -12,21 +12,9 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  "injury_alerts": [
+   "Philadelphia 76ers: Joel Embiid (可能出賽)"
+  ]
  },
  "games": {
   "Philadelphia 76ers:Boston Celtics": {
@@ -79,7 +67,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [],
+   "injuries_away": [
+    "Joel Embiid (可能出賽)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-05-01T14:16:51+00:00",
@@ -107,7 +97,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 3,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -134,7 +124,7 @@
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {
@@ -160,7 +150,7 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 3,
    "conference": "east"
   },

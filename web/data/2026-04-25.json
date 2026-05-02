@@ -29,32 +29,11 @@
     "series_game_num": 3,
     "series_home_wins": 0,
     "series_away_wins": 2,
-    "strong_consensus": "away",
-    "has_conflict": false
-   },
-   {
-    "game_key": "Oklahoma City Thunder:Phoenix Suns",
-    "home_team": "Phoenix Suns",
-    "away_team": "Oklahoma City Thunder",
-    "home_team_zh": "鳳凰城太陽",
-    "away_team_zh": "奧克拉荷馬雷霆",
-    "signal": "客場明顯強勢",
-    "side": "away",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.594,
-    "backtest_roi": 13.5,
-    "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)",
-    "ats_winner": "away",
-    "ats_cover_margin": -3.5,
-    "series_game_num": 3,
-    "series_home_wins": 0,
-    "series_away_wins": 2,
-    "strong_consensus": "away",
+    "strong_consensus": null,
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [],
   "ml_correct": 2,
   "ml_graded": 4,
@@ -1133,16 +1112,6 @@
      "backtest_roi": 23.8,
      "backtest_n": 28,
      "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
-    },
-    {
-     "signal": "客場明顯強勢",
-     "side": "away",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.594,
-     "backtest_roi": 13.5,
-     "backtest_n": 175,
-     "reason_zh": "客場近期勝率領先主場 40pp (≥15pp)，12季歷史客場cover率 59.4% (n=175)"
     }
    ],
    "playoff_ats_best_side": "away",
@@ -1150,7 +1119,7 @@
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
-   "playoff_ats_strong_consensus": "away",
+   "playoff_ats_strong_consensus": null,
    "home_team_zh": "鳳凰城太陽",
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
@@ -2362,7 +2331,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "Toronto Raptors",
    "high_wins": 3,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {
@@ -2389,7 +2358,7 @@
    "high_seed": "Houston Rockets",
    "low_seed": "Los Angeles Lakers",
    "high_wins": 2,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
   },
   {
@@ -2415,7 +2384,7 @@
    "round_label": "首輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Orlando Magic",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 3,
    "conference": "east"
   },

@@ -1054,5 +1054,71 @@
     ],
     "home_score": 106,
     "away_score": 93
+  },
+  {
+    "gameId": "401869409",
+    "date": "2026-05-01",
+    "home_tri": "HOU",
+    "away_tri": "LAL",
+    "home_name": "Houston Rockets",
+    "away_name": "Los Angeles Lakers",
+    "q_home": [
+      18,
+      13,
+      24,
+      23
+    ],
+    "q_away": [
+      23,
+      26,
+      22,
+      27
+    ],
+    "home_score": 78,
+    "away_score": 98
+  },
+  {
+    "gameId": "401869417",
+    "date": "2026-05-01",
+    "home_tri": "ORL",
+    "away_tri": "DET",
+    "home_name": "Orlando Magic",
+    "away_name": "Detroit Pistons",
+    "q_home": [
+      25,
+      35,
+      11,
+      8
+    ],
+    "q_away": [
+      26,
+      12,
+      24,
+      31
+    ],
+    "home_score": 79,
+    "away_score": 93
+  },
+  {
+    "gameId": "401869381",
+    "date": "2026-05-01",
+    "home_tri": "TOR",
+    "away_tri": "CLE",
+    "home_name": "Toronto Raptors",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      32,
+      29,
+      31,
+      12
+    ],
+    "q_away": [
+      32,
+      19,
+      30,
+      23
+    ],
+    "home_score": 112,
+    "away_score": 110
   }
 ]

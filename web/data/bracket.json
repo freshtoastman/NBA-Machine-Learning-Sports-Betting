@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-01",
+ "generated_for": "2026-05-02",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -244,24 +244,9 @@
      "win_pct": 0.549,
      "seed": 8
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 3,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Orlando Magic",
-     "home_team_zh": "奧蘭多魔術",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "底特律活塞",
-     "consensus_count": 3,
-     "has_conflict": true,
-     "conflict_signal": "G6主場收官陷阱",
-     "conflict_wr": 0.667
-    }
+    "games_played": 6
    },
    {
     "label": "4 vs 5",
@@ -284,23 +269,8 @@
      "seed": 5
     },
     "high_wins": 3,
-    "low_wins": 2,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Toronto Raptors",
-     "home_team_zh": "多倫多暴龍",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "克里夫蘭騎士",
-     "consensus_count": 2,
-     "has_conflict": true,
-     "conflict_signal": "淘汰局押冷門",
-     "conflict_wr": 0.654
-    }
+    "low_wins": 3,
+    "games_played": 6
    },
    {
     "label": "3 vs 6",
@@ -614,21 +584,9 @@
      "win_pct": 0.634,
      "seed": 5
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 2,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "R1G6客場優勢",
-     "side": "away",
-     "home_team": "Houston Rockets",
-     "home_team_zh": "休士頓火箭",
-     "tier": "GOLD",
-     "backtest_wr": 0.804,
-     "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
-     "signal_team_zh": "洛杉磯湖人",
-     "consensus_count": 2
-    }
+    "games_played": 6
    },
    {
     "label": "3 vs 6",
