@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 24,
-  "misses": 9,
+  "hits": 23,
+  "misses": 8,
   "pending": 0,
-  "decided": 33,
-  "hit_rate": 72.7,
+  "decided": 31,
+  "hit_rate": 74.2,
   "conviction": {
    "crushing_hits": 9,
-   "dominant_hits": 9,
+   "dominant_hits": 8,
    "moderate_hits": 2,
    "narrow_hits": 4,
    "garbage_time_hits": 3,
-   "total_hits": 24,
-   "true_conviction_hits": 20,
-   "raw_hit_rate": 72.7,
-   "true_conviction_rate": 60.6,
-   "note_zh": "9 碾壓主導 + 9 主導 + 2 普通 + 4 險過；3 場受垃圾時間影響；真實信心率 60.6%"
+   "total_hits": 23,
+   "true_conviction_hits": 19,
+   "raw_hit_rate": 74.2,
+   "true_conviction_rate": 61.3,
+   "note_zh": "9 碾壓主導 + 8 主導 + 2 普通 + 4 險過；3 場受垃圾時間影響；真實信心率 61.3%"
   },
   "history": [
    {
@@ -640,70 +640,6 @@
     "conviction_source": "q3",
     "q3_picked_margin": 1.6,
     "q4_swing": -4
-   },
-   {
-    "date": "2026-04-28",
-    "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signal": "G5平手主場壓制",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "home",
-    "ats_cover_margin": 22.5,
-    "series_game_num": 5,
-    "series_home_wins": 2,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "home_team": "New York Knicks",
-    "away_team": "Atlanta Hawks",
-    "spread": 6.5,
-    "result": "hit",
-    "conviction_obj": {
-     "band": "dominant",
-     "source": "q3",
-     "q3_picked_margin": 13.1,
-     "final_picked_margin": 22.5,
-     "q4_swing": 11,
-     "shrinkage": -9.4,
-     "garbage_time": false
-    },
-    "conviction": "dominant",
-    "garbage_time": false,
-    "conviction_source": "q3",
-    "q3_picked_margin": 13.1,
-    "q4_swing": 11
-   },
-   {
-    "date": "2026-04-29",
-    "game": "多倫多暴龍 @ 克里夫蘭騎士",
-    "signal": "G5平手主場壓制",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "ats_winner": "away",
-    "ats_cover_margin": -5.5,
-    "series_game_num": 5,
-    "series_home_wins": 2,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Toronto Raptors",
-    "spread": 10.5,
-    "result": "miss",
-    "conviction_obj": {
-     "band": "dominant",
-     "source": "q3",
-     "q3_picked_margin": -10.9,
-     "final_picked_margin": -5.5,
-     "q4_swing": 8,
-     "shrinkage": -5.4,
-     "garbage_time": false
-    },
-    "conviction": "dominant",
-    "garbage_time": false,
-    "conviction_source": "q3",
-    "q3_picked_margin": -10.9,
-    "q4_swing": 8
    },
    {
     "date": "2026-04-30",
@@ -1305,21 +1241,6 @@
     "true_hit_rate": 0.0
    },
    {
-    "signal": "G5平手主場壓制",
-    "hits": 1,
-    "misses": 1,
-    "n": 2,
-    "tier": "SILVER",
-    "hit_rate": 50.0,
-    "backtest_wr": 60.0,
-    "crushing_hits": 0,
-    "dominant_hits": 1,
-    "moderate_hits": 0,
-    "narrow_hits": 0,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 50.0
-   },
-   {
     "signal": "G6主場收官陷阱",
     "hits": 1,
     "misses": 1,
@@ -1363,28 +1284,28 @@
    "note_zh": "強共識(2+SILVER一致): 5勝/7場決定 = 71.4%，0場待定"
   },
   "best_pick": {
-   "hits": 18,
-   "misses": 4,
-   "pending": 0,
-   "decided": 22,
-   "hit_rate": 81.8,
-   "gold_hits": 7,
-   "gold_misses": 2,
-   "silver_hits": 11,
-   "silver_misses": 2,
-   "dominant_hits": 13,
-   "moderate_hits": 5,
-   "narrow_hits": 0,
-   "true_hit_rate": 81.8,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 18勝/22場決定 = 81.8%"
-  },
-  "no_conflict": {
-   "hits": 16,
+   "hits": 17,
    "misses": 3,
    "pending": 0,
-   "decided": 19,
-   "hit_rate": 84.2,
-   "note_zh": "無衝突場次(所有信號同向): 16勝/19場決定 = 84.2%"
+   "decided": 20,
+   "hit_rate": 85.0,
+   "gold_hits": 7,
+   "gold_misses": 2,
+   "silver_hits": 10,
+   "silver_misses": 1,
+   "dominant_hits": 12,
+   "moderate_hits": 5,
+   "narrow_hits": 0,
+   "true_hit_rate": 85.0,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 17勝/20場決定 = 85.0%"
+  },
+  "no_conflict": {
+   "hits": 15,
+   "misses": 2,
+   "pending": 0,
+   "decided": 17,
+   "hit_rate": 88.2,
+   "note_zh": "無衝突場次(所有信號同向): 15勝/17場決定 = 88.2%"
   }
  },
  "playoff_home_ats": {

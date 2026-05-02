@@ -360,7 +360,7 @@ def _g5_tied_home(pred, series_state, team_form) -> PlayoffATSPick | None:
         signal_name="G5平手主場壓制",
         side="home",
         ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
-        tier="SILVER",
+        tier="BRONZE",
         backtest_wr=0.60,
         backtest_roi=14.5,
         backtest_n=60,
