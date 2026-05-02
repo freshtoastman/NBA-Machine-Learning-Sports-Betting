@@ -549,9 +549,9 @@ def predict_historical_xgb(target_date):
             params=(target_date.isoformat(),),
         )
 
-    # For future/today dates (upcoming scheduled games), dataset may have no rows.
-    # Return game stubs from OddsData so playoff signals + injury reports still show.
-    if df.empty and target_date >= _today:
+    # For future/today/recent dates (upcoming or just-played games not yet in dataset),
+    # return game stubs from OddsData so playoff signals + injury reports still show.
+    if df.empty and target_date >= _today - pd.Timedelta(days=2):
         season_table = _season_table_for_date(target_date)
         stubs = []
         try:

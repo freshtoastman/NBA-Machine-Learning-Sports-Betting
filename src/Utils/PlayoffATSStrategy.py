@@ -137,15 +137,18 @@ def _elimination_underdog(pred, series_state, team_form) -> PlayoffATSPick | Non
     spread = pred.get("spread")
     if spread is None:
         return None
+    # G7 with spread ≥ 7: dog signal suppressed (only 33% dog cover, n=6).
+    # Home fav dominates at very large G7 spreads.
+    if gn == 7 and abs(spread) >= 7:
+        return None
     home_fav = spread > 0
     side = "away" if home_fav else "home"
-    # G6 elim: 65.4%; G7 elim: ~60% based on all G7 data
     if gn == 6:
         wr, roi, n = 0.654, 30.8, 52
         note = f"G6淘汰局冷門cover率 65.4% (n=52，13季)"
-    else:  # G7
-        wr, roi, n = 0.60, 20.0, 35
-        note = f"G7決勝局冷門cover率 60.0% (n=35，13季)"
+    else:  # G7, spread < 7
+        wr, roi, n = 0.613, 22.6, 31
+        note = f"G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)"
     return PlayoffATSPick(
         signal_name="淘汰局押冷門",
         side=side,
@@ -591,6 +594,18 @@ def _g6_away_covers(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _g7_home_dominance(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """DISABLED - initial backtest had sign error in ATS formula.
+
+    Correct re-analysis (Win_Margin - Spread, not + Spread):
+      - G7 overall: DOG covers 56.8% (21/37)
+      - G7 spread < 7: DOG covers 61.3% (19/31)
+      - G7 spread >= 7: HOME covers 66.7% (4/6) - small n, not actionable
+
+    The elimination_underdog signal handles G7 dog correctly (with spread<7 filter).
+    """
+    return None
+
 def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     """DISABLED — actual data shows 51.3% home covers (n=265), not claimed 63.5% (n=52).
     Signal adds no value. Kept as stub but never fires."""
@@ -968,7 +983,7 @@ _SIGNALS = [
     _ml_playoff_away_lean,             # SILVER verified: 64.0% (n=175) — ML away; suppressed G3+ (G2 only: 2W/0L; G3 2W/2L; G5 0W/2L)
     _away_form_dominant,              # SILVER verified: 59.4% (n=175) — away clearly stronger; 0/2 live (both G3 tied series), monitor
     # _away_leads_series,              # DISABLED: 55.5% (n=155) barely above noise, highly correlated with G3/form signals; 0/3 live (CLE@TOR blowout)
-    _elimination_underdog,            # SILVER verified: 58.8% (n=250)
+    _elimination_underdog,            # SILVER verified: G6 65.4% (n=52); G7 61.3% (n=31, spread<7 filter)
     # _small_spread_away_dog,           # DISABLED: 52.9% backtest barely above coin flip; 0/1 live
     # _complacent_leader,               # DISABLED: 54.9% (n=71) too weak for actionable signal
     _g2_blowout_followthrough,        # SILVER new: 64.3% (n=28) — G2 home won G1 by >7 ATS pts

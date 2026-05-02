@@ -549,7 +549,7 @@ def _build_signal_tracker(data_dir: Path) -> dict:
     by_tier = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
     by_game_num = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
     details = []
-    for f in sorted(data_dir.glob("2026-04-*.json")):
+    for f in sorted(list(data_dir.glob("2026-04-*.json")) + list(data_dir.glob("2026-05-*.json"))):
         try:
             with open(f, encoding="utf-8") as fh:
                 d = json.load(fh)

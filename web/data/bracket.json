@@ -639,23 +639,23 @@
   ]
  },
  "signal_tracker": {
-  "total": 24,
-  "decided": 24,
-  "wins": 19,
-  "losses": 5,
+  "total": 31,
+  "decided": 31,
+  "wins": 23,
+  "losses": 8,
   "pending": 0,
-  "hit_rate": 79.2,
-  "pnl": 12.29,
-  "roi": 51.2,
+  "hit_rate": 74.2,
+  "pnl": 12.93,
+  "roi": 41.7,
   "by_tier": {
    "SILVER": {
-    "wins": 14,
-    "losses": 4,
+    "wins": 16,
+    "losses": 6,
     "pending": 0
    },
    "GOLD": {
-    "wins": 5,
-    "losses": 1,
+    "wins": 7,
+    "losses": 2,
     "pending": 0
    }
   },
@@ -679,21 +679,21 @@
     "hit_rate": 60.0
    },
    "G6": {
-    "wins": 5,
-    "losses": 1,
+    "wins": 9,
+    "losses": 4,
     "pending": 0,
-    "hit_rate": 83.3
+    "hit_rate": 69.2
    }
   },
   "by_game": {
-   "total": 17,
-   "decided": 16,
-   "wins": 14,
-   "losses": 2,
-   "pending": 1,
-   "hit_rate": 87.5,
-   "pnl": 10.74,
-   "roi": 67.1
+   "total": 20,
+   "decided": 18,
+   "wins": 15,
+   "losses": 3,
+   "pending": 2,
+   "hit_rate": 83.3,
+   "pnl": 10.65,
+   "roi": 59.2
   },
   "details": [
    {
@@ -982,6 +982,90 @@
     "backtest_wr": 0.654,
     "result": "win",
     "margin": 19.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "win",
+    "margin": -10.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "G6主場收官陷阱",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "loss",
+    "margin": -10.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": -10.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "loss",
+    "margin": 5.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": 5.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "win",
+    "margin": -24.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": -24.5,
     "game_num": 6
    }
   ]

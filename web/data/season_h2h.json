@@ -338,7 +338,7 @@
     "date": "2026-05-02",
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
-    "spread": 6.5,
+    "spread": 7.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -2329,6 +2329,16 @@
     "home_score": 79,
     "away_score": 93,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-05-03",
+    "home": "Detroit Pistons",
+    "away": "Orlando Magic",
+    "spread": 8.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Boston Celtics:Cleveland Cavaliers": [
@@ -2795,6 +2805,16 @@
     "home_score": 112,
     "away_score": 110,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-05-03",
+    "home": "Cleveland Cavaliers",
+    "away": "Toronto Raptors",
+    "spread": 7.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Chicago Bulls:New York Knicks": [
