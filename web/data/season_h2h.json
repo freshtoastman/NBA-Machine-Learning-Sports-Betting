@@ -339,10 +339,10 @@
     "home": "Boston Celtics",
     "away": "Philadelphia 76ers",
     "spread": 3.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -9,
+    "home_score": 100,
+    "away_score": 109,
+    "ats_result": "away"
    }
   ],
   "Milwaukee Bucks:Washington Wizards": [
@@ -2810,7 +2810,7 @@
     "date": "2026-05-03",
     "home": "Cleveland Cavaliers",
     "away": "Toronto Raptors",
-    "spread": 7.5,
+    "spread": 8.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,

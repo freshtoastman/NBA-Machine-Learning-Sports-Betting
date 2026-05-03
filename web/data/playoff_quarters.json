@@ -1120,5 +1120,27 @@
     ],
     "home_score": 112,
     "away_score": 110
+  },
+  {
+    "gameId": "401869412",
+    "date": "2026-05-02",
+    "home_tri": "BOS",
+    "away_tri": "PHI",
+    "home_name": "Boston Celtics",
+    "away_name": "Philadelphia 76ers",
+    "q_home": [
+      19,
+      31,
+      25,
+      25
+    ],
+    "q_away": [
+      32,
+      23,
+      33,
+      21
+    ],
+    "home_score": 100,
+    "away_score": 109
   }
 ]

@@ -83,10 +83,10 @@
    "injuries_home": [
     "Jayson Tatum (缺陣)"
    ],
-   "live_home_score": 52,
-   "live_away_score": 63,
-   "live_status": "Q3 9:39",
-   "live_is_final": false,
+   "live_home_score": 100,
+   "live_away_score": 109,
+   "live_status": "Final",
+   "live_is_final": true,
    "live_home_covering": false,
    "injuries_away": [],
    "odds_history": [
@@ -168,7 +168,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {

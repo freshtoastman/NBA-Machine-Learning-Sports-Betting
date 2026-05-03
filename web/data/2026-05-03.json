@@ -28,9 +28,9 @@
    "away_score": null,
    "spread": 8.5,
    "Spread": 8.5,
-   "OU": 202.5,
-   "ML_Home": -340,
-   "ML_Away": 275,
+   "OU": 201.5,
+   "ML_Home": -319,
+   "ML_Away": 265,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -85,27 +85,35 @@
      "ml_home": -340,
      "ml_away": 275,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-03T14:11:41+00:00",
+     "spread": 8.5,
+     "ou": 201.5,
+     "ml_home": -319,
+     "ml_away": 265,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 8.5,
    "spread_last": 8.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-03T00:51:20+00:00",
-   "spread_last_fetched_at": "2026-05-03T00:51:20+00:00",
+   "spread_last_fetched_at": "2026-05-03T14:11:41+00:00",
    "ou_first": 202.5,
-   "ou_last": 202.5,
-   "ou_move": 0.0
+   "ou_last": 201.5,
+   "ou_move": -1.0
   },
   "Toronto Raptors:Cleveland Cavaliers": {
    "home_team": "Cleveland Cavaliers",
    "away_team": "Toronto Raptors",
    "home_score": null,
    "away_score": null,
-   "spread": 7.5,
-   "Spread": 7.5,
-   "OU": 210.5,
-   "ML_Home": -330,
-   "ML_Away": 265,
+   "spread": 8.5,
+   "Spread": 8.5,
+   "OU": 211.5,
+   "ML_Home": -300,
+   "ML_Away": 245,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -158,16 +166,24 @@
      "ml_home": -330,
      "ml_away": 265,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-03T14:11:41+00:00",
+     "spread": 8.5,
+     "ou": 211.5,
+     "ml_home": -300,
+     "ml_away": 245,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 7.5,
-   "spread_last": 7.5,
-   "spread_move": 0.0,
+   "spread_last": 8.5,
+   "spread_move": 1.0,
    "spread_first_fetched_at": "2026-05-03T00:51:20+00:00",
-   "spread_last_fetched_at": "2026-05-03T00:51:20+00:00",
+   "spread_last_fetched_at": "2026-05-03T14:11:41+00:00",
    "ou_first": 210.5,
-   "ou_last": 210.5,
-   "ou_move": 0.0
+   "ou_last": 211.5,
+   "ou_move": 1.0
   }
  },
  "active_series": [
@@ -213,7 +229,7 @@
    "high_seed": "Boston Celtics",
    "low_seed": "Philadelphia 76ers",
    "high_wins": 3,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {
