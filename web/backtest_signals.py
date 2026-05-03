@@ -76,7 +76,10 @@ def build_backtest_signals(game: dict) -> list[dict]:
         elif series_gn == 6 and round_num >= 2:
             signals.append({"text": f"R{round_num} G6 → 押客場（53.8%，次輪後效果減弱）", "tier": "base"})
         elif series_gn == 7:
-            signals.append({"text": "Game 7 → 主場 cover 率約 43%，客場小幅優勢", "tier": "base"})
+            if abs_sp >= 7:
+                signals.append({"text": f"G7 大讓分（{abs_sp}）→ 歷史主場 cover 66.7%（n=6，樣本小，冷門信號已抑制）", "tier": "base"})
+            else:
+                signals.append({"text": f"G7 小讓分（{abs_sp}）→ 冷門 cover 61.3%（n=31，13季）", "tier": "warm"})
         # R1 G3/G4: away team (high seed) covers 60%
         if round_num == 1 and series_gn in (3, 4):
             signals.append({"text": f"R1 G{series_gn} → 押客場（高種子）歷史 cover 率 ~60%（n~100）", "tier": "warm"})
@@ -86,9 +89,9 @@ def build_backtest_signals(game: dict) -> list[dict]:
         # R2 G1 away
         if round_num == 2 and series_gn == 1:
             signals.append({"text": "R2 G1 → 押客場歷史 cover 率 60.4%（n=48）", "tier": "warm"})
-        if is_elim:
+        if is_elim and not (series_gn == 7 and abs_sp >= 7):
             signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
-        if is_elim and abs_sp <= 8:
+        if is_elim and abs_sp <= 8 and not (series_gn == 7 and abs_sp >= 7):
             signals.append({"text": "小讓分淘汰局 → 押冷門（56.6%）", "tier": "warm"})
         if model_conf >= 65 and not is_elim:
             side_zh = "主場" if model_side == "home" else "客場"
