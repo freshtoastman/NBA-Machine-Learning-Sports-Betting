@@ -640,23 +640,23 @@
  },
  "signal_tracker": {
   "total": 31,
-  "decided": 31,
-  "wins": 23,
-  "losses": 8,
-  "pending": 0,
-  "hit_rate": 74.2,
-  "pnl": 12.93,
-  "roi": 41.7,
+  "decided": 24,
+  "wins": 19,
+  "losses": 5,
+  "pending": 7,
+  "hit_rate": 79.2,
+  "pnl": 12.29,
+  "roi": 51.2,
   "by_tier": {
    "SILVER": {
-    "wins": 16,
-    "losses": 6,
-    "pending": 0
+    "wins": 14,
+    "losses": 4,
+    "pending": 4
    },
    "GOLD": {
-    "wins": 7,
-    "losses": 2,
-    "pending": 0
+    "wins": 5,
+    "losses": 1,
+    "pending": 3
    }
   },
   "by_game_num": {
@@ -679,21 +679,21 @@
     "hit_rate": 60.0
    },
    "G6": {
-    "wins": 9,
-    "losses": 4,
-    "pending": 0,
-    "hit_rate": 69.2
+    "wins": 5,
+    "losses": 1,
+    "pending": 7,
+    "hit_rate": 83.3
    }
   },
   "by_game": {
    "total": 20,
-   "decided": 18,
-   "wins": 15,
-   "losses": 3,
-   "pending": 2,
-   "hit_rate": 83.3,
-   "pnl": 10.65,
-   "roi": 59.2
+   "decided": 16,
+   "wins": 14,
+   "losses": 2,
+   "pending": 4,
+   "hit_rate": 87.5,
+   "pnl": 10.74,
+   "roi": 67.1
   },
   "details": [
    {
@@ -992,8 +992,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.694,
-    "result": "win",
-    "margin": -10.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1004,8 +1004,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.667,
-    "result": "loss",
-    "margin": -10.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1016,8 +1016,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
-    "result": "loss",
-    "margin": -10.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1028,8 +1028,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.694,
-    "result": "loss",
-    "margin": 5.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1040,8 +1040,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
-    "result": "win",
-    "margin": 5.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1052,8 +1052,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.694,
-    "result": "win",
-    "margin": -24.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    },
    {
@@ -1064,8 +1064,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.654,
-    "result": "win",
-    "margin": -24.5,
+    "result": "pending",
+    "margin": null,
     "game_num": 6
    }
   ]

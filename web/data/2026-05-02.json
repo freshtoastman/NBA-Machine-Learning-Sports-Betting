@@ -13,9 +13,7 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Boston Celtics: Jayson Tatum (存疑)",
-   "Philadelphia 76ers: Paul George (可能出賽)",
-   "Philadelphia 76ers: Joel Embiid (可能出賽)"
+   "Boston Celtics: Jayson Tatum (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -38,11 +36,11 @@
    "away_team": "Philadelphia 76ers",
    "home_score": null,
    "away_score": null,
-   "spread": 7.5,
-   "Spread": 7.5,
-   "OU": 205.5,
-   "ML_Home": -240,
-   "ML_Away": 198,
+   "spread": 3.5,
+   "Spread": 3.5,
+   "OU": 204.5,
+   "ML_Home": -158,
+   "ML_Away": 132,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -83,12 +81,14 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [
-    "Jayson Tatum (存疑)"
+    "Jayson Tatum (缺陣)"
    ],
-   "injuries_away": [
-    "Paul George (可能出賽)",
-    "Joel Embiid (可能出賽)"
-   ],
+   "live_home_score": 50,
+   "live_away_score": 55,
+   "live_status": "Half",
+   "live_is_final": false,
+   "live_home_covering": false,
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-01T14:16:51+00:00",
@@ -105,16 +105,24 @@
      "ml_home": -240,
      "ml_away": 198,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-03T00:51:20+00:00",
+     "spread": 3.5,
+     "ou": 204.5,
+     "ml_home": -158,
+     "ml_away": 132,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 7.5,
-   "spread_last": 6.5,
-   "spread_move": -1.0,
+   "spread_last": 3.5,
+   "spread_move": -4.0,
    "spread_first_fetched_at": "2026-05-01T14:16:51+00:00",
-   "spread_last_fetched_at": "2026-05-02T20:01:40+00:00",
+   "spread_last_fetched_at": "2026-05-03T00:51:20+00:00",
    "ou_first": 206.5,
-   "ou_last": 205.5,
-   "ou_move": -1.0
+   "ou_last": 204.5,
+   "ou_move": -2.0
   }
  },
  "active_series": [
