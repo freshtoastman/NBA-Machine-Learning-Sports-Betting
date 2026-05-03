@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 19,
   "misses": 5,
-  "pending": 7,
+  "pending": 8,
   "decided": 24,
   "hit_rate": 79.2,
   "conviction": {
@@ -880,6 +880,20 @@
     "series_score": "2-3",
     "has_strong_consensus": false,
     "spread": -3.5
+   },
+   {
+    "date": "2026-05-02",
+    "game": "費城七六人 @ 波士頓塞爾提克",
+    "signals": [
+     "淘汰局押冷門"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 61,
+    "series_game_num": 7,
+    "series_score": "3-3",
+    "has_strong_consensus": false,
+    "spread": 3.5
    }
   ],
   "by_signal": [
@@ -1109,7 +1123,7 @@
   "best_pick": {
    "hits": 15,
    "misses": 2,
-   "pending": 3,
+   "pending": 4,
    "decided": 17,
    "hit_rate": 88.2,
    "gold_hits": 5,
@@ -1125,7 +1139,7 @@
   "no_conflict": {
    "hits": 14,
    "misses": 2,
-   "pending": 1,
+   "pending": 2,
    "decided": 16,
    "hit_rate": 87.5,
    "note_zh": "無衝突場次(所有信號同向): 14勝/16場決定 = 87.5%"

@@ -639,11 +639,11 @@
   ]
  },
  "signal_tracker": {
-  "total": 31,
+  "total": 32,
   "decided": 24,
   "wins": 19,
   "losses": 5,
-  "pending": 7,
+  "pending": 8,
   "hit_rate": 79.2,
   "pnl": 12.29,
   "roi": 51.2,
@@ -651,7 +651,7 @@
    "SILVER": {
     "wins": 14,
     "losses": 4,
-    "pending": 4
+    "pending": 5
    },
    "GOLD": {
     "wins": 5,
@@ -683,14 +683,20 @@
     "losses": 1,
     "pending": 7,
     "hit_rate": 83.3
+   },
+   "G7": {
+    "wins": 0,
+    "losses": 0,
+    "pending": 1,
+    "hit_rate": null
    }
   },
   "by_game": {
-   "total": 20,
+   "total": 21,
    "decided": 16,
    "wins": 14,
    "losses": 2,
-   "pending": 4,
+   "pending": 5,
    "hit_rate": 87.5,
    "pnl": 10.74,
    "roi": 67.1
@@ -1067,6 +1073,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 6
+   },
+   {
+    "date": "2026-05-02",
+    "away": "費城七六人",
+    "home": "波士頓塞爾提克",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.613,
+    "result": "pending",
+    "margin": null,
+    "game_num": 7
    }
   ]
  }
