@@ -193,7 +193,9 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
         total_played = home_wins + away_wins
     series_game_num = total_played + 1  # the upcoming game
     is_must_win_for = None
-    if home_wins == 3 and away_wins < 3:
+    if home_wins == 3 and away_wins == 3:
+        is_must_win_for = "both"
+    elif home_wins == 3 and away_wins < 3:
         is_must_win_for = "away"
     elif away_wins == 3 and home_wins < 3:
         is_must_win_for = "home"

@@ -24,7 +24,7 @@
     "backtest_wr": 0.613,
     "backtest_roi": 22.6,
     "reason_zh": "G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)",
-    "ats_winner": null,
+    "ats_winner": "away",
     "ats_cover_margin": null,
     "series_game_num": 7,
     "series_home_wins": 3,
@@ -34,9 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Boston Celtics: Jayson Tatum (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -56,8 +54,8 @@
   "Philadelphia 76ers:Boston Celtics": {
    "home_team": "Boston Celtics",
    "away_team": "Philadelphia 76ers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 100,
+   "away_score": 109,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 204.5,
@@ -75,14 +73,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 209,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -113,14 +111,7 @@
    "away_team_zh": "費城七六人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-   "injuries_home": [
-    "Jayson Tatum (缺陣)"
-   ],
-   "live_home_score": 100,
-   "live_away_score": 109,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {

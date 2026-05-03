@@ -564,13 +564,32 @@ def predict_historical_xgb(target_date):
             for _, row in _odds.iterrows():
                 home_team = row["Home"]
                 away_team = row["Away"]
+                _pts = row.get("Points")
+                _wm = row.get("Win_Margin")
+                _played = pd.notna(_pts) and _pts and _pts > 0 and _wm is not None
+                if _played:
+                    _hs_score = int((_pts + _wm) / 2)
+                    _as_score = int((_pts - _wm) / 2)
+                else:
+                    _hs_score = _as_score = None
+                _spread = float(row["Spread"]) if pd.notna(row.get("Spread")) else None
+                if _played and _spread is not None:
+                    _cover_diff = _wm - _spread
+                    if abs(_cover_diff) < 0.001:
+                        _ats_w = "push"
+                    elif _cover_diff > 0:
+                        _ats_w = "home"
+                    else:
+                        _ats_w = "away"
+                else:
+                    _ats_w = None
                 stub = {
                     "home_team": home_team,
                     "away_team": away_team,
-                    "home_score": None,
-                    "away_score": None,
-                    "spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
-                    "Spread": float(row["Spread"]) if pd.notna(row.get("Spread")) else None,
+                    "home_score": _hs_score,
+                    "away_score": _as_score,
+                    "spread": _spread,
+                    "Spread": _spread,
                     "OU": float(row["OU"]) if pd.notna(row.get("OU")) else None,
                     "ML_Home": row.get("ML_Home"),
                     "ML_Away": row.get("ML_Away"),
@@ -586,14 +605,14 @@ def predict_historical_xgb(target_date):
                     "ats_value_edge": None,
                     "ats_is_value": False,
                     "is_historical": True,
-                    "actual_home_win": None,
-                    "actual_winner": None,
-                    "actual_total": None,
-                    "actual_ou_result": None,
+                    "actual_home_win": bool(_wm > 0) if _played else None,
+                    "actual_winner": ("home" if _wm > 0 else "away") if _played else None,
+                    "actual_total": int(_pts) if _played else None,
+                    "actual_ou_result": ("OVER" if _pts > float(row["OU"]) else "UNDER" if _pts < float(row["OU"]) else "PUSH") if _played and pd.notna(row.get("OU")) and row["OU"] else None,
                     "ml_correct": None,
                     "ou_correct": None,
-                    "ats_winner": None,
-                    "is_upcoming": True,
+                    "ats_winner": _ats_w,
+                    "is_upcoming": not _played,
                     "is_playoff": False,
                     "playoff_ats_picks": [],
                     "playoff_ats_best_side": None,
