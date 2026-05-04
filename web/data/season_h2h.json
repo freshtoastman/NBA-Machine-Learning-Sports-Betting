@@ -2335,10 +2335,10 @@
     "home": "Detroit Pistons",
     "away": "Orlando Magic",
     "spread": 8.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 22,
+    "home_score": 116,
+    "away_score": 94,
+    "ats_result": "home"
    }
   ],
   "Boston Celtics:Cleveland Cavaliers": [
@@ -2811,10 +2811,10 @@
     "home": "Cleveland Cavaliers",
     "away": "Toronto Raptors",
     "spread": 8.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 12,
+    "home_score": 114,
+    "away_score": 102,
+    "ats_result": "home"
    }
   ],
   "Chicago Bulls:New York Knicks": [
