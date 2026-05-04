@@ -784,6 +784,7 @@ def build_bracket(target_date: date) -> dict | None:
     _series_wins: dict = {}
     _playin_results: dict = {}  # frozenset({high, low}) → (hw, lw)
     _stage_label = "附加賽階段"
+    _max_round_num = 0
     try:
         import sqlite3 as _sq
         _odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
@@ -807,6 +808,7 @@ def build_bracket(target_date: date) -> dict | None:
                 ).fetchone()
                 if row and row[0]:
                     max_rn = row[0]
+            _max_round_num = max_rn
             _stage_label = {1: "首輪進行中", 2: "第二輪進行中",
                             3: "分區決賽", 4: "總決賽"}.get(max_rn, "季後賽進行中")
         elif _playin_results:
@@ -1208,13 +1210,52 @@ def build_bracket(target_date: date) -> dict | None:
             {"label": "2 vs 7", "high": seeds[1], "low": low_7,
              **_with_wins(seeds[1], low_7)},
         ]
-        return {
+
+        def _r1_winner(fr_entry):
+            hw = fr_entry.get("high_wins", 0)
+            lw = fr_entry.get("low_wins", 0)
+            if hw >= 4:
+                return fr_entry["high"] if isinstance(fr_entry["high"], dict) else None
+            if lw >= 4:
+                return fr_entry["low"] if isinstance(fr_entry["low"], dict) else None
+            return None
+
+        w_1v8 = _r1_winner(first_round[0])
+        w_4v5 = _r1_winner(first_round[1])
+        w_3v6 = _r1_winner(first_round[2])
+        w_2v7 = _r1_winner(first_round[3])
+
+        second_round = []
+        if w_1v8 or w_4v5:
+            high_r2a = w_1v8 or "1/8 勝者"
+            low_r2a = w_4v5 or "4/5 勝者"
+            r2a = {"label": "1/8 vs 4/5", "high": high_r2a, "low": low_r2a}
+            if isinstance(high_r2a, dict) and isinstance(low_r2a, dict):
+                r2a.update(_with_wins(high_r2a, low_r2a))
+            second_round.append(r2a)
+        if w_2v7 or w_3v6:
+            high_r2b = w_3v6 or "3/6 勝者"
+            low_r2b = w_2v7 or "2/7 勝者"
+            if isinstance(high_r2b, dict) and isinstance(low_r2b, dict):
+                h_seed = high_r2b.get("seed", 99)
+                l_seed = low_r2b.get("seed", 99)
+                if l_seed < h_seed:
+                    high_r2b, low_r2b = low_r2b, high_r2b
+            r2b = {"label": "2/7 vs 3/6", "high": high_r2b, "low": low_r2b}
+            if isinstance(high_r2b, dict) and isinstance(low_r2b, dict):
+                r2b.update(_with_wins(high_r2b, low_r2b))
+            second_round.append(r2b)
+
+        result = {
             "name": name,
             "seeds": seeds[:10],
             "lottery": seeds[10:],
             "play_in": play_in,
             "first_round": first_round,
         }
+        if second_round:
+            result["second_round"] = second_round
+        return result
 
     return {
         "snapshot_date": snapshot_date,
@@ -1223,7 +1264,8 @@ def build_bracket(target_date: date) -> dict | None:
         "show_from": show_from,
         "show_until": show_until,
         "stage_label": _stage_label,
-        "stage": "first_round" if _series_wins else ("play_in" if _playin_results else None),
+        "stage": {1: "first_round", 2: "second_round", 3: "conf_finals", 4: "finals"}.get(
+            _max_round_num, "first_round" if _series_wins else ("play_in" if _playin_results else None)),
         "east": _conference("東區", east, east_r1_resolved),
         "west": _conference("西區", west, west_r1_resolved),
     }

@@ -4,8 +4,8 @@
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
- "stage_label": "首輪進行中",
- "stage": "first_round",
+ "stage_label": "第二輪進行中",
+ "stage": "second_round",
  "east": {
   "name": "東區",
   "seeds": [
@@ -319,6 +319,56 @@
     "high_wins": 3,
     "low_wins": 4,
     "games_played": 7
+   }
+  ],
+  "second_round": [
+   {
+    "label": "1/8 vs 4/5",
+    "high": {
+     "team": "Detroit Pistons",
+     "team_zh": "底特律活塞",
+     "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+     "wins": 60,
+     "losses": 22,
+     "win_pct": 0.732,
+     "seed": 1
+    },
+    "low": {
+     "team": "Cleveland Cavaliers",
+     "team_zh": "克里夫蘭騎士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 4
+    },
+    "high_wins": 0,
+    "low_wins": 0,
+    "games_played": 0
+   },
+   {
+    "label": "2/7 vs 3/6",
+    "high": {
+     "team": "New York Knicks",
+     "team_zh": "紐約尼克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 3
+    },
+    "low": {
+     "team": "Philadelphia 76ers",
+     "team_zh": "費城七六人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "high_wins": 0,
+    "low_wins": 0,
+    "games_played": 0
    }
   ]
  },
@@ -635,6 +685,56 @@
     "high_wins": 4,
     "low_wins": 1,
     "games_played": 5
+   }
+  ],
+  "second_round": [
+   {
+    "label": "1/8 vs 4/5",
+    "high": {
+     "team": "Oklahoma City Thunder",
+     "team_zh": "奧克拉荷馬雷霆",
+     "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+     "wins": 64,
+     "losses": 18,
+     "win_pct": 0.78,
+     "seed": 1
+    },
+    "low": {
+     "team": "Los Angeles Lakers",
+     "team_zh": "洛杉磯湖人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 4
+    },
+    "high_wins": 0,
+    "low_wins": 0,
+    "games_played": 0
+   },
+   {
+    "label": "2/7 vs 3/6",
+    "high": {
+     "team": "San Antonio Spurs",
+     "team_zh": "聖安東尼奧馬刺",
+     "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+     "wins": 62,
+     "losses": 20,
+     "win_pct": 0.756,
+     "seed": 2
+    },
+    "low": {
+     "team": "Minnesota Timberwolves",
+     "team_zh": "明尼蘇達灰狼",
+     "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+     "wins": 49,
+     "losses": 33,
+     "win_pct": 0.598,
+     "seed": 6
+    },
+    "high_wins": 0,
+    "low_wins": 0,
+    "games_played": 0
    }
   ]
  },
