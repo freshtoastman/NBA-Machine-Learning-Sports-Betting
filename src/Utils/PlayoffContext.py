@@ -187,8 +187,15 @@ def get_series_state(home_team: str, away_team: str, game_date, as_of_date=None)
             home_wins, away_wins = wins_before
             total_played = home_wins + away_wins
         else:
-            games_before = _count_series_games_before(home_team, away_team, as_of_date, season_key, series_start)
-            total_played = games_before if games_before is not None else home_wins + away_wins
+            home_wins, away_wins = 0, 0
+            total_played = 0
+        # For upcoming games where wins haven't been recorded yet, fall back to
+        # counting scheduled games in the series window — this gives the correct
+        # series_game_num for unplayed future games (e.g. R2 G2 before G1 has
+        # finished). Only applies when series_start is set.
+        games_before = _count_series_games_before(home_team, away_team, as_of_date, season_key, series_start)
+        if games_before is not None and games_before > total_played:
+            total_played = games_before
     else:
         total_played = home_wins + away_wins
     series_game_num = total_played + 1  # the upcoming game
