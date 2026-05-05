@@ -1667,6 +1667,26 @@
     "home_score": 113,
     "away_score": 109,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-05-05",
+    "home": "Detroit Pistons",
+    "away": "Cleveland Cavaliers",
+    "spread": 3.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-07",
+    "home": "Detroit Pistons",
+    "away": "Cleveland Cavaliers",
+    "spread": null,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Boston Celtics:New Orleans Pelicans": [
@@ -5389,6 +5409,26 @@
     "home_score": 87,
     "away_score": 123,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-05-05",
+    "home": "Oklahoma City Thunder",
+    "away": "Los Angeles Lakers",
+    "spread": 16.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-07",
+    "home": "Oklahoma City Thunder",
+    "away": "Los Angeles Lakers",
+    "spread": null,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Atlanta Hawks:Sacramento Kings": [
@@ -8231,6 +8271,26 @@
     "home_score": 126,
     "away_score": 123,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-05-06",
+    "home": "San Antonio Spurs",
+    "away": "Minnesota Timberwolves",
+    "spread": 9.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-08",
+    "home": "San Antonio Spurs",
+    "away": "Minnesota Timberwolves",
+    "spread": null,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Dallas Mavericks:Denver Nuggets": [
@@ -9711,6 +9771,26 @@
     "home_score": 89,
     "away_score": 138,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-05-06",
+    "home": "New York Knicks",
+    "away": "Philadelphia 76ers",
+    "spread": 7.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-08",
+    "home": "New York Knicks",
+    "away": "Philadelphia 76ers",
+    "spread": null,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Boston Celtics:Miami Heat": [

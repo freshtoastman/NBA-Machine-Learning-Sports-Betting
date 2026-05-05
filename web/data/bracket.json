@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-04",
+ "generated_for": "2026-05-05",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -739,11 +739,11 @@
   ]
  },
  "signal_tracker": {
-  "total": 32,
+  "total": 35,
   "decided": 32,
   "wins": 24,
   "losses": 8,
-  "pending": 0,
+  "pending": 3,
   "hit_rate": 75.0,
   "pnl": 13.84,
   "roi": 43.2,
@@ -756,7 +756,7 @@
    "GOLD": {
     "wins": 7,
     "losses": 2,
-    "pending": 0
+    "pending": 3
    }
   },
   "by_game_num": {
@@ -778,6 +778,12 @@
     "pending": 0,
     "hit_rate": 60.0
    },
+   "G5": {
+    "wins": 0,
+    "losses": 0,
+    "pending": 3,
+    "hit_rate": null
+   },
    "G6": {
     "wins": 9,
     "losses": 4,
@@ -792,11 +798,11 @@
    }
   },
   "by_game": {
-   "total": 21,
+   "total": 24,
    "decided": 19,
    "wins": 16,
    "losses": 3,
-   "pending": 2,
+   "pending": 5,
    "hit_rate": 84.2,
    "pnl": 11.56,
    "roi": 60.8
@@ -1185,6 +1191,42 @@
     "result": "win",
     "margin": null,
     "game_num": 7
+   },
+   {
+    "date": "2026-05-05",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-05",
+    "away": "洛杉磯湖人",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-06",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
    }
   ]
  }

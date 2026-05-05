@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 24,
   "misses": 8,
-  "pending": 0,
+  "pending": 3,
   "decided": 32,
   "hit_rate": 75.0,
   "conviction": {
@@ -1090,7 +1090,50 @@
     "q4_swing": 4
    }
   ],
-  "pending_by_game": [],
+  "pending_by_game": [
+   {
+    "date": "2026-05-05",
+    "game": "克里夫蘭騎士 @ 底特律活塞",
+    "signals": [
+     "R2G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": 3.5
+   },
+   {
+    "date": "2026-05-05",
+    "game": "洛杉磯湖人 @ 奧克拉荷馬雷霆",
+    "signals": [
+     "R2G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "0-4",
+    "has_strong_consensus": false,
+    "spread": 16.5
+   },
+   {
+    "date": "2026-05-06",
+    "game": "費城七六人 @ 紐約尼克",
+    "signals": [
+     "R2G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": 7.5
+   }
+  ],
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
@@ -1318,7 +1361,7 @@
   "best_pick": {
    "hits": 18,
    "misses": 3,
-   "pending": 0,
+   "pending": 3,
    "decided": 21,
    "hit_rate": 85.7,
    "gold_hits": 7,
@@ -1334,7 +1377,7 @@
   "no_conflict": {
    "hits": 16,
    "misses": 2,
-   "pending": 0,
+   "pending": 3,
    "decided": 18,
    "hit_rate": 88.9,
    "note_zh": "無衝突場次(所有信號同向): 16勝/18場決定 = 88.9%"
