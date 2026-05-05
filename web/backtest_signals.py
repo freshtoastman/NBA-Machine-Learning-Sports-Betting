@@ -62,12 +62,14 @@ def build_backtest_signals(game: dict) -> list[dict]:
             signals.append({"text": "中讓分(5-10) → 冷門 cover 傾向（58.9%）", "tier": "base"})
 
     # ── Playoffs ──
-    # Round-specific base rates (re-measured 2026-04-20 across 13 seasons 2012-2025, n=1053):
+    # Round-specific base rates (re-measured 2026-05-05 across 13 seasons 2012-2025):
     #   R1 G1: home 58.0% (n=112)    R1 G2: home 55.4% (n=112)
     #   R1 G3: away 59.6% (n=104)    R1 G4: away 60.8% (n=102)
     #   R1 G5 2-2: home 53.1% (all)/60% (recent 2017+, n=35)
-    #   R1 G6: AWAY 80.4% (n=46) ★ strongest structural signal
-    #   R2 G1: away 60.4% (n=48)     R2+ G6: away 53.8% (n=52)
+    #   R1 G6: AWAY 80.4% (n=46) ★ strongest R1 structural signal
+    #   R2 G1: HOME 64.6% (n=48)     R2 G2: HOME 87.5% (n=48) ★★ STRONGEST
+    #   R2 G3: fav 64.6% (n=48)      R2 G5: HOME 83.7% (n=43) ★★
+    #   R2 overall: fav covers 68.6% (n=277)
     round_num = int(game.get("round_num") or 0)
     if is_po:
         # R1 G6 — GOLD tier hot signal
@@ -83,12 +85,18 @@ def build_backtest_signals(game: dict) -> list[dict]:
         # R1 G3/G4: away team (high seed) covers 60%
         if round_num == 1 and series_gn in (3, 4):
             signals.append({"text": f"R1 G{series_gn} → 押客場（高種子）歷史 cover 率 ~60%（n~100）", "tier": "warm"})
-        # G5 tied 2-2 home
-        if series_gn == 5 and series_lead == 0:
+        # G5 tied 2-2 home (R1)
+        if round_num == 1 and series_gn == 5 and series_lead == 0:
             signals.append({"text": "Game 5（2-2 平手）→ 押主場 cover（60%，近7年）", "tier": "hot"})
-        # R2 G1 away
+        # ── R2 signals (favorite/home covers at dominant rate) ──
         if round_num == 2 and series_gn == 1:
-            signals.append({"text": "R2 G1 → 押客場歷史 cover 率 60.4%（n=48）", "tier": "warm"})
+            signals.append({"text": "R2 G1 → 押主場（高種子）歷史 cover 率 64.6%（n=48，13季）", "tier": "warm"})
+        if round_num == 2 and series_gn == 2:
+            signals.append({"text": "R2 G2 → 押主場（熱門）歷史 cover 率 87.5%（n=48，近5季100%）★★", "tier": "hot"})
+        if round_num == 2 and series_gn == 5:
+            signals.append({"text": "R2 G5 → 押主場（熱門）歷史 cover 率 83.7%（n=43，13季）★★", "tier": "hot"})
+        if round_num == 2 and series_gn in (3, 4):
+            signals.append({"text": f"R2 G{series_gn} → 押熱門 cover（64.6%，n=48，R2整體熱門68.6%）", "tier": "warm"})
         if is_elim and not (series_gn == 7 and abs_sp >= 7):
             signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
         if is_elim and abs_sp <= 8 and not (series_gn == 7 and abs_sp >= 7):
@@ -100,7 +108,7 @@ def build_backtest_signals(game: dict) -> list[dict]:
             signals.append({"text": f"例行賽強隊受讓（{a_zh}）→ 押客場 cover（54.7%）", "tier": "base"})
         if h_season_wr >= 60 and not home_fav:
             signals.append({"text": f"例行賽強隊受讓（{h_zh}）→ 押主場 cover（58.8%）", "tier": "warm"})
-        if series_gn <= 2:
+        if series_gn <= 2 and round_num != 2:
             signals.append({"text": "系列賽前兩場 → 主場略有 ATS 優勢（54%）", "tier": "base"})
         if series_lead <= -2:
             signals.append({"text": "主場大幅落後 → 客場 cover 傾向（55.5%）", "tier": "base"})

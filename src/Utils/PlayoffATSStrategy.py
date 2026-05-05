@@ -612,6 +612,90 @@ def _evenly_matched_home(pred, series_state, team_form) -> PlayoffATSPick | None
     return None
 
 
+def _r2_g2_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R2 G2 → Home (favorite) covers at 87.5% (42/48, 13 seasons).
+
+    The strongest structural signal in the entire playoff dataset.
+    Home is the favorite in all 48 R2 G2 games.
+    By era: 2012-16: 87.5%, 2017-20: 75.0%, 2021-25: 100% (16/16).
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 2:
+        return None
+    if series_state.get("series_game_num", 0) != 2:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="R2G2主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.875,
+        backtest_roi=75.0,
+        backtest_n=48,
+        reason_zh="第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
+    )
+
+
+def _r2_g5_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R2 G5 → Home (favorite) covers at 83.7% (36/43, 13 seasons).
+
+    Home is the favorite in 42/43 R2 G5 games. Second strongest R2 signal.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 2:
+        return None
+    if series_state.get("series_game_num", 0) != 5:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="R2G5主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.837,
+        backtest_roi=67.4,
+        backtest_n=43,
+        reason_zh="第二輪G5主場cover率 83.7% (36/43，13季)，主場幾乎必定是熱門",
+    )
+
+
+def _r2_g1_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """R2 G1 → Home (favorite) covers at 64.6% (31/48, 13 seasons).
+
+    Previous signal incorrectly pointed to "away" based on high-seed analysis.
+    Re-verified: home covers 64.6%, and home is the favorite in 47/48 games.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 2:
+        return None
+    if series_state.get("series_game_num", 0) != 1:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="R2G1主場優勢",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.646,
+        backtest_roi=29.2,
+        backtest_n=48,
+        reason_zh="第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢",
+    )
+
+
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Home team giving ≤2 pts → bet away to cover (R1+ only, not play-in).
 
@@ -991,6 +1075,9 @@ _SIGNALS = [
     # _home_form_dominant,             # DISABLED: 54.7% backtest but 50% OOS (5/10) — noise
     # _medium_spread_dog,               # DISABLED: 52.1% (n=290) coin flip level, no edge
     _evenly_matched_home,             # DISABLED (51.3% actual, coin flip)
+    _r2_g2_home_fav,                  # GOLD: 87.5% (42/48, 13 seasons) — strongest R2 signal
+    _r2_g5_home_fav,                  # GOLD: 83.7% (36/43, 13 seasons) — R2 G5 home dominance
+    _r2_g1_home_fav,                  # SILVER: 64.6% (31/48, 13 seasons) — R2 G1 home advantage
 ]
 
 
