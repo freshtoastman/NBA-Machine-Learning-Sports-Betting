@@ -1181,7 +1181,7 @@ def build_bracket(target_date: date) -> dict | None:
             # Upgrade next_signal if actual game data has a higher-tier signal.
             _tier_rank = {"GOLD": 3, "SILVER": 2, "BRONZE": 1, "NONE": 0}
             ns = entry.get("next_signal")
-            if ns and gp >= 2:
+            if ns and gp >= 1:
                 _ns_key = frozenset({high_team["team"], low_team["team"]})
                 _ns_game = _upcoming_game_lookup.get(_ns_key)
                 if _ns_game:

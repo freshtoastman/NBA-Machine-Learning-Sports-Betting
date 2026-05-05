@@ -13,8 +13,8 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "San Antonio Spurs: Carter Bryant (缺陣)",
-   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)"
+   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)",
+   "San Antonio Spurs: Carter Bryant (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -32,9 +32,9 @@
   "golden_hit_rate": null
  },
  "games": {
-  "Philadelphia 76ers:New York Knicks": {
-   "home_team": "New York Knicks",
-   "away_team": "Philadelphia 76ers",
+  "New York Knicks:Philadelphia 76ers": {
+   "home_team": "Philadelphia 76ers",
+   "away_team": "New York Knicks",
    "home_score": null,
    "away_score": null,
    "spread": null,
@@ -72,26 +72,21 @@
    "playoff_ats_strong_consensus": null,
    "series_round": "第二輪",
    "round_num": 2,
-   "series_game_num": 2,
+   "series_game_num": 3,
    "series_home_wins": 0,
-   "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_away_wins": 1,
+   "series_status_text": "客隊領先 1-0",
    "series_is_elimination": false,
-   "home_team_zh": "紐約尼克",
-   "away_team_zh": "費城七六人",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+   "home_team_zh": "費城七六人",
+   "away_team_zh": "紐約尼克",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 137,
-   "live_away_score": 98,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
    "injuries_away": []
   },
-  "Minnesota Timberwolves:San Antonio Spurs": {
-   "home_team": "San Antonio Spurs",
-   "away_team": "Minnesota Timberwolves",
+  "San Antonio Spurs:Minnesota Timberwolves": {
+   "home_team": "Minnesota Timberwolves",
+   "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
    "spread": null,
@@ -129,25 +124,20 @@
    "playoff_ats_strong_consensus": null,
    "series_round": "第二輪",
    "round_num": 2,
-   "series_game_num": 2,
-   "series_home_wins": 0,
+   "series_game_num": 3,
+   "series_home_wins": 1,
    "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
-   "home_team_zh": "聖安東尼奧馬刺",
-   "away_team_zh": "明尼蘇達灰狼",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+   "home_team_zh": "明尼蘇達灰狼",
+   "away_team_zh": "聖安東尼奧馬刺",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [
-    "Carter Bryant (缺陣)"
-   ],
-   "live_home_score": 102,
-   "live_away_score": 104,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
-   "injuries_away": [
     "Ayo Dosunmu (缺陣)"
+   ],
+   "injuries_away": [
+    "Carter Bryant (缺陣)"
    ]
   }
  },
@@ -166,7 +156,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 0,
    "conference": "east"
   },
@@ -185,7 +175,7 @@
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {

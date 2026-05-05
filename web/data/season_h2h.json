@@ -8273,6 +8273,16 @@
     "ats_result": "away"
    },
    {
+    "date": "2026-05-04",
+    "home": "San Antonio Spurs",
+    "away": "Minnesota Timberwolves",
+    "spread": 9.5,
+    "win_margin": -2,
+    "home_score": 102,
+    "away_score": 104,
+    "ats_result": "away"
+   },
+   {
     "date": "2026-05-06",
     "home": "San Antonio Spurs",
     "away": "Minnesota Timberwolves",
@@ -8284,8 +8294,8 @@
    },
    {
     "date": "2026-05-08",
-    "home": "San Antonio Spurs",
-    "away": "Minnesota Timberwolves",
+    "home": "Minnesota Timberwolves",
+    "away": "San Antonio Spurs",
     "spread": null,
     "win_margin": null,
     "home_score": null,
@@ -9773,6 +9783,16 @@
     "ats_result": "away"
    },
    {
+    "date": "2026-05-04",
+    "home": "New York Knicks",
+    "away": "Philadelphia 76ers",
+    "spread": 7.5,
+    "win_margin": 39,
+    "home_score": 137,
+    "away_score": 98,
+    "ats_result": "home"
+   },
+   {
     "date": "2026-05-06",
     "home": "New York Knicks",
     "away": "Philadelphia 76ers",
@@ -9784,8 +9804,8 @@
    },
    {
     "date": "2026-05-08",
-    "home": "New York Knicks",
-    "away": "Philadelphia 76ers",
+    "home": "Philadelphia 76ers",
+    "away": "New York Knicks",
     "spread": null,
     "win_margin": null,
     "home_score": null,

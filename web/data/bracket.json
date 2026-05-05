@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-05",
+ "generated_for": "2026-05-06",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -376,18 +376,20 @@
      "win_pct": 0.549,
      "seed": 7
     },
-    "high_wins": 0,
+    "high_wins": 1,
     "low_wins": 0,
-    "games_played": 0,
+    "games_played": 1,
     "next_signal": {
-     "game_num": 1,
-     "signal": "R2G1主場優勢",
+     "game_num": 2,
+     "signal": "R2G2主場壓制",
      "side": "home",
      "home_team": "New York Knicks",
      "home_team_zh": "紐約尼克",
-     "tier": "SILVER",
-     "backtest_wr": 0.646,
-     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+     "tier": "GOLD",
+     "backtest_wr": 0.875,
+     "reason_zh": "第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
+     "signal_team_zh": "紐約尼克",
+     "consensus_count": 2
     }
    }
   ]
@@ -763,53 +765,55 @@
      "seed": 6
     },
     "high_wins": 0,
-    "low_wins": 0,
-    "games_played": 0,
+    "low_wins": 1,
+    "games_played": 1,
     "next_signal": {
-     "game_num": 1,
-     "signal": "R2G1主場優勢",
+     "game_num": 2,
+     "signal": "R2G2主場壓制",
      "side": "home",
      "home_team": "San Antonio Spurs",
      "home_team_zh": "聖安東尼奧馬刺",
-     "tier": "SILVER",
-     "backtest_wr": 0.646,
-     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+     "tier": "GOLD",
+     "backtest_wr": 0.875,
+     "reason_zh": "第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
+     "signal_team_zh": "聖安東尼奧馬刺",
+     "consensus_count": 2
     }
    }
   ]
  },
  "signal_tracker": {
-  "total": 36,
-  "decided": 32,
-  "wins": 24,
-  "losses": 8,
-  "pending": 4,
-  "hit_rate": 75.0,
-  "pnl": 13.84,
-  "roi": 43.2,
+  "total": 40,
+  "decided": 34,
+  "wins": 25,
+  "losses": 9,
+  "pending": 6,
+  "hit_rate": 73.5,
+  "pnl": 13.75,
+  "roi": 40.4,
   "by_tier": {
    "SILVER": {
-    "wins": 17,
-    "losses": 6,
+    "wins": 18,
+    "losses": 7,
     "pending": 4
    },
    "GOLD": {
     "wins": 7,
     "losses": 2,
-    "pending": 0
+    "pending": 2
    }
   },
   "by_game_num": {
    "G1": {
-    "wins": 6,
-    "losses": 2,
-    "pending": 4,
-    "hit_rate": 75.0
+    "wins": 7,
+    "losses": 3,
+    "pending": 2,
+    "hit_rate": 70.0
    },
    "G2": {
     "wins": 5,
     "losses": 0,
-    "pending": 0,
+    "pending": 4,
     "hit_rate": 100.0
    },
    "G3": {
@@ -832,14 +836,14 @@
    }
   },
   "by_game": {
-   "total": 25,
-   "decided": 19,
-   "wins": 16,
-   "losses": 3,
+   "total": 27,
+   "decided": 21,
+   "wins": 17,
+   "losses": 4,
    "pending": 6,
-   "hit_rate": 84.2,
-   "pnl": 11.56,
-   "roi": 60.8
+   "hit_rate": 81.0,
+   "pnl": 11.47,
+   "roi": 54.6
   },
   "details": [
    {
@@ -1227,6 +1231,30 @@
     "game_num": 7
    },
    {
+    "date": "2026-05-04",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "win",
+    "margin": null,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-04",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "loss",
+    "margin": null,
+    "game_num": 1
+   },
+   {
     "date": "2026-05-05",
     "away": "克里夫蘭騎士",
     "home": "底特律活塞",
@@ -1254,25 +1282,49 @@
     "date": "2026-05-06",
     "away": "費城七六人",
     "home": "紐約尼克",
-    "signal": "R2G1主場優勢",
-    "tier": "SILVER",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
     "side": "home",
-    "backtest_wr": 0.646,
+    "backtest_wr": 0.875,
     "result": "pending",
     "margin": null,
-    "game_num": 1
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-06",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "G2大勝後延續",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
    },
    {
     "date": "2026-05-06",
     "away": "明尼蘇達灰狼",
     "home": "聖安東尼奧馬刺",
-    "signal": "R2G1主場優勢",
-    "tier": "SILVER",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
     "side": "home",
-    "backtest_wr": 0.646,
+    "backtest_wr": 0.875,
     "result": "pending",
     "margin": null,
-    "game_num": 1
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-06",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
    }
   ]
  }

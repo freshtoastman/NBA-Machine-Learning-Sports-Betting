@@ -1186,5 +1186,49 @@
     ],
     "home_score": 116,
     "away_score": 94
+  },
+  {
+    "gameId": "401871159",
+    "date": "2026-05-04",
+    "home_tri": "NY",
+    "away_tri": "PHI",
+    "home_name": "New York Knicks",
+    "away_name": "Philadelphia 76ers",
+    "q_home": [
+      33,
+      41,
+      35,
+      28
+    ],
+    "q_away": [
+      25,
+      26,
+      27,
+      20
+    ],
+    "home_score": 137,
+    "away_score": 98
+  },
+  {
+    "gameId": "401871152",
+    "date": "2026-05-04",
+    "home_tri": "SA",
+    "away_tri": "MIN",
+    "home_name": "San Antonio Spurs",
+    "away_name": "Minnesota Timberwolves",
+    "q_home": [
+      23,
+      22,
+      27,
+      30
+    ],
+    "q_away": [
+      24,
+      21,
+      24,
+      35
+    ],
+    "home_score": 102,
+    "away_score": 104
   }
 ]

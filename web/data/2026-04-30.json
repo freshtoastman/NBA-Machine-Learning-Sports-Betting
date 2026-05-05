@@ -1843,7 +1843,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 0,
    "conference": "east"
   },
@@ -1862,7 +1862,7 @@
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {
