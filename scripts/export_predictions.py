@@ -970,6 +970,22 @@ def build_bracket(target_date: date) -> dict | None:
             lw = wins_by_team.get(low_team["team"], 0)
             gp = hw + lw
             entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
+            # G1 pre-game hint: R2 opener home-seed advantage.
+            if gp == 0 and _max_round_num >= 2:
+                _game = _today_game_lookup.get(key) or _upcoming_game_lookup.get(key)
+                _r2_picks = (_game.get("playoff_ats_picks", []) if _game else [])
+                _r2_g1_pick = next((p for p in _r2_picks if "R2G1" in p.get("signal", "")), None)
+                if _r2_g1_pick:
+                    entry["next_signal"] = {
+                        "game_num": 1,
+                        "signal": _r2_g1_pick["signal"],
+                        "side": _r2_g1_pick.get("side", "home"),
+                        "home_team": high_team["team"],
+                        "home_team_zh": high_team["team_zh"],
+                        "tier": _r2_g1_pick.get("tier", "SILVER"),
+                        "backtest_wr": _r2_g1_pick.get("backtest_wr", 0.646),
+                        "reason_zh": _r2_g1_pick.get("reason_zh", "第二輪G1主場cover率 64.6% (n=48，13季)"),
+                    }
             # G1 pre-game hint: R1 opener home-seed advantage (fires before any game played).
             if gp == 0 and _stage_label == "首輪進行中":
                 is_playin_away = low_team["team"] in playin_survivors

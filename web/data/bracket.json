@@ -344,7 +344,17 @@
     },
     "high_wins": 0,
     "low_wins": 0,
-    "games_played": 0
+    "games_played": 0,
+    "next_signal": {
+     "game_num": 1,
+     "signal": "R2G1主場優勢",
+     "side": "home",
+     "home_team": "Detroit Pistons",
+     "home_team_zh": "底特律活塞",
+     "tier": "SILVER",
+     "backtest_wr": 0.646,
+     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+    }
    },
    {
     "label": "2/7 vs 3/6",
@@ -368,7 +378,17 @@
     },
     "high_wins": 0,
     "low_wins": 0,
-    "games_played": 0
+    "games_played": 0,
+    "next_signal": {
+     "game_num": 1,
+     "signal": "R2G1主場優勢",
+     "side": "home",
+     "home_team": "New York Knicks",
+     "home_team_zh": "紐約尼克",
+     "tier": "SILVER",
+     "backtest_wr": 0.646,
+     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+    }
    }
   ]
  },
@@ -710,7 +730,17 @@
     },
     "high_wins": 0,
     "low_wins": 0,
-    "games_played": 0
+    "games_played": 0,
+    "next_signal": {
+     "game_num": 1,
+     "signal": "R2G1主場優勢",
+     "side": "home",
+     "home_team": "Oklahoma City Thunder",
+     "home_team_zh": "奧克拉荷馬雷霆",
+     "tier": "SILVER",
+     "backtest_wr": 0.646,
+     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+    }
    },
    {
     "label": "2/7 vs 3/6",
@@ -734,7 +764,17 @@
     },
     "high_wins": 0,
     "low_wins": 0,
-    "games_played": 0
+    "games_played": 0,
+    "next_signal": {
+     "game_num": 1,
+     "signal": "R2G1主場優勢",
+     "side": "home",
+     "home_team": "San Antonio Spurs",
+     "home_team_zh": "聖安東尼奧馬刺",
+     "tier": "SILVER",
+     "backtest_wr": 0.646,
+     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢"
+    }
    }
   ]
  },
