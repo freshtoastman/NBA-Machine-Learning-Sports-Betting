@@ -1230,5 +1230,49 @@
     ],
     "home_score": 102,
     "away_score": 104
+  },
+  {
+    "gameId": "401871333",
+    "date": "2026-05-05",
+    "home_tri": "DET",
+    "away_tri": "CLE",
+    "home_name": "Detroit Pistons",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      37,
+      22,
+      24,
+      28
+    ],
+    "q_away": [
+      21,
+      25,
+      30,
+      25
+    ],
+    "home_score": 111,
+    "away_score": 101
+  },
+  {
+    "gameId": "401871326",
+    "date": "2026-05-05",
+    "home_tri": "OKC",
+    "away_tri": "LAL",
+    "home_name": "Oklahoma City Thunder",
+    "away_name": "Los Angeles Lakers",
+    "q_home": [
+      31,
+      30,
+      23,
+      24
+    ],
+    "q_away": [
+      26,
+      27,
+      19,
+      18
+    ],
+    "home_score": 108,
+    "away_score": 90
   }
 ]

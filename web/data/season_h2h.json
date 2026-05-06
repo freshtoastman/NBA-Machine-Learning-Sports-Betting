@@ -1673,10 +1673,10 @@
     "home": "Detroit Pistons",
     "away": "Cleveland Cavaliers",
     "spread": 3.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 10,
+    "home_score": 111,
+    "away_score": 101,
+    "ats_result": "home"
    },
    {
     "date": "2026-05-07",
@@ -5415,10 +5415,10 @@
     "home": "Oklahoma City Thunder",
     "away": "Los Angeles Lakers",
     "spread": 16.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 18,
+    "home_score": 108,
+    "away_score": 90,
+    "ats_result": "home"
    },
    {
     "date": "2026-05-07",

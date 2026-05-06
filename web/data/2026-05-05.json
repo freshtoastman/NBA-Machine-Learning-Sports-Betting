@@ -24,7 +24,7 @@
     "backtest_wr": 0.646,
     "backtest_roi": 29.2,
     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 1,
     "series_home_wins": 0,
@@ -45,7 +45,7 @@
     "backtest_wr": 0.646,
     "backtest_roi": 29.2,
     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 1,
     "series_home_wins": 0,
@@ -55,13 +55,7 @@
    }
   ],
   "playoff_ats_count": 2,
-  "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (缺陣)",
-   "Cleveland Cavaliers: Sam Merrill (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Los Angeles Lakers: Jarred Vanderbilt (缺陣)",
-   "Los Angeles Lakers: Luka Doncic (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -81,8 +75,8 @@
   "Cleveland Cavaliers:Detroit Pistons": {
    "home_team": "Detroit Pistons",
    "away_team": "Cleveland Cavaliers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 111,
+   "away_score": 101,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 216.5,
@@ -100,14 +94,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 212,
+   "actual_ou_result": "UNDER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -138,17 +132,8 @@
    "away_team_zh": "克里夫蘭騎士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "injuries_home": [
-    "Kevin Huerter (缺陣)"
-   ],
-   "live_home_score": 111,
-   "live_away_score": 101,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
-   "injuries_away": [
-    "Sam Merrill (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-05T15:49:59+00:00",
@@ -179,8 +164,8 @@
   "Los Angeles Lakers:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
    "away_team": "Los Angeles Lakers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 108,
+   "away_score": 90,
    "spread": 16.5,
    "Spread": 16.5,
    "OU": 213.5,
@@ -198,14 +183,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 198,
+   "actual_ou_result": "UNDER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -236,18 +221,8 @@
    "away_team_zh": "洛杉磯湖人",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-   "injuries_home": [
-    "Jalen Williams (缺陣)"
-   ],
-   "live_home_score": 108,
-   "live_away_score": 90,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
-   "injuries_away": [
-    "Jarred Vanderbilt (缺陣)",
-    "Luka Doncic (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-05T15:49:59+00:00",
@@ -282,7 +257,7 @@
    "round_label": "第二輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 0,
    "conference": "east"
   },
@@ -300,7 +275,7 @@
    "round_label": "第二輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 0,
    "conference": "west"
   },
