@@ -261,7 +261,7 @@
             </div>
             {% if m.next_signal %}
             {% set tier_cls = 'tier-' + (m.next_signal.tier or 'bronze')|lower %}
-            {% if m.next_signal.tier == 'NONE' %}
+            {% if m.next_signal.tier in ('NONE', 'BRONZE') %}
             <div class="next-signal" style="background:#1a1a1a;border-color:#333;color:#666;font-size:10px;padding:4px 6px;">
               <span class="ns-badge" style="background:#2a2a2a;color:#888;">G{{ m.next_signal.game_num }} 信號</span>
               ➡ {{ m.next_signal.signal }}
@@ -329,8 +329,8 @@
                 <span class="tbd">{{ m.low }}</span>
               {% endif %}
             </div>
-            {% if m.next_signal %}
-            {% set tier_cls = 'tier-' + (m.next_signal.tier or 'bronze')|lower %}
+            {% if m.next_signal and m.next_signal.tier not in ('NONE', 'BRONZE') %}
+            {% set tier_cls = 'tier-' + (m.next_signal.tier or 'silver')|lower %}
             <div class="next-signal {{ tier_cls }}">
               <span class="ns-badge">G{{ m.next_signal.game_num }} 信號</span>
               📊

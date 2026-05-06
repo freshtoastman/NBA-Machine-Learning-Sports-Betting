@@ -821,8 +821,8 @@
                         {% endif %}
                     </div>
                     {% endif %}
-                    {# Playoff ATS strategy pick — show only during playoffs when a signal fires #}
-                    {% if game.playoff_ats_best_side and spread_val is not none %}
+                    {# Playoff ATS strategy pick — show only GOLD/SILVER tier signals #}
+                    {% if game.playoff_ats_best_side and spread_val is not none and game.playoff_ats_best_tier in ('GOLD', 'SILVER') %}
                     {% set po_pick_home = game.playoff_ats_best_side == 'home' %}
                     {% set po_picked_team = home_team if po_pick_home else away_team %}
                     {% set po_is_fav = (po_pick_home and spread_val > 0) or (not po_pick_home and spread_val < 0) %}
@@ -970,11 +970,13 @@
                 {# ── 季後賽策略 (動態回測信號) ── #}
                 {% if is_po and game.playoff_ats_picks %}
                   {% for pick in game.playoff_ats_picks %}
-                    {% set tier_map = {'GOLD': 'hot', 'SILVER': 'warm', 'BRONZE': 'base'} %}
-                    {% set icon_map = {'GOLD': '🥇', 'SILVER': '🥈', 'BRONZE': '🥉'} %}
-                    {% set t = tier_map.get(pick.tier, 'base') %}
-                    {% set ic = icon_map.get(pick.tier, '📊') %}
+                    {% if pick.tier in ('GOLD', 'SILVER') %}
+                    {% set tier_map = {'GOLD': 'hot', 'SILVER': 'warm'} %}
+                    {% set icon_map = {'GOLD': '🥇', 'SILVER': '🥈'} %}
+                    {% set t = tier_map.get(pick.tier, 'warm') %}
+                    {% set ic = icon_map.get(pick.tier, '🥈') %}
                     {% set ns.checks = ns.checks + [{'icon': ic, 'text': pick.reason_zh ~ ' (回測 ' ~ (pick.backtest_wr * 100)|round(0)|int ~ '% WR, ' ~ pick.backtest_roi|round(1) ~ '% ROI, n=' ~ pick.backtest_n ~ ')', 'tier': t}] %}
+                    {% endif %}
                   {% endfor %}
                 {% elif is_po %}
                   {# Fallback: static rules when dynamic picks not yet computed #}

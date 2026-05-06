@@ -1119,16 +1119,20 @@ def evaluate_playoff_ats(
 
 
 def best_pick(picks: list[PlayoffATSPick]) -> PlayoffATSPick | None:
-    """Return the single best pick, or None if no signals fire."""
-    return picks[0] if picks else None
+    """Return the single best GOLD/SILVER pick, or None."""
+    for p in picks:
+        if p.tier in ("GOLD", "SILVER"):
+            return p
+    return None
 
 
 def consensus_side(picks: list[PlayoffATSPick]) -> str | None:
-    """Return 'home' or 'away' if the majority of signals agree, else None."""
-    if not picks:
+    """Return 'home' or 'away' if the majority of SILVER+ signals agree, else None."""
+    silver_plus = [p for p in picks if p.tier in ("GOLD", "SILVER")]
+    if not silver_plus:
         return None
-    home_votes = sum(1 for p in picks if p.side == "home")
-    away_votes = sum(1 for p in picks if p.side == "away")
+    home_votes = sum(1 for p in silver_plus if p.side == "home")
+    away_votes = sum(1 for p in silver_plus if p.side == "away")
     if home_votes > away_votes:
         return "home"
     if away_votes > home_votes:
