@@ -1065,10 +1065,10 @@
      "reason_zh": "系列賽平手2-2，第5場主場優勢，12季歷史主場cover率 60% (n=60)"
     }
    ],
-   "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "G5平手主場壓制",
-   "playoff_ats_best_tier": "BRONZE",
-   "playoff_ats_consensus": "home",
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "home_team_zh": "克里夫蘭騎士",
