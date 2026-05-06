@@ -13,8 +13,10 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)",
-   "San Antonio Spurs: Carter Bryant (缺陣)"
+   "Philadelphia 76ers: Joel Embiid (可能出賽)",
+   "Minnesota Timberwolves: Anthony Edwards (存疑)",
+   "Minnesota Timberwolves: Ayo Dosunmu (存疑)",
+   "San Antonio Spurs: Carter Bryant (存疑)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -81,7 +83,9 @@
    "away_team_zh": "紐約尼克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Joel Embiid (可能出賽)"
+   ],
    "injuries_away": []
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
@@ -134,10 +138,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [
-    "Ayo Dosunmu (缺陣)"
+    "Anthony Edwards (存疑)",
+    "Ayo Dosunmu (存疑)"
    ],
    "injuries_away": [
-    "Carter Bryant (缺陣)"
+    "Carter Bryant (存疑)"
    ]
   }
  },

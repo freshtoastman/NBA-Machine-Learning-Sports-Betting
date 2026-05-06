@@ -783,11 +783,11 @@
   ]
  },
  "signal_tracker": {
-  "total": 40,
+  "total": 42,
   "decided": 34,
   "wins": 25,
   "losses": 9,
-  "pending": 6,
+  "pending": 8,
   "hit_rate": 73.5,
   "pnl": 13.75,
   "roi": 40.4,
@@ -800,7 +800,7 @@
    "GOLD": {
     "wins": 7,
     "losses": 2,
-    "pending": 2
+    "pending": 4
    }
   },
   "by_game_num": {
@@ -813,7 +813,7 @@
    "G2": {
     "wins": 5,
     "losses": 0,
-    "pending": 4,
+    "pending": 6,
     "hit_rate": 100.0
    },
    "G3": {
@@ -836,11 +836,11 @@
    }
   },
   "by_game": {
-   "total": 27,
+   "total": 29,
    "decided": 21,
    "wins": 17,
    "losses": 4,
-   "pending": 6,
+   "pending": 8,
    "hit_rate": 81.0,
    "pnl": 11.47,
    "roi": 54.6
@@ -1322,6 +1322,30 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.649,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-07",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-07",
+    "away": "洛杉磯湖人",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
     "result": "pending",
     "margin": null,
     "game_num": 2

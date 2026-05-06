@@ -56,8 +56,10 @@
   ],
   "playoff_ats_count": 2,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (存疑)",
+   "Detroit Pistons: Kevin Huerter (缺陣)",
+   "Cleveland Cavaliers: Sam Merrill (缺陣)",
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
+   "Los Angeles Lakers: Jarred Vanderbilt (缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)"
   ],
   "ml_correct": 0,
@@ -84,8 +86,8 @@
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 216.5,
-   "ML_Home": -148,
-   "ML_Away": 126,
+   "ML_Home": -164,
+   "ML_Away": 138,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -137,9 +139,16 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Huerter (存疑)"
+    "Kevin Huerter (缺陣)"
    ],
-   "injuries_away": [],
+   "live_home_score": 111,
+   "live_away_score": 101,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
+   "injuries_away": [
+    "Sam Merrill (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-05-05T15:49:59+00:00",
@@ -148,13 +157,21 @@
      "ml_home": -148,
      "ml_away": 126,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-06T14:09:25+00:00",
+     "spread": 3.5,
+     "ou": 216.5,
+     "ml_home": -164,
+     "ml_away": 138,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 3.5,
    "spread_last": 3.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-05T15:49:59+00:00",
-   "spread_last_fetched_at": "2026-05-05T15:49:59+00:00",
+   "spread_last_fetched_at": "2026-05-06T14:09:25+00:00",
    "ou_first": 216.5,
    "ou_last": 216.5,
    "ou_move": 0.0
@@ -167,8 +184,8 @@
    "spread": 16.5,
    "Spread": 16.5,
    "OU": 213.5,
-   "ML_Home": -1000,
-   "ML_Away": 660,
+   "ML_Home": -1099,
+   "ML_Away": 700,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -222,7 +239,13 @@
    "injuries_home": [
     "Jalen Williams (缺陣)"
    ],
+   "live_home_score": 108,
+   "live_away_score": 90,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [
+    "Jarred Vanderbilt (缺陣)",
     "Luka Doncic (缺陣)"
    ],
    "odds_history": [
@@ -233,13 +256,21 @@
      "ml_home": -1000,
      "ml_away": 660,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-06T14:09:25+00:00",
+     "spread": 16.5,
+     "ou": 213.5,
+     "ml_home": -1099,
+     "ml_away": 700,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 16.5,
    "spread_last": 16.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-05T15:49:59+00:00",
-   "spread_last_fetched_at": "2026-05-05T15:49:59+00:00",
+   "spread_last_fetched_at": "2026-05-06T14:09:25+00:00",
    "ou_first": 213.5,
    "ou_last": 213.5,
    "ou_move": 0.0
