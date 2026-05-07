@@ -114,6 +114,7 @@
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": null,
+   "ats_cover_margin": null,
    "is_upcoming": true,
    "is_playoff": true,
    "playoff_ats_picks": [
@@ -205,6 +206,7 @@
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": null,
+   "ats_cover_margin": null,
    "is_upcoming": true,
    "is_playoff": true,
    "playoff_ats_picks": [

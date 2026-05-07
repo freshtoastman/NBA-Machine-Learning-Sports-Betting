@@ -25,7 +25,7 @@
     "backtest_roi": 29.2,
     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢",
     "ats_winner": "home",
-    "ats_cover_margin": null,
+    "ats_cover_margin": 6.5,
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
@@ -46,7 +46,7 @@
     "backtest_roi": 29.2,
     "reason_zh": "第二輪G1主場cover率 64.6% (31/48，13季)，高種子主場開局優勢",
     "ats_winner": "home",
-    "ats_cover_margin": null,
+    "ats_cover_margin": 1.5,
     "series_game_num": 1,
     "series_home_wins": 0,
     "series_away_wins": 0,
@@ -101,6 +101,7 @@
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": "home",
+   "ats_cover_margin": 6.5,
    "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
@@ -190,6 +191,7 @@
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": "home",
+   "ats_cover_margin": 1.5,
    "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [

@@ -1266,7 +1266,7 @@
     "side": "home",
     "backtest_wr": 0.646,
     "result": "win",
-    "margin": null,
+    "margin": 6.5,
     "game_num": 1
    },
    {
@@ -1278,7 +1278,7 @@
     "side": "home",
     "backtest_wr": 0.646,
     "result": "win",
-    "margin": null,
+    "margin": 1.5,
     "game_num": 1
    },
    {
@@ -1290,7 +1290,7 @@
     "side": "home",
     "backtest_wr": 0.875,
     "result": "win",
-    "margin": null,
+    "margin": 0.5,
     "game_num": 2
    },
    {
@@ -1302,7 +1302,7 @@
     "side": "home",
     "backtest_wr": 0.667,
     "result": "win",
-    "margin": null,
+    "margin": 0.5,
     "game_num": 2
    },
    {
@@ -1314,7 +1314,7 @@
     "side": "home",
     "backtest_wr": 0.875,
     "result": "win",
-    "margin": null,
+    "margin": 28.5,
     "game_num": 2
    },
    {
@@ -1326,7 +1326,7 @@
     "side": "home",
     "backtest_wr": 0.649,
     "result": "win",
-    "margin": null,
+    "margin": 28.5,
     "game_num": 2
    },
    {
