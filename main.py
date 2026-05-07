@@ -577,12 +577,16 @@ def predict_historical_xgb(target_date):
                     _cover_diff = _wm - _spread
                     if abs(_cover_diff) < 0.001:
                         _ats_w = "push"
+                        _ats_m = 0.0
                     elif _cover_diff > 0:
                         _ats_w = "home"
+                        _ats_m = round(float(_cover_diff), 1)
                     else:
                         _ats_w = "away"
+                        _ats_m = round(float(_cover_diff), 1)
                 else:
                     _ats_w = None
+                    _ats_m = None
                 stub = {
                     "home_team": home_team,
                     "away_team": away_team,
@@ -612,6 +616,7 @@ def predict_historical_xgb(target_date):
                     "ml_correct": None,
                     "ou_correct": None,
                     "ats_winner": _ats_w,
+                    "ats_cover_margin": _ats_m,
                     "is_upcoming": not _played,
                     "is_playoff": False,
                     "playoff_ats_picks": [],
