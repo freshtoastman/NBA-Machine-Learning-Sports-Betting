@@ -1,6 +1,6 @@
 {
  "date": "2026-05-06",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 2,
   "home_picks": 0,
@@ -24,7 +24,7 @@
     "backtest_wr": 0.875,
     "backtest_roi": 75.0,
     "reason_zh": "第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 2,
     "series_home_wins": 1,
@@ -45,7 +45,7 @@
     "backtest_wr": 0.667,
     "backtest_roi": 33.3,
     "reason_zh": "G1大勝 31.5 ATS分且G2讓分 <10，13季修正回測主場cover率 66.7% (n=24，大讓分陷阱區已排除)",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 2,
     "series_home_wins": 1,
@@ -66,7 +66,7 @@
     "backtest_wr": 0.875,
     "backtest_roi": 75.0,
     "reason_zh": "第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 2,
     "series_home_wins": 0,
@@ -87,7 +87,7 @@
     "backtest_wr": 0.649,
     "backtest_roi": 18.4,
     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
-    "ats_winner": null,
+    "ats_winner": "home",
     "ats_cover_margin": null,
     "series_game_num": 2,
     "series_home_wins": 0,
@@ -97,19 +97,28 @@
    }
   ],
   "playoff_ats_count": 4,
-  "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (可能出賽)",
-   "San Antonio Spurs: Carter Bryant (存疑)",
-   "Minnesota Timberwolves: Anthony Edwards (存疑)",
-   "Minnesota Timberwolves: Ayo Dosunmu (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Philadelphia 76ers:New York Knicks": {
    "home_team": "New York Knicks",
    "away_team": "Philadelphia 76ers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 108,
+   "away_score": 102,
    "spread": 5.5,
    "Spread": 5.5,
    "OU": 215.5,
@@ -127,14 +136,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 210,
+   "actual_ou_result": "UNDER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -176,9 +185,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Joel Embiid (可能出賽)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-05T15:49:59+00:00",
@@ -217,8 +224,8 @@
   "Minnesota Timberwolves:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "Minnesota Timberwolves",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 133,
+   "away_score": 95,
    "spread": 9.5,
    "Spread": 9.5,
    "OU": 215.5,
@@ -236,14 +243,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 228,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -284,13 +291,8 @@
    "away_team_zh": "明尼蘇達灰狼",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-   "injuries_home": [
-    "Carter Bryant (存疑)"
-   ],
-   "injuries_away": [
-    "Anthony Edwards (存疑)",
-    "Ayo Dosunmu (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-05T15:49:59+00:00",
@@ -334,7 +336,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
@@ -352,7 +354,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   },

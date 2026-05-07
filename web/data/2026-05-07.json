@@ -1,6 +1,6 @@
 {
  "date": "2026-05-07",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 2,
   "home_picks": 0,
@@ -77,26 +77,12 @@
   ],
   "playoff_ats_count": 3,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (缺陣)",
-   "Cleveland Cavaliers: Sam Merrill (缺陣)",
+   "Detroit Pistons: Kevin Huerter (存疑)",
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Los Angeles Lakers: Jarred Vanderbilt (缺陣)",
+   "Los Angeles Lakers: Luke Kennard (存疑)",
+   "Los Angeles Lakers: Jarred Vanderbilt (可能缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  ]
  },
  "games": {
   "Cleveland Cavaliers:Detroit Pistons": {
@@ -107,8 +93,8 @@
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 215.5,
-   "ML_Home": -158,
-   "ML_Away": 134,
+   "ML_Home": -162,
+   "ML_Away": 136,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -160,16 +146,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Huerter (缺陣)"
+    "Kevin Huerter (存疑)"
    ],
-   "live_home_score": 111,
-   "live_away_score": 101,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
-   "injuries_away": [
-    "Sam Merrill (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-06T14:09:25+00:00",
@@ -178,13 +157,21 @@
      "ml_home": -158,
      "ml_away": 134,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-07T14:13:34+00:00",
+     "spread": 3.5,
+     "ou": 215.5,
+     "ml_home": -162,
+     "ml_away": 136,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 3.5,
    "spread_last": 3.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-06T14:09:25+00:00",
-   "spread_last_fetched_at": "2026-05-06T14:09:25+00:00",
+   "spread_last_fetched_at": "2026-05-07T14:13:34+00:00",
    "ou_first": 215.5,
    "ou_last": 215.5,
    "ou_move": 0.0
@@ -196,9 +183,9 @@
    "away_score": null,
    "spread": 15.5,
    "Spread": 15.5,
-   "OU": 209.5,
-   "ML_Home": -952,
-   "ML_Away": 640,
+   "OU": 210.5,
+   "ML_Home": -1000,
+   "ML_Away": 660,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -262,13 +249,9 @@
    "injuries_home": [
     "Jalen Williams (缺陣)"
    ],
-   "live_home_score": 108,
-   "live_away_score": 90,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
    "injuries_away": [
-    "Jarred Vanderbilt (缺陣)",
+    "Luke Kennard (存疑)",
+    "Jarred Vanderbilt (可能缺陣)",
     "Luka Doncic (缺陣)"
    ],
    "odds_history": [
@@ -279,16 +262,24 @@
      "ml_home": -952,
      "ml_away": 640,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-07T14:13:34+00:00",
+     "spread": 15.5,
+     "ou": 210.5,
+     "ml_home": -1000,
+     "ml_away": 660,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 15.5,
    "spread_last": 15.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-06T14:09:25+00:00",
-   "spread_last_fetched_at": "2026-05-06T14:09:25+00:00",
+   "spread_last_fetched_at": "2026-05-07T14:13:34+00:00",
    "ou_first": 209.5,
-   "ou_last": 209.5,
-   "ou_move": 0.0
+   "ou_last": 210.5,
+   "ou_move": 1.0
   }
  },
  "active_series": [
@@ -306,7 +297,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
@@ -324,7 +315,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   },

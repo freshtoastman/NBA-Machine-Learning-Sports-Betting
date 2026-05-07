@@ -10,13 +10,35 @@
   "avg_confidence": 0.0,
   "value_picks": 0,
   "golden_picks": 0,
-  "playoff_ats_alerts": [],
-  "playoff_ats_count": 0,
+  "playoff_ats_alerts": [
+   {
+    "game_key": "New York Knicks:Philadelphia 76ers",
+    "home_team": "Philadelphia 76ers",
+    "away_team": "New York Knicks",
+    "home_team_zh": "費城七六人",
+    "away_team_zh": "紐約尼克",
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "ats_side": "受讓(押dog)",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "backtest_roi": 23.8,
+    "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢",
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "series_game_num": 3,
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "has_conflict": false
+   }
+  ],
+  "playoff_ats_count": 1,
   "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (可能出賽)",
-   "Minnesota Timberwolves: Anthony Edwards (存疑)",
-   "Minnesota Timberwolves: Ayo Dosunmu (存疑)",
-   "San Antonio Spurs: Carter Bryant (存疑)"
+   "Philadelphia 76ers: Joel Embiid (缺陣)",
+   "New York Knicks: OG Anunoby (缺陣)",
+   "New York Knicks: Mitchell Robinson (缺陣)",
+   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -39,11 +61,11 @@
    "away_team": "New York Knicks",
    "home_score": null,
    "away_score": null,
-   "spread": null,
-   "Spread": null,
-   "OU": null,
-   "ML_Home": null,
-   "ML_Away": null,
+   "spread": 1.5,
+   "Spread": 1.5,
+   "OU": 213.5,
+   "ML_Home": -110,
+   "ML_Away": -106,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -65,39 +87,71 @@
    "ats_winner": null,
    "is_upcoming": true,
    "is_playoff": true,
-   "playoff_ats_picks": [],
-   "playoff_ats_best_side": null,
-   "playoff_ats_best_signal": null,
-   "playoff_ats_best_tier": null,
-   "playoff_ats_consensus": null,
+   "playoff_ats_picks": [
+    {
+     "signal": "G3客場擴大優勢",
+     "side": "away",
+     "ats_side": "受讓(押dog)",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "backtest_roi": 23.8,
+     "backtest_n": 28,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
+    }
+   ],
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "G3客場擴大優勢",
+   "playoff_ats_best_tier": "SILVER",
+   "playoff_ats_consensus": "away",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "第二輪",
    "round_num": 2,
    "series_game_num": 3,
    "series_home_wins": 0,
-   "series_away_wins": 1,
-   "series_status_text": "客隊領先 1-0",
+   "series_away_wins": 2,
+   "series_status_text": "客隊領先 2-0",
    "series_is_elimination": false,
    "home_team_zh": "費城七六人",
    "away_team_zh": "紐約尼克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [
-    "Joel Embiid (可能出賽)"
+    "Joel Embiid (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [
+    "OG Anunoby (缺陣)",
+    "Mitchell Robinson (缺陣)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-07T14:13:34+00:00",
+     "spread": 1.5,
+     "ou": 213.5,
+     "ml_home": -110,
+     "ml_away": -106,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 1.5,
+   "spread_last": 1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-07T14:13:34+00:00",
+   "spread_last_fetched_at": "2026-05-07T14:13:34+00:00",
+   "ou_first": 213.5,
+   "ou_last": 213.5,
+   "ou_move": 0.0
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
    "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": null,
-   "Spread": null,
-   "OU": null,
-   "ML_Home": null,
-   "ML_Away": null,
+   "spread": -3.5,
+   "Spread": -3.5,
+   "OU": 216.5,
+   "ML_Home": 146,
+   "ML_Away": -174,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -119,7 +173,18 @@
    "ats_winner": null,
    "is_upcoming": true,
    "is_playoff": true,
-   "playoff_ats_picks": [],
+   "playoff_ats_picks": [
+    {
+     "signal": "G3平手客場小優勢",
+     "side": "away",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.516,
+     "backtest_roi": 1.5,
+     "backtest_n": 16,
+     "reason_zh": "系列賽平手1-1，G3低種子主場，歷史50%無明顯優勢，客場(高種子)稍有邊"
+    }
+   ],
    "playoff_ats_best_side": null,
    "playoff_ats_best_signal": null,
    "playoff_ats_best_tier": null,
@@ -130,20 +195,35 @@
    "round_num": 2,
    "series_game_num": 3,
    "series_home_wins": 1,
-   "series_away_wins": 0,
-   "series_status_text": "主隊領先 1-0",
+   "series_away_wins": 1,
+   "series_status_text": "平手 1-1",
    "series_is_elimination": false,
    "home_team_zh": "明尼蘇達灰狼",
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [
-    "Anthony Edwards (存疑)",
-    "Ayo Dosunmu (存疑)"
+    "Ayo Dosunmu (缺陣)"
    ],
-   "injuries_away": [
-    "Carter Bryant (存疑)"
-   ]
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-07T14:13:34+00:00",
+     "spread": -3.5,
+     "ou": 216.5,
+     "ml_home": 146,
+     "ml_away": -174,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -3.5,
+   "spread_last": -3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-07T14:13:34+00:00",
+   "spread_last_fetched_at": "2026-05-07T14:13:34+00:00",
+   "ou_first": 216.5,
+   "ou_last": 216.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
@@ -161,7 +241,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
@@ -179,7 +259,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   },
