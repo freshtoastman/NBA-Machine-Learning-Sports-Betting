@@ -51,7 +51,7 @@
    "away_score": null,
    "spread": 1.5,
    "Spread": 1.5,
-   "OU": 213.5,
+   "OU": 214.5,
    "ML_Home": -122,
    "ML_Away": 104,
    "Days_Rest_Home": 1,
@@ -137,16 +137,24 @@
      "ml_home": -122,
      "ml_away": 104,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-08T14:18:02+00:00",
+     "spread": 1.5,
+     "ou": 214.5,
+     "ml_home": -122,
+     "ml_away": 104,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 1.5,
    "spread_last": 1.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-07T14:13:34+00:00",
-   "spread_last_fetched_at": "2026-05-08T14:02:01+00:00",
+   "spread_last_fetched_at": "2026-05-08T14:18:02+00:00",
    "ou_first": 213.5,
-   "ou_last": 213.5,
-   "ou_move": 0.0
+   "ou_last": 214.5,
+   "ou_move": 1.0
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -156,8 +164,8 @@
    "spread": -4.5,
    "Spread": -4.5,
    "OU": 216.5,
-   "ML_Home": 168,
-   "ML_Away": -200,
+   "ML_Home": 176,
+   "ML_Away": -210,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -230,13 +238,21 @@
      "ml_home": 168,
      "ml_away": -200,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-08T14:18:02+00:00",
+     "spread": -4.5,
+     "ou": 216.5,
+     "ml_home": 176,
+     "ml_away": -210,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -3.5,
    "spread_last": -4.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-05-07T14:13:34+00:00",
-   "spread_last_fetched_at": "2026-05-08T14:02:01+00:00",
+   "spread_last_fetched_at": "2026-05-08T14:18:02+00:00",
    "ou_first": 216.5,
    "ou_last": 216.5,
    "ou_move": 0.0
