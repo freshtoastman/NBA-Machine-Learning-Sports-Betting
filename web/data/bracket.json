@@ -841,6 +841,15 @@
    "pnl": 16.02,
    "roi": 61.6
   },
+  "no_conflict": {
+   "decided": 25,
+   "wins": 22,
+   "losses": 3,
+   "pending": 3,
+   "hit_rate": 88.0,
+   "pnl": 17.02,
+   "roi": 68.1
+  },
   "details": [
    {
     "date": "2026-04-14",

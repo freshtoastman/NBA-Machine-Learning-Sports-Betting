@@ -526,6 +526,26 @@
         </div>
       </div>
       {% endif %}
+      {% if st.no_conflict is defined and st.no_conflict.decided %}
+      {% set nc = st.no_conflict %}
+      <div style="margin-top:6px;padding:6px 10px;background:rgba(76,175,80,0.06);border-radius:6px;border:1px solid rgba(76,175,80,0.15);">
+        <div style="font-size:11px;color:#4caf50;margin-bottom:4px;">🎯 無衝突場次 (實際操作)</div>
+        <div class="st-kpis" style="gap:12px;">
+          <div class="st-kpi">
+            <div class="st-kpi-val {{ 'gold' if nc.hit_rate >= 85 else '' }}" style="font-size:18px;">{{ nc.hit_rate|default('—') }}{% if nc.hit_rate is not none %}%{% endif %}</div>
+            <div class="st-kpi-label">命中率</div>
+          </div>
+          <div class="st-kpi">
+            <div class="st-kpi-val" style="font-size:14px;">{{ nc.wins }}W / {{ nc.losses }}L</div>
+            <div class="st-kpi-label">{{ nc.decided }}場已結{% if nc.pending %} / {{ nc.pending }}待開{% endif %}</div>
+          </div>
+          <div class="st-kpi">
+            <div class="st-kpi-val {{ 'green' if nc.pnl >= 0 else 'red' }}" style="font-size:14px;">{{ '%+.1f'|format(nc.pnl) }}u</div>
+            <div class="st-kpi-label">損益</div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
       {% if st.by_game_num is defined %}
       <div style="margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:6px;border:1px solid rgba(255,255,255,0.06);">
         <div style="font-size:11px;color:#888;margin-bottom:4px;">🎯 依局數分析</div>

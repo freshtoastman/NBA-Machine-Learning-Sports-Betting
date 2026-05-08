@@ -608,10 +608,21 @@ def _build_signal_tracker(data_dir: Path) -> dict:
             game_votes[key][d["side"]] += 1
 
     game_wins = game_losses = 0
+    nc_wins = nc_losses = nc_pending = 0
     for gv in game_votes.values():
         if gv["pending"] or gv["ats_winner"] is None:
+            has_conflict = gv["home"] > 0 and gv["away"] > 0
+            if not has_conflict and gv["pending"]:
+                nc_pending += 1
             continue
         consensus = "home" if gv["home"] > gv["away"] else "away" if gv["away"] > gv["home"] else None
+        has_conflict = gv["home"] > 0 and gv["away"] > 0
+        if not has_conflict:
+            side = "home" if gv["home"] > 0 else "away"
+            if side == gv["ats_winner"]:
+                nc_wins += 1
+            else:
+                nc_losses += 1
         if consensus is None:
             continue
         if consensus == gv["ats_winner"]:
@@ -620,6 +631,8 @@ def _build_signal_tracker(data_dir: Path) -> dict:
             game_losses += 1
     game_total = game_wins + game_losses
     game_pnl = round(game_wins * 0.91 - game_losses * 1.0, 2) if game_total else 0
+    nc_total = nc_wins + nc_losses
+    nc_pnl = round(nc_wins * 0.91 - nc_losses * 1.0, 2) if nc_total else 0
 
     by_gn_sorted = {}
     for gn_key in sorted(by_game_num.keys()):
@@ -650,6 +663,15 @@ def _build_signal_tracker(data_dir: Path) -> dict:
             "hit_rate": round(game_wins / game_total * 100, 1) if game_total else None,
             "pnl": game_pnl,
             "roi": round(game_pnl / game_total * 100, 1) if game_total else None,
+        },
+        "no_conflict": {
+            "decided": nc_total,
+            "wins": nc_wins,
+            "losses": nc_losses,
+            "pending": nc_pending,
+            "hit_rate": round(nc_wins / nc_total * 100, 1) if nc_total else None,
+            "pnl": nc_pnl,
+            "roi": round(nc_pnl / nc_total * 100, 1) if nc_total else None,
         },
         "details": details,
     }
