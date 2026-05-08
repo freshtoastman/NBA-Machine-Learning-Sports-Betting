@@ -13,10 +13,12 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (缺陣)",
-   "New York Knicks: OG Anunoby (缺陣)",
-   "New York Knicks: Mitchell Robinson (缺陣)",
-   "Minnesota Timberwolves: Ayo Dosunmu (缺陣)"
+   "Philadelphia 76ers: Joel Embiid (存疑)",
+   "New York Knicks: Josh Hart (存疑)",
+   "New York Knicks: Mitchell Robinson (可能出賽)",
+   "New York Knicks: OG Anunoby (存疑)",
+   "Minnesota Timberwolves: Ayo Dosunmu (存疑)",
+   "Minnesota Timberwolves: Anthony Edwards (存疑)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -96,11 +98,12 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [
-    "Joel Embiid (缺陣)"
+    "Joel Embiid (存疑)"
    ],
    "injuries_away": [
-    "OG Anunoby (缺陣)",
-    "Mitchell Robinson (缺陣)"
+    "Josh Hart (存疑)",
+    "Mitchell Robinson (可能出賽)",
+    "OG Anunoby (存疑)"
    ]
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
@@ -165,7 +168,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [
-    "Ayo Dosunmu (缺陣)"
+    "Ayo Dosunmu (存疑)",
+    "Anthony Edwards (存疑)"
    ],
    "injuries_away": []
   }
@@ -176,7 +180,7 @@
    "round_label": "第二輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
@@ -194,7 +198,7 @@
    "round_label": "第二輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "west"
   },

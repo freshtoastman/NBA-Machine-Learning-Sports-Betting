@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-07",
+ "generated_for": "2026-05-08",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -342,19 +342,18 @@
      "win_pct": 0.634,
      "seed": 4
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 0,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "R2G2主場壓制",
-     "side": "home",
-     "home_team": "Detroit Pistons",
-     "home_team_zh": "底特律活塞",
-     "tier": "GOLD",
-     "backtest_wr": 0.875,
-     "reason_zh": "第二輪G2主場cover率 87.5% (42/48，13季)，近5季 100% (16/16)，史上最強結構信號",
-     "signal_team_zh": "底特律活塞"
+     "game_num": 3,
+     "signal": "G3客場擴大優勢",
+     "side": "away",
+     "home_team": "Cleveland Cavaliers",
+     "home_team_zh": "克里夫蘭騎士",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
@@ -729,24 +728,18 @@
      "win_pct": 0.646,
      "seed": 4
     },
-    "high_wins": 1,
+    "high_wins": 2,
     "low_wins": 0,
-    "games_played": 1,
+    "games_played": 2,
     "next_signal": {
-     "game_num": 2,
-     "signal": "G2窄勝大讓分押冷門",
+     "game_num": 3,
+     "signal": "G3客場擴大優勢",
      "side": "away",
-     "home_team": "Oklahoma City Thunder",
-     "home_team_zh": "奧克拉荷馬雷霆",
-     "tier": "GOLD",
-     "backtest_wr": 0.889,
-     "reason_zh": "G1僅贏 1.5 ATS分但G2讓 15.5 分，市場高估。7季回測冷門cover率 88.9% (8/9)",
-     "signal_team_zh": "奧克拉荷馬雷霆",
-     "has_conflict": true,
-     "conflict_signal": "R2G2主場壓制",
-     "conflict_wr": 0.875,
-     "conflict_away_team": "洛杉磯湖人",
-     "consensus_count": 2
+     "home_team": "Los Angeles Lakers",
+     "home_team_zh": "洛杉磯湖人",
+     "tier": "SILVER",
+     "backtest_wr": 0.643,
+     "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
     }
    },
    {
@@ -786,24 +779,24 @@
   ]
  },
  "signal_tracker": {
-  "total": 44,
-  "decided": 40,
-  "wins": 31,
-  "losses": 9,
-  "pending": 4,
-  "hit_rate": 77.5,
-  "pnl": 19.21,
-  "roi": 48.0,
+  "total": 46,
+  "decided": 43,
+  "wins": 33,
+  "losses": 10,
+  "pending": 3,
+  "hit_rate": 76.7,
+  "pnl": 20.03,
+  "roi": 46.6,
   "by_tier": {
    "SILVER": {
     "wins": 22,
     "losses": 7,
-    "pending": 1
+    "pending": 3
    },
    "GOLD": {
-    "wins": 9,
-    "losses": 2,
-    "pending": 3
+    "wins": 11,
+    "losses": 3,
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -814,15 +807,15 @@
     "hit_rate": 75.0
    },
    "G2": {
-    "wins": 9,
-    "losses": 0,
-    "pending": 3,
-    "hit_rate": 100.0
+    "wins": 11,
+    "losses": 1,
+    "pending": 0,
+    "hit_rate": 91.7
    },
    "G3": {
     "wins": 3,
     "losses": 2,
-    "pending": 1,
+    "pending": 3,
     "hit_rate": 60.0
    },
    "G6": {
@@ -839,14 +832,14 @@
    }
   },
   "by_game": {
-   "total": 30,
-   "decided": 25,
-   "wins": 21,
+   "total": 32,
+   "decided": 26,
+   "wins": 22,
    "losses": 4,
-   "pending": 5,
-   "hit_rate": 84.0,
-   "pnl": 15.11,
-   "roi": 60.4
+   "pending": 6,
+   "hit_rate": 84.6,
+   "pnl": 16.02,
+   "roi": 61.6
   },
   "details": [
    {
@@ -1337,8 +1330,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.875,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 6.5,
     "game_num": 2
    },
    {
@@ -1349,8 +1342,8 @@
     "tier": "GOLD",
     "side": "away",
     "backtest_wr": 0.889,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": 2.5,
     "game_num": 2
    },
    {
@@ -1361,14 +1354,38 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.875,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 2.5,
     "game_num": 2
    },
    {
     "date": "2026-05-08",
     "away": "紐約尼克",
     "home": "費城七六人",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "pending",
+    "margin": null,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-09",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "pending",
+    "margin": null,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-09",
+    "away": "奧克拉荷馬雷霆",
+    "home": "洛杉磯湖人",
     "signal": "G3客場擴大優勢",
     "tier": "SILVER",
     "side": "away",

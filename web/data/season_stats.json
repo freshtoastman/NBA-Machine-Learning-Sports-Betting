@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 31,
-  "misses": 9,
-  "pending": 4,
-  "decided": 40,
-  "hit_rate": 77.5,
+  "hits": 33,
+  "misses": 10,
+  "pending": 3,
+  "decided": 43,
+  "hit_rate": 76.7,
   "conviction": {
    "crushing_hits": 13,
    "dominant_hits": 8,
    "moderate_hits": 5,
-   "narrow_hits": 5,
+   "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 31,
+   "total_hits": 33,
    "true_conviction_hits": 26,
-   "raw_hit_rate": 77.5,
-   "true_conviction_rate": 65.0,
-   "note_zh": "13 碾壓主導 + 8 主導 + 5 普通 + 5 險過；7 場受垃圾時間影響；真實信心率 65.0%"
+   "raw_hit_rate": 76.7,
+   "true_conviction_rate": 60.5,
+   "note_zh": "13 碾壓主導 + 8 主導 + 5 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 60.5%"
   },
   "history": [
    {
@@ -1344,38 +1344,105 @@
     "conviction_source": "q3",
     "q3_picked_margin": 27.9,
     "q4_swing": 3
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-07",
     "game": "克里夫蘭騎士 @ 底特律活塞",
-    "signals": [
-     "R2G2主場壓制"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 88,
+    "signal": "R2G2主場壓制",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
+    "ats_winner": "home",
+    "ats_cover_margin": 6.5,
     "series_game_num": 2,
-    "series_score": "0-1",
-    "has_strong_consensus": false,
-    "spread": 3.5
+    "series_home_wins": 1,
+    "series_away_wins": 0,
+    "strong_consensus": null,
+    "home_team": "Detroit Pistons",
+    "away_team": "Cleveland Cavaliers",
+    "spread": 3.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": 1.4,
+     "final_picked_margin": 6.5,
+     "q4_swing": 6,
+     "shrinkage": -5.1,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 1.4,
+    "q4_swing": 6
    },
    {
     "date": "2026-05-07",
     "game": "洛杉磯湖人 @ 奧克拉荷馬雷霆",
-    "signals": [
-     "G2窄勝大讓分押冷門",
-     "R2G2主場壓制"
-    ],
-    "consensus_side": null,
-    "has_conflict": true,
-    "best_wr": 89,
+    "signal": "R2G2主場壓制",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.875,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
     "series_game_num": 2,
-    "series_score": "0-1",
-    "has_strong_consensus": false,
-    "spread": 15.5
+    "series_home_wins": 1,
+    "series_away_wins": 0,
+    "strong_consensus": null,
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Los Angeles Lakers",
+    "spread": 15.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": 1.4,
+     "final_picked_margin": 2.5,
+     "q4_swing": 5,
+     "shrinkage": -1.1,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 1.4,
+    "q4_swing": 5
    },
+   {
+    "date": "2026-05-07",
+    "game": "洛杉磯湖人 @ 奧克拉荷馬雷霆",
+    "signal": "G2窄勝大讓分押冷門",
+    "side": "away",
+    "tier": "GOLD",
+    "backtest_wr": 0.889,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
+    "series_game_num": 2,
+    "series_home_wins": 1,
+    "series_away_wins": 0,
+    "strong_consensus": null,
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Los Angeles Lakers",
+    "spread": 15.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "narrow",
+     "source": "q3",
+     "q3_picked_margin": -1.4,
+     "final_picked_margin": -2.5,
+     "q4_swing": 5,
+     "shrinkage": 1.1,
+     "garbage_time": false
+    },
+    "conviction": "narrow",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": -1.4,
+    "q4_swing": 5
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-05-08",
     "game": "紐約尼克 @ 費城七六人",
@@ -1389,6 +1456,34 @@
     "series_score": "2-0",
     "has_strong_consensus": false,
     "spread": 1.5
+   },
+   {
+    "date": "2026-05-09",
+    "game": "奧克拉荷馬雷霆 @ 洛杉磯湖人",
+    "signals": [
+     "G3客場擴大優勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 64,
+    "series_game_num": 3,
+    "series_score": "2-0",
+    "has_strong_consensus": false,
+    "spread": -8.5
+   },
+   {
+    "date": "2026-05-09",
+    "game": "底特律活塞 @ 克里夫蘭騎士",
+    "signals": [
+     "G3客場擴大優勢"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 64,
+    "series_game_num": 3,
+    "series_score": "2-0",
+    "has_strong_consensus": false,
+    "spread": 4.5
    }
   ],
   "by_signal": [
@@ -1406,6 +1501,21 @@
     "narrow_hits": 0,
     "garbage_time_hits": 3,
     "true_hit_rate": 71.4
+   },
+   {
+    "signal": "R2G2主場壓制",
+    "hits": 4,
+    "misses": 0,
+    "n": 4,
+    "tier": "GOLD",
+    "hit_rate": 100.0,
+    "backtest_wr": 87.5,
+    "crushing_hits": 1,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 2,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 50.0
    },
    {
     "signal": "G6R1客場壓制",
@@ -1543,21 +1653,6 @@
     "true_hit_rate": 33.3
    },
    {
-    "signal": "R2G2主場壓制",
-    "hits": 2,
-    "misses": 0,
-    "n": 2,
-    "tier": "GOLD",
-    "hit_rate": 100.0,
-    "backtest_wr": 87.5,
-    "crushing_hits": 1,
-    "dominant_hits": 0,
-    "moderate_hits": 1,
-    "narrow_hits": 0,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 100.0
-   },
-   {
     "signal": "客場ATS冷門反彈",
     "hits": 1,
     "misses": 0,
@@ -1575,17 +1670,17 @@
    {
     "signal": "G2窄勝大讓分押冷門",
     "hits": 1,
-    "misses": 0,
-    "n": 1,
+    "misses": 1,
+    "n": 2,
     "tier": "GOLD",
-    "hit_rate": 100.0,
+    "hit_rate": 50.0,
     "backtest_wr": 88.9,
     "crushing_hits": 0,
     "dominant_hits": 0,
     "moderate_hits": 1,
     "narrow_hits": 0,
     "garbage_time_hits": 0,
-    "true_hit_rate": 100.0
+    "true_hit_rate": 50.0
    },
    {
     "signal": "ML高信心+小讓分",
@@ -1646,35 +1741,35 @@
    "note_zh": "強共識(2+SILVER一致): 7勝/9場決定 = 77.8%，0場待定"
   },
   "best_pick": {
-   "hits": 23,
-   "misses": 4,
+   "hits": 24,
+   "misses": 5,
    "pending": 3,
-   "decided": 27,
-   "hit_rate": 85.2,
-   "gold_hits": 9,
-   "gold_misses": 2,
+   "decided": 29,
+   "hit_rate": 82.8,
+   "gold_hits": 10,
+   "gold_misses": 3,
    "silver_hits": 14,
    "silver_misses": 2,
    "dominant_hits": 11,
-   "moderate_hits": 6,
+   "moderate_hits": 7,
    "narrow_hits": 2,
-   "true_hit_rate": 63.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 23勝/27場決定 = 85.2%"
+   "true_hit_rate": 62.1,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 24勝/29場決定 = 82.8%"
   },
   "no_conflict": {
-   "hits": 21,
+   "hits": 22,
    "misses": 3,
-   "pending": 2,
-   "decided": 24,
-   "hit_rate": 87.5,
-   "note_zh": "無衝突場次(所有信號同向): 21勝/24場決定 = 87.5%"
+   "pending": 3,
+   "decided": 25,
+   "hit_rate": 88.0,
+   "note_zh": "無衝突場次(所有信號同向): 22勝/25場決定 = 88.0%"
   }
  },
  "playoff_home_ats": {
-  "games": 60,
-  "home_covers": 34,
+  "games": 62,
+  "home_covers": 36,
   "away_covers": 26,
-  "home_cover_rate": 56.7,
-  "note_zh": "本季季後賽共 60 場有結果，主場過盤 34 場 (56.7%)"
+  "home_cover_rate": 58.1,
+  "note_zh": "本季季後賽共 62 場有結果，主場過盤 36 場 (58.1%)"
  }
 }

@@ -329,7 +329,7 @@
    "round_label": "第二輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "east"
   },
@@ -347,7 +347,7 @@
    "round_label": "第二輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
    "conference": "west"
   },
