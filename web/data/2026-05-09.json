@@ -71,9 +71,9 @@
    "away_score": null,
    "spread": 4.5,
    "Spread": 4.5,
-   "OU": 211.5,
-   "ML_Home": -178,
-   "ML_Away": 150,
+   "OU": 212.5,
+   "ML_Home": -194,
+   "ML_Away": 162,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -147,16 +147,24 @@
      "ml_home": -178,
      "ml_away": 150,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-09T14:10:58+00:00",
+     "spread": 4.5,
+     "ou": 212.5,
+     "ml_home": -194,
+     "ml_away": 162,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 4.5,
    "spread_last": 4.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-08T14:02:01+00:00",
-   "spread_last_fetched_at": "2026-05-09T12:26:13+00:00",
+   "spread_last_fetched_at": "2026-05-09T14:10:58+00:00",
    "ou_first": 211.5,
-   "ou_last": 211.5,
-   "ou_move": 0.0
+   "ou_last": 212.5,
+   "ou_move": 1.0
   },
   "Oklahoma City Thunder:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
@@ -166,8 +174,8 @@
    "spread": -8.5,
    "Spread": -8.5,
    "OU": 211.5,
-   "ML_Home": 295,
-   "ML_Away": -370,
+   "ML_Home": 310,
+   "ML_Away": -391,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -242,13 +250,21 @@
      "ml_home": 295,
      "ml_away": -370,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-09T14:10:58+00:00",
+     "spread": -8.5,
+     "ou": 211.5,
+     "ml_home": 310,
+     "ml_away": -391,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -8.5,
    "spread_last": -8.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-08T14:02:01+00:00",
-   "spread_last_fetched_at": "2026-05-09T12:26:13+00:00",
+   "spread_last_fetched_at": "2026-05-09T14:10:58+00:00",
    "ou_first": 211.5,
    "ou_last": 211.5,
    "ou_move": 0.0
