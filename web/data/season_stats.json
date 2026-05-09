@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 33,
+  "hits": 34,
   "misses": 10,
-  "pending": 3,
-  "decided": 43,
-  "hit_rate": 76.7,
+  "pending": 2,
+  "decided": 44,
+  "hit_rate": 77.3,
   "conviction": {
    "crushing_hits": 13,
-   "dominant_hits": 8,
+   "dominant_hits": 9,
    "moderate_hits": 5,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 33,
-   "true_conviction_hits": 26,
-   "raw_hit_rate": 76.7,
-   "true_conviction_rate": 60.5,
-   "note_zh": "13 碾壓主導 + 8 主導 + 5 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 60.5%"
+   "total_hits": 34,
+   "true_conviction_hits": 27,
+   "raw_hit_rate": 77.3,
+   "true_conviction_rate": 61.4,
+   "note_zh": "13 碾壓主導 + 9 主導 + 5 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 61.4%"
   },
   "history": [
    {
@@ -1440,23 +1440,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": -1.4,
     "q4_swing": 5
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-08",
     "game": "紐約尼克 @ 費城七六人",
-    "signals": [
-     "G3客場擴大優勢"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 64,
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "ats_winner": "away",
+    "ats_cover_margin": -15.5,
     "series_game_num": 3,
-    "series_score": "2-0",
-    "has_strong_consensus": false,
-    "spread": 1.5
-   },
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Philadelphia 76ers",
+    "away_team": "New York Knicks",
+    "spread": 1.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "dominant",
+     "source": "q3",
+     "q3_picked_margin": 10.1,
+     "final_picked_margin": 15.5,
+     "q4_swing": -5,
+     "shrinkage": -5.4,
+     "garbage_time": false
+    },
+    "conviction": "dominant",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 10.1,
+    "q4_swing": -5
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-05-09",
     "game": "奧克拉荷馬雷霆 @ 洛杉磯湖人",
@@ -1514,6 +1532,21 @@
     "dominant_hits": 0,
     "moderate_hits": 1,
     "narrow_hits": 2,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 50.0
+   },
+   {
+    "signal": "G3客場擴大優勢",
+    "hits": 3,
+    "misses": 1,
+    "n": 4,
+    "tier": "SILVER",
+    "hit_rate": 75.0,
+    "backtest_wr": 64.3,
+    "crushing_hits": 0,
+    "dominant_hits": 2,
+    "moderate_hits": 0,
+    "narrow_hits": 1,
     "garbage_time_hits": 0,
     "true_hit_rate": 50.0
    },
@@ -1638,21 +1671,6 @@
     "true_hit_rate": 100.0
    },
    {
-    "signal": "G3客場擴大優勢",
-    "hits": 2,
-    "misses": 1,
-    "n": 3,
-    "tier": "SILVER",
-    "hit_rate": 66.7,
-    "backtest_wr": 64.3,
-    "crushing_hits": 0,
-    "dominant_hits": 1,
-    "moderate_hits": 0,
-    "narrow_hits": 1,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 33.3
-   },
-   {
     "signal": "客場ATS冷門反彈",
     "hits": 1,
     "misses": 0,
@@ -1741,35 +1759,35 @@
    "note_zh": "強共識(2+SILVER一致): 7勝/9場決定 = 77.8%，0場待定"
   },
   "best_pick": {
-   "hits": 24,
+   "hits": 25,
    "misses": 5,
-   "pending": 3,
-   "decided": 29,
-   "hit_rate": 82.8,
+   "pending": 2,
+   "decided": 30,
+   "hit_rate": 83.3,
    "gold_hits": 10,
    "gold_misses": 3,
-   "silver_hits": 14,
+   "silver_hits": 15,
    "silver_misses": 2,
-   "dominant_hits": 11,
+   "dominant_hits": 12,
    "moderate_hits": 7,
    "narrow_hits": 2,
-   "true_hit_rate": 62.1,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 24勝/29場決定 = 82.8%"
+   "true_hit_rate": 63.3,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 25勝/30場決定 = 83.3%"
   },
   "no_conflict": {
-   "hits": 22,
+   "hits": 23,
    "misses": 3,
-   "pending": 3,
-   "decided": 25,
-   "hit_rate": 88.0,
-   "note_zh": "無衝突場次(所有信號同向): 22勝/25場決定 = 88.0%"
+   "pending": 2,
+   "decided": 26,
+   "hit_rate": 88.5,
+   "note_zh": "無衝突場次(所有信號同向): 23勝/26場決定 = 88.5%"
   }
  },
  "playoff_home_ats": {
-  "games": 62,
+  "games": 64,
   "home_covers": 36,
-  "away_covers": 26,
-  "home_cover_rate": 58.1,
-  "note_zh": "本季季後賽共 62 場有結果，主場過盤 36 場 (58.1%)"
+  "away_covers": 28,
+  "home_cover_rate": 56.2,
+  "note_zh": "本季季後賽共 64 場有結果，主場過盤 36 場 (56.2%)"
  }
 }

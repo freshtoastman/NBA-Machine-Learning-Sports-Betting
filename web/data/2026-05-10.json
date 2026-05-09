@@ -13,12 +13,7 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (存疑)",
-   "New York Knicks: Josh Hart (存疑)",
-   "New York Knicks: Mitchell Robinson (可能出賽)",
-   "New York Knicks: OG Anunoby (存疑)",
-   "Minnesota Timberwolves: Ayo Dosunmu (存疑)",
-   "Minnesota Timberwolves: Anthony Edwards (存疑)"
+   "New York Knicks: OG Anunoby (缺陣)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -41,11 +36,11 @@
    "away_team": "New York Knicks",
    "home_score": null,
    "away_score": null,
-   "spread": null,
-   "Spread": null,
-   "OU": null,
-   "ML_Home": null,
-   "ML_Away": null,
+   "spread": -1.5,
+   "Spread": -1.5,
+   "OU": 212.5,
+   "ML_Home": 100,
+   "ML_Away": -118,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -90,32 +85,51 @@
    "round_num": 2,
    "series_game_num": 4,
    "series_home_wins": 0,
-   "series_away_wins": 2,
-   "series_status_text": "客隊領先 2-0",
-   "series_is_elimination": false,
+   "series_away_wins": 3,
+   "series_status_text": "客隊領先 3-0",
+   "series_is_elimination": true,
    "home_team_zh": "費城七六人",
    "away_team_zh": "紐約尼克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "injuries_home": [
-    "Joel Embiid (存疑)"
-   ],
+   "injuries_home": [],
+   "live_home_score": 94,
+   "live_away_score": 108,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
-    "Josh Hart (存疑)",
-    "Mitchell Robinson (可能出賽)",
-    "OG Anunoby (存疑)"
-   ]
+    "OG Anunoby (缺陣)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-09T12:26:13+00:00",
+     "spread": -1.5,
+     "ou": 212.5,
+     "ml_home": 100,
+     "ml_away": -118,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -1.5,
+   "spread_last": -1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-09T12:26:13+00:00",
+   "spread_last_fetched_at": "2026-05-09T12:26:13+00:00",
+   "ou_first": 212.5,
+   "ou_last": 212.5,
+   "ou_move": 0.0
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
    "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": null,
-   "Spread": null,
-   "OU": null,
-   "ML_Home": null,
-   "ML_Away": null,
+   "spread": -4.5,
+   "Spread": -4.5,
+   "OU": 217.5,
+   "ML_Home": 154,
+   "ML_Away": -184,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -160,18 +174,38 @@
    "round_num": 2,
    "series_game_num": 4,
    "series_home_wins": 1,
-   "series_away_wins": 1,
-   "series_status_text": "平手 1-1",
+   "series_away_wins": 2,
+   "series_status_text": "客隊領先 2-1",
    "series_is_elimination": false,
    "home_team_zh": "明尼蘇達灰狼",
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "injuries_home": [
-    "Ayo Dosunmu (存疑)",
-    "Anthony Edwards (存疑)"
+   "injuries_home": [],
+   "live_home_score": 108,
+   "live_away_score": 115,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-09T12:26:13+00:00",
+     "spread": -4.5,
+     "ou": 217.5,
+     "ml_home": 154,
+     "ml_away": -184,
+     "source": "sbr_fanduel"
+    }
    ],
-   "injuries_away": []
+   "spread_first": -4.5,
+   "spread_last": -4.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-09T12:26:13+00:00",
+   "spread_last_fetched_at": "2026-05-09T12:26:13+00:00",
+   "ou_first": 217.5,
+   "ou_last": 217.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
@@ -189,7 +223,7 @@
    "round_label": "第二輪",
    "high_seed": "New York Knicks",
    "low_seed": "Philadelphia 76ers",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 0,
    "conference": "east"
   },
@@ -207,7 +241,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 1,
    "conference": "west"
   },
