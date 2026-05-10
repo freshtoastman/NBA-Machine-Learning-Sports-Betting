@@ -982,7 +982,7 @@ def build_bracket(target_date: date) -> dict | None:
         except Exception:
             pass
 
-        def _with_wins(high_team, low_team):
+        def _with_wins(high_team, low_team, round_num=1):
             """Attach series win counts and upcoming signal hints to a first_round entry."""
             if isinstance(high_team, str) or isinstance(low_team, str):
                 return {}
@@ -1164,21 +1164,32 @@ def build_bracket(target_date: date) -> dict | None:
                     "backtest_wr": 0.573,
                     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)",
                 }
-            # G5 signal: fires when 4 games played and series is tied 2-2
-            # Home team covers 60.0% in G5 tied games (n=60, 12 seasons, ROI +14.5%)
-            if gp == 4 and hw == 2 and lw == 2:
-                # G5 is at high_seed's home (home court rotation: 1-2 at high, 3-4-5 at low? No)
-                # Actually G5 returns to high seed home: games 1,2,5,6 at high; 3,4,7 at low
-                entry["next_signal"] = {
-                    "game_num": 5,
-                    "signal": "G5平手主場壓制",
-                    "side": "home",
-                    "home_team": high_team["team"],
-                    "home_team_zh": high_team["team_zh"],
-                    "tier": "SILVER",
-                    "backtest_wr": 0.60,
-                    "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)，最強結構信號",
-                }
+            # G5 signal: fires when 4 games played and series still active
+            # G5 is at high_seed's home (2-2-1-1-1 format: games 1,2,5 at high seed)
+            if gp == 4 and hw < 4 and lw < 4:
+                if round_num == 2:
+                    # R2 G5: home covers 83.7% (n=43, 13 seasons) — GOLD regardless of score
+                    entry["next_signal"] = {
+                        "game_num": 5,
+                        "signal": "R2G5主場壓制",
+                        "side": "home",
+                        "home_team": high_team["team"],
+                        "home_team_zh": high_team["team_zh"],
+                        "tier": "GOLD",
+                        "backtest_wr": 0.837,
+                        "reason_zh": f"第二輪G5高種子主場，13季回測主場cover率 83.7% (n=43)，為R2最強結構信號",
+                    }
+                elif hw == 2 and lw == 2:
+                    entry["next_signal"] = {
+                        "game_num": 5,
+                        "signal": "G5平手主場壓制",
+                        "side": "home",
+                        "home_team": high_team["team"],
+                        "home_team_zh": high_team["team_zh"],
+                        "tier": "SILVER",
+                        "backtest_wr": 0.60,
+                        "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)",
+                    }
             # G6 signal: fires when 5 games played in R1 (series reaches G6).
             # HUGE signal: R1 G6 away covers 80.4% (n=46, 12 seasons 2012-2024).
             # G6 hosted at low_seed home (2-2-1-1-1 format: G3,4,6 at low).
@@ -1269,7 +1280,7 @@ def build_bracket(target_date: date) -> dict | None:
             low_r2a = w_4v5 or "4/5 勝者"
             r2a = {"label": "1/8 vs 4/5", "high": high_r2a, "low": low_r2a}
             if isinstance(high_r2a, dict) and isinstance(low_r2a, dict):
-                r2a.update(_with_wins(high_r2a, low_r2a))
+                r2a.update(_with_wins(high_r2a, low_r2a, round_num=2))
             second_round.append(r2a)
         if w_2v7 or w_3v6:
             high_r2b = w_3v6 or "3/6 勝者"
@@ -1281,7 +1292,7 @@ def build_bracket(target_date: date) -> dict | None:
                     high_r2b, low_r2b = low_r2b, high_r2b
             r2b = {"label": "2/7 vs 3/6", "high": high_r2b, "low": low_r2b}
             if isinstance(high_r2b, dict) and isinstance(low_r2b, dict):
-                r2b.update(_with_wins(high_r2b, low_r2b))
+                r2b.update(_with_wins(high_r2b, low_r2b, round_num=2))
             second_round.append(r2b)
 
         result = {

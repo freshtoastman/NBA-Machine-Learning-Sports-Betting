@@ -1693,6 +1693,26 @@
     "home": "Cleveland Cavaliers",
     "away": "Detroit Pistons",
     "spread": 4.5,
+    "win_margin": 7,
+    "home_score": 116,
+    "away_score": 109,
+    "ats_result": "home"
+   },
+   {
+    "date": "2026-05-11",
+    "home": "Cleveland Cavaliers",
+    "away": "Detroit Pistons",
+    "spread": 3.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-13",
+    "home": "Detroit Pistons",
+    "away": "Cleveland Cavaliers",
+    "spread": null,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -5445,6 +5465,26 @@
     "home": "Los Angeles Lakers",
     "away": "Oklahoma City Thunder",
     "spread": -8.5,
+    "win_margin": -23,
+    "home_score": 108,
+    "away_score": 131,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-05-11",
+    "home": "Los Angeles Lakers",
+    "away": "Oklahoma City Thunder",
+    "spread": -10.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   },
+   {
+    "date": "2026-05-13",
+    "home": "Oklahoma City Thunder",
+    "away": "Los Angeles Lakers",
+    "spread": null,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -8327,6 +8367,16 @@
     "home": "Minnesota Timberwolves",
     "away": "San Antonio Spurs",
     "spread": -4.5,
+    "win_margin": -7,
+    "home_score": 108,
+    "away_score": 115,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-05-12",
+    "home": "San Antonio Spurs",
+    "away": "Minnesota Timberwolves",
+    "spread": null,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -9847,10 +9897,10 @@
     "home": "Philadelphia 76ers",
     "away": "New York Knicks",
     "spread": -1.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -14,
+    "home_score": 94,
+    "away_score": 108,
+    "ats_result": "away"
    }
   ],
   "Boston Celtics:Miami Heat": [
