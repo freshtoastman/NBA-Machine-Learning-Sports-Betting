@@ -8367,16 +8367,16 @@
     "home": "Minnesota Timberwolves",
     "away": "San Antonio Spurs",
     "spread": -4.5,
-    "win_margin": -7,
-    "home_score": 108,
-    "away_score": 115,
-    "ats_result": "away"
+    "win_margin": 5,
+    "home_score": 114,
+    "away_score": 109,
+    "ats_result": "home"
    },
    {
     "date": "2026-05-12",
     "home": "San Antonio Spurs",
     "away": "Minnesota Timberwolves",
-    "spread": null,
+    "spread": 10.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -9897,9 +9897,9 @@
     "home": "Philadelphia 76ers",
     "away": "New York Knicks",
     "spread": -1.5,
-    "win_margin": -14,
-    "home_score": 94,
-    "away_score": 108,
+    "win_margin": -30,
+    "home_score": 114,
+    "away_score": 144,
     "ats_result": "away"
    }
   ],

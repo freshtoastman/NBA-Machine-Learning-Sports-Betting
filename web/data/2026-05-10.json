@@ -1,6 +1,6 @@
 {
  "date": "2026-05-10",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 2,
   "home_picks": 0,
@@ -12,17 +12,28 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Philadelphia 76ers: Joel Embiid (可能出賽)",
-   "New York Knicks: OG Anunoby (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "New York Knicks:Philadelphia 76ers": {
    "home_team": "Philadelphia 76ers",
    "away_team": "New York Knicks",
-   "home_score": 94,
-   "away_score": 108,
+   "home_score": 114,
+   "away_score": 144,
    "spread": -1.5,
    "Spread": -1.5,
    "OU": 212.5,
@@ -42,12 +53,12 @@
    "is_historical": true,
    "actual_home_win": false,
    "actual_winner": "away",
-   "actual_total": 202,
-   "actual_ou_result": "UNDER",
+   "actual_total": 258,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": "away",
-   "ats_cover_margin": -12.5,
+   "ats_cover_margin": -28.5,
    "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
@@ -79,12 +90,8 @@
    "away_team_zh": "紐約尼克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "injuries_home": [
-    "Joel Embiid (可能出賽)"
-   ],
-   "injuries_away": [
-    "OG Anunoby (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-09T12:26:13+00:00",
@@ -107,8 +114,8 @@
   "San Antonio Spurs:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
    "away_team": "San Antonio Spurs",
-   "home_score": 108,
-   "away_score": 115,
+   "home_score": 114,
+   "away_score": 109,
    "spread": -4.5,
    "Spread": -4.5,
    "OU": 217.5,
@@ -126,14 +133,14 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": false,
-   "actual_winner": "away",
+   "actual_home_win": true,
+   "actual_winner": "home",
    "actual_total": 223,
    "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": "away",
-   "ats_cover_margin": -2.5,
+   "ats_winner": "home",
+   "ats_cover_margin": 9.5,
    "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
@@ -228,8 +235,8 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 3,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 2,
    "conference": "west"
   },
   {

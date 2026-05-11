@@ -13,7 +13,8 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (缺陣)",
+   "Detroit Pistons: Kevin Huerter (存疑)",
+   "Detroit Pistons: Caris LeVert (存疑)",
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Los Angeles Lakers: Luka Doncic (缺陣)"
   ],
@@ -84,7 +85,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Huerter (缺陣)"
+    "Kevin Huerter (存疑)",
+    "Caris LeVert (存疑)"
    ],
    "injuries_away": []
   },
@@ -179,8 +181,8 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 3,
-   "low_wins": 1,
+   "high_wins": 2,
+   "low_wins": 2,
    "conference": "west"
   }
  ],
