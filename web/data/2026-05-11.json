@@ -1,6 +1,6 @@
 {
  "date": "2026-05-11",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 2,
   "home_picks": 0,
@@ -12,19 +12,28 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (存疑)",
-   "Detroit Pistons: Caris LeVert (存疑)",
-   "Los Angeles Lakers: Luka Doncic (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (缺陣)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Detroit Pistons:Cleveland Cavaliers": {
    "home_team": "Cleveland Cavaliers",
    "away_team": "Detroit Pistons",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 112,
+   "away_score": 103,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 213.5,
@@ -42,15 +51,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 215,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 5.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -82,10 +91,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Kevin Huerter (存疑)",
-    "Caris LeVert (存疑)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-10T14:17:48+00:00",
@@ -124,8 +130,8 @@
   "Oklahoma City Thunder:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
    "away_team": "Oklahoma City Thunder",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 110,
+   "away_score": 115,
    "spread": -10.5,
    "Spread": -10.5,
    "OU": 214.5,
@@ -143,15 +149,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 225,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 5.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -182,12 +188,8 @@
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "injuries_home": [
-    "Luka Doncic (缺陣)"
-   ],
-   "injuries_away": [
-    "Jalen Williams (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-10T14:17:48+00:00",
@@ -231,7 +233,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "east"
   },
   {
@@ -248,7 +250,7 @@
    "round_label": "第二輪",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "Los Angeles Lakers",
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
    "conference": "west"
   },

@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-11",
+ "generated_for": "2026-05-13",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -343,17 +343,17 @@
      "seed": 4
     },
     "high_wins": 2,
-    "low_wins": 1,
-    "games_played": 3,
+    "low_wins": 2,
+    "games_played": 4,
     "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Cleveland Cavaliers",
-     "home_team_zh": "克里夫蘭騎士",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
+     "game_num": 5,
+     "signal": "R2G5主場壓制",
+     "side": "home",
+     "home_team": "Detroit Pistons",
+     "home_team_zh": "底特律活塞",
+     "tier": "GOLD",
+     "backtest_wr": 0.837,
+     "reason_zh": "第二輪G5高種子主場，13季回測主場cover率 83.7% (n=43)，為R2最強結構信號"
     }
    },
    {
@@ -718,19 +718,9 @@
      "win_pct": 0.646,
      "seed": 4
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 0,
-    "games_played": 3,
-    "next_signal": {
-     "game_num": 4,
-     "signal": "G4客場優勢",
-     "side": "away",
-     "home_team": "Los Angeles Lakers",
-     "home_team_zh": "洛杉磯湖人",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-    }
+    "games_played": 4
    },
    {
     "label": "2/7 vs 3/6",
@@ -769,11 +759,11 @@
   ]
  },
  "signal_tracker": {
-  "total": 47,
+  "total": 49,
   "decided": 46,
   "wins": 35,
   "losses": 11,
-  "pending": 1,
+  "pending": 3,
   "hit_rate": 76.1,
   "pnl": 20.85,
   "roi": 45.3,
@@ -786,7 +776,7 @@
    "GOLD": {
     "wins": 11,
     "losses": 3,
-    "pending": 1
+    "pending": 3
    }
   },
   "by_game_num": {
@@ -811,7 +801,7 @@
    "G5": {
     "wins": 0,
     "losses": 0,
-    "pending": 1,
+    "pending": 3,
     "hit_rate": null
    },
    "G6": {
@@ -828,11 +818,11 @@
    }
   },
   "by_game": {
-   "total": 33,
+   "total": 35,
    "decided": 29,
    "wins": 24,
    "losses": 5,
-   "pending": 4,
+   "pending": 6,
    "hit_rate": 82.8,
    "pnl": 16.84,
    "roi": 58.1
@@ -841,7 +831,7 @@
    "decided": 28,
    "wins": 24,
    "losses": 4,
-   "pending": 1,
+   "pending": 3,
    "hit_rate": 85.7,
    "pnl": 17.84,
    "roi": 63.7
@@ -1403,6 +1393,30 @@
     "date": "2026-05-12",
     "away": "明尼蘇達灰狼",
     "home": "聖安東尼奧馬刺",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-13",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-14",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
     "signal": "R2G5主場壓制",
     "tier": "GOLD",
     "side": "home",

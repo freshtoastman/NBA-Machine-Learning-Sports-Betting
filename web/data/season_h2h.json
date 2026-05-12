@@ -1703,16 +1703,16 @@
     "home": "Cleveland Cavaliers",
     "away": "Detroit Pistons",
     "spread": 3.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 9,
+    "home_score": 112,
+    "away_score": 103,
+    "ats_result": "home"
    },
    {
-    "date": "2026-05-13",
+    "date": "2026-05-14",
     "home": "Detroit Pistons",
     "away": "Cleveland Cavaliers",
-    "spread": null,
+    "spread": 3.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,
@@ -5475,20 +5475,10 @@
     "home": "Los Angeles Lakers",
     "away": "Oklahoma City Thunder",
     "spread": -10.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
-   },
-   {
-    "date": "2026-05-13",
-    "home": "Oklahoma City Thunder",
-    "away": "Los Angeles Lakers",
-    "spread": null,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -5,
+    "home_score": 110,
+    "away_score": 115,
+    "ats_result": "home"
    }
   ],
   "Atlanta Hawks:Sacramento Kings": [
@@ -8373,10 +8363,10 @@
     "ats_result": "home"
    },
    {
-    "date": "2026-05-12",
+    "date": "2026-05-13",
     "home": "San Antonio Spurs",
     "away": "Minnesota Timberwolves",
-    "spread": 10.5,
+    "spread": 9.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,

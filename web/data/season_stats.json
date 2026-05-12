@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 35,
   "misses": 11,
-  "pending": 1,
+  "pending": 3,
   "decided": 46,
   "hit_rate": 76.1,
   "conviction": {
@@ -1552,6 +1552,34 @@
     "series_score": "2-2",
     "has_strong_consensus": false,
     "spread": 10.5
+   },
+   {
+    "date": "2026-05-13",
+    "game": "明尼蘇達灰狼 @ 聖安東尼奧馬刺",
+    "signals": [
+     "R2G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": 9.5
+   },
+   {
+    "date": "2026-05-14",
+    "game": "克里夫蘭騎士 @ 底特律活塞",
+    "signals": [
+     "R2G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": 3.5
    }
   ],
   "by_signal": [
@@ -1811,7 +1839,7 @@
   "best_pick": {
    "hits": 26,
    "misses": 6,
-   "pending": 1,
+   "pending": 3,
    "decided": 32,
    "hit_rate": 81.2,
    "gold_hits": 10,
@@ -1827,17 +1855,17 @@
   "no_conflict": {
    "hits": 24,
    "misses": 4,
-   "pending": 1,
+   "pending": 3,
    "decided": 28,
    "hit_rate": 85.7,
    "note_zh": "無衝突場次(所有信號同向): 24勝/28場決定 = 85.7%"
   }
  },
  "playoff_home_ats": {
-  "games": 68,
-  "home_covers": 38,
+  "games": 70,
+  "home_covers": 40,
   "away_covers": 30,
-  "home_cover_rate": 55.9,
-  "note_zh": "本季季後賽共 68 場有結果，主場過盤 38 場 (55.9%)"
+  "home_cover_rate": 57.1,
+  "note_zh": "本季季後賽共 70 場有結果，主場過盤 40 場 (57.1%)"
  }
 }
