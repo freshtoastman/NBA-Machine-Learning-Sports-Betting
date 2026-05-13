@@ -1190,25 +1190,30 @@ def build_bracket(target_date: date) -> dict | None:
                         "backtest_wr": 0.60,
                         "reason_zh": "系列賽平手2-2，第5場高種子主場，12季回測主場cover率 60% (n=60，ROI +14.5%)",
                     }
-            # G6 signal: fires when 5 games played in R1 (series reaches G6).
-            # HUGE signal: R1 G6 away covers 80.4% (n=46, 12 seasons 2012-2024).
-            # G6 hosted at low_seed home (2-2-1-1-1 format: G3,4,6 at low).
-            # Away team = high_seed. Signal: bet AWAY (the visiting team).
-            # Recent validation: 2019-2024 = 87.5% (14/16), 2020+ = 84.6% (11/13).
-            # Robust across home-dog buckets: dog 0-5: 76.5%(26/34), dog 5+: 100%(10/10).
+            # G6 signal: fires when 5 games played (series reaches G6).
+            # R1 G6 away covers 80.4% (n=46, GOLD). R2+ G6 away ~53.8% (weaker).
             if gp == 5 and hw < 4 and lw < 4:
-                # Determine signal team (away in G6) - high_seed is visiting
                 g6_away = high_team
                 g6_home = low_team
+                _round_label = {1: "R1", 2: "R2", 3: "CF", 4: "F"}.get(round_num, "R1")
+                _round_zh = {1: "首輪", 2: "第二輪", 3: "分區決賽", 4: "總決賽"}.get(round_num, "首輪")
+                if round_num == 1:
+                    _g6_tier = "GOLD"
+                    _g6_wr = 0.804
+                    _g6_reason = f"{_round_zh}第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號"
+                else:
+                    _g6_tier = "BRONZE"
+                    _g6_wr = 0.538
+                    _g6_reason = f"{_round_zh}第6場在低種子主場，客場(高種子)cover率 53.8%，次輪後效果減弱"
                 entry["next_signal"] = {
                     "game_num": 6,
-                    "signal": "R1G6客場優勢",
+                    "signal": f"{_round_label}G6客場優勢",
                     "side": "away",
                     "home_team": g6_home["team"],
                     "home_team_zh": g6_home["team_zh"],
-                    "tier": "GOLD",
-                    "backtest_wr": 0.804,
-                    "reason_zh": "首輪第6場在低種子主場，12季回測客場(高種子)cover率 80.4% (n=46)，近5年更達 84.6%，為歷史最強結構信號",
+                    "tier": _g6_tier,
+                    "backtest_wr": _g6_wr,
+                    "reason_zh": _g6_reason,
                     "signal_team_zh": g6_away.get("team_zh") or g6_away.get("team"),
                 }
             # Upgrade next_signal if actual game data has a higher-tier signal.

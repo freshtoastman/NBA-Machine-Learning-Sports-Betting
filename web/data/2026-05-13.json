@@ -1,6 +1,6 @@
 {
  "date": "2026-05-13",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -24,8 +24,8 @@
     "backtest_wr": 0.837,
     "backtest_roi": 67.4,
     "reason_zh": "第二輪G5主場cover率 83.7% (36/43，13季)，主場幾乎必定是熱門",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 19.5,
     "series_game_num": 5,
     "series_home_wins": 2,
     "series_away_wins": 2,
@@ -34,17 +34,28 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "San Antonio Spurs: Dylan Harper (存疑)",
-   "San Antonio Spurs: De'Aaron Fox (缺陣)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Minnesota Timberwolves:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "Minnesota Timberwolves",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 126,
+   "away_score": 97,
    "spread": 9.5,
    "Spread": 9.5,
    "OU": 218.5,
@@ -62,15 +73,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 223,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 19.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -111,10 +122,7 @@
    "away_team_zh": "明尼蘇達灰狼",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-   "injuries_home": [
-    "Dylan Harper (存疑)",
-    "De'Aaron Fox (缺陣)"
-   ],
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -177,7 +185,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "west"
   }

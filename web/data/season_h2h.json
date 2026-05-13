@@ -8367,10 +8367,10 @@
     "home": "San Antonio Spurs",
     "away": "Minnesota Timberwolves",
     "spread": 9.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 29,
+    "home_score": 126,
+    "away_score": 97,
+    "ats_result": "home"
    }
   ],
   "Dallas Mavericks:Denver Nuggets": [

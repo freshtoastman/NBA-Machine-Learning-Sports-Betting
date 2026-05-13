@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-13",
+ "generated_for": "2026-05-14",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -742,31 +742,32 @@
      "win_pct": 0.598,
      "seed": 6
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 2,
-    "games_played": 4,
+    "games_played": 5,
     "next_signal": {
-     "game_num": 5,
-     "signal": "R2G5主場壓制",
-     "side": "home",
-     "home_team": "San Antonio Spurs",
-     "home_team_zh": "聖安東尼奧馬刺",
-     "tier": "GOLD",
-     "backtest_wr": 0.837,
-     "reason_zh": "第二輪G5高種子主場，13季回測主場cover率 83.7% (n=43)，為R2最強結構信號"
+     "game_num": 6,
+     "signal": "R2G6客場優勢",
+     "side": "away",
+     "home_team": "Minnesota Timberwolves",
+     "home_team_zh": "明尼蘇達灰狼",
+     "tier": "BRONZE",
+     "backtest_wr": 0.538,
+     "reason_zh": "第二輪第6場在低種子主場，客場(高種子)cover率 53.8%，次輪後效果減弱",
+     "signal_team_zh": "聖安東尼奧馬刺"
     }
    }
   ]
  },
  "signal_tracker": {
-  "total": 49,
-  "decided": 46,
-  "wins": 35,
+  "total": 48,
+  "decided": 47,
+  "wins": 36,
   "losses": 11,
-  "pending": 3,
-  "hit_rate": 76.1,
-  "pnl": 20.85,
-  "roi": 45.3,
+  "pending": 1,
+  "hit_rate": 76.6,
+  "pnl": 21.76,
+  "roi": 46.3,
   "by_tier": {
    "SILVER": {
     "wins": 24,
@@ -774,9 +775,9 @@
     "pending": 0
    },
    "GOLD": {
-    "wins": 11,
+    "wins": 12,
     "losses": 3,
-    "pending": 3
+    "pending": 1
    }
   },
   "by_game_num": {
@@ -799,10 +800,10 @@
     "hit_rate": 62.5
    },
    "G5": {
-    "wins": 0,
+    "wins": 1,
     "losses": 0,
-    "pending": 3,
-    "hit_rate": null
+    "pending": 1,
+    "hit_rate": 100.0
    },
    "G6": {
     "wins": 9,
@@ -818,23 +819,23 @@
    }
   },
   "by_game": {
-   "total": 35,
-   "decided": 29,
-   "wins": 24,
+   "total": 34,
+   "decided": 30,
+   "wins": 25,
    "losses": 5,
-   "pending": 6,
-   "hit_rate": 82.8,
-   "pnl": 16.84,
-   "roi": 58.1
+   "pending": 4,
+   "hit_rate": 83.3,
+   "pnl": 17.75,
+   "roi": 59.2
   },
   "no_conflict": {
-   "decided": 28,
-   "wins": 24,
+   "decided": 29,
+   "wins": 25,
    "losses": 4,
-   "pending": 3,
-   "hit_rate": 85.7,
-   "pnl": 17.84,
-   "roi": 63.7
+   "pending": 1,
+   "hit_rate": 86.2,
+   "pnl": 18.75,
+   "roi": 64.7
   },
   "details": [
    {
@@ -1390,18 +1391,6 @@
     "game_num": 3
    },
    {
-    "date": "2026-05-12",
-    "away": "明尼蘇達灰狼",
-    "home": "聖安東尼奧馬刺",
-    "signal": "R2G5主場壓制",
-    "tier": "GOLD",
-    "side": "home",
-    "backtest_wr": 0.837,
-    "result": "pending",
-    "margin": null,
-    "game_num": 5
-   },
-   {
     "date": "2026-05-13",
     "away": "明尼蘇達灰狼",
     "home": "聖安東尼奧馬刺",
@@ -1409,8 +1398,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.837,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 19.5,
     "game_num": 5
    },
    {

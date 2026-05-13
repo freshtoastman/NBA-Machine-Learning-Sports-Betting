@@ -1,6 +1,6 @@
 {
  "date": "2026-05-14",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -35,22 +35,9 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+   "Detroit Pistons: Caris LeVert (存疑)",
+   "Detroit Pistons: Duncan Robinson (存疑)"
+  ]
  },
  "games": {
   "Cleveland Cavaliers:Detroit Pistons": {
@@ -125,7 +112,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Kevin Huerter (缺陣)"
+    "Caris LeVert (存疑)",
+    "Duncan Robinson (存疑)"
    ],
    "injuries_away": [],
    "odds_history": [
@@ -181,7 +169,7 @@
    "round_label": "第二輪",
    "high_seed": "San Antonio Spurs",
    "low_seed": "Minnesota Timberwolves",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "west"
   }
