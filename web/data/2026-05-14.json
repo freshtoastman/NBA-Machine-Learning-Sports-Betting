@@ -24,27 +24,47 @@
     "backtest_wr": 0.837,
     "backtest_roi": 67.4,
     "reason_zh": "第二輪G5主場cover率 83.7% (36/43，13季)，主場幾乎必定是熱門",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -7.5,
     "series_game_num": 5,
     "series_home_wins": 2,
     "series_away_wins": 2,
     "strong_consensus": null,
-    "has_conflict": false
+    "has_conflict": true
+   },
+   {
+    "game_key": "Cleveland Cavaliers:Detroit Pistons",
+    "home_team": "Detroit Pistons",
+    "away_team": "Cleveland Cavaliers",
+    "home_team_zh": "底特律活塞",
+    "away_team_zh": "克里夫蘭騎士",
+    "signal": "客場ATS冷門反彈",
+    "side": "away",
+    "ats_side": "受讓(押dog)",
+    "tier": "SILVER",
+    "backtest_wr": 0.619,
+    "backtest_roi": 17.8,
+    "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21，排除大讓分結構性弱)",
+    "ats_winner": "away",
+    "ats_cover_margin": -7.5,
+    "series_game_num": 5,
+    "series_home_wins": 2,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "has_conflict": true
    }
   ],
-  "playoff_ats_count": 1,
+  "playoff_ats_count": 2,
   "injury_alerts": [
-   "Detroit Pistons: Caris LeVert (存疑)",
-   "Detroit Pistons: Duncan Robinson (存疑)"
+   "Detroit Pistons: Duncan Robinson (缺陣)"
   ]
  },
  "games": {
   "Cleveland Cavaliers:Detroit Pistons": {
    "home_team": "Detroit Pistons",
    "away_team": "Cleveland Cavaliers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 113,
+   "away_score": 117,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 212.5,
@@ -62,15 +82,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 230,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -7.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -82,6 +102,16 @@
      "backtest_roi": 67.4,
      "backtest_n": 43,
      "reason_zh": "第二輪G5主場cover率 83.7% (36/43，13季)，主場幾乎必定是熱門"
+    },
+    {
+     "signal": "客場ATS冷門反彈",
+     "side": "away",
+     "ats_side": "受讓(押dog)",
+     "tier": "SILVER",
+     "backtest_wr": 0.619,
+     "backtest_roi": 17.8,
+     "backtest_n": 21,
+     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21，排除大讓分結構性弱)"
     },
     {
      "signal": "G5平手主場壓制",
@@ -97,8 +127,8 @@
    "playoff_ats_best_side": "home",
    "playoff_ats_best_signal": "R2G5主場壓制",
    "playoff_ats_best_tier": "GOLD",
-   "playoff_ats_consensus": "home",
-   "playoff_ats_has_conflict": false,
+   "playoff_ats_consensus": null,
+   "playoff_ats_has_conflict": true,
    "playoff_ats_strong_consensus": null,
    "series_round": "第二輪",
    "round_num": 2,
@@ -112,9 +142,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [
-    "Caris LeVert (存疑)",
-    "Duncan Robinson (存疑)"
+    "Duncan Robinson (缺陣)"
    ],
+   "live_home_score": 113,
+   "live_away_score": 117,
+   "live_status": "Final OT",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [],
    "odds_history": [
     {
@@ -143,7 +177,7 @@
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
    "high_wins": 2,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "east"
   },
   {

@@ -343,17 +343,22 @@
      "seed": 4
     },
     "high_wins": 2,
-    "low_wins": 2,
-    "games_played": 4,
+    "low_wins": 3,
+    "games_played": 5,
     "next_signal": {
-     "game_num": 5,
-     "signal": "R2G5主場壓制",
-     "side": "home",
-     "home_team": "Detroit Pistons",
-     "home_team_zh": "底特律活塞",
-     "tier": "GOLD",
-     "backtest_wr": 0.837,
-     "reason_zh": "第二輪G5高種子主場，13季回測主場cover率 83.7% (n=43)，為R2最強結構信號"
+     "game_num": 6,
+     "signal": "G6主場收官陷阱",
+     "side": "away",
+     "home_team": "Cleveland Cavaliers",
+     "home_team_zh": "克里夫蘭騎士",
+     "tier": "SILVER",
+     "backtest_wr": 0.667,
+     "reason_zh": "G6主場領先3-2欲收官，12季歷史冷門cover率 66.7% (n=39)，收官局壓力反差",
+     "signal_team_zh": "底特律活塞",
+     "consensus_count": 3,
+     "has_conflict": true,
+     "conflict_signal": "主場ATS冷門反彈",
+     "conflict_wr": 0.6
     }
    },
    {
@@ -747,37 +752,37 @@
     "games_played": 5,
     "next_signal": {
      "game_num": 6,
-     "signal": "R2G6客場優勢",
+     "signal": "淘汰局押冷門",
      "side": "away",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
-     "tier": "BRONZE",
-     "backtest_wr": 0.538,
-     "reason_zh": "第二輪第6場在低種子主場，客場(高種子)cover率 53.8%，次輪後效果減弱",
+     "tier": "SILVER",
+     "backtest_wr": 0.654,
+     "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)",
      "signal_team_zh": "聖安東尼奧馬刺"
     }
    }
   ]
  },
  "signal_tracker": {
-  "total": 48,
-  "decided": 47,
-  "wins": 36,
-  "losses": 11,
-  "pending": 1,
-  "hit_rate": 76.6,
-  "pnl": 21.76,
-  "roi": 46.3,
+  "total": 53,
+  "decided": 49,
+  "wins": 37,
+  "losses": 12,
+  "pending": 4,
+  "hit_rate": 75.5,
+  "pnl": 21.67,
+  "roi": 44.2,
   "by_tier": {
    "SILVER": {
-    "wins": 24,
+    "wins": 25,
     "losses": 8,
-    "pending": 0
+    "pending": 4
    },
    "GOLD": {
     "wins": 12,
-    "losses": 3,
-    "pending": 1
+    "losses": 4,
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -800,15 +805,15 @@
     "hit_rate": 62.5
    },
    "G5": {
-    "wins": 1,
-    "losses": 0,
-    "pending": 1,
-    "hit_rate": 100.0
+    "wins": 2,
+    "losses": 1,
+    "pending": 0,
+    "hit_rate": 66.7
    },
    "G6": {
     "wins": 9,
     "losses": 4,
-    "pending": 0,
+    "pending": 4,
     "hit_rate": 69.2
    },
    "G7": {
@@ -819,11 +824,11 @@
    }
   },
   "by_game": {
-   "total": 34,
+   "total": 36,
    "decided": 30,
    "wins": 25,
    "losses": 5,
-   "pending": 4,
+   "pending": 6,
    "hit_rate": 83.3,
    "pnl": 17.75,
    "roi": 59.2
@@ -832,7 +837,7 @@
    "decided": 29,
    "wins": 25,
    "losses": 4,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 86.2,
    "pnl": 18.75,
    "roi": 64.7
@@ -1410,9 +1415,69 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.837,
+    "result": "loss",
+    "margin": -7.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-14",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "win",
+    "margin": -7.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-15",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "G6主場收官陷阱",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.667,
     "result": "pending",
     "margin": null,
-    "game_num": 5
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-15",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "pending",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-15",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "主場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.6,
+    "result": "pending",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-15",
+    "away": "聖安東尼奧馬刺",
+    "home": "明尼蘇達灰狼",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "pending",
+    "margin": null,
+    "game_num": 6
    }
   ]
  }
