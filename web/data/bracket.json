@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-14",
+ "generated_for": "2026-05-15",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -753,7 +753,7 @@
     "next_signal": {
      "game_num": 6,
      "signal": "淘汰局押冷門",
-     "side": "away",
+     "side": "home",
      "home_team": "Minnesota Timberwolves",
      "home_team_zh": "明尼蘇達灰狼",
      "tier": "SILVER",
@@ -1473,7 +1473,7 @@
     "home": "明尼蘇達灰狼",
     "signal": "淘汰局押冷門",
     "tier": "SILVER",
-    "side": "away",
+    "side": "home",
     "backtest_wr": 0.654,
     "result": "pending",
     "margin": null,

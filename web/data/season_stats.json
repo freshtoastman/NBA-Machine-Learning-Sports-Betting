@@ -1623,13 +1623,13 @@
     "signals": [
      "淘汰局押冷門"
     ],
-    "consensus_side": "away",
+    "consensus_side": "home",
     "has_conflict": false,
     "best_wr": 65,
     "series_game_num": 6,
     "series_score": "3-2",
     "has_strong_consensus": false,
-    "spread": 4.5
+    "spread": -5.5
    },
    {
     "date": "2026-05-15",

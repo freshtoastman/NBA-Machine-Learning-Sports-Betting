@@ -1,6 +1,6 @@
 {
  "date": "2026-05-15",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 2,
   "home_picks": 0,
@@ -81,7 +81,7 @@
     "home_team_zh": "明尼蘇達灰狼",
     "away_team_zh": "聖安東尼奧馬刺",
     "signal": "淘汰局押冷門",
-    "side": "away",
+    "side": "home",
     "ats_side": "受讓(押dog)",
     "tier": "SILVER",
     "backtest_wr": 0.654,
@@ -98,22 +98,10 @@
   ],
   "playoff_ats_count": 4,
   "injury_alerts": [
-   "Detroit Pistons: Duncan Robinson (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+   "Detroit Pistons: Kevin Huerter (存疑)",
+   "Detroit Pistons: Caris LeVert (存疑)",
+   "Detroit Pistons: Duncan Robinson (存疑)"
+  ]
  },
  "games": {
   "Detroit Pistons:Cleveland Cavaliers": {
@@ -123,9 +111,9 @@
    "away_score": null,
    "spread": 3.5,
    "Spread": 3.5,
-   "OU": 209.5,
-   "ML_Home": -166,
-   "ML_Away": 140,
+   "OU": 210.5,
+   "ML_Home": -172,
+   "ML_Away": 144,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -199,19 +187,39 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Duncan Robinson (缺陣)"
-   ]
+    "Kevin Huerter (存疑)",
+    "Caris LeVert (存疑)",
+    "Duncan Robinson (存疑)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-15T14:10:12+00:00",
+     "spread": 3.5,
+     "ou": 210.5,
+     "ml_home": -172,
+     "ml_away": 144,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 3.5,
+   "spread_last": 3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-15T14:10:12+00:00",
+   "spread_last_fetched_at": "2026-05-15T14:10:12+00:00",
+   "ou_first": 210.5,
+   "ou_last": 210.5,
+   "ou_move": 0.0
   },
   "San Antonio Spurs:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
    "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": 4.5,
-   "Spread": 4.5,
+   "spread": -5.5,
+   "Spread": -5.5,
    "OU": 218.5,
-   "ML_Home": -200,
-   "ML_Away": 170,
+   "ML_Home": 190,
+   "ML_Away": -230,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -237,7 +245,7 @@
    "playoff_ats_picks": [
     {
      "signal": "淘汰局押冷門",
-     "side": "away",
+     "side": "home",
      "ats_side": "受讓(押dog)",
      "tier": "SILVER",
      "backtest_wr": 0.654,
@@ -246,10 +254,10 @@
      "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)"
     }
    ],
-   "playoff_ats_best_side": "away",
+   "playoff_ats_best_side": "home",
    "playoff_ats_best_signal": "淘汰局押冷門",
    "playoff_ats_best_tier": "SILVER",
-   "playoff_ats_consensus": "away",
+   "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
    "series_round": "第二輪",
@@ -264,7 +272,25 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-15T14:10:12+00:00",
+     "spread": -5.5,
+     "ou": 218.5,
+     "ml_home": 190,
+     "ml_away": -230,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": -5.5,
+   "spread_last": -5.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-15T14:10:12+00:00",
+   "spread_last_fetched_at": "2026-05-15T14:10:12+00:00",
+   "ou_first": 218.5,
+   "ou_last": 218.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
