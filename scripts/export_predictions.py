@@ -1436,10 +1436,16 @@ def _update_playoff_quarters(today: date) -> None:
         return
 
     added = 0
+    missing_by_teams = {(h, a): d for d, h, a in missing}
     dates_needed = sorted({d for d, _, _ in missing})
+    espn_dates = set()
     for d_str in dates_needed:
+        espn_dates.add(d_str)
+        prev = (date.fromisoformat(d_str) - timedelta(days=1)).isoformat()
+        espn_dates.add(prev)
+    for espn_d in sorted(espn_dates):
         try:
-            url = f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={d_str.replace('-', '')}"
+            url = f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={espn_d.replace('-', '')}"
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
             resp = urllib.request.urlopen(req, timeout=15)
             espn = json.loads(resp.read())
@@ -1456,7 +1462,8 @@ def _update_playoff_quarters(today: date) -> None:
                 continue
             h_name = home_t["team"]["displayName"]
             a_name = away_t["team"]["displayName"]
-            if (d_str, h_name, a_name) not in [(d, h, a) for d, h, a in missing]:
+            db_date = missing_by_teams.get((h_name, a_name))
+            if db_date is None:
                 continue
             h_qs = [int(ls.get("value", 0)) for ls in home_t.get("linescores", [])]
             a_qs = [int(ls.get("value", 0)) for ls in away_t.get("linescores", [])]
@@ -1464,7 +1471,7 @@ def _update_playoff_quarters(today: date) -> None:
                 continue
             existing.append({
                 "gameId": ev.get("id", ""),
-                "date": d_str,
+                "date": db_date,
                 "home_tri": home_t["team"].get("abbreviation", ""),
                 "away_tri": away_t["team"].get("abbreviation", ""),
                 "home_name": h_name,
@@ -1474,6 +1481,7 @@ def _update_playoff_quarters(today: date) -> None:
                 "home_score": int(home_t["score"]),
                 "away_score": int(away_t["score"]),
             })
+            del missing_by_teams[(h_name, a_name)]
             added += 1
 
     if added:

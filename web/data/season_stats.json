@@ -1556,12 +1556,18 @@
     "result": "hit",
     "conviction_obj": {
      "band": "dominant",
-     "source": "final",
+     "source": "q3",
+     "q3_picked_margin": 10.9,
+     "final_picked_margin": 19.5,
+     "q4_swing": 11,
+     "shrinkage": -8.6,
      "garbage_time": false
     },
     "conviction": "dominant",
     "garbage_time": false,
-    "conviction_source": "final"
+    "conviction_source": "q3",
+    "q3_picked_margin": 10.9,
+    "q4_swing": 11
    },
    {
     "date": "2026-05-14",
@@ -1582,12 +1588,18 @@
     "result": "hit",
     "conviction_obj": {
      "band": "moderate",
-     "source": "final",
+     "source": "q3",
+     "q3_picked_margin": 6.6,
+     "final_picked_margin": 7.5,
+     "q4_swing": 4,
+     "shrinkage": -0.9,
      "garbage_time": false
     },
     "conviction": "moderate",
     "garbage_time": false,
-    "conviction_source": "final"
+    "conviction_source": "q3",
+    "q3_picked_margin": 6.6,
+    "q4_swing": 4
    },
    {
     "date": "2026-05-14",
@@ -1608,12 +1620,18 @@
     "result": "miss",
     "conviction_obj": {
      "band": "moderate",
-     "source": "final",
+     "source": "q3",
+     "q3_picked_margin": -6.6,
+     "final_picked_margin": -7.5,
+     "q4_swing": 4,
+     "shrinkage": 0.9,
      "garbage_time": false
     },
     "conviction": "moderate",
     "garbage_time": false,
-    "conviction_source": "final"
+    "conviction_source": "q3",
+    "q3_picked_margin": -6.6,
+    "q4_swing": 4
    }
   ],
   "pending_by_game": [
