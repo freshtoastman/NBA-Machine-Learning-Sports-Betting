@@ -29,8 +29,8 @@
     "series_game_num": 6,
     "series_home_wins": 3,
     "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    },
    {
     "game_key": "Detroit Pistons:Cleveland Cavaliers",
@@ -50,29 +50,8 @@
     "series_game_num": 6,
     "series_home_wins": 3,
     "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
-   },
-   {
-    "game_key": "Detroit Pistons:Cleveland Cavaliers",
-    "home_team": "Cleveland Cavaliers",
-    "away_team": "Detroit Pistons",
-    "home_team_zh": "克里夫蘭騎士",
-    "away_team_zh": "底特律活塞",
-    "signal": "主場ATS冷門反彈",
-    "side": "home",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.6,
-    "backtest_roi": 15.5,
-    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
-    "ats_winner": "away",
-    "ats_cover_margin": -24.5,
-    "series_game_num": 6,
-    "series_home_wins": 3,
-    "series_away_wins": 2,
-    "strong_consensus": null,
-    "has_conflict": true
+    "strong_consensus": "away",
+    "has_conflict": false
    },
    {
     "game_key": "San Antonio Spurs:Minnesota Timberwolves",
@@ -96,7 +75,7 @@
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 4,
+  "playoff_ats_count": 3,
   "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -166,24 +145,14 @@
      "backtest_roi": 30.8,
      "backtest_n": 52,
      "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)"
-    },
-    {
-     "signal": "主場ATS冷門反彈",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.6,
-     "backtest_roi": 15.5,
-     "backtest_n": 30,
-     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
     }
    ],
    "playoff_ats_best_side": "away",
    "playoff_ats_best_signal": "G6主場收官陷阱",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "away",
-   "playoff_ats_has_conflict": true,
-   "playoff_ats_strong_consensus": null,
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "away",
    "series_round": "第二輪",
    "round_num": 2,
    "series_game_num": 6,

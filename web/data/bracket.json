@@ -739,18 +739,18 @@
   ]
  },
  "signal_tracker": {
-  "total": 54,
-  "decided": 53,
+  "total": 53,
+  "decided": 52,
   "wins": 39,
-  "losses": 14,
+  "losses": 13,
   "pending": 1,
-  "hit_rate": 73.6,
-  "pnl": 21.49,
-  "roi": 40.5,
+  "hit_rate": 75.0,
+  "pnl": 22.49,
+  "roi": 43.2,
   "by_tier": {
    "SILVER": {
     "wins": 27,
-    "losses": 10,
+    "losses": 9,
     "pending": 1
    },
    "GOLD": {
@@ -786,9 +786,9 @@
    },
    "G6": {
     "wins": 11,
-    "losses": 6,
+    "losses": 5,
     "pending": 0,
-    "hit_rate": 64.7
+    "hit_rate": 68.8
    },
    "G7": {
     "wins": 1,
@@ -808,13 +808,13 @@
    "roi": 55.2
   },
   "no_conflict": {
-   "decided": 30,
-   "wins": 25,
+   "decided": 31,
+   "wins": 26,
    "losses": 5,
    "pending": 1,
-   "hit_rate": 83.3,
-   "pnl": 17.75,
-   "roi": 59.2
+   "hit_rate": 83.9,
+   "pnl": 18.66,
+   "roi": 60.2
   },
   "details": [
    {
@@ -1426,18 +1426,6 @@
     "side": "away",
     "backtest_wr": 0.654,
     "result": "win",
-    "margin": -24.5,
-    "game_num": 6
-   },
-   {
-    "date": "2026-05-15",
-    "away": "底特律活塞",
-    "home": "克里夫蘭騎士",
-    "signal": "主場ATS冷門反彈",
-    "tier": "SILVER",
-    "side": "home",
-    "backtest_wr": 0.6,
-    "result": "loss",
     "margin": -24.5,
     "game_num": 6
    },
