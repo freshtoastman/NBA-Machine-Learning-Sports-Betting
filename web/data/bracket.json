@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-15",
+ "generated_for": "2026-05-17",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -342,24 +342,9 @@
      "win_pct": 0.634,
      "seed": 4
     },
-    "high_wins": 2,
+    "high_wins": 3,
     "low_wins": 3,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "G6主場收官陷阱",
-     "side": "away",
-     "home_team": "Cleveland Cavaliers",
-     "home_team_zh": "克里夫蘭騎士",
-     "tier": "SILVER",
-     "backtest_wr": 0.667,
-     "reason_zh": "G6主場領先3-2欲收官，12季歷史冷門cover率 66.7% (n=39)，收官局壓力反差",
-     "signal_team_zh": "底特律活塞",
-     "consensus_count": 3,
-     "has_conflict": true,
-     "conflict_signal": "主場ATS冷門反彈",
-     "conflict_wr": 0.6
-    }
+    "games_played": 6
    },
    {
     "label": "2/7 vs 3/6",
@@ -747,37 +732,26 @@
      "win_pct": 0.598,
      "seed": 6
     },
-    "high_wins": 3,
+    "high_wins": 4,
     "low_wins": 2,
-    "games_played": 5,
-    "next_signal": {
-     "game_num": 6,
-     "signal": "淘汰局押冷門",
-     "side": "home",
-     "home_team": "Minnesota Timberwolves",
-     "home_team_zh": "明尼蘇達灰狼",
-     "tier": "SILVER",
-     "backtest_wr": 0.654,
-     "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)",
-     "signal_team_zh": "聖安東尼奧馬刺"
-    }
+    "games_played": 6
    }
   ]
  },
  "signal_tracker": {
-  "total": 53,
-  "decided": 49,
-  "wins": 37,
-  "losses": 12,
-  "pending": 4,
-  "hit_rate": 75.5,
-  "pnl": 21.67,
-  "roi": 44.2,
+  "total": 54,
+  "decided": 53,
+  "wins": 39,
+  "losses": 14,
+  "pending": 1,
+  "hit_rate": 73.6,
+  "pnl": 21.49,
+  "roi": 40.5,
   "by_tier": {
    "SILVER": {
-    "wins": 25,
-    "losses": 8,
-    "pending": 4
+    "wins": 27,
+    "losses": 10,
+    "pending": 1
    },
    "GOLD": {
     "wins": 12,
@@ -811,36 +785,36 @@
     "hit_rate": 66.7
    },
    "G6": {
-    "wins": 9,
-    "losses": 4,
-    "pending": 4,
-    "hit_rate": 69.2
+    "wins": 11,
+    "losses": 6,
+    "pending": 0,
+    "hit_rate": 64.7
    },
    "G7": {
     "wins": 1,
     "losses": 0,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 100.0
    }
   },
   "by_game": {
-   "total": 36,
+   "total": 37,
+   "decided": 32,
+   "wins": 26,
+   "losses": 6,
+   "pending": 5,
+   "hit_rate": 81.2,
+   "pnl": 17.66,
+   "roi": 55.2
+  },
+  "no_conflict": {
    "decided": 30,
    "wins": 25,
    "losses": 5,
-   "pending": 6,
+   "pending": 1,
    "hit_rate": 83.3,
    "pnl": 17.75,
    "roi": 59.2
-  },
-  "no_conflict": {
-   "decided": 29,
-   "wins": 25,
-   "losses": 4,
-   "pending": 2,
-   "hit_rate": 86.2,
-   "pnl": 18.75,
-   "roi": 64.7
   },
   "details": [
    {
@@ -1439,8 +1413,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.667,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -24.5,
     "game_num": 6
    },
    {
@@ -1451,8 +1425,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.654,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -24.5,
     "game_num": 6
    },
    {
@@ -1463,8 +1437,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -24.5,
     "game_num": 6
    },
    {
@@ -1475,9 +1449,21 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": -24.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-17",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.613,
     "result": "pending",
     "margin": null,
-    "game_num": 6
+    "game_num": 7
    }
   ]
  }

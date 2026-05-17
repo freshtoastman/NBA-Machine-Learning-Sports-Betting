@@ -1582,5 +1582,49 @@
     ],
     "home_score": 113,
     "away_score": 117
+  },
+  {
+    "gameId": "401871338",
+    "date": "2026-05-15",
+    "home_tri": "CLE",
+    "away_tri": "DET",
+    "home_name": "Cleveland Cavaliers",
+    "away_name": "Detroit Pistons",
+    "q_home": [
+      25,
+      26,
+      19,
+      24
+    ],
+    "q_away": [
+      27,
+      27,
+      30,
+      31
+    ],
+    "home_score": 94,
+    "away_score": 115
+  },
+  {
+    "gameId": "401871157",
+    "date": "2026-05-15",
+    "home_tri": "MIN",
+    "away_tri": "SA",
+    "home_name": "Minnesota Timberwolves",
+    "away_name": "San Antonio Spurs",
+    "q_home": [
+      27,
+      34,
+      23,
+      25
+    ],
+    "q_away": [
+      36,
+      38,
+      36,
+      29
+    ],
+    "home_score": 109,
+    "away_score": 139
   }
 ]
