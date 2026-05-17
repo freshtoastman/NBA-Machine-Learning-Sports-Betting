@@ -141,6 +141,15 @@
  },
  "active_series": [
   {
+   "round_num": 3,
+   "round_label": "西區決賽",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
    "round_num": 2,
    "round_label": "第二輪",
    "high_seed": "Detroit Pistons",

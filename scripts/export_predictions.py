@@ -992,21 +992,24 @@ def build_bracket(target_date: date) -> dict | None:
             lw = wins_by_team.get(low_team["team"], 0)
             gp = hw + lw
             entry = {"high_wins": hw, "low_wins": lw, "games_played": gp}
-            # G1 pre-game hint: R2 opener home-seed advantage.
+            # G1 pre-game hint: R2/CF opener home-seed advantage.
             if gp == 0 and _max_round_num >= 2:
                 _game = _today_game_lookup.get(key) or _upcoming_game_lookup.get(key)
-                _r2_picks = (_game.get("playoff_ats_picks", []) if _game else [])
-                _r2_g1_pick = next((p for p in _r2_picks if "R2G1" in p.get("signal", "")), None)
-                if _r2_g1_pick:
+                _g1_picks = (_game.get("playoff_ats_picks", []) if _game else [])
+                _g1_pick = next(
+                    (p for p in _g1_picks if "G1" in p.get("signal", "") and p.get("tier") in ("GOLD", "SILVER")),
+                    None,
+                )
+                if _g1_pick:
                     entry["next_signal"] = {
                         "game_num": 1,
-                        "signal": _r2_g1_pick["signal"],
-                        "side": _r2_g1_pick.get("side", "home"),
+                        "signal": _g1_pick["signal"],
+                        "side": _g1_pick.get("side", "home"),
                         "home_team": high_team["team"],
                         "home_team_zh": high_team["team_zh"],
-                        "tier": _r2_g1_pick.get("tier", "SILVER"),
-                        "backtest_wr": _r2_g1_pick.get("backtest_wr", 0.646),
-                        "reason_zh": _r2_g1_pick.get("reason_zh", "第二輪G1主場cover率 64.6% (n=48，13季)"),
+                        "tier": _g1_pick.get("tier", "SILVER"),
+                        "backtest_wr": _g1_pick.get("backtest_wr", 0.646),
+                        "reason_zh": _g1_pick.get("reason_zh", ""),
                     }
             # G1 pre-game hint: R1 opener home-seed advantage (fires before any game played).
             if gp == 0 and _stage_label == "首輪進行中":
@@ -1300,6 +1303,32 @@ def build_bracket(target_date: date) -> dict | None:
                 r2b.update(_with_wins(high_r2b, low_r2b, round_num=2))
             second_round.append(r2b)
 
+        # Conference Finals: detect R2 winners and build CF entry.
+        def _r2_winner(r2_entry):
+            hw = r2_entry.get("high_wins", 0)
+            lw = r2_entry.get("low_wins", 0)
+            if hw >= 4:
+                return r2_entry["high"] if isinstance(r2_entry["high"], dict) else None
+            if lw >= 4:
+                return r2_entry["low"] if isinstance(r2_entry["low"], dict) else None
+            return None
+
+        conf_finals = None
+        if len(second_round) == 2:
+            cf_high = _r2_winner(second_round[0])
+            cf_low = _r2_winner(second_round[1])
+            if cf_high or cf_low:
+                cf_h = cf_high or "R2A 勝者"
+                cf_l = cf_low or "R2B 勝者"
+                if isinstance(cf_h, dict) and isinstance(cf_l, dict):
+                    h_seed = cf_h.get("seed", 99)
+                    l_seed = cf_l.get("seed", 99)
+                    if l_seed < h_seed:
+                        cf_h, cf_l = cf_l, cf_h
+                conf_finals = {"label": "分區決賽", "high": cf_h, "low": cf_l}
+                if isinstance(cf_h, dict) and isinstance(cf_l, dict):
+                    conf_finals.update(_with_wins(cf_h, cf_l, round_num=3))
+
         result = {
             "name": name,
             "seeds": seeds[:10],
@@ -1309,6 +1338,8 @@ def build_bracket(target_date: date) -> dict | None:
         }
         if second_round:
             result["second_round"] = second_round
+        if conf_finals:
+            result["conf_finals"] = conf_finals
         return result
 
     return {

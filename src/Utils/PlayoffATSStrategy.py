@@ -696,6 +696,82 @@ def _r2_g1_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _cf_g1_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Conference Finals G1 → Home covers at 83.3% (20/24, 13 seasons).
+
+    Recent 5 seasons (2020-25): 100% (8/8). Spread ≥5: 100% (12/12).
+    All 4 misses had spread < 3.5. OKC-SAS spread 6.5 fits strongest bucket.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 3:
+        return None
+    if series_state.get("series_game_num", 0) != 1:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="CF G1主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.833,
+        backtest_roi=66.7,
+        backtest_n=24,
+        reason_zh="分區決賽G1主場cover率 83.3% (20/24，13季)，近5季 100% (8/8)，讓分≥5時 12/12全中",
+    )
+
+
+def _cf_g2_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Conference Finals G2 → Home covers at 79.2% (19/24, 13 seasons)."""
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 3:
+        return None
+    if series_state.get("series_game_num", 0) != 2:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="CF G2主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.792,
+        backtest_roi=58.3,
+        backtest_n=24,
+        reason_zh="分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
+    )
+
+
+def _cf_g5_home_fav(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Conference Finals G5 → Home covers at 84.2% (16/19, 13 seasons)."""
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 3:
+        return None
+    if series_state.get("series_game_num", 0) != 5:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="CF G5主場壓制",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="GOLD",
+        backtest_wr=0.842,
+        backtest_roi=68.4,
+        backtest_n=19,
+        reason_zh="分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯",
+    )
+
+
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Home team giving ≤2 pts → bet away to cover (R1+ only, not play-in).
 
@@ -1078,6 +1154,9 @@ _SIGNALS = [
     _r2_g2_home_fav,                  # GOLD: 87.5% (42/48, 13 seasons) — strongest R2 signal
     _r2_g5_home_fav,                  # GOLD: 83.7% (36/43, 13 seasons) — R2 G5 home dominance
     _r2_g1_home_fav,                  # SILVER: 64.6% (31/48, 13 seasons) — R2 G1 home advantage
+    _cf_g1_home_fav,                  # GOLD: 83.3% (20/24, 13 seasons) — CF G1 home; recent 5yr 100%; sp≥5 100%
+    _cf_g2_home_fav,                  # GOLD: 79.2% (19/24, 13 seasons) — CF G2 home continues dominance
+    _cf_g5_home_fav,                  # GOLD: 84.2% (16/19, 13 seasons) — CF G5 home return
 ]
 
 

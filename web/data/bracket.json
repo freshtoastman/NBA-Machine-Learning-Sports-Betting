@@ -4,8 +4,8 @@
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
- "stage_label": "第二輪進行中",
- "stage": "second_round",
+ "stage_label": "分區決賽",
+ "stage": "conf_finals",
  "east": {
   "name": "東區",
   "seeds": [
@@ -370,7 +370,20 @@
     "low_wins": 0,
     "games_played": 4
    }
-  ]
+  ],
+  "conf_finals": {
+   "label": "分區決賽",
+   "high": "R2A 勝者",
+   "low": {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   }
+  }
  },
  "west": {
   "name": "西區",
@@ -736,14 +749,48 @@
     "low_wins": 2,
     "games_played": 6
    }
-  ]
+  ],
+  "conf_finals": {
+   "label": "分區決賽",
+   "high": {
+    "team": "Oklahoma City Thunder",
+    "team_zh": "奧克拉荷馬雷霆",
+    "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+    "wins": 64,
+    "losses": 18,
+    "win_pct": 0.78,
+    "seed": 1
+   },
+   "low": {
+    "team": "San Antonio Spurs",
+    "team_zh": "聖安東尼奧馬刺",
+    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+    "wins": 62,
+    "losses": 20,
+    "win_pct": 0.756,
+    "seed": 2
+   },
+   "high_wins": 0,
+   "low_wins": 0,
+   "games_played": 0,
+   "next_signal": {
+    "game_num": 1,
+    "signal": "CF G1主場壓制",
+    "side": "home",
+    "home_team": "Oklahoma City Thunder",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "tier": "GOLD",
+    "backtest_wr": 0.833,
+    "reason_zh": "分區決賽G1主場cover率 83.3% (20/24，13季)，近5季 100% (8/8)，讓分≥5時 12/12全中"
+   }
+  }
  },
  "signal_tracker": {
-  "total": 53,
+  "total": 54,
   "decided": 52,
   "wins": 39,
   "losses": 13,
-  "pending": 1,
+  "pending": 2,
   "hit_rate": 75.0,
   "pnl": 22.49,
   "roi": 43.2,
@@ -756,14 +803,14 @@
    "GOLD": {
     "wins": 12,
     "losses": 4,
-    "pending": 0
+    "pending": 1
    }
   },
   "by_game_num": {
    "G1": {
     "wins": 9,
     "losses": 3,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 75.0
    },
    "G2": {
@@ -798,11 +845,11 @@
    }
   },
   "by_game": {
-   "total": 37,
+   "total": 38,
    "decided": 32,
    "wins": 26,
    "losses": 6,
-   "pending": 5,
+   "pending": 6,
    "hit_rate": 81.2,
    "pnl": 17.66,
    "roi": 55.2
@@ -811,7 +858,7 @@
    "decided": 31,
    "wins": 26,
    "losses": 5,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 83.9,
    "pnl": 18.66,
    "roi": 60.2
@@ -1452,6 +1499,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 7
+   },
+   {
+    "date": "2026-05-18",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G1主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.833,
+    "result": "pending",
+    "margin": null,
+    "game_num": 1
    }
   ]
  }

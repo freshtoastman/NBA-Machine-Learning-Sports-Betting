@@ -97,6 +97,13 @@ def build_backtest_signals(game: dict) -> list[dict]:
             signals.append({"text": "R2 G5 → 押主場（熱門）歷史 cover 率 83.7%（n=43，13季）★★", "tier": "hot"})
         if round_num == 2 and series_gn in (3, 4):
             signals.append({"text": f"R2 G{series_gn} → 押熱門 cover（64.6%，n=48，R2整體熱門68.6%）", "tier": "warm"})
+        # ── Conference Finals (round_num=3) ──
+        if round_num == 3 and series_gn == 1:
+            signals.append({"text": "CF G1 → 押主場 歷史 cover 率 83.3%（n=24，近5季100%，讓分≥5時12/12）★★", "tier": "hot"})
+        if round_num == 3 and series_gn == 2:
+            signals.append({"text": "CF G2 → 押主場 歷史 cover 率 79.2%（n=24，13季）★★", "tier": "hot"})
+        if round_num == 3 and series_gn == 5:
+            signals.append({"text": "CF G5 → 押主場 歷史 cover 率 84.2%（n=19，13季）★★", "tier": "hot"})
         if is_elim and not (series_gn == 7 and abs_sp >= 7):
             signals.append({"text": "淘汰局 → 押冷門 cover（56.7%）", "tier": "warm"})
         if is_elim and abs_sp <= 8 and not (series_gn == 7 and abs_sp >= 7):

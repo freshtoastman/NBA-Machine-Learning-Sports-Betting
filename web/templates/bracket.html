@@ -349,6 +349,58 @@
         </div>
         {% endif %}
 
+        {% if c.conf_finals %}
+        <div class="section-label" style="margin-top:18px;">🏆 分區決賽（Conference Finals）</div>
+        <div class="matchup-list">
+          {% set m = c.conf_finals %}
+          <div class="matchup {% if m.games_played and m.games_played > 0 %}matchup-live{% endif %}" style="border-left-color:#f4bf50;">
+            <div class="matchup-label">{{ m.label }}</div>
+            <div class="matchup-side {% if m.high_wins is defined and m.low_wins is defined and m.high_wins > m.low_wins %}series-leading{% endif %}">
+              {% if m.high is mapping %}
+                <span class="high-seed">#{{ m.high.seed }}</span>
+                {% if m.high.logo %}<img src="{{ m.high.logo }}" alt="">{% endif %}
+                <span>{{ m.high.team_zh }}</span>
+                {% if m.games_played and m.games_played > 0 %}<span class="series-wins">{{ m.high_wins }}</span>{% endif %}
+              {% else %}
+                <span class="tbd">{{ m.high }}</span>
+              {% endif %}
+            </div>
+            <div class="matchup-vs">
+              {% if m.games_played and m.games_played > 0 %}
+                <span class="series-score">{{ m.high_wins }}-{{ m.low_wins }}</span>
+              {% else %}
+                VS
+              {% endif %}
+            </div>
+            <div class="matchup-side {% if m.high_wins is defined and m.low_wins is defined and m.low_wins > m.high_wins %}series-leading{% endif %}">
+              {% if m.low is mapping %}
+                <span class="high-seed">#{{ m.low.seed }}</span>
+                {% if m.low.logo %}<img src="{{ m.low.logo }}" alt="">{% endif %}
+                <span>{{ m.low.team_zh }}</span>
+                {% if m.games_played and m.games_played > 0 %}<span class="series-wins">{{ m.low_wins }}</span>{% endif %}
+              {% else %}
+                <span class="tbd">{{ m.low }}</span>
+              {% endif %}
+            </div>
+            {% if m.next_signal and m.next_signal.tier not in ('NONE', 'BRONZE') %}
+            {% set tier_cls = 'tier-' + (m.next_signal.tier or 'silver')|lower %}
+            <div class="next-signal {{ tier_cls }}">
+              <span class="ns-badge">G{{ m.next_signal.game_num }} 信號</span>
+              📊
+              {% if m.next_signal.side == 'away' %}
+                {% set _ns_bet_team_zh = m.high.team_zh if m.next_signal.home_team == m.low.team else m.low.team_zh %}
+                {{ _ns_bet_team_zh }} 客場
+              {% else %}
+                {{ m.next_signal.home_team_zh }} 主場
+              {% endif %}
+              <span class="ns-wr">{{ (m.next_signal.backtest_wr * 100)|round(0)|int }}%</span>
+              cover率 · {{ m.next_signal.signal }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
       </div>
     {% endmacro %}
 
@@ -452,6 +504,30 @@
             <td><span class="sr-n">n=48</span></td>
             <td>13 季</td>
           </tr>
+          <tr style="background:#2a2010;">
+            <td><span class="sr-tier gold">GOLD</span>CF G1</td>
+            <td><b>分區決賽首戰</b></td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">83.3%</span></td>
+            <td><span class="sr-n">n=24</span></td>
+            <td><b>近5季 100% (8/8)</b> · 讓分≥5 全中 12/12</td>
+          </tr>
+          <tr style="background:#2a2010;">
+            <td><span class="sr-tier gold">GOLD</span>CF G2</td>
+            <td><b>分區決賽第2場</b></td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">79.2%</span></td>
+            <td><span class="sr-n">n=24</span></td>
+            <td>主場延續 G1 優勢</td>
+          </tr>
+          <tr style="background:#2a2010;">
+            <td><span class="sr-tier gold">GOLD</span>CF G5</td>
+            <td><b>分區決賽第5場</b></td>
+            <td><span class="sr-side-home">主場 (高種子)</span></td>
+            <td><span class="sr-wr">84.2%</span></td>
+            <td><span class="sr-n">n=19</span></td>
+            <td>主場回歸優勢最強</td>
+          </tr>
           <tr style="opacity:0.35;" title="BRONZE 信號已停用（本季命中率 38.9%）">
             <td><span class="sr-tier bronze">BRONZE</span>R3+ G6</td>
             <td><s>分區冠軍賽/總冠軍賽 G6</s></td>
@@ -463,10 +539,10 @@
         </tbody>
       </table>
       <div class="sr-sub" style="margin-top:10px;font-size:11px;">
-        💡 <b>R2 G2</b> 是史上最強信號（87.5%，近5季100%）。<b>R1 G6</b> 次之（80.4%）。R2 整體趨勢：熱門 cover 率 68.6%（與 R1 的冷門優勢相反）。
+        💡 <b>R2 G2</b> 是史上最強信號（87.5%，近5季100%）。<b>R1 G6</b> 次之（80.4%）。R2 整體趨勢：熱門 cover 率 68.6%（與 R1 的冷門優勢相反）。<b>NEW:</b> 分區決賽(CF)主場優勢更強 — G1 83.3%，G2 79.2%，G5 84.2%，整體 72.4%！
       </div>
       <div class="sr-sub" style="margin-top:8px;font-size:11px;padding:8px 10px;background:#1a2a1a;border:1px solid #3d6e4a;border-radius:6px;">
-        📈 <b>本季 R2 策略分析：</b>無衝突信號命中率 <b>86.2%</b>（25-4）✅ 超 85% 目標！G2 信號全季 <b>11-1</b>（91.7%），R2G2 全數命中 4/4（GOLD）。R2G5 主場信號 <b>2-0</b>！<b>5/13 結果：</b>SAS 126-97 MIN（SAS 3-2 領先 🔥），R2G5 GOLD 信號命中！SAS -9.5 cover +19.5 大勝！Wembanyama 27分17籃板。NYK 橫掃 PHI 🎉，OKC 橫掃 LAL 🎉。<b>🔥 今晚焦點：</b>CLE@DET G5（5/14）→ R2G5 主場 GOLD 83.7%（n=43），DET -3.5，押 DET 主場！連續 GOLD 無衝突信號！<b>展望：</b>SAS-MIN G6 若發生 → R2G6 客場僅 53.8%（BRONZE，效果大減）。
+        📈 <b>本季總結：</b>無衝突信號命中率 <b>83.9%</b>（26-5）✅ · PnL +18.66u · ROI 60.2%。G2 信號全季 <b>11-1</b>（91.7%），R2G2 全數命中 4/4（GOLD），R2G5 主場 <b>2-0</b>。NYK 橫掃 PHI 🎉，OKC 橫掃 LAL 🎉，SAS 4-2 勝 MIN。<b>🔥 5/17 焦點：</b>CLE@DET G7 → SILVER 淘汰局押冷門 61.3%（押CLE客場受讓+4.5）。<b>🏆 5/18 WCF G1：</b>SAS@OKC → <b>GOLD CF G1主場壓制 83.3%</b>（近5季 100%，讓分≥5 全中 12/12），OKC -6.5，押雷霆主場讓分！歷史最強分區決賽信號！
       </div>
     </div>
 
