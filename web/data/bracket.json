@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-17",
+ "generated_for": "2026-05-18",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -786,11 +786,11 @@
   }
  },
  "signal_tracker": {
-  "total": 54,
+  "total": 55,
   "decided": 52,
   "wins": 39,
   "losses": 13,
-  "pending": 2,
+  "pending": 3,
   "hit_rate": 75.0,
   "pnl": 22.49,
   "roi": 43.2,
@@ -803,14 +803,14 @@
    "GOLD": {
     "wins": 12,
     "losses": 4,
-    "pending": 1
+    "pending": 2
    }
   },
   "by_game_num": {
    "G1": {
     "wins": 9,
     "losses": 3,
-    "pending": 1,
+    "pending": 2,
     "hit_rate": 75.0
    },
    "G2": {
@@ -845,11 +845,11 @@
    }
   },
   "by_game": {
-   "total": 38,
+   "total": 39,
    "decided": 32,
    "wins": 26,
    "losses": 6,
-   "pending": 6,
+   "pending": 7,
    "hit_rate": 81.2,
    "pnl": 17.66,
    "roi": 55.2
@@ -858,7 +858,7 @@
    "decided": 31,
    "wins": 26,
    "losses": 5,
-   "pending": 2,
+   "pending": 3,
    "hit_rate": 83.9,
    "pnl": 18.66,
    "roi": 60.2
@@ -1504,6 +1504,18 @@
     "date": "2026-05-18",
     "away": "聖安東尼奧馬刺",
     "home": "奧克拉荷馬雷霆",
+    "signal": "CF G1主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.833,
+    "result": "pending",
+    "margin": null,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-19",
+    "away": "克里夫蘭騎士",
+    "home": "紐約尼克",
     "signal": "CF G1主場壓制",
     "tier": "GOLD",
     "side": "home",

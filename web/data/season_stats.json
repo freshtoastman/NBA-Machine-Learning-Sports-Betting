@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 39,
   "misses": 13,
-  "pending": 2,
+  "pending": 3,
   "decided": 52,
   "hit_rate": 75.0,
   "conviction": {
@@ -1758,6 +1758,20 @@
     "series_score": "0-0",
     "has_strong_consensus": false,
     "spread": 6.5
+   },
+   {
+    "date": "2026-05-19",
+    "game": "克里夫蘭騎士 @ 紐約尼克",
+    "signals": [
+     "CF G1主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 83,
+    "series_game_num": 1,
+    "series_score": "0-0",
+    "has_strong_consensus": false,
+    "spread": 7.5
    }
   ],
   "by_signal": [
@@ -2032,7 +2046,7 @@
   "best_pick": {
    "hits": 28,
    "misses": 8,
-   "pending": 2,
+   "pending": 3,
    "decided": 36,
    "hit_rate": 77.8,
    "gold_hits": 11,
@@ -2048,7 +2062,7 @@
   "no_conflict": {
    "hits": 26,
    "misses": 5,
-   "pending": 2,
+   "pending": 3,
    "decided": 31,
    "hit_rate": 83.9,
    "note_zh": "無衝突場次(所有信號同向): 26勝/31場決定 = 83.9%"

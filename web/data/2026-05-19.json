@@ -1,6 +1,6 @@
 {
- "date": "2026-05-18",
- "is_today": true,
+ "date": "2026-05-19",
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -12,11 +12,11 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [
    {
-    "game_key": "San Antonio Spurs:Oklahoma City Thunder",
-    "home_team": "Oklahoma City Thunder",
-    "away_team": "San Antonio Spurs",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "away_team_zh": "聖安東尼奧馬刺",
+    "game_key": "Cleveland Cavaliers:New York Knicks",
+    "home_team": "New York Knicks",
+    "away_team": "Cleveland Cavaliers",
+    "home_team_zh": "紐約尼克",
+    "away_team_zh": "克里夫蘭騎士",
     "signal": "CF G1主場壓制",
     "side": "home",
     "ats_side": "讓分(押fav)",
@@ -34,24 +34,35 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "San Antonio Spurs: Luke Kornet (存疑)",
-   "San Antonio Spurs: De'Aaron Fox (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
-  "San Antonio Spurs:Oklahoma City Thunder": {
-   "home_team": "Oklahoma City Thunder",
-   "away_team": "San Antonio Spurs",
+  "Cleveland Cavaliers:New York Knicks": {
+   "home_team": "New York Knicks",
+   "away_team": "Cleveland Cavaliers",
    "home_score": null,
    "away_score": null,
-   "spread": 6.5,
-   "Spread": 6.5,
-   "OU": 219.5,
-   "ML_Home": -255,
-   "ML_Away": 210,
-   "Days_Rest_Home": null,
-   "Days_Rest_Away": 3,
+   "spread": 7.5,
+   "Spread": 7.5,
+   "OU": 215.5,
+   "ML_Home": -265,
+   "ML_Away": 215,
+   "Days_Rest_Home": 8,
+   "Days_Rest_Away": 2,
    "home_confidence": null,
    "away_confidence": null,
    "value_side": null,
@@ -90,55 +101,36 @@
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
    "playoff_ats_strong_consensus": null,
-   "series_round": "西區決賽",
+   "series_round": "東區決賽",
    "round_num": 3,
    "series_game_num": 1,
    "series_home_wins": 0,
    "series_away_wins": 0,
    "series_status_text": "平手 0-0",
    "series_is_elimination": false,
-   "home_team_zh": "奧克拉荷馬雷霆",
-   "away_team_zh": "聖安東尼奧馬刺",
-   "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "home_team_zh": "紐約尼克",
+   "away_team_zh": "克里夫蘭騎士",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Luke Kornet (存疑)",
-    "De'Aaron Fox (存疑)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
-     "fetched_at": "2026-05-17T01:21:39+00:00",
-     "spread": 6.5,
-     "ou": 219.5,
-     "ml_home": -250,
-     "ml_away": 205,
-     "source": "sbr_fanduel"
-    },
-    {
-     "fetched_at": "2026-05-17T14:09:38+00:00",
-     "spread": 6.5,
-     "ou": 219.5,
-     "ml_home": -240,
-     "ml_away": 198,
-     "source": "sbr_fanduel"
-    },
-    {
-     "fetched_at": "2026-05-18T06:43:58+00:00",
-     "spread": 6.5,
-     "ou": 219.5,
-     "ml_home": -255,
-     "ml_away": 210,
-     "source": "sbr_fanduel"
+     "fetched_at": "2026-05-18T06:00:00+00:00",
+     "spread": 7.5,
+     "ou": 215.5,
+     "ml_home": -265,
+     "ml_away": 215,
+     "source": "draftkings_opening"
     }
    ],
-   "spread_first": 6.5,
-   "spread_last": 6.5,
+   "spread_first": 7.5,
+   "spread_last": 7.5,
    "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-05-17T01:21:39+00:00",
-   "spread_last_fetched_at": "2026-05-18T06:43:58+00:00",
-   "ou_first": 219.5,
-   "ou_last": 219.5,
+   "spread_first_fetched_at": "2026-05-18T06:00:00+00:00",
+   "spread_last_fetched_at": "2026-05-18T06:00:00+00:00",
+   "ou_first": 215.5,
+   "ou_last": 215.5,
    "ou_move": 0.0
   }
  },
@@ -153,40 +145,13 @@
    "conference": "west"
   },
   {
-   "round_num": 2,
-   "round_label": "第二輪",
-   "high_seed": "Detroit Pistons",
-   "low_seed": "Cleveland Cavaliers",
-   "high_wins": 3,
-   "low_wins": 3,
-   "conference": "east"
-  },
-  {
-   "round_num": 2,
-   "round_label": "第二輪",
+   "round_num": 3,
+   "round_label": "東區決賽",
    "high_seed": "New York Knicks",
-   "low_seed": "Philadelphia 76ers",
-   "high_wins": 4,
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 0,
    "low_wins": 0,
    "conference": "east"
-  },
-  {
-   "round_num": 2,
-   "round_label": "第二輪",
-   "high_seed": "Oklahoma City Thunder",
-   "low_seed": "Los Angeles Lakers",
-   "high_wins": 4,
-   "low_wins": 0,
-   "conference": "west"
-  },
-  {
-   "round_num": 2,
-   "round_label": "第二輪",
-   "high_seed": "San Antonio Spurs",
-   "low_seed": "Minnesota Timberwolves",
-   "high_wins": 4,
-   "low_wins": 2,
-   "conference": "west"
   }
  ],
  "is_playoff_view": true

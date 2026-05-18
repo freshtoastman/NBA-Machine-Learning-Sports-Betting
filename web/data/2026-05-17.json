@@ -1,6 +1,6 @@
 {
  "date": "2026-05-17",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -35,11 +35,22 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Detroit Pistons: Kevin Huerter (存疑)",
-   "Detroit Pistons: Duncan Robinson (存疑)",
-   "Detroit Pistons: Caris LeVert (存疑)",
-   "Cleveland Cavaliers: Larry Nance Jr. (可能缺陣)"
-  ]
+   "Cleveland Cavaliers: Larry Nance Jr. (缺陣)"
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Cleveland Cavaliers:Detroit Pistons": {
@@ -50,8 +61,8 @@
    "spread": 4.5,
    "Spread": 4.5,
    "OU": 205.5,
-   "ML_Home": -186,
-   "ML_Away": 156,
+   "ML_Home": -196,
+   "ML_Away": 164,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -103,13 +114,14 @@
    "away_team_zh": "克里夫蘭騎士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "injuries_home": [
-    "Kevin Huerter (存疑)",
-    "Duncan Robinson (存疑)",
-    "Caris LeVert (存疑)"
-   ],
+   "injuries_home": [],
+   "live_home_score": 94,
+   "live_away_score": 125,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [
-    "Larry Nance Jr. (可能缺陣)"
+    "Larry Nance Jr. (缺陣)"
    ],
    "odds_history": [
     {
@@ -127,13 +139,21 @@
      "ml_home": -186,
      "ml_away": 156,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-18T06:43:58+00:00",
+     "spread": 4.5,
+     "ou": 205.5,
+     "ml_home": -196,
+     "ml_away": 164,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 4.5,
    "spread_last": 4.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-17T01:21:39+00:00",
-   "spread_last_fetched_at": "2026-05-17T14:09:38+00:00",
+   "spread_last_fetched_at": "2026-05-18T06:43:58+00:00",
    "ou_first": 206.5,
    "ou_last": 205.5,
    "ou_move": -1.0
