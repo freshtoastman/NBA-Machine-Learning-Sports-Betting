@@ -560,7 +560,9 @@
         <section class="series-tracker">
             <div class="series-tracker-head">
                 <span>🏆 季後賽</span>
-                <span class="series-tracker-sub">{{ display_series|length }} 組系列賽 · {% if r1_started %}首輪進行中{% elif has_playin %}附加賽進行中{% else %}附加賽已結束{% endif %}</span>
+                {% set cf_active = display_series|selectattr('round_num','equalto',3)|list|length > 0 %}
+                {% set r2_active = display_series|selectattr('round_num','equalto',2)|list|length > 0 %}
+                <span class="series-tracker-sub">{{ display_series|length }} 組系列賽 · {% if cf_active %}分區決賽{% elif r2_active %}第二輪進行中{% elif r1_started %}首輪進行中{% elif has_playin %}附加賽進行中{% else %}附加賽已結束{% endif %}</span>
             </div>
             {% if has_conf %}
             <div class="series-conf-wrap">
