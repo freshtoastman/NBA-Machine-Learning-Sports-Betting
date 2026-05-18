@@ -72,6 +72,34 @@
       .next-signal .ns-conflict { margin-top:4px; padding:3px 6px; background:#2a1a1a; border:1px solid #8a4040; border-radius:4px; color:#e08080; font-size:10px; }
       .next-signal .ns-conflict .cf-badge { background:#5a2020; color:#e08080; border-radius:3px; padding:1px 4px; font-size:9px; font-weight:700; margin-right:4px; }
       .ns-playin-hint { font-size:10px; color:#f4bf50; margin-left:4px; opacity:0.8; }
+
+      /* CF Roadmap */
+      .cf-roadmap { margin-top:24px; background:#141821; border:1px solid #2a3010; border-radius:14px; padding:16px; }
+      .cf-roadmap h3 { font-size:16px; margin:0 0 6px; font-weight:700; color:#e8e8e8; }
+      .cf-roadmap .sr-sub { font-size:12px; color:#888; margin-bottom:12px; }
+      .cf-roadmap-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:14px; }
+      .cf-roadmap-card { background:#10141e; border:1px solid #2a3010; border-radius:10px; padding:12px; }
+      .cf-roadmap-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+      .cf-conf-label { font-size:13px; font-weight:700; color:#f4bf50; background:#2a2010; padding:2px 8px; border-radius:4px; }
+      .cf-matchup-teams { font-size:12px; color:#ccc; display:flex; align-items:center; gap:4px; }
+      .cf-team-logo { width:18px; height:18px; }
+      .cf-roadmap-games { display:flex; flex-direction:column; gap:3px; }
+      .cf-game-row { display:flex; align-items:center; gap:6px; padding:5px 8px; border-radius:6px; font-size:11px; color:#aaa; transition:background 0.15s; }
+      .cf-game-row:hover { background:rgba(255,255,255,0.03); }
+      .cf-game-row.next-game { background:#1a2a10; border:1px solid #3d6e3a; }
+      .cf-game-row.played { opacity:0.4; }
+      .cf-gnum { font-weight:700; color:#ddd; min-width:22px; }
+      .cf-venue { color:#999; min-width:80px; font-size:10px; }
+      .cf-signal-badge { display:inline-block; font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px; min-width:38px; text-align:center; }
+      .cf-signal-badge.tier-gold { background:#3a2a10; color:#f4bf50; }
+      .cf-signal-badge.tier-silver { background:#1a3a28; color:#7fd69b; }
+      .cf-signal-badge.tier-none { background:#222; color:#666; }
+      .cf-wr { font-weight:700; color:#f4bf50; min-width:40px; font-variant-numeric:tabular-nums; }
+      .cf-wr.dim { color:#666; font-weight:400; }
+      .cf-note { color:#888; font-size:10px; flex:1; }
+      .cf-roadmap-footer { margin-top:8px; padding-top:6px; border-top:1px solid #222; font-size:10px; color:#7fd69b; text-align:center; }
+      @media (max-width:700px) { .cf-roadmap-grid { grid-template-columns:1fr; } .cf-venue { min-width:60px; } }
+
       .signal-ref { margin-top:24px; background:#141821; border:1px solid #222a36; border-radius:14px; padding:16px; }
       .signal-ref h3 { font-size:16px; margin:0 0 6px; font-weight:700; color:#e8e8e8; }
       .signal-ref .sr-sub { font-size:12px; color:#888; margin-bottom:10px; }
@@ -408,6 +436,96 @@
       {{ conf('east', '東區', 'east') }}
       {{ conf('west', '西區', 'west') }}
     </div>
+
+    {# ── CF Series Roadmap ── #}
+    {% set ecf = bracket.east.conf_finals if bracket.east.conf_finals is defined else none %}
+    {% set wcf = bracket.west.conf_finals if bracket.west.conf_finals is defined else none %}
+    {% if ecf or wcf %}
+    <div class="cf-roadmap">
+      <h3>🗺️ 分區決賽信號路線圖</h3>
+      <div class="sr-sub">每場比賽對應的結構信號與歷史 cover 率，根據系列賽進展動態更新</div>
+      <div class="cf-roadmap-grid">
+        {% for label, cf in [('西區決賽 WCF', wcf), ('東區決賽 ECF', ecf)] %}
+        {% if cf and cf.high is mapping and cf.low is mapping %}
+        <div class="cf-roadmap-card">
+          <div class="cf-roadmap-header">
+            <span class="cf-conf-label">{{ label }}</span>
+            <span class="cf-matchup-teams">
+              {% if cf.high.logo %}<img src="{{ cf.high.logo }}" class="cf-team-logo" alt="">{% endif %}
+              {{ cf.high.team_zh }} vs {{ cf.low.team_zh }}
+              {% if cf.low.logo %}<img src="{{ cf.low.logo }}" class="cf-team-logo" alt="">{% endif %}
+            </span>
+          </div>
+          <div class="cf-roadmap-games">
+            {% set gp = cf.games_played|default(0) %}
+            {% set hw = cf.high_wins|default(0) %}
+            {% set lw = cf.low_wins|default(0) %}
+            {# G1 #}
+            <div class="cf-game-row {% if gp >= 1 %}played{% endif %} {% if gp == 0 %}next-game{% endif %}">
+              <span class="cf-gnum">G1</span>
+              <span class="cf-venue">{{ cf.high.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-gold">GOLD</span>
+              <span class="cf-wr">83.3%</span>
+              <span class="cf-note">讓分 (押主場) · 近5季 100%</span>
+            </div>
+            {# G2 #}
+            <div class="cf-game-row {% if gp >= 2 %}played{% endif %} {% if gp == 1 %}next-game{% endif %}">
+              <span class="cf-gnum">G2</span>
+              <span class="cf-venue">{{ cf.high.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-gold">GOLD</span>
+              <span class="cf-wr">79.2%</span>
+              <span class="cf-note">讓分 (押主場) · 延續 G1 優勢</span>
+            </div>
+            {# G3 #}
+            <div class="cf-game-row {% if gp >= 3 %}played{% endif %} {% if gp == 2 %}next-game{% endif %}">
+              <span class="cf-gnum">G3</span>
+              <span class="cf-venue">{{ cf.low.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-none">—</span>
+              <span class="cf-wr dim">無信號</span>
+              <span class="cf-note">客場陷阱區 · 不操作</span>
+            </div>
+            {# G4 #}
+            <div class="cf-game-row {% if gp >= 4 %}played{% endif %} {% if gp == 3 %}next-game{% endif %}">
+              <span class="cf-gnum">G4</span>
+              <span class="cf-venue">{{ cf.low.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-none">—</span>
+              <span class="cf-wr dim">無信號</span>
+              <span class="cf-note">客場陷阱區 · 不操作</span>
+            </div>
+            {# G5 #}
+            <div class="cf-game-row {% if gp >= 5 %}played{% endif %} {% if gp == 4 and (hw == 2 and lw == 2 or hw == 3 and lw == 1 or hw == 1 and lw == 3) %}next-game{% endif %}" {% if hw >= 4 or lw >= 4 %}style="display:none;"{% endif %}>
+              <span class="cf-gnum">G5</span>
+              <span class="cf-venue">{{ cf.high.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-gold">GOLD</span>
+              <span class="cf-wr">84.2%</span>
+              <span class="cf-note">讓分 (押主場) · 回歸主場最強信號</span>
+            </div>
+            {# G6 #}
+            <div class="cf-game-row {% if gp >= 6 %}played{% endif %}" {% if hw >= 4 or lw >= 4 or (hw + lw < 5) %}style="display:none;"{% endif %}>
+              <span class="cf-gnum">G6</span>
+              <span class="cf-venue">{{ cf.low.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-none">—</span>
+              <span class="cf-wr dim">無信號</span>
+              <span class="cf-note">R3+ G6 已停用 (53.8%)</span>
+            </div>
+            {# G7 #}
+            <div class="cf-game-row" {% if hw + lw < 6 %}style="display:none;"{% endif %}>
+              <span class="cf-gnum">G7</span>
+              <span class="cf-venue">{{ cf.high.team_zh }}主場</span>
+              <span class="cf-signal-badge tier-silver">SILVER</span>
+              <span class="cf-wr">61.3%</span>
+              <span class="cf-note">G7 冷門 cover · 樣本 n=31</span>
+            </div>
+          </div>
+          <div class="cf-roadmap-footer">
+            3 場 GOLD 信號 (G1·G2·G5) + 1 場 SILVER (G7) = 系列賽最多 4 次操作機會
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
 
     <div class="signal-ref">
       <h3>📊 季後賽結構信號 · 歷史勝率參考</h3>

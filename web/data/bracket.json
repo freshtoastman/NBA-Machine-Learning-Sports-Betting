@@ -343,8 +343,8 @@
      "seed": 4
     },
     "high_wins": 3,
-    "low_wins": 3,
-    "games_played": 6
+    "low_wins": 4,
+    "games_played": 7
    },
    {
     "label": "2/7 vs 3/6",
@@ -373,8 +373,7 @@
   ],
   "conf_finals": {
    "label": "分區決賽",
-   "high": "R2A 勝者",
-   "low": {
+   "high": {
     "team": "New York Knicks",
     "team_zh": "紐約尼克",
     "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
@@ -382,6 +381,28 @@
     "losses": 29,
     "win_pct": 0.646,
     "seed": 3
+   },
+   "low": {
+    "team": "Cleveland Cavaliers",
+    "team_zh": "克里夫蘭騎士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 4
+   },
+   "high_wins": 0,
+   "low_wins": 0,
+   "games_played": 0,
+   "next_signal": {
+    "game_num": 1,
+    "signal": "CF G1主場壓制",
+    "side": "home",
+    "home_team": "New York Knicks",
+    "home_team_zh": "紐約尼克",
+    "tier": "GOLD",
+    "backtest_wr": 0.833,
+    "reason_zh": "分區決賽G1主場cover率 83.3% (20/24，13季)，近5季 100% (8/8)，讓分≥5時 12/12全中"
    }
   }
  },
@@ -787,18 +808,18 @@
  },
  "signal_tracker": {
   "total": 55,
-  "decided": 52,
-  "wins": 39,
+  "decided": 53,
+  "wins": 40,
   "losses": 13,
-  "pending": 3,
-  "hit_rate": 75.0,
-  "pnl": 22.49,
-  "roi": 43.2,
+  "pending": 2,
+  "hit_rate": 75.5,
+  "pnl": 23.4,
+  "roi": 44.2,
   "by_tier": {
    "SILVER": {
-    "wins": 27,
+    "wins": 28,
     "losses": 9,
-    "pending": 1
+    "pending": 0
    },
    "GOLD": {
     "wins": 12,
@@ -838,30 +859,30 @@
     "hit_rate": 68.8
    },
    "G7": {
-    "wins": 1,
+    "wins": 2,
     "losses": 0,
-    "pending": 1,
+    "pending": 0,
     "hit_rate": 100.0
    }
   },
   "by_game": {
    "total": 39,
-   "decided": 32,
-   "wins": 26,
+   "decided": 33,
+   "wins": 27,
    "losses": 6,
-   "pending": 7,
-   "hit_rate": 81.2,
-   "pnl": 17.66,
-   "roi": 55.2
+   "pending": 6,
+   "hit_rate": 81.8,
+   "pnl": 18.57,
+   "roi": 56.3
   },
   "no_conflict": {
-   "decided": 31,
-   "wins": 26,
+   "decided": 32,
+   "wins": 27,
    "losses": 5,
-   "pending": 3,
-   "hit_rate": 83.9,
-   "pnl": 18.66,
-   "roi": 60.2
+   "pending": 2,
+   "hit_rate": 84.4,
+   "pnl": 19.57,
+   "roi": 61.2
   },
   "details": [
    {
@@ -1496,8 +1517,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.613,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -35.5,
     "game_num": 7
    },
    {

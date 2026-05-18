@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 39,
+  "hits": 40,
   "misses": 13,
-  "pending": 3,
-  "decided": 52,
-  "hit_rate": 75.0,
+  "pending": 2,
+  "decided": 53,
+  "hit_rate": 75.5,
   "conviction": {
-   "crushing_hits": 15,
+   "crushing_hits": 16,
    "dominant_hits": 10,
    "moderate_hits": 7,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 39,
-   "true_conviction_hits": 32,
-   "raw_hit_rate": 75.0,
-   "true_conviction_rate": 61.5,
-   "note_zh": "15 碾壓主導 + 10 主導 + 7 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 61.5%"
+   "total_hits": 40,
+   "true_conviction_hits": 33,
+   "raw_hit_rate": 75.5,
+   "true_conviction_rate": 62.3,
+   "note_zh": "16 碾壓主導 + 10 主導 + 7 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 62.3%"
   },
   "history": [
    {
@@ -1728,23 +1728,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": -21.9,
     "q4_swing": -4
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-17",
     "game": "克里夫蘭騎士 @ 底特律活塞",
-    "signals": [
-     "淘汰局押冷門"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 61,
+    "signal": "淘汰局押冷門",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.613,
+    "ats_winner": "away",
+    "ats_cover_margin": -35.5,
     "series_game_num": 7,
-    "series_score": "3-3",
-    "has_strong_consensus": false,
-    "spread": 4.5
-   },
+    "series_home_wins": 3,
+    "series_away_wins": 3,
+    "strong_consensus": null,
+    "home_team": "Detroit Pistons",
+    "away_team": "Cleveland Cavaliers",
+    "spread": 4.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": 29.4,
+     "final_picked_margin": 35.5,
+     "q4_swing": -5,
+     "shrinkage": -6.1,
+     "garbage_time": false
+    },
+    "conviction": "crushing",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 29.4,
+    "q4_swing": -5
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-05-18",
     "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
@@ -1777,18 +1795,18 @@
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
-    "hits": 6,
+    "hits": 7,
     "misses": 3,
-    "n": 9,
+    "n": 10,
     "tier": "SILVER",
-    "hit_rate": 66.7,
+    "hit_rate": 70.0,
     "backtest_wr": 65.4,
-    "crushing_hits": 4,
+    "crushing_hits": 5,
     "dominant_hits": 2,
     "moderate_hits": 0,
     "narrow_hits": 0,
     "garbage_time_hits": 3,
-    "true_hit_rate": 66.7
+    "true_hit_rate": 70.0
    },
    {
     "signal": "G3客場擴大優勢",
@@ -2044,35 +2062,35 @@
    "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，0場待定"
   },
   "best_pick": {
-   "hits": 28,
+   "hits": 29,
    "misses": 8,
-   "pending": 3,
-   "decided": 36,
-   "hit_rate": 77.8,
+   "pending": 2,
+   "decided": 37,
+   "hit_rate": 78.4,
    "gold_hits": 11,
    "gold_misses": 4,
-   "silver_hits": 17,
+   "silver_hits": 18,
    "silver_misses": 4,
-   "dominant_hits": 15,
+   "dominant_hits": 16,
    "moderate_hits": 7,
    "narrow_hits": 2,
-   "true_hit_rate": 61.1,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 28勝/36場決定 = 77.8%"
+   "true_hit_rate": 62.2,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 29勝/37場決定 = 78.4%"
   },
   "no_conflict": {
-   "hits": 26,
+   "hits": 27,
    "misses": 5,
-   "pending": 3,
-   "decided": 31,
-   "hit_rate": 83.9,
-   "note_zh": "無衝突場次(所有信號同向): 26勝/31場決定 = 83.9%"
+   "pending": 2,
+   "decided": 32,
+   "hit_rate": 84.4,
+   "note_zh": "無衝突場次(所有信號同向): 27勝/32場決定 = 84.4%"
   }
  },
  "playoff_home_ats": {
-  "games": 74,
+  "games": 75,
   "home_covers": 41,
-  "away_covers": 33,
-  "home_cover_rate": 55.4,
-  "note_zh": "本季季後賽共 74 場有結果，主場過盤 41 場 (55.4%)"
+  "away_covers": 34,
+  "home_cover_rate": 54.7,
+  "note_zh": "本季季後賽共 75 場有結果，主場過盤 41 場 (54.7%)"
  }
 }

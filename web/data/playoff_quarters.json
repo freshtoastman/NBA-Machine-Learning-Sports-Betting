@@ -1626,5 +1626,27 @@
     ],
     "home_score": 109,
     "away_score": 139
+  },
+  {
+    "gameId": "401871339",
+    "date": "2026-05-17",
+    "home_tri": "DET",
+    "away_tri": "CLE",
+    "home_name": "Detroit Pistons",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      22,
+      25,
+      26,
+      21
+    ],
+    "q_away": [
+      31,
+      33,
+      35,
+      26
+    ],
+    "home_score": 94,
+    "away_score": 125
   }
 ]

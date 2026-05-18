@@ -24,8 +24,8 @@
     "backtest_wr": 0.613,
     "backtest_roi": 22.6,
     "reason_zh": "G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -35.5,
     "series_game_num": 7,
     "series_home_wins": 3,
     "series_away_wins": 3,
@@ -34,9 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Cleveland Cavaliers: Larry Nance Jr. (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -56,8 +54,8 @@
   "Cleveland Cavaliers:Detroit Pistons": {
    "home_team": "Detroit Pistons",
    "away_team": "Cleveland Cavaliers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 94,
+   "away_score": 125,
    "spread": 4.5,
    "Spread": 4.5,
    "OU": 205.5,
@@ -75,15 +73,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 219,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -35.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -115,14 +113,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 94,
-   "live_away_score": 125,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
-   "injuries_away": [
-    "Larry Nance Jr. (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-17T01:21:39+00:00",
@@ -170,12 +161,21 @@
    "conference": "west"
   },
   {
+   "round_num": 3,
+   "round_label": "東區決賽",
+   "high_seed": "New York Knicks",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 0,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
    "round_num": 2,
    "round_label": "第二輪",
    "high_seed": "Detroit Pistons",
    "low_seed": "Cleveland Cavaliers",
    "high_wins": 3,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {
