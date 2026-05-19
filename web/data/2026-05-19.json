@@ -1,6 +1,6 @@
 {
  "date": "2026-05-19",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -34,21 +34,10 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  "injury_alerts": [
+   "New York Knicks: OG Anunoby (可能出賽)",
+   "Cleveland Cavaliers: Larry Nance Jr. (存疑)"
+  ]
  },
  "games": {
   "Cleveland Cavaliers:New York Knicks": {
@@ -58,9 +47,9 @@
    "away_score": null,
    "spread": 7.5,
    "Spread": 7.5,
-   "OU": 215.5,
-   "ML_Home": -265,
-   "ML_Away": 215,
+   "OU": 217.5,
+   "ML_Home": -270,
+   "ML_Away": 220,
    "Days_Rest_Home": 8,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -112,26 +101,38 @@
    "away_team_zh": "克里夫蘭騎士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "injuries_home": [],
-   "injuries_away": [],
+   "injuries_home": [
+    "OG Anunoby (可能出賽)"
+   ],
+   "injuries_away": [
+    "Larry Nance Jr. (存疑)"
+   ],
    "odds_history": [
     {
-     "fetched_at": "2026-05-18T06:00:00+00:00",
+     "fetched_at": "2026-05-19T04:16:18+00:00",
      "spread": 7.5,
      "ou": 215.5,
      "ml_home": -265,
      "ml_away": 215,
-     "source": "draftkings_opening"
+     "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-19T04:16:25+00:00",
+     "spread": 7.5,
+     "ou": 217.5,
+     "ml_home": -270,
+     "ml_away": 220,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 7.5,
    "spread_last": 7.5,
    "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-05-18T06:00:00+00:00",
-   "spread_last_fetched_at": "2026-05-18T06:00:00+00:00",
+   "spread_first_fetched_at": "2026-05-19T04:16:18+00:00",
+   "spread_last_fetched_at": "2026-05-19T04:16:25+00:00",
    "ou_first": 215.5,
-   "ou_last": 215.5,
-   "ou_move": 0.0
+   "ou_last": 217.5,
+   "ou_move": 2.0
   }
  },
  "active_series": [
@@ -141,7 +142,7 @@
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   },
   {
@@ -152,6 +153,42 @@
    "high_wins": 0,
    "low_wins": 0,
    "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 3,
+   "low_wins": 4,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "New York Knicks",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Los Angeles Lakers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "San Antonio Spurs",
+   "low_seed": "Minnesota Timberwolves",
+   "high_wins": 4,
+   "low_wins": 2,
+   "conference": "west"
   }
  ],
  "is_playoff_view": true

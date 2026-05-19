@@ -792,29 +792,30 @@
     "seed": 2
    },
    "high_wins": 0,
-   "low_wins": 0,
-   "games_played": 0,
+   "low_wins": 1,
+   "games_played": 1,
    "next_signal": {
-    "game_num": 1,
-    "signal": "CF G1主場壓制",
+    "game_num": 2,
+    "signal": "G2主場反彈 (輸G1)",
     "side": "home",
     "home_team": "Oklahoma City Thunder",
     "home_team_zh": "奧克拉荷馬雷霆",
-    "tier": "GOLD",
-    "backtest_wr": 0.833,
-    "reason_zh": "分區決賽G1主場cover率 83.3% (20/24，13季)，近5季 100% (8/8)，讓分≥5時 12/12全中"
+    "tier": "SILVER",
+    "backtest_wr": 0.649,
+    "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
+    "signal_team_zh": "奧克拉荷馬雷霆"
    }
   }
  },
  "signal_tracker": {
   "total": 55,
-  "decided": 53,
+  "decided": 54,
   "wins": 40,
-  "losses": 13,
-  "pending": 2,
-  "hit_rate": 75.5,
-  "pnl": 23.4,
-  "roi": 44.2,
+  "losses": 14,
+  "pending": 1,
+  "hit_rate": 74.1,
+  "pnl": 22.4,
+  "roi": 41.5,
   "by_tier": {
    "SILVER": {
     "wins": 28,
@@ -823,16 +824,16 @@
    },
    "GOLD": {
     "wins": 12,
-    "losses": 4,
-    "pending": 2
+    "losses": 5,
+    "pending": 1
    }
   },
   "by_game_num": {
    "G1": {
     "wins": 9,
-    "losses": 3,
-    "pending": 2,
-    "hit_rate": 75.0
+    "losses": 4,
+    "pending": 1,
+    "hit_rate": 69.2
    },
    "G2": {
     "wins": 11,
@@ -867,22 +868,22 @@
   },
   "by_game": {
    "total": 39,
+   "decided": 34,
+   "wins": 27,
+   "losses": 7,
+   "pending": 5,
+   "hit_rate": 79.4,
+   "pnl": 17.57,
+   "roi": 51.7
+  },
+  "no_conflict": {
    "decided": 33,
    "wins": 27,
    "losses": 6,
-   "pending": 6,
+   "pending": 1,
    "hit_rate": 81.8,
    "pnl": 18.57,
    "roi": 56.3
-  },
-  "no_conflict": {
-   "decided": 32,
-   "wins": 27,
-   "losses": 5,
-   "pending": 2,
-   "hit_rate": 84.4,
-   "pnl": 19.57,
-   "roi": 61.2
   },
   "details": [
    {
@@ -1529,8 +1530,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.833,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -14.5,
     "game_num": 1
    },
    {

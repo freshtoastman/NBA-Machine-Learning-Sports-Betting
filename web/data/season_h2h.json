@@ -189,6 +189,16 @@
     "home_score": 109,
     "away_score": 94,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-05-19",
+    "home": "New York Knicks",
+    "away": "Cleveland Cavaliers",
+    "spread": 7.5,
+    "win_margin": null,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ],
   "Atlanta Hawks:Toronto Raptors": [
@@ -9443,10 +9453,10 @@
     "home": "Oklahoma City Thunder",
     "away": "San Antonio Spurs",
     "spread": 7.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -7,
+    "home_score": 115,
+    "away_score": 122,
+    "ats_result": "away"
    }
   ],
   "Charlotte Hornets:Cleveland Cavaliers": [
