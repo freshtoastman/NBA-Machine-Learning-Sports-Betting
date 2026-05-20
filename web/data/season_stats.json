@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 40,
+  "hits": 41,
   "misses": 14,
-  "pending": 1,
-  "decided": 54,
-  "hit_rate": 74.1,
+  "pending": 0,
+  "decided": 55,
+  "hit_rate": 74.5,
   "conviction": {
-   "crushing_hits": 16,
+   "crushing_hits": 17,
    "dominant_hits": 10,
    "moderate_hits": 7,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 40,
-   "true_conviction_hits": 33,
-   "raw_hit_rate": 74.1,
-   "true_conviction_rate": 61.1,
-   "note_zh": "16 碾壓主導 + 10 主導 + 7 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 61.1%"
+   "total_hits": 41,
+   "true_conviction_hits": 34,
+   "raw_hit_rate": 74.5,
+   "true_conviction_rate": 61.8,
+   "note_zh": "17 碾壓主導 + 10 主導 + 7 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 61.8%"
   },
   "history": [
    {
@@ -1792,24 +1792,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": -12.6,
     "q4_swing": 7
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-19",
     "game": "克里夫蘭騎士 @ 紐約尼克",
-    "signals": [
-     "CF G1主場壓制"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 83,
+    "signal": "CF G1主場壓制",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.833,
+    "ats_winner": "home",
+    "ats_cover_margin": 3.5,
     "series_game_num": 1,
-    "series_score": "0-0",
-    "has_strong_consensus": false,
-    "spread": 7.5
+    "series_home_wins": 0,
+    "series_away_wins": 0,
+    "strong_consensus": null,
+    "home_team": "New York Knicks",
+    "away_team": "Cleveland Cavaliers",
+    "spread": 7.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": -19.6,
+     "final_picked_margin": 3.5,
+     "q4_swing": 14,
+     "shrinkage": -23.1,
+     "garbage_time": false
+    },
+    "conviction": "crushing",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": -19.6,
+    "q4_swing": 14
    }
   ],
+  "pending_by_game": [],
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
@@ -2052,6 +2069,21 @@
     "true_hit_rate": 50.0
    },
    {
+    "signal": "CF G1主場壓制",
+    "hits": 1,
+    "misses": 1,
+    "n": 2,
+    "tier": "GOLD",
+    "hit_rate": 50.0,
+    "backtest_wr": 83.3,
+    "crushing_hits": 1,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 50.0
+   },
+   {
     "signal": "客場明顯強勢",
     "hits": 0,
     "misses": 1,
@@ -2059,21 +2091,6 @@
     "tier": "SILVER",
     "hit_rate": 0.0,
     "backtest_wr": 59.4,
-    "crushing_hits": 0,
-    "dominant_hits": 0,
-    "moderate_hits": 0,
-    "narrow_hits": 0,
-    "garbage_time_hits": 0,
-    "true_hit_rate": 0.0
-   },
-   {
-    "signal": "CF G1主場壓制",
-    "hits": 0,
-    "misses": 1,
-    "n": 1,
-    "tier": "GOLD",
-    "hit_rate": 0.0,
-    "backtest_wr": 83.3,
     "crushing_hits": 0,
     "dominant_hits": 0,
     "moderate_hits": 0,
@@ -2095,35 +2112,35 @@
    "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，0場待定"
   },
   "best_pick": {
-   "hits": 29,
+   "hits": 30,
    "misses": 9,
-   "pending": 1,
-   "decided": 38,
-   "hit_rate": 76.3,
-   "gold_hits": 11,
+   "pending": 0,
+   "decided": 39,
+   "hit_rate": 76.9,
+   "gold_hits": 12,
    "gold_misses": 5,
    "silver_hits": 18,
    "silver_misses": 4,
    "dominant_hits": 16,
-   "moderate_hits": 7,
+   "moderate_hits": 8,
    "narrow_hits": 2,
-   "true_hit_rate": 60.5,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 29勝/38場決定 = 76.3%"
+   "true_hit_rate": 61.5,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 30勝/39場決定 = 76.9%"
   },
   "no_conflict": {
-   "hits": 27,
+   "hits": 28,
    "misses": 6,
-   "pending": 1,
-   "decided": 33,
-   "hit_rate": 81.8,
-   "note_zh": "無衝突場次(所有信號同向): 27勝/33場決定 = 81.8%"
+   "pending": 0,
+   "decided": 34,
+   "hit_rate": 82.4,
+   "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"
   }
  },
  "playoff_home_ats": {
-  "games": 76,
-  "home_covers": 41,
+  "games": 77,
+  "home_covers": 42,
   "away_covers": 35,
-  "home_cover_rate": 53.9,
-  "note_zh": "本季季後賽共 76 場有結果，主場過盤 41 場 (53.9%)"
+  "home_cover_rate": 54.5,
+  "note_zh": "本季季後賽共 77 場有結果，主場過盤 42 場 (54.5%)"
  }
 }

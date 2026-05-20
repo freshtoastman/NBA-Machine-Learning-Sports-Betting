@@ -195,10 +195,10 @@
     "home": "New York Knicks",
     "away": "Cleveland Cavaliers",
     "spread": 7.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 11,
+    "home_score": 115,
+    "away_score": 104,
+    "ats_result": "home"
    }
   ],
   "Atlanta Hawks:Toronto Raptors": [

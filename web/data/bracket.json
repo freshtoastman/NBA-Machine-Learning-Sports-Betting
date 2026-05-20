@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-19",
+ "generated_for": "2026-05-20",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -391,18 +391,19 @@
     "win_pct": 0.634,
     "seed": 4
    },
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 0,
-   "games_played": 0,
+   "games_played": 1,
    "next_signal": {
-    "game_num": 1,
-    "signal": "CF G1主場壓制",
+    "game_num": 2,
+    "signal": "G2無明顯信號 (G1窄勝)",
     "side": "home",
     "home_team": "New York Knicks",
     "home_team_zh": "紐約尼克",
-    "tier": "GOLD",
-    "backtest_wr": 0.833,
-    "reason_zh": "分區決賽G1主場cover率 83.3% (20/24，13季)，近5季 100% (8/8)，讓分≥5時 12/12全中"
+    "tier": "NONE",
+    "backtest_wr": 0.478,
+    "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
+    "signal_team_zh": "紐約尼克"
    }
   }
  },
@@ -809,13 +810,13 @@
  },
  "signal_tracker": {
   "total": 55,
-  "decided": 54,
-  "wins": 40,
+  "decided": 55,
+  "wins": 41,
   "losses": 14,
-  "pending": 1,
-  "hit_rate": 74.1,
-  "pnl": 22.4,
-  "roi": 41.5,
+  "pending": 0,
+  "hit_rate": 74.5,
+  "pnl": 23.31,
+  "roi": 42.4,
   "by_tier": {
    "SILVER": {
     "wins": 28,
@@ -823,17 +824,17 @@
     "pending": 0
    },
    "GOLD": {
-    "wins": 12,
+    "wins": 13,
     "losses": 5,
-    "pending": 1
+    "pending": 0
    }
   },
   "by_game_num": {
    "G1": {
-    "wins": 9,
+    "wins": 10,
     "losses": 4,
-    "pending": 1,
-    "hit_rate": 69.2
+    "pending": 0,
+    "hit_rate": 71.4
    },
    "G2": {
     "wins": 11,
@@ -868,22 +869,22 @@
   },
   "by_game": {
    "total": 39,
-   "decided": 34,
-   "wins": 27,
+   "decided": 35,
+   "wins": 28,
    "losses": 7,
-   "pending": 5,
-   "hit_rate": 79.4,
-   "pnl": 17.57,
-   "roi": 51.7
+   "pending": 4,
+   "hit_rate": 80.0,
+   "pnl": 18.48,
+   "roi": 52.8
   },
   "no_conflict": {
-   "decided": 33,
-   "wins": 27,
+   "decided": 34,
+   "wins": 28,
    "losses": 6,
-   "pending": 1,
-   "hit_rate": 81.8,
-   "pnl": 18.57,
-   "roi": 56.3
+   "pending": 0,
+   "hit_rate": 82.4,
+   "pnl": 19.48,
+   "roi": 57.3
   },
   "details": [
    {
@@ -1542,8 +1543,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.833,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 3.5,
     "game_num": 1
    }
   ]
