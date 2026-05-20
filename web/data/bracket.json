@@ -396,13 +396,13 @@
    "games_played": 1,
    "next_signal": {
     "game_num": 2,
-    "signal": "G2無明顯信號 (G1窄勝)",
+    "signal": "CF G2主場壓制",
     "side": "home",
     "home_team": "New York Knicks",
     "home_team_zh": "紐約尼克",
-    "tier": "NONE",
-    "backtest_wr": 0.478,
-    "reason_zh": "G1窄勝 (≤7 ATS分)，G2主場cover率約 47.8% (n=88)，接近持平，無明顯押注方向",
+    "tier": "GOLD",
+    "backtest_wr": 0.792,
+    "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
     "signal_team_zh": "紐約尼克"
    }
   }
@@ -797,23 +797,24 @@
    "games_played": 1,
    "next_signal": {
     "game_num": 2,
-    "signal": "G2主場反彈 (輸G1)",
+    "signal": "CF G2主場壓制",
     "side": "home",
     "home_team": "Oklahoma City Thunder",
     "home_team_zh": "奧克拉荷馬雷霆",
-    "tier": "SILVER",
-    "backtest_wr": 0.649,
-    "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
-    "signal_team_zh": "奧克拉荷馬雷霆"
+    "tier": "GOLD",
+    "backtest_wr": 0.792,
+    "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
+    "signal_team_zh": "奧克拉荷馬雷霆",
+    "consensus_count": 2
    }
   }
  },
  "signal_tracker": {
-  "total": 55,
+  "total": 58,
   "decided": 55,
   "wins": 41,
   "losses": 14,
-  "pending": 0,
+  "pending": 3,
   "hit_rate": 74.5,
   "pnl": 23.31,
   "roi": 42.4,
@@ -821,12 +822,12 @@
    "SILVER": {
     "wins": 28,
     "losses": 9,
-    "pending": 0
+    "pending": 1
    },
    "GOLD": {
     "wins": 13,
     "losses": 5,
-    "pending": 0
+    "pending": 2
    }
   },
   "by_game_num": {
@@ -839,7 +840,7 @@
    "G2": {
     "wins": 11,
     "losses": 1,
-    "pending": 0,
+    "pending": 3,
     "hit_rate": 91.7
    },
    "G3": {
@@ -868,11 +869,11 @@
    }
   },
   "by_game": {
-   "total": 39,
+   "total": 41,
    "decided": 35,
    "wins": 28,
    "losses": 7,
-   "pending": 4,
+   "pending": 6,
    "hit_rate": 80.0,
    "pnl": 18.48,
    "roi": 52.8
@@ -881,7 +882,7 @@
    "decided": 34,
    "wins": 28,
    "losses": 6,
-   "pending": 0,
+   "pending": 2,
    "hit_rate": 82.4,
    "pnl": 19.48,
    "roi": 57.3
@@ -1546,6 +1547,42 @@
     "result": "win",
     "margin": 3.5,
     "game_num": 1
+   },
+   {
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.792,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-21",
+    "away": "克里夫蘭騎士",
+    "home": "紐約尼克",
+    "signal": "CF G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.792,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
    }
   ]
  }

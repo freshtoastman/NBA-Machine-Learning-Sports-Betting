@@ -1,0 +1,223 @@
+{
+ "date": "2026-05-20",
+ "is_today": true,
+ "summary": {
+  "games": 1,
+  "home_picks": 0,
+  "away_picks": 1,
+  "over_picks": 0,
+  "under_picks": 1,
+  "avg_confidence": 0.0,
+  "value_picks": 0,
+  "golden_picks": 0,
+  "playoff_ats_alerts": [
+   {
+    "game_key": "San Antonio Spurs:Oklahoma City Thunder",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "away_team_zh": "聖安東尼奧馬刺",
+    "signal": "CF G2主場壓制",
+    "side": "home",
+    "ats_side": "讓分(押fav)",
+    "tier": "GOLD",
+    "backtest_wr": 0.792,
+    "backtest_roi": 58.3,
+    "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "series_game_num": 2,
+    "series_home_wins": 0,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "has_conflict": false
+   },
+   {
+    "game_key": "San Antonio Spurs:Oklahoma City Thunder",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "away_team_zh": "聖安東尼奧馬刺",
+    "signal": "G2主場反彈 (輸G1)",
+    "side": "home",
+    "ats_side": "讓分(押fav)",
+    "tier": "SILVER",
+    "backtest_wr": 0.649,
+    "backtest_roi": 18.4,
+    "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "series_game_num": 2,
+    "series_home_wins": 0,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "has_conflict": false
+   }
+  ],
+  "playoff_ats_count": 2,
+  "injury_alerts": [
+   "San Antonio Spurs: De'Aaron Fox (存疑)"
+  ]
+ },
+ "games": {
+  "San Antonio Spurs:Oklahoma City Thunder": {
+   "home_team": "Oklahoma City Thunder",
+   "away_team": "San Antonio Spurs",
+   "home_score": null,
+   "away_score": null,
+   "spread": 6.5,
+   "Spread": 6.5,
+   "OU": 216.5,
+   "ML_Home": -255,
+   "ML_Away": 210,
+   "Days_Rest_Home": 2,
+   "Days_Rest_Away": 2,
+   "home_confidence": null,
+   "away_confidence": null,
+   "value_side": null,
+   "is_value": false,
+   "ats_model_pick": null,
+   "ats_model_home_prob": null,
+   "ats_model_confidence": null,
+   "ats_value_edge": null,
+   "ats_is_value": false,
+   "is_historical": true,
+   "actual_home_win": null,
+   "actual_winner": null,
+   "actual_total": null,
+   "actual_ou_result": null,
+   "ml_correct": null,
+   "ou_correct": null,
+   "ats_winner": null,
+   "ats_cover_margin": null,
+   "is_upcoming": true,
+   "is_playoff": true,
+   "playoff_ats_picks": [
+    {
+     "signal": "CF G2主場壓制",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "GOLD",
+     "backtest_wr": 0.792,
+     "backtest_roi": 58.3,
+     "backtest_n": 24,
+     "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢"
+    },
+    {
+     "signal": "G2主場反彈 (輸G1)",
+     "side": "home",
+     "ats_side": "讓分(押fav)",
+     "tier": "SILVER",
+     "backtest_wr": 0.649,
+     "backtest_roi": 18.4,
+     "backtest_n": 57,
+     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)"
+    }
+   ],
+   "playoff_ats_best_side": "home",
+   "playoff_ats_best_signal": "CF G2主場壓制",
+   "playoff_ats_best_tier": "GOLD",
+   "playoff_ats_consensus": "home",
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": "home",
+   "series_round": "西區決賽",
+   "round_num": 3,
+   "series_game_num": 2,
+   "series_home_wins": 0,
+   "series_away_wins": 1,
+   "series_status_text": "客隊領先 1-0",
+   "series_is_elimination": false,
+   "home_team_zh": "奧克拉荷馬雷霆",
+   "away_team_zh": "聖安東尼奧馬刺",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": [
+    "De'Aaron Fox (存疑)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-20T14:10:38+00:00",
+     "spread": 6.5,
+     "ou": 216.5,
+     "ml_home": -238,
+     "ml_away": 195,
+     "source": "manual_web"
+    },
+    {
+     "fetched_at": "2026-05-20T14:10:53+00:00",
+     "spread": 6.5,
+     "ou": 216.5,
+     "ml_home": -255,
+     "ml_away": 210,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 6.5,
+   "spread_last": 6.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-20T14:10:38+00:00",
+   "spread_last_fetched_at": "2026-05-20T14:10:53+00:00",
+   "ou_first": 216.5,
+   "ou_last": 216.5,
+   "ou_move": 0.0
+  }
+ },
+ "active_series": [
+  {
+   "round_num": 3,
+   "round_label": "西區決賽",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 0,
+   "low_wins": 1,
+   "conference": "west"
+  },
+  {
+   "round_num": 3,
+   "round_label": "東區決賽",
+   "high_seed": "New York Knicks",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 1,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 3,
+   "low_wins": 4,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "New York Knicks",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Los Angeles Lakers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "San Antonio Spurs",
+   "low_seed": "Minnesota Timberwolves",
+   "high_wins": 4,
+   "low_wins": 2,
+   "conference": "west"
+  }
+ ],
+ "is_playoff_view": true
+}

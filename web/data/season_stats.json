@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 41,
   "misses": 14,
-  "pending": 0,
+  "pending": 3,
   "decided": 55,
   "hit_rate": 74.5,
   "conviction": {
@@ -1826,7 +1826,37 @@
     "q4_swing": 14
    }
   ],
-  "pending_by_game": [],
+  "pending_by_game": [
+   {
+    "date": "2026-05-20",
+    "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
+    "signals": [
+     "CF G2主場壓制",
+     "G2主場反彈 (輸G1)"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 79,
+    "series_game_num": 2,
+    "series_score": "1-0",
+    "has_strong_consensus": true,
+    "spread": 6.5
+   },
+   {
+    "date": "2026-05-21",
+    "game": "克里夫蘭騎士 @ 紐約尼克",
+    "signals": [
+     "CF G2主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 79,
+    "series_game_num": 2,
+    "series_score": "0-1",
+    "has_strong_consensus": false,
+    "spread": 6.5
+   }
+  ],
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
@@ -2102,19 +2132,19 @@
   "strong_consensus": {
    "hits": 8,
    "misses": 2,
-   "pending": 0,
+   "pending": 1,
    "decided": 10,
    "hit_rate": 80.0,
    "dominant_hits": 6,
    "moderate_hits": 0,
    "narrow_hits": 1,
    "true_hit_rate": 60.0,
-   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，0場待定"
+   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，1場待定"
   },
   "best_pick": {
    "hits": 30,
    "misses": 9,
-   "pending": 0,
+   "pending": 2,
    "decided": 39,
    "hit_rate": 76.9,
    "gold_hits": 12,
@@ -2130,7 +2160,7 @@
   "no_conflict": {
    "hits": 28,
    "misses": 6,
-   "pending": 0,
+   "pending": 2,
    "decided": 34,
    "hit_rate": 82.4,
    "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"
