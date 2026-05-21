@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 41,
+  "hits": 43,
   "misses": 14,
-  "pending": 3,
-  "decided": 55,
-  "hit_rate": 74.5,
+  "pending": 1,
+  "decided": 57,
+  "hit_rate": 75.4,
   "conviction": {
    "crushing_hits": 17,
    "dominant_hits": 10,
-   "moderate_hits": 7,
+   "moderate_hits": 9,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 41,
-   "true_conviction_hits": 34,
-   "raw_hit_rate": 74.5,
-   "true_conviction_rate": 61.8,
-   "note_zh": "17 碾壓主導 + 10 主導 + 7 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 61.8%"
+   "total_hits": 43,
+   "true_conviction_hits": 36,
+   "raw_hit_rate": 75.4,
+   "true_conviction_rate": 63.2,
+   "note_zh": "17 碾壓主導 + 10 主導 + 9 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 63.2%"
   },
   "history": [
    {
@@ -1824,24 +1824,73 @@
     "conviction_source": "q3",
     "q3_picked_margin": -19.6,
     "q4_swing": 14
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-20",
     "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
-    "signals": [
-     "CF G2主場壓制",
-     "G2主場反彈 (輸G1)"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 79,
+    "signal": "CF G2主場壓制",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.792,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
     "series_game_num": 2,
-    "series_score": "1-0",
-    "has_strong_consensus": true,
-    "spread": 6.5
+    "series_home_wins": 0,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "spread": 6.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": 3.1,
+     "final_picked_margin": 2.5,
+     "q4_swing": 1,
+     "shrinkage": 0.6,
+     "garbage_time": false
+    },
+    "conviction": "moderate",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 3.1,
+    "q4_swing": 1
    },
+   {
+    "date": "2026-05-20",
+    "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
+    "signal": "G2主場反彈 (輸G1)",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.649,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
+    "series_game_num": 2,
+    "series_home_wins": 0,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "spread": 6.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": 3.1,
+     "final_picked_margin": 2.5,
+     "q4_swing": 1,
+     "shrinkage": 0.6,
+     "garbage_time": false
+    },
+    "conviction": "moderate",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 3.1,
+    "q4_swing": 1
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-05-21",
     "game": "克里夫蘭騎士 @ 紐約尼克",
@@ -1902,6 +1951,21 @@
     "narrow_hits": 2,
     "garbage_time_hits": 0,
     "true_hit_rate": 50.0
+   },
+   {
+    "signal": "G2主場反彈 (輸G1)",
+    "hits": 3,
+    "misses": 0,
+    "n": 3,
+    "tier": "SILVER",
+    "hit_rate": 100.0,
+    "backtest_wr": 64.9,
+    "crushing_hits": 2,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "garbage_time_hits": 1,
+    "true_hit_rate": 100.0
    },
    {
     "signal": "G6R1客場壓制",
@@ -2024,21 +2088,6 @@
     "true_hit_rate": 100.0
    },
    {
-    "signal": "G2主場反彈 (輸G1)",
-    "hits": 2,
-    "misses": 0,
-    "n": 2,
-    "tier": "SILVER",
-    "hit_rate": 100.0,
-    "backtest_wr": 64.9,
-    "crushing_hits": 2,
-    "dominant_hits": 0,
-    "moderate_hits": 0,
-    "narrow_hits": 0,
-    "garbage_time_hits": 1,
-    "true_hit_rate": 100.0
-   },
-   {
     "signal": "G6主場收官陷阱",
     "hits": 2,
     "misses": 1,
@@ -2114,6 +2163,21 @@
     "true_hit_rate": 50.0
    },
    {
+    "signal": "CF G2主場壓制",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "GOLD",
+    "hit_rate": 100.0,
+    "backtest_wr": 79.2,
+    "crushing_hits": 0,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 100.0
+   },
+   {
     "signal": "客場明顯強勢",
     "hits": 0,
     "misses": 1,
@@ -2130,47 +2194,47 @@
    }
   ],
   "strong_consensus": {
-   "hits": 8,
+   "hits": 9,
    "misses": 2,
-   "pending": 1,
-   "decided": 10,
-   "hit_rate": 80.0,
+   "pending": 0,
+   "decided": 11,
+   "hit_rate": 81.8,
    "dominant_hits": 6,
    "moderate_hits": 0,
-   "narrow_hits": 1,
-   "true_hit_rate": 60.0,
-   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，1場待定"
+   "narrow_hits": 2,
+   "true_hit_rate": 54.5,
+   "note_zh": "強共識(2+SILVER一致): 9勝/11場決定 = 81.8%，0場待定"
   },
   "best_pick": {
-   "hits": 30,
+   "hits": 31,
    "misses": 9,
-   "pending": 2,
-   "decided": 39,
-   "hit_rate": 76.9,
-   "gold_hits": 12,
+   "pending": 1,
+   "decided": 40,
+   "hit_rate": 77.5,
+   "gold_hits": 13,
    "gold_misses": 5,
    "silver_hits": 18,
    "silver_misses": 4,
    "dominant_hits": 16,
    "moderate_hits": 8,
-   "narrow_hits": 2,
-   "true_hit_rate": 61.5,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 30勝/39場決定 = 76.9%"
+   "narrow_hits": 3,
+   "true_hit_rate": 60.0,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 31勝/40場決定 = 77.5%"
   },
   "no_conflict": {
-   "hits": 28,
+   "hits": 29,
    "misses": 6,
-   "pending": 2,
-   "decided": 34,
-   "hit_rate": 82.4,
-   "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"
+   "pending": 1,
+   "decided": 35,
+   "hit_rate": 82.9,
+   "note_zh": "無衝突場次(所有信號同向): 29勝/35場決定 = 82.9%"
   }
  },
  "playoff_home_ats": {
-  "games": 77,
-  "home_covers": 42,
+  "games": 78,
+  "home_covers": 43,
   "away_covers": 35,
-  "home_cover_rate": 54.5,
-  "note_zh": "本季季後賽共 77 場有結果，主場過盤 42 場 (54.5%)"
+  "home_cover_rate": 55.1,
+  "note_zh": "本季季後賽共 78 場有結果，主場過盤 43 場 (55.1%)"
  }
 }

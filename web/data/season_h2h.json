@@ -9473,10 +9473,10 @@
     "home": "Oklahoma City Thunder",
     "away": "San Antonio Spurs",
     "spread": 6.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": 9,
+    "home_score": 122,
+    "away_score": 113,
+    "ats_result": "home"
    }
   ],
   "Charlotte Hornets:Cleveland Cavaliers": [

@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-20",
+ "generated_for": "2026-05-21",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -792,42 +792,40 @@
     "win_pct": 0.756,
     "seed": 2
    },
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
-   "games_played": 1,
+   "games_played": 2,
    "next_signal": {
-    "game_num": 2,
-    "signal": "CF G2主場壓制",
-    "side": "home",
-    "home_team": "Oklahoma City Thunder",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "tier": "GOLD",
-    "backtest_wr": 0.792,
-    "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
-    "signal_team_zh": "奧克拉荷馬雷霆",
-    "consensus_count": 2
+    "game_num": 3,
+    "signal": "G3平手客場冷門",
+    "side": "away",
+    "home_team": "San Antonio Spurs",
+    "home_team_zh": "聖安東尼奧馬刺",
+    "tier": "BRONZE",
+    "backtest_wr": 0.516,
+    "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
    }
   }
  },
  "signal_tracker": {
   "total": 58,
-  "decided": 55,
-  "wins": 41,
+  "decided": 57,
+  "wins": 43,
   "losses": 14,
-  "pending": 3,
-  "hit_rate": 74.5,
-  "pnl": 23.31,
-  "roi": 42.4,
+  "pending": 1,
+  "hit_rate": 75.4,
+  "pnl": 25.13,
+  "roi": 44.1,
   "by_tier": {
    "SILVER": {
-    "wins": 28,
+    "wins": 29,
     "losses": 9,
-    "pending": 1
+    "pending": 0
    },
    "GOLD": {
-    "wins": 13,
+    "wins": 14,
     "losses": 5,
-    "pending": 2
+    "pending": 1
    }
   },
   "by_game_num": {
@@ -838,10 +836,10 @@
     "hit_rate": 71.4
    },
    "G2": {
-    "wins": 11,
+    "wins": 13,
     "losses": 1,
-    "pending": 3,
-    "hit_rate": 91.7
+    "pending": 1,
+    "hit_rate": 92.9
    },
    "G3": {
     "wins": 5,
@@ -870,22 +868,22 @@
   },
   "by_game": {
    "total": 41,
-   "decided": 35,
-   "wins": 28,
+   "decided": 36,
+   "wins": 29,
    "losses": 7,
-   "pending": 6,
-   "hit_rate": 80.0,
-   "pnl": 18.48,
-   "roi": 52.8
+   "pending": 5,
+   "hit_rate": 80.6,
+   "pnl": 19.39,
+   "roi": 53.9
   },
   "no_conflict": {
-   "decided": 34,
-   "wins": 28,
+   "decided": 35,
+   "wins": 29,
    "losses": 6,
-   "pending": 2,
-   "hit_rate": 82.4,
-   "pnl": 19.48,
-   "roi": 57.3
+   "pending": 1,
+   "hit_rate": 82.9,
+   "pnl": 20.39,
+   "roi": 58.3
   },
   "details": [
    {
@@ -1556,8 +1554,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.792,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 2.5,
     "game_num": 2
    },
    {
@@ -1568,8 +1566,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.649,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 2.5,
     "game_num": 2
    },
    {

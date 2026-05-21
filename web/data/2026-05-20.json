@@ -1,6 +1,6 @@
 {
  "date": "2026-05-20",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -24,8 +24,8 @@
     "backtest_wr": 0.792,
     "backtest_roi": 58.3,
     "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
     "series_game_num": 2,
     "series_home_wins": 0,
     "series_away_wins": 1,
@@ -45,8 +45,8 @@
     "backtest_wr": 0.649,
     "backtest_roi": 18.4,
     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
     "series_game_num": 2,
     "series_home_wins": 0,
     "series_away_wins": 1,
@@ -55,16 +55,28 @@
    }
   ],
   "playoff_ats_count": 2,
-  "injury_alerts": [
-   "San Antonio Spurs: De'Aaron Fox (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "San Antonio Spurs:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
    "away_team": "San Antonio Spurs",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 122,
+   "away_score": 113,
    "spread": 6.5,
    "Spread": 6.5,
    "OU": 216.5,
@@ -82,15 +94,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 235,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 2.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -132,9 +144,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "De'Aaron Fox (存疑)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-20T14:10:38+00:00",
@@ -169,7 +179,7 @@
    "round_label": "西區決賽",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 0,
+   "high_wins": 1,
    "low_wins": 1,
    "conference": "west"
   },
