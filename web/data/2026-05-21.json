@@ -1,6 +1,6 @@
 {
  "date": "2026-05-21",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -34,7 +34,21 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": []
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Cleveland Cavaliers:New York Knicks": {
@@ -42,11 +56,11 @@
    "away_team": "Cleveland Cavaliers",
    "home_score": null,
    "away_score": null,
-   "spread": 6.5,
-   "Spread": 6.5,
-   "OU": 216.5,
-   "ML_Home": -240,
-   "ML_Away": 198,
+   "spread": 5.5,
+   "Spread": 5.5,
+   "OU": 215.5,
+   "ML_Home": -198,
+   "ML_Away": 166,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -99,6 +113,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 109,
+   "live_away_score": 93,
+   "live_status": "03:18 4th",
+   "live_is_final": false,
+   "live_home_covering": true,
    "injuries_away": [],
    "odds_history": [
     {
@@ -124,16 +143,24 @@
      "ml_home": -240,
      "ml_away": 198,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-22T02:59:32+00:00",
+     "spread": 5.5,
+     "ou": 215.5,
+     "ml_home": -198,
+     "ml_away": 166,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 7.5,
-   "spread_last": 6.5,
-   "spread_move": -1.0,
+   "spread_last": 5.5,
+   "spread_move": -2.0,
    "spread_first_fetched_at": "2026-05-20T14:10:38+00:00",
-   "spread_last_fetched_at": "2026-05-21T07:09:02+00:00",
+   "spread_last_fetched_at": "2026-05-22T02:59:32+00:00",
    "ou_first": 215.5,
-   "ou_last": 216.5,
-   "ou_move": 1.0
+   "ou_last": 215.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [

@@ -1903,7 +1903,11 @@
     "series_game_num": 2,
     "series_score": "0-1",
     "has_strong_consensus": false,
-    "spread": 6.5
+    "live_status": "03:18 4th",
+    "live_home_score": 109,
+    "live_away_score": 93,
+    "live_home_covering": true,
+    "spread": 5.5
    }
   ],
   "by_signal": [
