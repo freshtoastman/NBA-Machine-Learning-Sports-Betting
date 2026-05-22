@@ -1,0 +1,167 @@
+{
+ "date": "2026-05-22",
+ "is_today": true,
+ "summary": {
+  "games": 1,
+  "home_picks": 0,
+  "away_picks": 1,
+  "over_picks": 0,
+  "under_picks": 1,
+  "avg_confidence": 0.0,
+  "value_picks": 0,
+  "golden_picks": 0,
+  "playoff_ats_alerts": [],
+  "playoff_ats_count": 0,
+  "injury_alerts": [
+   "San Antonio Spurs: Dylan Harper (存疑)",
+   "San Antonio Spurs: De'Aaron Fox (缺陣)",
+   "Oklahoma City Thunder: Jalen Williams (存疑)"
+  ]
+ },
+ "games": {
+  "Oklahoma City Thunder:San Antonio Spurs": {
+   "home_team": "San Antonio Spurs",
+   "away_team": "Oklahoma City Thunder",
+   "home_score": null,
+   "away_score": null,
+   "spread": 1.5,
+   "Spread": 1.5,
+   "OU": 217.5,
+   "ML_Home": -122,
+   "ML_Away": 104,
+   "Days_Rest_Home": 1,
+   "Days_Rest_Away": 1,
+   "home_confidence": null,
+   "away_confidence": null,
+   "value_side": null,
+   "is_value": false,
+   "ats_model_pick": null,
+   "ats_model_home_prob": null,
+   "ats_model_confidence": null,
+   "ats_value_edge": null,
+   "ats_is_value": false,
+   "is_historical": true,
+   "actual_home_win": null,
+   "actual_winner": null,
+   "actual_total": null,
+   "actual_ou_result": null,
+   "ml_correct": null,
+   "ou_correct": null,
+   "ats_winner": null,
+   "ats_cover_margin": null,
+   "is_upcoming": true,
+   "is_playoff": true,
+   "playoff_ats_picks": [
+    {
+     "signal": "G3平手客場小優勢",
+     "side": "away",
+     "ats_side": "受讓(押dog)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.516,
+     "backtest_roi": 1.5,
+     "backtest_n": 16,
+     "reason_zh": "系列賽平手1-1，G3低種子主場，歷史50%無明顯優勢，客場(高種子)稍有邊"
+    }
+   ],
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
+   "series_round": "西區決賽",
+   "round_num": 3,
+   "series_game_num": 3,
+   "series_home_wins": 1,
+   "series_away_wins": 1,
+   "series_status_text": "平手 1-1",
+   "series_is_elimination": false,
+   "home_team_zh": "聖安東尼奧馬刺",
+   "away_team_zh": "奧克拉荷馬雷霆",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+   "injuries_home": [
+    "Dylan Harper (存疑)",
+    "De'Aaron Fox (缺陣)"
+   ],
+   "injuries_away": [
+    "Jalen Williams (存疑)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-22T03:02:28+00:00",
+     "spread": 1.5,
+     "ou": 217.5,
+     "ml_home": -122,
+     "ml_away": 104,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 1.5,
+   "spread_last": 1.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-22T03:02:28+00:00",
+   "spread_last_fetched_at": "2026-05-22T03:02:28+00:00",
+   "ou_first": 217.5,
+   "ou_last": 217.5,
+   "ou_move": 0.0
+  }
+ },
+ "active_series": [
+  {
+   "round_num": 3,
+   "round_label": "西區決賽",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 1,
+   "low_wins": 1,
+   "conference": "west"
+  },
+  {
+   "round_num": 3,
+   "round_label": "東區決賽",
+   "high_seed": "New York Knicks",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 2,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 3,
+   "low_wins": 4,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "New York Knicks",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Los Angeles Lakers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "San Antonio Spurs",
+   "low_seed": "Minnesota Timberwolves",
+   "high_wins": 4,
+   "low_wins": 2,
+   "conference": "west"
+  }
+ ],
+ "is_playoff_view": true
+}

@@ -391,19 +391,18 @@
     "win_pct": 0.634,
     "seed": 4
    },
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 0,
-   "games_played": 1,
+   "games_played": 2,
    "next_signal": {
-    "game_num": 2,
-    "signal": "CF G2主場壓制",
-    "side": "home",
-    "home_team": "New York Knicks",
-    "home_team_zh": "紐約尼克",
-    "tier": "GOLD",
-    "backtest_wr": 0.792,
-    "reason_zh": "分區決賽G2主場cover率 79.2% (19/24，13季)，主場延續G1優勢",
-    "signal_team_zh": "紐約尼克"
+    "game_num": 3,
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "home_team": "Cleveland Cavaliers",
+    "home_team_zh": "克里夫蘭騎士",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
    }
   }
  },
@@ -808,24 +807,24 @@
   }
  },
  "signal_tracker": {
-  "total": 58,
-  "decided": 57,
-  "wins": 43,
+  "total": 59,
+  "decided": 58,
+  "wins": 44,
   "losses": 14,
   "pending": 1,
-  "hit_rate": 75.4,
-  "pnl": 25.13,
-  "roi": 44.1,
+  "hit_rate": 75.9,
+  "pnl": 26.04,
+  "roi": 44.9,
   "by_tier": {
    "SILVER": {
     "wins": 29,
     "losses": 9,
-    "pending": 0
+    "pending": 1
    },
    "GOLD": {
-    "wins": 14,
+    "wins": 15,
     "losses": 5,
-    "pending": 1
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -836,15 +835,15 @@
     "hit_rate": 71.4
    },
    "G2": {
-    "wins": 13,
+    "wins": 14,
     "losses": 1,
-    "pending": 1,
-    "hit_rate": 92.9
+    "pending": 0,
+    "hit_rate": 93.3
    },
    "G3": {
     "wins": 5,
     "losses": 3,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 62.5
    },
    "G5": {
@@ -867,23 +866,23 @@
    }
   },
   "by_game": {
-   "total": 41,
-   "decided": 36,
-   "wins": 29,
+   "total": 42,
+   "decided": 37,
+   "wins": 30,
    "losses": 7,
    "pending": 5,
-   "hit_rate": 80.6,
-   "pnl": 19.39,
-   "roi": 53.9
+   "hit_rate": 81.1,
+   "pnl": 20.3,
+   "roi": 54.9
   },
   "no_conflict": {
-   "decided": 35,
-   "wins": 29,
+   "decided": 36,
+   "wins": 30,
    "losses": 6,
    "pending": 1,
-   "hit_rate": 82.9,
-   "pnl": 20.39,
-   "roi": 58.3
+   "hit_rate": 83.3,
+   "pnl": 21.3,
+   "roi": 59.2
   },
   "details": [
    {
@@ -1578,9 +1577,21 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.792,
+    "result": "win",
+    "margin": 10.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-23",
+    "away": "紐約尼克",
+    "home": "克里夫蘭騎士",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
     "result": "pending",
     "margin": null,
-    "game_num": 2
+    "game_num": 3
    }
   ]
  }

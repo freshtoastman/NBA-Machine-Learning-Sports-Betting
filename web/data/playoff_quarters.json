@@ -1714,5 +1714,27 @@
     ],
     "home_score": 122,
     "away_score": 113
+  },
+  {
+    "gameId": "401873342",
+    "date": "2026-05-21",
+    "home_tri": "NY",
+    "away_tri": "CLE",
+    "home_name": "New York Knicks",
+    "away_name": "Cleveland Cavaliers",
+    "q_home": [
+      24,
+      29,
+      32,
+      24
+    ],
+    "q_away": [
+      27,
+      22,
+      21,
+      23
+    ],
+    "home_score": 109,
+    "away_score": 93
   }
 ]
