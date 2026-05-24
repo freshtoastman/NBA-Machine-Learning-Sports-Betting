@@ -1,0 +1,164 @@
+{
+ "date": "2026-05-24",
+ "is_today": true,
+ "summary": {
+  "games": 1,
+  "home_picks": 0,
+  "away_picks": 1,
+  "over_picks": 0,
+  "under_picks": 1,
+  "avg_confidence": 0.0,
+  "value_picks": 0,
+  "golden_picks": 0,
+  "playoff_ats_alerts": [],
+  "playoff_ats_count": 0,
+  "injury_alerts": [
+   "Oklahoma City Thunder: Jalen Williams (存疑)",
+   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
+  ]
+ },
+ "games": {
+  "Oklahoma City Thunder:San Antonio Spurs": {
+   "home_team": "San Antonio Spurs",
+   "away_team": "Oklahoma City Thunder",
+   "home_score": null,
+   "away_score": null,
+   "spread": 2.5,
+   "Spread": 2.5,
+   "OU": 219.5,
+   "ML_Home": -142,
+   "ML_Away": 120,
+   "Days_Rest_Home": 1,
+   "Days_Rest_Away": 1,
+   "home_confidence": null,
+   "away_confidence": null,
+   "value_side": null,
+   "is_value": false,
+   "ats_model_pick": null,
+   "ats_model_home_prob": null,
+   "ats_model_confidence": null,
+   "ats_value_edge": null,
+   "ats_is_value": false,
+   "is_historical": true,
+   "actual_home_win": null,
+   "actual_winner": null,
+   "actual_total": null,
+   "actual_ou_result": null,
+   "ml_correct": null,
+   "ou_correct": null,
+   "ats_winner": null,
+   "ats_cover_margin": null,
+   "is_upcoming": true,
+   "is_playoff": true,
+   "playoff_ats_picks": [
+    {
+     "signal": "G4客場邊",
+     "side": "away",
+     "ats_side": "受讓(押dog)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "backtest_roi": 9.2,
+     "backtest_n": 171,
+     "reason_zh": "第4場低種子主場，13季歷史高種子客場cover率 57.3% (n=171)，外客延伸優勢"
+    }
+   ],
+   "playoff_ats_best_side": null,
+   "playoff_ats_best_signal": null,
+   "playoff_ats_best_tier": null,
+   "playoff_ats_consensus": null,
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
+   "series_round": "西區決賽",
+   "round_num": 3,
+   "series_game_num": 4,
+   "series_home_wins": 1,
+   "series_away_wins": 2,
+   "series_status_text": "客隊領先 2-1",
+   "series_is_elimination": false,
+   "home_team_zh": "聖安東尼奧馬刺",
+   "away_team_zh": "奧克拉荷馬雷霆",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+   "injuries_home": [],
+   "injuries_away": [
+    "Jalen Williams (存疑)",
+    "Ajay Mitchell (缺陣)"
+   ],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-24T14:08:01+00:00",
+     "spread": 2.5,
+     "ou": 219.5,
+     "ml_home": -142,
+     "ml_away": 120,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 2.5,
+   "spread_last": 2.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-24T14:08:01+00:00",
+   "spread_last_fetched_at": "2026-05-24T14:08:01+00:00",
+   "ou_first": 219.5,
+   "ou_last": 219.5,
+   "ou_move": 0.0
+  }
+ },
+ "active_series": [
+  {
+   "round_num": 3,
+   "round_label": "西區決賽",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 2,
+   "low_wins": 1,
+   "conference": "west"
+  },
+  {
+   "round_num": 3,
+   "round_label": "東區決賽",
+   "high_seed": "New York Knicks",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 3,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Detroit Pistons",
+   "low_seed": "Cleveland Cavaliers",
+   "high_wins": 3,
+   "low_wins": 4,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "New York Knicks",
+   "low_seed": "Philadelphia 76ers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "east"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "Los Angeles Lakers",
+   "high_wins": 4,
+   "low_wins": 0,
+   "conference": "west"
+  },
+  {
+   "round_num": 2,
+   "round_label": "第二輪",
+   "high_seed": "San Antonio Spurs",
+   "low_seed": "Minnesota Timberwolves",
+   "high_wins": 4,
+   "low_wins": 2,
+   "conference": "west"
+  }
+ ],
+ "is_playoff_view": true
+}
