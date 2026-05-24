@@ -1,11 +1,11 @@
 {
- "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-24",
+ "snapshot_date": "2026-05-25",
+ "generated_for": "2026-05-25",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
- "stage_label": "分區決賽",
- "stage": "conf_finals",
+ "stage_label": "總決賽",
+ "stage": "finals",
  "east": {
   "name": "東區",
   "seeds": [
@@ -619,8 +619,8 @@
      "seed": 10
     },
     "winner_seed": 8,
-    "winner": "Phoenix Suns",
-    "winner_zh": "鳳凰城太陽"
+    "winner": null,
+    "winner_zh": null
    }
   },
   "first_round": [
@@ -807,38 +807,38 @@
   }
  },
  "signal_tracker": {
-  "total": 59,
-  "decided": 59,
-  "wins": 45,
-  "losses": 14,
+  "total": 58,
+  "decided": 58,
+  "wins": 43,
+  "losses": 15,
   "pending": 0,
-  "hit_rate": 76.3,
-  "pnl": 26.95,
-  "roi": 45.7,
+  "hit_rate": 74.1,
+  "pnl": 24.13,
+  "roi": 41.6,
   "by_tier": {
    "SILVER": {
     "wins": 30,
-    "losses": 9,
+    "losses": 10,
     "pending": 0
    },
    "GOLD": {
-    "wins": 15,
+    "wins": 13,
     "losses": 5,
     "pending": 0
    }
   },
   "by_game_num": {
    "G1": {
-    "wins": 10,
+    "wins": 9,
     "losses": 4,
     "pending": 0,
-    "hit_rate": 71.4
+    "hit_rate": 69.2
    },
    "G2": {
-    "wins": 14,
-    "losses": 1,
+    "wins": 13,
+    "losses": 2,
     "pending": 0,
-    "hit_rate": 93.3
+    "hit_rate": 86.7
    },
    "G3": {
     "wins": 6,
@@ -866,23 +866,23 @@
    }
   },
   "by_game": {
-   "total": 42,
-   "decided": 38,
-   "wins": 31,
+   "total": 40,
+   "decided": 36,
+   "wins": 29,
    "losses": 7,
    "pending": 4,
-   "hit_rate": 81.6,
-   "pnl": 21.21,
-   "roi": 55.8
+   "hit_rate": 80.6,
+   "pnl": 19.39,
+   "roi": 53.9
   },
   "no_conflict": {
-   "decided": 37,
-   "wins": 31,
+   "decided": 34,
+   "wins": 28,
    "losses": 6,
    "pending": 0,
-   "hit_rate": 83.8,
-   "pnl": 22.21,
-   "roi": 60.0
+   "hit_rate": 82.4,
+   "pnl": 19.48,
+   "roi": 57.3
   },
   "details": [
    {
@@ -1534,18 +1534,6 @@
     "game_num": 1
    },
    {
-    "date": "2026-05-19",
-    "away": "克里夫蘭騎士",
-    "home": "紐約尼克",
-    "signal": "CF G1主場壓制",
-    "tier": "GOLD",
-    "side": "home",
-    "backtest_wr": 0.833,
-    "result": "win",
-    "margin": 3.5,
-    "game_num": 1
-   },
-   {
     "date": "2026-05-20",
     "away": "聖安東尼奧馬刺",
     "home": "奧克拉荷馬雷霆",
@@ -1570,15 +1558,15 @@
     "game_num": 2
    },
    {
-    "date": "2026-05-21",
-    "away": "克里夫蘭騎士",
-    "home": "紐約尼克",
-    "signal": "CF G2主場壓制",
-    "tier": "GOLD",
-    "side": "home",
-    "backtest_wr": 0.792,
-    "result": "win",
-    "margin": 10.5,
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "loss",
+    "margin": 2.5,
     "game_num": 2
    },
    {
