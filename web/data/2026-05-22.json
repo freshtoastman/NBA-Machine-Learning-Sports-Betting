@@ -1,6 +1,6 @@
 {
  "date": "2026-05-22",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -12,18 +12,28 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "San Antonio Spurs: Dylan Harper (存疑)",
-   "San Antonio Spurs: De'Aaron Fox (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Oklahoma City Thunder:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "Oklahoma City Thunder",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 108,
+   "away_score": 123,
    "spread": 1.5,
    "Spread": 1.5,
    "OU": 217.5,
@@ -41,15 +51,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 231,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -16.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -80,13 +90,8 @@
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "injuries_home": [
-    "Dylan Harper (存疑)",
-    "De'Aaron Fox (缺陣)"
-   ],
-   "injuries_away": [
-    "Jalen Williams (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-22T03:02:28+00:00",
@@ -113,7 +118,7 @@
    "round_label": "西區決賽",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 1,
    "conference": "west"
   },
@@ -122,7 +127,7 @@
    "round_label": "東區決賽",
    "high_seed": "New York Knicks",
    "low_seed": "Cleveland Cavaliers",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 0,
    "conference": "east"
   },

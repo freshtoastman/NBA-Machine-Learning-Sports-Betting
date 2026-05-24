@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 44,
+  "hits": 45,
   "misses": 14,
-  "pending": 1,
-  "decided": 58,
-  "hit_rate": 75.9,
+  "pending": 0,
+  "decided": 59,
+  "hit_rate": 76.3,
   "conviction": {
    "crushing_hits": 17,
-   "dominant_hits": 11,
+   "dominant_hits": 12,
    "moderate_hits": 9,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 44,
-   "true_conviction_hits": 37,
-   "raw_hit_rate": 75.9,
-   "true_conviction_rate": 63.8,
-   "note_zh": "17 碾壓主導 + 11 主導 + 9 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 63.8%"
+   "total_hits": 45,
+   "true_conviction_hits": 38,
+   "raw_hit_rate": 76.3,
+   "true_conviction_rate": 64.4,
+   "note_zh": "17 碾壓主導 + 12 主導 + 9 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 64.4%"
   },
   "history": [
    {
@@ -1920,24 +1920,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": 10.9,
     "q4_swing": 1
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-23",
     "game": "紐約尼克 @ 克里夫蘭騎士",
-    "signals": [
-     "G3客場擴大優勢"
-    ],
-    "consensus_side": "away",
-    "has_conflict": false,
-    "best_wr": 64,
+    "signal": "G3客場擴大優勢",
+    "side": "away",
+    "tier": "SILVER",
+    "backtest_wr": 0.643,
+    "ats_winner": "away",
+    "ats_cover_margin": -14.5,
     "series_game_num": 3,
-    "series_score": "2-0",
-    "has_strong_consensus": false,
-    "spread": 1.5
+    "series_home_wins": 0,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Cleveland Cavaliers",
+    "away_team": "New York Knicks",
+    "spread": 1.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "dominant",
+     "source": "q3",
+     "q3_picked_margin": 10.1,
+     "final_picked_margin": 14.5,
+     "q4_swing": -4,
+     "shrinkage": -4.4,
+     "garbage_time": false
+    },
+    "conviction": "dominant",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 10.1,
+    "q4_swing": -4
    }
   ],
+  "pending_by_game": [],
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
@@ -1956,18 +1973,18 @@
    },
    {
     "signal": "G3客場擴大優勢",
-    "hits": 4,
+    "hits": 5,
     "misses": 2,
-    "n": 6,
+    "n": 7,
     "tier": "SILVER",
-    "hit_rate": 66.7,
+    "hit_rate": 71.4,
     "backtest_wr": 64.3,
     "crushing_hits": 0,
-    "dominant_hits": 2,
+    "dominant_hits": 3,
     "moderate_hits": 1,
     "narrow_hits": 1,
     "garbage_time_hits": 0,
-    "true_hit_rate": 50.0
+    "true_hit_rate": 57.1
    },
    {
     "signal": "R2G2主場壓制",
@@ -2238,35 +2255,35 @@
    "note_zh": "強共識(2+SILVER一致): 9勝/11場決定 = 81.8%，0場待定"
   },
   "best_pick": {
-   "hits": 32,
+   "hits": 33,
    "misses": 9,
-   "pending": 1,
-   "decided": 41,
-   "hit_rate": 78.0,
+   "pending": 0,
+   "decided": 42,
+   "hit_rate": 78.6,
    "gold_hits": 14,
    "gold_misses": 5,
-   "silver_hits": 18,
+   "silver_hits": 19,
    "silver_misses": 4,
-   "dominant_hits": 17,
+   "dominant_hits": 18,
    "moderate_hits": 8,
    "narrow_hits": 3,
-   "true_hit_rate": 61.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 32勝/41場決定 = 78.0%"
+   "true_hit_rate": 61.9,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 33勝/42場決定 = 78.6%"
   },
   "no_conflict": {
-   "hits": 30,
+   "hits": 31,
    "misses": 6,
-   "pending": 1,
-   "decided": 36,
-   "hit_rate": 83.3,
-   "note_zh": "無衝突場次(所有信號同向): 30勝/36場決定 = 83.3%"
+   "pending": 0,
+   "decided": 37,
+   "hit_rate": 83.8,
+   "note_zh": "無衝突場次(所有信號同向): 31勝/37場決定 = 83.8%"
   }
  },
  "playoff_home_ats": {
-  "games": 79,
+  "games": 81,
   "home_covers": 44,
-  "away_covers": 35,
-  "home_cover_rate": 55.7,
-  "note_zh": "本季季後賽共 79 場有結果，主場過盤 44 場 (55.7%)"
+  "away_covers": 37,
+  "home_cover_rate": 54.3,
+  "note_zh": "本季季後賽共 81 場有結果，主場過盤 44 場 (54.3%)"
  }
 }

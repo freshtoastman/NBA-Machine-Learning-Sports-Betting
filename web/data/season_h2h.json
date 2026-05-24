@@ -215,10 +215,10 @@
     "home": "Cleveland Cavaliers",
     "away": "New York Knicks",
     "spread": 1.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -13,
+    "home_score": 108,
+    "away_score": 121,
+    "ats_result": "away"
    }
   ],
   "Atlanta Hawks:Toronto Raptors": [
@@ -9493,10 +9493,10 @@
     "home": "San Antonio Spurs",
     "away": "Oklahoma City Thunder",
     "spread": 1.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -15,
+    "home_score": 108,
+    "away_score": 123,
+    "ats_result": "away"
    }
   ],
   "Charlotte Hornets:Cleveland Cavaliers": [

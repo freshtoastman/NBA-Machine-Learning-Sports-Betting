@@ -1736,5 +1736,49 @@
     ],
     "home_score": 109,
     "away_score": 93
+  },
+  {
+    "gameId": "401873199",
+    "date": "2026-05-22",
+    "home_tri": "SA",
+    "away_tri": "OKC",
+    "home_name": "San Antonio Spurs",
+    "away_name": "Oklahoma City Thunder",
+    "q_home": [
+      31,
+      20,
+      33,
+      24
+    ],
+    "q_away": [
+      26,
+      32,
+      37,
+      28
+    ],
+    "home_score": 108,
+    "away_score": 123
+  },
+  {
+    "gameId": "401873343",
+    "date": "2026-05-23",
+    "home_tri": "CLE",
+    "away_tri": "NY",
+    "home_name": "Cleveland Cavaliers",
+    "away_name": "New York Knicks",
+    "q_home": [
+      27,
+      27,
+      28,
+      26
+    ],
+    "q_away": [
+      37,
+      23,
+      31,
+      30
+    ],
+    "home_score": 108,
+    "away_score": 121
   }
 ]

@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-04-30",
- "generated_for": "2026-05-22",
+ "generated_for": "2026-05-24",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -391,18 +391,18 @@
     "win_pct": 0.634,
     "seed": 4
    },
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 0,
-   "games_played": 2,
+   "games_played": 3,
    "next_signal": {
-    "game_num": 3,
-    "signal": "G3客場擴大優勢",
+    "game_num": 4,
+    "signal": "G4客場優勢",
     "side": "away",
     "home_team": "Cleveland Cavaliers",
     "home_team_zh": "克里夫蘭騎士",
-    "tier": "SILVER",
-    "backtest_wr": 0.643,
-    "reason_zh": "高種子領先2-0出戰G3，18季回測客場(高種子)cover率 64.3% (n=28)，強隊延伸優勢"
+    "tier": "BRONZE",
+    "backtest_wr": 0.573,
+    "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
    }
   }
  },
@@ -791,35 +791,35 @@
     "win_pct": 0.756,
     "seed": 2
    },
-   "high_wins": 1,
+   "high_wins": 2,
    "low_wins": 1,
-   "games_played": 2,
+   "games_played": 3,
    "next_signal": {
-    "game_num": 3,
-    "signal": "G3平手客場冷門",
+    "game_num": 4,
+    "signal": "G4客場優勢",
     "side": "away",
     "home_team": "San Antonio Spurs",
     "home_team_zh": "聖安東尼奧馬刺",
     "tier": "BRONZE",
-    "backtest_wr": 0.516,
-    "reason_zh": "系列賽平手1-1，G3低種子首回主場，歷史50%無明顯優勢，客場(高種子)小型邊"
+    "backtest_wr": 0.573,
+    "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
    }
   }
  },
  "signal_tracker": {
   "total": 59,
-  "decided": 58,
-  "wins": 44,
+  "decided": 59,
+  "wins": 45,
   "losses": 14,
-  "pending": 1,
-  "hit_rate": 75.9,
-  "pnl": 26.04,
-  "roi": 44.9,
+  "pending": 0,
+  "hit_rate": 76.3,
+  "pnl": 26.95,
+  "roi": 45.7,
   "by_tier": {
    "SILVER": {
-    "wins": 29,
+    "wins": 30,
     "losses": 9,
-    "pending": 1
+    "pending": 0
    },
    "GOLD": {
     "wins": 15,
@@ -841,10 +841,10 @@
     "hit_rate": 93.3
    },
    "G3": {
-    "wins": 5,
+    "wins": 6,
     "losses": 3,
-    "pending": 1,
-    "hit_rate": 62.5
+    "pending": 0,
+    "hit_rate": 66.7
    },
    "G5": {
     "wins": 2,
@@ -867,22 +867,22 @@
   },
   "by_game": {
    "total": 42,
-   "decided": 37,
-   "wins": 30,
+   "decided": 38,
+   "wins": 31,
    "losses": 7,
-   "pending": 5,
-   "hit_rate": 81.1,
-   "pnl": 20.3,
-   "roi": 54.9
+   "pending": 4,
+   "hit_rate": 81.6,
+   "pnl": 21.21,
+   "roi": 55.8
   },
   "no_conflict": {
-   "decided": 36,
-   "wins": 30,
+   "decided": 37,
+   "wins": 31,
    "losses": 6,
-   "pending": 1,
-   "hit_rate": 83.3,
-   "pnl": 21.3,
-   "roi": 59.2
+   "pending": 0,
+   "hit_rate": 83.8,
+   "pnl": 22.21,
+   "roi": 60.0
   },
   "details": [
    {
@@ -1589,8 +1589,8 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.643,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": -14.5,
     "game_num": 3
    }
   ]
