@@ -9513,6 +9513,16 @@
     "home": "San Antonio Spurs",
     "away": "Oklahoma City Thunder",
     "spread": 2.5,
+    "win_margin": 21,
+    "home_score": 103,
+    "away_score": 82,
+    "ats_result": "home"
+   },
+   {
+    "date": "2026-05-26",
+    "home": "Oklahoma City Thunder",
+    "away": "San Antonio Spurs",
+    "spread": 5.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,

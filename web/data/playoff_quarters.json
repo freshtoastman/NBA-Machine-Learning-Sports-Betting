@@ -1780,5 +1780,27 @@
     ],
     "home_score": 108,
     "away_score": 121
+  },
+  {
+    "gameId": "401873200",
+    "date": "2026-05-24",
+    "home_tri": "SA",
+    "away_tri": "OKC",
+    "home_name": "San Antonio Spurs",
+    "away_name": "Oklahoma City Thunder",
+    "q_home": [
+      28,
+      22,
+      28,
+      25
+    ],
+    "q_away": [
+      19,
+      19,
+      22,
+      22
+    ],
+    "home_score": 103,
+    "away_score": 82
   }
 ]

@@ -792,26 +792,26 @@
     "seed": 2
    },
    "high_wins": 2,
-   "low_wins": 1,
-   "games_played": 3,
+   "low_wins": 2,
+   "games_played": 4,
    "next_signal": {
-    "game_num": 4,
-    "signal": "G4客場優勢",
-    "side": "away",
-    "home_team": "San Antonio Spurs",
-    "home_team_zh": "聖安東尼奧馬刺",
-    "tier": "BRONZE",
-    "backtest_wr": 0.573,
-    "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
+    "game_num": 5,
+    "signal": "CF G5主場壓制",
+    "side": "home",
+    "home_team": "Oklahoma City Thunder",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "tier": "GOLD",
+    "backtest_wr": 0.842,
+    "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
    }
   }
  },
  "signal_tracker": {
-  "total": 58,
+  "total": 59,
   "decided": 58,
   "wins": 43,
   "losses": 15,
-  "pending": 0,
+  "pending": 1,
   "hit_rate": 74.1,
   "pnl": 24.13,
   "roi": 41.6,
@@ -824,7 +824,7 @@
    "GOLD": {
     "wins": 13,
     "losses": 5,
-    "pending": 0
+    "pending": 1
    }
   },
   "by_game_num": {
@@ -849,7 +849,7 @@
    "G5": {
     "wins": 2,
     "losses": 1,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 66.7
    },
    "G6": {
@@ -866,11 +866,11 @@
    }
   },
   "by_game": {
-   "total": 40,
+   "total": 41,
    "decided": 36,
    "wins": 29,
    "losses": 7,
-   "pending": 4,
+   "pending": 5,
    "hit_rate": 80.6,
    "pnl": 19.39,
    "roi": 53.9
@@ -879,7 +879,7 @@
    "decided": 34,
    "wins": 28,
    "losses": 6,
-   "pending": 0,
+   "pending": 1,
    "hit_rate": 82.4,
    "pnl": 19.48,
    "roi": 57.3
@@ -1580,6 +1580,18 @@
     "result": "win",
     "margin": -14.5,
     "game_num": 3
+   },
+   {
+    "date": "2026-05-26",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.842,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
    }
   ]
  }

@@ -22,13 +22,13 @@
    "away_confidence": 47.5,
    "winner": "home",
    "ou_pick": "OVER",
-   "ou_value": 217.5,
+   "ou_value": 218.5,
    "ou_confidence": 59.6,
-   "home_team_ev": 10.17,
-   "away_team_ev": -15.89,
-   "home_team_odds": 110,
-   "away_team_odds": -130,
-   "home_kelly": 9.24,
+   "home_team_ev": 15.41,
+   "away_team_ev": -18.98,
+   "home_team_odds": 120,
+   "away_team_odds": -142,
+   "home_kelly": 12.84,
    "away_kelly": 0,
    "is_historical": true,
    "ats_model_pick": "home",
@@ -483,8 +483,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 45.7,
-   "fair_away": 54.3,
+   "fair_home": 43.7,
+   "fair_away": 56.3,
    "home_score": null,
    "away_score": null,
    "actual_total": null,
@@ -535,16 +535,24 @@
      "ml_home": 110,
      "ml_away": -130,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-25T14:19:31+00:00",
+     "spread": -2.5,
+     "ou": 218.5,
+     "ml_home": 120,
+     "ml_away": -142,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -2.5,
    "spread_last": -2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-24T14:08:01+00:00",
-   "spread_last_fetched_at": "2026-05-24T14:08:01+00:00",
+   "spread_last_fetched_at": "2026-05-25T14:19:31+00:00",
    "ou_first": 217.5,
-   "ou_last": 217.5,
-   "ou_move": 0.0
+   "ou_last": 218.5,
+   "ou_move": 1.0
   }
  },
  "active_series": [
@@ -572,7 +580,7 @@
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {

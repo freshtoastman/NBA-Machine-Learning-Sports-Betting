@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 43,
   "misses": 15,
-  "pending": 0,
+  "pending": 1,
   "decided": 58,
   "hit_rate": 74.1,
   "conviction": {
@@ -1922,7 +1922,22 @@
     "q4_swing": -4
    }
   ],
-  "pending_by_game": [],
+  "pending_by_game": [
+   {
+    "date": "2026-05-26",
+    "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
+    "signals": [
+     "CF G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 84,
+    "series_game_num": 5,
+    "series_score": "2-2",
+    "has_strong_consensus": false,
+    "spread": 5.5
+   }
+  ],
   "by_signal": [
    {
     "signal": "淘汰局押冷門",
@@ -2225,7 +2240,7 @@
   "best_pick": {
    "hits": 31,
    "misses": 9,
-   "pending": 0,
+   "pending": 1,
    "decided": 40,
    "hit_rate": 77.5,
    "gold_hits": 12,
@@ -2241,17 +2256,17 @@
   "no_conflict": {
    "hits": 28,
    "misses": 6,
-   "pending": 0,
+   "pending": 1,
    "decided": 34,
    "hit_rate": 82.4,
    "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"
   }
  },
  "playoff_home_ats": {
-  "games": 81,
-  "home_covers": 44,
+  "games": 82,
+  "home_covers": 45,
   "away_covers": 37,
-  "home_cover_rate": 54.3,
-  "note_zh": "本季季後賽共 81 場有結果，主場過盤 44 場 (54.3%)"
+  "home_cover_rate": 54.9,
+  "note_zh": "本季季後賽共 82 場有結果，主場過盤 45 場 (54.9%)"
  }
 }

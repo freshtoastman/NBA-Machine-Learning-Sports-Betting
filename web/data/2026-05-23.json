@@ -60,7 +60,7 @@
    "ou_pick": "OVER",
    "ou_value": 213.5,
    "ou_confidence": 59.6,
-   "home_team_ev": -3.82,
+   "home_team_ev": -3.83,
    "away_team_ev": -3.97,
    "home_team_odds": -120,
    "away_team_odds": 102,
@@ -608,7 +608,7 @@
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
    "high_wins": 2,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {
