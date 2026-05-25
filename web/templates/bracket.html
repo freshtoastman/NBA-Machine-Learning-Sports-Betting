@@ -100,6 +100,24 @@
       .cf-roadmap-footer { margin-top:8px; padding-top:6px; border-top:1px solid #222; font-size:10px; color:#7fd69b; text-align:center; }
       @media (max-width:700px) { .cf-roadmap-grid { grid-template-columns:1fr; } .cf-venue { min-width:60px; } }
 
+      /* CF Analysis Cards */
+      .cf-analysis { margin-top:24px; background:#141821; border:1px solid #1a2a3a; border-radius:14px; padding:16px; }
+      .cf-analysis h3 { font-size:16px; margin:0 0 6px; font-weight:700; color:#e8e8e8; }
+      .cf-analysis .sr-sub { font-size:12px; color:#888; margin-bottom:12px; }
+      .cf-analysis-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:14px; }
+      .cf-analysis-card { background:#10141e; border:1px solid #1a2a3a; border-radius:10px; padding:14px; }
+      .cf-analysis-card .cfa-title { font-size:13px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+      .cf-analysis-card .cfa-status { font-size:11px; color:#f4bf50; background:#2a2010; padding:2px 8px; border-radius:4px; }
+      .cf-analysis-card .cfa-row { display:flex; gap:6px; margin-bottom:5px; font-size:11px; color:#bbb; line-height:1.4; }
+      .cf-analysis-card .cfa-label { color:#888; min-width:50px; flex-shrink:0; }
+      .cf-analysis-card .cfa-signal-box { margin-top:8px; padding:8px; background:#0a1020; border:1px solid #2a3a10; border-radius:6px; }
+      .cf-analysis-card .cfa-signal-box .tier-badge { display:inline-block; font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px; }
+      .cf-analysis-card .cfa-signal-box .tier-badge.gold { background:#3a2a10; color:#f4bf50; }
+      .cf-analysis-card .cfa-signal-box .tier-badge.silver { background:#1a3a28; color:#7fd69b; }
+      .cf-analysis-card .cfa-signal-box .tier-badge.bronze { background:#2a2a2a; color:#888; }
+      .cf-analysis-card .cfa-risk { margin-top:6px; font-size:10px; color:#e08080; padding:4px 6px; background:#1a1010; border-radius:4px; }
+      @media (max-width:700px) { .cf-analysis-grid { grid-template-columns:1fr; } }
+
       .signal-ref { margin-top:24px; background:#141821; border:1px solid #222a36; border-radius:14px; padding:16px; }
       .signal-ref h3 { font-size:16px; margin:0 0 6px; font-weight:700; color:#e8e8e8; }
       .signal-ref .sr-sub { font-size:12px; color:#888; margin-bottom:10px; }
@@ -525,6 +543,56 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
+
+    {# ── CF Series Analysis ── #}
+    {% if ecf or wcf %}
+    {% set has_analysis = (wcf and wcf.analysis is defined) or (ecf and ecf.analysis is defined) %}
+    {% if has_analysis %}
+    <div class="cf-analysis">
+      <h3>📝 分區決賽深度分析</h3>
+      <div class="sr-sub">結合節次數據、動能趨勢、傷病影響的系列賽策略評估</div>
+      <div class="cf-analysis-grid">
+        {% for label, cf in [('西區決賽 WCF', wcf), ('東區決賽 ECF', ecf)] %}
+        {% if cf and cf.analysis is defined %}
+        {% set a = cf.analysis %}
+        <div class="cf-analysis-card">
+          <div class="cfa-title">
+            <span style="color:#f4bf50;">{{ label }}</span>
+            <span class="cfa-status">{{ a.series_status }}</span>
+          </div>
+          <div class="cfa-row">
+            <span class="cfa-label">動能</span>
+            <span>{{ a.momentum_zh }}</span>
+          </div>
+          <div class="cfa-row">
+            <span class="cfa-label">關鍵</span>
+            <span>{{ a.key_factor_zh }}</span>
+          </div>
+          {% if a.quarter_trend %}
+          <div class="cfa-row">
+            <span class="cfa-label">節次</span>
+            <span>{{ a.quarter_trend.notes_zh }}</span>
+          </div>
+          {% endif %}
+          {% if a.signal_preview %}
+          <div class="cfa-signal-box">
+            <div style="font-size:11px;color:#ddd;margin-bottom:4px;">
+              <span class="tier-badge {% if a.signal_preview.tier == 'GOLD' %}gold{% elif a.signal_preview.tier == 'SILVER' %}silver{% else %}bronze{% endif %}">{{ a.signal_preview.tier }}</span>
+              G{{ a.signal_preview.game_num }} · {{ a.signal_preview.date }} · {{ a.signal_preview.venue }}
+            </div>
+            <div style="font-size:11px;color:#ccc;line-height:1.4;">{{ a.signal_preview.recommendation_zh }}</div>
+          </div>
+          {% endif %}
+          {% if a.risk_zh %}
+          <div class="cfa-risk">⚠️ {{ a.risk_zh }}</div>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
     {% endif %}
 
     <div class="signal-ref">
