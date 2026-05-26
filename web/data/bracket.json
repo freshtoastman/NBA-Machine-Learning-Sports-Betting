@@ -393,7 +393,20 @@
    },
    "high_wins": 4,
    "low_wins": 0,
-   "games_played": 4
+   "games_played": 4,
+   "analysis": {
+    "series_status": "NYK 橫掃 4-0 ✅",
+    "momentum": "NYK",
+    "momentum_zh": "尼克以 130-93 完成橫掃，4 場淨勝 57 分 (場均 +14.3)，11 連勝進軍總決賽",
+    "key_factor": "歷史性突破",
+    "key_factor_zh": "NYK 自 1999 年來首度闖入總決賽 (27年)，KAT 19分14板 + Anunoby 17分主導 G4",
+    "quarter_trend": {
+     "nyk_q1_avg": 31.3,
+     "cle_q1_avg": 23.0,
+     "notes_zh": "NYK 4 場開局均大幅領先，G4 半場即領先 19 分 (68-49)，CLE 全無還手之力"
+    },
+    "risk_zh": null
+   }
   }
  },
  "west": {
@@ -793,6 +806,29 @@
     "tier": "GOLD",
     "backtest_wr": 0.842,
     "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
+   },
+   "analysis": {
+    "series_status": "平手 2-2",
+    "momentum": "SAS",
+    "momentum_zh": "馬刺 G4 大勝 21 分 (103-82) 扳平系列，Wembanyama 主導攻防；OKC 連兩場客場分裂 (G3 贏15, G4 輸21)",
+    "key_factor": "Jalen Williams 傷勢",
+    "key_factor_zh": "Williams 列為存疑 (左腿筋拉傷)，復賽與否左右系列走向。缺陣時 OKC 進攻缺乏副手創造力",
+    "quarter_trend": {
+     "okc_home_avg_margin": 7.0,
+     "sas_road_avg_margin": -3.0,
+     "notes_zh": "SAS 先發場均淨勝 OKC 先發 31.7 分；OKC 板凳 G4 為 -9.4 (季後賽平均 +6.3)"
+    },
+    "signal_preview": {
+     "game_num": 5,
+     "date": "2026-05-26",
+     "venue": "OKC 主場",
+     "primary_signal": "CF G5主場壓制",
+     "tier": "GOLD",
+     "backtest_wr": 0.842,
+     "spread": 5.5,
+     "recommendation_zh": "GOLD 信號 (84.2%) 押主場 OKC 讓分。歷史 CF G5 主場 cover 率極高 (16/19)，即使 Williams 存疑，結構性主場優勢仍值得操作。OU 從 215.5 升至 216.5。"
+    },
+    "risk_zh": "Williams 若缺陣 + SAS 連勝動能，但歷史 CF G5 主場 cover 率 84.2% 仍具顯著統計優勢"
    }
   }
  },
