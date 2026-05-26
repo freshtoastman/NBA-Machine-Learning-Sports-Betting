@@ -1,6 +1,6 @@
 {
- "snapshot_date": "2026-05-25",
- "generated_for": "2026-05-25",
+ "snapshot_date": "2026-05-26",
+ "generated_for": "2026-05-26",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -391,42 +391,9 @@
     "win_pct": 0.634,
     "seed": 4
    },
-   "high_wins": 3,
+   "high_wins": 4,
    "low_wins": 0,
-   "games_played": 3,
-   "next_signal": {
-    "game_num": 4,
-    "signal": "G4客場優勢",
-    "side": "away",
-    "home_team": "Cleveland Cavaliers",
-    "home_team_zh": "克里夫蘭騎士",
-    "tier": "BRONZE",
-    "backtest_wr": 0.573,
-    "reason_zh": "第4場低種子主場，歷史高種子客場cover率 57.3% (n=171，13季歷史)"
-   },
-   "analysis": {
-    "series_status": "NYK 領先 3-0",
-    "momentum": "NYK",
-    "momentum_zh": "尼克三連勝，場均淨勝 10.3 分，Brunson 場均 28.7分 主導攻防",
-    "key_factor": "掃地出門壓力",
-    "key_factor_zh": "CLE 面臨被橫掃壓力，歷史上 3-0 落後翻盤僅 4 次 (4/155=2.6%)",
-    "quarter_trend": {
-     "nyk_q1_avg": 31.3,
-     "cle_q1_avg": 23.0,
-     "notes_zh": "NYK Q1 場均 31.3 分大幅領先 CLE (23分)，快速建立優勢；CLE 僅 Q2 有競爭力"
-    },
-    "signal_preview": {
-     "game_num": 4,
-     "date": "2026-05-25",
-     "venue": "CLE 主場",
-     "primary_signal": "G4客場邊",
-     "tier": "BRONZE",
-     "backtest_wr": 0.573,
-     "spread": -2.5,
-     "recommendation_zh": "BRONZE 信號 (57.3%) 建議 NYK 客場 cover。但樣本期望值低（57.3%僅略高於隨機），面臨橫掃的 CLE 可能激發求生意志，G4 不建議大額操作。"
-    },
-    "risk_zh": "橫掃壓力下 CLE 可能激發求生欲，歷史上 G4 面臨淘汰隊伍表現反彈率約 42.7%"
-   }
+   "games_played": 4
   }
  },
  "west": {
@@ -826,41 +793,18 @@
     "tier": "GOLD",
     "backtest_wr": 0.842,
     "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
-   },
-   "analysis": {
-    "series_status": "平手 2-2",
-    "momentum": "SAS",
-    "momentum_zh": "馬刺靠 Wembanyama G4 大爆發 (33分8板5助3鍋) 扳平系列賽",
-    "key_factor": "Jalen Williams 傷勢",
-    "key_factor_zh": "OKC 核心 Jalen Williams 缺陣是 G4 慘敗主因，G5 能否復出決定系列走向",
-    "quarter_trend": {
-     "okc_home_avg_margin": 7.0,
-     "okc_away_avg_margin": -3.0,
-     "notes_zh": "OKC 主場 +7 (G1 輸OT, G2 贏9分)；G3 客場贏15 但 G4 客場輸21，震盪極大"
-    },
-    "signal_preview": {
-     "game_num": 5,
-     "date": "2026-05-26",
-     "venue": "OKC 主場",
-     "primary_signal": "CF G5主場壓制",
-     "tier": "GOLD",
-     "backtest_wr": 0.842,
-     "spread": 5.5,
-     "recommendation_zh": "GOLD 信號 (84.2%) 押主場 OKC 讓分。歷史 CF G5 主場 cover 率極高，即使 Williams 缺陣，主場優勢仍具結構性邊際。"
-    },
-    "risk_zh": "Williams 缺陣風險 + SAS 動能，但歷史 CF G5 主場 cover 率 84.2% (16/19) 仍具統計優勢"
    }
   }
  },
  "signal_tracker": {
-  "total": 62,
-  "decided": 59,
+  "total": 59,
+  "decided": 58,
   "wins": 43,
-  "losses": 16,
-  "pending": 3,
-  "hit_rate": 72.9,
-  "pnl": 23.09,
-  "roi": 37.2,
+  "losses": 15,
+  "pending": 1,
+  "hit_rate": 74.1,
+  "pnl": 24.13,
+  "roi": 41.6,
   "by_tier": {
    "SILVER": {
     "wins": 30,
@@ -892,16 +836,10 @@
     "pending": 0,
     "hit_rate": 66.7
    },
-   "G4": {
-    "wins": 0,
-    "losses": 1,
-    "pending": 1,
-    "hit_rate": 0.0
-   },
    "G5": {
     "wins": 2,
     "losses": 1,
-    "pending": 2,
+    "pending": 1,
     "hit_rate": 66.7
    },
    "G6": {
@@ -918,23 +856,23 @@
    }
   },
   "by_game": {
-   "total": 43,
-   "decided": 41,
-   "wins": 34,
+   "total": 41,
+   "decided": 36,
+   "wins": 29,
    "losses": 7,
-   "pending": 2,
-   "hit_rate": 82.9,
-   "pnl": 23.91,
-   "roi": 55.6
+   "pending": 5,
+   "hit_rate": 80.6,
+   "pnl": 19.39,
+   "roi": 53.9
   },
   "no_conflict": {
-   "decided": 35,
+   "decided": 34,
    "wins": 28,
-   "losses": 7,
-   "pending": 2,
-   "hit_rate": 80.0,
-   "pnl": 18.45,
-   "roi": 49.9
+   "losses": 6,
+   "pending": 1,
+   "hit_rate": 82.4,
+   "pnl": 19.48,
+   "roi": 57.3
   },
   "details": [
    {
@@ -1632,42 +1570,6 @@
     "result": "win",
     "margin": -14.5,
     "game_num": 3
-   },
-   {
-    "date": "2026-05-24",
-    "away": "奧克拉荷馬雷霆",
-    "home": "聖安東尼奧馬刺",
-    "signal": "G4客場邊",
-    "tier": "BRONZE",
-    "side": "away",
-    "backtest_wr": 0.573,
-    "result": "loss",
-    "margin": 18.5,
-    "game_num": 4
-   },
-   {
-    "date": "2026-05-25",
-    "away": "紐約尼克",
-    "home": "克里夫蘭騎士",
-    "signal": "G4客場邊",
-    "tier": "BRONZE",
-    "side": "away",
-    "backtest_wr": 0.573,
-    "result": "pending",
-    "margin": null,
-    "game_num": 4
-   },
-   {
-    "date": "2026-05-26",
-    "away": "聖安東尼奧馬刺",
-    "home": "奧克拉荷馬雷霆",
-    "signal": "G5平手主場壓制",
-    "tier": "BRONZE",
-    "side": "home",
-    "backtest_wr": 0.6,
-    "result": "pending",
-    "margin": null,
-    "game_num": 5
    },
    {
     "date": "2026-05-26",

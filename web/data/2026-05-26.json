@@ -1,6 +1,6 @@
 {
  "date": "2026-05-26",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -35,23 +35,9 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Oklahoma City Thunder: Ajay Mitchell (缺陣)",
-   "Oklahoma City Thunder: Jalen Williams (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+   "Oklahoma City Thunder: Jalen Williams (存疑)",
+   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
+  ]
  },
  "games": {
   "San Antonio Spurs:Oklahoma City Thunder": {
@@ -61,9 +47,9 @@
    "away_score": null,
    "spread": 5.5,
    "Spread": 5.5,
-   "OU": 215.5,
-   "ML_Home": -198,
-   "ML_Away": 166,
+   "OU": 216.5,
+   "ML_Home": -190,
+   "ML_Away": 160,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -126,8 +112,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [
-    "Ajay Mitchell (缺陣)",
-    "Jalen Williams (缺陣)"
+    "Jalen Williams (存疑)",
+    "Ajay Mitchell (缺陣)"
    ],
    "injuries_away": [],
    "odds_history": [
@@ -146,16 +132,24 @@
      "ml_home": -198,
      "ml_away": 166,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-26T10:58:51+00:00",
+     "spread": 5.5,
+     "ou": 216.5,
+     "ml_home": -190,
+     "ml_away": 160,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 5.5,
    "spread_last": 5.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-25T14:12:55+00:00",
-   "spread_last_fetched_at": "2026-05-25T14:19:31+00:00",
+   "spread_last_fetched_at": "2026-05-26T10:58:51+00:00",
    "ou_first": 215.5,
-   "ou_last": 215.5,
-   "ou_move": 0.0
+   "ou_last": 216.5,
+   "ou_move": 1.0
   }
  },
  "active_series": [
@@ -165,7 +159,7 @@
    "high_seed": "Cleveland Cavaliers",
    "low_seed": "New York Knicks",
    "high_wins": 0,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "east"
   },
   {

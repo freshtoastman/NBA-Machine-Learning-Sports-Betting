@@ -2263,10 +2263,10 @@
   }
  },
  "playoff_home_ats": {
-  "games": 82,
+  "games": 83,
   "home_covers": 45,
-  "away_covers": 37,
-  "home_cover_rate": 54.9,
-  "note_zh": "本季季後賽共 82 場有結果，主場過盤 45 場 (54.9%)"
+  "away_covers": 38,
+  "home_cover_rate": 54.2,
+  "note_zh": "本季季後賽共 83 場有結果，主場過盤 45 場 (54.2%)"
  }
 }
