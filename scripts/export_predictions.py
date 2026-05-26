@@ -1328,6 +1328,18 @@ def build_bracket(target_date: date) -> dict | None:
                 conf_finals = {"label": "分區決賽", "high": cf_h, "low": cf_l}
                 if isinstance(cf_h, dict) and isinstance(cf_l, dict):
                     conf_finals.update(_with_wins(cf_h, cf_l, round_num=3))
+                    hw = conf_finals.get("high_wins", 0)
+                    lw = conf_finals.get("low_wins", 0)
+                    if hw >= 4:
+                        conf_finals["winner"] = cf_h["team"]
+                        conf_finals["winner_zh"] = cf_h["team_zh"]
+                        conf_finals["winner_seed"] = cf_h.get("seed")
+                        conf_finals["winner_card"] = cf_h
+                    elif lw >= 4:
+                        conf_finals["winner"] = cf_l["team"]
+                        conf_finals["winner_zh"] = cf_l["team_zh"]
+                        conf_finals["winner_seed"] = cf_l.get("seed")
+                        conf_finals["winner_card"] = cf_l
 
         result = {
             "name": name,
@@ -1342,7 +1354,35 @@ def build_bracket(target_date: date) -> dict | None:
             result["conf_finals"] = conf_finals
         return result
 
-    return {
+    east_data = _conference("東區", east, east_r1_resolved)
+    west_data = _conference("西區", west, west_r1_resolved)
+
+    ecf_cf = east_data.get("conf_finals", {})
+    wcf_cf = west_data.get("conf_finals", {})
+    ecf_winner = ecf_cf.get("winner_card")
+    wcf_winner = wcf_cf.get("winner_card")
+
+    finals_data = None
+    if ecf_winner and wcf_winner:
+        e_seed = ecf_winner.get("seed", 99)
+        w_seed = wcf_winner.get("seed", 99)
+        if w_seed <= e_seed:
+            f_high, f_low = wcf_winner, ecf_winner
+            f_high_conf, f_low_conf = "西區", "東區"
+        else:
+            f_high, f_low = ecf_winner, wcf_winner
+            f_high_conf, f_low_conf = "東區", "西區"
+        finals_data = {
+            "label": "總決賽",
+            "high": f_high,
+            "low": f_low,
+            "high_conf": f_high_conf,
+            "low_conf": f_low_conf,
+        }
+        if isinstance(f_high, dict) and isinstance(f_low, dict):
+            finals_data.update(_with_wins(f_high, f_low, round_num=4))
+
+    bracket = {
         "snapshot_date": snapshot_date,
         "generated_for": target_date.isoformat(),
         "playoff_start": playoff_start,
@@ -1351,9 +1391,12 @@ def build_bracket(target_date: date) -> dict | None:
         "stage_label": _stage_label,
         "stage": {1: "first_round", 2: "second_round", 3: "conf_finals", 4: "finals"}.get(
             _max_round_num, "first_round" if _series_wins else ("play_in" if _playin_results else None)),
-        "east": _conference("東區", east, east_r1_resolved),
-        "west": _conference("西區", west, west_r1_resolved),
+        "east": east_data,
+        "west": west_data,
     }
+    if finals_data:
+        bracket["finals"] = finals_data
+    return bracket
 
 
 def build_season_h2h(season_key: str) -> dict | None:
@@ -2009,6 +2052,17 @@ def main():
         if bracket:
             bracket["signal_tracker"] = _build_signal_tracker(OUT_DIR)
             bracket_path = OUT_DIR / "bracket.json"
+            if bracket_path.exists():
+                try:
+                    with open(bracket_path, "r", encoding="utf-8") as fp:
+                        old = json.load(fp)
+                    for conf in ("east", "west"):
+                        old_cf = old.get(conf, {}).get("conf_finals", {})
+                        new_cf = bracket.get(conf, {}).get("conf_finals")
+                        if new_cf and old_cf.get("analysis") and not new_cf.get("analysis"):
+                            new_cf["analysis"] = old_cf["analysis"]
+                except Exception:
+                    pass
             with open(bracket_path, "w", encoding="utf-8") as f:
                 json.dump(bracket, f, ensure_ascii=False, indent=1, default=_serialize)
             print(f"Bracket → {bracket_path.name}")

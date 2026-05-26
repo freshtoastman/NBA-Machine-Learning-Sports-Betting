@@ -393,7 +393,29 @@
    },
    "high_wins": 4,
    "low_wins": 0,
-   "games_played": 4
+   "games_played": 4,
+   "winner": "New York Knicks",
+   "winner_zh": "紐約尼克",
+   "winner_seed": 3,
+   "winner_card": {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   },
+   "analysis": {
+    "series_status": "紐約尼克 4-0 橫掃克里夫蘭騎士 ✓",
+    "momentum_zh": "NYK 攻防兩端壓制，場均淨勝 21.3 分，四場皆主導比賽節奏",
+    "key_factor_zh": "Brunson+Towns 雙核輸出穩定，CLE 無解方；Brunson 場均 28.5 分 8.3 助攻",
+    "quarter_trend": {
+     "notes_zh": "NYK 四場皆第三節拉開，Q3 場均淨勝 +8.8；CLE 下半場崩潰"
+    },
+    "signal_preview": null,
+    "risk_zh": null
+   }
   }
  },
  "west": {
@@ -793,6 +815,22 @@
     "tier": "GOLD",
     "backtest_wr": 0.842,
     "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
+   },
+   "analysis": {
+    "series_status": "OKC 雷霆 2-2 SAS 馬刺 · G5 今晚",
+    "momentum_zh": "馬刺 G3/G4 主場拿下反平系列賽，Wembanyama 場均 30+ 分帶動全隊",
+    "key_factor_zh": "回到 OKC 主場，歷史 CF G5 主場 cover 率 84.2% (GOLD 信號)；Jalen Williams 傷勢存疑",
+    "quarter_trend": {
+     "notes_zh": "OKC 主場 Q1 優勢明顯 (+6.5)；SAS 客場 Q3 失血嚴重 (-9.0 場均)"
+    },
+    "signal_preview": {
+     "game_num": 5,
+     "date": "2026-05-26",
+     "venue": "OKC 主場",
+     "tier": "GOLD",
+     "recommendation_zh": "押 OKC 讓分 (主場 cover)，CF G5 主場回歸歷史 84.2% cover 率，為系列賽最強結構信號；盤口 -4.5 合理"
+    },
+    "risk_zh": "Jalen Williams 出戰存疑，若缺席 OKC 陣容深度受限"
    }
   }
  },
