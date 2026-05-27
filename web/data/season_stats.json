@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 43,
   "misses": 15,
-  "pending": 1,
+  "pending": 2,
   "decided": 58,
   "hit_rate": 74.1,
   "conviction": {
@@ -1935,7 +1935,21 @@
     "series_game_num": 5,
     "series_score": "2-2",
     "has_strong_consensus": false,
-    "spread": 4.5
+    "spread": 3.5
+   },
+   {
+    "date": "2026-05-28",
+    "game": "奧克拉荷馬雷霆 @ 聖安東尼奧馬刺",
+    "signals": [
+     "淘汰局押冷門"
+    ],
+    "consensus_side": "away",
+    "has_conflict": false,
+    "best_wr": 65,
+    "series_game_num": 6,
+    "series_score": "3-2",
+    "has_strong_consensus": false,
+    "spread": 3.5
    }
   ],
   "by_signal": [
@@ -2240,7 +2254,7 @@
   "best_pick": {
    "hits": 31,
    "misses": 9,
-   "pending": 1,
+   "pending": 2,
    "decided": 40,
    "hit_rate": 77.5,
    "gold_hits": 12,
@@ -2256,7 +2270,7 @@
   "no_conflict": {
    "hits": 28,
    "misses": 6,
-   "pending": 1,
+   "pending": 2,
    "decided": 34,
    "hit_rate": 82.4,
    "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"

@@ -1,0 +1,31 @@
+{
+  "date": "2026-05-27",
+  "is_today": true,
+  "summary": {
+    "games": 0,
+    "home_picks": 0,
+    "away_picks": 0,
+    "over_picks": 0,
+    "under_picks": 0,
+    "avg_confidence": 0.0,
+    "value_picks": 0,
+    "golden_picks": 0,
+    "playoff_ats_alerts": [],
+    "playoff_ats_count": 0,
+    "injury_alerts": [],
+    "off_day_note": "休息日 — WCF G6 明天 5/28 @SAS"
+  },
+  "games": {},
+  "active_series": [
+    {
+      "round_num": 3,
+      "round_label": "分區決賽",
+      "high_seed": "Oklahoma City Thunder",
+      "low_seed": "San Antonio Spurs",
+      "high_wins": 3,
+      "low_wins": 2,
+      "conference": "west"
+    }
+  ],
+  "is_playoff_view": true
+}

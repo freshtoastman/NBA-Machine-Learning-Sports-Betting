@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-26",
- "generated_for": "2026-05-26",
+ "generated_for": "2026-05-27",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -817,29 +817,29 @@
     "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
    },
    "analysis": {
-    "series_status": "OKC 雷霆 2-2 SAS 馬刺 · G5 今晚",
-    "momentum_zh": "馬刺 G3/G4 主場拿下反平系列賽，Wembanyama 場均 30+ 分帶動全隊",
-    "key_factor_zh": "回到 OKC 主場，歷史 CF G5 主場 cover 率 84.2% (GOLD 信號)；Jalen Williams 傷勢存疑",
+    "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
+    "momentum_zh": "OKC G5 主場 127-114 大勝 13 分，SGA 32 分 9 助攻主導比賽；GOLD 信號命中 ✓",
+    "key_factor_zh": "G6 回到馬刺主場，SAS 面臨淘汰；Wembanyama 必須爆發才能延長系列賽",
     "quarter_trend": {
-     "notes_zh": "OKC 主場 Q1 優勢明顯 (+6.5)；SAS 客場 Q3 失血嚴重 (-9.0 場均)"
+     "notes_zh": "G5 OKC Q2 打出 40-31 攻擊波拉開差距；Caruso 替補 22 分為關鍵"
     },
     "signal_preview": {
-     "game_num": 5,
-     "date": "2026-05-26",
-     "venue": "OKC 主場",
-     "tier": "GOLD",
-     "recommendation_zh": "押 OKC 讓分 (主場 cover)，CF G5 主場回歸歷史 84.2% cover 率，為系列賽最強結構信號；盤口 -4.5 合理"
+     "game_num": 6,
+     "date": "2026-05-28",
+     "venue": "SAS 主場",
+     "tier": "待分析",
+     "recommendation_zh": "G6 盤口 SAS -3.5，馬刺背水一戰主場優勢明顯但 OKC 有 closeout 動力，需評估歷史淘汰賽 G6 信號"
     },
-    "risk_zh": "Jalen Williams 出戰存疑，若缺席 OKC 陣容深度受限"
+    "risk_zh": "SAS 主場淘汰賽壓力大，但 Wembanyama 本系列賽主場表現傑出 (G3/G4 場均 33 分)"
    }
   }
  },
  "signal_tracker": {
-  "total": 59,
+  "total": 60,
   "decided": 58,
   "wins": 43,
   "losses": 15,
-  "pending": 1,
+  "pending": 2,
   "hit_rate": 74.1,
   "pnl": 24.13,
   "roi": 41.6,
@@ -847,7 +847,7 @@
    "SILVER": {
     "wins": 30,
     "losses": 10,
-    "pending": 0
+    "pending": 1
    },
    "GOLD": {
     "wins": 13,
@@ -883,7 +883,7 @@
    "G6": {
     "wins": 11,
     "losses": 5,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 68.8
    },
    "G7": {
@@ -894,11 +894,11 @@
    }
   },
   "by_game": {
-   "total": 41,
+   "total": 42,
    "decided": 36,
    "wins": 29,
    "losses": 7,
-   "pending": 5,
+   "pending": 6,
    "hit_rate": 80.6,
    "pnl": 19.39,
    "roi": 53.9
@@ -907,7 +907,7 @@
    "decided": 34,
    "wins": 28,
    "losses": 6,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 82.4,
    "pnl": 19.48,
    "roi": 57.3
@@ -1620,6 +1620,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 5
+   },
+   {
+    "date": "2026-05-28",
+    "away": "奧克拉荷馬雷霆",
+    "home": "聖安東尼奧馬刺",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "pending",
+    "margin": null,
+    "game_num": 6
    }
   ]
  }
