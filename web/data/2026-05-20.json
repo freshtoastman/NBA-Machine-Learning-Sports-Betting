@@ -677,7 +677,7 @@
    "round_label": "分區決賽",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "west"
   },
@@ -707,15 +707,6 @@
    "high_wins": 4,
    "low_wins": 3,
    "conference": "east"
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Golden State Warriors",
-   "low_seed": "Phoenix Suns",
-   "high_wins": 0,
-   "low_wins": 1,
-   "conference": "west"
   }
  ],
  "is_playoff_view": true

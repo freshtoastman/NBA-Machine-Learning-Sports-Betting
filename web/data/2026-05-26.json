@@ -24,8 +24,8 @@
     "backtest_wr": 0.842,
     "backtest_roi": 68.4,
     "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 9.5,
     "series_game_num": 5,
     "series_home_wins": 2,
     "series_away_wins": 2,
@@ -34,10 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -57,8 +54,8 @@
   "San Antonio Spurs:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
    "away_team": "San Antonio Spurs",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 127,
+   "away_score": 114,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 217.5,
@@ -76,15 +73,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 241,
+   "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 9.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -125,15 +122,7 @@
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "injuries_home": [
-    "Jalen Williams (缺陣)",
-    "Ajay Mitchell (缺陣)"
-   ],
-   "live_home_score": 127,
-   "live_away_score": 114,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -211,7 +200,7 @@
    "round_label": "分區決賽",
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
    "conference": "west"
   },
@@ -223,15 +212,6 @@
    "high_wins": 4,
    "low_wins": 3,
    "conference": "east"
-  },
-  {
-   "round_num": 1,
-   "round_label": "首輪",
-   "high_seed": "Golden State Warriors",
-   "low_seed": "Phoenix Suns",
-   "high_wins": 0,
-   "low_wins": 1,
-   "conference": "west"
   }
  ],
  "is_playoff_view": true

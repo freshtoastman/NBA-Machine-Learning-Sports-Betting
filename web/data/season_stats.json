@@ -47,22 +47,22 @@
   "filtered_roi": 41.6
  },
  "playoff_signals": {
-  "hits": 43,
+  "hits": 44,
   "misses": 15,
-  "pending": 2,
-  "decided": 58,
-  "hit_rate": 74.1,
+  "pending": 1,
+  "decided": 59,
+  "hit_rate": 74.6,
   "conviction": {
    "crushing_hits": 16,
    "dominant_hits": 11,
-   "moderate_hits": 9,
+   "moderate_hits": 10,
    "narrow_hits": 7,
    "garbage_time_hits": 7,
-   "total_hits": 43,
-   "true_conviction_hits": 36,
-   "raw_hit_rate": 74.1,
-   "true_conviction_rate": 62.1,
-   "note_zh": "16 碾壓主導 + 11 主導 + 9 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 62.1%"
+   "total_hits": 44,
+   "true_conviction_hits": 37,
+   "raw_hit_rate": 74.6,
+   "true_conviction_rate": 62.7,
+   "note_zh": "16 碾壓主導 + 11 主導 + 10 普通 + 7 險過；7 場受垃圾時間影響；真實信心率 62.7%"
   },
   "history": [
    {
@@ -1920,23 +1920,41 @@
     "conviction_source": "q3",
     "q3_picked_margin": 10.1,
     "q4_swing": -4
-   }
-  ],
-  "pending_by_game": [
+   },
    {
     "date": "2026-05-26",
     "game": "聖安東尼奧馬刺 @ 奧克拉荷馬雷霆",
-    "signals": [
-     "CF G5主場壓制"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 84,
+    "signal": "CF G5主場壓制",
+    "side": "home",
+    "tier": "GOLD",
+    "backtest_wr": 0.842,
+    "ats_winner": "home",
+    "ats_cover_margin": 9.5,
     "series_game_num": 5,
-    "series_score": "2-2",
-    "has_strong_consensus": false,
-    "spread": 3.5
-   },
+    "series_home_wins": 2,
+    "series_away_wins": 2,
+    "strong_consensus": null,
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "spread": 3.5,
+    "result": "hit",
+    "conviction_obj": {
+     "band": "moderate",
+     "source": "q3",
+     "q3_picked_margin": 7.4,
+     "final_picked_margin": 9.5,
+     "q4_swing": 3,
+     "shrinkage": -2.1,
+     "garbage_time": false
+    },
+    "conviction": "moderate",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": 7.4,
+    "q4_swing": 3
+   }
+  ],
+  "pending_by_game": [
    {
     "date": "2026-05-28",
     "game": "奧克拉荷馬雷霆 @ 聖安東尼奧馬刺",
@@ -2209,6 +2227,21 @@
     "true_hit_rate": 100.0
    },
    {
+    "signal": "CF G5主場壓制",
+    "hits": 1,
+    "misses": 0,
+    "n": 1,
+    "tier": "GOLD",
+    "hit_rate": 100.0,
+    "backtest_wr": 84.2,
+    "crushing_hits": 0,
+    "dominant_hits": 0,
+    "moderate_hits": 1,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 100.0
+   },
+   {
     "signal": "客場明顯強勢",
     "hits": 0,
     "misses": 1,
@@ -2252,35 +2285,35 @@
    "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，0場待定"
   },
   "best_pick": {
-   "hits": 31,
+   "hits": 32,
    "misses": 9,
-   "pending": 2,
-   "decided": 40,
-   "hit_rate": 77.5,
-   "gold_hits": 12,
+   "pending": 1,
+   "decided": 41,
+   "hit_rate": 78.0,
+   "gold_hits": 13,
    "gold_misses": 5,
    "silver_hits": 19,
    "silver_misses": 4,
-   "dominant_hits": 17,
+   "dominant_hits": 18,
    "moderate_hits": 7,
    "narrow_hits": 3,
-   "true_hit_rate": 60.0,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 31勝/40場決定 = 77.5%"
+   "true_hit_rate": 61.0,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 32勝/41場決定 = 78.0%"
   },
   "no_conflict": {
-   "hits": 28,
+   "hits": 29,
    "misses": 6,
-   "pending": 2,
-   "decided": 34,
-   "hit_rate": 82.4,
-   "note_zh": "無衝突場次(所有信號同向): 28勝/34場決定 = 82.4%"
+   "pending": 1,
+   "decided": 35,
+   "hit_rate": 82.9,
+   "note_zh": "無衝突場次(所有信號同向): 29勝/35場決定 = 82.9%"
   }
  },
  "playoff_home_ats": {
-  "games": 83,
-  "home_covers": 45,
+  "games": 84,
+  "home_covers": 46,
   "away_covers": 38,
-  "home_cover_rate": 54.2,
-  "note_zh": "本季季後賽共 83 場有結果，主場過盤 45 場 (54.2%)"
+  "home_cover_rate": 54.8,
+  "note_zh": "本季季後賽共 84 場有結果，主場過盤 46 場 (54.8%)"
  }
 }

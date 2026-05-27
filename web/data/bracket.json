@@ -631,8 +631,8 @@
      "seed": 10
     },
     "winner_seed": 8,
-    "winner": null,
-    "winner_zh": null
+    "winner": "Phoenix Suns",
+    "winner_zh": "鳳凰城太陽"
    }
   },
   "first_round": [
@@ -803,18 +803,19 @@
     "win_pct": 0.756,
     "seed": 2
    },
-   "high_wins": 2,
+   "high_wins": 3,
    "low_wins": 2,
-   "games_played": 4,
+   "games_played": 5,
    "next_signal": {
-    "game_num": 5,
-    "signal": "CF G5主場壓制",
-    "side": "home",
-    "home_team": "Oklahoma City Thunder",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "tier": "GOLD",
-    "backtest_wr": 0.842,
-    "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
+    "game_num": 6,
+    "signal": "淘汰局押冷門",
+    "side": "away",
+    "home_team": "San Antonio Spurs",
+    "home_team_zh": "聖安東尼奧馬刺",
+    "tier": "SILVER",
+    "backtest_wr": 0.654,
+    "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)",
+    "signal_team_zh": "奧克拉荷馬雷霆"
    },
    "analysis": {
     "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
@@ -828,21 +829,79 @@
      "date": "2026-05-28",
      "venue": "SAS 主場",
      "tier": "SILVER",
-     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。但馬刺背水一戰主場能量可觀，風險較高"
+     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。但馬刺背水一戰主場能量可觀，風險較高",
+     "series_ats_zh": "WCF系列賽主場ATS 4/5 cover，但淘汰局冷門歷史65.4%偏向客場OKC"
     },
-    "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷"
+    "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷",
+    "ats_pattern": {
+     "description_zh": "系列賽主場ATS: G2-G5主場全cover (4/4)，僅G1客場SAS爆冷",
+     "home_cover_rate": "80% (4/5)",
+     "implication_zh": "G6 SAS主場，歷史主場ATS優勢 vs 淘汰局冷門信號存在矛盾"
+    }
    }
+  }
+ },
+ "finals": {
+  "label": "總決賽",
+  "high_conf": "東區冠軍",
+  "low_conf": "西區冠軍",
+  "high": {
+   "team": "New York Knicks",
+   "team_zh": "紐約尼克",
+   "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+   "wins": 53,
+   "losses": 29,
+   "win_pct": 0.646,
+   "seed": 3
+  },
+  "low": "西區決賽勝者 (奧克拉荷馬雷霆 3-2 聖安東尼奧馬刺)",
+  "high_wins": 0,
+  "low_wins": 0,
+  "games_played": 0,
+  "next_signal": null,
+  "status": "等待西區冠軍 — 6/3 開打",
+  "schedule": {
+   "game1": {
+    "date": "2026-06-03",
+    "time": "8:30 PM ET"
+   },
+   "game2": {
+    "date": "2026-06-05",
+    "time": "8:30 PM ET"
+   },
+   "game3": {
+    "date": "2026-06-08",
+    "time": "8:30 PM ET"
+   },
+   "game4": {
+    "date": "2026-06-10",
+    "time": "8:30 PM ET"
+   },
+   "game5": {
+    "date": "2026-06-13",
+    "time": "8:30 PM ET"
+   },
+   "game6": {
+    "date": "2026-06-16",
+    "time": "8:30 PM ET"
+   }
+  },
+  "analysis": {
+   "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
+   "momentum_zh": "紐約尼克 已確定晉級，等待西區冠軍產生",
+   "key_factor_zh": "西區冠軍系列賽越長，紐約尼克 休息優勢越大",
+   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽"
   }
  },
  "signal_tracker": {
   "total": 60,
-  "decided": 58,
-  "wins": 43,
+  "decided": 59,
+  "wins": 44,
   "losses": 15,
-  "pending": 2,
-  "hit_rate": 74.1,
-  "pnl": 24.13,
-  "roi": 41.6,
+  "pending": 1,
+  "hit_rate": 74.6,
+  "pnl": 25.04,
+  "roi": 42.4,
   "by_tier": {
    "SILVER": {
     "wins": 30,
@@ -850,9 +909,9 @@
     "pending": 1
    },
    "GOLD": {
-    "wins": 13,
+    "wins": 14,
     "losses": 5,
-    "pending": 1
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -875,10 +934,10 @@
     "hit_rate": 66.7
    },
    "G5": {
-    "wins": 2,
+    "wins": 3,
     "losses": 1,
-    "pending": 1,
-    "hit_rate": 66.7
+    "pending": 0,
+    "hit_rate": 75.0
    },
    "G6": {
     "wins": 11,
@@ -895,22 +954,22 @@
   },
   "by_game": {
    "total": 42,
-   "decided": 36,
-   "wins": 29,
+   "decided": 37,
+   "wins": 30,
    "losses": 7,
-   "pending": 6,
-   "hit_rate": 80.6,
-   "pnl": 19.39,
-   "roi": 53.9
+   "pending": 5,
+   "hit_rate": 81.1,
+   "pnl": 20.3,
+   "roi": 54.9
   },
   "no_conflict": {
-   "decided": 34,
-   "wins": 28,
+   "decided": 35,
+   "wins": 29,
    "losses": 6,
-   "pending": 2,
-   "hit_rate": 82.4,
-   "pnl": 19.48,
-   "roi": 57.3
+   "pending": 1,
+   "hit_rate": 82.9,
+   "pnl": 20.39,
+   "roi": 58.3
   },
   "details": [
    {
@@ -1617,8 +1676,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.842,
-    "result": "pending",
-    "margin": null,
+    "result": "win",
+    "margin": 9.5,
     "game_num": 5
    },
    {

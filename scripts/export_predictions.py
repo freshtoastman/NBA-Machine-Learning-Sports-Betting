@@ -1381,6 +1381,44 @@ def build_bracket(target_date: date) -> dict | None:
         }
         if isinstance(f_high, dict) and isinstance(f_low, dict):
             finals_data.update(_with_wins(f_high, f_low, round_num=4))
+    elif ecf_winner or wcf_winner:
+        known = ecf_winner or wcf_winner
+        known_conf = "東區冠軍" if ecf_winner else "西區冠軍"
+        pending_cf = wcf_cf if ecf_winner else ecf_cf
+        pending_conf = "西區冠軍" if ecf_winner else "東區冠軍"
+        pending_h = pending_cf.get("high", {})
+        pending_l = pending_cf.get("low", {})
+        ph_name = pending_h.get("team_zh", "?") if isinstance(pending_h, dict) else "?"
+        pl_name = pending_l.get("team_zh", "?") if isinstance(pending_l, dict) else "?"
+        ph_wins = pending_cf.get("high_wins", 0)
+        pl_wins = pending_cf.get("low_wins", 0)
+        pending_label = f"{pending_conf.replace('冠軍', '')}決賽勝者 ({ph_name} {ph_wins}-{pl_wins} {pl_name})"
+        finals_data = {
+            "label": "總決賽",
+            "high_conf": known_conf,
+            "low_conf": pending_conf,
+            "high": known,
+            "low": pending_label,
+            "high_wins": 0,
+            "low_wins": 0,
+            "games_played": 0,
+            "next_signal": None,
+            "status": f"等待{pending_conf} — 6/3 開打",
+            "schedule": {
+                "game1": {"date": "2026-06-03", "time": "8:30 PM ET"},
+                "game2": {"date": "2026-06-05", "time": "8:30 PM ET"},
+                "game3": {"date": "2026-06-08", "time": "8:30 PM ET"},
+                "game4": {"date": "2026-06-10", "time": "8:30 PM ET"},
+                "game5": {"date": "2026-06-13", "time": "8:30 PM ET"},
+                "game6": {"date": "2026-06-16", "time": "8:30 PM ET"},
+            },
+            "analysis": {
+                "series_status": f"{known.get('team_zh', known.get('team', '?'))} vs TBD ({pending_conf}) · 6/3 開打",
+                "momentum_zh": f"{known.get('team_zh', '?')} 已確定晉級，等待{pending_conf}產生",
+                "key_factor_zh": f"{pending_conf}系列賽越長，{known.get('team_zh', '?')} 休息優勢越大",
+                "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽",
+            },
+        }
 
     bracket = {
         "snapshot_date": snapshot_date,
