@@ -1,1693 +1,1638 @@
 {
-  "snapshot_date": "2026-05-27",
-  "generated_for": "2026-05-27",
-  "playoff_start": "2026-04-14",
-  "show_from": "2026-04-07",
-  "show_until": "2026-04-24",
-  "stage_label": "總決賽",
-  "stage": "finals",
-  "east": {
-    "name": "東區",
-    "seeds": [
-      {
-        "team": "Detroit Pistons",
-        "team_zh": "底特律活塞",
-        "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
-        "wins": 60,
-        "losses": 22,
-        "win_pct": 0.732,
-        "seed": 1
-      },
-      {
-        "team": "Boston Celtics",
-        "team_zh": "波士頓塞爾提克",
-        "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-        "wins": 56,
-        "losses": 26,
-        "win_pct": 0.683,
-        "seed": 2
-      },
-      {
-        "team": "New York Knicks",
-        "team_zh": "紐約尼克",
-        "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-        "wins": 53,
-        "losses": 29,
-        "win_pct": 0.646,
-        "seed": 3
-      },
-      {
-        "team": "Cleveland Cavaliers",
-        "team_zh": "克里夫蘭騎士",
-        "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-        "wins": 52,
-        "losses": 30,
-        "win_pct": 0.634,
-        "seed": 4
-      },
-      {
-        "team": "Toronto Raptors",
-        "team_zh": "多倫多暴龍",
-        "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
-        "wins": 46,
-        "losses": 36,
-        "win_pct": 0.561,
-        "seed": 5
-      },
-      {
-        "team": "Atlanta Hawks",
-        "team_zh": "亞特蘭大老鷹",
-        "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
-        "wins": 46,
-        "losses": 36,
-        "win_pct": 0.561,
-        "seed": 6
-      },
-      {
-        "team": "Orlando Magic",
-        "team_zh": "奧蘭多魔術",
-        "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-        "wins": 45,
-        "losses": 37,
-        "win_pct": 0.549,
-        "seed": 7
-      },
-      {
-        "team": "Philadelphia 76ers",
-        "team_zh": "費城七六人",
-        "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-        "wins": 45,
-        "losses": 37,
-        "win_pct": 0.549,
-        "seed": 8
-      },
-      {
-        "team": "Charlotte Hornets",
-        "team_zh": "夏洛特黃蜂",
-        "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-        "wins": 44,
-        "losses": 38,
-        "win_pct": 0.537,
-        "seed": 9
-      },
-      {
-        "team": "Miami Heat",
-        "team_zh": "邁阿密熱火",
-        "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
-        "wins": 43,
-        "losses": 39,
-        "win_pct": 0.524,
-        "seed": 10
-      }
-    ],
-    "lottery": [
-      {
-        "team": "Milwaukee Bucks",
-        "team_zh": "密爾瓦基公鹿",
-        "logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
-        "wins": 32,
-        "losses": 50,
-        "win_pct": 0.39,
-        "seed": 11
-      },
-      {
-        "team": "Chicago Bulls",
-        "team_zh": "芝加哥公牛",
-        "logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
-        "wins": 31,
-        "losses": 51,
-        "win_pct": 0.378,
-        "seed": 12
-      },
-      {
-        "team": "Brooklyn Nets",
-        "team_zh": "布魯克林籃網",
-        "logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
-        "wins": 20,
-        "losses": 62,
-        "win_pct": 0.244,
-        "seed": 13
-      },
-      {
-        "team": "Indiana Pacers",
-        "team_zh": "印第安納溜馬",
-        "logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
-        "wins": 19,
-        "losses": 63,
-        "win_pct": 0.232,
-        "seed": 14
-      },
-      {
-        "team": "Washington Wizards",
-        "team_zh": "華盛頓巫師",
-        "logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
-        "wins": 17,
-        "losses": 65,
-        "win_pct": 0.207,
-        "seed": 15
-      }
-    ],
-    "play_in": {
-      "game_a": {
-        "label": "7 vs 8",
-        "home": {
-          "team": "Orlando Magic",
-          "team_zh": "奧蘭多魔術",
-          "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "away": {
-          "team": "Philadelphia 76ers",
-          "team_zh": "費城七六人",
-          "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 8
-        },
-        "winner_seed": 7,
-        "loser_note": "敗者進 8/9 淘汰賽",
-        "winner": "Philadelphia 76ers",
-        "winner_zh": "費城七六人"
-      },
-      "game_b": {
-        "label": "9 vs 10",
-        "home": {
-          "team": "Charlotte Hornets",
-          "team_zh": "夏洛特黃蜂",
-          "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-          "wins": 44,
-          "losses": 38,
-          "win_pct": 0.537,
-          "seed": 9
-        },
-        "away": {
-          "team": "Miami Heat",
-          "team_zh": "邁阿密熱火",
-          "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
-          "wins": 43,
-          "losses": 39,
-          "win_pct": 0.524,
-          "seed": 10
-        },
-        "winner_note": "晉級 8 號淘汰賽",
-        "loser_note": "淘汰",
-        "winner": "Charlotte Hornets",
-        "winner_zh": "夏洛特黃蜂"
-      },
-      "game_c": {
-        "label": "8 號種子決定戰",
-        "home": {
-          "team": "Orlando Magic",
-          "team_zh": "奧蘭多魔術",
-          "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "away": {
-          "team": "Charlotte Hornets",
-          "team_zh": "夏洛特黃蜂",
-          "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-          "wins": 44,
-          "losses": 38,
-          "win_pct": 0.537,
-          "seed": 9
-        },
-        "winner_seed": 8,
-        "winner": "Orlando Magic",
-        "winner_zh": "奧蘭多魔術"
-      }
-    },
-    "first_round": [
-      {
-        "label": "1 vs 8",
-        "high": {
-          "team": "Detroit Pistons",
-          "team_zh": "底特律活塞",
-          "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
-          "wins": 60,
-          "losses": 22,
-          "win_pct": 0.732,
-          "seed": 1
-        },
-        "low": {
-          "team": "Orlando Magic",
-          "team_zh": "奧蘭多魔術",
-          "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 8
-        },
-        "high_wins": 4,
-        "low_wins": 3,
-        "games_played": 7
-      },
-      {
-        "label": "4 vs 5",
-        "high": {
-          "team": "Cleveland Cavaliers",
-          "team_zh": "克里夫蘭騎士",
-          "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-          "wins": 52,
-          "losses": 30,
-          "win_pct": 0.634,
-          "seed": 4
-        },
-        "low": {
-          "team": "Toronto Raptors",
-          "team_zh": "多倫多暴龍",
-          "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
-          "wins": 46,
-          "losses": 36,
-          "win_pct": 0.561,
-          "seed": 5
-        },
-        "high_wins": 4,
-        "low_wins": 3,
-        "games_played": 7
-      },
-      {
-        "label": "3 vs 6",
-        "high": {
-          "team": "New York Knicks",
-          "team_zh": "紐約尼克",
-          "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-          "wins": 53,
-          "losses": 29,
-          "win_pct": 0.646,
-          "seed": 3
-        },
-        "low": {
-          "team": "Atlanta Hawks",
-          "team_zh": "亞特蘭大老鷹",
-          "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
-          "wins": 46,
-          "losses": 36,
-          "win_pct": 0.561,
-          "seed": 6
-        },
-        "high_wins": 4,
-        "low_wins": 2,
-        "games_played": 6
-      },
-      {
-        "label": "2 vs 7",
-        "high": {
-          "team": "Boston Celtics",
-          "team_zh": "波士頓塞爾提克",
-          "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-          "wins": 56,
-          "losses": 26,
-          "win_pct": 0.683,
-          "seed": 2
-        },
-        "low": {
-          "team": "Philadelphia 76ers",
-          "team_zh": "費城七六人",
-          "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "high_wins": 3,
-        "low_wins": 4,
-        "games_played": 7
-      }
-    ],
-    "second_round": [
-      {
-        "label": "1/8 vs 4/5",
-        "high": {
-          "team": "Detroit Pistons",
-          "team_zh": "底特律活塞",
-          "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
-          "wins": 60,
-          "losses": 22,
-          "win_pct": 0.732,
-          "seed": 1
-        },
-        "low": {
-          "team": "Cleveland Cavaliers",
-          "team_zh": "克里夫蘭騎士",
-          "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-          "wins": 52,
-          "losses": 30,
-          "win_pct": 0.634,
-          "seed": 4
-        },
-        "high_wins": 3,
-        "low_wins": 4,
-        "games_played": 7
-      },
-      {
-        "label": "2/7 vs 3/6",
-        "high": {
-          "team": "New York Knicks",
-          "team_zh": "紐約尼克",
-          "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-          "wins": 53,
-          "losses": 29,
-          "win_pct": 0.646,
-          "seed": 3
-        },
-        "low": {
-          "team": "Philadelphia 76ers",
-          "team_zh": "費城七六人",
-          "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "high_wins": 4,
-        "low_wins": 0,
-        "games_played": 4
-      }
-    ],
-    "conf_finals": {
-      "label": "分區決賽",
-      "high": {
-        "team": "New York Knicks",
-        "team_zh": "紐約尼克",
-        "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-        "wins": 53,
-        "losses": 29,
-        "win_pct": 0.646,
-        "seed": 3
-      },
-      "low": {
-        "team": "Cleveland Cavaliers",
-        "team_zh": "克里夫蘭騎士",
-        "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-        "wins": 52,
-        "losses": 30,
-        "win_pct": 0.634,
-        "seed": 4
-      },
-      "high_wins": 4,
-      "low_wins": 0,
-      "games_played": 4,
-      "winner": "New York Knicks",
-      "winner_zh": "紐約尼克",
-      "winner_seed": 3,
-      "winner_card": {
-        "team": "New York Knicks",
-        "team_zh": "紐約尼克",
-        "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-        "wins": 53,
-        "losses": 29,
-        "win_pct": 0.646,
-        "seed": 3
-      },
-      "analysis": {
-        "series_status": "紐約尼克 4-0 橫掃克里夫蘭騎士 ✓",
-        "momentum_zh": "NYK 攻防兩端壓制，場均淨勝 21.3 分，四場皆主導比賽節奏",
-        "key_factor_zh": "Brunson+Towns 雙核輸出穩定，CLE 無解方；Brunson 場均 28.5 分 8.3 助攻",
-        "quarter_trend": {
-          "notes_zh": "NYK 四場皆第三節拉開，Q3 場均淨勝 +8.8；CLE 下半場崩潰"
-        },
-        "signal_preview": null,
-        "risk_zh": null
-      }
-    }
-  },
-  "west": {
-    "name": "西區",
-    "seeds": [
-      {
-        "team": "Oklahoma City Thunder",
-        "team_zh": "奧克拉荷馬雷霆",
-        "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-        "wins": 64,
-        "losses": 18,
-        "win_pct": 0.78,
-        "seed": 1
-      },
-      {
-        "team": "San Antonio Spurs",
-        "team_zh": "聖安東尼奧馬刺",
-        "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-        "wins": 62,
-        "losses": 20,
-        "win_pct": 0.756,
-        "seed": 2
-      },
-      {
-        "team": "Denver Nuggets",
-        "team_zh": "丹佛金塊",
-        "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
-        "wins": 54,
-        "losses": 28,
-        "win_pct": 0.659,
-        "seed": 3
-      },
-      {
-        "team": "Los Angeles Lakers",
-        "team_zh": "洛杉磯湖人",
-        "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-        "wins": 53,
-        "losses": 29,
-        "win_pct": 0.646,
-        "seed": 4
-      },
-      {
-        "team": "Houston Rockets",
-        "team_zh": "休士頓火箭",
-        "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
-        "wins": 52,
-        "losses": 30,
-        "win_pct": 0.634,
-        "seed": 5
-      },
-      {
-        "team": "Minnesota Timberwolves",
-        "team_zh": "明尼蘇達灰狼",
-        "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-        "wins": 49,
-        "losses": 33,
-        "win_pct": 0.598,
-        "seed": 6
-      },
-      {
-        "team": "Phoenix Suns",
-        "team_zh": "鳳凰城太陽",
-        "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-        "wins": 45,
-        "losses": 37,
-        "win_pct": 0.549,
-        "seed": 7
-      },
-      {
-        "team": "Portland Trail Blazers",
-        "team_zh": "波特蘭拓荒者",
-        "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-        "wins": 42,
-        "losses": 40,
-        "win_pct": 0.512,
-        "seed": 8
-      },
-      {
-        "team": "LA Clippers",
-        "team_zh": "洛杉磯快艇",
-        "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
-        "wins": 42,
-        "losses": 40,
-        "win_pct": 0.512,
-        "seed": 9
-      },
-      {
-        "team": "Golden State Warriors",
-        "team_zh": "金州勇士",
-        "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
-        "wins": 37,
-        "losses": 45,
-        "win_pct": 0.451,
-        "seed": 10
-      }
-    ],
-    "lottery": [
-      {
-        "team": "Dallas Mavericks",
-        "team_zh": "達拉斯獨行俠",
-        "logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
-        "wins": 26,
-        "losses": 56,
-        "win_pct": 0.317,
-        "seed": 11
-      },
-      {
-        "team": "New Orleans Pelicans",
-        "team_zh": "紐奧良鵜鶘",
-        "logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
-        "wins": 26,
-        "losses": 56,
-        "win_pct": 0.317,
-        "seed": 12
-      },
-      {
-        "team": "Memphis Grizzlies",
-        "team_zh": "曼菲斯灰熊",
-        "logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
-        "wins": 25,
-        "losses": 57,
-        "win_pct": 0.305,
-        "seed": 13
-      },
-      {
-        "team": "Sacramento Kings",
-        "team_zh": "沙加緬度國王",
-        "logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
-        "wins": 22,
-        "losses": 60,
-        "win_pct": 0.268,
-        "seed": 14
-      },
-      {
-        "team": "Utah Jazz",
-        "team_zh": "猶他爵士",
-        "logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
-        "wins": 22,
-        "losses": 60,
-        "win_pct": 0.268,
-        "seed": 15
-      }
-    ],
-    "play_in": {
-      "game_a": {
-        "label": "7 vs 8",
-        "home": {
-          "team": "Phoenix Suns",
-          "team_zh": "鳳凰城太陽",
-          "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "away": {
-          "team": "Portland Trail Blazers",
-          "team_zh": "波特蘭拓荒者",
-          "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-          "wins": 42,
-          "losses": 40,
-          "win_pct": 0.512,
-          "seed": 8
-        },
-        "winner_seed": 7,
-        "loser_note": "敗者進 8/9 淘汰賽",
-        "winner": "Portland Trail Blazers",
-        "winner_zh": "波特蘭拓荒者"
-      },
-      "game_b": {
-        "label": "9 vs 10",
-        "home": {
-          "team": "LA Clippers",
-          "team_zh": "洛杉磯快艇",
-          "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
-          "wins": 42,
-          "losses": 40,
-          "win_pct": 0.512,
-          "seed": 9
-        },
-        "away": {
-          "team": "Golden State Warriors",
-          "team_zh": "金州勇士",
-          "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
-          "wins": 37,
-          "losses": 45,
-          "win_pct": 0.451,
-          "seed": 10
-        },
-        "winner_note": "晉級 8 號淘汰賽",
-        "loser_note": "淘汰",
-        "winner": "Golden State Warriors",
-        "winner_zh": "金州勇士"
-      },
-      "game_c": {
-        "label": "8 號種子決定戰",
-        "home": {
-          "team": "Phoenix Suns",
-          "team_zh": "鳳凰城太陽",
-          "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 7
-        },
-        "away": {
-          "team": "Golden State Warriors",
-          "team_zh": "金州勇士",
-          "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
-          "wins": 37,
-          "losses": 45,
-          "win_pct": 0.451,
-          "seed": 10
-        },
-        "winner_seed": 8,
-        "winner": null,
-        "winner_zh": null
-      }
-    },
-    "first_round": [
-      {
-        "label": "1 vs 8",
-        "high": {
-          "team": "Oklahoma City Thunder",
-          "team_zh": "奧克拉荷馬雷霆",
-          "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-          "wins": 64,
-          "losses": 18,
-          "win_pct": 0.78,
-          "seed": 1
-        },
-        "low": {
-          "team": "Phoenix Suns",
-          "team_zh": "鳳凰城太陽",
-          "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-          "wins": 45,
-          "losses": 37,
-          "win_pct": 0.549,
-          "seed": 8
-        },
-        "high_wins": 4,
-        "low_wins": 0,
-        "games_played": 4
-      },
-      {
-        "label": "4 vs 5",
-        "high": {
-          "team": "Los Angeles Lakers",
-          "team_zh": "洛杉磯湖人",
-          "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-          "wins": 53,
-          "losses": 29,
-          "win_pct": 0.646,
-          "seed": 4
-        },
-        "low": {
-          "team": "Houston Rockets",
-          "team_zh": "休士頓火箭",
-          "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
-          "wins": 52,
-          "losses": 30,
-          "win_pct": 0.634,
-          "seed": 5
-        },
-        "high_wins": 4,
-        "low_wins": 2,
-        "games_played": 6
-      },
-      {
-        "label": "3 vs 6",
-        "high": {
-          "team": "Denver Nuggets",
-          "team_zh": "丹佛金塊",
-          "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
-          "wins": 54,
-          "losses": 28,
-          "win_pct": 0.659,
-          "seed": 3
-        },
-        "low": {
-          "team": "Minnesota Timberwolves",
-          "team_zh": "明尼蘇達灰狼",
-          "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-          "wins": 49,
-          "losses": 33,
-          "win_pct": 0.598,
-          "seed": 6
-        },
-        "high_wins": 2,
-        "low_wins": 4,
-        "games_played": 6
-      },
-      {
-        "label": "2 vs 7",
-        "high": {
-          "team": "San Antonio Spurs",
-          "team_zh": "聖安東尼奧馬刺",
-          "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-          "wins": 62,
-          "losses": 20,
-          "win_pct": 0.756,
-          "seed": 2
-        },
-        "low": {
-          "team": "Portland Trail Blazers",
-          "team_zh": "波特蘭拓荒者",
-          "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-          "wins": 42,
-          "losses": 40,
-          "win_pct": 0.512,
-          "seed": 7
-        },
-        "high_wins": 4,
-        "low_wins": 1,
-        "games_played": 5
-      }
-    ],
-    "second_round": [
-      {
-        "label": "1/8 vs 4/5",
-        "high": {
-          "team": "Oklahoma City Thunder",
-          "team_zh": "奧克拉荷馬雷霆",
-          "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-          "wins": 64,
-          "losses": 18,
-          "win_pct": 0.78,
-          "seed": 1
-        },
-        "low": {
-          "team": "Los Angeles Lakers",
-          "team_zh": "洛杉磯湖人",
-          "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
-          "wins": 53,
-          "losses": 29,
-          "win_pct": 0.646,
-          "seed": 4
-        },
-        "high_wins": 4,
-        "low_wins": 0,
-        "games_played": 4
-      },
-      {
-        "label": "2/7 vs 3/6",
-        "high": {
-          "team": "San Antonio Spurs",
-          "team_zh": "聖安東尼奧馬刺",
-          "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-          "wins": 62,
-          "losses": 20,
-          "win_pct": 0.756,
-          "seed": 2
-        },
-        "low": {
-          "team": "Minnesota Timberwolves",
-          "team_zh": "明尼蘇達灰狼",
-          "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
-          "wins": 49,
-          "losses": 33,
-          "win_pct": 0.598,
-          "seed": 6
-        },
-        "high_wins": 4,
-        "low_wins": 2,
-        "games_played": 6
-      }
-    ],
-    "conf_finals": {
-      "label": "分區決賽",
-      "high": {
-        "team": "Oklahoma City Thunder",
-        "team_zh": "奧克拉荷馬雷霆",
-        "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-        "wins": 64,
-        "losses": 18,
-        "win_pct": 0.78,
-        "seed": 1
-      },
-      "low": {
-        "team": "San Antonio Spurs",
-        "team_zh": "聖安東尼奧馬刺",
-        "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-        "wins": 62,
-        "losses": 20,
-        "win_pct": 0.756,
-        "seed": 2
-      },
-      "high_wins": 3,
-      "low_wins": 2,
-      "games_played": 5,
-      "next_signal": {
-        "game_num": 6,
-        "signal": "淘汰局押冷門",
-        "side": "away",
-        "home_team": "San Antonio Spurs",
-        "home_team_zh": "聖安東尼奧馬刺",
-        "away_team": "Oklahoma City Thunder",
-        "away_team_zh": "奧克拉荷馬雷霆",
-        "tier": "SILVER",
-        "backtest_wr": 0.654,
-        "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)"
-      },
-      "analysis": {
-        "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
-        "momentum_zh": "OKC G5 主場 127-114 大勝 13 分，SGA 32 分 9 助攻主導比賽；GOLD 信號命中 ✓",
-        "key_factor_zh": "G6 回到馬刺主場，SAS 面臨淘汰；Wembanyama 必須爆發才能延長系列賽",
-        "quarter_trend": {
-          "notes_zh": "G5 OKC Q2 打出 40-31 攻擊波拉開差距；Caruso 替補 22 分為關鍵"
-        },
-        "signal_preview": {
-          "game_num": 6,
-          "date": "2026-05-28",
-          "venue": "SAS 主場",
-          "tier": "SILVER",
-          "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。但馬刺背水一戰主場能量可觀，風險較高"
-        },
-        "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷"
-      }
-    }
-  },
-  "signal_tracker": {
-    "total": 60,
-    "decided": 59,
+ "snapshot_date": "2026-05-26",
+ "generated_for": "2026-05-27",
+ "playoff_start": "2026-04-14",
+ "show_from": "2026-04-07",
+ "show_until": "2026-04-24",
+ "stage_label": "總決賽",
+ "stage": "finals",
+ "east": {
+  "name": "東區",
+  "seeds": [
+   {
+    "team": "Detroit Pistons",
+    "team_zh": "底特律活塞",
+    "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+    "wins": 60,
+    "losses": 22,
+    "win_pct": 0.732,
+    "seed": 1
+   },
+   {
+    "team": "Boston Celtics",
+    "team_zh": "波士頓塞爾提克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+    "wins": 56,
+    "losses": 26,
+    "win_pct": 0.683,
+    "seed": 2
+   },
+   {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   },
+   {
+    "team": "Cleveland Cavaliers",
+    "team_zh": "克里夫蘭騎士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 4
+   },
+   {
+    "team": "Toronto Raptors",
+    "team_zh": "多倫多暴龍",
+    "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+    "wins": 46,
+    "losses": 36,
+    "win_pct": 0.561,
+    "seed": 5
+   },
+   {
+    "team": "Atlanta Hawks",
+    "team_zh": "亞特蘭大老鷹",
+    "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+    "wins": 46,
+    "losses": 36,
+    "win_pct": 0.561,
+    "seed": 6
+   },
+   {
+    "team": "Orlando Magic",
+    "team_zh": "奧蘭多魔術",
+    "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 7
+   },
+   {
+    "team": "Philadelphia 76ers",
+    "team_zh": "費城七六人",
+    "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 8
+   },
+   {
+    "team": "Charlotte Hornets",
+    "team_zh": "夏洛特黃蜂",
+    "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
     "wins": 44,
-    "losses": 15,
-    "pending": 1,
-    "hit_rate": 74.6,
-    "pnl": 25.03,
-    "roi": 42.4,
-    "by_tier": {
-      "SILVER": {
-        "wins": 30,
-        "losses": 10,
-        "pending": 1
-      },
-      "GOLD": {
-        "wins": 14,
-        "losses": 5,
-        "pending": 0
-      }
+    "losses": 38,
+    "win_pct": 0.537,
+    "seed": 9
+   },
+   {
+    "team": "Miami Heat",
+    "team_zh": "邁阿密熱火",
+    "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+    "wins": 43,
+    "losses": 39,
+    "win_pct": 0.524,
+    "seed": 10
+   }
+  ],
+  "lottery": [
+   {
+    "team": "Milwaukee Bucks",
+    "team_zh": "密爾瓦基公鹿",
+    "logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
+    "wins": 32,
+    "losses": 50,
+    "win_pct": 0.39,
+    "seed": 11
+   },
+   {
+    "team": "Chicago Bulls",
+    "team_zh": "芝加哥公牛",
+    "logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
+    "wins": 31,
+    "losses": 51,
+    "win_pct": 0.378,
+    "seed": 12
+   },
+   {
+    "team": "Brooklyn Nets",
+    "team_zh": "布魯克林籃網",
+    "logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
+    "wins": 20,
+    "losses": 62,
+    "win_pct": 0.244,
+    "seed": 13
+   },
+   {
+    "team": "Indiana Pacers",
+    "team_zh": "印第安納溜馬",
+    "logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
+    "wins": 19,
+    "losses": 63,
+    "win_pct": 0.232,
+    "seed": 14
+   },
+   {
+    "team": "Washington Wizards",
+    "team_zh": "華盛頓巫師",
+    "logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
+    "wins": 17,
+    "losses": 65,
+    "win_pct": 0.207,
+    "seed": 15
+   }
+  ],
+  "play_in": {
+   "game_a": {
+    "label": "7 vs 8",
+    "home": {
+     "team": "Orlando Magic",
+     "team_zh": "奧蘭多魔術",
+     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
     },
-    "by_game_num": {
-      "G1": {
-        "wins": 9,
-        "losses": 4,
-        "pending": 0,
-        "hit_rate": 69.2
-      },
-      "G2": {
-        "wins": 13,
-        "losses": 2,
-        "pending": 0,
-        "hit_rate": 86.7
-      },
-      "G3": {
-        "wins": 6,
-        "losses": 3,
-        "pending": 0,
-        "hit_rate": 66.7
-      },
-      "G5": {
-        "wins": 3,
-        "losses": 1,
-        "pending": 0,
-        "hit_rate": 75.0
-      },
-      "G6": {
-        "wins": 11,
-        "losses": 5,
-        "pending": 2,
-        "hit_rate": 68.8
-      },
-      "G7": {
-        "wins": 2,
-        "losses": 0,
-        "pending": 0,
-        "hit_rate": 100.0
-      }
+    "away": {
+     "team": "Philadelphia 76ers",
+     "team_zh": "費城七六人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 8
     },
-    "by_game": {
-      "total": 42,
-      "decided": 37,
-      "wins": 30,
-      "losses": 7,
-      "pending": 5,
-      "hit_rate": 81.1,
-      "pnl": 20.29,
-      "roi": 54.8
+    "winner_seed": 7,
+    "loser_note": "敗者進 8/9 淘汰賽",
+    "winner": "Philadelphia 76ers",
+    "winner_zh": "費城七六人"
+   },
+   "game_b": {
+    "label": "9 vs 10",
+    "home": {
+     "team": "Charlotte Hornets",
+     "team_zh": "夏洛特黃蜂",
+     "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+     "wins": 44,
+     "losses": 38,
+     "win_pct": 0.537,
+     "seed": 9
     },
-    "no_conflict": {
-      "decided": 35,
-      "wins": 29,
-      "losses": 6,
-      "pending": 1,
-      "hit_rate": 82.9,
-      "pnl": 20.38,
-      "roi": 58.2
+    "away": {
+     "team": "Miami Heat",
+     "team_zh": "邁阿密熱火",
+     "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+     "wins": 43,
+     "losses": 39,
+     "win_pct": 0.524,
+     "seed": 10
     },
-    "details": [
-      {
-        "date": "2026-04-14",
-        "away": "邁阿密熱火",
-        "home": "夏洛特黃蜂",
-        "signal": "客場ATS冷門反彈",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.619,
-        "result": "win",
-        "margin": -4.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-18",
-        "away": "多倫多暴龍",
-        "home": "克里夫蘭騎士",
-        "signal": "主場ATS冷門反彈",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.6,
-        "result": "win",
-        "margin": 5.0,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "費城七六人",
-        "home": "波士頓塞爾提克",
-        "signal": "R1G1大讓分主場",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.818,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "費城七六人",
-        "home": "波士頓塞爾提克",
-        "signal": "附加賽升組客隊不利",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.8,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "鳳凰城太陽",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "R1G1大讓分主場",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.818,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "鳳凰城太陽",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "附加賽升組客隊不利",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.8,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "波特蘭拓荒者",
-        "home": "聖安東尼奧馬刺",
-        "signal": "R1G1大讓分主場",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.818,
-        "result": "loss",
-        "margin": -1.0,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-19",
-        "away": "波特蘭拓荒者",
-        "home": "聖安東尼奧馬刺",
-        "signal": "附加賽升組客隊不利",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.8,
-        "result": "loss",
-        "margin": -1.0,
-        "game_num": 1
-      },
-      {
-        "date": "2026-04-20",
-        "away": "亞特蘭大老鷹",
-        "home": "紐約尼克",
-        "signal": "ML季後賽押客場",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.64,
-        "result": "win",
-        "margin": -7.0,
-        "game_num": 2
-      },
-      {
-        "date": "2026-04-20",
-        "away": "明尼蘇達灰狼",
-        "home": "丹佛金塊",
-        "signal": "ML季後賽押客場",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.64,
-        "result": "win",
-        "margin": -12.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-04-21",
-        "away": "波特蘭拓荒者",
-        "home": "聖安東尼奧馬刺",
-        "signal": "G2窄勝大讓分押冷門",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.889,
-        "result": "win",
-        "margin": -13.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-04-21",
-        "away": "休士頓火箭",
-        "home": "洛杉磯湖人",
-        "signal": "G2大勝後延續",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.667,
-        "result": "win",
-        "margin": 12.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-04-22",
-        "away": "奧蘭多魔術",
-        "home": "底特律活塞",
-        "signal": "G2主場反彈 (輸G1)",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.649,
-        "result": "win",
-        "margin": 6.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-04-23",
-        "away": "克里夫蘭騎士",
-        "home": "多倫多暴龍",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "loss",
-        "margin": 24.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-04-23",
-        "away": "克里夫蘭騎士",
-        "home": "多倫多暴龍",
-        "signal": "客場明顯強勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.594,
-        "result": "loss",
-        "margin": 24.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-04-24",
-        "away": "洛杉磯湖人",
-        "home": "休士頓火箭",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "win",
-        "margin": -13.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-04-24",
-        "away": "聖安東尼奧馬刺",
-        "home": "波特蘭拓荒者",
-        "signal": "ML高信心+小讓分",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.8,
-        "result": "win",
-        "margin": -9.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-04-25",
-        "away": "奧克拉荷馬雷霆",
-        "home": "鳳凰城太陽",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "win",
-        "margin": -3.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-04-30",
-        "away": "紐約尼克",
-        "home": "亞特蘭大老鷹",
-        "signal": "G6R1客場壓制",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.694,
-        "result": "win",
-        "margin": -47.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-04-30",
-        "away": "紐約尼克",
-        "home": "亞特蘭大老鷹",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "loss",
-        "margin": -47.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-04-30",
-        "away": "波士頓塞爾提克",
-        "home": "費城七六人",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-04-30",
-        "away": "波士頓塞爾提克",
-        "home": "費城七六人",
-        "signal": "主場ATS冷門反彈",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.6,
-        "result": "win",
-        "margin": 18.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-04-30",
-        "away": "丹佛金塊",
-        "home": "明尼蘇達灰狼",
-        "signal": "G6主場收官陷阱",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.667,
-        "result": "win",
-        "margin": 19.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-04-30",
-        "away": "丹佛金塊",
-        "home": "明尼蘇達灰狼",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "win",
-        "margin": 19.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "底特律活塞",
-        "home": "奧蘭多魔術",
-        "signal": "G6R1客場壓制",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.694,
-        "result": "win",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "底特律活塞",
-        "home": "奧蘭多魔術",
-        "signal": "G6主場收官陷阱",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.667,
-        "result": "loss",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "底特律活塞",
-        "home": "奧蘭多魔術",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "loss",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "克里夫蘭騎士",
-        "home": "多倫多暴龍",
-        "signal": "G6R1客場壓制",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.694,
-        "result": "loss",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "克里夫蘭騎士",
-        "home": "多倫多暴龍",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "win",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "洛杉磯湖人",
-        "home": "休士頓火箭",
-        "signal": "G6R1客場壓制",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.694,
-        "result": "win",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-01",
-        "away": "洛杉磯湖人",
-        "home": "休士頓火箭",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.654,
-        "result": "win",
-        "margin": null,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-02",
-        "away": "費城七六人",
-        "home": "波士頓塞爾提克",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.613,
-        "result": "win",
-        "margin": null,
-        "game_num": 7
-      },
-      {
-        "date": "2026-05-04",
-        "away": "費城七六人",
-        "home": "紐約尼克",
-        "signal": "R2G1主場優勢",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.646,
-        "result": "win",
-        "margin": null,
-        "game_num": 1
-      },
-      {
-        "date": "2026-05-04",
-        "away": "明尼蘇達灰狼",
-        "home": "聖安東尼奧馬刺",
-        "signal": "R2G1主場優勢",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.646,
-        "result": "loss",
-        "margin": null,
-        "game_num": 1
-      },
-      {
-        "date": "2026-05-05",
-        "away": "克里夫蘭騎士",
-        "home": "底特律活塞",
-        "signal": "R2G1主場優勢",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.646,
-        "result": "win",
-        "margin": 6.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-05-05",
-        "away": "洛杉磯湖人",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "R2G1主場優勢",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.646,
-        "result": "win",
-        "margin": 1.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-05-06",
-        "away": "費城七六人",
-        "home": "紐約尼克",
-        "signal": "R2G2主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.875,
-        "result": "win",
-        "margin": 0.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-06",
-        "away": "費城七六人",
-        "home": "紐約尼克",
-        "signal": "G2大勝後延續",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.667,
-        "result": "win",
-        "margin": 0.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-06",
-        "away": "明尼蘇達灰狼",
-        "home": "聖安東尼奧馬刺",
-        "signal": "R2G2主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.875,
-        "result": "win",
-        "margin": 28.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-06",
-        "away": "明尼蘇達灰狼",
-        "home": "聖安東尼奧馬刺",
-        "signal": "G2主場反彈 (輸G1)",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.649,
-        "result": "win",
-        "margin": 28.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-07",
-        "away": "克里夫蘭騎士",
-        "home": "底特律活塞",
-        "signal": "R2G2主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.875,
-        "result": "win",
-        "margin": 6.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-07",
-        "away": "洛杉磯湖人",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "G2窄勝大讓分押冷門",
-        "tier": "GOLD",
-        "side": "away",
-        "backtest_wr": 0.889,
-        "result": "loss",
-        "margin": 2.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-07",
-        "away": "洛杉磯湖人",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "R2G2主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.875,
-        "result": "win",
-        "margin": 2.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-08",
-        "away": "紐約尼克",
-        "home": "費城七六人",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "win",
-        "margin": -15.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-05-09",
-        "away": "底特律活塞",
-        "home": "克里夫蘭騎士",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "loss",
-        "margin": 2.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-05-09",
-        "away": "奧克拉荷馬雷霆",
-        "home": "洛杉磯湖人",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "win",
-        "margin": -14.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-05-13",
-        "away": "明尼蘇達灰狼",
-        "home": "聖安東尼奧馬刺",
-        "signal": "R2G5主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.837,
-        "result": "win",
-        "margin": 19.5,
-        "game_num": 5
-      },
-      {
-        "date": "2026-05-14",
-        "away": "克里夫蘭騎士",
-        "home": "底特律活塞",
-        "signal": "R2G5主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.837,
-        "result": "loss",
-        "margin": -7.5,
-        "game_num": 5
-      },
-      {
-        "date": "2026-05-14",
-        "away": "克里夫蘭騎士",
-        "home": "底特律活塞",
-        "signal": "客場ATS冷門反彈",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.619,
-        "result": "win",
-        "margin": -7.5,
-        "game_num": 5
-      },
-      {
-        "date": "2026-05-15",
-        "away": "底特律活塞",
-        "home": "克里夫蘭騎士",
-        "signal": "G6主場收官陷阱",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.667,
-        "result": "win",
-        "margin": -24.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-15",
-        "away": "底特律活塞",
-        "home": "克里夫蘭騎士",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.654,
-        "result": "win",
-        "margin": -24.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-15",
-        "away": "聖安東尼奧馬刺",
-        "home": "明尼蘇達灰狼",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.654,
-        "result": "loss",
-        "margin": -24.5,
-        "game_num": 6
-      },
-      {
-        "date": "2026-05-17",
-        "away": "克里夫蘭騎士",
-        "home": "底特律活塞",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.613,
-        "result": "win",
-        "margin": -35.5,
-        "game_num": 7
-      },
-      {
-        "date": "2026-05-18",
-        "away": "聖安東尼奧馬刺",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "CF G1主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.833,
-        "result": "loss",
-        "margin": -14.5,
-        "game_num": 1
-      },
-      {
-        "date": "2026-05-20",
-        "away": "聖安東尼奧馬刺",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "CF G2主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.792,
-        "result": "win",
-        "margin": 2.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-20",
-        "away": "聖安東尼奧馬刺",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "G2主場反彈 (輸G1)",
-        "tier": "SILVER",
-        "side": "home",
-        "backtest_wr": 0.649,
-        "result": "win",
-        "margin": 2.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-20",
-        "away": "聖安東尼奧馬刺",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "ML季後賽押客場",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.64,
-        "result": "loss",
-        "margin": 2.5,
-        "game_num": 2
-      },
-      {
-        "date": "2026-05-23",
-        "away": "紐約尼克",
-        "home": "克里夫蘭騎士",
-        "signal": "G3客場擴大優勢",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.643,
-        "result": "win",
-        "margin": -14.5,
-        "game_num": 3
-      },
-      {
-        "date": "2026-05-26",
-        "away": "聖安東尼奧馬刺",
-        "home": "奧克拉荷馬雷霆",
-        "signal": "CF G5主場壓制",
-        "tier": "GOLD",
-        "side": "home",
-        "backtest_wr": 0.842,
-        "result": "pending",
-        "margin": null,
-        "game_num": 5
-      },
-      {
-        "date": "2026-05-28",
-        "away": "奧克拉荷馬雷霆",
-        "home": "聖安東尼奧馬刺",
-        "signal": "淘汰局押冷門",
-        "tier": "SILVER",
-        "side": "away",
-        "backtest_wr": 0.654,
-        "result": "pending",
-        "margin": null,
-        "game_num": 6
-      }
-    ]
+    "winner_note": "晉級 8 號淘汰賽",
+    "loser_note": "淘汰",
+    "winner": "Charlotte Hornets",
+    "winner_zh": "夏洛特黃蜂"
+   },
+   "game_c": {
+    "label": "8 號種子決定戰",
+    "home": {
+     "team": "Orlando Magic",
+     "team_zh": "奧蘭多魔術",
+     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Charlotte Hornets",
+     "team_zh": "夏洛特黃蜂",
+     "logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+     "wins": 44,
+     "losses": 38,
+     "win_pct": 0.537,
+     "seed": 9
+    },
+    "winner_seed": 8,
+    "winner": "Orlando Magic",
+    "winner_zh": "奧蘭多魔術"
+   }
   },
-  "finals": {
-    "label": "總決賽",
-    "high_conf": "東區冠軍",
-    "low_conf": "西區冠軍",
+  "first_round": [
+   {
+    "label": "1 vs 8",
     "high": {
-      "team": "New York Knicks",
-      "team_zh": "紐約尼克",
-      "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-      "seed": 3
+     "team": "Detroit Pistons",
+     "team_zh": "底特律活塞",
+     "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+     "wins": 60,
+     "losses": 22,
+     "win_pct": 0.732,
+     "seed": 1
     },
-    "low": "西區決賽勝者 (OKC 3-2 SAS)",
-    "high_wins": 0,
+    "low": {
+     "team": "Orlando Magic",
+     "team_zh": "奧蘭多魔術",
+     "logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 8
+    },
+    "high_wins": 4,
+    "low_wins": 3,
+    "games_played": 7
+   },
+   {
+    "label": "4 vs 5",
+    "high": {
+     "team": "Cleveland Cavaliers",
+     "team_zh": "克里夫蘭騎士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 4
+    },
+    "low": {
+     "team": "Toronto Raptors",
+     "team_zh": "多倫多暴龍",
+     "logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+     "wins": 46,
+     "losses": 36,
+     "win_pct": 0.561,
+     "seed": 5
+    },
+    "high_wins": 4,
+    "low_wins": 3,
+    "games_played": 7
+   },
+   {
+    "label": "3 vs 6",
+    "high": {
+     "team": "New York Knicks",
+     "team_zh": "紐約尼克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 3
+    },
+    "low": {
+     "team": "Atlanta Hawks",
+     "team_zh": "亞特蘭大老鷹",
+     "logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+     "wins": 46,
+     "losses": 36,
+     "win_pct": 0.561,
+     "seed": 6
+    },
+    "high_wins": 4,
+    "low_wins": 2,
+    "games_played": 6
+   },
+   {
+    "label": "2 vs 7",
+    "high": {
+     "team": "Boston Celtics",
+     "team_zh": "波士頓塞爾提克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+     "wins": 56,
+     "losses": 26,
+     "win_pct": 0.683,
+     "seed": 2
+    },
+    "low": {
+     "team": "Philadelphia 76ers",
+     "team_zh": "費城七六人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "high_wins": 3,
+    "low_wins": 4,
+    "games_played": 7
+   }
+  ],
+  "second_round": [
+   {
+    "label": "1/8 vs 4/5",
+    "high": {
+     "team": "Detroit Pistons",
+     "team_zh": "底特律活塞",
+     "logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+     "wins": 60,
+     "losses": 22,
+     "win_pct": 0.732,
+     "seed": 1
+    },
+    "low": {
+     "team": "Cleveland Cavaliers",
+     "team_zh": "克里夫蘭騎士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 4
+    },
+    "high_wins": 3,
+    "low_wins": 4,
+    "games_played": 7
+   },
+   {
+    "label": "2/7 vs 3/6",
+    "high": {
+     "team": "New York Knicks",
+     "team_zh": "紐約尼克",
+     "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 3
+    },
+    "low": {
+     "team": "Philadelphia 76ers",
+     "team_zh": "費城七六人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "high_wins": 4,
     "low_wins": 0,
-    "games_played": 0,
-    "next_signal": null,
-    "status": "等待西區冠軍 — 6/3 開打",
-    "schedule": {
-      "game1": {
-        "date": "2026-06-03",
-        "time": "8:30 PM ET"
-      },
-      "game2": {
-        "date": "2026-06-05",
-        "time": "8:30 PM ET"
-      },
-      "game3": {
-        "date": "2026-06-08",
-        "time": "8:30 PM ET"
-      },
-      "game4": {
-        "date": "2026-06-10",
-        "time": "8:30 PM ET"
-      },
-      "game5": {
-        "date": "2026-06-13",
-        "time": "8:30 PM ET"
-      },
-      "game6": {
-        "date": "2026-06-16",
-        "time": "8:30 PM ET"
-      }
+    "games_played": 4
+   }
+  ],
+  "conf_finals": {
+   "label": "分區決賽",
+   "high": {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   },
+   "low": {
+    "team": "Cleveland Cavaliers",
+    "team_zh": "克里夫蘭騎士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 4
+   },
+   "high_wins": 4,
+   "low_wins": 0,
+   "games_played": 4,
+   "winner": "New York Knicks",
+   "winner_zh": "紐約尼克",
+   "winner_seed": 3,
+   "winner_card": {
+    "team": "New York Knicks",
+    "team_zh": "紐約尼克",
+    "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 3
+   },
+   "analysis": {
+    "series_status": "紐約尼克 4-0 橫掃克里夫蘭騎士 ✓",
+    "momentum_zh": "NYK 攻防兩端壓制，場均淨勝 21.3 分，四場皆主導比賽節奏",
+    "key_factor_zh": "Brunson+Towns 雙核輸出穩定，CLE 無解方；Brunson 場均 28.5 分 8.3 助攻",
+    "quarter_trend": {
+     "notes_zh": "NYK 四場皆第三節拉開，Q3 場均淨勝 +8.8；CLE 下半場崩潰"
     },
-    "analysis": {
-      "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
-      "momentum_zh": "NYK 橫掃 CLE 後休息充分 (5/22 結束 → 6/3 開打，11 天休息)",
-      "key_factor_zh": "西區冠軍將是體力消耗更大的一方 (WCF 至少6場)，NYK 體能優勢明顯",
-      "matchup_preview": {
-        "vs_okc": "SGA vs Brunson 控衛對決；OKC 防守更強但 NYK 有主場 MSG 氣勢 (G3-4-6)",
-        "vs_sas": "Wembanyama vs Towns 內線對決；SAS 年輕陣容但 NYK 季後賽經驗豐富"
-      },
-      "risk_zh": "長時間休息可能導致手感生疏；西區冠軍帶著系列賽勝利動能進入總決賽"
-    }
+    "signal_preview": null,
+    "risk_zh": null
+   }
   }
+ },
+ "west": {
+  "name": "西區",
+  "seeds": [
+   {
+    "team": "Oklahoma City Thunder",
+    "team_zh": "奧克拉荷馬雷霆",
+    "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+    "wins": 64,
+    "losses": 18,
+    "win_pct": 0.78,
+    "seed": 1
+   },
+   {
+    "team": "San Antonio Spurs",
+    "team_zh": "聖安東尼奧馬刺",
+    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+    "wins": 62,
+    "losses": 20,
+    "win_pct": 0.756,
+    "seed": 2
+   },
+   {
+    "team": "Denver Nuggets",
+    "team_zh": "丹佛金塊",
+    "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+    "wins": 54,
+    "losses": 28,
+    "win_pct": 0.659,
+    "seed": 3
+   },
+   {
+    "team": "Los Angeles Lakers",
+    "team_zh": "洛杉磯湖人",
+    "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+    "wins": 53,
+    "losses": 29,
+    "win_pct": 0.646,
+    "seed": 4
+   },
+   {
+    "team": "Houston Rockets",
+    "team_zh": "休士頓火箭",
+    "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+    "wins": 52,
+    "losses": 30,
+    "win_pct": 0.634,
+    "seed": 5
+   },
+   {
+    "team": "Minnesota Timberwolves",
+    "team_zh": "明尼蘇達灰狼",
+    "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+    "wins": 49,
+    "losses": 33,
+    "win_pct": 0.598,
+    "seed": 6
+   },
+   {
+    "team": "Phoenix Suns",
+    "team_zh": "鳳凰城太陽",
+    "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+    "wins": 45,
+    "losses": 37,
+    "win_pct": 0.549,
+    "seed": 7
+   },
+   {
+    "team": "Portland Trail Blazers",
+    "team_zh": "波特蘭拓荒者",
+    "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+    "wins": 42,
+    "losses": 40,
+    "win_pct": 0.512,
+    "seed": 8
+   },
+   {
+    "team": "LA Clippers",
+    "team_zh": "洛杉磯快艇",
+    "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+    "wins": 42,
+    "losses": 40,
+    "win_pct": 0.512,
+    "seed": 9
+   },
+   {
+    "team": "Golden State Warriors",
+    "team_zh": "金州勇士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+    "wins": 37,
+    "losses": 45,
+    "win_pct": 0.451,
+    "seed": 10
+   }
+  ],
+  "lottery": [
+   {
+    "team": "Dallas Mavericks",
+    "team_zh": "達拉斯獨行俠",
+    "logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
+    "wins": 26,
+    "losses": 56,
+    "win_pct": 0.317,
+    "seed": 11
+   },
+   {
+    "team": "New Orleans Pelicans",
+    "team_zh": "紐奧良鵜鶘",
+    "logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
+    "wins": 26,
+    "losses": 56,
+    "win_pct": 0.317,
+    "seed": 12
+   },
+   {
+    "team": "Memphis Grizzlies",
+    "team_zh": "曼菲斯灰熊",
+    "logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
+    "wins": 25,
+    "losses": 57,
+    "win_pct": 0.305,
+    "seed": 13
+   },
+   {
+    "team": "Sacramento Kings",
+    "team_zh": "沙加緬度國王",
+    "logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
+    "wins": 22,
+    "losses": 60,
+    "win_pct": 0.268,
+    "seed": 14
+   },
+   {
+    "team": "Utah Jazz",
+    "team_zh": "猶他爵士",
+    "logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
+    "wins": 22,
+    "losses": 60,
+    "win_pct": 0.268,
+    "seed": 15
+   }
+  ],
+  "play_in": {
+   "game_a": {
+    "label": "7 vs 8",
+    "home": {
+     "team": "Phoenix Suns",
+     "team_zh": "鳳凰城太陽",
+     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Portland Trail Blazers",
+     "team_zh": "波特蘭拓荒者",
+     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+     "wins": 42,
+     "losses": 40,
+     "win_pct": 0.512,
+     "seed": 8
+    },
+    "winner_seed": 7,
+    "loser_note": "敗者進 8/9 淘汰賽",
+    "winner": "Portland Trail Blazers",
+    "winner_zh": "波特蘭拓荒者"
+   },
+   "game_b": {
+    "label": "9 vs 10",
+    "home": {
+     "team": "LA Clippers",
+     "team_zh": "洛杉磯快艇",
+     "logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+     "wins": 42,
+     "losses": 40,
+     "win_pct": 0.512,
+     "seed": 9
+    },
+    "away": {
+     "team": "Golden State Warriors",
+     "team_zh": "金州勇士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+     "wins": 37,
+     "losses": 45,
+     "win_pct": 0.451,
+     "seed": 10
+    },
+    "winner_note": "晉級 8 號淘汰賽",
+    "loser_note": "淘汰",
+    "winner": "Golden State Warriors",
+    "winner_zh": "金州勇士"
+   },
+   "game_c": {
+    "label": "8 號種子決定戰",
+    "home": {
+     "team": "Phoenix Suns",
+     "team_zh": "鳳凰城太陽",
+     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 7
+    },
+    "away": {
+     "team": "Golden State Warriors",
+     "team_zh": "金州勇士",
+     "logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+     "wins": 37,
+     "losses": 45,
+     "win_pct": 0.451,
+     "seed": 10
+    },
+    "winner_seed": 8,
+    "winner": null,
+    "winner_zh": null
+   }
+  },
+  "first_round": [
+   {
+    "label": "1 vs 8",
+    "high": {
+     "team": "Oklahoma City Thunder",
+     "team_zh": "奧克拉荷馬雷霆",
+     "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+     "wins": 64,
+     "losses": 18,
+     "win_pct": 0.78,
+     "seed": 1
+    },
+    "low": {
+     "team": "Phoenix Suns",
+     "team_zh": "鳳凰城太陽",
+     "logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+     "wins": 45,
+     "losses": 37,
+     "win_pct": 0.549,
+     "seed": 8
+    },
+    "high_wins": 4,
+    "low_wins": 0,
+    "games_played": 4
+   },
+   {
+    "label": "4 vs 5",
+    "high": {
+     "team": "Los Angeles Lakers",
+     "team_zh": "洛杉磯湖人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 4
+    },
+    "low": {
+     "team": "Houston Rockets",
+     "team_zh": "休士頓火箭",
+     "logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+     "wins": 52,
+     "losses": 30,
+     "win_pct": 0.634,
+     "seed": 5
+    },
+    "high_wins": 4,
+    "low_wins": 2,
+    "games_played": 6
+   },
+   {
+    "label": "3 vs 6",
+    "high": {
+     "team": "Denver Nuggets",
+     "team_zh": "丹佛金塊",
+     "logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+     "wins": 54,
+     "losses": 28,
+     "win_pct": 0.659,
+     "seed": 3
+    },
+    "low": {
+     "team": "Minnesota Timberwolves",
+     "team_zh": "明尼蘇達灰狼",
+     "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+     "wins": 49,
+     "losses": 33,
+     "win_pct": 0.598,
+     "seed": 6
+    },
+    "high_wins": 2,
+    "low_wins": 4,
+    "games_played": 6
+   },
+   {
+    "label": "2 vs 7",
+    "high": {
+     "team": "San Antonio Spurs",
+     "team_zh": "聖安東尼奧馬刺",
+     "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+     "wins": 62,
+     "losses": 20,
+     "win_pct": 0.756,
+     "seed": 2
+    },
+    "low": {
+     "team": "Portland Trail Blazers",
+     "team_zh": "波特蘭拓荒者",
+     "logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+     "wins": 42,
+     "losses": 40,
+     "win_pct": 0.512,
+     "seed": 7
+    },
+    "high_wins": 4,
+    "low_wins": 1,
+    "games_played": 5
+   }
+  ],
+  "second_round": [
+   {
+    "label": "1/8 vs 4/5",
+    "high": {
+     "team": "Oklahoma City Thunder",
+     "team_zh": "奧克拉荷馬雷霆",
+     "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+     "wins": 64,
+     "losses": 18,
+     "win_pct": 0.78,
+     "seed": 1
+    },
+    "low": {
+     "team": "Los Angeles Lakers",
+     "team_zh": "洛杉磯湖人",
+     "logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+     "wins": 53,
+     "losses": 29,
+     "win_pct": 0.646,
+     "seed": 4
+    },
+    "high_wins": 4,
+    "low_wins": 0,
+    "games_played": 4
+   },
+   {
+    "label": "2/7 vs 3/6",
+    "high": {
+     "team": "San Antonio Spurs",
+     "team_zh": "聖安東尼奧馬刺",
+     "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+     "wins": 62,
+     "losses": 20,
+     "win_pct": 0.756,
+     "seed": 2
+    },
+    "low": {
+     "team": "Minnesota Timberwolves",
+     "team_zh": "明尼蘇達灰狼",
+     "logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+     "wins": 49,
+     "losses": 33,
+     "win_pct": 0.598,
+     "seed": 6
+    },
+    "high_wins": 4,
+    "low_wins": 2,
+    "games_played": 6
+   }
+  ],
+  "conf_finals": {
+   "label": "分區決賽",
+   "high": {
+    "team": "Oklahoma City Thunder",
+    "team_zh": "奧克拉荷馬雷霆",
+    "logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+    "wins": 64,
+    "losses": 18,
+    "win_pct": 0.78,
+    "seed": 1
+   },
+   "low": {
+    "team": "San Antonio Spurs",
+    "team_zh": "聖安東尼奧馬刺",
+    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+    "wins": 62,
+    "losses": 20,
+    "win_pct": 0.756,
+    "seed": 2
+   },
+   "high_wins": 2,
+   "low_wins": 2,
+   "games_played": 4,
+   "next_signal": {
+    "game_num": 5,
+    "signal": "CF G5主場壓制",
+    "side": "home",
+    "home_team": "Oklahoma City Thunder",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "tier": "GOLD",
+    "backtest_wr": 0.842,
+    "reason_zh": "分區決賽G5主場cover率 84.2% (16/19，13季)，主場回歸優勢明顯"
+   },
+   "analysis": {
+    "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
+    "momentum_zh": "OKC G5 主場 127-114 大勝 13 分，SGA 32 分 9 助攻主導比賽；GOLD 信號命中 ✓",
+    "key_factor_zh": "G6 回到馬刺主場，SAS 面臨淘汰；Wembanyama 必須爆發才能延長系列賽",
+    "quarter_trend": {
+     "notes_zh": "G5 OKC Q2 打出 40-31 攻擊波拉開差距；Caruso 替補 22 分為關鍵"
+    },
+    "signal_preview": {
+     "game_num": 6,
+     "date": "2026-05-28",
+     "venue": "SAS 主場",
+     "tier": "SILVER",
+     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。但馬刺背水一戰主場能量可觀，風險較高"
+    },
+    "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷"
+   }
+  }
+ },
+ "signal_tracker": {
+  "total": 60,
+  "decided": 58,
+  "wins": 43,
+  "losses": 15,
+  "pending": 2,
+  "hit_rate": 74.1,
+  "pnl": 24.13,
+  "roi": 41.6,
+  "by_tier": {
+   "SILVER": {
+    "wins": 30,
+    "losses": 10,
+    "pending": 1
+   },
+   "GOLD": {
+    "wins": 13,
+    "losses": 5,
+    "pending": 1
+   }
+  },
+  "by_game_num": {
+   "G1": {
+    "wins": 9,
+    "losses": 4,
+    "pending": 0,
+    "hit_rate": 69.2
+   },
+   "G2": {
+    "wins": 13,
+    "losses": 2,
+    "pending": 0,
+    "hit_rate": 86.7
+   },
+   "G3": {
+    "wins": 6,
+    "losses": 3,
+    "pending": 0,
+    "hit_rate": 66.7
+   },
+   "G5": {
+    "wins": 2,
+    "losses": 1,
+    "pending": 1,
+    "hit_rate": 66.7
+   },
+   "G6": {
+    "wins": 11,
+    "losses": 5,
+    "pending": 1,
+    "hit_rate": 68.8
+   },
+   "G7": {
+    "wins": 2,
+    "losses": 0,
+    "pending": 0,
+    "hit_rate": 100.0
+   }
+  },
+  "by_game": {
+   "total": 42,
+   "decided": 36,
+   "wins": 29,
+   "losses": 7,
+   "pending": 6,
+   "hit_rate": 80.6,
+   "pnl": 19.39,
+   "roi": 53.9
+  },
+  "no_conflict": {
+   "decided": 34,
+   "wins": 28,
+   "losses": 6,
+   "pending": 2,
+   "hit_rate": 82.4,
+   "pnl": 19.48,
+   "roi": 57.3
+  },
+  "details": [
+   {
+    "date": "2026-04-14",
+    "away": "邁阿密熱火",
+    "home": "夏洛特黃蜂",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "win",
+    "margin": -4.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-18",
+    "away": "多倫多暴龍",
+    "home": "克里夫蘭騎士",
+    "signal": "主場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.6,
+    "result": "win",
+    "margin": 5.0,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "費城七六人",
+    "home": "波士頓塞爾提克",
+    "signal": "R1G1大讓分主場",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.818,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "費城七六人",
+    "home": "波士頓塞爾提克",
+    "signal": "附加賽升組客隊不利",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.8,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "鳳凰城太陽",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "R1G1大讓分主場",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.818,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "鳳凰城太陽",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "附加賽升組客隊不利",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.8,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "波特蘭拓荒者",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R1G1大讓分主場",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.818,
+    "result": "loss",
+    "margin": -1.0,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-19",
+    "away": "波特蘭拓荒者",
+    "home": "聖安東尼奧馬刺",
+    "signal": "附加賽升組客隊不利",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.8,
+    "result": "loss",
+    "margin": -1.0,
+    "game_num": 1
+   },
+   {
+    "date": "2026-04-20",
+    "away": "亞特蘭大老鷹",
+    "home": "紐約尼克",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "win",
+    "margin": -7.0,
+    "game_num": 2
+   },
+   {
+    "date": "2026-04-20",
+    "away": "明尼蘇達灰狼",
+    "home": "丹佛金塊",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "win",
+    "margin": -12.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-04-21",
+    "away": "波特蘭拓荒者",
+    "home": "聖安東尼奧馬刺",
+    "signal": "G2窄勝大讓分押冷門",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.889,
+    "result": "win",
+    "margin": -13.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-04-21",
+    "away": "休士頓火箭",
+    "home": "洛杉磯湖人",
+    "signal": "G2大勝後延續",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "win",
+    "margin": 12.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-04-22",
+    "away": "奧蘭多魔術",
+    "home": "底特律活塞",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "win",
+    "margin": 6.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-04-23",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "loss",
+    "margin": 24.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-04-23",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "客場明顯強勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.594,
+    "result": "loss",
+    "margin": 24.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-04-24",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "win",
+    "margin": -13.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-04-24",
+    "away": "聖安東尼奧馬刺",
+    "home": "波特蘭拓荒者",
+    "signal": "ML高信心+小讓分",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.8,
+    "result": "win",
+    "margin": -9.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-04-25",
+    "away": "奧克拉荷馬雷霆",
+    "home": "鳳凰城太陽",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "win",
+    "margin": -3.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-04-30",
+    "away": "紐約尼克",
+    "home": "亞特蘭大老鷹",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "win",
+    "margin": -47.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-04-30",
+    "away": "紐約尼克",
+    "home": "亞特蘭大老鷹",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": -47.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-04-30",
+    "away": "波士頓塞爾提克",
+    "home": "費城七六人",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-04-30",
+    "away": "波士頓塞爾提克",
+    "home": "費城七六人",
+    "signal": "主場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.6,
+    "result": "win",
+    "margin": 18.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-04-30",
+    "away": "丹佛金塊",
+    "home": "明尼蘇達灰狼",
+    "signal": "G6主場收官陷阱",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "win",
+    "margin": 19.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-04-30",
+    "away": "丹佛金塊",
+    "home": "明尼蘇達灰狼",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": 19.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "win",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "G6主場收官陷阱",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "loss",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "底特律活塞",
+    "home": "奧蘭多魔術",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "loss",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "克里夫蘭騎士",
+    "home": "多倫多暴龍",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "G6R1客場壓制",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.694,
+    "result": "win",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-01",
+    "away": "洛杉磯湖人",
+    "home": "休士頓火箭",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": null,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-02",
+    "away": "費城七六人",
+    "home": "波士頓塞爾提克",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.613,
+    "result": "win",
+    "margin": null,
+    "game_num": 7
+   },
+   {
+    "date": "2026-05-04",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "win",
+    "margin": null,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-04",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "loss",
+    "margin": null,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-05",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "win",
+    "margin": 6.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-05",
+    "away": "洛杉磯湖人",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "R2G1主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.646,
+    "result": "win",
+    "margin": 1.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-06",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
+    "result": "win",
+    "margin": 0.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-06",
+    "away": "費城七六人",
+    "home": "紐約尼克",
+    "signal": "G2大勝後延續",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
+    "result": "win",
+    "margin": 0.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-06",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
+    "result": "win",
+    "margin": 28.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-06",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "win",
+    "margin": 28.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-07",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
+    "result": "win",
+    "margin": 6.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-07",
+    "away": "洛杉磯湖人",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "G2窄勝大讓分押冷門",
+    "tier": "GOLD",
+    "side": "away",
+    "backtest_wr": 0.889,
+    "result": "loss",
+    "margin": 2.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-07",
+    "away": "洛杉磯湖人",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "R2G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.875,
+    "result": "win",
+    "margin": 2.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-08",
+    "away": "紐約尼克",
+    "home": "費城七六人",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "win",
+    "margin": -15.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-09",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "loss",
+    "margin": 2.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-09",
+    "away": "奧克拉荷馬雷霆",
+    "home": "洛杉磯湖人",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "win",
+    "margin": -14.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-13",
+    "away": "明尼蘇達灰狼",
+    "home": "聖安東尼奧馬刺",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "win",
+    "margin": 19.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-14",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "R2G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.837,
+    "result": "loss",
+    "margin": -7.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-14",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "win",
+    "margin": -7.5,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-15",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "G6主場收官陷阱",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.667,
+    "result": "win",
+    "margin": -24.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-15",
+    "away": "底特律活塞",
+    "home": "克里夫蘭騎士",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "win",
+    "margin": -24.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-15",
+    "away": "聖安東尼奧馬刺",
+    "home": "明尼蘇達灰狼",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": -24.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-17",
+    "away": "克里夫蘭騎士",
+    "home": "底特律活塞",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.613,
+    "result": "win",
+    "margin": -35.5,
+    "game_num": 7
+   },
+   {
+    "date": "2026-05-18",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G1主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.833,
+    "result": "loss",
+    "margin": -14.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.792,
+    "result": "win",
+    "margin": 2.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "win",
+    "margin": 2.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-20",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "ML季後賽押客場",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.64,
+    "result": "loss",
+    "margin": 2.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-05-23",
+    "away": "紐約尼克",
+    "home": "克里夫蘭騎士",
+    "signal": "G3客場擴大優勢",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.643,
+    "result": "win",
+    "margin": -14.5,
+    "game_num": 3
+   },
+   {
+    "date": "2026-05-26",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "CF G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.842,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
+   },
+   {
+    "date": "2026-05-28",
+    "away": "奧克拉荷馬雷霆",
+    "home": "聖安東尼奧馬刺",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.654,
+    "result": "pending",
+    "margin": null,
+    "game_num": 6
+   }
+  ]
+ }
 }
