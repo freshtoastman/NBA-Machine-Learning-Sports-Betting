@@ -641,6 +641,32 @@
         </div>
         {% endif %}
       </div>
+      {% if fin.status %}
+      <div style="margin-top:10px; font-size:13px; color:#999;">{{ fin.status }}</div>
+      {% endif %}
+      {% if fin.schedule %}
+      <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:6px;">
+        {% for gk, gv in fin.schedule.items() %}
+        <span style="background:#1a1e2e; border:1px solid #333; border-radius:6px; padding:3px 8px; font-size:11px; color:#aaa;">
+          {{ gk|upper }} · {{ gv.date }}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if fin.analysis %}
+      <div style="margin-top:12px; padding:10px; background:#0e111a; border-radius:8px; border-left:3px solid #f4bf50;">
+        <div style="font-size:13px; color:#e0c068; font-weight:600; margin-bottom:6px;">{{ fin.analysis.series_status }}</div>
+        {% if fin.analysis.momentum_zh %}
+        <div style="font-size:12px; color:#bbb; margin-bottom:4px;">{{ fin.analysis.momentum_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.matchup_preview %}
+        <div style="font-size:12px; color:#999; margin-top:6px;">
+          {% if fin.analysis.matchup_preview.vs_okc %}<div style="margin-bottom:3px;">⚡ vs OKC: {{ fin.analysis.matchup_preview.vs_okc }}</div>{% endif %}
+          {% if fin.analysis.matchup_preview.vs_sas %}<div>⚡ vs SAS: {{ fin.analysis.matchup_preview.vs_sas }}</div>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
     {% elif ecf and ecf.winner is defined and ecf.winner %}
     <div class="finals-section" style="margin-top:24px; background:linear-gradient(135deg, #1a1520, #141821); border:2px solid #f4bf50; border-radius:14px; padding:20px;">
