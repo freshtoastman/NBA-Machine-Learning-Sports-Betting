@@ -569,6 +569,18 @@
             <span class="cfa-label">關鍵</span>
             <span>{{ a.key_factor_zh }}</span>
           </div>
+          {% if a.injury_update_zh %}
+          <div class="cfa-row">
+            <span class="cfa-label">傷病</span>
+            <span>{{ a.injury_update_zh }}</span>
+          </div>
+          {% endif %}
+          {% if a.odds_movement_zh %}
+          <div class="cfa-row">
+            <span class="cfa-label">盤口</span>
+            <span>{{ a.odds_movement_zh }}</span>
+          </div>
+          {% endif %}
           {% if a.quarter_trend %}
           <div class="cfa-row">
             <span class="cfa-label">節次</span>
@@ -658,6 +670,15 @@
         <div style="font-size:13px; color:#e0c068; font-weight:600; margin-bottom:6px;">{{ fin.analysis.series_status }}</div>
         {% if fin.analysis.momentum_zh %}
         <div style="font-size:12px; color:#bbb; margin-bottom:4px;">{{ fin.analysis.momentum_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.key_factor_zh %}
+        <div style="font-size:12px; color:#bbb; margin-bottom:4px;">⏱️ {{ fin.analysis.key_factor_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.nyk_strengths_zh %}
+        <div style="font-size:12px; color:#7fd69b; margin-bottom:4px;">💪 {{ fin.analysis.nyk_strengths_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.risk_zh %}
+        <div style="font-size:11px; color:#e08080; margin-bottom:4px;">⚠️ {{ fin.analysis.risk_zh }}</div>
         {% endif %}
         {% if fin.analysis.matchup_preview %}
         <div style="font-size:12px; color:#999; margin-top:6px;">

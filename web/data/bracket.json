@@ -821,22 +821,24 @@
     "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
     "momentum_zh": "OKC G5 主場 127-114 大勝 13 分，SGA 32 分 9 助攻主導比賽；GOLD 信號命中 ✓",
     "key_factor_zh": "G6 回到馬刺主場，SAS 面臨淘汰；Wembanyama 必須爆發才能延長系列賽",
+    "injury_update_zh": "⚠️ Jalen Williams 狀態從「缺陣」升級為「存疑」，若出賽將大幅提升 OKC 進攻火力；Ajay Mitchell 仍缺陣",
     "quarter_trend": {
      "notes_zh": "G5 OKC Q2 打出 40-31 攻擊波拉開差距；Caruso 替補 22 分為關鍵"
     },
+    "odds_movement_zh": "盤口穩定 SAS -3.5 未動，OU 218.5→220.5 上升 2 分，ML juice 偏向 SAS (-152→-164)",
     "signal_preview": {
      "game_num": 6,
      "date": "2026-05-28",
      "venue": "SAS 主場",
      "tier": "SILVER",
-     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。但馬刺背水一戰主場能量可觀，風險較高",
+     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。Jalen Williams 若復出將強化此信號，但馬刺背水一戰主場能量可觀",
      "series_ats_zh": "WCF系列賽主場ATS 4/5 cover，但淘汰局冷門歷史65.4%偏向客場OKC"
     },
     "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷",
     "ats_pattern": {
      "description_zh": "系列賽主場ATS: G2-G5主場全cover (4/4)，僅G1客場SAS爆冷",
      "home_cover_rate": "80% (4/5)",
-     "implication_zh": "G6 SAS主場，歷史主場ATS優勢 vs 淘汰局冷門信號存在矛盾"
+     "implication_zh": "G6 SAS主場，歷史主場ATS優勢 vs 淘汰局冷門信號存在矛盾；Jalen Williams 復出可能打破平衡"
     }
    }
   }
@@ -888,9 +890,14 @@
   },
   "analysis": {
    "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
-   "momentum_zh": "紐約尼克 已確定晉級，等待西區冠軍產生",
-   "key_factor_zh": "西區冠軍系列賽越長，紐約尼克 休息優勢越大",
-   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽"
+   "momentum_zh": "紐約尼克 ECF 4-0 橫掃騎士，場均淨勝 21.3 分；5/25 結束後已休息多日",
+   "key_factor_zh": "NYK 自 5/25 起休息至 6/3 (9天)；若 WCF 打到 G7 (5/30)，西區冠軍僅休 4 天，體力差距明顯",
+   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽",
+   "nyk_strengths_zh": "Brunson 場均 28.5 分 8.3 助攻、Towns 雙核穩定；Q3 場均淨勝 +8.8 壓制力極強",
+   "matchup_preview": {
+    "vs_okc": "SGA vs Brunson 對決，OKC 防守深度 vs NYK 進攻節奏；OKC 若 G6 結束 WCF 僅休 6 天",
+    "vs_sas": "Wembanyama vs Towns 禁區對決成關鍵；SAS 若逆轉需打 G7 僅休 4 天，體能劣勢大"
+   }
   }
  },
  "signal_tracker": {
