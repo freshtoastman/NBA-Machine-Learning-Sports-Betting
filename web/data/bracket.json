@@ -804,41 +804,52 @@
     "seed": 2
    },
    "high_wins": 3,
-   "low_wins": 2,
-   "games_played": 5,
-   "next_signal": {
-    "game_num": 6,
-    "signal": "CFG6客場優勢",
-    "side": "away",
-    "home_team": "San Antonio Spurs",
-    "home_team_zh": "聖安東尼奧馬刺",
-    "tier": "BRONZE",
-    "backtest_wr": 0.538,
-    "reason_zh": "分區決賽第6場在低種子主場，客場(高種子)cover率 53.8%，次輪後效果減弱",
-    "signal_team_zh": "奧克拉荷馬雷霆"
-   },
+   "low_wins": 3,
+   "games_played": 6,
    "analysis": {
-    "series_status": "OKC 雷霆 3-2 SAS 馬刺 · G6 5/28 @SAS",
-    "momentum_zh": "OKC G5 主場 127-114 大勝 13 分，SGA 32 分 9 助攻主導比賽；GOLD 信號命中 ✓",
-    "key_factor_zh": "G6 回到馬刺主場，SAS 面臨淘汰；Wembanyama 必須爆發才能延長系列賽",
-    "injury_update_zh": "⚠️ Jalen Williams 狀態從「缺陣」升級為「存疑」，若出賽將大幅提升 OKC 進攻火力；Ajay Mitchell 仍缺陣",
+    "series_status": "OKC 雷霆 3-3 SAS 馬刺 · G7 今晚 5/30 @OKC",
+    "momentum_zh": "SAS G6 主場 118-91 狂勝 27 分，Wembanyama 28 分 10 籃板 3 火鍋壓制全場；OKC Q3 連續 13 次投失，為本季最差表現",
+    "key_factor_zh": "Jalen Williams 確定缺陣 G7 (左腿筋傷)；G6 僅上場 10 分鐘 1 次出手。OKC 季後賽無 JWill 時 8-1，但 SAS 滿血且氣勢如虹",
+    "injury_update_zh": "⚠️ OKC: Jalen Williams RULED OUT (左腿筋)、Ajay Mitchell 缺陣 (右小腿)。SAS: 全員健康，Wembanyama 無傷病標籤",
     "quarter_trend": {
-     "notes_zh": "G5 OKC Q2 打出 40-31 攻擊波拉開差距；Caruso 替補 22 分為關鍵"
+     "notes_zh": "G6 OKC Q3 僅得 13 分 (本季最低)，SAS Q3 攻下 32 分拉開差距；Wembanyama Q3 個人攻下 12 分主導攻勢"
     },
-    "odds_movement_zh": "盤口穩定 SAS -3.5 未動，OU 218.5→220.5 上升 2 分，ML juice 偏向 SAS (-152→-164)",
+    "odds_movement_zh": "G7 盤口 OKC -3.5 穩定未動（JWill 缺陣已 price in）；OU 212.5 偏低反映防守對決；ML OKC -158 / SAS +133",
     "signal_preview": {
-     "game_num": 6,
-     "date": "2026-05-28",
-     "venue": "SAS 主場",
+     "game_num": 7,
+     "date": "2026-05-30",
+     "venue": "OKC 主場",
      "tier": "SILVER",
-     "recommendation_zh": "淘汰局押冷門：G6 歷史冷門 cover 率 65.4% (n=52)，OKC 客場+3.5 受讓。Jalen Williams 若復出將強化此信號，但馬刺背水一戰主場能量可觀",
-     "series_ats_zh": "WCF系列賽主場ATS 4/5 cover，但淘汰局冷門歷史65.4%偏向客場OKC"
+     "recommendation_zh": "G7 決勝局冷門 cover 歷史 61.3%，SAS 客場 +3.5 受讓。SAS 連贏兩場 (G4 +21、G6 +27) 氣勢如虹，Wembanyama 近兩場場均 28 分。但 OKC 主場季後賽 8-1，去年贏過兩場 G7 經驗豐富。信號偏向 SAS 受讓但衝突明顯",
+     "series_ats_zh": "WCF 系列賽 ATS：主場 4/6 cover (66.7%)，客場 2/6 cover (33.3%)"
     },
-    "risk_zh": "SAS 主場淘汰賽壓力大，Wembanyama G3/G4 主場場均 33 分，馬刺主場能量不可小覷",
+    "risk_zh": "SAS 連兩場贏 (G4 +21、G6 +27) 客場動能極強；Wembanyama 近兩場場均 28 分 10 籃板；OKC 無 JWill 雖 8-1 但對手級別不同",
     "ats_pattern": {
-     "description_zh": "系列賽主場ATS: G2-G5主場全cover (4/4)，僅G1客場SAS爆冷",
-     "home_cover_rate": "80% (4/5)",
-     "implication_zh": "G6 SAS主場，歷史主場ATS優勢 vs 淘汰局冷門信號存在矛盾；Jalen Williams 復出可能打破平衡"
+     "description_zh": "系列賽 ATS: 主場 4/6 cover，但 G6 SAS 主場大勝打破客場冷門信號",
+     "home_cover_rate": "66.7% (4/6)",
+     "implication_zh": "G7 OKC 主場 -3.5，歷史 G7 主場 cover 62.7%；JWill 缺陣但 OKC 適應良好 (8-1)"
+    }
+   },
+   "next_signal": {
+    "game_num": 7,
+    "signal": "淘汰局押冷門",
+    "side": "away",
+    "home_team": "Oklahoma City Thunder",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "tier": "SILVER",
+    "backtest_wr": 0.613,
+    "reason_zh": "G7決勝局冷門 cover 率 61.3% (n=31，13季)；SAS 客場+3.5 受讓。SAS 連兩場贏 G4(+21) G6(+27)，氣勢正盛",
+    "signal_team_zh": "聖安東尼奧馬刺"
+   },
+   "schedule": {
+    "game7": {
+     "date": "2026-05-30",
+     "time": "8:00 PM ET",
+     "venue": "OKC 主場",
+     "tv": "Peacock / NBC",
+     "spread": "OKC -3.5",
+     "ou": 212.5,
+     "status": "今晚開打"
     }
    }
   }
@@ -856,58 +867,76 @@
    "win_pct": 0.646,
    "seed": 3
   },
-  "low": "西區決賽勝者 (奧克拉荷馬雷霆 3-2 聖安東尼奧馬刺)",
+  "low": "西區決賽 G7 勝者 (奧克拉荷馬雷霆 3-3 聖安東尼奧馬刺)",
   "high_wins": 0,
   "low_wins": 0,
   "games_played": 0,
-  "next_signal": null,
-  "status": "等待西區冠軍 — 6/3 開打",
+  "status": "今晚 WCF G7 決戰後確定 · 總決賽 6/3 開打",
   "schedule": {
    "game1": {
     "date": "2026-06-03",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "NYK 主場",
+    "tv": "ABC"
    },
    "game2": {
     "date": "2026-06-05",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "NYK 主場",
+    "tv": "ABC"
    },
    "game3": {
     "date": "2026-06-08",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "西區冠軍主場",
+    "tv": "ABC"
    },
    "game4": {
     "date": "2026-06-10",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "西區冠軍主場",
+    "tv": "ABC"
    },
    "game5": {
     "date": "2026-06-13",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "NYK 主場",
+    "tv": "ABC",
+    "note": "if necessary"
    },
    "game6": {
     "date": "2026-06-16",
-    "time": "8:30 PM ET"
+    "time": "8:30 PM ET",
+    "venue": "西區冠軍主場",
+    "tv": "ABC",
+    "note": "if necessary"
    }
   },
   "analysis": {
-   "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
-   "momentum_zh": "紐約尼克 已確定晉級，等待西區冠軍產生",
-   "key_factor_zh": "西區冠軍系列賽越長，紐約尼克 休息優勢越大",
-   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽"
+   "series_status": "總決賽 6/3 開打 — 紐約尼克 vs 西區冠軍",
+   "momentum_zh": "NYK 東區決賽橫掃 CLE 4-0 (場均贏 16.5 分)，休息天數充足 (最後一場 5/25)。西區 G7 勝者將少休息 4 天",
+   "key_factor_zh": "NYK 若對 OKC：NYK 季賽 2-1 領先，OKC 缺 JWill 翼鋒優勢明顯；若對 SAS：NYK 季賽 2-0 橫掃，Wembanyama 首進總決賽經驗不足",
+   "risk_zh": "休息差距是雙面刃：NYK 休息久可能生鏽，但體力優勢明顯。西區 G7 贏家帶著贏下搶七的信心入場",
+   "nyk_strengths_zh": "季後賽 ATS 12-4 (75%)，Brunson 場均 28.3 分，Towns 場均 22.1 分 11.2 籃板；bench 深度 (Anunoby 防守 + Hart 能量)",
+   "matchup_preview": {
+    "vs_okc": "NYK vs OKC：SGA vs Brunson 正面對決，Towns vs Holmgren 禁區戰。OKC 缺 JWill 則 NYK 有明顯翼鋒優勢",
+    "vs_sas": "NYK vs SAS：Towns vs Wembanyama 世紀大戰，NYK 經驗優勢但 Wemby 天花板更高。SAS 年輕且本季客場 ATS 強勢"
+   }
   }
  },
  "signal_tracker": {
-  "total": 60,
-  "decided": 59,
+  "total": 61,
+  "decided": 60,
   "wins": 44,
-  "losses": 15,
+  "losses": 16,
   "pending": 1,
-  "hit_rate": 74.6,
-  "pnl": 25.04,
-  "roi": 42.4,
+  "hit_rate": 73.3,
+  "pnl": 22.44,
+  "roi": 37.4,
   "by_tier": {
    "SILVER": {
     "wins": 30,
-    "losses": 10,
+    "losses": 11,
     "pending": 1
    },
    "GOLD": {
@@ -943,35 +972,35 @@
    },
    "G6": {
     "wins": 11,
-    "losses": 5,
-    "pending": 1,
-    "hit_rate": 68.8
+    "losses": 6,
+    "pending": 0,
+    "hit_rate": 64.7
    },
    "G7": {
     "wins": 2,
     "losses": 0,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 100.0
    }
   },
   "by_game": {
-   "total": 42,
-   "decided": 37,
+   "total": 43,
+   "decided": 38,
    "wins": 30,
-   "losses": 7,
+   "losses": 8,
    "pending": 5,
-   "hit_rate": 81.1,
-   "pnl": 20.3,
-   "roi": 54.9
+   "hit_rate": 78.9,
+   "pnl": 19.3,
+   "roi": 50.8
   },
   "no_conflict": {
-   "decided": 35,
+   "decided": 36,
    "wins": 29,
-   "losses": 6,
+   "losses": 7,
    "pending": 1,
-   "hit_rate": 82.9,
-   "pnl": 20.39,
-   "roi": 58.3
+   "hit_rate": 80.6,
+   "pnl": 19.39,
+   "roi": 53.9
   },
   "details": [
    {
@@ -1690,9 +1719,21 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.654,
+    "result": "loss",
+    "margin": -23.5,
+    "game_num": 6
+   },
+   {
+    "date": "2026-05-30",
+    "away": "聖安東尼奧馬刺",
+    "home": "奧克拉荷馬雷霆",
+    "signal": "淘汰局押冷門",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.613,
     "result": "pending",
     "margin": null,
-    "game_num": 6
+    "game_num": 7
    }
   ]
  }

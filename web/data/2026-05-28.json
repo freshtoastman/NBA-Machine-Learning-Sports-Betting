@@ -24,8 +24,8 @@
     "backtest_wr": 0.654,
     "backtest_roi": 30.8,
     "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "home",
+    "ats_cover_margin": 23.5,
     "series_game_num": 6,
     "series_home_wins": 2,
     "series_away_wins": 3,
@@ -34,10 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -57,15 +54,15 @@
   "Oklahoma City Thunder:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "Oklahoma City Thunder",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 118,
+   "away_score": 91,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 219.5,
    "ML_Home": -162,
    "ML_Away": 136,
-   "Days_Rest_Home": null,
-   "Days_Rest_Away": null,
+   "Days_Rest_Home": 1,
+   "Days_Rest_Away": 1,
    "home_confidence": null,
    "away_confidence": null,
    "value_side": null,
@@ -76,15 +73,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 209,
+   "actual_ou_result": "UNDER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 23.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -116,15 +113,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 118,
-   "live_away_score": 91,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": true,
-   "injuries_away": [
-    "Jalen Williams (缺陣)",
-    "Ajay Mitchell (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-05-27T14:11:37+00:00",
@@ -177,7 +166,7 @@
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
    "high_wins": 3,
-   "low_wins": 2,
+   "low_wins": 3,
    "conference": "west"
   }
  ],

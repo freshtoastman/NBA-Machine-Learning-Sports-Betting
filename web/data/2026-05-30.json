@@ -1,0 +1,132 @@
+{
+ "date": "2026-05-30",
+ "is_today": true,
+ "summary": {
+  "games": 1,
+  "home_picks": 0,
+  "away_picks": 1,
+  "over_picks": 0,
+  "under_picks": 1,
+  "avg_confidence": 0.0,
+  "value_picks": 0,
+  "golden_picks": 0,
+  "playoff_ats_alerts": [
+   {
+    "game_key": "San Antonio Spurs:Oklahoma City Thunder",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "San Antonio Spurs",
+    "home_team_zh": "奧克拉荷馬雷霆",
+    "away_team_zh": "聖安東尼奧馬刺",
+    "signal": "淘汰局押冷門",
+    "side": "away",
+    "ats_side": "受讓(押dog)",
+    "tier": "SILVER",
+    "backtest_wr": 0.613,
+    "backtest_roi": 22.6,
+    "reason_zh": "G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)",
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "series_game_num": 7,
+    "series_home_wins": 3,
+    "series_away_wins": 3,
+    "strong_consensus": null,
+    "has_conflict": false
+   }
+  ],
+  "playoff_ats_count": 1,
+  "injury_alerts": [
+   "Oklahoma City Thunder: Jalen Williams (缺陣)",
+   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
+  ]
+ },
+ "games": {
+  "San Antonio Spurs:Oklahoma City Thunder": {
+   "home_team": "Oklahoma City Thunder",
+   "away_team": "San Antonio Spurs",
+   "home_score": null,
+   "away_score": null,
+   "spread": 3.5,
+   "Spread": 3.5,
+   "OU": 212.5,
+   "ML_Home": -158,
+   "ML_Away": 133,
+   "Days_Rest_Home": 1,
+   "Days_Rest_Away": 1,
+   "home_confidence": null,
+   "away_confidence": null,
+   "value_side": null,
+   "is_value": false,
+   "ats_model_pick": null,
+   "ats_model_home_prob": null,
+   "ats_model_confidence": null,
+   "ats_value_edge": null,
+   "ats_is_value": false,
+   "is_historical": true,
+   "actual_home_win": null,
+   "actual_winner": null,
+   "actual_total": null,
+   "actual_ou_result": null,
+   "ml_correct": null,
+   "ou_correct": null,
+   "ats_winner": null,
+   "ats_cover_margin": null,
+   "is_upcoming": true,
+   "is_playoff": true,
+   "playoff_ats_picks": [
+    {
+     "signal": "淘汰局押冷門",
+     "side": "away",
+     "ats_side": "受讓(押dog)",
+     "tier": "SILVER",
+     "backtest_wr": 0.613,
+     "backtest_roi": 22.6,
+     "backtest_n": 31,
+     "reason_zh": "G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)"
+    }
+   ],
+   "playoff_ats_best_side": "away",
+   "playoff_ats_best_signal": "淘汰局押冷門",
+   "playoff_ats_best_tier": "SILVER",
+   "playoff_ats_consensus": "away",
+   "playoff_ats_has_conflict": false,
+   "playoff_ats_strong_consensus": null,
+   "series_round": "分區決賽",
+   "round_num": 3,
+   "series_game_num": 7,
+   "series_home_wins": 3,
+   "series_away_wins": 3,
+   "series_status_text": "平手 3-3",
+   "series_is_elimination": true,
+   "home_team_zh": "奧克拉荷馬雷霆",
+   "away_team_zh": "聖安東尼奧馬刺",
+   "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+   "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+   "injuries_home": [
+    "Jalen Williams (缺陣)",
+    "Ajay Mitchell (缺陣)"
+   ],
+   "injuries_away": []
+  }
+ },
+ "active_series": [
+  {
+   "round_num": 4,
+   "round_label": "總決賽",
+   "high_seed": "Cleveland Cavaliers",
+   "low_seed": "New York Knicks",
+   "high_wins": 0,
+   "low_wins": 4,
+   "conference": "east"
+  },
+  {
+   "round_num": 3,
+   "round_label": "分區決賽",
+   "high_seed": "Oklahoma City Thunder",
+   "low_seed": "San Antonio Spurs",
+   "high_wins": 3,
+   "low_wins": 3,
+   "conference": "west"
+  }
+ ],
+ "is_playoff_view": true
+}
