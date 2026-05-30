@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-28",
- "generated_for": "2026-05-28",
+ "generated_for": "2026-05-30",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -808,13 +808,13 @@
    "games_played": 5,
    "next_signal": {
     "game_num": 6,
-    "signal": "淘汰局押冷門",
+    "signal": "CFG6客場優勢",
     "side": "away",
     "home_team": "San Antonio Spurs",
     "home_team_zh": "聖安東尼奧馬刺",
-    "tier": "SILVER",
-    "backtest_wr": 0.654,
-    "reason_zh": "G6淘汰局冷門cover率 65.4% (n=52，13季)",
+    "tier": "BRONZE",
+    "backtest_wr": 0.538,
+    "reason_zh": "分區決賽第6場在低種子主場，客場(高種子)cover率 53.8%，次輪後效果減弱",
     "signal_team_zh": "奧克拉荷馬雷霆"
    },
    "analysis": {
@@ -890,14 +890,9 @@
   },
   "analysis": {
    "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
-   "momentum_zh": "紐約尼克 ECF 4-0 橫掃騎士，場均淨勝 21.3 分；5/25 結束後已休息多日",
-   "key_factor_zh": "NYK 自 5/25 起休息至 6/3 (9天)；若 WCF 打到 G7 (5/30)，西區冠軍僅休 4 天，體力差距明顯",
-   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽",
-   "nyk_strengths_zh": "Brunson 場均 28.5 分 8.3 助攻、Towns 雙核穩定；Q3 場均淨勝 +8.8 壓制力極強",
-   "matchup_preview": {
-    "vs_okc": "SGA vs Brunson 對決，OKC 防守深度 vs NYK 進攻節奏；OKC 若 G6 結束 WCF 僅休 6 天",
-    "vs_sas": "Wembanyama vs Towns 禁區對決成關鍵；SAS 若逆轉需打 G7 僅休 4 天，體能劣勢大"
-   }
+   "momentum_zh": "紐約尼克 已確定晉級，等待西區冠軍產生",
+   "key_factor_zh": "西區冠軍系列賽越長，紐約尼克 休息優勢越大",
+   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽"
   }
  },
  "signal_tracker": {

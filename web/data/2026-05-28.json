@@ -1,6 +1,6 @@
 {
  "date": "2026-05-28",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -35,9 +35,23 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "Oklahoma City Thunder: Jalen Williams (存疑)",
+   "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
-  ]
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Oklahoma City Thunder:San Antonio Spurs": {
@@ -47,9 +61,9 @@
    "away_score": null,
    "spread": 3.5,
    "Spread": 3.5,
-   "OU": 220.5,
-   "ML_Home": -164,
-   "ML_Away": 138,
+   "OU": 219.5,
+   "ML_Home": -162,
+   "ML_Away": 136,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -102,8 +116,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 118,
+   "live_away_score": 91,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": true,
    "injuries_away": [
-    "Jalen Williams (存疑)",
+    "Jalen Williams (缺陣)",
     "Ajay Mitchell (缺陣)"
    ],
    "odds_history": [
@@ -122,16 +141,24 @@
      "ml_home": -164,
      "ml_away": 138,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-30T11:14:22+00:00",
+     "spread": 3.5,
+     "ou": 219.5,
+     "ml_home": -162,
+     "ml_away": 136,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 3.5,
    "spread_last": 3.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-27T14:11:37+00:00",
-   "spread_last_fetched_at": "2026-05-28T14:10:47+00:00",
+   "spread_last_fetched_at": "2026-05-30T11:14:22+00:00",
    "ou_first": 218.5,
-   "ou_last": 220.5,
-   "ou_move": 2.0
+   "ou_last": 219.5,
+   "ou_move": 1.0
   }
  },
  "active_series": [
