@@ -829,28 +829,6 @@
      "home_cover_rate": "66.7% (4/6)",
      "implication_zh": "G7 OKC 主場 -3.5，歷史 G7 主場 cover 62.7%；JWill 缺陣但 OKC 適應良好 (8-1)"
     }
-   },
-   "next_signal": {
-    "game_num": 7,
-    "signal": "淘汰局押冷門",
-    "side": "away",
-    "home_team": "Oklahoma City Thunder",
-    "home_team_zh": "奧克拉荷馬雷霆",
-    "tier": "SILVER",
-    "backtest_wr": 0.613,
-    "reason_zh": "G7決勝局冷門 cover 率 61.3% (n=31，13季)；SAS 客場+3.5 受讓。SAS 連兩場贏 G4(+21) G6(+27)，氣勢正盛",
-    "signal_team_zh": "聖安東尼奧馬刺"
-   },
-   "schedule": {
-    "game7": {
-     "date": "2026-05-30",
-     "time": "8:00 PM ET",
-     "venue": "OKC 主場",
-     "tv": "Peacock / NBC",
-     "spread": "OKC -3.5",
-     "ou": 212.5,
-     "status": "今晚開打"
-    }
    }
   }
  },
@@ -867,61 +845,43 @@
    "win_pct": 0.646,
    "seed": 3
   },
-  "low": "西區決賽 G7 勝者 (奧克拉荷馬雷霆 3-3 聖安東尼奧馬刺)",
+  "low": "西區決賽勝者 (奧克拉荷馬雷霆 3-3 聖安東尼奧馬刺)",
   "high_wins": 0,
   "low_wins": 0,
   "games_played": 0,
-  "status": "今晚 WCF G7 決戰後確定 · 總決賽 6/3 開打",
+  "next_signal": null,
+  "status": "等待西區冠軍 — 6/3 開打",
   "schedule": {
    "game1": {
     "date": "2026-06-03",
-    "time": "8:30 PM ET",
-    "venue": "NYK 主場",
-    "tv": "ABC"
+    "time": "8:30 PM ET"
    },
    "game2": {
     "date": "2026-06-05",
-    "time": "8:30 PM ET",
-    "venue": "NYK 主場",
-    "tv": "ABC"
+    "time": "8:30 PM ET"
    },
    "game3": {
     "date": "2026-06-08",
-    "time": "8:30 PM ET",
-    "venue": "西區冠軍主場",
-    "tv": "ABC"
+    "time": "8:30 PM ET"
    },
    "game4": {
     "date": "2026-06-10",
-    "time": "8:30 PM ET",
-    "venue": "西區冠軍主場",
-    "tv": "ABC"
+    "time": "8:30 PM ET"
    },
    "game5": {
     "date": "2026-06-13",
-    "time": "8:30 PM ET",
-    "venue": "NYK 主場",
-    "tv": "ABC",
-    "note": "if necessary"
+    "time": "8:30 PM ET"
    },
    "game6": {
     "date": "2026-06-16",
-    "time": "8:30 PM ET",
-    "venue": "西區冠軍主場",
-    "tv": "ABC",
-    "note": "if necessary"
+    "time": "8:30 PM ET"
    }
   },
   "analysis": {
-   "series_status": "總決賽 6/3 開打 — 紐約尼克 vs 西區冠軍",
-   "momentum_zh": "NYK 東區決賽橫掃 CLE 4-0 (場均贏 16.5 分)，休息天數充足 (最後一場 5/25)。西區 G7 勝者將少休息 4 天",
-   "key_factor_zh": "NYK 若對 OKC：NYK 季賽 2-1 領先，OKC 缺 JWill 翼鋒優勢明顯；若對 SAS：NYK 季賽 2-0 橫掃，Wembanyama 首進總決賽經驗不足",
-   "risk_zh": "休息差距是雙面刃：NYK 休息久可能生鏽，但體力優勢明顯。西區 G7 贏家帶著贏下搶七的信心入場",
-   "nyk_strengths_zh": "季後賽 ATS 12-4 (75%)，Brunson 場均 28.3 分，Towns 場均 22.1 分 11.2 籃板；bench 深度 (Anunoby 防守 + Hart 能量)",
-   "matchup_preview": {
-    "vs_okc": "NYK vs OKC：SGA vs Brunson 正面對決，Towns vs Holmgren 禁區戰。OKC 缺 JWill 則 NYK 有明顯翼鋒優勢",
-    "vs_sas": "NYK vs SAS：Towns vs Wembanyama 世紀大戰，NYK 經驗優勢但 Wemby 天花板更高。SAS 年輕且本季客場 ATS 強勢"
-   }
+   "series_status": "紐約尼克 vs TBD (西區冠軍) · 6/3 開打",
+   "momentum_zh": "紐約尼克 已確定晉級，等待西區冠軍產生",
+   "key_factor_zh": "西區冠軍系列賽越長，紐約尼克 休息優勢越大",
+   "risk_zh": "長時間休息可能導致手感生疏；對手帶著系列賽勝利動能進入總決賽"
   }
  },
  "signal_tracker": {
@@ -931,8 +891,8 @@
   "losses": 16,
   "pending": 1,
   "hit_rate": 73.3,
-  "pnl": 22.44,
-  "roi": 37.4,
+  "pnl": 24.04,
+  "roi": 40.1,
   "by_tier": {
    "SILVER": {
     "wins": 30,
@@ -1720,7 +1680,7 @@
     "side": "away",
     "backtest_wr": 0.654,
     "result": "loss",
-    "margin": -23.5,
+    "margin": 23.5,
     "game_num": 6
    },
    {

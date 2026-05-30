@@ -48,8 +48,8 @@
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 212.5,
-   "ML_Home": -158,
-   "ML_Away": 133,
+   "ML_Home": -154,
+   "ML_Away": 130,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -105,7 +105,25 @@
     "Jalen Williams (缺陣)",
     "Ajay Mitchell (缺陣)"
    ],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-05-30T14:09:40+00:00",
+     "spread": 3.5,
+     "ou": 212.5,
+     "ml_home": -154,
+     "ml_away": 130,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 3.5,
+   "spread_last": 3.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-05-30T14:09:40+00:00",
+   "spread_last_fetched_at": "2026-05-30T14:09:40+00:00",
+   "ou_first": 212.5,
+   "ou_last": 212.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
