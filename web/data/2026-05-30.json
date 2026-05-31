@@ -1,6 +1,6 @@
 {
  "date": "2026-05-30",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -37,7 +37,21 @@
   "injury_alerts": [
    "Oklahoma City Thunder: Jalen Williams (缺陣)",
    "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
-  ]
+  ],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "San Antonio Spurs:Oklahoma City Thunder": {
@@ -47,9 +61,9 @@
    "away_score": null,
    "spread": 3.5,
    "Spread": 3.5,
-   "OU": 212.5,
-   "ML_Home": -154,
-   "ML_Away": 130,
+   "OU": 211.5,
+   "ML_Home": -152,
+   "ML_Away": 128,
    "Days_Rest_Home": 1,
    "Days_Rest_Away": 1,
    "home_confidence": null,
@@ -105,6 +119,11 @@
     "Jalen Williams (缺陣)",
     "Ajay Mitchell (缺陣)"
    ],
+   "live_home_score": 103,
+   "live_away_score": 111,
+   "live_status": "Final",
+   "live_is_final": true,
+   "live_home_covering": false,
    "injuries_away": [],
    "odds_history": [
     {
@@ -114,16 +133,24 @@
      "ml_home": -154,
      "ml_away": 130,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-05-31T13:36:17+00:00",
+     "spread": 3.5,
+     "ou": 211.5,
+     "ml_home": -152,
+     "ml_away": 128,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 3.5,
    "spread_last": 3.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-05-30T14:09:40+00:00",
-   "spread_last_fetched_at": "2026-05-30T14:09:40+00:00",
+   "spread_last_fetched_at": "2026-05-31T13:36:17+00:00",
    "ou_first": 212.5,
-   "ou_last": 212.5,
-   "ou_move": 0.0
+   "ou_last": 211.5,
+   "ou_move": -1.0
   }
  },
  "active_series": [

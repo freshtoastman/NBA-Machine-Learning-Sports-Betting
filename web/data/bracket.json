@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-28",
- "generated_for": "2026-05-30",
+ "generated_for": "2026-05-31",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -807,28 +807,26 @@
    "low_wins": 3,
    "games_played": 6,
    "analysis": {
-    "series_status": "OKC 雷霆 3-3 SAS 馬刺 · G7 今晚 5/30 @OKC",
-    "momentum_zh": "SAS G6 主場 118-91 狂勝 27 分，Wembanyama 28 分 10 籃板 3 火鍋壓制全場；OKC Q3 連續 13 次投失，為本季最差表現",
-    "key_factor_zh": "Jalen Williams 確定缺陣 G7 (左腿筋傷)；G6 僅上場 10 分鐘 1 次出手。OKC 季後賽無 JWill 時 8-1，但 SAS 滿血且氣勢如虹",
-    "injury_update_zh": "⚠️ OKC: Jalen Williams RULED OUT (左腿筋)、Ajay Mitchell 缺陣 (右小腿)。SAS: 全員健康，Wembanyama 無傷病標籤",
+    "series_status": "聖安東尼奧馬刺 4-3 奧克拉荷馬雷霆 ✓",
+    "momentum_zh": "SAS G7 客場 111-103 擊敗 OKC 衛冕冠軍！Wembanyama 22 分 7 籃板率隊晉級，獲頒西區決賽 MVP (Magic Johnson Trophy)。Champagnie 三分球 6/8 攻下 20 分奠定勝局；SGA 35 分 9 助攻獨木難撐",
+    "key_factor_zh": "🔑 SAS 深度壓制缺少 JWill 的 OKC：6 人得分雙位數 vs OKC 僅 SGA+Dort 超過 15 分。G6+G7 連贏兩場淘汰邊緣，展現冠軍心態",
+    "injury_update_zh": "OKC: Jalen Williams 缺陣 G7 (左腿筋)、Ajay Mitchell 缺陣。JWill 缺陣成為系列賽轉捩點 (G5 前場均 21+7+5)",
     "quarter_trend": {
-     "notes_zh": "G6 OKC Q3 僅得 13 分 (本季最低)，SAS Q3 攻下 32 分拉開差距；Wembanyama Q3 個人攻下 12 分主導攻勢"
+     "notes_zh": "G7 SAS Q2 關鍵 32-22 拉開差距，Champagnie Q2 連中 4 記三分；Q4 SAS 控制節奏頂住 OKC 追分潮"
     },
-    "odds_movement_zh": "G7 盤口 OKC -3.5 穩定未動（JWill 缺陣已 price in）；OU 212.5 偏低反映防守對決；ML OKC -158 / SAS +133",
-    "signal_preview": {
+    "signal_result": {
      "game_num": 7,
      "date": "2026-05-30",
-     "venue": "OKC 主場",
      "tier": "SILVER",
-     "recommendation_zh": "G7 決勝局冷門 cover 歷史 61.3%，SAS 客場 +3.5 受讓。SAS 連贏兩場 (G4 +21、G6 +27) 氣勢如虹，Wembanyama 近兩場場均 28 分。但 OKC 主場季後賽 8-1，去年贏過兩場 G7 經驗豐富。信號偏向 SAS 受讓但衝突明顯",
-     "series_ats_zh": "WCF 系列賽 ATS：主場 4/6 cover (66.7%)，客場 2/6 cover (33.3%)"
+     "signal": "淘汰局押冷門",
+     "side": "away",
+     "result": "✅ WIN",
+     "spread": "SAS +3.5",
+     "final_score": "SAS 111 - OKC 103",
+     "cover_margin": 11.5,
+     "note_zh": "SAS 不僅 cover 還直接贏球！CF G7 主場 ATS 0-5 (自2018) 趨勢延續"
     },
-    "risk_zh": "SAS 連兩場贏 (G4 +21、G6 +27) 客場動能極強；Wembanyama 近兩場場均 28 分 10 籃板；OKC 無 JWill 雖 8-1 但對手級別不同",
-    "ats_pattern": {
-     "description_zh": "系列賽 ATS: 主場 4/6 cover，但 G6 SAS 主場大勝打破客場冷門信號",
-     "home_cover_rate": "66.7% (4/6)",
-     "implication_zh": "G7 OKC 主場 -3.5，歷史 G7 主場 cover 62.7%；JWill 缺陣但 OKC 適應良好 (8-1)"
-    }
+    "risk_zh": null
    }
   }
  },
