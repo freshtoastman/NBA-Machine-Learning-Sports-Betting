@@ -25,7 +25,7 @@
     "backtest_roi": 22.6,
     "reason_zh": "G7決勝局冷門cover率 61.3% (n=31，13季，spread<7限定)",
     "ats_winner": "away",
-    "ats_cover_margin": 11.5,
+    "ats_cover_margin": -11.5,
     "series_game_num": 7,
     "series_home_wins": 3,
     "series_away_wins": 3,
@@ -34,10 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "Oklahoma City Thunder: Jalen Williams (缺陣)",
-   "Oklahoma City Thunder: Ajay Mitchell (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -77,13 +74,13 @@
    "ats_is_value": false,
    "is_historical": true,
    "actual_home_win": false,
-   "actual_winner": "San Antonio Spurs",
+   "actual_winner": "away",
    "actual_total": 214,
    "actual_ou_result": "OVER",
    "ml_correct": null,
    "ou_correct": null,
    "ats_winner": "away",
-   "ats_cover_margin": 11.5,
+   "ats_cover_margin": -11.5,
    "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
@@ -115,15 +112,7 @@
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "injuries_home": [
-    "Jalen Williams (缺陣)",
-    "Ajay Mitchell (缺陣)"
-   ],
-   "live_home_score": 103,
-   "live_away_score": 111,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -157,11 +146,11 @@
   {
    "round_num": 4,
    "round_label": "總決賽",
-   "high_seed": "Cleveland Cavaliers",
+   "high_seed": "San Antonio Spurs",
    "low_seed": "New York Knicks",
    "high_wins": 0,
-   "low_wins": 4,
-   "conference": "east"
+   "low_wins": 0,
+   "conference": "west"
   },
   {
    "round_num": 3,
@@ -171,6 +160,15 @@
    "high_wins": 3,
    "low_wins": 4,
    "conference": "west"
+  },
+  {
+   "round_num": 3,
+   "round_label": "分區決賽",
+   "high_seed": "Cleveland Cavaliers",
+   "low_seed": "New York Knicks",
+   "high_wins": 0,
+   "low_wins": 4,
+   "conference": "east"
   }
  ],
  "is_playoff_view": true

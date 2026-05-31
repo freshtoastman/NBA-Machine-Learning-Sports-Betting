@@ -549,7 +549,7 @@ def _build_signal_tracker(data_dir: Path) -> dict:
     by_tier = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
     by_game_num = defaultdict(lambda: {"wins": 0, "losses": 0, "pending": 0})
     details = []
-    for f in sorted(list(data_dir.glob("2026-04-*.json")) + list(data_dir.glob("2026-05-*.json"))):
+    for f in sorted(list(data_dir.glob("2026-04-*.json")) + list(data_dir.glob("2026-05-*.json")) + list(data_dir.glob("2026-06-*.json"))):
         try:
             with open(f, encoding="utf-8") as fh:
                 d = json.load(fh)
@@ -1380,7 +1380,99 @@ def build_bracket(target_date: date) -> dict | None:
             "low_conf": f_low_conf,
         }
         if isinstance(f_high, dict) and isinstance(f_low, dict):
-            finals_data.update(_with_wins(f_high, f_low, round_num=4))
+            _fkey = frozenset({f_high["team"], f_low["team"]})
+            _fwins = _series_wins.get(_fkey, {})
+            _fhw = _fwins.get(f_high["team"], 0)
+            _flw = _fwins.get(f_low["team"], 0)
+            _fgp = _fhw + _flw
+            _finals_wins = {"high_wins": _fhw, "low_wins": _flw, "games_played": _fgp}
+            _f_next_gn = _fgp + 1
+            _f_high_zh = f_high.get("team_zh", f_high["team"])
+            _f_low_zh = f_low.get("team_zh", f_low["team"])
+            _f_next_signal = None
+            _finals_json_path = Path(__file__).resolve().parents[1] / "web" / "data"
+            _finals_schedule_dates = ["2026-06-03", "2026-06-05", "2026-06-08",
+                                       "2026-06-10", "2026-06-13", "2026-06-16", "2026-06-19"]
+            if _f_next_gn <= len(_finals_schedule_dates):
+                _f_gdate = _finals_schedule_dates[_f_next_gn - 1]
+                _f_json = _finals_json_path / f"{_f_gdate}.json"
+                if _f_json.exists():
+                    try:
+                        import json as _jf
+                        with open(_f_json) as _fp:
+                            _f_day_data = _jf.load(_fp)
+                        _f_games = _f_day_data.get("games", {}) if isinstance(_f_day_data, dict) else {}
+                        for _fgk, _fgv in _f_games.items():
+                            if isinstance(_fgv, dict) and _fkey == frozenset(_fgk.split(":")):
+                                _fpicks = _fgv.get("playoff_ats_picks", [])
+                                _fbest = next(
+                                    (p for p in _fpicks if p.get("tier") in ("GOLD", "SILVER")),
+                                    None,
+                                )
+                                if _fbest:
+                                    _f_next_signal = {
+                                        "game_num": _f_next_gn,
+                                        "signal": _fbest["signal"],
+                                        "side": _fbest.get("side", "home"),
+                                        "home_team": f_high["team"],
+                                        "home_team_zh": _f_high_zh,
+                                        "tier": _fbest.get("tier", "SILVER"),
+                                        "backtest_wr": _fbest.get("backtest_wr", 0.75),
+                                        "reason_zh": _fbest.get("reason_zh", ""),
+                                    }
+                                break
+                    except Exception:
+                        pass
+            _finals_wins["next_signal"] = _f_next_signal
+            finals_data.update(_finals_wins)
+            finals_data["schedule"] = {
+                "game1": {"date": "2026-06-03", "time": "8:30 PM ET"},
+                "game2": {"date": "2026-06-05", "time": "8:30 PM ET"},
+                "game3": {"date": "2026-06-08", "time": "8:30 PM ET"},
+                "game4": {"date": "2026-06-10", "time": "8:30 PM ET"},
+                "game5": {"date": "2026-06-13", "time": "8:30 PM ET"},
+                "game6": {"date": "2026-06-16", "time": "8:30 PM ET"},
+            }
+            _f_status = f"{_f_high_zh} vs {_f_low_zh}"
+            if _fgp == 0:
+                _f_status += f" — 6/3 開打 ({f_high['team'].split()[-1]} 主場)"
+            elif _fhw == 4 or _flw == 4:
+                _f_winner = _f_high_zh if _fhw == 4 else _f_low_zh
+                _f_status = f"{_f_winner} 奪冠 ({_fhw}-{_flw})"
+            else:
+                _f_status += f" ({_fhw}-{_flw})"
+            finals_data["status"] = _f_status
+            if _fgp == 0:
+                finals_data["analysis"] = {
+                    "series_status": f"{_f_high_zh} vs {_f_low_zh} · 6/3 G1 @{f_high['team'].split()[-1]} 8:30PM ET",
+                    "momentum_zh": (
+                        f"{_f_high_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽；"
+                        f"{_f_low_zh} 自 5/25 橫掃後已休息 9 天"
+                    ) if f_high_conf == "西區" else (
+                        f"{_f_low_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽；"
+                        f"{_f_high_zh} 自 5/25 橫掃後已休息 9 天"
+                    ),
+                    "key_factor_zh": f"{_f_high_zh} 主場優勢 (G1-2, G5, G7)；長休息 vs 連戰疲勞的對決",
+                    "matchup_zh": f"{_f_high_zh} vs {_f_low_zh} 總決賽對決",
+                    "odds_preview_zh": "",
+                    "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞",
+                }
+                try:
+                    import sqlite3 as _fsq
+                    _fdb = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+                    with _fsq.connect(str(_fdb)) as _fcon:
+                        _frow = _fcon.execute(
+                            "SELECT Spread, OU, ML_Home, ML_Away FROM '2025-26' "
+                            "WHERE Date = '2026-06-03' AND (Home = ? OR Away = ?) LIMIT 1",
+                            (f_high["team"], f_high["team"]),
+                        ).fetchone()
+                        if _frow and _frow[0] is not None:
+                            _fsp, _fou, _fml_h, _fml_a = _frow
+                            finals_data["analysis"]["odds_preview_zh"] = (
+                                f"G1 開盤: {_f_high_zh} -{abs(_fsp):.1f} (主場)，總分 {_fou}；ML {_fml_h}/{_fml_a}"
+                            )
+                except Exception:
+                    pass
     elif ecf_winner or wcf_winner:
         known = ecf_winner or wcf_winner
         known_conf = "東區冠軍" if ecf_winner else "西區冠軍"
@@ -2099,6 +2191,10 @@ def main():
                         new_cf = bracket.get(conf, {}).get("conf_finals")
                         if new_cf and old_cf.get("analysis") and not new_cf.get("analysis"):
                             new_cf["analysis"] = old_cf["analysis"]
+                    old_finals = old.get("finals", {})
+                    new_finals = bracket.get("finals")
+                    if new_finals and old_finals.get("analysis") and not new_finals.get("analysis"):
+                        new_finals["analysis"] = old_finals["analysis"]
                 except Exception:
                     pass
             with open(bracket_path, "w", encoding="utf-8") as f:

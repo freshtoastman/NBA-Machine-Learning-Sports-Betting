@@ -1,6 +1,6 @@
 {
- "snapshot_date": "2026-05-31",
- "generated_for": "2026-06-03",
+ "snapshot_date": "2026-05-28",
+ "generated_for": "2026-05-31",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -806,6 +806,18 @@
    "high_wins": 3,
    "low_wins": 4,
    "games_played": 7,
+   "winner": "San Antonio Spurs",
+   "winner_zh": "聖安東尼奧馬刺",
+   "winner_seed": 2,
+   "winner_card": {
+    "team": "San Antonio Spurs",
+    "team_zh": "聖安東尼奧馬刺",
+    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+    "wins": 62,
+    "losses": 20,
+    "win_pct": 0.756,
+    "seed": 2
+   },
    "analysis": {
     "series_status": "聖安東尼奧馬刺 4-3 奧克拉荷馬雷霆 ✓",
     "momentum_zh": "SAS G7 客場 111-103 擊敗 OKC 衛冕冠軍！Wembanyama 22 分 7 籃板率隊晉級，獲頒西區決賽 MVP (Magic Johnson Trophy)。Champagnie 三分球 6/8 攻下 20 分奠定勝局；SGA 35 分 9 助攻獨木難撐",
@@ -827,35 +839,12 @@
      "note_zh": "SAS 不僅 cover 還直接贏球！CF G7 主場 ATS 0-5 (自2018) 趨勢延續"
     },
     "risk_zh": null
-   },
-   "winner": "San Antonio Spurs",
-   "winner_zh": "聖安東尼奧馬刺",
-   "winner_seed": 2,
-   "winner_card": {
-    "team": "San Antonio Spurs",
-    "team_zh": "聖安東尼奧馬刺",
-    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-    "wins": 62,
-    "losses": 20,
-    "win_pct": 0.756,
-    "seed": 2
    }
   }
  },
  "finals": {
   "label": "總決賽",
-  "high_conf": "東區冠軍",
-  "low_conf": "西區冠軍",
   "high": {
-   "team": "New York Knicks",
-   "team_zh": "紐約尼克",
-   "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
-   "wins": 53,
-   "losses": 29,
-   "win_pct": 0.646,
-   "seed": 3
-  },
-  "low": {
    "team": "San Antonio Spurs",
    "team_zh": "聖安東尼奧馬刺",
    "logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
@@ -864,11 +853,30 @@
    "win_pct": 0.756,
    "seed": 2
   },
+  "low": {
+   "team": "New York Knicks",
+   "team_zh": "紐約尼克",
+   "logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+   "wins": 53,
+   "losses": 29,
+   "win_pct": 0.646,
+   "seed": 3
+  },
+  "high_conf": "西區",
+  "low_conf": "東區",
   "high_wins": 0,
   "low_wins": 0,
   "games_played": 0,
-  "next_signal": null,
-  "status": "紐約尼克 vs 聖安東尼奧馬刺 — 6/3 開打 (SAS 主場)",
+  "next_signal": {
+   "game_num": 1,
+   "signal": "Finals G1主場壓制",
+   "side": "home",
+   "home_team": "San Antonio Spurs",
+   "home_team_zh": "聖安東尼奧馬刺",
+   "tier": "GOLD",
+   "backtest_wr": 0.75,
+   "reason_zh": "總決賽G1主場cover率 75% (CF+Finals合計，高種子主場開局優勢顯著)"
+  },
   "schedule": {
    "game1": {
     "date": "2026-06-03",
@@ -895,21 +903,22 @@
     "time": "8:30 PM ET"
    }
   },
+  "status": "聖安東尼奧馬刺 vs 紐約尼克 — 6/3 開打 (Spurs 主場)",
   "analysis": {
-   "series_status": "紐約尼克 vs 聖安東尼奧馬刺 · 6/3 G1 @SAS 8:30PM ET",
-   "momentum_zh": "SAS 帶著 G7 客場逆轉奪冠的動能進入總決賽；NYK 自 5/24 橫掃 CLE 後已休息 10 天",
-   "key_factor_zh": "SAS 主場優勢 (G1-2, G5-G7 在聖安東尼奧)；Wembanyama vs Brunson+Towns 雙核對決；NYK 長休息 vs SAS 連戰疲勞",
-   "matchup_zh": "Wembanyama 對位 Karl-Anthony Towns — 雙塔攻防成關鍵；Fox vs Brunson 後場對決；SAS 深度 (6人雙位數) vs NYK 明星雙核",
-   "odds_preview_zh": "G1 開盤: SAS -4.5 (主場)，總分 217.5；系列賽 SAS -205 大熱門，NYK +170",
-   "risk_zh": "NYK 10天長休息恐手感生疏；SAS 連打 7 場疲勞但帶動能；Brunson 季後賽場均 28+ 不可低估"
+   "series_status": "聖安東尼奧馬刺 vs 紐約尼克 · 6/3 G1 @Spurs 8:30PM ET",
+   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽；紐約尼克 自 5/25 橫掃後已休息 9 天",
+   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；長休息 vs 連戰疲勞的對決",
+   "matchup_zh": "聖安東尼奧馬刺 vs 紐約尼克 總決賽對決",
+   "odds_preview_zh": "G1 開盤: 聖安東尼奧馬刺 -5.5 (主場)，總分 218.5；ML -198/166",
+   "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞"
   }
  },
  "signal_tracker": {
-  "total": 62,
+  "total": 64,
   "decided": 61,
   "wins": 45,
   "losses": 16,
-  "pending": 1,
+  "pending": 3,
   "hit_rate": 73.8,
   "pnl": 24.95,
   "roi": 40.9,
@@ -917,7 +926,7 @@
    "SILVER": {
     "wins": 31,
     "losses": 11,
-    "pending": 0
+    "pending": 2
    },
    "GOLD": {
     "wins": 14,
@@ -929,13 +938,13 @@
    "G1": {
     "wins": 9,
     "losses": 4,
-    "pending": 1,
+    "pending": 2,
     "hit_rate": 69.2
    },
    "G2": {
     "wins": 13,
     "losses": 2,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 86.7
    },
    "G3": {
@@ -964,20 +973,20 @@
    }
   },
   "by_game": {
-   "total": 43,
-   "decided": 38,
-   "wins": 30,
+   "total": 45,
+   "decided": 39,
+   "wins": 31,
    "losses": 8,
-   "pending": 5,
-   "hit_rate": 78.9,
-   "pnl": 19.3,
-   "roi": 50.8
+   "pending": 6,
+   "hit_rate": 79.5,
+   "pnl": 20.21,
+   "roi": 51.8
   },
   "no_conflict": {
    "decided": 37,
    "wins": 30,
    "losses": 7,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 81.1,
    "pnl": 20.3,
    "roi": 54.9
@@ -1726,6 +1735,30 @@
     "result": "pending",
     "margin": null,
     "game_num": 1
+   },
+   {
+    "date": "2026-06-03",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "pending",
+    "margin": null,
+    "game_num": 1
+   },
+   {
+    "date": "2026-06-05",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
    }
   ]
  }

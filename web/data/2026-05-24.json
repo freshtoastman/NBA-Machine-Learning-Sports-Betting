@@ -565,11 +565,11 @@
   {
    "round_num": 4,
    "round_label": "總決賽",
-   "high_seed": "Cleveland Cavaliers",
+   "high_seed": "San Antonio Spurs",
    "low_seed": "New York Knicks",
    "high_wins": 0,
-   "low_wins": 4,
-   "conference": "east"
+   "low_wins": 0,
+   "conference": "west"
   },
   {
    "round_num": 3,
@@ -586,8 +586,17 @@
    "high_seed": "Oklahoma City Thunder",
    "low_seed": "San Antonio Spurs",
    "high_wins": 3,
-   "low_wins": 3,
+   "low_wins": 4,
    "conference": "west"
+  },
+  {
+   "round_num": 3,
+   "round_label": "分區決賽",
+   "high_seed": "Cleveland Cavaliers",
+   "low_seed": "New York Knicks",
+   "high_wins": 0,
+   "low_wins": 4,
+   "conference": "east"
   },
   {
    "round_num": 2,
