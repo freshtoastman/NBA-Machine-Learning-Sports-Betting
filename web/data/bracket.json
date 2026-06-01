@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-28",
- "generated_for": "2026-05-31",
+ "generated_for": "2026-06-01",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -909,16 +909,16 @@
    "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽；紐約尼克 自 5/25 橫掃後已休息 9 天",
    "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；長休息 vs 連戰疲勞的對決",
    "matchup_zh": "聖安東尼奧馬刺 vs 紐約尼克 總決賽對決",
-   "odds_preview_zh": "G1 開盤: 聖安東尼奧馬刺 -5.5 (主場)，總分 218.5；ML -198/166",
+   "odds_preview_zh": "G1 開盤: 聖安東尼奧馬刺 -4.5 (主場)，總分 218.5；ML -196/164",
    "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞"
   }
  },
  "signal_tracker": {
-  "total": 64,
+  "total": 65,
   "decided": 61,
   "wins": 45,
   "losses": 16,
-  "pending": 3,
+  "pending": 4,
   "hit_rate": 73.8,
   "pnl": 24.95,
   "roi": 40.9,
@@ -926,7 +926,7 @@
    "SILVER": {
     "wins": 31,
     "losses": 11,
-    "pending": 2
+    "pending": 3
    },
    "GOLD": {
     "wins": 14,
@@ -950,7 +950,7 @@
    "G3": {
     "wins": 6,
     "losses": 3,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 66.7
    },
    "G5": {
@@ -973,11 +973,11 @@
    }
   },
   "by_game": {
-   "total": 45,
+   "total": 46,
    "decided": 39,
    "wins": 31,
    "losses": 8,
-   "pending": 6,
+   "pending": 7,
    "hit_rate": 79.5,
    "pnl": 20.21,
    "roi": 51.8
@@ -986,7 +986,7 @@
    "decided": 37,
    "wins": 30,
    "losses": 7,
-   "pending": 2,
+   "pending": 3,
    "hit_rate": 81.1,
    "pnl": 20.3,
    "roi": 54.9
@@ -1759,6 +1759,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 2
+   },
+   {
+    "date": "2026-06-08",
+    "away": "聖安東尼奧馬刺",
+    "home": "紐約尼克",
+    "signal": "主場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.6,
+    "result": "pending",
+    "margin": null,
+    "game_num": 3
    }
   ]
  }
