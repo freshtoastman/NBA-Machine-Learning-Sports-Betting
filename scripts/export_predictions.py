@@ -1443,19 +1443,39 @@ def build_bracket(target_date: date) -> dict | None:
                 _f_status += f" ({_fhw}-{_flw})"
             finals_data["status"] = _f_status
             if _fgp == 0:
+                from datetime import date as _fdate
+                _today = _fdate.today()
+                _wcf_end = _fdate(2026, 5, 30)
+                _ecf_end = _fdate(2026, 5, 25)
+                _g1_date = _fdate(2026, 6, 3)
+                _sas_rest = (_g1_date - _wcf_end).days
+                _nyk_rest = (_g1_date - _ecf_end).days
+                if f_high_conf == "西區":
+                    _high_rest, _low_rest = _sas_rest, _nyk_rest
+                else:
+                    _high_rest, _low_rest = _nyk_rest, _sas_rest
                 finals_data["analysis"] = {
                     "series_status": f"{_f_high_zh} vs {_f_low_zh} · 6/3 G1 @{f_high['team'].split()[-1]} 8:30PM ET",
                     "momentum_zh": (
-                        f"{_f_high_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽；"
-                        f"{_f_low_zh} 自 5/25 橫掃後已休息 9 天"
+                        f"{_f_high_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息{_high_rest}天）；"
+                        f"{_f_low_zh} 自 5/25 橫掃後休息{_low_rest}天"
                     ) if f_high_conf == "西區" else (
-                        f"{_f_low_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽；"
-                        f"{_f_high_zh} 自 5/25 橫掃後已休息 9 天"
+                        f"{_f_low_zh} 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息{_low_rest}天）；"
+                        f"{_f_high_zh} 自 5/25 橫掃後休息{_high_rest}天"
                     ),
-                    "key_factor_zh": f"{_f_high_zh} 主場優勢 (G1-2, G5, G7)；長休息 vs 連戰疲勞的對決",
+                    "key_factor_zh": f"{_f_high_zh} 主場優勢 (G1-2, G5, G7)；{_f_low_zh} 休息{_low_rest}天 vs {_f_high_zh} 休息{_high_rest}天",
                     "matchup_zh": f"{_f_high_zh} vs {_f_low_zh} 總決賽對決",
                     "odds_preview_zh": "",
                     "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞",
+                    "strategy_map": [
+                        {"game": 1, "home_zh": _f_high_zh, "signal": "Finals G1主場壓制", "tier": "GOLD", "wr": 75, "note": "高種子主場開局優勢顯著"},
+                        {"game": 2, "home_zh": _f_high_zh, "signal": "Finals G2主場壓制", "tier": "GOLD", "wr": 80.8, "note": "主場延續G1動能"},
+                        {"game": 3, "home_zh": _f_low_zh, "signal": "—", "tier": "MONITOR", "wr": None, "note": "客場反撲觀察，待盤口確認"},
+                        {"game": 4, "home_zh": _f_low_zh, "signal": "—", "tier": "MONITOR", "wr": None, "note": "低種子主場第二戰，視系列賽狀態"},
+                        {"game": 5, "home_zh": _f_high_zh, "signal": "Finals G5主場壓制", "tier": "GOLD", "wr": 85, "note": "回歸主場cover率最高"},
+                        {"game": 6, "home_zh": _f_low_zh, "signal": "—", "tier": "MONITOR", "wr": None, "note": "淘汰賽/保命戰動態觀察"},
+                        {"game": 7, "home_zh": _f_high_zh, "signal": "—", "tier": "MONITOR", "wr": None, "note": "G7歷史 3-0，待盤口出現再評估"},
+                    ],
                 }
                 try:
                     import sqlite3 as _fsq
@@ -1471,6 +1491,30 @@ def build_bracket(target_date: date) -> dict | None:
                             finals_data["analysis"]["odds_preview_zh"] = (
                                 f"G1 開盤: {_f_high_zh} -{abs(_fsp):.1f} (主場)，總分 {_fou}；ML {_fml_h}/{_fml_a}"
                             )
+                        _h2h_rows = _fcon.execute(
+                            "SELECT Date, Home, Away, Spread, Win_Margin, Points FROM '2025-26' "
+                            "WHERE ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?)) "
+                            "AND Win_Margin IS NOT NULL AND Date < '2026-06-01' ORDER BY Date",
+                            (f_high["team"], f_low["team"], f_low["team"], f_high["team"]),
+                        ).fetchall()
+                        if _h2h_rows:
+                            _h2h_list = []
+                            for _hr in _h2h_rows:
+                                _hd, _hh, _ha, _hsp, _hwm, _hpt = _hr
+                                _hs = round((_hpt + _hwm) / 2) if _hpt and _hwm is not None else None
+                                _as = round((_hpt - _hwm) / 2) if _hpt and _hwm is not None else None
+                                _winner = _hh if _hwm > 0 else _ha
+                                _h2h_list.append({
+                                    "date": _hd, "home": _hh, "away": _ha,
+                                    "score": f"{_hs}-{_as}" if _hs else None,
+                                    "spread": _hsp, "ats": "home" if _hwm > _hsp else "away",
+                                })
+                            _home_ats = sum(1 for g in _h2h_list if g["ats"] == "home")
+                            finals_data["analysis"]["h2h_zh"] = (
+                                f"例行賽對戰 {len(_h2h_list)} 場：主場方 ATS {_home_ats}-{len(_h2h_list)-_home_ats} "
+                                f"(主場cover率 {_home_ats/len(_h2h_list)*100:.0f}%)"
+                            )
+                            finals_data["analysis"]["h2h_games"] = _h2h_list
                 except Exception:
                     pass
     elif ecf_winner or wcf_winner:
@@ -1547,13 +1591,14 @@ def build_season_h2h(season_key: str) -> dict | None:
             con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
             if season_key in row[0]
         ]
-        best, best_date = (candidates[0] if candidates else season_key), ""
+        best, best_date, best_cnt = (candidates[0] if candidates else season_key), "", 0
         for c in candidates:
             try:
                 row = con.execute(f'SELECT MAX(Date) FROM "{c}"').fetchone()
                 d = row[0] or ""
-                if d > best_date:
-                    best, best_date = c, d
+                cnt = con.execute(f'SELECT COUNT(*) FROM "{c}"').fetchone()[0]
+                if d > best_date or (d == best_date and cnt > best_cnt):
+                    best, best_date, best_cnt = c, d, cnt
             except Exception:
                 pass
 

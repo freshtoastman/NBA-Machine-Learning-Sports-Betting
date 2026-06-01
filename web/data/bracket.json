@@ -906,11 +906,96 @@
   "status": "聖安東尼奧馬刺 vs 紐約尼克 — 6/3 開打 (Spurs 主場)",
   "analysis": {
    "series_status": "聖安東尼奧馬刺 vs 紐約尼克 · 6/3 G1 @Spurs 8:30PM ET",
-   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽；紐約尼克 自 5/25 橫掃後已休息 9 天",
-   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；長休息 vs 連戰疲勞的對決",
+   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息4天）；紐約尼克 自 5/25 橫掃後休息9天",
+   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；紐約尼克 休息9天 vs 聖安東尼奧馬刺 休息4天",
    "matchup_zh": "聖安東尼奧馬刺 vs 紐約尼克 總決賽對決",
    "odds_preview_zh": "G1 開盤: 聖安東尼奧馬刺 -4.5 (主場)，總分 218.5；ML -196/164",
-   "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞"
+   "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞",
+   "strategy_map": [
+    {
+     "game": 1,
+     "home_zh": "聖安東尼奧馬刺",
+     "signal": "Finals G1主場壓制",
+     "tier": "GOLD",
+     "wr": 75,
+     "note": "高種子主場開局優勢顯著"
+    },
+    {
+     "game": 2,
+     "home_zh": "聖安東尼奧馬刺",
+     "signal": "Finals G2主場壓制",
+     "tier": "GOLD",
+     "wr": 80.8,
+     "note": "主場延續G1動能"
+    },
+    {
+     "game": 3,
+     "home_zh": "紐約尼克",
+     "signal": "—",
+     "tier": "MONITOR",
+     "wr": null,
+     "note": "客場反撲觀察，待盤口確認"
+    },
+    {
+     "game": 4,
+     "home_zh": "紐約尼克",
+     "signal": "—",
+     "tier": "MONITOR",
+     "wr": null,
+     "note": "低種子主場第二戰，視系列賽狀態"
+    },
+    {
+     "game": 5,
+     "home_zh": "聖安東尼奧馬刺",
+     "signal": "Finals G5主場壓制",
+     "tier": "GOLD",
+     "wr": 85,
+     "note": "回歸主場cover率最高"
+    },
+    {
+     "game": 6,
+     "home_zh": "紐約尼克",
+     "signal": "—",
+     "tier": "MONITOR",
+     "wr": null,
+     "note": "淘汰賽/保命戰動態觀察"
+    },
+    {
+     "game": 7,
+     "home_zh": "聖安東尼奧馬刺",
+     "signal": "—",
+     "tier": "MONITOR",
+     "wr": null,
+     "note": "G7歷史 3-0，待盤口出現再評估"
+    }
+   ],
+   "h2h_zh": "例行賽對戰 3 場：主場方 ATS 3-0 (主場cover率 100%)",
+   "h2h_games": [
+    {
+     "date": "2025-12-16",
+     "home": "New York Knicks",
+     "away": "San Antonio Spurs",
+     "score": "124-113",
+     "spread": 2.5,
+     "ats": "home"
+    },
+    {
+     "date": "2025-12-31",
+     "home": "San Antonio Spurs",
+     "away": "New York Knicks",
+     "score": "134-132",
+     "spread": 1.5,
+     "ats": "home"
+    },
+    {
+     "date": "2026-03-01",
+     "home": "New York Knicks",
+     "away": "San Antonio Spurs",
+     "score": "114-89",
+     "spread": -1.0,
+     "ats": "home"
+    }
+   ]
   }
  },
  "signal_tracker": {

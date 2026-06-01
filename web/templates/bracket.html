@@ -680,10 +680,43 @@
         {% if fin.analysis.odds_preview_zh %}
         <div style="font-size:12px; color:#aad4ff; margin-bottom:4px;">📈 {{ fin.analysis.odds_preview_zh }}</div>
         {% endif %}
+        {% if fin.analysis.h2h_zh %}
+        <div style="font-size:12px; color:#ccc; margin-bottom:4px;">🏀 {{ fin.analysis.h2h_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.h2h_games %}
+        <div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px;">
+          {% for hg in fin.analysis.h2h_games %}
+          <span style="background:#141821; border:1px solid #1a2a3a; border-radius:4px; padding:2px 6px; font-size:10px; color:#999;">
+            {{ hg.date[5:] }} {{ hg.away[:3]|upper }}@{{ hg.home[:3]|upper }} {{ hg.score }} <span style="color:{% if hg.ats == 'home' %}#7fd69b{% else %}#e08080{% endif %}">{{ hg.ats }}</span>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
         {% if fin.analysis.risk_zh %}
         <div style="font-size:11px; color:#e08080; margin-bottom:4px;">⚠️ {{ fin.analysis.risk_zh }}</div>
         {% endif %}
       </div>
+      {% if fin.analysis.strategy_map %}
+      <div style="margin-top:14px; padding:12px; background:#0e111a; border-radius:8px; border:1px solid #1a2a3a;">
+        <div style="font-size:13px; color:#f4bf50; font-weight:700; margin-bottom:8px;">📋 總決賽信號地圖</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:6px;">
+          {% for sg in fin.analysis.strategy_map %}
+          <div style="background:#141821; border:1px solid {% if sg.tier == 'GOLD' %}#3a2a10{% else %}#1a2a3a{% endif %}; border-radius:6px; padding:8px; text-align:center;">
+            <div style="font-size:12px; font-weight:700; color:#e8e8e8; margin-bottom:4px;">G{{ sg.game }}</div>
+            <div style="font-size:10px; color:#888; margin-bottom:4px;">{{ sg.home_zh }} 主場</div>
+            {% if sg.tier == 'GOLD' %}
+            <span style="display:inline-block; font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px; background:#3a2a10; color:#f4bf50;">GOLD {{ sg.wr }}%</span>
+            {% elif sg.tier == 'SILVER' %}
+            <span style="display:inline-block; font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px; background:#1a3a28; color:#7fd69b;">SILVER {{ sg.wr }}%</span>
+            {% else %}
+            <span style="display:inline-block; font-size:9px; padding:1px 5px; border-radius:3px; background:#1a1a2a; color:#666;">觀察</span>
+            {% endif %}
+            <div style="font-size:9px; color:#777; margin-top:4px; line-height:1.3;">{{ sg.note }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
       {% endif %}
     </div>
     {% elif ecf and ecf.winner is defined and ecf.winner %}
