@@ -81,9 +81,9 @@
    "away_score": null,
    "spread": 4.5,
    "Spread": 4.5,
-   "OU": 218.5,
-   "ML_Home": -196,
-   "ML_Away": 164,
+   "OU": 217.5,
+   "ML_Home": -190,
+   "ML_Away": 160,
    "Days_Rest_Home": null,
    "Days_Rest_Away": null,
    "home_confidence": null,
@@ -165,16 +165,24 @@
      "ml_home": -196,
      "ml_away": 164,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-06-02T14:09:55+00:00",
+     "spread": 4.5,
+     "ou": 217.5,
+     "ml_home": -190,
+     "ml_away": 160,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 5.5,
    "spread_last": 4.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-05-31T14:11:32+00:00",
-   "spread_last_fetched_at": "2026-06-01T14:09:33+00:00",
+   "spread_last_fetched_at": "2026-06-02T14:09:55+00:00",
    "ou_first": 218.5,
-   "ou_last": 218.5,
-   "ou_move": 0.0
+   "ou_last": 217.5,
+   "ou_move": -1.0
   }
  },
  "active_series": [
