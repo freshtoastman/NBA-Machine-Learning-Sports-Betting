@@ -1488,8 +1488,23 @@ def build_bracket(target_date: date) -> dict | None:
                         ).fetchone()
                         if _frow and _frow[0] is not None:
                             _fsp, _fou, _fml_h, _fml_a = _frow
+                            _spread_move_str = ""
+                            try:
+                                _hist_rows = _fcon.execute(
+                                    "SELECT Spread FROM odds_history WHERE Date='2026-06-03' "
+                                    "AND Home=? AND Away=? ORDER BY fetched_at ASC",
+                                    (f_high["team"], f_low["team"]),
+                                ).fetchall()
+                                if _hist_rows and len(_hist_rows) > 1:
+                                    _sp_first = _hist_rows[0][0]
+                                    _sp_last = _hist_rows[-1][0]
+                                    if _sp_first is not None and _sp_last is not None and _sp_first != _sp_last:
+                                        _sp_diff = _sp_last - _sp_first
+                                        _spread_move_str = f"（開盤 {abs(_sp_first):.1f}→{abs(_sp_last):.1f}，移動 {_sp_diff:+.1f}）"
+                            except Exception:
+                                pass
                             finals_data["analysis"]["odds_preview_zh"] = (
-                                f"G1 開盤: {_f_high_zh} -{abs(_fsp):.1f} (主場)，總分 {_fou}；ML {_fml_h}/{_fml_a}"
+                                f"G1: {_f_high_zh} -{abs(_fsp):.1f} (主場){_spread_move_str}，總分 {_fou}；ML {_fml_h}/{_fml_a}"
                             )
                         _h2h_rows = _fcon.execute(
                             "SELECT Date, Home, Away, Spread, Win_Margin, Points FROM '2025-26' "

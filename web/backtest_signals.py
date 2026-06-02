@@ -129,6 +129,20 @@ def build_backtest_signals(game: dict) -> list[dict]:
         if is_elim and series_lead < 0:
             signals.append({"text": "⚠ 主場淘汰局（落後方）→ 避免押主場（僅 39.4%）", "tier": "danger"})
 
+    # ── Rest-day differential (playoffs) ──
+    if is_po:
+        rest_h = game.get("Days_Rest_Home")
+        rest_a = game.get("Days_Rest_Away")
+        if rest_h is not None and rest_a is not None:
+            rest_diff = abs(rest_h - rest_a)
+            if rest_diff >= 4:
+                less_rest = "主場" if rest_h < rest_a else "客場"
+                more_rest = "客場" if rest_h < rest_a else "主場"
+                signals.append({
+                    "text": f"休息差距大（{less_rest}{min(rest_h,rest_a)}天 vs {more_rest}{max(rest_h,rest_a)}天）→ 動能方有優勢但注意疲勞",
+                    "tier": "base",
+                })
+
     if model_conf >= 70:
         signals.append({"text": "ML 模型高信心 ≥70% → 勝負盤可靠", "tier": "base"})
 

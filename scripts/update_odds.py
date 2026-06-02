@@ -118,6 +118,15 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
             f'WHERE Date=? AND Home=? AND Away=? AND (Points IS NULL OR Points = 0)',
             (ou, spread, ml_home, ml_away, str(target_date), home, away),
         ).rowcount
+        odds_tbl = f"odds_{season_key}"
+        try:
+            con.execute(
+                f'UPDATE "{odds_tbl}" SET OU=?, Spread=?, ML_Home=?, ML_Away=? '
+                f'WHERE Date=? AND Home=? AND Away=? AND (Points IS NULL OR Points = 0)',
+                (ou, spread, ml_home, ml_away, str(target_date), home, away),
+            )
+        except Exception:
+            pass
         _log_history_snapshot(
             con, season_key, target_date, home, away, ou, spread, ml_home, ml_away, fetched_at_iso
         )
