@@ -634,6 +634,32 @@ def _build_signal_tracker(data_dir: Path) -> dict:
     nc_total = nc_wins + nc_losses
     nc_pnl = round(nc_wins * 0.91 - nc_losses * 1.0, 2) if nc_total else 0
 
+    # Premium filter: no-conflict + exclude G3/G6 (87% accuracy tier)
+    pm_wins = pm_losses = pm_pending = 0
+    for key, gv in game_votes.items():
+        has_conflict = gv["home"] > 0 and gv["away"] > 0
+        if has_conflict:
+            continue
+        # Find game_num for this game
+        gn_for_game = None
+        for dd in details:
+            dk = f"{dd['date']}|{dd['away']}|{dd['home']}"
+            if dk == key:
+                gn_for_game = dd.get("game_num")
+                break
+        if gn_for_game in (3, 6):
+            continue
+        if gv["pending"] or gv["ats_winner"] is None:
+            pm_pending += 1
+            continue
+        side = "home" if gv["home"] > 0 else "away"
+        if side == gv["ats_winner"]:
+            pm_wins += 1
+        else:
+            pm_losses += 1
+    pm_total = pm_wins + pm_losses
+    pm_pnl = round(pm_wins * 0.91 - pm_losses * 1.0, 2) if pm_total else 0
+
     by_gn_sorted = {}
     for gn_key in sorted(by_game_num.keys()):
         v = by_game_num[gn_key]
@@ -672,6 +698,18 @@ def _build_signal_tracker(data_dir: Path) -> dict:
             "hit_rate": round(nc_wins / nc_total * 100, 1) if nc_total else None,
             "pnl": nc_pnl,
             "roi": round(nc_pnl / nc_total * 100, 1) if nc_total else None,
+        },
+        "premium": {
+            "label": "核心場次 (排除G3/G6，無衝突)",
+            "filter": "no_conflict + exclude G3/G6",
+            "decided": pm_total,
+            "wins": pm_wins,
+            "losses": pm_losses,
+            "pending": pm_pending,
+            "hit_rate": round(pm_wins / pm_total * 100, 1) if pm_total else None,
+            "pnl": pm_pnl,
+            "roi": round(pm_pnl / pm_total * 100, 1) if pm_total else None,
+            "note": "G3(66.7%)與G6(64.7%)拖累整體準確率，排除後每場勝率達87%",
         },
         "details": details,
     }

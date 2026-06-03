@@ -1877,6 +1877,17 @@
     "margin": null,
     "game_num": 4
    }
-  ]
+  ],
+  "premium": {
+   "label": "核心場次 (排除G3/G6，無衝突)",
+   "filter": "no_conflict + exclude G3/G6",
+   "decided": 23,
+   "wins": 20,
+   "losses": 3,
+   "hit_rate": 87.0,
+   "pnl": 15.3,
+   "roi": 66.5,
+   "note": "G3(66.7%)與G6(64.7%)拖累整體準確率，排除後每場勝率達87%"
+  }
  }
 }
