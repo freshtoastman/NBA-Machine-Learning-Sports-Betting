@@ -1514,6 +1514,7 @@ def build_bracket(target_date: date) -> dict | None:
                         ).fetchall()
                         if _h2h_rows:
                             _h2h_list = []
+                            _ou_overs = 0
                             for _hr in _h2h_rows:
                                 _hd, _hh, _ha, _hsp, _hwm, _hpt = _hr
                                 _hs = round((_hpt + _hwm) / 2) if _hpt and _hwm is not None else None
@@ -1530,6 +1531,19 @@ def build_bracket(target_date: date) -> dict | None:
                                 f"(主場cover率 {_home_ats/len(_h2h_list)*100:.0f}%)"
                             )
                             finals_data["analysis"]["h2h_games"] = _h2h_list
+                            _h2h_ou = _fcon.execute(
+                                "SELECT Points, OU FROM '2025-26' "
+                                "WHERE ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?)) "
+                                "AND Points IS NOT NULL AND OU IS NOT NULL AND Date < '2026-06-01'",
+                                (f_high["team"], f_low["team"], f_low["team"], f_high["team"]),
+                            ).fetchall()
+                            if _h2h_ou:
+                                _avg_total = sum(r[0] for r in _h2h_ou) / len(_h2h_ou)
+                                _ou_overs = sum(1 for r in _h2h_ou if r[0] > r[1])
+                                finals_data["analysis"]["ou_trend_zh"] = (
+                                    f"H2H例行賽{len(_h2h_ou)}場均分{_avg_total:.1f} "
+                                    f"(OVER {_ou_overs}/{len(_h2h_ou)})；G1盤口{_fou}"
+                                )
                 except Exception:
                     pass
     elif ecf_winner or wcf_winner:

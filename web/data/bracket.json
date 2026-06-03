@@ -906,11 +906,11 @@
   "status": "聖安東尼奧馬刺 vs 紐約尼克 — 6/3 開打 (Spurs 主場)",
   "analysis": {
    "series_status": "聖安東尼奧馬刺 vs 紐約尼克 · 6/3 G1 @Spurs 8:30PM ET",
-   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息4天）；紐約尼克 自 5/25 橫掃後休息9天",
-   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；紐約尼克 休息9天 vs 聖安東尼奧馬刺 休息4天",
-   "matchup_zh": "聖安東尼奧馬刺 vs 紐約尼克 總決賽對決",
+   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息4天）；紐約尼克 自 5/25 橫掃後休息9天，帶著11連勝氣勢",
+   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；紐約尼克 休息9天 vs 聖安東尼奧馬刺 休息4天；KAT 例行賽曾限制 Wemby 得 10 分",
+   "matchup_zh": "聖安東尼奧馬刺 (Wemby WCF MVP: 27.3pts/10.9reb) vs 紐約尼克 (Brunson ECF MVP: 25.5pts/7.8ast)；Robinson 存疑（右手骨折術後）",
    "odds_preview_zh": "G1: 聖安東尼奧馬刺 -4.5 (主場)（開盤 5.5→4.5，移動 -1.0），總分 218.5；ML -188/158",
-   "risk_zh": "長時間休息可能導致手感生疏；連戰方帶動能但可能疲勞",
+   "risk_zh": "NYK 休息9天可能手感生疏或完全恢復；Robinson 若缺陣影響禁區防守；SAS 連戰4天前打完G7",
    "strategy_map": [
     {
      "game": 1,
@@ -969,7 +969,7 @@
      "note": "G7歷史 3-0，待盤口出現再評估"
     }
    ],
-   "h2h_zh": "例行賽對戰 3 場：主場方 ATS 3-0 (主場cover率 100%)",
+   "h2h_zh": "例行賽對戰 3 場：主場方 ATS 3-0 (100%)；O/U 2-1 OVER (均分 235.3)，高於G1盤口218.5",
    "h2h_games": [
     {
      "date": "2025-12-16",
@@ -995,7 +995,9 @@
      "spread": -1.0,
      "ats": "home"
     }
-   ]
+   ],
+   "ou_trend_zh": "H2H例行賽3場均分235.3 (OVER 2/3)；SAS近12場10次OVER；G1盤口218.5偏低",
+   "injury_impact_zh": "Mitchell Robinson (NYK): 右手第五掌骨骨折術後，列存疑；若上場帶護具，預期籃板/防守受限"
   }
  },
  "signal_tracker": {

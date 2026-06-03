@@ -692,6 +692,12 @@
           {% endfor %}
         </div>
         {% endif %}
+        {% if fin.analysis.ou_trend_zh %}
+        <div style="font-size:12px; color:#d4aaff; margin-bottom:4px;">📊 {{ fin.analysis.ou_trend_zh }}</div>
+        {% endif %}
+        {% if fin.analysis.injury_impact_zh %}
+        <div style="font-size:12px; color:#ffcc80; margin-bottom:4px;">🏥 {{ fin.analysis.injury_impact_zh }}</div>
+        {% endif %}
         {% if fin.analysis.risk_zh %}
         <div style="font-size:11px; color:#e08080; margin-bottom:4px;">⚠️ {{ fin.analysis.risk_zh }}</div>
         {% endif %}
