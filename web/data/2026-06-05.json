@@ -35,7 +35,7 @@
   ],
   "playoff_ats_count": 1,
   "injury_alerts": [
-   "New York Knicks: Mitchell Robinson (缺陣)"
+   "New York Knicks: Mitchell Robinson (存疑)"
   ],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -116,7 +116,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Mitchell Robinson (缺陣)"
+    "Mitchell Robinson (存疑)"
    ]
   }
  },

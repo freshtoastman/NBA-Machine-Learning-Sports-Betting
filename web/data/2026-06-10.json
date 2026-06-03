@@ -1,5 +1,5 @@
 {
- "date": "2026-06-08",
+ "date": "2026-06-10",
  "is_today": false,
  "summary": {
   "games": 1,
@@ -26,7 +26,7 @@
     "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
     "ats_winner": null,
     "ats_cover_margin": null,
-    "series_game_num": 3,
+    "series_game_num": 4,
     "series_home_wins": 0,
     "series_away_wins": 0,
     "strong_consensus": null,
@@ -63,8 +63,8 @@
    "OU": null,
    "ML_Home": null,
    "ML_Away": null,
-   "Days_Rest_Home": 3,
-   "Days_Rest_Away": 3,
+   "Days_Rest_Home": 2,
+   "Days_Rest_Away": 2,
    "home_confidence": null,
    "away_confidence": null,
    "value_side": null,
@@ -95,6 +95,16 @@
      "backtest_roi": 15.5,
      "backtest_n": 30,
      "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
+    },
+    {
+     "signal": "G4客場邊",
+     "side": "away",
+     "ats_side": "讓分(押fav)",
+     "tier": "BRONZE",
+     "backtest_wr": 0.573,
+     "backtest_roi": 9.2,
+     "backtest_n": 171,
+     "reason_zh": "第4場低種子主場，13季歷史高種子客場cover率 57.3% (n=171)，外客延伸優勢"
     }
    ],
    "playoff_ats_best_side": "home",
@@ -105,7 +115,7 @@
    "playoff_ats_strong_consensus": null,
    "series_round": "總決賽",
    "round_num": 4,
-   "series_game_num": 3,
+   "series_game_num": 4,
    "series_home_wins": 0,
    "series_away_wins": 0,
    "series_status_text": "平手 0-0",
@@ -129,24 +139,6 @@
    "high_wins": 0,
    "low_wins": 0,
    "conference": "west"
-  },
-  {
-   "round_num": 3,
-   "round_label": "分區決賽",
-   "high_seed": "Oklahoma City Thunder",
-   "low_seed": "San Antonio Spurs",
-   "high_wins": 3,
-   "low_wins": 4,
-   "conference": "west"
-  },
-  {
-   "round_num": 3,
-   "round_label": "分區決賽",
-   "high_seed": "Cleveland Cavaliers",
-   "low_seed": "New York Knicks",
-   "high_wins": 0,
-   "low_wins": 4,
-   "conference": "east"
   }
  ],
  "is_playoff_view": true

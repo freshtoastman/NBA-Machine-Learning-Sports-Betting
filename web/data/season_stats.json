@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 45,
   "misses": 16,
-  "pending": 4,
+  "pending": 5,
   "decided": 61,
   "hit_rate": 73.8,
   "conviction": {
@@ -2027,6 +2027,19 @@
     "series_game_num": 3,
     "series_score": "0-0",
     "has_strong_consensus": false
+   },
+   {
+    "date": "2026-06-10",
+    "game": "聖安東尼奧馬刺 @ 紐約尼克",
+    "signals": [
+     "主場ATS冷門反彈"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 60,
+    "series_game_num": 4,
+    "series_score": "0-0",
+    "has_strong_consensus": false
    }
   ],
   "by_signal": [
@@ -2346,7 +2359,7 @@
   "best_pick": {
    "hits": 33,
    "misses": 10,
-   "pending": 3,
+   "pending": 4,
    "decided": 43,
    "hit_rate": 76.7,
    "gold_hits": 13,
@@ -2362,7 +2375,7 @@
   "no_conflict": {
    "hits": 30,
    "misses": 7,
-   "pending": 2,
+   "pending": 3,
    "decided": 37,
    "hit_rate": 81.1,
    "note_zh": "無衝突場次(所有信號同向): 30勝/37場決定 = 81.1%"

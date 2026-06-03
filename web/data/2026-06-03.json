@@ -1,6 +1,6 @@
 {
  "date": "2026-06-03",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -56,22 +56,8 @@
   ],
   "playoff_ats_count": 2,
   "injury_alerts": [
-   "New York Knicks: Mitchell Robinson (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+   "New York Knicks: Mitchell Robinson (存疑)"
+  ]
  },
  "games": {
   "New York Knicks:San Antonio Spurs": {
@@ -81,9 +67,9 @@
    "away_score": null,
    "spread": 4.5,
    "Spread": 4.5,
-   "OU": 217.5,
-   "ML_Home": -190,
-   "ML_Away": 160,
+   "OU": 218.5,
+   "ML_Home": -188,
+   "ML_Away": 158,
    "Days_Rest_Home": 4,
    "Days_Rest_Away": 9,
    "home_confidence": null,
@@ -147,7 +133,7 @@
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [],
    "injuries_away": [
-    "Mitchell Robinson (缺陣)"
+    "Mitchell Robinson (存疑)"
    ],
    "odds_history": [
     {
@@ -173,16 +159,24 @@
      "ml_home": -190,
      "ml_away": 160,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-06-03T14:10:17+00:00",
+     "spread": 4.5,
+     "ou": 218.5,
+     "ml_home": -188,
+     "ml_away": 158,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 5.5,
    "spread_last": 4.5,
    "spread_move": -1.0,
    "spread_first_fetched_at": "2026-05-31T14:11:32+00:00",
-   "spread_last_fetched_at": "2026-06-02T14:09:55+00:00",
+   "spread_last_fetched_at": "2026-06-03T14:10:17+00:00",
    "ou_first": 218.5,
-   "ou_last": 217.5,
-   "ou_move": -1.0
+   "ou_last": 218.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
