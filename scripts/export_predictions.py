@@ -1749,6 +1749,48 @@ def build_bracket(target_date: date) -> dict | None:
                                 _risk_parts.append(f"{_f_high_zh} 主場已失守，心態壓力大")
                             _risk = "；".join(_risk_parts) if _risk_parts else ""
 
+                        # OU trend analysis from played games
+                        _ou_trend = ""
+                        if _played:
+                            _totals = [r[5] for r in _played if r[5]]
+                            _ou_lines = [r[6] for r in _played if r[6]]
+                            if _totals and _ou_lines:
+                                _avg_total = sum(_totals) / len(_totals)
+                                _avg_ou = sum(_ou_lines) / len(_ou_lines)
+                                _ou_results = []
+                                for _t, _o in zip(_totals, _ou_lines):
+                                    _ou_results.append("UNDER" if _t < _o else "OVER")
+                                _under_ct = _ou_results.count("UNDER")
+                                _ou_trend = (
+                                    f"系列賽平均總分 {_avg_total:.0f} vs 盤口 {_avg_ou:.1f}"
+                                    f"（{_under_ct}/{len(_ou_results)} 場UNDER）"
+                                )
+                                if _next_game and _next_game[6]:
+                                    _g2_ou = _next_game[6]
+                                    _ou_gap = _avg_total - _g2_ou
+                                    if abs(_ou_gap) > 5:
+                                        _ou_trend += f"；G{_next_gn} 盤口 {_g2_ou}，偏差 {_ou_gap:+.0f}"
+
+                        # Injury impact: fetch latest report for Finals teams
+                        _inj_impact = ""
+                        try:
+                            _inj = fetch_injury_report({
+                                f_high["team"]: f_low["team"],
+                                f_low["team"]: f_high["team"],
+                            })
+                            _inj_parts = []
+                            for _t in [f_high["team"], f_low["team"]]:
+                                _t_inj = _inj.get(_t, [])
+                                if _t_inj:
+                                    _t_zh = team_name_zh(_t) or _t
+                                    _inj_parts.append(f"{_t_zh}: {', '.join(_t_inj)}")
+                            if _inj_parts:
+                                _inj_impact = "；".join(_inj_parts)
+                            else:
+                                _inj_impact = "雙方主力健康，無重大傷病"
+                        except Exception:
+                            pass
+
                         finals_data["analysis"] = {
                             "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
                             "game_results": _game_results,
@@ -1758,6 +1800,8 @@ def build_bracket(target_date: date) -> dict | None:
                             "risk_zh": _risk,
                             "strategy_map": _strat,
                             "h2h_games": _h2h_list,
+                            "ou_trend_zh": _ou_trend,
+                            "injury_impact_zh": _inj_impact,
                         }
                 except Exception:
                     pass
