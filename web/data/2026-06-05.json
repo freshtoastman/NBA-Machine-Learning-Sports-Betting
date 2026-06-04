@@ -98,11 +98,11 @@
    "away_team": "New York Knicks",
    "home_score": null,
    "away_score": null,
-   "spread": 5.5,
-   "Spread": 5.5,
+   "spread": 6.5,
+   "Spread": 6.5,
    "OU": 214.5,
-   "ML_Home": -218,
-   "ML_Away": 180,
+   "ML_Home": -230,
+   "ML_Away": 190,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -175,7 +175,25 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": []
+   "injuries_away": [],
+   "odds_history": [
+    {
+     "fetched_at": "2026-06-04T14:11:03+00:00",
+     "spread": 6.5,
+     "ou": 214.5,
+     "ml_home": -230,
+     "ml_away": 190,
+     "source": "sbr_fanduel"
+    }
+   ],
+   "spread_first": 6.5,
+   "spread_last": 6.5,
+   "spread_move": 0.0,
+   "spread_first_fetched_at": "2026-06-04T14:11:03+00:00",
+   "spread_last_fetched_at": "2026-06-04T14:11:03+00:00",
+   "ou_first": 214.5,
+   "ou_last": 214.5,
+   "ou_move": 0.0
   }
  },
  "active_series": [
