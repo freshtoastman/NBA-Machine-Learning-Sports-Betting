@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-28",
- "generated_for": "2026-06-03",
+ "generated_for": "2026-06-04",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -865,17 +865,17 @@
   "high_conf": "西區",
   "low_conf": "東區",
   "high_wins": 0,
-  "low_wins": 0,
-  "games_played": 0,
+  "low_wins": 1,
+  "games_played": 1,
   "next_signal": {
-   "game_num": 1,
-   "signal": "Finals G1主場壓制",
+   "game_num": 2,
+   "signal": "Finals G2主場壓制",
    "side": "home",
    "home_team": "San Antonio Spurs",
    "home_team_zh": "聖安東尼奧馬刺",
    "tier": "GOLD",
-   "backtest_wr": 0.75,
-   "reason_zh": "總決賽G1主場cover率 75% (CF+Finals合計，高種子主場開局優勢顯著)"
+   "backtest_wr": 0.808,
+   "reason_zh": "總決賽G2主場cover率 80.8% (CF+Finals合計，主場延續G1動能)"
   },
   "schedule": {
    "game1": {
@@ -903,14 +903,28 @@
     "time": "8:30 PM ET"
    }
   },
-  "status": "聖安東尼奧馬刺 vs 紐約尼克 — 6/3 開打 (Spurs 主場)",
+  "status": "聖安東尼奧馬刺 vs 紐約尼克 (0-1)",
   "analysis": {
-   "series_status": "聖安東尼奧馬刺 vs 紐約尼克 · 6/3 G1 @Spurs 8:30PM ET",
-   "momentum_zh": "聖安東尼奧馬刺 帶著 G7 客場逆轉奪冠的動能進入總決賽（休息4天）；紐約尼克 自 5/25 橫掃後休息9天，帶著11連勝氣勢",
-   "key_factor_zh": "聖安東尼奧馬刺 主場優勢 (G1-2, G5, G7)；紐約尼克 休息9天 vs 聖安東尼奧馬刺 休息4天；KAT 例行賽曾限制 Wemby 得 10 分",
-   "matchup_zh": "聖安東尼奧馬刺 (Wemby WCF MVP: 27.3pts/10.9reb) vs 紐約尼克 (Brunson ECF MVP: 25.5pts/7.8ast)；Robinson 存疑（右手骨折術後）",
-   "odds_preview_zh": "G1: 聖安東尼奧馬刺 -4.5 (主場)（開盤 5.5→4.5，移動 -1.0），總分 218.5；ML -188/158",
-   "risk_zh": "NYK 休息9天可能手感生疏或完全恢復；Robinson 若缺陣影響禁區防守；SAS 連戰4天前打完G7",
+   "series_status": "聖安東尼奧馬刺 vs 紐約尼克 (0-1) · 紐約尼克 領先",
+   "game_results": [
+    {
+     "game": 1,
+     "date": "2026-06-03",
+     "home": "San Antonio Spurs",
+     "away": "New York Knicks",
+     "score": "95-105",
+     "spread": 4.5,
+     "winner": "New York Knicks",
+     "ats": "away",
+     "total": 200,
+     "ou_line": 218.5,
+     "ou_result": "UNDER"
+    }
+   ],
+   "momentum_zh": "G1: 紐約尼克 贏10分（聖安東尼奧馬刺 讓 4.5，未cover）",
+   "key_factor_zh": "G2 @聖安東尼奧馬刺；紐約尼克 客場搶先手成功，聖安東尼奧馬刺 必須守住主場",
+   "odds_preview_zh": "G2: 聖安東尼奧馬刺 -5.5 (主場)，總分 214.5；ML -218/180",
+   "risk_zh": "G1 實際總分 200 vs G2 盤口 214.5 (差距 -14)；聖安東尼奧馬刺 主場已失守，心態壓力大",
    "strategy_map": [
     {
      "game": 1,
@@ -918,7 +932,8 @@
      "signal": "Finals G1主場壓制",
      "tier": "GOLD",
      "wr": 75,
-     "note": "高種子主場開局優勢顯著"
+     "result": "New York Knicks 95-105",
+     "ats_result": "away"
     },
     {
      "game": 2,
@@ -926,50 +941,44 @@
      "signal": "Finals G2主場壓制",
      "tier": "GOLD",
      "wr": 80.8,
-     "note": "主場延續G1動能"
+     "note": "下一場"
     },
     {
      "game": 3,
      "home_zh": "紐約尼克",
      "signal": "—",
      "tier": "MONITOR",
-     "wr": null,
-     "note": "客場反撲觀察，待盤口確認"
+     "wr": null
     },
     {
      "game": 4,
      "home_zh": "紐約尼克",
      "signal": "—",
      "tier": "MONITOR",
-     "wr": null,
-     "note": "低種子主場第二戰，視系列賽狀態"
+     "wr": null
     },
     {
      "game": 5,
      "home_zh": "聖安東尼奧馬刺",
      "signal": "Finals G5主場壓制",
      "tier": "GOLD",
-     "wr": 85,
-     "note": "回歸主場cover率最高"
+     "wr": 85
     },
     {
      "game": 6,
      "home_zh": "紐約尼克",
      "signal": "—",
      "tier": "MONITOR",
-     "wr": null,
-     "note": "淘汰賽/保命戰動態觀察"
+     "wr": null
     },
     {
      "game": 7,
      "home_zh": "聖安東尼奧馬刺",
      "signal": "—",
      "tier": "MONITOR",
-     "wr": null,
-     "note": "G7歷史 3-0，待盤口出現再評估"
+     "wr": null
     }
    ],
-   "h2h_zh": "例行賽對戰 3 場：主場方 ATS 3-0 (100%)；O/U 2-1 OVER (均分 235.3)，高於G1盤口218.5",
    "h2h_games": [
     {
      "date": "2025-12-16",
@@ -995,43 +1004,41 @@
      "spread": -1.0,
      "ats": "home"
     }
-   ],
-   "ou_trend_zh": "H2H例行賽3場均分235.3 (OVER 2/3)；SAS近12場10次OVER；G1盤口218.5偏低",
-   "injury_impact_zh": "Mitchell Robinson (NYK): 右手第五掌骨骨折術後，列存疑；若上場帶護具，預期籃板/防守受限"
+   ]
   }
  },
  "signal_tracker": {
-  "total": 66,
-  "decided": 61,
-  "wins": 45,
-  "losses": 16,
+  "total": 68,
+  "decided": 63,
+  "wins": 46,
+  "losses": 17,
   "pending": 5,
-  "hit_rate": 73.8,
-  "pnl": 24.95,
-  "roi": 40.9,
+  "hit_rate": 73.0,
+  "pnl": 24.86,
+  "roi": 39.5,
   "by_tier": {
    "SILVER": {
-    "wins": 31,
+    "wins": 32,
     "losses": 11,
     "pending": 4
    },
    "GOLD": {
     "wins": 14,
-    "losses": 5,
+    "losses": 6,
     "pending": 1
    }
   },
   "by_game_num": {
    "G1": {
-    "wins": 9,
-    "losses": 4,
-    "pending": 2,
-    "hit_rate": 69.2
+    "wins": 10,
+    "losses": 5,
+    "pending": 0,
+    "hit_rate": 66.7
    },
    "G2": {
     "wins": 13,
     "losses": 2,
-    "pending": 1,
+    "pending": 3,
     "hit_rate": 86.7
    },
    "G3": {
@@ -1079,10 +1086,22 @@
    "decided": 37,
    "wins": 30,
    "losses": 7,
-   "pending": 4,
+   "pending": 3,
    "hit_rate": 81.1,
    "pnl": 20.3,
    "roi": 54.9
+  },
+  "premium": {
+   "label": "核心場次 (排除G3/G6，無衝突)",
+   "filter": "no_conflict + exclude G3/G6",
+   "decided": 23,
+   "wins": 20,
+   "losses": 3,
+   "pending": 2,
+   "hit_rate": 87.0,
+   "pnl": 15.2,
+   "roi": 66.1,
+   "note": "G3(66.7%)與G6(64.7%)拖累整體準確率，排除後每場勝率達87%"
   },
   "details": [
    {
@@ -1825,8 +1844,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.75,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -14.5,
     "game_num": 1
    },
    {
@@ -1837,9 +1856,33 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.619,
+    "result": "win",
+    "margin": -14.5,
+    "game_num": 1
+   },
+   {
+    "date": "2026-06-05",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "Finals G2主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.808,
     "result": "pending",
     "margin": null,
-    "game_num": 1
+    "game_num": 2
+   },
+   {
+    "date": "2026-06-05",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "G2主場反彈 (輸G1)",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.649,
+    "result": "pending",
+    "margin": null,
+    "game_num": 2
    },
    {
     "date": "2026-06-05",
@@ -1877,17 +1920,6 @@
     "margin": null,
     "game_num": 4
    }
-  ],
-  "premium": {
-   "label": "核心場次 (排除G3/G6，無衝突)",
-   "filter": "no_conflict + exclude G3/G6",
-   "decided": 23,
-   "wins": 20,
-   "losses": 3,
-   "hit_rate": 87.0,
-   "pnl": 15.3,
-   "roi": 66.5,
-   "note": "G3(66.7%)與G6(64.7%)拖累整體準確率，排除後每場勝率達87%"
-  }
+  ]
  }
 }

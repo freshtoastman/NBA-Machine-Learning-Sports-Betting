@@ -23,20 +23,18 @@
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 15.5,
-    "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
+    "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
     "ats_winner": null,
     "ats_cover_margin": null,
     "series_game_num": 4,
-    "series_home_wins": 0,
+    "series_home_wins": 1,
     "series_away_wins": 0,
     "strong_consensus": null,
     "has_conflict": false
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [
-   "New York Knicks: Mitchell Robinson (存疑)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -94,7 +92,7 @@
      "backtest_wr": 0.6,
      "backtest_roi": 15.5,
      "backtest_n": 30,
-     "reason_zh": "主場近10場 ATS 僅 20%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
+     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)"
     },
     {
      "signal": "G4客場邊",
@@ -116,17 +114,15 @@
    "series_round": "總決賽",
    "round_num": 4,
    "series_game_num": 4,
-   "series_home_wins": 0,
+   "series_home_wins": 1,
    "series_away_wins": 0,
-   "series_status_text": "平手 0-0",
+   "series_status_text": "主隊領先 1-0",
    "series_is_elimination": false,
    "home_team_zh": "紐約尼克",
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "injuries_home": [
-    "Mitchell Robinson (存疑)"
-   ],
+   "injuries_home": [],
    "injuries_away": []
   }
  },
@@ -137,7 +133,7 @@
    "high_seed": "San Antonio Spurs",
    "low_seed": "New York Knicks",
    "high_wins": 0,
-   "low_wins": 0,
+   "low_wins": 1,
    "conference": "west"
   }
  ],

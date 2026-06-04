@@ -707,9 +707,23 @@
         <div style="font-size:13px; color:#f4bf50; font-weight:700; margin-bottom:8px;">📋 總決賽信號地圖</div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:6px;">
           {% for sg in fin.analysis.strategy_map %}
-          <div style="background:#141821; border:1px solid {% if sg.tier == 'GOLD' %}#3a2a10{% else %}#1a2a3a{% endif %}; border-radius:6px; padding:8px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e8e8e8; margin-bottom:4px;">G{{ sg.game }}</div>
+          <div style="background:#141821; border:1px solid {% if sg.result is defined %}{% if sg.ats_result == 'home' %}#1a3a10{% else %}#3a1a10{% endif %}{% elif sg.note is defined and sg.note == '下一場' %}#f4bf50{% elif sg.tier == 'GOLD' %}#3a2a10{% else %}#1a2a3a{% endif %}; border-radius:6px; padding:8px; text-align:center;">
+            <div style="font-size:12px; font-weight:700; color:#e8e8e8; margin-bottom:4px;">G{{ sg.game }}{% if sg.note == '下一場' %} <span style="font-size:9px; color:#f4bf50;">◀ NEXT</span>{% endif %}</div>
             <div style="font-size:10px; color:#888; margin-bottom:4px;">{{ sg.home_zh }} 主場</div>
+            {% if sg.result is defined %}
+            <div style="font-size:10px; color:#ccc; margin-bottom:3px;">{{ sg.result.split(' ')[-1] }}</div>
+            <div style="font-size:9px; margin-bottom:2px;">
+              {% if sg.ats_result == 'home' and sg.signal and '主場' in sg.signal %}
+              <span style="color:#7fd69b;">✅ 主場cover</span>
+              {% elif sg.ats_result == 'away' and sg.signal and '主場' in sg.signal %}
+              <span style="color:#e08080;">❌ 主場未cover</span>
+              {% elif sg.ats_result == 'away' %}
+              <span style="color:#7fd69b;">客場cover</span>
+              {% else %}
+              <span style="color:#7fd69b;">主場cover</span>
+              {% endif %}
+            </div>
+            {% else %}
             {% if sg.tier == 'GOLD' %}
             <span style="display:inline-block; font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px; background:#3a2a10; color:#f4bf50;">GOLD {{ sg.wr }}%</span>
             {% elif sg.tier == 'SILVER' %}
@@ -717,7 +731,10 @@
             {% else %}
             <span style="display:inline-block; font-size:9px; padding:1px 5px; border-radius:3px; background:#1a1a2a; color:#666;">觀察</span>
             {% endif %}
+            {% endif %}
+            {% if sg.note is defined and sg.note and sg.note != '下一場' %}
             <div style="font-size:9px; color:#777; margin-top:4px; line-height:1.3;">{{ sg.note }}</div>
+            {% endif %}
           </div>
           {% endfor %}
         </div>

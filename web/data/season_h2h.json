@@ -9711,16 +9711,16 @@
     "home": "San Antonio Spurs",
     "away": "New York Knicks",
     "spread": 4.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -10,
+    "home_score": 95,
+    "away_score": 105,
+    "ats_result": "away"
    },
    {
     "date": "2026-06-05",
     "home": "San Antonio Spurs",
     "away": "New York Knicks",
-    "spread": null,
+    "spread": 5.5,
     "win_margin": null,
     "home_score": null,
     "away_score": null,

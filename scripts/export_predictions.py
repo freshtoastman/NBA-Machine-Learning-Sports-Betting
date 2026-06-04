@@ -1584,6 +1584,183 @@ def build_bracket(target_date: date) -> dict | None:
                                 )
                 except Exception:
                     pass
+            elif not (_fhw == 4 or _flw == 4):
+                # In-progress Finals: dynamic analysis based on game results
+                try:
+                    import sqlite3 as _fsq
+                    _fdb = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+                    with _fsq.connect(str(_fdb)) as _fcon:
+                        _finals_schedule_dates_full = ["2026-06-03", "2026-06-05", "2026-06-08",
+                                                        "2026-06-10", "2026-06-13", "2026-06-16", "2026-06-19"]
+                        # Fetch all Finals game results
+                        _f_results = _fcon.execute(
+                            "SELECT Date, Home, Away, Spread, Win_Margin, Points, OU, ML_Home, ML_Away "
+                            "FROM '2025-26' WHERE ((Home=? AND Away=?) OR (Home=? AND Away=?)) "
+                            "AND Date >= '2026-06-01' ORDER BY Date",
+                            (f_high["team"], f_low["team"], f_low["team"], f_high["team"]),
+                        ).fetchall()
+
+                        _played = [r for r in _f_results if r[4] is not None and r[4] != 0]
+                        _next_game = next((r for r in _f_results if r[4] is None or r[4] == 0), None)
+                        _next_gn = len(_played) + 1
+
+                        # Build game results summary
+                        _game_results = []
+                        for _gi, _gr in enumerate(_played):
+                            _gd, _gh, _ga, _gsp, _gwm, _gpt, _gou, _gmlh, _gmla = _gr
+                            _ghome_score = round((_gpt + _gwm) / 2) if _gpt and _gwm is not None else None
+                            _gaway_score = round((_gpt - _gwm) / 2) if _gpt and _gwm is not None else None
+                            _gwinner = _gh if _gwm > 0 else _ga
+                            _gats = "home" if _gsp is not None and _gwm > _gsp else "away"
+                            _game_results.append({
+                                "game": _gi + 1, "date": _gd,
+                                "home": _gh, "away": _ga,
+                                "score": f"{_ghome_score}-{_gaway_score}" if _ghome_score else None,
+                                "spread": _gsp, "winner": _gwinner, "ats": _gats,
+                                "total": _gpt, "ou_line": _gou,
+                                "ou_result": "OVER" if _gpt and _gou and _gpt > _gou else "UNDER",
+                            })
+
+                        # Series status
+                        _series_leader = _f_high_zh if _fhw > _flw else (_f_low_zh if _flw > _fhw else None)
+                        _lead_str = f"{_series_leader} 領先" if _series_leader else "平手"
+
+                        # Next game preview
+                        _next_preview = ""
+                        _next_spread_move = ""
+                        if _next_game:
+                            _nd, _nh, _na, _nsp, _, _, _nou, _nmlh, _nmla = _next_game
+                            _nh_zh = team_name_zh(_nh) or _nh
+                            if _nsp is not None:
+                                _next_preview = (
+                                    f"G{_next_gn}: {_nh_zh} -{abs(_nsp):.1f} (主場)，"
+                                    f"總分 {_nou}；ML {_nmlh}/{_nmla}"
+                                )
+                                # Spread movement from history
+                                try:
+                                    _nh_rows = _fcon.execute(
+                                        "SELECT Spread FROM odds_history WHERE Date=? AND Home=? AND Away=? "
+                                        "ORDER BY fetched_at ASC",
+                                        (_nd, _nh, _na),
+                                    ).fetchall()
+                                    if _nh_rows and len(_nh_rows) > 1:
+                                        _nsp_first = _nh_rows[0][0]
+                                        _nsp_last = _nh_rows[-1][0]
+                                        if _nsp_first is not None and _nsp_last is not None and _nsp_first != _nsp_last:
+                                            _nsp_diff = _nsp_last - _nsp_first
+                                            _next_spread_move = f"（開盤 {abs(_nsp_first):.1f}→{abs(_nsp_last):.1f}，移動 {_nsp_diff:+.1f}）"
+                                except Exception:
+                                    pass
+                                if _next_spread_move:
+                                    _next_preview += f" {_next_spread_move}"
+
+                        # Momentum analysis from recent games
+                        _last = _played[-1] if _played else None
+                        _momentum = ""
+                        if _last:
+                            _ld, _lh, _la, _lsp, _lwm, _lpt, _, _, _ = _last
+                            _lw_team = _lh if _lwm > 0 else _la
+                            _lw_zh = team_name_zh(_lw_team) or _lw_team
+                            _lmargin = abs(_lwm)
+                            _momentum = f"G{len(_played)}: {_lw_zh} 贏{_lmargin}分"
+                            if _lsp is not None:
+                                if _lsp > 0:
+                                    _lfav = _lh
+                                    _lcov = "cover" if _lwm > _lsp else "未cover"
+                                else:
+                                    _lfav = _la
+                                    _lcov = "cover" if _lwm < _lsp else "未cover"
+                                _lfav_zh = team_name_zh(_lfav) or _lfav
+                                _momentum += f"（{_lfav_zh} 讓 {abs(_lsp):.1f}，{_lcov}）"
+
+                        # Build strategy_map with results annotated
+                        _strat = []
+                        _game_homes = {
+                            1: f_high["team"], 2: f_high["team"],
+                            3: f_low["team"], 4: f_low["team"],
+                            5: f_high["team"], 6: f_low["team"],
+                            7: f_high["team"],
+                        }
+                        _base_signals = {
+                            1: ("Finals G1主場壓制", "GOLD", 75),
+                            2: ("Finals G2主場壓制", "GOLD", 80.8),
+                            5: ("Finals G5主場壓制", "GOLD", 85),
+                        }
+                        for _gn in range(1, 8):
+                            _ghome = _game_homes.get(_gn, f_high["team"])
+                            _ghome_zh = team_name_zh(_ghome) or _ghome
+                            _sig, _tier, _wr = _base_signals.get(_gn, ("—", "MONITOR", None))
+                            _entry = {"game": _gn, "home_zh": _ghome_zh, "signal": _sig, "tier": _tier, "wr": _wr}
+                            if _gn <= len(_played):
+                                _pr = _game_results[_gn - 1]
+                                _entry["result"] = f"{_pr['winner']} {_pr['score']}"
+                                _entry["ats_result"] = _pr["ats"]
+                            elif _gn == _next_gn:
+                                _entry["note"] = "下一場"
+                            _strat.append(_entry)
+
+                        # H2H data (preserve from regular season)
+                        _h2h_rows = _fcon.execute(
+                            "SELECT Date, Home, Away, Spread, Win_Margin, Points FROM '2025-26' "
+                            "WHERE ((Home = ? AND Away = ?) OR (Home = ? AND Away = ?)) "
+                            "AND Win_Margin IS NOT NULL AND Date < '2026-06-01' ORDER BY Date",
+                            (f_high["team"], f_low["team"], f_low["team"], f_high["team"]),
+                        ).fetchall()
+                        _h2h_list = []
+                        if _h2h_rows:
+                            for _hr in _h2h_rows:
+                                _hd, _hh, _ha, _hsp, _hwm2, _hpt = _hr
+                                _hs2 = round((_hpt + _hwm2) / 2) if _hpt and _hwm2 is not None else None
+                                _as2 = round((_hpt - _hwm2) / 2) if _hpt and _hwm2 is not None else None
+                                _h2h_list.append({
+                                    "date": _hd, "home": _hh, "away": _ha,
+                                    "score": f"{_hs2}-{_as2}" if _hs2 else None,
+                                    "spread": _hsp,
+                                    "ats": "home" if _hwm2 > _hsp else "away",
+                                })
+
+                        # Compute key factor and risk for next game
+                        _kf = ""
+                        _risk = ""
+                        if _next_gn <= 7:
+                            _next_home = _game_homes.get(_next_gn, f_high["team"])
+                            _next_home_zh = team_name_zh(_next_home) or _next_home
+                            _next_away = f_low["team"] if _next_home == f_high["team"] else f_high["team"]
+                            _next_away_zh = team_name_zh(_next_away) or _next_away
+                            _kf = f"G{_next_gn} @{_next_home_zh}"
+                            # Add context based on series state
+                            if _flw > _fhw:
+                                _kf += f"；{_f_low_zh} 客場搶先手成功，{_f_high_zh} 必須守住主場"
+                            elif _fhw > _flw:
+                                _kf += f"；{_f_high_zh} 主場領先，延續壓制"
+
+                            # Risk factors
+                            _risk_parts = []
+                            if _played:
+                                _last_total = _played[-1][5]
+                                _next_ou = _next_game[6] if _next_game and _next_game[6] else None
+                                if _last_total and _next_ou:
+                                    _diff = _last_total - _next_ou
+                                    if abs(_diff) > 5:
+                                        _risk_parts.append(
+                                            f"G{len(_played)} 實際總分 {_last_total} vs G{_next_gn} 盤口 {_next_ou} (差距 {_diff:+.0f})"
+                                        )
+                            if _flw > 0 and _next_home == f_high["team"]:
+                                _risk_parts.append(f"{_f_high_zh} 主場已失守，心態壓力大")
+                            _risk = "；".join(_risk_parts) if _risk_parts else ""
+
+                        finals_data["analysis"] = {
+                            "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
+                            "game_results": _game_results,
+                            "momentum_zh": _momentum,
+                            "key_factor_zh": _kf,
+                            "odds_preview_zh": _next_preview,
+                            "risk_zh": _risk,
+                            "strategy_map": _strat,
+                            "h2h_games": _h2h_list,
+                        }
+                except Exception:
+                    pass
     elif ecf_winner or wcf_winner:
         known = ecf_winner or wcf_winner
         known_conf = "東區冠軍" if ecf_winner else "西區冠軍"
