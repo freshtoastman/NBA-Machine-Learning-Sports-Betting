@@ -34,7 +34,9 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [],
+  "injury_alerts": [
+   "New York Knicks: Mitchell Robinson (可能出賽)"
+  ],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -112,7 +114,9 @@
    "away_team_zh": "聖安東尼奧馬刺",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Mitchell Robinson (可能出賽)"
+   ],
    "injuries_away": []
   }
  },
