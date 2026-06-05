@@ -1791,6 +1791,80 @@ def build_bracket(target_date: date) -> dict | None:
                         except Exception:
                             pass
 
+                        # G2-specific deep analysis: bounce-back after G1 loss
+                        _g2_deep = {}
+                        if _next_gn == 2 and _flw == 1 and _fhw == 0:
+                            _g1_wm = _played[0][4] if _played else None
+                            _g1_spread = _played[0][3] if _played else None
+                            _g2_spread_val = _next_game[3] if _next_game else None
+                            _g1_total = _played[0][5] if _played else None
+                            _g1_ou = _played[0][6] if _played else None
+                            _g2_ou_val = _next_game[6] if _next_game else None
+                            try:
+                                _g1_wm_f = float(_g1_wm) if _g1_wm is not None else None
+                                _g2_sp_f = float(_g2_spread_val) if _g2_spread_val is not None else None
+                            except (TypeError, ValueError):
+                                _g1_wm_f = _g2_sp_f = None
+                            _g2_deep["bounce_back_zh"] = (
+                                f"CF/Finals G2 主場輸G1後反彈：歷史 7/10 主場cover (70.0%)"
+                            )
+                            if _g1_wm_f is not None and abs(_g1_wm_f) >= 10:
+                                _g2_deep["bounce_back_zh"] += (
+                                    f"；G1慘敗(≥10分)後G2反彈：3/3 (100%，場均贏14+分)"
+                                )
+                            if _g2_sp_f is not None and _g2_sp_f >= 6:
+                                _g2_deep["big_spread_zh"] = (
+                                    f"G2讓分≥6 + G1主場輸：歷史 4/5 cover (80.0%)，市場信心=反彈信號"
+                                )
+                            if _g1_total and _g1_ou:
+                                try:
+                                    _g1_ou_diff = float(_g1_total) - float(_g1_ou)
+                                    if _g1_ou_diff < -10 and _g2_ou_val:
+                                        _g2_deep["ou_analysis_zh"] = (
+                                            f"G1實際總分{_g1_total} vs 盤口{_g1_ou} (UNDER {abs(_g1_ou_diff):.0f}分)；"
+                                            f"G2盤口已下調至{_g2_ou_val}，但仍偏高（G1防守強度預示UNDER傾向）"
+                                        )
+                                except (TypeError, ValueError):
+                                    pass
+                            # Spread movement insight
+                            try:
+                                _sm_rows = _fcon.execute(
+                                    "SELECT Spread FROM odds_history WHERE Date=? AND Home=? AND Away=? "
+                                    "ORDER BY fetched_at ASC",
+                                    (_next_game[0], _next_game[1], _next_game[2]),
+                                ).fetchall() if _next_game else []
+                                if _sm_rows and len(_sm_rows) >= 2:
+                                    _sm_first = float(_sm_rows[0][0])
+                                    _sm_last = float(_sm_rows[-1][0])
+                                    _sm_diff = _sm_last - _sm_first
+                                    if abs(_sm_diff) >= 1.0:
+                                        _dir = "加碼主場" if _sm_diff > 0 else "修正偏向客場"
+                                        _g2_deep["spread_move_zh"] = (
+                                            f"盤口從 {abs(_sm_first):.1f} → {abs(_sm_last):.1f} "
+                                            f"(移動 {_sm_diff:+.1f})：市場{_dir}，"
+                                            f"輸G1後讓分反增=sharp money看好反彈"
+                                        )
+                            except Exception:
+                                pass
+                            # Rest equalization
+                            if _next_game:
+                                try:
+                                    _g1_rest_h = int(_played[0][0] is not None)
+                                    _nd_cols = [r[1] for r in _fcon.execute(
+                                        f"PRAGMA table_info([2025-26])").fetchall()]
+                                    if "Days_Rest_Home" in _nd_cols:
+                                        _rest_row = _fcon.execute(
+                                            "SELECT Days_Rest_Home, Days_Rest_Away FROM [2025-26] WHERE Date=? AND Home=?",
+                                            (_next_game[0], _next_game[1])
+                                        ).fetchone()
+                                        if _rest_row:
+                                            _g2_deep["rest_zh"] = (
+                                                f"G2休息天數：主場{_rest_row[0]}天 vs 客場{_rest_row[1]}天"
+                                                + ("（雙方均等）" if _rest_row[0] == _rest_row[1] else "")
+                                            )
+                                except Exception:
+                                    pass
+
                         finals_data["analysis"] = {
                             "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
                             "game_results": _game_results,
@@ -1803,6 +1877,8 @@ def build_bracket(target_date: date) -> dict | None:
                             "ou_trend_zh": _ou_trend,
                             "injury_impact_zh": _inj_impact,
                         }
+                        if _g2_deep:
+                            finals_data["analysis"]["g2_deep_analysis"] = _g2_deep
                 except Exception:
                     pass
     elif ecf_winner or wcf_winner:

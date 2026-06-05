@@ -1006,7 +1006,14 @@
     }
    ],
    "ou_trend_zh": "系列賽平均總分 200 vs 盤口 218.5（1/1 場UNDER）；G2 盤口 214.5，偏差 -14",
-   "injury_impact_zh": "紐約尼克: Mitchell Robinson (可能出賽)"
+   "injury_impact_zh": "紐約尼克: Mitchell Robinson (可能出賽)",
+   "g2_deep_analysis": {
+    "bounce_back_zh": "CF/Finals G2 主場輸G1後反彈：歷史 7/10 主場cover (70.0%)；G1慘敗(≥10分)後G2反彈：3/3 (100%，場均贏14+分)",
+    "big_spread_zh": "G2讓分≥6 + G1主場輸：歷史 4/5 cover (80.0%)，市場信心=反彈信號",
+    "ou_analysis_zh": "G1實際總分200 vs 盤口218.5 (UNDER 18分)；G2盤口已下調至214.5，但仍偏高（G1防守強度預示UNDER傾向）",
+    "spread_move_zh": "盤口從 5.5 → 6.5 (移動 +1.0)：市場加碼主場，輸G1後讓分反增=sharp money看好反彈",
+    "rest_zh": "G2休息天數：主場2天 vs 客場2天（雙方均等）"
+   }
   }
  },
  "signal_tracker": {

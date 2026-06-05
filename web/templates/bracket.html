@@ -701,6 +701,26 @@
         {% if fin.analysis.risk_zh %}
         <div style="font-size:11px; color:#e08080; margin-bottom:4px;">⚠️ {{ fin.analysis.risk_zh }}</div>
         {% endif %}
+        {% if fin.analysis.g2_deep_analysis %}
+        <div style="margin-top:8px; padding:8px 10px; background:#0e1a12; border:1px solid #1a3a20; border-radius:6px;">
+          <div style="font-size:11px; color:#7fd69b; font-weight:700; margin-bottom:4px;">🔬 G2 深度分析</div>
+          {% if fin.analysis.g2_deep_analysis.bounce_back_zh %}
+          <div style="font-size:11px; color:#bbb; margin-bottom:3px;">📈 {{ fin.analysis.g2_deep_analysis.bounce_back_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g2_deep_analysis.big_spread_zh %}
+          <div style="font-size:11px; color:#f4bf50; margin-bottom:3px;">💰 {{ fin.analysis.g2_deep_analysis.big_spread_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g2_deep_analysis.spread_move_zh %}
+          <div style="font-size:11px; color:#aad4ff; margin-bottom:3px;">📊 {{ fin.analysis.g2_deep_analysis.spread_move_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g2_deep_analysis.ou_analysis_zh %}
+          <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">🎯 {{ fin.analysis.g2_deep_analysis.ou_analysis_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g2_deep_analysis.rest_zh %}
+          <div style="font-size:11px; color:#999; margin-bottom:3px;">😴 {{ fin.analysis.g2_deep_analysis.rest_zh }}</div>
+          {% endif %}
+        </div>
+        {% endif %}
       </div>
       {% if fin.analysis.strategy_map %}
       <div style="margin-top:14px; padding:12px; background:#0e111a; border-radius:8px; border:1px solid #1a2a3a;">
