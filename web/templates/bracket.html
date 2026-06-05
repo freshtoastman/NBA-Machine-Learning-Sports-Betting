@@ -721,6 +721,17 @@
           {% endif %}
         </div>
         {% endif %}
+        {% if fin.analysis.scenarios %}
+        <div style="margin-top:8px; padding:8px 10px; background:#0e1018; border:1px solid #2a2040; border-radius:6px;">
+          <div style="font-size:11px; color:#d4aaff; font-weight:700; margin-bottom:4px;">🔮 系列賽情境推演</div>
+          {% for sc in fin.analysis.scenarios %}
+          <div style="font-size:11px; color:#bbb; margin-bottom:3px; display:flex; gap:6px;">
+            <span style="color:#f4bf50; font-weight:600; min-width:40px;">{{ sc.if_zh }}</span>
+            <span>→ {{ sc.then_zh }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
       {% if fin.analysis.strategy_map %}
       <div style="margin-top:14px; padding:12px; background:#0e111a; border-radius:8px; border:1px solid #1a2a3a;">
@@ -897,6 +908,22 @@
             <td><span class="sr-n">n=19</span></td>
             <td>主場回歸優勢最強</td>
           </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>Finals G3</td>
+            <td><b>總決賽第3場</b>（低種子主場）</td>
+            <td><span class="sr-side-home">主場 (低種子)</span></td>
+            <td><span class="sr-wr">66.7%</span></td>
+            <td><span class="sr-n">n=12</span></td>
+            <td>轉場後主場積極防守</td>
+          </tr>
+          <tr>
+            <td><span class="sr-tier silver">SILVER</span>Finals G4</td>
+            <td><b>總決賽第4場</b>（低種子主場）</td>
+            <td><span class="sr-side-home">主場 (低種子)</span></td>
+            <td><span class="sr-wr">66.7%</span></td>
+            <td><span class="sr-n">n=12</span></td>
+            <td>連續主場優勢延伸</td>
+          </tr>
           <tr style="opacity:0.35;" title="BRONZE 信號已停用（本季命中率 38.9%）">
             <td><span class="sr-tier bronze">BRONZE</span>R3+ G6</td>
             <td><s>分區冠軍賽/總冠軍賽 G6</s></td>
@@ -911,7 +938,7 @@
         💡 <b>R2 G2</b> 是史上最強信號（87.5%，近5季100%）。<b>R1 G6</b> 次之（80.4%）。R2 整體趨勢：熱門 cover 率 68.6%（與 R1 的冷門優勢相反）。<b>NEW:</b> 分區決賽(CF)主場優勢更強 — G1 83.3%，G2 79.2%，G5 84.2%，整體 72.4%！
       </div>
       <div class="sr-sub" style="margin-top:8px;font-size:11px;padding:8px 10px;background:#1a2a1a;border:1px solid #3d6e4a;border-radius:6px;">
-        📈 <b>本季總結：</b>無衝突信號命中率 <b>83.3%</b>（30-6）· PnL +21.3u · ROI 59.2%。G2 信號全季 <b>14-1</b>（93.3%），R2G2 全數命中 4/4（GOLD），R2G5 主場 <b>2-0</b>。NYK 橫掃 PHI 🎉，OKC 橫掃 LAL 🎉，SAS 4-2 勝 MIN，CLE 4-3 勝 DET（G7 騎士 125-94 大勝 ✅）。<b>⚡ 分區決賽進度：</b>CF G1：OKC ❌（SAS 122-115 2OT）、NYK ✅（115-104 OT）→ 1-1。CF G2：OKC ✅（122-113，SGA 30分）、NYK ✅（109-93，Hart 26分）→ <b>CF G2 2-0 全中！</b>ECF 2-0 NYK。<b>🏀 今晚 WCF G3：</b>OKC@SAS -1.5 → <b>⛔ G3 無信號 ~50%，不操作。</b>等待 G5 主場回歸 GOLD 信號。
+        📈 <b>本季總結：</b>無衝突信號命中率 <b>81.1%</b>（30-7）· 核心場次(Premium) <b>87%</b>（20-3）· G2 信號全季 <b>13-2</b>（86.7%）。R2G2 全數命中 4/4（GOLD），R2G5 主場 2-0。CF G1 1-1、CF G2 <b>2-0 全中</b>、CF G5 1-0。<b>🏆 總決賽：</b>SAS vs NYK。G1：NYK 105-95（SAS 讓 4.5 未cover ❌，冷門反彈 ✅）。<b>G2今晚：</b>SAS -6.5 → GOLD 80.8% 主場壓制 + SILVER 反彈。但客場冷門反彈信號形成分歧。<b>NEW:</b> Finals G3/G4（NYK主場）新增 SILVER 66.7% 信號。
       </div>
     </div>
 

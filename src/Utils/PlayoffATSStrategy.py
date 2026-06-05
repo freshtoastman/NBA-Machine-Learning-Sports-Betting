@@ -844,6 +844,59 @@ def _finals_g5_home(pred, series_state, team_form) -> PlayoffATSPick | None:
     )
 
 
+def _finals_g3_home(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Finals G3 → Home (low seed) covers 66.7% (8/12, 13 seasons).
+
+    G3-G4 move to the low seed's home court. In Finals specifically,
+    home covers 66.7% in both G3 and G4 — stronger than CF (50%).
+    Pattern: low seed defends home aggressively after 2 road games.
+    """
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 4:
+        return None
+    if series_state.get("series_game_num", 0) != 3:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="Finals G3主場優勢",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.667,
+        backtest_roi=33.3,
+        backtest_n=12,
+        reason_zh="總決賽G3低種子主場cover率 66.7% (8/12，13季)，轉場後主場積極防守",
+    )
+
+
+def _finals_g4_home(pred, series_state, team_form) -> PlayoffATSPick | None:
+    """Finals G4 → Home (low seed) covers 66.7% (8/12, 13 seasons)."""
+    if series_state is None:
+        return None
+    if series_state.get("round_num", 0) != 4:
+        return None
+    if series_state.get("series_game_num", 0) != 4:
+        return None
+    spread = pred.get("spread")
+    if spread is None:
+        return None
+    home_fav = spread > 0
+    return PlayoffATSPick(
+        signal_name="Finals G4主場優勢",
+        side="home",
+        ats_side="讓分(押fav)" if home_fav else "受讓(押dog)",
+        tier="SILVER",
+        backtest_wr=0.667,
+        backtest_roi=33.3,
+        backtest_n=12,
+        reason_zh="總決賽G4低種子主場cover率 66.7% (8/12，13季)，連續主場優勢延伸",
+    )
+
+
 def _small_spread_away_dog(pred, series_state, team_form) -> PlayoffATSPick | None:
     """Home team giving ≤2 pts → bet away to cover (R1+ only, not play-in).
 
@@ -1231,6 +1284,8 @@ _SIGNALS = [
     _cf_g5_home_fav,                  # GOLD: 84.2% (16/19, 13 seasons) — CF G5 home return
     _finals_g1_home,                  # GOLD: 75.0% (CF+Finals combined, n=26) — Finals G1 home
     _finals_g2_home,                  # GOLD: 80.8% (CF+Finals combined, n=26) — Finals G2 home
+    _finals_g3_home,                  # SILVER: 66.7% (8/12, 13 seasons) — Finals G3 low-seed home
+    _finals_g4_home,                  # SILVER: 66.7% (8/12, 13 seasons) — Finals G4 low-seed home
     _finals_g5_home,                  # GOLD: 85.0% (CF+Finals combined, n=20) — Finals G5 home
 ]
 
