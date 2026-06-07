@@ -721,6 +721,26 @@
           {% endif %}
         </div>
         {% endif %}
+        {% if fin.analysis.g3_deep_analysis %}
+        <div style="margin-top:8px; padding:8px 10px; background:#0e1218; border:1px solid #1a2a3a; border-radius:6px;">
+          <div style="font-size:11px; color:#7fb8d6; font-weight:700; margin-bottom:4px;">🔬 G3 深度分析</div>
+          {% if fin.analysis.g3_deep_analysis.deficit_zh %}
+          <div style="font-size:11px; color:#bbb; margin-bottom:3px;">📉 {{ fin.analysis.g3_deep_analysis.deficit_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g3_deep_analysis.momentum_shift_zh %}
+          <div style="font-size:11px; color:#7fd69b; margin-bottom:3px;">📈 {{ fin.analysis.g3_deep_analysis.momentum_shift_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g3_deep_analysis.trend_zh %}
+          <div style="font-size:11px; color:#f4bf50; margin-bottom:3px;">📊 {{ fin.analysis.g3_deep_analysis.trend_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g3_deep_analysis.spread_insight_zh %}
+          <div style="font-size:11px; color:#aad4ff; margin-bottom:3px;">💰 {{ fin.analysis.g3_deep_analysis.spread_insight_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g3_deep_analysis.ou_pattern_zh %}
+          <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">🎯 {{ fin.analysis.g3_deep_analysis.ou_pattern_zh }}</div>
+          {% endif %}
+        </div>
+        {% endif %}
         {% if fin.analysis.scenarios %}
         <div style="margin-top:8px; padding:8px 10px; background:#0e1018; border:1px solid #2a2040; border-radius:6px;">
           <div style="font-size:11px; color:#d4aaff; font-weight:700; margin-bottom:4px;">🔮 系列賽情境推演</div>
@@ -938,7 +958,7 @@
         💡 <b>R2 G2</b> 是史上最強信號（87.5%，近5季100%）。<b>R1 G6</b> 次之（80.4%）。R2 整體趨勢：熱門 cover 率 68.6%（與 R1 的冷門優勢相反）。<b>NEW:</b> 分區決賽(CF)主場優勢更強 — G1 83.3%，G2 79.2%，G5 84.2%，整體 72.4%！
       </div>
       <div class="sr-sub" style="margin-top:8px;font-size:11px;padding:8px 10px;background:#1a2a1a;border:1px solid #3d6e4a;border-radius:6px;">
-        📈 <b>本季總結：</b>無衝突信號命中率 <b>81.1%</b>（30-7）· 核心場次(Premium) <b>87%</b>（20-3）· G2 信號全季 <b>13-2</b>（86.7%）。R2G2 全數命中 4/4（GOLD），R2G5 主場 2-0。CF G1 1-1、CF G2 <b>2-0 全中</b>、CF G5 1-0。<b>🏆 總決賽：</b>SAS vs NYK。G1：NYK 105-95（SAS 讓 4.5 未cover ❌，冷門反彈 ✅）。<b>G2今晚：</b>SAS -6.5 → GOLD 80.8% 主場壓制 + SILVER 反彈。但客場冷門反彈信號形成分歧。<b>NEW:</b> Finals G3/G4（NYK主場）新增 SILVER 66.7% 信號。
+        📈 <b>本季總結：</b>整體 47-19（71.2%）· 無衝突信號 <b>81.1%</b>（30-7）· 核心場次(Premium) <b>87%</b>（20-3）。R2G2 全數命中 4/4（GOLD），R2G5 主場 2-0。CF G1 1-1、CF G2 <b>2-0 全中</b>、CF G5 1-0。<b>🏆 總決賽：</b>SAS vs NYK (0-2)。G1：NYK 105-95（SAS 讓 4.5 未cover ❌）。G2：NYK 105-104（SAS 讓 6.5 未cover ❌，客場冷門反彈 ✅）。<b>G3 (6/8)：</b>NYK -1.5 主場 · SILVER 66.7% · OU 215.5（G1-G2均UNDER）。<b>關鍵：</b>SAS 0-2落後但G2僅差1分，市場僅讓1.5。
       </div>
     </div>
 
