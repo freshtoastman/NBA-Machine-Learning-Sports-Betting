@@ -1,6 +1,6 @@
 {
  "snapshot_date": "2026-05-28",
- "generated_for": "2026-06-05",
+ "generated_for": "2026-06-07",
  "playoff_start": "2026-04-14",
  "show_from": "2026-04-07",
  "show_until": "2026-04-24",
@@ -865,17 +865,17 @@
   "high_conf": "西區",
   "low_conf": "東區",
   "high_wins": 0,
-  "low_wins": 1,
-  "games_played": 1,
+  "low_wins": 2,
+  "games_played": 2,
   "next_signal": {
-   "game_num": 2,
-   "signal": "Finals G2主場壓制",
+   "game_num": 3,
+   "signal": "Finals G3主場優勢",
    "side": "home",
    "home_team": "San Antonio Spurs",
    "home_team_zh": "聖安東尼奧馬刺",
-   "tier": "GOLD",
-   "backtest_wr": 0.808,
-   "reason_zh": "總決賽G2主場cover率 80.8% (CF+Finals合計，主場延續G1動能)"
+   "tier": "SILVER",
+   "backtest_wr": 0.667,
+   "reason_zh": "總決賽G3低種子主場cover率 66.7% (8/12，13季)，轉場後主場積極防守"
   },
   "schedule": {
    "game1": {
@@ -903,9 +903,9 @@
     "time": "8:30 PM ET"
    }
   },
-  "status": "聖安東尼奧馬刺 vs 紐約尼克 (0-1)",
+  "status": "聖安東尼奧馬刺 vs 紐約尼克 (0-2)",
   "analysis": {
-   "series_status": "聖安東尼奧馬刺 vs 紐約尼克 (0-1) · 紐約尼克 領先",
+   "series_status": "聖安東尼奧馬刺 vs 紐約尼克 (0-2) · 紐約尼克 領先",
    "game_results": [
     {
      "game": 1,
@@ -919,12 +919,25 @@
      "total": 200,
      "ou_line": 218.5,
      "ou_result": "UNDER"
+    },
+    {
+     "game": 2,
+     "date": "2026-06-05",
+     "home": "San Antonio Spurs",
+     "away": "New York Knicks",
+     "score": "104-105",
+     "spread": 6.5,
+     "winner": "New York Knicks",
+     "ats": "away",
+     "total": 209,
+     "ou_line": 214.5,
+     "ou_result": "UNDER"
     }
    ],
-   "momentum_zh": "G1: 紐約尼克 贏10分（聖安東尼奧馬刺 讓 4.5，未cover）",
-   "key_factor_zh": "G2 @聖安東尼奧馬刺；紐約尼克 客場搶先手成功，聖安東尼奧馬刺 必須守住主場",
-   "odds_preview_zh": "G2: 聖安東尼奧馬刺 -6.5 (主場)，總分 214.5；ML -225/188 （開盤 5.5→6.5，移動 +1.0）",
-   "risk_zh": "G1 實際總分 200 vs G2 盤口 214.5 (差距 -14)；聖安東尼奧馬刺 主場已失守，心態壓力大",
+   "momentum_zh": "G2: 紐約尼克 贏1分（聖安東尼奧馬刺 讓 6.5，未cover）",
+   "key_factor_zh": "G3 @紐約尼克；紐約尼克 客場搶先手成功，聖安東尼奧馬刺 必須守住主場",
+   "odds_preview_zh": "G3: 紐約尼克 -1.5 (主場)，總分 215.5；ML -132/112",
+   "risk_zh": "G2 實際總分 209 vs G3 盤口 215.5 (差距 -6)",
    "strategy_map": [
     {
      "game": 1,
@@ -941,14 +954,16 @@
      "signal": "Finals G2主場壓制",
      "tier": "GOLD",
      "wr": 80.8,
-     "note": "下一場"
+     "result": "New York Knicks 104-105",
+     "ats_result": "away"
     },
     {
      "game": 3,
      "home_zh": "紐約尼克",
      "signal": "Finals G3主場優勢",
      "tier": "SILVER",
-     "wr": 66.7
+     "wr": 66.7,
+     "note": "下一場"
     },
     {
      "game": 4,
@@ -1005,46 +1020,35 @@
      "ats": "home"
     }
    ],
-   "ou_trend_zh": "系列賽平均總分 200 vs 盤口 218.5（1/1 場UNDER）；G2 盤口 214.5，偏差 -14",
-   "injury_impact_zh": "紐約尼克: Mitchell Robinson (可能出賽)",
+   "ou_trend_zh": "系列賽平均總分 204 vs 盤口 216.5（2/2 場UNDER）；G3 盤口 215.5，偏差 -11",
+   "injury_impact_zh": "雙方主力健康，無重大傷病",
    "scenarios": [
     {
-     "if_zh": "若聖安東尼奧馬刺贏G2 → 系列賽1-1平手",
-     "then_zh": "G3/G4轉至紐約尼克主場，歷史Finals G3-G4主場cover率 66.7% (8/12)"
-    },
-    {
-     "if_zh": "若紐約尼克贏G2 → 紐約尼克領先2-0",
-     "then_zh": "歷史0-2落後翻盤率僅7.4%，聖安東尼奧馬刺面臨極大壓力"
+     "if_zh": "紐約尼克領先2-0",
+     "then_zh": "歷史0-2落後翻盤率 7.4%，G3-G4為紐約尼克主場 (cover率 66.7%)"
     }
-   ],
-   "g2_deep_analysis": {
-    "bounce_back_zh": "CF/Finals G2 主場輸G1後反彈：歷史 7/10 主場cover (70.0%)；G1慘敗(≥10分)後G2反彈：3/3 (100%，場均贏14+分)",
-    "big_spread_zh": "G2讓分≥6 + G1主場輸：歷史 4/5 cover (80.0%)，市場信心=反彈信號",
-    "ou_analysis_zh": "G1實際總分200 vs 盤口218.5 (UNDER 18分)；G2盤口已下調至214.5，但仍偏高（G1防守強度預示UNDER傾向）；歷史Finals G2: 58% UNDER (7/12，13季均值低於盤口2.5分)",
-    "spread_move_zh": "盤口從 5.5 → 6.5 (移動 +1.0)：市場加碼主場，輸G1後讓分反增=sharp money看好反彈",
-    "rest_zh": "G2休息天數：主場2天 vs 客場2天（雙方均等）"
-   }
+   ]
   }
  },
  "signal_tracker": {
-  "total": 68,
-  "decided": 63,
-  "wins": 46,
-  "losses": 17,
-  "pending": 5,
-  "hit_rate": 73.0,
-  "pnl": 24.86,
-  "roi": 39.5,
+  "total": 70,
+  "decided": 66,
+  "wins": 47,
+  "losses": 19,
+  "pending": 4,
+  "hit_rate": 71.2,
+  "pnl": 23.77,
+  "roi": 36.0,
   "by_tier": {
    "SILVER": {
-    "wins": 32,
-    "losses": 11,
+    "wins": 33,
+    "losses": 12,
     "pending": 4
    },
    "GOLD": {
     "wins": 14,
-    "losses": 6,
-    "pending": 1
+    "losses": 7,
+    "pending": 0
    }
   },
   "by_game_num": {
@@ -1055,15 +1059,15 @@
     "hit_rate": 66.7
    },
    "G2": {
-    "wins": 13,
-    "losses": 2,
-    "pending": 3,
-    "hit_rate": 86.7
+    "wins": 14,
+    "losses": 4,
+    "pending": 0,
+    "hit_rate": 77.8
    },
    "G3": {
     "wins": 6,
     "losses": 3,
-    "pending": 1,
+    "pending": 2,
     "hit_rate": 66.7
    },
    "G4": {
@@ -1075,7 +1079,7 @@
    "G5": {
     "wins": 3,
     "losses": 1,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 75.0
    },
    "G6": {
@@ -1092,14 +1096,14 @@
    }
   },
   "by_game": {
-   "total": 47,
-   "decided": 39,
+   "total": 48,
+   "decided": 40,
    "wins": 31,
-   "losses": 8,
+   "losses": 9,
    "pending": 8,
-   "hit_rate": 79.5,
-   "pnl": 20.21,
-   "roi": 51.8
+   "hit_rate": 77.5,
+   "pnl": 19.21,
+   "roi": 48.0
   },
   "no_conflict": {
    "decided": 37,
@@ -1887,8 +1891,8 @@
     "tier": "GOLD",
     "side": "home",
     "backtest_wr": 0.808,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -7.5,
     "game_num": 2
    },
    {
@@ -1899,8 +1903,8 @@
     "tier": "SILVER",
     "side": "home",
     "backtest_wr": 0.649,
-    "result": "pending",
-    "margin": null,
+    "result": "loss",
+    "margin": -7.5,
     "game_num": 2
    },
    {
@@ -1911,9 +1915,21 @@
     "tier": "SILVER",
     "side": "away",
     "backtest_wr": 0.619,
+    "result": "win",
+    "margin": -7.5,
+    "game_num": 2
+   },
+   {
+    "date": "2026-06-08",
+    "away": "聖安東尼奧馬刺",
+    "home": "紐約尼克",
+    "signal": "Finals G3主場優勢",
+    "tier": "SILVER",
+    "side": "home",
+    "backtest_wr": 0.667,
     "result": "pending",
     "margin": null,
-    "game_num": 2
+    "game_num": 3
    },
    {
     "date": "2026-06-08",
@@ -1938,6 +1954,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 4
+   },
+   {
+    "date": "2026-06-13",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "客場ATS冷門反彈",
+    "tier": "SILVER",
+    "side": "away",
+    "backtest_wr": 0.619,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
    }
   ]
  }

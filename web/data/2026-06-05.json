@@ -1,6 +1,6 @@
 {
  "date": "2026-06-05",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -24,8 +24,8 @@
     "backtest_wr": 0.808,
     "backtest_roi": 61.5,
     "reason_zh": "總決賽G2主場cover率 80.8% (CF+Finals合計，主場延續G1動能)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -7.5,
     "series_game_num": 2,
     "series_home_wins": 0,
     "series_away_wins": 1,
@@ -45,8 +45,8 @@
     "backtest_wr": 0.649,
     "backtest_roi": 18.4,
     "reason_zh": "第2場主場輸G1後反彈，主場cover率 64.9% (n=57，12季歷史)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -7.5,
     "series_game_num": 2,
     "series_home_wins": 0,
     "series_away_wins": 1,
@@ -66,8 +66,8 @@
     "backtest_wr": 0.619,
     "backtest_roi": 17.8,
     "reason_zh": "客場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 61.9% (n=21，排除大讓分結構性弱)",
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -7.5,
     "series_game_num": 2,
     "series_home_wins": 0,
     "series_away_wins": 1,
@@ -76,16 +76,28 @@
    }
   ],
   "playoff_ats_count": 3,
-  "injury_alerts": [
-   "New York Knicks: Mitchell Robinson (可能出賽)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "New York Knicks:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "New York Knicks",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 104,
+   "away_score": 105,
    "spread": 6.5,
    "Spread": 6.5,
    "OU": 214.5,
@@ -103,15 +115,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
-   "actual_ou_result": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 209,
+   "actual_ou_result": "UNDER",
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -7.5,
+   "is_upcoming": false,
    "is_playoff": true,
    "playoff_ats_picks": [
     {
@@ -163,9 +175,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Mitchell Robinson (可能出賽)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-06-03T14:00:00+00:00",
@@ -209,7 +219,7 @@
    "high_seed": "San Antonio Spurs",
    "low_seed": "New York Knicks",
    "high_wins": 0,
-   "low_wins": 1,
+   "low_wins": 2,
    "conference": "west"
   },
   {
