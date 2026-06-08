@@ -1924,6 +1924,10 @@ def build_bracket(target_date: date) -> dict | None:
                                 f"{_f_high_zh} 0-2落後：歷史翻盤率僅7.4% (16/217)，"
                                 f"但G3轉至{_f_low_zh}主場，場景改變"
                             )
+                            _g3_deep["sweep_defense_zh"] = (
+                                f"🔥 歷史小讓分(≤3)Finals G3：主場 4-2 SU/ATS (66.7%)，均贏11.2分；"
+                                f"但2-0落後方G3反撲率60% (3/5)，領先方鬆懈風險存在"
+                            )
                             if len(_played) >= 2:
                                 _g1_margin = abs(_played[0][4]) if _played[0][4] else 0
                                 _g2_margin = abs(_played[1][4]) if _played[1][4] else 0
@@ -1953,8 +1957,9 @@ def build_bracket(target_date: date) -> dict | None:
                                     )
                                     if _all_under:
                                         _g3_deep["ou_pattern_zh"] = (
-                                            f"G1-G2連續UNDER (均分{_avg:.0f})：防守強度高，"
-                                            f"G3轉場後節奏可能改變但UNDER趨勢仍偏強"
+                                            f"G1-G2連續UNDER (均分{_avg:.0f})：防守強度高；"
+                                            f"但歷史Finals G3 OVER率 73% (8/11，均+3.1分)，"
+                                            f"轉場效應可能推高總分"
                                         )
 
                         finals_data["analysis"] = {

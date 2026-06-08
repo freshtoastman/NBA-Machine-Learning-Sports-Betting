@@ -727,6 +727,9 @@
           {% if fin.analysis.g3_deep_analysis.deficit_zh %}
           <div style="font-size:11px; color:#bbb; margin-bottom:3px;">📉 {{ fin.analysis.g3_deep_analysis.deficit_zh }}</div>
           {% endif %}
+          {% if fin.analysis.g3_deep_analysis.sweep_defense_zh %}
+          <div style="font-size:11px; color:#f4bf50; margin-bottom:3px; font-weight:600;">{{ fin.analysis.g3_deep_analysis.sweep_defense_zh }}</div>
+          {% endif %}
           {% if fin.analysis.g3_deep_analysis.momentum_shift_zh %}
           <div style="font-size:11px; color:#7fd69b; margin-bottom:3px;">📈 {{ fin.analysis.g3_deep_analysis.momentum_shift_zh }}</div>
           {% endif %}
