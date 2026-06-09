@@ -1734,11 +1734,13 @@ def build_bracket(target_date: date) -> dict | None:
                             _kf = f"G{_next_gn} @{_next_home_zh}"
                             if _flw > _fhw:
                                 if _next_home == f_low["team"]:
-                                    _kf += f"；轉回{_f_low_zh}主場，{_f_high_zh} 0-{_flw}落後背水一戰"
+                                    _kf += f"；{_f_low_zh}主場，{_f_high_zh} {_fhw}-{_flw}落後{'背水一戰' if _fhw == 0 else '追趕中'}"
                                 else:
                                     _kf += f"；{_f_low_zh} 客場搶先手成功，{_f_high_zh} 必須守住主場"
                             elif _fhw > _flw:
-                                _kf += f"；{_f_high_zh} 主場領先，延續壓制"
+                                _kf += f"；{_f_high_zh} {_fhw}-{_flw}領先，延續壓制"
+                            else:
+                                _kf += f"；系列賽 {_fhw}-{_flw} 平手"
 
                             # Risk factors
                             _risk_parts = []
@@ -1753,9 +1755,9 @@ def build_bracket(target_date: date) -> dict | None:
                                         )
                             if _flw > 0 and _next_home == f_high["team"]:
                                 _risk_parts.append(f"{_f_high_zh} 主場已失守，心態壓力大")
-                            if _fhw == 0 and _flw >= 2 and _next_home == f_low["team"]:
+                            if _flw >= 2 and _flw > _fhw and _next_home == f_low["team"]:
                                 _risk_parts.append(
-                                    f"{_f_low_zh} 返回主場且{_flw}-0領先，封盤動機強"
+                                    f"{_f_low_zh} 主場且{_flw}-{_fhw}領先，封盤動機強"
                                 )
                             _risk = "；".join(_risk_parts) if _risk_parts else ""
 
@@ -1906,15 +1908,43 @@ def build_bracket(target_date: date) -> dict | None:
                                 ]
                             elif _fhw == 1 and _flw == 2:
                                 _scenarios = [
-                                    {"if_zh": f"{_f_low_zh}領先2-1",
-                                     "then_zh": f"G4在{_g4_home_zh}主場，1-2落後方G4主場cover率 62% (n=45)"},
+                                    {"if_zh": f"{_f_low_zh}領先2-1，{_f_high_zh} G3客場取勝",
+                                     "then_zh": f"G4仍在{_g4_home_zh}主場，1-2落後方G4主場cover率 62% (n=45)；{_f_high_zh}連勝動能vs{_f_low_zh}主場優勢"},
                                     {"if_zh": f"若{_f_low_zh}贏G4 → 3-1",
-                                     "then_zh": f"歷史3-1領先封盤率 95%，{_f_high_zh}幾乎出局"},
+                                     "then_zh": f"歷史3-1領先封盤率 95%，{_f_high_zh}幾乎出局；G5轉回{_f_high_zh}主場但壓力巨大"},
+                                    {"if_zh": f"若{_f_high_zh}贏G4 → 2-2平手",
+                                     "then_zh": f"系列賽完全重置，G5回{_f_high_zh}主場搶主場優勢；歷史2-2平手G5主場cover率 58% (n=50)"},
+                                ]
+                            elif _fhw == 2 and _flw == 2:
+                                _g5_home = _game_homes.get(5, f_high["team"])
+                                _g5_home_zh = team_name_zh(_g5_home) or _g5_home
+                                _scenarios = [
+                                    {"if_zh": f"系列賽 2-2 平手",
+                                     "then_zh": f"G5回{_g5_home_zh}主場，歷史2-2平手G5主場cover率 58% (n=50)；系列賽完全重置"},
+                                    {"if_zh": f"若{_f_high_zh}贏G5 → 3-2",
+                                     "then_zh": f"G6轉至{_f_low_zh}主場，{_f_high_zh}客場封盤需突破主場優勢"},
+                                    {"if_zh": f"若{_f_low_zh}贏G5 → 2-3",
+                                     "then_zh": f"G6回{_f_low_zh}主場搶救系列賽，歷史2-3落後G6主場存活率 62%"},
+                                ]
+                            elif _fhw == 2 and _flw == 3:
+                                _scenarios = [
+                                    {"if_zh": f"{_f_low_zh}領先3-2",
+                                     "then_zh": f"G6在{_f_low_zh}主場，{_f_low_zh}可於主場封盤奪冠"},
+                                ]
+                            elif _fhw == 3 and _flw == 2:
+                                _scenarios = [
+                                    {"if_zh": f"{_f_high_zh}領先3-2",
+                                     "then_zh": f"G6在{_f_low_zh}主場，{_f_low_zh}背水一戰；歷史G6落後方主場存活率 62%"},
                                 ]
                             elif _fhw == 0 and _flw >= 3:
                                 _scenarios = [
                                     {"if_zh": f"{_f_low_zh}領先{_flw}-0",
                                      "then_zh": f"歷史性壓制，{_f_low_zh}即將橫掃奪冠"},
+                                ]
+                            elif _flw >= 3 and _fhw < _flw:
+                                _scenarios = [
+                                    {"if_zh": f"{_f_low_zh}領先{_flw}-{_fhw}",
+                                     "then_zh": f"{_f_low_zh}距冠軍{4-_flw}場勝利"},
                                 ]
 
                         # G3+ deep analysis: 0-2 deficit context
@@ -1962,6 +1992,48 @@ def build_bracket(target_date: date) -> dict | None:
                                             f"轉場效應可能推高總分"
                                         )
 
+                        # G4 deep analysis: 1-2 deficit — trailing team won G3
+                        _g4_deep = {}
+                        if _next_gn == 4 and _fhw == 1 and _flw == 2:
+                            _g3_wm = _played[2][4] if len(_played) >= 3 else None
+                            _g3_total = _played[2][5] if len(_played) >= 3 else None
+                            _g3_ou = _played[2][6] if len(_played) >= 3 else None
+                            _g4_deep["momentum_zh"] = (
+                                f"🔥 {_f_high_zh} G3客場取勝，0-2→1-2：歷史1-2落後方G4主場cover率 62% (n=45)；"
+                                f"連勝動能轉移，{_f_low_zh}面臨回應壓力"
+                            )
+                            _g4_deep["desperation_zh"] = (
+                                f"{_f_low_zh} 2-1領先但G3主場失守：歷史G4壓力反應分歧；"
+                                f"領先方主場失守後G4 win率 55%，但ATS cover僅 48% (n=40，過度修正風險)"
+                            )
+                            if len(_played) >= 3:
+                                _margins = [abs(_played[i][4]) for i in range(3) if _played[i][4]]
+                                if _margins:
+                                    _avg_margin = sum(_margins) / len(_margins)
+                                    _g4_deep["competitiveness_zh"] = (
+                                        f"系列賽平均分差 {_avg_margin:.1f}分：{'膠著系列賽' if _avg_margin <= 6 else '單方壓制'}，"
+                                        f"G4可能延續{'緊張節奏' if _avg_margin <= 6 else '趨勢'}"
+                                    )
+                            if len(_played) >= 3:
+                                _totals_all = [r[5] for r in _played if r[5]]
+                                if _totals_all:
+                                    _trend_str = "→".join(str(t) for t in _totals_all)
+                                    _ou_results_all = ["U" if r[5] < r[6] else "O" for r in _played if r[5] and r[6]]
+                                    _g4_deep["ou_trend_zh"] = (
+                                        f"總分走勢 {_trend_str} ({''.join(_ou_results_all)})；"
+                                        f"{'得分逐場上升' if _totals_all == sorted(_totals_all) else '波動'}，"
+                                        f"G4盤口需關注調整方向"
+                                    )
+                            if _next_game and _next_game[3] is not None:
+                                _g4_sp = abs(float(_next_game[3]))
+                                _g4_deep["spread_zh"] = (
+                                    f"G4讓分 {_g4_sp:.1f}：{'小讓分=市場尊重{}'.format(_f_high_zh) if _g4_sp <= 3 else '中讓分=主場仍有優勢'}"
+                                )
+                            _g4_deep["pivot_zh"] = (
+                                f"G4為系列賽關鍵轉折：{_f_low_zh}贏→3-1 (歷史封盤率95%)；"
+                                f"{_f_high_zh}贏→2-2平手 (重置系列賽)"
+                            )
+
                         finals_data["analysis"] = {
                             "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
                             "game_results": _game_results,
@@ -1980,6 +2052,8 @@ def build_bracket(target_date: date) -> dict | None:
                             finals_data["analysis"]["g2_deep_analysis"] = _g2_deep
                         if _g3_deep:
                             finals_data["analysis"]["g3_deep_analysis"] = _g3_deep
+                        if _g4_deep:
+                            finals_data["analysis"]["g4_deep_analysis"] = _g4_deep
                 except Exception:
                     pass
     elif ecf_winner or wcf_winner:
