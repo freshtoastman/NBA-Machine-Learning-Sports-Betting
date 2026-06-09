@@ -59,8 +59,8 @@
    "spread": 2.5,
    "Spread": 2.5,
    "OU": 216.5,
-   "ML_Home": -126,
-   "ML_Away": 108,
+   "ML_Home": -130,
+   "ML_Away": 110,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -142,13 +142,21 @@
      "ml_home": -126,
      "ml_away": 108,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-06-09T14:29:01+00:00",
+     "spread": 2.5,
+     "ou": 216.5,
+     "ml_home": -130,
+     "ml_away": 110,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 2.5,
    "spread_last": 2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-06-09T05:29:00+00:00",
-   "spread_last_fetched_at": "2026-06-09T05:29:00+00:00",
+   "spread_last_fetched_at": "2026-06-09T14:29:01+00:00",
    "ou_first": 216.5,
    "ou_last": 216.5,
    "ou_move": 0.0
