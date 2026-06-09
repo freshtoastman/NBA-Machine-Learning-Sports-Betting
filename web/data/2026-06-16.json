@@ -1,5 +1,5 @@
 {
- "date": "2026-06-08",
+ "date": "2026-06-16",
  "is_today": false,
  "summary": {
   "games": 1,
@@ -17,44 +17,23 @@
     "away_team": "San Antonio Spurs",
     "home_team_zh": "紐約尼克",
     "away_team_zh": "聖安東尼奧馬刺",
-    "signal": "Finals G3主場優勢",
-    "side": "home",
-    "ats_side": "讓分(押fav)",
-    "tier": "SILVER",
-    "backtest_wr": 0.667,
-    "backtest_roi": 33.3,
-    "reason_zh": "總決賽G3低種子主場cover率 66.7% (8/12，13季)，轉場後主場積極防守",
-    "ats_winner": null,
-    "ats_cover_margin": null,
-    "series_game_num": 3,
-    "series_home_wins": 2,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "has_conflict": false
-   },
-   {
-    "game_key": "San Antonio Spurs:New York Knicks",
-    "home_team": "New York Knicks",
-    "away_team": "San Antonio Spurs",
-    "home_team_zh": "紐約尼克",
-    "away_team_zh": "聖安東尼奧馬刺",
     "signal": "主場ATS冷門反彈",
     "side": "home",
-    "ats_side": "讓分(押fav)",
+    "ats_side": "受讓(押dog)",
     "tier": "SILVER",
     "backtest_wr": 0.6,
     "backtest_roi": 15.5,
     "reason_zh": "主場近10場 ATS 僅 30%，季後賽反彈 G1 勝率 60% (n=30，排除大讓分結構性弱)",
     "ats_winner": null,
     "ats_cover_margin": null,
-    "series_game_num": 3,
+    "series_game_num": 6,
     "series_home_wins": 2,
     "series_away_wins": 0,
-    "strong_consensus": "home",
+    "strong_consensus": null,
     "has_conflict": false
    }
   ],
-  "playoff_ats_count": 2,
+  "playoff_ats_count": 1,
   "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
@@ -77,11 +56,11 @@
    "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": 2.5,
-   "Spread": 2.5,
-   "OU": 215.5,
-   "ML_Home": -126,
-   "ML_Away": 108,
+   "spread": null,
+   "Spread": null,
+   "OU": null,
+   "ML_Home": null,
+   "ML_Away": null,
    "Days_Rest_Home": 3,
    "Days_Rest_Away": 3,
    "home_confidence": null,
@@ -106,19 +85,9 @@
    "is_playoff": true,
    "playoff_ats_picks": [
     {
-     "signal": "Finals G3主場優勢",
-     "side": "home",
-     "ats_side": "讓分(押fav)",
-     "tier": "SILVER",
-     "backtest_wr": 0.667,
-     "backtest_roi": 33.3,
-     "backtest_n": 12,
-     "reason_zh": "總決賽G3低種子主場cover率 66.7% (8/12，13季)，轉場後主場積極防守"
-    },
-    {
      "signal": "主場ATS冷門反彈",
      "side": "home",
-     "ats_side": "讓分(押fav)",
+     "ats_side": "受讓(押dog)",
      "tier": "SILVER",
      "backtest_wr": 0.6,
      "backtest_roi": 15.5,
@@ -127,14 +96,14 @@
     }
    ],
    "playoff_ats_best_side": "home",
-   "playoff_ats_best_signal": "Finals G3主場優勢",
+   "playoff_ats_best_signal": "主場ATS冷門反彈",
    "playoff_ats_best_tier": "SILVER",
    "playoff_ats_consensus": "home",
    "playoff_ats_has_conflict": false,
-   "playoff_ats_strong_consensus": "home",
+   "playoff_ats_strong_consensus": null,
    "series_round": "總決賽",
    "round_num": 4,
-   "series_game_num": 3,
+   "series_game_num": 6,
    "series_home_wins": 2,
    "series_away_wins": 0,
    "series_status_text": "主隊領先 2-0",
@@ -144,46 +113,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
-   "live_home_score": 111,
-   "live_away_score": 115,
-   "live_status": "Final",
-   "live_is_final": true,
-   "live_home_covering": false,
-   "injuries_away": [],
-   "odds_history": [
-    {
-     "fetched_at": "2026-06-07T14:10:29+00:00",
-     "spread": 1.5,
-     "ou": 215.5,
-     "ml_home": -132,
-     "ml_away": 112,
-     "source": "sbr_fanduel"
-    },
-    {
-     "fetched_at": "2026-06-08T14:11:21+00:00",
-     "spread": 1.5,
-     "ou": 215.5,
-     "ml_home": -130,
-     "ml_away": 110,
-     "source": "sbr_fanduel"
-    },
-    {
-     "fetched_at": "2026-06-09T05:29:00+00:00",
-     "spread": 2.5,
-     "ou": 215.5,
-     "ml_home": -126,
-     "ml_away": 108,
-     "source": "sbr_fanduel"
-    }
-   ],
-   "spread_first": 1.5,
-   "spread_last": 2.5,
-   "spread_move": 1.0,
-   "spread_first_fetched_at": "2026-06-07T14:10:29+00:00",
-   "spread_last_fetched_at": "2026-06-09T05:29:00+00:00",
-   "ou_first": 215.5,
-   "ou_last": 215.5,
-   "ou_move": 0.0
+   "injuries_away": []
   }
  },
  "active_series": [
@@ -195,24 +125,6 @@
    "high_wins": 0,
    "low_wins": 2,
    "conference": "west"
-  },
-  {
-   "round_num": 3,
-   "round_label": "分區決賽",
-   "high_seed": "Oklahoma City Thunder",
-   "low_seed": "San Antonio Spurs",
-   "high_wins": 3,
-   "low_wins": 4,
-   "conference": "west"
-  },
-  {
-   "round_num": 3,
-   "round_label": "分區決賽",
-   "high_seed": "Cleveland Cavaliers",
-   "low_seed": "New York Knicks",
-   "high_wins": 0,
-   "low_wins": 4,
-   "conference": "east"
   }
  ],
  "is_playoff_view": true

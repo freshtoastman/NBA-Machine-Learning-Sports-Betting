@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 47,
   "misses": 19,
-  "pending": 4,
+  "pending": 6,
   "decided": 66,
   "hit_rate": 71.2,
   "conviction": {
@@ -2000,20 +2000,22 @@
     "series_game_num": 3,
     "series_score": "0-2",
     "has_strong_consensus": true,
-    "spread": 1.5
+    "spread": 2.5
    },
    {
     "date": "2026-06-10",
     "game": "聖安東尼奧馬刺 @ 紐約尼克",
     "signals": [
+     "Finals G4主場優勢",
      "主場ATS冷門反彈"
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 60,
+    "best_wr": 67,
     "series_game_num": 4,
     "series_score": "0-2",
-    "has_strong_consensus": false
+    "has_strong_consensus": true,
+    "spread": 2.5
    },
    {
     "date": "2026-06-13",
@@ -2026,6 +2028,19 @@
     "best_wr": 62,
     "series_game_num": 5,
     "series_score": "2-0",
+    "has_strong_consensus": false
+   },
+   {
+    "date": "2026-06-16",
+    "game": "聖安東尼奧馬刺 @ 紐約尼克",
+    "signals": [
+     "主場ATS冷門反彈"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 60,
+    "series_game_num": 6,
+    "series_score": "0-2",
     "has_strong_consensus": false
    }
   ],
@@ -2364,19 +2379,19 @@
   "strong_consensus": {
    "hits": 8,
    "misses": 2,
-   "pending": 1,
+   "pending": 2,
    "decided": 10,
    "hit_rate": 80.0,
    "dominant_hits": 6,
    "moderate_hits": 0,
    "narrow_hits": 1,
    "true_hit_rate": 60.0,
-   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，1場待定"
+   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，2場待定"
   },
   "best_pick": {
    "hits": 33,
    "misses": 12,
-   "pending": 3,
+   "pending": 4,
    "decided": 45,
    "hit_rate": 73.3,
    "gold_hits": 13,
@@ -2392,7 +2407,7 @@
   "no_conflict": {
    "hits": 30,
    "misses": 7,
-   "pending": 3,
+   "pending": 4,
    "decided": 37,
    "hit_rate": 81.1,
    "note_zh": "無衝突場次(所有信號同向): 30勝/37場決定 = 81.1%"
