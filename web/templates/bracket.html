@@ -765,6 +765,41 @@
           {% if fin.analysis.g4_deep_analysis.pivot_zh %}
           <div style="font-size:11px; color:#ff9e9e; margin-bottom:3px; font-weight:600;">⚡ {{ fin.analysis.g4_deep_analysis.pivot_zh }}</div>
           {% endif %}
+          {% if fin.analysis.g4_deep_analysis.response_zh %}
+          <div style="font-size:11px; color:#aad4ff; margin-bottom:3px;">{{ fin.analysis.g4_deep_analysis.response_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g4_deep_analysis.ou_reversal_zh %}
+          <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">{{ fin.analysis.g4_deep_analysis.ou_reversal_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g4_deep_analysis.g5_preview_zh %}
+          <div style="font-size:11px; color:#999; margin-top:4px; border-top:1px solid #1a2020; padding-top:4px;">{{ fin.analysis.g4_deep_analysis.g5_preview_zh }}</div>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% if fin.analysis.g5_deep_analysis %}
+        <div style="margin-top:8px; padding:8px 10px; background:#0e1018; border:1px solid #1a3020; border-radius:6px;">
+          <div style="font-size:12px; color:#7fd69b; font-weight:700; margin-bottom:6px;">🔥 G5 深度分析</div>
+          {% if fin.analysis.g5_deep_analysis.tied_series_zh %}
+          <div style="font-size:11px; color:#f4bf50; margin-bottom:3px; font-weight:600;">{{ fin.analysis.g5_deep_analysis.tied_series_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.deficit_zh %}
+          <div style="font-size:11px; color:#bbb; margin-bottom:3px;">📉 {{ fin.analysis.g5_deep_analysis.deficit_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.closeout_zh %}
+          <div style="font-size:11px; color:#f4bf50; margin-bottom:3px; font-weight:600;">🏆 {{ fin.analysis.g5_deep_analysis.closeout_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.desperation_zh %}
+          <div style="font-size:11px; color:#bbb; margin-bottom:3px;">📉 {{ fin.analysis.g5_deep_analysis.desperation_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.momentum_zh %}
+          <div style="font-size:11px; color:#7fd69b; margin-bottom:3px;">📊 {{ fin.analysis.g5_deep_analysis.momentum_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.competitiveness_zh %}
+          <div style="font-size:11px; color:#7fd69b; margin-bottom:3px;">📊 {{ fin.analysis.g5_deep_analysis.competitiveness_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.ou_context_zh %}
+          <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">🎯 {{ fin.analysis.g5_deep_analysis.ou_context_zh }}</div>
+          {% endif %}
         </div>
         {% endif %}
         {% if fin.analysis.scenarios %}

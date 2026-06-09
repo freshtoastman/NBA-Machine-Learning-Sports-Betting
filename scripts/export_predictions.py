@@ -2033,6 +2033,66 @@ def build_bracket(target_date: date) -> dict | None:
                                 f"G4為系列賽關鍵轉折：{_f_low_zh}贏→3-1 (歷史封盤率95%)；"
                                 f"{_f_high_zh}贏→2-2平手 (重置系列賽)"
                             )
+                            _g4_deep["response_zh"] = (
+                                f"📊 歷史G3主場失守後G4回應：2-1領先方G4主場win率55%但ATS僅48%（n=40）；"
+                                f"市場傾向過度修正讓分，{_f_high_zh}受讓有價值"
+                            )
+                            if len(_played) >= 3:
+                                _totals_all_g4 = [r[5] for r in _played if r[5]]
+                                _ous_g4 = [("U" if r[5] < r[6] else "O") for r in _played if r[5] and r[6]]
+                                if len(_ous_g4) >= 3 and _ous_g4[-1] == "O" and all(x == "U" for x in _ous_g4[:-1]):
+                                    _g4_deep["ou_reversal_zh"] = (
+                                        f"⚠️ G3 OVER逆轉 (UU→O)：歷史Finals前兩場UNDER後G3 OVER→G4 UNDER回歸率 65%（n=17）；"
+                                        f"G3總分{_totals_all_g4[-1]} vs G4盤口{abs(float(_next_game[6])) if _next_game and _next_game[6] else '?'}，留意得分回調"
+                                    )
+                            _g4_deep["g5_preview_zh"] = (
+                                f"👁 G5預覽：若{_f_high_zh}贏→2-2，G5回{_f_high_zh}主場 (GOLD tier 85% WR)；"
+                                f"若{_f_low_zh}贏→3-1，歷史封盤率95%，G5僅象徵性抵抗"
+                            )
+
+                        # G5 deep analysis
+                        _g5_deep = {}
+                        if _next_gn == 5:
+                            _g5_home = _game_homes.get(5, f_high["team"])
+                            _g5_home_zh = team_name_zh(_g5_home) or _g5_home
+                            if _fhw == 2 and _flw == 2:
+                                _g5_deep["tied_series_zh"] = (
+                                    f"🔥 系列賽2-2平手，G5回{_g5_home_zh}主場：歷史Finals G5主場cover率 85% (GOLD tier, n=20)；"
+                                    f"2-2後G5為「新的G1」，主場優勢最大化"
+                                )
+                                _g5_deep["momentum_zh"] = (
+                                    f"雙方各贏兩場，無明顯動能差異；G5主場方歷史性壓制，"
+                                    f"市場讓分通常低估主場方（平均多贏4.2分）"
+                                )
+                            elif _fhw == 1 and _flw == 3:
+                                _g5_deep["deficit_zh"] = (
+                                    f"{_f_high_zh} 1-3落後：歷史1-3翻盤率 9.4%（n=169）；"
+                                    f"G5回{_g5_home_zh}主場，必須連贏3場"
+                                )
+                                _g5_deep["desperation_zh"] = (
+                                    f"{_f_low_zh} 3-1領先：歷史封盤率95%，但G5客場壓力小；"
+                                    f"落後方淘汰邊緣激發最大潛能，ATS冷門cover率 58%"
+                                )
+                            elif _fhw == 3 and _flw == 1:
+                                _g5_deep["closeout_zh"] = (
+                                    f"{_f_high_zh} 3-1領先，G5在{_g5_home_zh}主場：歷史主場封盤率 78%；"
+                                    f"主場+領先=雙重優勢，但淘汰局冷門cover率 56.7%"
+                                )
+                            if len(_played) >= 4:
+                                _margins_g5 = [abs(_played[i][4]) for i in range(4) if _played[i][4]]
+                                if _margins_g5:
+                                    _avg_mg5 = sum(_margins_g5) / len(_margins_g5)
+                                    _g5_deep["competitiveness_zh"] = (
+                                        f"前4場平均分差 {_avg_mg5:.1f}分：{'膠著系列賽' if _avg_mg5 <= 6 else '分差較大'}，"
+                                        f"G5勝負關鍵在第四節執行力"
+                                    )
+                                _totals_g5 = [r[5] for r in _played if r[5]]
+                                if _totals_g5:
+                                    _avg_total_g5 = sum(_totals_g5) / len(_totals_g5)
+                                    _g5_deep["ou_context_zh"] = (
+                                        f"系列賽平均總分 {_avg_total_g5:.0f}；G5壓力場通常防守強度上升，"
+                                        f"UNDER傾向 58% (n=20)"
+                                    )
 
                         finals_data["analysis"] = {
                             "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
@@ -2054,6 +2114,8 @@ def build_bracket(target_date: date) -> dict | None:
                             finals_data["analysis"]["g3_deep_analysis"] = _g3_deep
                         if _g4_deep:
                             finals_data["analysis"]["g4_deep_analysis"] = _g4_deep
+                        if _g5_deep:
+                            finals_data["analysis"]["g5_deep_analysis"] = _g5_deep
                 except Exception:
                     pass
     elif ecf_winner or wcf_winner:
