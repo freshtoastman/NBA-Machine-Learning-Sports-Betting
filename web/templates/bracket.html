@@ -771,6 +771,9 @@
           {% if fin.analysis.g4_deep_analysis.ou_reversal_zh %}
           <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">{{ fin.analysis.g4_deep_analysis.ou_reversal_zh }}</div>
           {% endif %}
+          {% if fin.analysis.g4_deep_analysis.series_pattern_zh %}
+          <div style="font-size:11px; color:#ff9e9e; margin-bottom:3px; font-weight:600;">{{ fin.analysis.g4_deep_analysis.series_pattern_zh }}</div>
+          {% endif %}
           {% if fin.analysis.g4_deep_analysis.g5_preview_zh %}
           <div style="font-size:11px; color:#999; margin-top:4px; border-top:1px solid #1a2020; padding-top:4px;">{{ fin.analysis.g4_deep_analysis.g5_preview_zh }}</div>
           {% endif %}
@@ -799,6 +802,9 @@
           {% endif %}
           {% if fin.analysis.g5_deep_analysis.ou_context_zh %}
           <div style="font-size:11px; color:#d4aaff; margin-bottom:3px;">🎯 {{ fin.analysis.g5_deep_analysis.ou_context_zh }}</div>
+          {% endif %}
+          {% if fin.analysis.g5_deep_analysis.series_pattern_zh %}
+          <div style="font-size:11px; color:#ff9e9e; margin-bottom:3px; font-weight:600;">{{ fin.analysis.g5_deep_analysis.series_pattern_zh }}</div>
           {% endif %}
         </div>
         {% endif %}

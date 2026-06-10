@@ -2049,6 +2049,27 @@ def build_bracket(target_date: date) -> dict | None:
                                 f"👁 G5預覽：若{_f_high_zh}贏→2-2，G5回{_f_high_zh}主場 (GOLD tier 85% WR)；"
                                 f"若{_f_low_zh}贏→3-1，歷史封盤率95%，G5僅象徵性抵抗"
                             )
+                            if len(_played) >= 3:
+                                _ats_results = []
+                                for _pr in _played:
+                                    _sp_val = _pr[3]
+                                    _wm_val = _pr[4]
+                                    if _sp_val is not None and _wm_val is not None:
+                                        _ats_results.append("home" if _wm_val > _sp_val else "away")
+                                if _ats_results:
+                                    _home_covers = sum(1 for r in _ats_results if r == "home")
+                                    _away_covers = len(_ats_results) - _home_covers
+                                    if _away_covers >= 3:
+                                        _g4_deep["series_pattern_zh"] = (
+                                            f"⚠️ 系列賽ATS趨勢：客場 {_away_covers}-{_home_covers} 主場cover，"
+                                            f"連續{_away_covers}場客隊cover — 主場讓分持續被高估，"
+                                            f"G4受讓({_f_high_zh})需格外關注"
+                                        )
+                                    elif _home_covers >= 3:
+                                        _g4_deep["series_pattern_zh"] = (
+                                            f"📈 系列賽ATS趨勢：主場 {_home_covers}-{_away_covers} 客場cover，"
+                                            f"主場方穩定cover，G4讓分({_f_low_zh})值得信賴"
+                                        )
 
                         # G5 deep analysis
                         _g5_deep = {}
@@ -2093,6 +2114,21 @@ def build_bracket(target_date: date) -> dict | None:
                                         f"系列賽平均總分 {_avg_total_g5:.0f}；G5壓力場通常防守強度上升，"
                                         f"UNDER傾向 58% (n=20)"
                                     )
+                                _ats_g5 = []
+                                for _pr in _played:
+                                    _sp_val = _pr[3]
+                                    _wm_val = _pr[4]
+                                    if _sp_val is not None and _wm_val is not None:
+                                        _ats_g5.append("home" if _wm_val > _sp_val else "away")
+                                if _ats_g5:
+                                    _hc5 = sum(1 for r in _ats_g5 if r == "home")
+                                    _ac5 = len(_ats_g5) - _hc5
+                                    if _ac5 >= 3 or _hc5 >= 3:
+                                        _dom = "客場" if _ac5 > _hc5 else "主場"
+                                        _g5_deep["series_pattern_zh"] = (
+                                            f"⚠️ 系列賽ATS趨勢：{_dom} {max(_hc5,_ac5)}-{min(_hc5,_ac5)} cover，"
+                                            f"{'客隊持續cover — 主場讓分被高估' if _ac5 > _hc5 else '主場穩定cover — 讓分合理'}"
+                                        )
 
                         finals_data["analysis"] = {
                             "series_status": f"{_f_high_zh} vs {_f_low_zh} ({_fhw}-{_flw}) · {_lead_str}",
