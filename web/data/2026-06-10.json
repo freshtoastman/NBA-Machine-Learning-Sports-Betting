@@ -1,6 +1,6 @@
 {
  "date": "2026-06-10",
- "is_today": false,
+ "is_today": true,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -34,21 +34,7 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": [],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+  "injury_alerts": []
  },
  "games": {
   "San Antonio Spurs:New York Knicks": {
