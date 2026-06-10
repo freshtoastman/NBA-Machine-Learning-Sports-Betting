@@ -1,6 +1,6 @@
 {
  "date": "2026-06-10",
- "is_today": true,
+ "is_today": false,
  "summary": {
   "games": 1,
   "home_picks": 0,
@@ -34,7 +34,21 @@
    }
   ],
   "playoff_ats_count": 1,
-  "injury_alerts": []
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "San Antonio Spurs:New York Knicks": {
@@ -45,8 +59,8 @@
    "spread": 2.5,
    "Spread": 2.5,
    "OU": 216.5,
-   "ML_Home": -130,
-   "ML_Away": 110,
+   "ML_Home": -134,
+   "ML_Away": 114,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -136,13 +150,21 @@
      "ml_home": -130,
      "ml_away": 110,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-06-10T17:27:47+00:00",
+     "spread": 2.5,
+     "ou": 216.5,
+     "ml_home": -134,
+     "ml_away": 114,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 2.5,
    "spread_last": 2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-06-09T05:29:00+00:00",
-   "spread_last_fetched_at": "2026-06-09T14:29:01+00:00",
+   "spread_last_fetched_at": "2026-06-10T17:27:47+00:00",
    "ou_first": 216.5,
    "ou_last": 216.5,
    "ou_move": 0.0
