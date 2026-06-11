@@ -2142,6 +2142,27 @@ def build_bracket(target_date: date) -> dict | None:
                                     f"封盤賽心態：{_f_low_zh}客場無壓力，贏球即奪冠；"
                                     f"{_f_high_zh}背水一戰但歷史淘汰局G5冷門cover率僅 50.6% (n=81)"
                                 )
+                                # Conditional series-pattern backtest (2012-26, 187 series;
+                                # scripts/analyze_g5_road_cover_pattern.py): the 85% G5 home
+                                # GOLD rate does NOT survive when road sides dominated G1-4 ATS.
+                                _away_cov14 = sum(
+                                    1 for _pr in _played[:4]
+                                    if _pr[3] is not None and _pr[4] is not None
+                                    and _pr[4] < _pr[3]
+                                )
+                                if _away_cov14 == 4:
+                                    _g5_deep["conflict_resolution_zh"] = (
+                                        f"📊 衝突裁決（條件式回測 2012-26）：客隊G1-4全cover的系列賽中，"
+                                        f"G5主場cover率僅 28.6% (2/7)，客隊cover率 71.4%；"
+                                        f"主隊1-3落後+客隊cover 3+場的聯合條件下主場僅 44.4% (4/9) — "
+                                        f"85% GOLD信號在本系列條件下失效，數據傾向 {_f_low_zh} 受讓"
+                                    )
+                                elif _away_cov14 == 3:
+                                    _g5_deep["conflict_resolution_zh"] = (
+                                        f"📊 衝突裁決（條件式回測 2012-26）：客隊G1-4 cover 3+場的系列賽中，"
+                                        f"G5主場cover率降至 48.9% (23/47)，85% GOLD信號優勢消失；"
+                                        f"聯合條件（主隊1-3落後）下主場僅 44.4% (4/9) — 建議降級觀望或小注 {_f_low_zh} 受讓"
+                                    )
                             elif _fhw == 3 and _flw == 1:
                                 _g5_deep["closeout_zh"] = (
                                     f"{_f_high_zh} 3-1領先，G5在{_g5_home_zh}主場：歷史主場封盤率 78%；"
