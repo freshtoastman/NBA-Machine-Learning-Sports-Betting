@@ -1880,7 +1880,7 @@ def build_bracket(target_date: date) -> dict | None:
 
                         # Series scenario planning for upcoming games
                         _scenarios = []
-                        if _next_gn <= 4:
+                        if _next_gn <= 7:
                             _g3_home = _game_homes.get(3, f_low["team"])
                             _g3_home_zh = team_name_zh(_g3_home) or _g3_home
                             _g4_home = _game_homes.get(4, f_low["team"])
@@ -1940,6 +1940,17 @@ def build_bracket(target_date: date) -> dict | None:
                                 _scenarios = [
                                     {"if_zh": f"{_f_low_zh}領先{_flw}-0",
                                      "then_zh": f"歷史性壓制，{_f_low_zh}即將橫掃奪冠"},
+                                ]
+                            elif _fhw == 1 and _flw == 3:
+                                _g5_home_s = _game_homes.get(5, f_high["team"])
+                                _g5_home_s_zh = team_name_zh(_g5_home_s) or _g5_home_s
+                                _scenarios = [
+                                    {"if_zh": f"{_f_low_zh}領先3-1，G5回{_g5_home_s_zh}主場",
+                                     "then_zh": f"歷史封盤率95%，但GOLD信號主場cover率85% — 淘汰局{_f_high_zh}通常全力一搏"},
+                                    {"if_zh": f"若{_f_high_zh}贏G5 → 2-3",
+                                     "then_zh": f"G6轉至{_f_low_zh}主場封盤；歷史1-3翻盤率 9.4%，但連贏氣勢不可忽視"},
+                                    {"if_zh": f"若{_f_low_zh}贏G5 → 4-1奪冠",
+                                     "then_zh": f"{_f_low_zh}在客場完成封盤，奪得總冠軍"},
                                 ]
                             elif _flw >= 3 and _fhw < _flw:
                                 _scenarios = [
@@ -2086,6 +2097,27 @@ def build_bracket(target_date: date) -> dict | None:
                                     f"市場讓分通常低估主場方（平均多贏4.2分）"
                                 )
                             elif _fhw == 1 and _flw == 3:
+                                # G4 recap for context
+                                _g4_recap = ""
+                                if len(_played) >= 4:
+                                    _g4r = _played[3]
+                                    _g4_wm = _g4r[4]
+                                    _g4_winner = _g4r[1] if _g4_wm > 0 else _g4r[2]
+                                    _g4_winner_zh = team_name_zh(_g4_winner) or _g4_winner
+                                    _g4_margin = abs(_g4_wm)
+                                    _g4_total = _g4r[5]
+                                    _g4_sp = _g4r[3]
+                                    if _g4_margin <= 3:
+                                        _g4_recap = (
+                                            f"📋 G4回顧：{_g4_winner_zh}險勝{_g4_margin}分 (總分{_g4_total})，"
+                                            f"讓分{abs(_g4_sp):.1f}未cover — 膠著戰延續"
+                                        )
+                                    else:
+                                        _g4_recap = (
+                                            f"📋 G4回顧：{_g4_winner_zh}贏{_g4_margin}分 (總分{_g4_total})"
+                                        )
+                                if _g4_recap:
+                                    _g5_deep["g4_recap_zh"] = _g4_recap
                                 _g5_deep["deficit_zh"] = (
                                     f"{_f_high_zh} 1-3落後：歷史1-3翻盤率 9.4%（n=169）；"
                                     f"G5回{_g5_home_zh}主場，必須連贏3場"
@@ -2093,6 +2125,22 @@ def build_bracket(target_date: date) -> dict | None:
                                 _g5_deep["desperation_zh"] = (
                                     f"{_f_low_zh} 3-1領先：歷史封盤率95%，但G5客場壓力小；"
                                     f"落後方淘汰邊緣激發最大潛能，ATS冷門cover率 58%"
+                                )
+                                _g5_deep["signal_conflict_zh"] = (
+                                    f"⚠️ GOLD信號衝突：Finals G5主場cover率 85% (n=20) → 押{_g5_home_zh}；"
+                                    f"但本系列客場 4-0 ATS全勝 — 主場讓分持續被高估；"
+                                    f"G5讓分{abs(float(_next_game[3])):.1f}為系列最大，市場給予{_g5_home_zh}大幅尊重"
+                                    if _next_game and _next_game[3] is not None else
+                                    f"⚠️ GOLD信號衝突：Finals G5主場cover率 85% (n=20) → 押{_g5_home_zh}；"
+                                    f"但本系列客場 4-0 ATS全勝 — 主場讓分持續被高估"
+                                )
+                                _g5_deep["closeout_dynamics_zh"] = (
+                                    f"封盤賽心態：{_f_low_zh}客場無壓力，贏球即奪冠；"
+                                    f"{_f_high_zh}背水一戰但歷史淘汰局G5冷門cover率僅 50.6% (n=81)，無結構性優勢；"
+                                    f"大讓分({abs(float(_next_game[3])):.1f}分)暗示市場認為{_f_high_zh}會贏但{_f_low_zh}能控制分差"
+                                    if _next_game and _next_game[3] is not None else
+                                    f"封盤賽心態：{_f_low_zh}客場無壓力，贏球即奪冠；"
+                                    f"{_f_high_zh}背水一戰但歷史淘汰局G5冷門cover率僅 50.6% (n=81)"
                                 )
                             elif _fhw == 3 and _flw == 1:
                                 _g5_deep["closeout_zh"] = (

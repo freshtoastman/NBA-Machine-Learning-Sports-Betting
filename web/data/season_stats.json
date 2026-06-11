@@ -48,10 +48,10 @@
  },
  "playoff_signals": {
   "hits": 47,
-  "misses": 20,
-  "pending": 2,
-  "decided": 67,
-  "hit_rate": 70.1,
+  "misses": 22,
+  "pending": 3,
+  "decided": 69,
+  "hit_rate": 68.1,
   "conviction": {
    "crushing_hits": 16,
    "dominant_hits": 12,
@@ -60,75 +60,11 @@
    "garbage_time_hits": 8,
    "total_hits": 47,
    "true_conviction_hits": 40,
-   "raw_hit_rate": 70.1,
-   "true_conviction_rate": 59.7,
-   "note_zh": "16 碾壓主導 + 12 主導 + 12 普通 + 7 險過；8 場受垃圾時間影響；真實信心率 59.7%"
+   "raw_hit_rate": 68.1,
+   "true_conviction_rate": 58.0,
+   "note_zh": "16 碾壓主導 + 12 主導 + 12 普通 + 7 險過；8 場受垃圾時間影響；真實信心率 58.0%"
   },
   "history": [
-   {
-    "date": "2026-04-19",
-    "game": "波特蘭拓荒者 @ 聖安東尼奧馬刺",
-    "signal": "附加賽升組客隊不利",
-    "side": "home",
-    "tier": "SILVER",
-    "backtest_wr": 0.8,
-    "ats_winner": "away",
-    "ats_cover_margin": -1.0,
-    "series_game_num": 1,
-    "series_home_wins": 0,
-    "series_away_wins": 0,
-    "strong_consensus": "home",
-    "home_team": "San Antonio Spurs",
-    "away_team": "Portland Trail Blazers",
-    "spread": 14.0,
-    "result": "miss",
-    "conviction_obj": {
-     "band": "moderate",
-     "source": "q3",
-     "q3_picked_margin": 4.5,
-     "final_picked_margin": -1.0,
-     "q4_swing": -2,
-     "shrinkage": 5.5,
-     "garbage_time": true
-    },
-    "conviction": "moderate",
-    "garbage_time": true,
-    "conviction_source": "q3",
-    "q3_picked_margin": 4.5,
-    "q4_swing": -2
-   },
-   {
-    "date": "2026-04-20",
-    "game": "亞特蘭大老鷹 @ 紐約尼克",
-    "signal": "ML季後賽押客場",
-    "side": "away",
-    "tier": "SILVER",
-    "backtest_wr": 0.64,
-    "ats_winner": "away",
-    "ats_cover_margin": -7.0,
-    "series_game_num": 2,
-    "series_home_wins": 1,
-    "series_away_wins": 0,
-    "strong_consensus": null,
-    "home_team": "New York Knicks",
-    "away_team": "Atlanta Hawks",
-    "spread": 6.0,
-    "result": "hit",
-    "conviction_obj": {
-     "band": "moderate",
-     "source": "q3",
-     "q3_picked_margin": -7.5,
-     "final_picked_margin": 7.0,
-     "q4_swing": -13,
-     "shrinkage": -14.5,
-     "garbage_time": false
-    },
-    "conviction": "moderate",
-    "garbage_time": false,
-    "conviction_source": "q3",
-    "q3_picked_margin": -7.5,
-    "q4_swing": -13
-   },
    {
     "date": "2026-04-20",
     "game": "明尼蘇達灰狼 @ 丹佛金塊",
@@ -1984,40 +1920,100 @@
     "conviction_source": "q3",
     "q3_picked_margin": -2.9,
     "q4_swing": -3
+   },
+   {
+    "date": "2026-06-10",
+    "game": "聖安東尼奧馬刺 @ 紐約尼克",
+    "signal": "Finals G4主場優勢",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.667,
+    "ats_winner": "away",
+    "ats_cover_margin": -0.5,
+    "series_game_num": 4,
+    "series_home_wins": 2,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "home_team": "New York Knicks",
+    "away_team": "San Antonio Spurs",
+    "spread": 1.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": -16.1,
+     "final_picked_margin": -0.5,
+     "q4_swing": 16,
+     "shrinkage": -15.6,
+     "garbage_time": false
+    },
+    "conviction": "crushing",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": -16.1,
+    "q4_swing": 16
+   },
+   {
+    "date": "2026-06-10",
+    "game": "聖安東尼奧馬刺 @ 紐約尼克",
+    "signal": "主場ATS冷門反彈",
+    "side": "home",
+    "tier": "SILVER",
+    "backtest_wr": 0.6,
+    "ats_winner": "away",
+    "ats_cover_margin": -0.5,
+    "series_game_num": 4,
+    "series_home_wins": 2,
+    "series_away_wins": 1,
+    "strong_consensus": "home",
+    "home_team": "New York Knicks",
+    "away_team": "San Antonio Spurs",
+    "spread": 1.5,
+    "result": "miss",
+    "conviction_obj": {
+     "band": "crushing",
+     "source": "q3",
+     "q3_picked_margin": -16.1,
+     "final_picked_margin": -0.5,
+     "q4_swing": 16,
+     "shrinkage": -15.6,
+     "garbage_time": false
+    },
+    "conviction": "crushing",
+    "garbage_time": false,
+    "conviction_source": "q3",
+    "q3_picked_margin": -16.1,
+    "q4_swing": 16
    }
   ],
   "pending_by_game": [
    {
-    "date": "2026-06-10",
-    "game": "聖安東尼奧馬刺 @ 紐約尼克",
-    "signals": [
-     "Finals G4主場優勢"
-    ],
-    "consensus_side": "home",
-    "has_conflict": false,
-    "best_wr": 67,
-    "series_game_num": 4,
-    "series_score": "1-2",
-    "has_strong_consensus": false,
-    "live_status": "01:22 4th",
-    "live_home_score": 107,
-    "live_away_score": 106,
-    "live_home_covering": false,
-    "spread": 1.5
-   },
-   {
     "date": "2026-06-13",
     "game": "紐約尼克 @ 聖安東尼奧馬刺",
     "signals": [
-     "Finals G5主場壓制"
+     "Finals G5主場壓制",
+     "客場ATS冷門反彈"
+    ],
+    "consensus_side": null,
+    "has_conflict": true,
+    "best_wr": 85,
+    "series_game_num": 5,
+    "series_score": "3-1",
+    "has_strong_consensus": false,
+    "spread": 5.5
+   },
+   {
+    "date": "2026-06-16",
+    "game": "聖安東尼奧馬刺 @ 紐約尼克",
+    "signals": [
+     "主場ATS冷門反彈"
     ],
     "consensus_side": "home",
     "has_conflict": false,
-    "best_wr": 85,
-    "series_game_num": 5,
-    "series_score": "2-1",
-    "has_strong_consensus": false,
-    "spread": 5.5
+    "best_wr": 60,
+    "series_game_num": 6,
+    "series_score": "1-3",
+    "has_strong_consensus": false
    }
   ],
   "by_signal": [
@@ -2129,17 +2125,17 @@
    {
     "signal": "主場ATS冷門反彈",
     "hits": 2,
-    "misses": 0,
-    "n": 2,
+    "misses": 1,
+    "n": 3,
     "tier": "SILVER",
-    "hit_rate": 100.0,
+    "hit_rate": 66.7,
     "backtest_wr": 60.0,
     "crushing_hits": 2,
     "dominant_hits": 0,
     "moderate_hits": 0,
     "narrow_hits": 0,
     "garbage_time_hits": 1,
-    "true_hit_rate": 100.0
+    "true_hit_rate": 66.7
    },
    {
     "signal": "R1G1大讓分主場",
@@ -2365,50 +2361,65 @@
     "narrow_hits": 0,
     "garbage_time_hits": 0,
     "true_hit_rate": 0.0
+   },
+   {
+    "signal": "Finals G4主場優勢",
+    "hits": 0,
+    "misses": 1,
+    "n": 1,
+    "tier": "SILVER",
+    "hit_rate": 0.0,
+    "backtest_wr": 66.7,
+    "crushing_hits": 0,
+    "dominant_hits": 0,
+    "moderate_hits": 0,
+    "narrow_hits": 0,
+    "garbage_time_hits": 0,
+    "true_hit_rate": 0.0
    }
   ],
   "strong_consensus": {
    "hits": 8,
-   "misses": 2,
+   "misses": 3,
    "pending": 0,
-   "decided": 10,
-   "hit_rate": 80.0,
+   "decided": 11,
+   "hit_rate": 72.7,
    "dominant_hits": 6,
    "moderate_hits": 0,
    "narrow_hits": 1,
-   "true_hit_rate": 60.0,
-   "note_zh": "強共識(2+SILVER一致): 8勝/10場決定 = 80.0%，0場待定"
+   "true_hit_rate": 54.5,
+   "note_zh": "強共識(2+SILVER一致): 8勝/11場決定 = 72.7%，0場待定"
   },
   "best_pick": {
    "hits": 33,
-   "misses": 13,
+   "misses": 14,
    "pending": 2,
-   "decided": 46,
-   "hit_rate": 71.7,
+   "decided": 47,
+   "hit_rate": 70.2,
    "gold_hits": 13,
    "gold_misses": 7,
    "silver_hits": 20,
-   "silver_misses": 6,
+   "silver_misses": 7,
    "dominant_hits": 19,
    "moderate_hits": 7,
    "narrow_hits": 3,
-   "true_hit_rate": 56.5,
-   "note_zh": "單場最佳信號(GOLD/SILVER): 33勝/46場決定 = 71.7%"
+   "true_hit_rate": 55.3,
+   "note_zh": "單場最佳信號(GOLD/SILVER): 33勝/47場決定 = 70.2%"
   },
   "no_conflict": {
    "hits": 30,
-   "misses": 8,
-   "pending": 2,
-   "decided": 38,
-   "hit_rate": 78.9,
-   "note_zh": "無衝突場次(所有信號同向): 30勝/38場決定 = 78.9%"
+   "misses": 9,
+   "pending": 1,
+   "decided": 39,
+   "hit_rate": 76.9,
+   "note_zh": "無衝突場次(所有信號同向): 30勝/39場決定 = 76.9%"
   }
  },
  "playoff_home_ats": {
-  "games": 89,
+  "games": 90,
   "home_covers": 47,
-  "away_covers": 42,
-  "home_cover_rate": 52.8,
-  "note_zh": "本季季後賽共 89 場有結果，主場過盤 47 場 (52.8%)"
+  "away_covers": 43,
+  "home_cover_rate": 52.2,
+  "note_zh": "本季季後賽共 90 場有結果，主場過盤 47 場 (52.2%)"
  }
 }
