@@ -49,7 +49,7 @@
  "playoff_signals": {
   "hits": 47,
   "misses": 20,
-  "pending": 1,
+  "pending": 2,
   "decided": 67,
   "hit_rate": 70.1,
   "conviction": {
@@ -1999,7 +1999,25 @@
     "series_game_num": 4,
     "series_score": "1-2",
     "has_strong_consensus": false,
-    "spread": 2.5
+    "live_status": "01:22 4th",
+    "live_home_score": 107,
+    "live_away_score": 106,
+    "live_home_covering": false,
+    "spread": 1.5
+   },
+   {
+    "date": "2026-06-13",
+    "game": "紐約尼克 @ 聖安東尼奧馬刺",
+    "signals": [
+     "Finals G5主場壓制"
+    ],
+    "consensus_side": "home",
+    "has_conflict": false,
+    "best_wr": 85,
+    "series_game_num": 5,
+    "series_score": "2-1",
+    "has_strong_consensus": false,
+    "spread": 5.5
    }
   ],
   "by_signal": [
@@ -2364,7 +2382,7 @@
   "best_pick": {
    "hits": 33,
    "misses": 13,
-   "pending": 1,
+   "pending": 2,
    "decided": 46,
    "hit_rate": 71.7,
    "gold_hits": 13,
@@ -2380,7 +2398,7 @@
   "no_conflict": {
    "hits": 30,
    "misses": 8,
-   "pending": 1,
+   "pending": 2,
    "decided": 38,
    "hit_rate": 78.9,
    "note_zh": "無衝突場次(所有信號同向): 30勝/38場決定 = 78.9%"

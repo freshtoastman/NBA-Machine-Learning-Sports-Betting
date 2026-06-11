@@ -949,7 +949,7 @@
    ],
    "momentum_zh": "G3: 聖安東尼奧馬刺 贏4分（紐約尼克 讓 2.5，未cover）",
    "key_factor_zh": "G4 @紐約尼克；紐約尼克主場，聖安東尼奧馬刺 1-2落後追趕中",
-   "odds_preview_zh": "G4: 紐約尼克 -2.5 (主場)，總分 216.5；ML -134/114",
+   "odds_preview_zh": "G4: 紐約尼克 -1.5 (主場)，總分 216.5；ML -132/112 （開盤 2.5→1.5，移動 -1.0）",
    "risk_zh": "G3 實際總分 226 vs G4 盤口 216.5 (差距 +10)；紐約尼克 主場且2-1領先，封盤動機強",
    "strategy_map": [
     {
@@ -1056,7 +1056,7 @@
     "desperation_zh": "紐約尼克 2-1領先但G3主場失守：歷史G4壓力反應分歧；領先方主場失守後G4 win率 55%，但ATS cover僅 48% (n=40，過度修正風險)",
     "competitiveness_zh": "系列賽平均分差 5.0分：膠著系列賽，G4可能延續緊張節奏",
     "ou_trend_zh": "總分走勢 200→209→226 (UUO)；得分逐場上升，G4盤口需關注調整方向",
-    "spread_zh": "G4讓分 2.5：小讓分=市場尊重聖安東尼奧馬刺",
+    "spread_zh": "G4讓分 1.5：小讓分=市場尊重聖安東尼奧馬刺",
     "pivot_zh": "G4為系列賽關鍵轉折：紐約尼克贏→3-1 (歷史封盤率95%)；聖安東尼奧馬刺贏→2-2平手 (重置系列賽)",
     "response_zh": "📊 歷史G3主場失守後G4回應：2-1領先方G4主場win率55%但ATS僅48%（n=40）；市場傾向過度修正讓分，聖安東尼奧馬刺受讓有價值",
     "ou_reversal_zh": "⚠️ G3 OVER逆轉 (UU→O)：歷史Finals前兩場UNDER後G3 OVER→G4 UNDER回歸率 65%（n=17）；G3總分226 vs G4盤口216.5，留意得分回調",
@@ -1066,11 +1066,11 @@
   }
  },
  "signal_tracker": {
-  "total": 68,
+  "total": 69,
   "decided": 67,
   "wins": 47,
   "losses": 20,
-  "pending": 1,
+  "pending": 2,
   "hit_rate": 70.1,
   "pnl": 22.77,
   "roi": 34.0,
@@ -1083,7 +1083,7 @@
    "GOLD": {
     "wins": 14,
     "losses": 7,
-    "pending": 0
+    "pending": 1
    }
   },
   "by_game_num": {
@@ -1114,7 +1114,7 @@
    "G5": {
     "wins": 3,
     "losses": 1,
-    "pending": 0,
+    "pending": 1,
     "hit_rate": 75.0
    },
    "G6": {
@@ -1131,11 +1131,11 @@
    }
   },
   "by_game": {
-   "total": 47,
+   "total": 48,
    "decided": 41,
    "wins": 31,
    "losses": 10,
-   "pending": 6,
+   "pending": 7,
    "hit_rate": 75.6,
    "pnl": 18.21,
    "roi": 44.4
@@ -1144,7 +1144,7 @@
    "decided": 38,
    "wins": 30,
    "losses": 8,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 78.9,
    "pnl": 19.3,
    "roi": 50.8
@@ -1155,7 +1155,7 @@
    "decided": 23,
    "wins": 20,
    "losses": 3,
-   "pending": 1,
+   "pending": 2,
    "hit_rate": 87.0,
    "pnl": 15.2,
    "roi": 66.1,
@@ -1977,6 +1977,18 @@
     "result": "pending",
     "margin": null,
     "game_num": 4
+   },
+   {
+    "date": "2026-06-13",
+    "away": "紐約尼克",
+    "home": "聖安東尼奧馬刺",
+    "signal": "Finals G5主場壓制",
+    "tier": "GOLD",
+    "side": "home",
+    "backtest_wr": 0.85,
+    "result": "pending",
+    "margin": null,
+    "game_num": 5
    }
   ]
  }

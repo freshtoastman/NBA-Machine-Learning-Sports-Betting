@@ -56,11 +56,11 @@
    "away_team": "San Antonio Spurs",
    "home_score": null,
    "away_score": null,
-   "spread": 2.5,
-   "Spread": 2.5,
+   "spread": 1.5,
+   "Spread": 1.5,
    "OU": 216.5,
-   "ML_Home": -134,
-   "ML_Away": 114,
+   "ML_Home": -132,
+   "ML_Away": 112,
    "Days_Rest_Home": 2,
    "Days_Rest_Away": 2,
    "home_confidence": null,
@@ -133,6 +133,11 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
+   "live_home_score": 107,
+   "live_away_score": 106,
+   "live_status": "01:22 4th",
+   "live_is_final": false,
+   "live_home_covering": false,
    "injuries_away": [],
    "odds_history": [
     {
@@ -158,13 +163,21 @@
      "ml_home": -134,
      "ml_away": 114,
      "source": "sbr_fanduel"
+    },
+    {
+     "fetched_at": "2026-06-11T03:50:07+00:00",
+     "spread": 1.5,
+     "ou": 216.5,
+     "ml_home": -132,
+     "ml_away": 112,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 2.5,
-   "spread_last": 2.5,
-   "spread_move": 0.0,
+   "spread_last": 1.5,
+   "spread_move": -1.0,
    "spread_first_fetched_at": "2026-06-09T05:29:00+00:00",
-   "spread_last_fetched_at": "2026-06-10T17:27:47+00:00",
+   "spread_last_fetched_at": "2026-06-11T03:50:07+00:00",
    "ou_first": 216.5,
    "ou_last": 216.5,
    "ou_move": 0.0
