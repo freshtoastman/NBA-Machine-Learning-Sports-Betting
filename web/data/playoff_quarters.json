@@ -1978,5 +1978,27 @@
     ],
     "home_score": 107,
     "away_score": 106
+  },
+  {
+    "gameId": "401859967",
+    "date": "2026-06-13",
+    "home_tri": "SA",
+    "away_tri": "NY",
+    "home_name": "San Antonio Spurs",
+    "away_name": "New York Knicks",
+    "q_home": [
+      23,
+      19,
+      30,
+      18
+    ],
+    "q_away": [
+      13,
+      24,
+      28,
+      29
+    ],
+    "home_score": 90,
+    "away_score": 94
   }
 ]

@@ -9751,30 +9751,10 @@
     "home": "San Antonio Spurs",
     "away": "New York Knicks",
     "spread": 5.5,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
-   },
-   {
-    "date": "2026-06-16",
-    "home": "New York Knicks",
-    "away": "San Antonio Spurs",
-    "spread": null,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
-   },
-   {
-    "date": "2026-06-19",
-    "home": "San Antonio Spurs",
-    "away": "New York Knicks",
-    "spread": null,
-    "win_margin": null,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": null
+    "win_margin": -4,
+    "home_score": 90,
+    "away_score": 94,
+    "ats_result": "away"
    }
   ],
   "Memphis Grizzlies:Minnesota Timberwolves": [

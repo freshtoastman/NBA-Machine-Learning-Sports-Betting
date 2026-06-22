@@ -2960,12 +2960,26 @@ def main():
             json.dump(h2h, f, ensure_ascii=False, indent=1, default=_serialize)
         print(f"H2H → {h2h_path.name} ({len(h2h.get('pairs', {}))} matchup pairs)")
 
-    # Date index.
+    # Date index. Glob every exported game-day JSON (not just this run's
+    # window) so the off-season "no games today" fallback can still resolve the
+    # most recent real game date (e.g. after the Finals end). Without this the
+    # index empties out once the rolling window clears, landing users on a blank
+    # page. Sorted descending → dates[0] is always the latest game day.
+    all_game_dates = []
+    for jf in OUT_DIR.glob("????-??-??.json"):
+        try:
+            with open(jf, encoding="utf-8") as _jf:
+                _jd = json.load(_jf)
+            if _jd.get("summary", {}).get("games", 0) > 0:
+                all_game_dates.append(jf.stem)
+        except Exception:
+            continue
+    all_game_dates = sorted(set(all_game_dates) | set(exported_dates), reverse=True)
     index_path = OUT_DIR / "dates.json"
     with open(index_path, "w", encoding="utf-8") as f:
-        json.dump({"dates": exported_dates, "today": today.isoformat(), "season": season_key},
+        json.dump({"dates": all_game_dates, "today": today.isoformat(), "season": season_key},
                   f, ensure_ascii=False, indent=1, default=_serialize)
-    print(f"Index → {index_path.name}")
+    print(f"Index → {index_path.name} ({len(all_game_dates)} game days)")
     print("Done.")
 
 
