@@ -70,7 +70,7 @@ G5 出現「GOLD 主場壓制」與「SILVER 客場受讓反彈」的訊號衝�
 ## 5. 下季 roadmap / 待收集數據
 
 - **裁判 ATS 檔案**：2718 場、1465 場有主審名單；2025-26 API 仍空。下季開季補抓即時主審，把 per-official p-value 接進 value 過濾。
-- **CLV / 開盤-收盤線移動**：odds_history 已在記錄快照；累積一季後可做 closing-line-value 驗證，量化「我們的訊號 vs 市場修正」。
+- **CLV / 開盤-收盤線移動**：✅ 首切已完成（2026-06-25，`scripts/analyze_clv_line_movement.py` → `web/data/clv_analysis.json`）。發現：小幅移動是雜訊（≤1.0 約 51-54%），**僅大移動 ≥2.0 分跟隨收盤方向 cover 71.4%（5/7，觀察級）**。詳見 [`playoff_strategy_playbook.md`](playoff_strategy_playbook.md) §3。n 太小，待跨季累積到 n≥30 再升格可下注。
 - **總決賽客場訊號**：n=5 樣本太小，需跨季累積；先列為「觀察級」，勿單押放大注碼。
 - **G2 主場 / G7 主場**：本季最穩，下季優先沿用並擴大回測樣本。
 

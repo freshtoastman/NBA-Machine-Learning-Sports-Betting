@@ -1,0 +1,41 @@
+{
+  "generated_from": "web/data/2026-*.json (graded games w/ spread_move)",
+  "total_graded": 89,
+  "note": "Late-2025-26-season + playoff sample only; line-movement tracking began ~April. Large-move buckets are tiny — OBSERVE-ONLY until cross-season sample grows. Small moves are noise.",
+  "buckets": [
+    {
+      "n": 37,
+      "hit": 20,
+      "pct": 54.1,
+      "threshold": 0.5
+    },
+    {
+      "n": 35,
+      "hit": 18,
+      "pct": 51.4,
+      "threshold": 1.0
+    },
+    {
+      "n": 8,
+      "hit": 5,
+      "pct": 62.5,
+      "threshold": 1.5
+    },
+    {
+      "n": 7,
+      "hit": 5,
+      "pct": 71.4,
+      "threshold": 2.0
+    }
+  ],
+  "baseline_no_move": {
+    "n": 52,
+    "home_cover": 30,
+    "home_cover_pct": 57.7
+  },
+  "headline": {
+    "claim": "Large spread moves (>=2.0 pts) followed the cover direction 71.4% (5/7); small moves were noise.",
+    "status": "observe-only",
+    "min_n_to_size": 30
+  }
+}
