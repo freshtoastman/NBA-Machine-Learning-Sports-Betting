@@ -402,6 +402,29 @@ def load_bracket() -> dict | None:
         return None
 
 
+def get_offseason_champion(bracket: dict | None) -> dict | None:
+    """Return the finals champion (side that reached >=4 wins) for the
+    off-season celebration banner, or None if the finals aren't decided.
+    Callers gate this on an actual off-season window so it never shows
+    mid-series."""
+    if not bracket:
+        return None
+    finals = bracket.get("finals") or {}
+    high = finals.get("high") or {}
+    low = finals.get("low") or {}
+    hw = finals.get("high_wins") or 0
+    lw = finals.get("low_wins") or 0
+    if max(hw, lw) < 4:
+        return None
+    champ, champ_w, lose_w = (high, hw, lw) if hw >= 4 else (low, lw, hw)
+    return {
+        "team_zh": champ.get("team_zh") or champ.get("team"),
+        "logo": champ.get("logo"),
+        "seed": champ.get("seed"),
+        "record": f"{champ_w}-{lose_w}",
+    }
+
+
 def bracket_in_window(bracket: dict | None, today_: date) -> bool:
     """True if today falls inside bracket's show_from..show_until window."""
     if not bracket:
@@ -509,6 +532,12 @@ def index():
     # the playoff bracket window is active — treat it as "playoffs launching".
     if show_bracket_banner and no_games_today and not request.args.get("nobracket"):
         return redirect(url_for("bracket"))
+    # Off-season celebration: when today has no games AND the last exported
+    # game day is >20 days back (true off-season gap, not an in-season off-day),
+    # surface the reigning champion. Auto-clears once next season's JSONs export.
+    off_season_champion = None
+    if no_games_today and (today - selected_date).days > 20:
+        off_season_champion = get_offseason_champion(bracket_data)
     games = data.get("games", {}) if data else {}
     summary = data.get("summary", {"games": 0}) if data else {"games": 0}
     active_series = data.get("active_series", []) if data else []
@@ -568,6 +597,7 @@ def index():
         active_series=active_series,
         is_playoff_view=is_playoff_view,
         show_bracket_banner=show_bracket_banner,
+        off_season_champion=off_season_champion,
         bracket_playoff_start=(bracket_data or {}).get("playoff_start"),
         bracket_stage=(bracket_data or {}).get("stage"),
         weekly_golden=load_weekly_golden(today),

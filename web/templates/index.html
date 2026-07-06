@@ -32,6 +32,18 @@
         </header>
 
         <section class="dashboard">
+            {% if off_season_champion %}
+            <a href="{{ url_for('bracket') }}" class="no-games-banner champ-banner" style="display:flex;text-decoration:none;color:inherit;background:linear-gradient(90deg,#2a2410,#1a1f2b);border:1px solid #b8860b;">
+                <div class="no-games-icon">🏆</div>
+                <div class="no-games-text" style="flex:1;">
+                    <strong>{{ season_key }} 賽季總冠軍 · {{ off_season_champion.team_zh }}</strong>
+                    <span>系列賽 {{ off_season_champion.record }} 奪冠 · 賽季已結束，休賽期中 — 點此查看完整季後賽對戰圖與策略回顧 →</span>
+                </div>
+                {% if off_season_champion.logo %}
+                <img src="{{ off_season_champion.logo }}" alt="{{ off_season_champion.team_zh }}" style="height:52px;width:auto;margin-left:auto;align-self:center;">
+                {% endif %}
+            </a>
+            {% endif %}
             {% if show_bracket_banner %}
             <a href="{{ url_for('bracket') }}" class="no-games-banner" style="display:flex;text-decoration:none;color:inherit;background:linear-gradient(90deg,#1f2c1f,#1a1f2b);border:1px solid #3a5a3a;">
                 <div class="no-games-icon">🏆</div>
