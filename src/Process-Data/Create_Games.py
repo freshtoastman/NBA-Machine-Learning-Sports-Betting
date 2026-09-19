@@ -54,6 +54,7 @@ TEAM_INDEX_BY_SEASON = {
     "2023-24": team_index_current,
     "2024-25": team_index_current,
     "2025-26": team_index_current,
+    "2026-27": team_index_current,
 }
 
 
