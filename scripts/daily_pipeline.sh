@@ -66,8 +66,17 @@ else
     git add web/data/
     git commit -m "daily update $(date +%Y-%m-%d)
 
-Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
-    run_step "Git_Push" git push
+Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
+    # launchd cannot unlock the macOS Keychain, so the HTTPS osxkeychain helper
+    # fails with "Device not configured" (-25320). Push over SSH with a dedicated
+    # passphrase-less deploy key when it exists; fall back to plain push otherwise.
+    DEPLOY_KEY="$HOME/.ssh/nba-ml-deploy"
+    if [ -f "$DEPLOY_KEY" ]; then
+        export GIT_SSH_COMMAND="ssh -F /dev/null -i $DEPLOY_KEY -o IdentitiesOnly=yes -o BatchMode=yes -o UserKnownHostsFile=$HOME/.ssh/nba-ml-known_hosts -o StrictHostKeyChecking=accept-new"
+        run_step "Git_Push" git push git@github.com:freshtoastman/NBA-Machine-Learning-Sports-Betting.git HEAD:master
+    else
+        run_step "Git_Push" git push
+    fi
 fi
 
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') daily_pipeline OK =====" >> "$LOG_FILE"

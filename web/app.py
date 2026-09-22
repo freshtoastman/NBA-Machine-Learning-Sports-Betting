@@ -301,11 +301,18 @@ def today_taipei():
     return datetime.now(TAIPEI_TZ).date()
 
 
+def default_season(d=None):
+    """NBA season key for a date: Oct-Dec -> 'YYYY-(YY+1)', Jan-Sep -> '(YYYY-1)-YY'."""
+    d = d or today_taipei()
+    start = d.year if d.month >= 10 else d.year - 1
+    return f"{start}-{str(start + 1)[-2:]}"
+
+
 def load_dates_index():
     p = DATA_DIR / "dates.json"
     if p.exists():
         return json.loads(p.read_text(encoding="utf-8"))
-    return {"dates": [], "today": date.today().isoformat(), "season": "2025-26"}
+    return {"dates": [], "today": today_taipei().isoformat(), "season": default_season()}
 
 
 def load_date_data(iso_date: str) -> dict | None:
@@ -592,7 +599,7 @@ def index():
         no_games_today=no_games_today,
         date_chips=build_date_chips(selected_date),
         summary=summary,
-        season_key=idx.get("season", "2025-26"),
+        season_key=idx.get("season", default_season()),
         season_stats=season_stats,
         active_series=active_series,
         is_playoff_view=is_playoff_view,
@@ -1467,11 +1474,11 @@ def api_h2h():
     Query params:
       home: home team name (English)
       away: away team name (English)
-      season: season string, default "2025-26"
+      season: season string, default = current season
     """
     home = request.args.get("home", "").strip()
     away = request.args.get("away", "").strip()
-    season = request.args.get("season", "2025-26")
+    season = request.args.get("season", default_season())
 
     if not home or not away:
         return jsonify({"error": "Missing home or away parameter"}), 400
