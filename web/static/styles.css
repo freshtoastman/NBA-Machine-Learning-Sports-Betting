@@ -4603,3 +4603,37 @@ h3 {
         padding: 6px 10px;
     }
 }
+
+/* ── Preseason team preview (offseason only) ── */
+.pre-wrap { background: var(--bg-alt); border: 1px solid #243046; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.pre-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 10px; }
+.pre-title { display: flex; flex-direction: column; gap: 3px; }
+.pre-title strong { font-size: 15px; color: var(--text); }
+.pre-sub, .pre-legend { font-size: 11px; color: var(--muted); }
+.pre-conf { font-size: 13px; font-weight: 700; color: #c0d8ff; margin: 12px 0 6px; display: flex; gap: 10px; align-items: baseline; }
+.pre-conf span { font-size: 10px; font-weight: 400; color: var(--muted); }
+.pre-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.pre-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 640px; }
+.pre-table th { text-align: left; font-size: 10px; font-weight: 600; color: #6b8fb5; padding: 4px 6px; border-bottom: 1px solid #243046; white-space: nowrap; }
+.pre-table td { padding: 6px; border-bottom: 1px solid #1a2233; vertical-align: middle; white-space: nowrap; }
+.pre-row { cursor: pointer; }
+.pre-row:hover, .pre-row.open { background: rgba(47, 124, 246, 0.08); }
+.pre-team { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text); }
+.pre-team img { width: 22px; height: 22px; object-fit: contain; }
+.pre-rec small { display: block; font-size: 10px; color: var(--muted); font-weight: 400; }
+.pre-ats { color: #9fb3d9; font-variant-numeric: tabular-nums; }
+.pre-num { font-variant-numeric: tabular-nums; font-weight: 600; }
+.pre-up { color: #4fd18b; } .pre-down { color: #f0705a; }
+.pre-grade { color: #c0d8ff; }
+.pre-churn { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px; border: 1px solid; }
+.pre-churn-high { color: #f0705a; border-color: #f0705a55; background: #f0705a14; }
+.pre-churn-medium { color: #f5c04f; border-color: #f5c04f55; background: #f5c04f14; }
+.pre-churn-low { color: #4fd18b; border-color: #4fd18b55; background: #4fd18b14; }
+.pre-detail { display: none; }
+.pre-detail.open { display: table-row; }
+.pre-detail td { white-space: normal; background: #0d1422; font-size: 12px; line-height: 1.55; color: #c9d3ea; padding: 10px 12px 12px; }
+.pre-detail td > div { margin-bottom: 4px; }
+.pre-detail b { display: inline-block; min-width: 56px; color: #6b8fb5; font-weight: 600; margin-right: 6px; }
+.pre-angle { color: #dfe9ff; border-left: 2px solid var(--accent); padding-left: 8px; margin-top: 6px; }
+.pre-foot { font-size: 11px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+@media (max-width: 640px) { .pre-wrap { padding: 12px; } .pre-table { font-size: 11px; } }

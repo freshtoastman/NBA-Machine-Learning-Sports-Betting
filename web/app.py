@@ -409,6 +409,19 @@ def load_bracket() -> dict | None:
         return None
 
 
+def load_preseason_preview() -> dict | None:
+    """Offseason team preview (web/data/preseason_<season>.json), built by
+    scripts/build_preseason_preview.py. Only shown while the champion banner
+    is up, i.e. between the Finals and the next season's first export."""
+    p = DATA_DIR / f"preseason_{default_season(today_taipei() + timedelta(days=60))}.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
 def get_offseason_champion(bracket: dict | None) -> dict | None:
     """Return the finals champion (side that reached >=4 wins) for the
     off-season celebration banner, or None if the finals aren't decided.
@@ -545,6 +558,7 @@ def index():
     off_season_champion = None
     if no_games_today and (today - selected_date).days > 20:
         off_season_champion = get_offseason_champion(bracket_data)
+    preseason = load_preseason_preview() if off_season_champion else None
     games = data.get("games", {}) if data else {}
     summary = data.get("summary", {"games": 0}) if data else {"games": 0}
     active_series = data.get("active_series", []) if data else []
@@ -600,6 +614,7 @@ def index():
         date_chips=build_date_chips(selected_date),
         summary=summary,
         season_key=idx.get("season", default_season()),
+        preseason=preseason,
         season_stats=season_stats,
         active_series=active_series,
         is_playoff_view=is_playoff_view,

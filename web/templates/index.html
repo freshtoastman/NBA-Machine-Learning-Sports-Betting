@@ -44,6 +44,56 @@
                 {% endif %}
             </a>
             {% endif %}
+            {% if preseason %}
+            <section class="pre-wrap">
+                <div class="pre-head">
+                    <div class="pre-title">
+                        <strong>🔭 {{ preseason.season }} 開季前瞻 · 30 隊狀況</strong>
+                        <span class="pre-sub">上季戰績與 ATS 側寫 × 休賽季異動 × 勝場盤（BetMGM）× 冠軍賠率 · 更新 {{ preseason.generated }}</span>
+                    </div>
+                    <div class="pre-legend">
+                        上季聯盟基準：主隊過盤 {{ (preseason.league_last_season.home_cover_pct * 100) | round(1) }}% · 讓分方過盤 {{ (preseason.league_last_season.favorite_cover_pct * 100) | round(1) }}% · 大分 {{ (preseason.league_last_season.over_pct * 100) | round(1) }}%
+                    </div>
+                </div>
+                {% for conf, conf_zh in [('East', '東區'), ('West', '西區')] %}
+                <div class="pre-conf">{{ conf_zh }}<span>依勝場盤排序 · 點擊展開</span></div>
+                <div class="pre-scroll">
+                <table class="pre-table">
+                    <thead><tr>
+                        <th>球隊</th><th>上季</th><th>ATS 主 / 客</th><th>勝場盤</th><th>Δ上季</th><th>冠軍</th><th>評分 ESPN/CBS</th><th>異動</th>
+                    </tr></thead>
+                    <tbody>
+                    {% for t in preseason.order_by_win_total %}{% set d = preseason.teams[t] %}{% if d.conference == conf %}
+                    <tr class="pre-row" onclick="preToggle(this)">
+                        <td class="pre-team"><img src="{{ d.logo }}" alt="" loading="lazy"><span>{{ d.team_zh }}</span></td>
+                        <td class="pre-rec">{{ d.last_season.record }}<small>{{ d.last_season.playoff_result }}</small></td>
+                        <td class="pre-ats">{{ d.last_season.ats_home }} / {{ d.last_season.ats_away }}</td>
+                        <td class="pre-num">{{ d.market.win_total }}</td>
+                        <td class="pre-num {{ 'pre-up' if d.market.win_total_delta > 0 else 'pre-down' }}">{{ '%+.1f' | format(d.market.win_total_delta) }}</td>
+                        <td class="pre-num">{{ d.market.title_odds or '—' }}</td>
+                        <td class="pre-grade">{{ d.offseason.grade_espn or '—' }} / {{ d.offseason.grade_cbs or '—' }}</td>
+                        <td><span class="pre-churn pre-churn-{{ d.offseason.roster_churn }}">{{ {'high': '大', 'medium': '中', 'low': '小'}[d.offseason.roster_churn] }}</span></td>
+                    </tr>
+                    <tr class="pre-detail"><td colspan="8">
+                        <div><b>補進</b>{{ d.offseason.adds }}</div>
+                        <div><b>流失</b>{{ d.offseason.departs }}</div>
+                        {% if d.offseason.injury %}<div><b>傷兵</b>{{ d.offseason.injury }}</div>{% endif %}
+                        {% if d.offseason.new_coach %}<div><b>新教練</b>{{ d.offseason.new_coach }}</div>{% endif %}
+                        <div><b>狀況</b>{{ d.outlook }}</div>
+                        <div class="pre-angle"><b>ATS 角度</b>{{ d.ats_angle }}</div>
+                    </td></tr>
+                    {% endif %}{% endfor %}
+                    </tbody>
+                </table>
+                </div>
+                {% endfor %}
+                <div class="pre-foot">
+                    <b>模型提醒：</b>異動「大」的球隊在開季前 12 場，模型特徵仍以上季為主，ATS 信號門檻建議由 8% / 9% 提高至 12% / 13%。
+                    Δ上季 = 勝場盤 − 上季勝場，代表市場對該隊的重新定價幅度。
+                </div>
+            </section>
+            <script>function preToggle(tr){var d=tr.nextElementSibling;if(d){d.classList.toggle('open');tr.classList.toggle('open');}}</script>
+            {% endif %}
             {% if show_bracket_banner %}
             <a href="{{ url_for('bracket') }}" class="no-games-banner" style="display:flex;text-decoration:none;color:inherit;background:linear-gradient(90deg,#1f2c1f,#1a1f2b);border:1px solid #3a5a3a;">
                 <div class="no-games-icon">🏆</div>
