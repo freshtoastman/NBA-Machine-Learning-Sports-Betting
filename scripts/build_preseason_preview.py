@@ -194,7 +194,7 @@ def write_md(data: dict, path: Path) -> None:
     A("")
     A("- **LeBron James → PHI、Jaylen Brown → PHI**：76 人從 60-1 變 +900，與衛冕軍 NYK 並列東區前二。")
     A("- **Giannis → MIA**（6/22）：熱火付出 Herro / Jaquez / Ware / Jakučionis；公鹿失去核心，勝場盤只剩 26.5。")
-    A("- **Kawhi → TOR、LaMelo → MIN、Ja Morant → POR、Walker Kessler → LAL**：四筆換核心交易，全部造成模型特徵過時。")
+    A("- **Kawhi → TOR（9/14 完成；LAC 因 Aspiration 案遭罰 $30M、沒收五個首輪籤）、LaMelo → MIN、Ja Morant → POR、Walker Kessler → LAL**：四筆換核心交易，全部造成模型特徵過時。")
     A("- **OKC 為脫離第二豪華稅線送走 Dort / Wiggins / Joe**，深度下降但仍是共同冠軍熱門 +270（與 SAS 並列）。")
     A("- **六隊換教練**：MIL（Taylor Jenkins）、POR（Micah Nori）、DAL（Dusty May）、CHI（Tiago Splitter）、NOP（Jamahl Mosley）、ORL（Sean Sweeney）。")
     A("- **重要傷兵回歸**：Haliburton（IND）、Lillard（POR）、Kyrie（DAL）、VanVleet（HOU）、Dejounte Murray（NOP）；Jimmy Butler（GSW）最快 1–2 月。")
@@ -263,7 +263,7 @@ def write_md(data: dict, path: Path) -> None:
         "Minnesota Timberwolves": "換掉 Randle / Reid，方向不明，信號降權",
         "Charlotte Hornets": "上季 ATS 最佳但失去 LaMelo，模型會**高估** CHA",
         "LA Clippers": "失去 Kawhi 進入重建，模型會**高估** LAC",
-        "Toronto Raptors": "加 Kawhi（若交易完成），模型會**低估** TOR；輪休場次需即時抓",
+        "Toronto Raptors": "加 Kawhi（交易已完成），模型會**低估** TOR；輪休場次需即時抓",
         "Portland Trail Blazers": "Morant + Lillard 加入但兼容性未知，信號降權",
         "Los Angeles Lakers": "失去 LeBron，模型會**高估** LAL",
         "Washington Wizards": "17 勝隊加 Trae / AD / Dybantsa / Ayton，模型會**嚴重高估對手讓分**",

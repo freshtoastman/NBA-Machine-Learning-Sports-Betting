@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-09-22（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-09-24（開季 2026-10-20 前 4 週）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -18,7 +18,7 @@
 
 - **LeBron James → PHI、Jaylen Brown → PHI**：76 人從 60-1 變 +900，與衛冕軍 NYK 並列東區前二。
 - **Giannis → MIA**（6/22）：熱火付出 Herro / Jaquez / Ware / Jakučionis；公鹿失去核心，勝場盤只剩 26.5。
-- **Kawhi → TOR、LaMelo → MIN、Ja Morant → POR、Walker Kessler → LAL**：四筆換核心交易，全部造成模型特徵過時。
+- **Kawhi → TOR（9/14 完成；LAC 因 Aspiration 案遭罰 $30M、沒收五個首輪籤）、LaMelo → MIN、Ja Morant → POR、Walker Kessler → LAL**：四筆換核心交易，全部造成模型特徵過時。
 - **OKC 為脫離第二豪華稅線送走 Dort / Wiggins / Joe**，深度下降但仍是共同冠軍熱門 +270（與 SAS 並列）。
 - **六隊換教練**：MIL（Taylor Jenkins）、POR（Micah Nori）、DAL（Dusty May）、CHI（Tiago Splitter）、NOP（Jamahl Mosley）、ORL（Sean Sweeney）。
 - **重要傷兵回歸**：Haliburton（IND）、Lillard（POR）、Kyrie（DAL）、VanVleet（HOU）、Dejounte Murray（NOP）；Jimmy Butler（GSW）最快 1–2 月。
@@ -127,7 +127,7 @@
 |---|---|---|
 | 波士頓塞爾提克 | Jaylen Brown（交易至 PHI）、Nikola Vučević… → Paul George（Brown 交易）、Mitchell Robinson（… | Brown → George，方向略負，信號降權 |
 | 夏洛特黃蜂 | LaMelo Ball（交易至 MIN）、Miles Bridges… → Dorian Finney-Smith、Naz Reid、Dennis Schr… | 上季 ATS 最佳但失去 LaMelo，模型會**高估** CHA |
-| 洛杉磯快艇 | Kawhi Leonard（交易至 TOR，仍待聯盟 Aspiration 調查… → Brandon Ingram、Gradey Dick（Kawhi 交易）、Max… | 失去 Kawhi 進入重建，模型會**高估** LAC |
+| 洛杉磯快艇 | Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspirati… → Brandon Ingram、Gradey Dick（Kawhi 交易）、Max… | 失去 Kawhi 進入重建，模型會**高估** LAC |
 | 洛杉磯湖人 | LeBron James（PHI）、Deandre Ayton、Rui Hach… → Walker Kessler（sign-and-trade，4 年 $130M）… | 失去 LeBron，模型會**高估** LAL |
 | 曼菲斯灰熊 | Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）… → #3 Cameron Boozer、Isaiah Stewart、Jerami … | 失去 Morant 但上季 Morant 只打 20 場，偏差有限 |
 | 邁阿密熱火 | Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware… → Giannis Antetokounmpo（交易，6/22）、Klay Thom… | 上季 43 勝，加 Giannis 後模型會**低估** MIA 常規賽 |
@@ -135,7 +135,7 @@
 | 明尼蘇達灰狼 | Julius Randle、Naz Reid、Mike Conley、Kyle … → LaMelo Ball（4 隊交易）、Jonathan Kuminga、Cody… | 換掉 Randle / Reid，方向不明，信號降權 |
 | 費城七六人 | Paul George、兩個首輪籤、Grimes、Oubre、Drummond、… → LeBron James（2 年）、Jaylen Brown（交易）、Dean … | 上季 45 勝 → 本季應為 50+，模型會**低估** PHI |
 | 波特蘭拓荒者 | Jerami Grant、Kris Murray、Matisse Thybull… → Ja Morant（交易）、Jeremy Sochan、Robert Willi… | Morant + Lillard 加入但兼容性未知，信號降權 |
-| 多倫多暴龍 | Brandon Ingram、Gradey Dick、Mamukelashvil… → Kawhi Leonard（交易，待聯盟調查結案）、Kyle Anderson… | 加 Kawhi（若交易完成），模型會**低估** TOR；輪休場次需即時抓 |
+| 多倫多暴龍 | Brandon Ingram、Gradey Dick、Mamukelashvil… → Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderso… | 加 Kawhi（交易已完成），模型會**低估** TOR；輪休場次需即時抓 |
 | 華盛頓巫師 | D'Angelo Russell、Jaden Hardy、Cam Whitmor… → #1 AJ Dybantsa、Deandre Ayton（交易）、Khris M… | 17 勝隊加 Trae / AD / Dybantsa / Ayton，模型會**嚴重高估對手讓分** |
 
 **執行規則（建議寫入模型的季初抑制）：**
@@ -214,10 +214,10 @@
 - **上季**：46-36（主 24-17 / 客 22-19），淨效率 +2.9（第 11），ATS 44-0-38（主 22-0-19 / 客 22-0-19），首輪敗，季後賽 3-4、ATS 4-0-3。
 - **市場**：勝場盤 45.5（相對上季 -0.5），冠軍賠率 +2500，分層「季後賽邊緣」。
 - **休賽季評分**：ESPN Incomplete / CBS B-；陣容變動：high。
-- **補進**：Kawhi Leonard（交易，待聯盟調查結案）、Kyle Anderson
+- **補進**：Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderson
 - **流失**：Brandon Ingram、Gradey Dick、Mamukelashvili
-- **傷兵**：Kawhi Leonard 歷年出賽率低，交易本身受 Aspiration 調查影響
-- **狀況**：若 Kawhi 健康，有機會爭東區；但板凳因交易變薄，且交易能否完成仍有變數。勝場盤 45.5，冠軍 25-1。
+- **傷兵**：Kawhi Leonard 歷年出賽率低；交易已於 9/14 完成，不再有交易變數
+- **狀況**：若 Kawhi 健康，有機會爭東區；但板凳因交易變薄。勝場盤 45.5，冠軍 25-1。
 - **ATS 角度**：Kawhi 輪休場次是最大 ATS 變數；模型需在盤口出現異常移動（≥2 分）時優先標記。
 
 #### 印第安納溜馬（Indiana Pacers）
@@ -438,9 +438,9 @@
 - **市場**：勝場盤 28.5（相對上季 -13.5），分層「重建 / 擺爛」。
 - **休賽季評分**：ESPN Incomplete / CBS A-；陣容變動：high。
 - **補進**：Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal
-- **流失**：Kawhi Leonard（交易至 TOR，仍待聯盟 Aspiration 調查）、John Collins、Bogdanović、Mathurin
+- **流失**：Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin
 - **狀況**：正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合。
-- **ATS 角度**：重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。
+- **ATS 角度**：重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。注意：2029–33 首輪籤全數沒收，LAC 沒有擺爛誘因，下半季不宜套用「重建隊尾盤崩盤」假設。
 
 #### 曼菲斯灰熊（Memphis Grizzlies）
 

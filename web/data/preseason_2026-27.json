@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-09-22",
+ "generated": "2026-09-24",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -616,13 +616,13 @@
     "grade_espn": "Incomplete",
     "grade_cbs": "A-",
     "adds": "Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal",
-    "departs": "Kawhi Leonard（交易至 TOR，仍待聯盟 Aspiration 調查）、John Collins、Bogdanović、Mathurin",
+    "departs": "Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin",
     "injury": "",
     "new_coach": null,
     "roster_churn": "high"
    },
    "outlook": "正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合。",
-   "ats_angle": "重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。"
+   "ats_angle": "重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。注意：2029–33 首輪籤全數沒收，LAC 沒有擺爛誘因，下半季不宜套用「重建隊尾盤崩盤」假設。"
   },
   "Los Angeles Lakers": {
    "team": "Los Angeles Lakers",
@@ -1275,13 +1275,13 @@
    "offseason": {
     "grade_espn": "Incomplete",
     "grade_cbs": "B-",
-    "adds": "Kawhi Leonard（交易，待聯盟調查結案）、Kyle Anderson",
+    "adds": "Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderson",
     "departs": "Brandon Ingram、Gradey Dick、Mamukelashvili",
-    "injury": "Kawhi Leonard 歷年出賽率低，交易本身受 Aspiration 調查影響",
+    "injury": "Kawhi Leonard 歷年出賽率低；交易已於 9/14 完成，不再有交易變數",
     "new_coach": null,
     "roster_churn": "high"
    },
-   "outlook": "若 Kawhi 健康，有機會爭東區；但板凳因交易變薄，且交易能否完成仍有變數。勝場盤 45.5，冠軍 25-1。",
+   "outlook": "若 Kawhi 健康，有機會爭東區；但板凳因交易變薄。勝場盤 45.5，冠軍 25-1。",
    "ats_angle": "Kawhi 輪休場次是最大 ATS 變數；模型需在盤口出現異常移動（≥2 分）時優先標記。"
   },
   "Utah Jazz": {
