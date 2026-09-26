@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-09-24",
+ "generated": "2026-09-26",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -87,9 +87,9 @@
    "offseason": {
     "grade_espn": "A-",
     "grade_cbs": "B-",
-    "adds": "Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Ryan Nembhard、Devin Carter；續約 CJ McCollum",
-    "departs": "Zaccharie Risacher、Jonathan Kuminga",
-    "injury": "",
+    "adds": "Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Devin Carter、Dorian Finney-Smith（9/23 自 CHA 交易）；續約 CJ McCollum",
+    "departs": "Zaccharie Risacher、Jonathan Kuminga、Buddy Hield、Ryan Nembhard（9/23 交易至 CHA）",
+    "injury": "新秀替補中鋒 Henri Veesaar ACL 撕裂（9/22），賽季報銷；補進 Finney-Smith 補前場深度",
     "new_coach": null,
     "roster_churn": "medium"
    },
@@ -219,9 +219,9 @@
    "offseason": {
     "grade_espn": "A-",
     "grade_cbs": "A",
-    "adds": "Dorian Finney-Smith、Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale；#14 Hannes Steinbach；續約 Coby White",
-    "departs": "LaMelo Ball（交易至 MIN）、Miles Bridges",
-    "injury": "",
+    "adds": "Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Buddy Hield、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White",
+    "departs": "LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）",
+    "injury": "Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑",
     "new_coach": null,
     "roster_churn": "high"
    },
@@ -351,9 +351,9 @@
    "offseason": {
     "grade_espn": "B-",
     "grade_cbs": "C",
-    "adds": "Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.；新教練 Dusty May",
+    "adds": "Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May",
     "departs": "Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III",
-    "injury": "Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼",
+    "injury": "Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）",
     "new_coach": "Dusty May（自 Michigan 轉任）",
     "roster_churn": "medium"
    },
@@ -703,8 +703,8 @@
    "offseason": {
     "grade_espn": "B",
     "grade_cbs": "B-",
-    "adds": "#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、D'Angelo Russell、Quinten Post、Kris Murray",
-    "departs": "Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）",
+    "adds": "#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray",
+    "departs": "Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）",
     "injury": "Zach Edey 左腳踝 9 個月內第二次手術，預計開季可上",
     "new_coach": null,
     "roster_churn": "high"

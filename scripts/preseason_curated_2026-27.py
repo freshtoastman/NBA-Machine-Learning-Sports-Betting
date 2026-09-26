@@ -1,6 +1,6 @@
 # Curated 2026 offseason data per team (sources: NBA.com offseason deals, ESPN/CBS grades,
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
-# Fetched 2026-09-22.
+# Fetched 2026-09-22; roster moves updated 2026-09-26 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -46,9 +46,9 @@ CONF = {
 # grade: (ESPN, CBS)  adds / departs: key names  injury: notes  outlook: zh summary  ats_angle: betting-model angle
 TEAMS = {
     "Atlanta Hawks": dict(grade=("A-", "B-"),
-        adds="Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Ryan Nembhard、Devin Carter；續約 CJ McCollum",
-        departs="Zaccharie Risacher、Jonathan Kuminga",
-        injury="",
+        adds="Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Devin Carter、Dorian Finney-Smith（9/23 自 CHA 交易）；續約 CJ McCollum",
+        departs="Zaccharie Risacher、Jonathan Kuminga、Buddy Hield、Ryan Nembhard（9/23 交易至 CHA）",
+        injury="新秀替補中鋒 Henri Veesaar ACL 撕裂（9/22），賽季報銷；補進 Finney-Smith 補前場深度",
         outlook="沒付出首輪籤就補進兩名 OKC 冠軍輪替側翼，防守深度大幅升級；Trae Young 已於上季被傾倒至 WAS，球隊改以 Jalen Johnson + 側翼防守為主軸，Nickeil Alexander-Walker 續進步。",
         ats_angle="防守型補強通常在球季前段被市場低估，10–12 月主場受讓盤值得觀察。"),
     "Boston Celtics": dict(grade=("C-", "C-"),
@@ -64,9 +64,9 @@ TEAMS = {
         outlook="上季 20 勝球隊補進 Randle，但沒有長期方向；勝場盤 22.5 是聯盟倒數第二。",
         ats_angle="爛隊受讓早季常過盤（市場低估 Randle 的常規賽產出），但 3 月後擺爛風險高，需配合模型的時間抑制。"),
     "Charlotte Hornets": dict(grade=("A-", "A"),
-        adds="Dorian Finney-Smith、Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale；#14 Hannes Steinbach；續約 Coby White",
-        departs="LaMelo Ball（交易至 MIN）、Miles Bridges",
-        injury="",
+        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Buddy Hield、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White",
+        departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）",
+        injury="Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑",
         outlook="賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。",
         ats_angle="老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。"),
     "Chicago Bulls": dict(grade=("C+", "C"),
@@ -82,9 +82,9 @@ TEAMS = {
         outlook="等 LeBron 等到空，防守深度反而流失；東決被橫掃後沒有明確補強，士氣與季中交易風險並存。勝場盤 47.5。",
         ats_angle="上季 CLE 常規賽強、季後賽弱；早季主場讓分仍可跟，但 2 月後若傳出交易傳聞，模型信號需降權。"),
     "Dallas Mavericks": dict(grade=("B-", "C"),
-        adds="Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.；新教練 Dusty May",
+        adds="Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May",
         departs="Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III",
-        injury="Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼",
+        injury="Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）",
         outlook="圍繞 Cooper Flagg 囤積前鋒，後場只剩 Kyrie 撐；新教練體系需要磨合期。勝場盤 34.5 明顯低於部分模型（37.5）。",
         ats_angle="Flagg 第二年的成長是市場最可能低估的變數；11 月後若 Kyrie 健康，主場受讓有價值。"),
     "Denver Nuggets": dict(grade=("C", None),
@@ -130,8 +130,8 @@ TEAMS = {
         outlook="後 LeBron 時代由 Luka + Reaves 主導，補進 Kessler 補籃板，但前鋒群薄弱、選秀資產耗盡。勝場盤 45.5。",
         ats_angle="Luka 主導的球隊上季得分王但季後賽失利；市場對 LAL 的「豪門溢價」仍在，客場讓分方 LAL 是歷來負 EV 之一，維持過濾。"),
     "Memphis Grizzlies": dict(grade=("B", "B-"),
-        adds="#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、D'Angelo Russell、Quinten Post、Kris Murray",
-        departs="Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）",
+        adds="#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray",
+        departs="Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）",
         injury="Zach Edey 左腳踝 9 個月內第二次手術，預計開季可上",
         outlook="送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。",
         ats_angle="年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。"),

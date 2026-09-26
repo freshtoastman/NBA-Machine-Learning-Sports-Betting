@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-09-24（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-09-26（開季 2026-10-20 前 4 週）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -126,10 +126,10 @@
 | 隊伍 | 變動 | 特徵偏差方向 |
 |---|---|---|
 | 波士頓塞爾提克 | Jaylen Brown（交易至 PHI）、Nikola Vučević… → Paul George（Brown 交易）、Mitchell Robinson（… | Brown → George，方向略負，信號降權 |
-| 夏洛特黃蜂 | LaMelo Ball（交易至 MIN）、Miles Bridges… → Dorian Finney-Smith、Naz Reid、Dennis Schr… | 上季 ATS 最佳但失去 LaMelo，模型會**高估** CHA |
+| 夏洛特黃蜂 | LaMelo Ball（交易至 MIN）、Miles Bridges、Doria… → Naz Reid、Dennis Schröder、Grayson Allen、R… | 上季 ATS 最佳但失去 LaMelo，模型會**高估** CHA |
 | 洛杉磯快艇 | Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspirati… → Brandon Ingram、Gradey Dick（Kawhi 交易）、Max… | 失去 Kawhi 進入重建，模型會**高估** LAC |
 | 洛杉磯湖人 | LeBron James（PHI）、Deandre Ayton、Rui Hach… → Walker Kessler（sign-and-trade，4 年 $130M）… | 失去 LeBron，模型會**高估** LAL |
-| 曼菲斯灰熊 | Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）… → #3 Cameron Boozer、Isaiah Stewart、Jerami … | 失去 Morant 但上季 Morant 只打 20 場，偏差有限 |
+| 曼菲斯灰熊 | Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、… → #3 Cameron Boozer、Isaiah Stewart、Jerami … | 失去 Morant 但上季 Morant 只打 20 場，偏差有限 |
 | 邁阿密熱火 | Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware… → Giannis Antetokounmpo（交易，6/22）、Klay Thom… | 上季 43 勝，加 Giannis 後模型會**低估** MIA 常規賽 |
 | 密爾瓦基公鹿 | Giannis Antetokounmpo、Bobby Portis、Gary … → Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware… | 上季 32 勝含半季 Giannis，模型會**高估** MIL |
 | 明尼蘇達灰狼 | Julius Randle、Naz Reid、Mike Conley、Kyle … → LaMelo Ball（4 隊交易）、Jonathan Kuminga、Cody… | 換掉 Randle / Reid，方向不明，信號降權 |
@@ -236,8 +236,9 @@
 - **上季**：46-36（主 24-17 / 客 22-19），淨效率 +2.2（第 12），ATS 43-0-39（主 20-0-21 / 客 23-0-18），首輪敗，季後賽 2-4、ATS 2-0-4。
 - **市場**：勝場盤 43.5（相對上季 -2.5），分層「季後賽邊緣」。
 - **休賽季評分**：ESPN A- / CBS B-；陣容變動：medium。
-- **補進**：Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Ryan Nembhard、Devin Carter；續約 CJ McCollum
-- **流失**：Zaccharie Risacher、Jonathan Kuminga
+- **補進**：Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Devin Carter、Dorian Finney-Smith（9/23 自 CHA 交易）；續約 CJ McCollum
+- **流失**：Zaccharie Risacher、Jonathan Kuminga、Buddy Hield、Ryan Nembhard（9/23 交易至 CHA）
+- **傷兵**：新秀替補中鋒 Henri Veesaar ACL 撕裂（9/22），賽季報銷；補進 Finney-Smith 補前場深度
 - **狀況**：沒付出首輪籤就補進兩名 OKC 冠軍輪替側翼，防守深度大幅升級；Trae Young 已於上季被傾倒至 WAS，球隊改以 Jalen Johnson + 側翼防守為主軸，Nickeil Alexander-Walker 續進步。
 - **ATS 角度**：防守型補強通常在球季前段被市場低估，10–12 月主場受讓盤值得觀察。
 
@@ -256,8 +257,9 @@
 - **上季**：44-38（主 21-20 / 客 23-18），淨效率 +4.9（第 8），ATS 51-0-31（主 26-0-15 / 客 25-0-16），附加賽出局。
 - **市場**：勝場盤 37.5（相對上季 -6.5），分層「附加賽以下」。
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
-- **補進**：Dorian Finney-Smith、Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale；#14 Hannes Steinbach；續約 Coby White
-- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges
+- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Buddy Hield、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White
+- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）
+- **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。
 - **ATS 角度**：老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。
 
@@ -415,9 +417,9 @@
 - **上季**：26-56（主 16-25 / 客 10-31），淨效率 -5.2（第 22），ATS 35-1-46（主 19-1-21 / 客 16-0-25），未進季後賽。
 - **市場**：勝場盤 34.5（相對上季 +8.5），分層「附加賽以下」。
 - **休賽季評分**：ESPN B- / CBS C；陣容變動：medium；新教練 Dusty May（自 Michigan 轉任）。
-- **補進**：Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.；新教練 Dusty May
+- **補進**：Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May
 - **流失**：Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III
-- **傷兵**：Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼
+- **傷兵**：Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）
 - **狀況**：圍繞 Cooper Flagg 囤積前鋒，後場只剩 Kyrie 撐；新教練體系需要磨合期。勝場盤 34.5 明顯低於部分模型（37.5）。
 - **ATS 角度**：Flagg 第二年的成長是市場最可能低估的變數；11 月後若 Kyrie 健康，主場受讓有價值。
 
@@ -447,8 +449,8 @@
 - **上季**：25-57（主 14-27 / 客 11-30），淨效率 -6.0（第 24），ATS 38-0-44（主 19-0-22 / 客 19-0-22），未進季後賽。
 - **市場**：勝場盤 28.5（相對上季 +3.5），分層「重建 / 擺爛」。
 - **休賽季評分**：ESPN B / CBS B-；陣容變動：high。
-- **補進**：#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、D'Angelo Russell、Quinten Post、Kris Murray
-- **流失**：Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）
+- **補進**：#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray
+- **流失**：Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）
 - **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，預計開季可上
 - **狀況**：送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。
 - **ATS 角度**：年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。
