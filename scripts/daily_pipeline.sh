@@ -73,7 +73,9 @@ Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
     DEPLOY_KEY="$HOME/.ssh/nba-ml-deploy"
     if [ -f "$DEPLOY_KEY" ]; then
         export GIT_SSH_COMMAND="ssh -F /dev/null -i $DEPLOY_KEY -o IdentitiesOnly=yes -o BatchMode=yes -o UserKnownHostsFile=$HOME/.ssh/nba-ml-known_hosts -o StrictHostKeyChecking=accept-new"
-        run_step "Git_Push" git push git@github.com:freshtoastman/NBA-Machine-Learning-Sports-Betting.git HEAD:master
+        # Push through the named remote (pushurl override) so refs/remotes/origin/master
+        # is updated; pushing to a raw URL leaves `git status` showing a phantom "ahead".
+        run_step "Git_Push" git -c remote.origin.pushurl=git@github.com:freshtoastman/NBA-Machine-Learning-Sports-Betting.git push origin HEAD:master
     else
         run_step "Git_Push" git push
     fi
