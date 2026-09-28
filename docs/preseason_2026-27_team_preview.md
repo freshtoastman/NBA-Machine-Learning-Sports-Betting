@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-09-26（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-09-28（開季 2026-10-20 前 4 週）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -257,8 +257,8 @@
 - **上季**：44-38（主 21-20 / 客 23-18），淨效率 +4.9（第 8），ATS 51-0-31（主 26-0-15 / 客 25-0-16），附加賽出局。
 - **市場**：勝場盤 37.5（相對上季 -6.5），分層「附加賽以下」。
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
-- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Buddy Hield、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White
-- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）
+- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）、Rob Dillingham（9/27 自 CHI 交易，2024 #8 籤、21 歲）；#14 Hannes Steinbach；續約 Coby White
+- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）
 - **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。
 - **ATS 角度**：老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。
@@ -279,8 +279,8 @@
 - **上季**：31-51（主 18-23 / 客 13-28），淨效率 -5.3（第 23），ATS 38-1-43（主 20-1-20 / 客 18-0-23），未進季後賽。
 - **市場**：勝場盤 27.5（相對上季 -3.5），分層「重建 / 擺爛」。
 - **休賽季評分**：ESPN C+ / CBS C；陣容變動：medium；新教練 Tiago Splitter。
-- **補進**：Nic Claxton、Norman Powell、#4 Caleb Wilson；續約 Zach Collins
-- **流失**：Collin Sexton、Anfernee Simons、Nick Richards
+- **補進**：Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins
+- **流失**：Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA）
 - **狀況**：新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。
 - **ATS 角度**：防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。
 

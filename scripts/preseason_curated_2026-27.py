@@ -1,6 +1,6 @@
 # Curated 2026 offseason data per team (sources: NBA.com offseason deals, ESPN/CBS grades,
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
-# Fetched 2026-09-22; roster moves updated 2026-09-26 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25).
+# Fetched 2026-09-22; roster moves updated 2026-09-28 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -64,14 +64,14 @@ TEAMS = {
         outlook="上季 20 勝球隊補進 Randle，但沒有長期方向；勝場盤 22.5 是聯盟倒數第二。",
         ats_angle="爛隊受讓早季常過盤（市場低估 Randle 的常規賽產出），但 3 月後擺爛風險高，需配合模型的時間抑制。"),
     "Charlotte Hornets": dict(grade=("A-", "A"),
-        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Buddy Hield、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White",
-        departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）",
+        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）、Rob Dillingham（9/27 自 CHI 交易，2024 #8 籤、21 歲）；#14 Hannes Steinbach；續約 Coby White",
+        departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）",
         injury="Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑",
         outlook="賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。",
         ats_angle="老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。"),
     "Chicago Bulls": dict(grade=("C+", "C"),
-        adds="Nic Claxton、Norman Powell、#4 Caleb Wilson；續約 Zach Collins",
-        departs="Collin Sexton、Anfernee Simons、Nick Richards",
+        adds="Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins",
+        departs="Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA）",
         injury="",
         outlook="新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。",
         ats_angle="防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。"),
