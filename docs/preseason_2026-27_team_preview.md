@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-09-28（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-09-29（開季 2026-10-20 前 4 週）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -175,8 +175,9 @@
 - **休賽季評分**：ESPN C- / CBS C+；陣容變動：medium。
 - **補進**：John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Ausar Thompson 5 年續約、Huerter 續約
 - **流失**：Isaiah Stewart、Tobias Harris、Caris LeVert
+- **傷兵**：Jalen Duren（RFA，上季 19.5 分 10.5 籃板、All-NBA 三隊）拒絕 5 年 $200M 報價、缺席 9/28 媒體日與訓練營開訓；10/1 為 $9.6M 一年 qualifying offer 期限，開幕戰出賽成疑
 - **狀況**：東區第一防守效率仍在，但沒找到 Cade 身邊的第二持球者；換掉三名老將換成三名角色球員，屬於平移。勝場盤 50.5，冠軍賠率 25-1。
-- **ATS 角度**：防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。
+- **ATS 角度**：防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 若持續 holdout 進入開季，DET 內線籃板與護框特徵全部失效，10 月信號降權處理。
 
 #### 費城七六人（Philadelphia 76ers）
 
@@ -376,9 +377,9 @@
 - **休賽季評分**：ESPN B- / CBS —；陣容變動：high；新教練 Micah Nori（接替 Chauncey Billups）。
 - **補進**：Ja Morant（交易）、Jeremy Sochan、Robert Williams III 續約；新教練 Micah Nori
 - **流失**：Jerami Grant、Kris Murray、Matisse Thybulle
-- **傷兵**：Ja Morant 左肘 UCL，訓練營狀態未定；Damian Lillard 阿基里斯腱康復，36 歲開季可上
+- **傷兵**：Shaedon Sharpe 右膝外側半月板撕裂（8 月訓練受傷、已手術），6 個月後（2027-02-24 起）再評估，至少缺前 59 場；Ja Morant 左肘 UCL，訓練營狀態未定；Damian Lillard 阿基里斯腱康復，36 歲開季可上
 - **狀況**：Morant + Lillard + Avdija + Clingan，四名後衛的兼容性是問題；新教練體系。勝場盤 43.5。
-- **ATS 角度**：Morant 早季可能缺陣 → 前 15 場盤口會混亂，模型應等傷兵穩定後再跟；Avdija 進步是 under-the-radar 變數。
+- **ATS 角度**：Sharpe 明星賽前報銷 + Morant 早季可能缺陣 → 前 15 場盤口會混亂，模型應等傷兵穩定後再跟；Avdija 進步是 under-the-radar 變數。
 
 #### 金州勇士（Golden State Warriors）
 
@@ -441,7 +442,8 @@
 - **休賽季評分**：ESPN Incomplete / CBS A-；陣容變動：high。
 - **補進**：Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal
 - **流失**：Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin
-- **狀況**：正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合。
+- **傷兵**：Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），開季缺陣、無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席
+- **狀況**：正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合，而且 Ingram 開季報銷、Beal 帶傷，10–11 月實際上只有 Garland 一名持球者。
 - **ATS 角度**：重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。注意：2029–33 首輪籤全數沒收，LAC 沒有擺爛誘因，下半季不宜套用「重建隊尾盤崩盤」假設。
 
 #### 曼菲斯灰熊（Memphis Grizzlies）

@@ -1,6 +1,7 @@
 # Curated 2026 offseason data per team (sources: NBA.com offseason deals, ESPN/CBS grades,
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
-# Fetched 2026-09-22; roster moves updated 2026-09-28 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27).
+# Fetched 2026-09-22; roster moves updated 2026-09-29 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
+# media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -96,9 +97,9 @@ TEAMS = {
     "Detroit Pistons": dict(grade=("C-", "C+"),
         adds="John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Ausar Thompson 5 年續約、Huerter 續約",
         departs="Isaiah Stewart、Tobias Harris、Caris LeVert",
-        injury="",
+        injury="Jalen Duren（RFA，上季 19.5 分 10.5 籃板、All-NBA 三隊）拒絕 5 年 $200M 報價、缺席 9/28 媒體日與訓練營開訓；10/1 為 $9.6M 一年 qualifying offer 期限，開幕戰出賽成疑",
         outlook="東區第一防守效率仍在，但沒找到 Cade 身邊的第二持球者；換掉三名老將換成三名角色球員，屬於平移。勝場盤 50.5，冠軍賠率 25-1。",
-        ats_angle="防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。"),
+        ats_angle="防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 若持續 holdout 進入開季，DET 內線籃板與護框特徵全部失效，10 月信號降權處理。"),
     "Golden State Warriors": dict(grade=("C+", "C-"),
         adds="Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg",
         departs="Quinten Post",
@@ -120,8 +121,8 @@ TEAMS = {
     "LA Clippers": dict(grade=("Incomplete", "A-"),
         adds="Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal",
         departs="Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin",
-        injury="",
-        outlook="正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合。",
+        injury="Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），開季缺陣、無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席",
+        outlook="正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合，而且 Ingram 開季報銷、Beal 帶傷，10–11 月實際上只有 Garland 一名持球者。",
         ats_angle="重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。注意：2029–33 首輪籤全數沒收，LAC 沒有擺爛誘因，下半季不宜套用「重建隊尾盤崩盤」假設。"),
     "Los Angeles Lakers": dict(grade=("C+", None),
         adds="Walker Kessler（sign-and-trade，4 年 $130M）、Quentin Grimes、Collin Sexton、Matisse Thybulle、Kevon Looney、Mamukelashvili；Reaves 4 年續約",
@@ -192,9 +193,9 @@ TEAMS = {
     "Portland Trail Blazers": dict(grade=("B-", None),
         adds="Ja Morant（交易）、Jeremy Sochan、Robert Williams III 續約；新教練 Micah Nori",
         departs="Jerami Grant、Kris Murray、Matisse Thybulle",
-        injury="Ja Morant 左肘 UCL，訓練營狀態未定；Damian Lillard 阿基里斯腱康復，36 歲開季可上",
+        injury="Shaedon Sharpe 右膝外側半月板撕裂（8 月訓練受傷、已手術），6 個月後（2027-02-24 起）再評估，至少缺前 59 場；Ja Morant 左肘 UCL，訓練營狀態未定；Damian Lillard 阿基里斯腱康復，36 歲開季可上",
         outlook="Morant + Lillard + Avdija + Clingan，四名後衛的兼容性是問題；新教練體系。勝場盤 43.5。",
-        ats_angle="Morant 早季可能缺陣 → 前 15 場盤口會混亂，模型應等傷兵穩定後再跟；Avdija 進步是 under-the-radar 變數。"),
+        ats_angle="Sharpe 明星賽前報銷 + Morant 早季可能缺陣 → 前 15 場盤口會混亂，模型應等傷兵穩定後再跟；Avdija 進步是 under-the-radar 變數。"),
     "Sacramento Kings": dict(grade=("C", None),
         adds="Ben Simmons（1 年）、#7 Darius Acuff Jr.；續約 Achiuwa",
         departs="DeMar DeRozan（DEN）、Devin Carter",
