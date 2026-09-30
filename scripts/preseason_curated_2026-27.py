@@ -1,7 +1,8 @@
 # Curated 2026 offseason data per team (sources: NBA.com offseason deals, ESPN/CBS grades,
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
 # Fetched 2026-09-22; roster moves updated 2026-09-30 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
-# media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus, GSW Porziņģis out indefinitely; CHA waives Dillingham 9/28; TOR Kawhi 2y/$115M extension 9/23).
+# media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus, GSW Porziņģis out indefinitely; CHA waives Dillingham 9/28; TOR Kawhi 2y/$115M extension 9/23;
+# GSW Curry 2y/$116M extension 9/25, Butler ACL rehab "ahead of schedule" 9/29 — target still early 2027).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -101,9 +102,9 @@ TEAMS = {
         outlook="東區第一防守效率仍在，但沒找到 Cade 身邊的第二持球者；換掉三名老將換成三名角色球員，屬於平移。勝場盤 50.5，冠軍賠率 25-1。",
         ats_angle="防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 若持續 holdout 進入開季，DET 內線籃板與護框特徵全部失效，10 月信號降權處理。"),
     "Golden State Warriors": dict(grade=("C+", "C-"),
-        adds="Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg",
+        adds="Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）",
         departs="Quinten Post",
-        injury="Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練（術後 8 個月，已進入跑步階段）。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
+        injury="Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
         outlook="LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。",
         ats_angle="沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 若開季缺陣，中鋒輪替只剩 40 歲 Horford + 新秀 Lendeborg，籃板與護框特徵需降權。"),
     "Houston Rockets": dict(grade=("B+", "C+"),

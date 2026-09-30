@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-09-30",
+ "generated": "2026-10-01",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -483,9 +483,9 @@
    "offseason": {
     "grade_espn": "C+",
     "grade_cbs": "C-",
-    "adds": "Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg",
+    "adds": "Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）",
     "departs": "Quinten Post",
-    "injury": "Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練（術後 8 個月，已進入跑步階段）。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
+    "injury": "Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
     "new_coach": null,
     "roster_churn": "medium"
    },
