@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-09-29（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-09-30（開季 2026-10-20 前 4 週）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -135,7 +135,7 @@
 | 明尼蘇達灰狼 | Julius Randle、Naz Reid、Mike Conley、Kyle … → LaMelo Ball（4 隊交易）、Jonathan Kuminga、Cody… | 換掉 Randle / Reid，方向不明，信號降權 |
 | 費城七六人 | Paul George、兩個首輪籤、Grimes、Oubre、Drummond、… → LeBron James（2 年）、Jaylen Brown（交易）、Dean … | 上季 45 勝 → 本季應為 50+，模型會**低估** PHI |
 | 波特蘭拓荒者 | Jerami Grant、Kris Murray、Matisse Thybull… → Ja Morant（交易）、Jeremy Sochan、Robert Willi… | Morant + Lillard 加入但兼容性未知，信號降權 |
-| 多倫多暴龍 | Brandon Ingram、Gradey Dick、Mamukelashvil… → Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderso… | 加 Kawhi（交易已完成），模型會**低估** TOR；輪休場次需即時抓 |
+| 多倫多暴龍 | Brandon Ingram、Gradey Dick、Mamukelashvil… → Kawhi Leonard（交易 9/14 正式完成；9/23 簽下 2 年 $… | 加 Kawhi（交易已完成），模型會**低估** TOR；輪休場次需即時抓 |
 | 華盛頓巫師 | D'Angelo Russell、Jaden Hardy、Cam Whitmor… → #1 AJ Dybantsa、Deandre Ayton（交易）、Khris M… | 17 勝隊加 Trae / AD / Dybantsa / Ayton，模型會**嚴重高估對手讓分** |
 
 **執行規則（建議寫入模型的季初抑制）：**
@@ -215,7 +215,7 @@
 - **上季**：46-36（主 24-17 / 客 22-19），淨效率 +2.9（第 11），ATS 44-0-38（主 22-0-19 / 客 22-0-19），首輪敗，季後賽 3-4、ATS 4-0-3。
 - **市場**：勝場盤 45.5（相對上季 -0.5），冠軍賠率 +2500，分層「季後賽邊緣」。
 - **休賽季評分**：ESPN Incomplete / CBS B-；陣容變動：high。
-- **補進**：Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderson
+- **補進**：Kawhi Leonard（交易 9/14 正式完成；9/23 簽下 2 年 $115M 延長約，2028-29 為球員選項）、Kyle Anderson
 - **流失**：Brandon Ingram、Gradey Dick、Mamukelashvili
 - **傷兵**：Kawhi Leonard 歷年出賽率低；交易已於 9/14 完成，不再有交易變數
 - **狀況**：若 Kawhi 健康，有機會爭東區；但板凳因交易變薄。勝場盤 45.5，冠軍 25-1。
@@ -258,8 +258,8 @@
 - **上季**：44-38（主 21-20 / 客 23-18），淨效率 +4.9（第 8），ATS 51-0-31（主 26-0-15 / 客 25-0-16），附加賽出局。
 - **市場**：勝場盤 37.5（相對上季 -6.5），分層「附加賽以下」。
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
-- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）、Rob Dillingham（9/27 自 CHI 交易，2024 #8 籤、21 歲）；#14 Hannes Steinbach；續約 Coby White
-- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）
+- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White
+- **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）
 - **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。
 - **ATS 角度**：老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。
@@ -281,7 +281,7 @@
 - **市場**：勝場盤 27.5（相對上季 -3.5），分層「重建 / 擺爛」。
 - **休賽季評分**：ESPN C+ / CBS C；陣容變動：medium；新教練 Tiago Splitter。
 - **補進**：Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins
-- **流失**：Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA）
+- **流失**：Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA，隔日遭 CHA 裁掉）
 - **狀況**：新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。
 - **ATS 角度**：防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。
 
@@ -388,9 +388,9 @@
 - **休賽季評分**：ESPN C+ / CBS C-；陣容變動：medium。
 - **補進**：Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg
 - **流失**：Quinten Post
-- **傷兵**：Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練
+- **傷兵**：Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練（術後 8 個月，已進入跑步階段）。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季
 - **狀況**：LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。
-- **ATS 角度**：沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。
+- **ATS 角度**：沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 若開季缺陣，中鋒輪替只剩 40 歲 Horford + 新秀 Lendeborg，籃板與護框特徵需降權。
 
 #### 鳳凰城太陽（Phoenix Suns）
 

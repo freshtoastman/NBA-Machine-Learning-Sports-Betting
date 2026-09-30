@@ -1,7 +1,7 @@
 # Curated 2026 offseason data per team (sources: NBA.com offseason deals, ESPN/CBS grades,
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
-# Fetched 2026-09-22; roster moves updated 2026-09-29 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
-# media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus).
+# Fetched 2026-09-22; roster moves updated 2026-09-30 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
+# media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus, GSW Porziņģis out indefinitely; CHA waives Dillingham 9/28; TOR Kawhi 2y/$115M extension 9/23).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -65,14 +65,14 @@ TEAMS = {
         outlook="上季 20 勝球隊補進 Randle，但沒有長期方向；勝場盤 22.5 是聯盟倒數第二。",
         ats_angle="爛隊受讓早季常過盤（市場低估 Randle 的常規賽產出），但 3 月後擺爛風險高，需配合模型的時間抑制。"),
     "Charlotte Hornets": dict(grade=("A-", "A"),
-        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）、Rob Dillingham（9/27 自 CHI 交易，2024 #8 籤、21 歲）；#14 Hannes Steinbach；續約 Coby White",
-        departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）",
+        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White",
+        departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）",
         injury="Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑",
         outlook="賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。",
         ats_angle="老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。"),
     "Chicago Bulls": dict(grade=("C+", "C"),
         adds="Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins",
-        departs="Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA）",
+        departs="Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA，隔日遭 CHA 裁掉）",
         injury="",
         outlook="新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。",
         ats_angle="防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。"),
@@ -103,9 +103,9 @@ TEAMS = {
     "Golden State Warriors": dict(grade=("C+", "C-"),
         adds="Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg",
         departs="Quinten Post",
-        injury="Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練",
+        injury="Jimmy Butler 右膝 ACL，最樂觀 1–2 月回歸；訓練營僅個人訓練（術後 8 個月，已進入跑步階段）。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
         outlook="LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。",
-        ats_angle="沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。"),
+        ats_angle="沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 若開季缺陣，中鋒輪替只剩 40 歲 Horford + 新秀 Lendeborg，籃板與護框特徵需降權。"),
     "Houston Rockets": dict(grade=("B+", "C+"),
         adds="Marcus Smart、Bogdan Bogdanović；Tari Eason 5 年續約、Amen Thompson 5 年續約",
         departs="Dorian Finney-Smith、Josh Okogie",
@@ -209,7 +209,7 @@ TEAMS = {
         outlook="總決賽亞軍陣容完整回歸，Wemby 續約省下 $50M+ 彈性；勝場盤 59.5 是隊史 30 年最高，冠軍共同熱門 +270。",
         ats_angle="上季總決賽 SAS 主場 0-3 ATS（讓分開太深）；常規賽 SAS 主場讓分過盤率高，但季後賽主場需降權。"),
     "Toronto Raptors": dict(grade=("Incomplete", "B-"),
-        adds="Kawhi Leonard（交易 9/14 正式完成）、Kyle Anderson",
+        adds="Kawhi Leonard（交易 9/14 正式完成；9/23 簽下 2 年 $115M 延長約，2028-29 為球員選項）、Kyle Anderson",
         departs="Brandon Ingram、Gradey Dick、Mamukelashvili",
         injury="Kawhi Leonard 歷年出賽率低；交易已於 9/14 完成，不再有交易變數",
         outlook="若 Kawhi 健康，有機會爭東區；但板凳因交易變薄。勝場盤 45.5，冠軍 25-1。",
