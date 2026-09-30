@@ -1,0 +1,27 @@
+{
+ "season": "2025-26",
+ "audited": "2026-10-01",
+ "doc": "docs/season_2025-26_review.md",
+ "sources": [
+  "scripts/audit_live_record.py (git pre-game snapshots, 2026-04-10..2026-06-13)",
+  "scripts/audit_feature_leak.py (production models re-scored with prior-day features)"
+ ],
+ "headline_zh": "下方舊數字是含同日數據洩漏的回測，已作廢；以這裡的賽前實戰與無洩漏回測為準。",
+ "live": {
+  "label_zh": "賽前實戰紀錄（4/10–6/13）",
+  "items": [
+   {"label_zh": "勝負預測", "wins": 48, "losses": 30, "hit_rate": 61.5, "ci95": [50, 72]},
+   {"label_zh": "季後賽 GOLD+SILVER（每場主訊號）", "wins": 32, "losses": 27, "hit_rate": 54.2, "ci95": [42, 66]},
+   {"label_zh": "大小分", "wins": 36, "losses": 42, "hit_rate": 46.2, "ci95": [36, 57]}
+  ]
+ },
+ "clean_backtest": {
+  "label_zh": "無洩漏回測（2025-26 全季，正式模型）",
+  "items": [
+   {"label_zh": "勝負預測", "wins": 868, "losses": 431, "hit_rate": 66.8, "ci95": [64, 69]},
+   {"label_zh": "ATS value + 過濾（10–2 月）", "wins": 24, "losses": 9, "hit_rate": 72.7, "ci95": [56, 85]},
+   {"label_zh": "其中主場 value 注", "wins": 10, "losses": 1, "hit_rate": 90.9, "ci95": [62, 98]}
+  ]
+ },
+ "replaces_zh": "取代舊宣稱：ATS filtered 85.0%（34-6）、季後賽訊號 67.6%（48-23）、勝負 72.2%"
+}

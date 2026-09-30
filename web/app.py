@@ -464,6 +464,14 @@ def load_season_stats() -> dict | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def load_season_review() -> dict | None:
+    """Audited live / leak-free record that supersedes a season's backtest stats."""
+    p = DATA_DIR / "season_review.json"
+    if not p.exists():
+        return None
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
 def build_date_chips(selected_date, days=7):
     today = today_taipei()
     chips = []
@@ -616,6 +624,7 @@ def index():
         season_key=idx.get("season", default_season()),
         preseason=preseason,
         season_stats=season_stats,
+        season_review=load_season_review(),
         active_series=active_series,
         is_playoff_view=is_playoff_view,
         show_bracket_banner=show_bracket_banner,

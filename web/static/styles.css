@@ -359,6 +359,91 @@ a {
     color: var(--muted);
 }
 
+/* Audited season record — sits above (and supersedes) the backtest cards */
+.season-audit {
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(242, 201, 76, 0.06);
+    border: 1px solid rgba(242, 201, 76, 0.35);
+}
+
+.season-audit-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.season-audit-title {
+    font-weight: 700;
+    color: var(--accent-3);
+}
+
+.season-audit-date,
+.season-audit-foot {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.season-audit-lead {
+    margin: 6px 0 10px;
+    font-size: 13px;
+}
+
+.season-audit-foot {
+    margin: 10px 0 0;
+}
+
+.season-audit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 900px) {
+    .season-audit-grid { grid-template-columns: 1fr; }
+}
+
+.season-audit-block {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(8, 12, 24, 0.55);
+    border: 1px solid var(--stroke);
+}
+
+.season-audit-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.season-audit-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+    padding: 4px 0;
+}
+
+.season-audit-row .sa-name {
+    font-size: 13px;
+}
+
+.season-audit-row .sa-val {
+    font-weight: 700;
+    text-align: right;
+}
+
+.season-audit-row .sa-val.good { color: var(--positive); }
+.season-audit-row .sa-val.bad { color: var(--negative); }
+
+.season-audit-row .sa-sub {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    color: var(--muted);
+}
+
 .model-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

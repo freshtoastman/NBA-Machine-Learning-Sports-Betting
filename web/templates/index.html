@@ -224,6 +224,32 @@
                 <span class="model-compare-sub">金鑽為主要策略 · 鑽石/ATS 為輔</span>
             </div>
 
+            {# Audited record — supersedes the backtest numbers below for the same season #}
+            {% if season_review and season_review.season == season_stats.season %}
+            <div class="season-audit">
+                <div class="season-audit-head">
+                    <span class="season-audit-title">⚠️ {{ season_review.season }} 賽季復盤</span>
+                    <span class="season-audit-date">{{ season_review.audited }} 稽核</span>
+                </div>
+                <p class="season-audit-lead">{{ season_review.headline_zh }}</p>
+                <div class="season-audit-grid">
+                    {% for block in [season_review.live, season_review.clean_backtest] %}
+                    <div class="season-audit-block">
+                        <div class="season-audit-label">{{ block.label_zh }}</div>
+                        {% for it in block["items"] %}
+                        <div class="season-audit-row">
+                            <span class="sa-name">{{ it.label_zh }}</span>
+                            <span class="sa-val {% if it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{{ it.hit_rate }}%</span>
+                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · 95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <p class="season-audit-foot">{{ season_review.replaces_zh }}</p>
+            </div>
+            {% endif %}
+
             {# 本週金鑽戰績 — 近 7 日金鑽明細, 可點擊回查 #}
             {% if weekly_golden and weekly_golden.total_picks %}
             <details class="weekly-golden" open>
