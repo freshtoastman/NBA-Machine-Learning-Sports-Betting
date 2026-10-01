@@ -43,6 +43,33 @@ def season_odds_tables(con, season_key):
     ]
 
 
+# A table with at least this many priced games and (almost) no negative spread stores
+# the favourite's line without a sign (every legacy `odds_<season>_new` table through
+# 2021-22 does); real home-referenced seasons have 35-40% home underdogs. The share
+# leaves room for a hand-inserted, correctly signed row in an otherwise unsigned table.
+_UNSIGNED_MIN_GAMES = 50
+_UNSIGNED_MAX_NEGATIVE_SHARE = 0.02
+
+
+def _sign_spreads(df):
+    """Make `Spread` home-referenced (positive = home favoured) in unsigned tables.
+
+    The side comes from the moneylines. Where they are missing or equal the side
+    is unknown, so the spread becomes NaN rather than a guess (a 0 line stays 0).
+    """
+    spread = df["Spread"]
+    priced = spread.notna() & (spread != 0)
+    if priced.sum() < _UNSIGNED_MIN_GAMES or (spread[priced] < 0).mean() > _UNSIGNED_MAX_NEGATIVE_SHARE:
+        return df
+    unsigned = priced & (spread > 0)
+    home_dog = df["ML_Home"] > df["ML_Away"]
+    unknown = df["ML_Home"].isna() | df["ML_Away"].isna() | (df["ML_Home"] == df["ML_Away"])
+    df = df.copy()
+    df.loc[unsigned & home_dog, "Spread"] = -spread[unsigned & home_dog]
+    df.loc[unsigned & unknown, "Spread"] = float("nan")
+    return df
+
+
 def _read_table(con, table):
     try:
         df = pd.read_sql_query(f'SELECT * FROM "{table}"', con)
@@ -58,7 +85,7 @@ def _read_table(con, table):
     df["Date"] = df["Date"].astype(str).str[:10]
     for col in _NUMERIC_COLUMNS:
         df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df.reset_index(drop=True)
+    return _sign_spreads(df).reset_index(drop=True)
 
 
 def load_season_odds(con, season_key, columns=None):
@@ -68,6 +95,8 @@ def load_season_odds(con, season_key, columns=None):
     are added only for games the base lacks; when the same game appears twice,
     the row with a final score wins, then the base table's row. Dates come back
     as 'YYYY-MM-DD' strings, numeric columns as floats (NaN when missing).
+    `Spread` is always home-referenced: positive when the home team is favoured,
+    so the home side covers iff Win_Margin - Spread > 0 (see `_sign_spreads`).
     Returns an empty frame when the season has no table.
     """
     frames = [(t, _read_table(con, t)) for t in season_odds_tables(con, season_key)]

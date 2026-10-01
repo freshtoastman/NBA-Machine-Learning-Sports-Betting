@@ -122,24 +122,12 @@ def load_dataset(dataset_name):
     except Exception as exc:
         print(f"warn: advanced feature merge failed: {exc}")
 
-    # Merge playoff context features (is_playoff, series_game_num, etc.).
-    try:
-        from src.Utils.PlayoffContext import is_playoff_date, build_playoff_features, get_series_state
-        pf_rows = []
-        for _, row in df.iterrows():
-            date_str = str(row["Date"])[:10]
-            if is_playoff_date(date_str):
-                state = get_series_state(row["TEAM_NAME"], row["TEAM_NAME.1"], date_str)
-                pf_rows.append(build_playoff_features(state))
-            else:
-                pf_rows.append(build_playoff_features(None))
-        pf_df = pd.DataFrame(pf_rows)
-        for col in pf_df.columns:
-            df[col] = pf_df[col].values
-        n_playoff = int(df["is_playoff"].sum())
-        print(f"Playoff features merged: {n_playoff} playoff games out of {len(df)}")
-    except Exception as exc:
-        print(f"warn: playoff feature merge failed: {exc}")
+    # Playoff context (is_playoff, series_game_num, series_lead_for_home,
+    # is_elimination_game) is already in the dataset as the state BEFORE each game
+    # (Create_Games._build_per_game_series_state). Do not rebuild it from
+    # series_state_<season>: that table holds the finished series, so every playoff
+    # row would carry the final 4-x result of the series it belongs to.
+    print(f"Playoff games in training frame: {int(df['is_playoff'].sum())} of {len(df)}")
 
     return df
 

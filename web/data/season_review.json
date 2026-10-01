@@ -5,24 +5,79 @@
  "sources": [
   "scripts/audit_live_record.py (git pre-game snapshots, 2026-04-10..2026-06-13)",
   "scripts/audit_feature_leak.py (dataset test: 0 rows count their own game; production models re-scored on pre-game snapshots)",
-  "src/Process-Data/Create_Games.py PregameSnapshots (since 2026-10-01)"
+  "src/Process-Data/Create_Games.py PregameSnapshots (since 2026-10-01)",
+  "scripts/walk_forward_clean.py (10 seasons out-of-sample, spreads signed by src/Utils/OddsTables.py)"
  ],
- "headline_zh": "10/1 起，下方賽季卡片已改用「賽前可得數據」重算（全季 1,306 場，已排除同日數據洩漏）；季後賽訊號追蹤器仍含事後改寫的紀錄，請以這裡的賽前實戰數字為準。",
+ "headline_zh": "10/1 稽核：讓分模型在 10 個賽季的樣本外回測只有 50.5%（損益兩平要 52.4%），信心最高的 5% 也只有 51.9%；目前沒有任何門檻能證明有優勢，新賽季的讓分推薦在累積足夠的賽前凍結紀錄前只供參考。下方賽季卡片是正式模型在 2025-26 的無洩漏重算，樣本小且門檻是在同一季挑的，請以這裡的數字為準。",
  "live": {
   "label_zh": "賽前實戰紀錄（4/10–6/13）",
   "items": [
-   {"label_zh": "勝負預測", "wins": 48, "losses": 30, "hit_rate": 61.5, "ci95": [50, 72]},
-   {"label_zh": "季後賽 GOLD+SILVER（每場主訊號）", "wins": 32, "losses": 27, "hit_rate": 54.2, "ci95": [42, 66]},
-   {"label_zh": "大小分", "wins": 36, "losses": 42, "hit_rate": 46.2, "ci95": [36, 57]}
+   {
+    "label_zh": "勝負預測",
+    "wins": 48,
+    "losses": 30,
+    "hit_rate": 61.5,
+    "ci95": [
+     50,
+     72
+    ]
+   },
+   {
+    "label_zh": "季後賽 GOLD+SILVER（每場主訊號）",
+    "wins": 32,
+    "losses": 27,
+    "hit_rate": 54.2,
+    "ci95": [
+     42,
+     66
+    ]
+   },
+   {
+    "label_zh": "大小分",
+    "wins": 36,
+    "losses": 42,
+    "hit_rate": 46.2,
+    "ci95": [
+     36,
+     57
+    ]
+   }
   ]
  },
  "clean_backtest": {
-  "label_zh": "無洩漏回測（2025-26 全季，正式模型）",
+  "label_zh": "2025-26 無洩漏重算（正式模型；門檻在同一季挑選，偏樂觀）",
   "items": [
-   {"label_zh": "勝負預測", "wins": 868, "losses": 431, "hit_rate": 66.8, "ci95": [64, 69]},
-   {"label_zh": "ATS value + 過濾（10–2 月）", "wins": 24, "losses": 9, "hit_rate": 72.7, "ci95": [56, 85]},
-   {"label_zh": "其中主場 value 注", "wins": 10, "losses": 1, "hit_rate": 90.9, "ci95": [62, 98]}
+   {
+    "label_zh": "勝負預測",
+    "wins": 868,
+    "losses": 431,
+    "hit_rate": 66.8,
+    "ci95": [
+     64,
+     69
+    ]
+   },
+   {
+    "label_zh": "ATS value + 過濾（10–2 月）",
+    "wins": 24,
+    "losses": 9,
+    "hit_rate": 72.7,
+    "ci95": [
+     56,
+     85
+    ]
+   },
+   {
+    "label_zh": "其中主場 value 注",
+    "wins": 10,
+    "losses": 1,
+    "hit_rate": 90.9,
+    "ci95": [
+     62,
+     98
+    ]
+   }
   ]
  },
- "replaces_zh": "已取代的舊宣稱：ATS filtered 85.0%（34-6）、勝負 72.2%（只算 546 場、含洩漏、ATS 模型漏餵近況特徵）；季後賽訊號 67.6%（48-23）待賽前凍結機制上線後重算。"
+ "replaces_zh": "已取代的舊宣稱：ATS filtered 85.0%（34-6）、勝負 72.2%（只算 546 場、含洩漏、ATS 模型漏餵近況特徵）；季後賽訊號 67.6%（48-23）待賽前凍結機制上線後重算。10/1 另查出：2021-22 以前的讓分沒有正負號（已修正）、訓練時季後賽欄位帶入系列賽最終結果（已修正）、賽前預測的近況特徵全為 0（已修正）。"
 }

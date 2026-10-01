@@ -82,22 +82,9 @@ def load_dataset():
     except Exception as exc:
         print(f"warn: advanced features: {exc}")
 
-    try:
-        from src.Utils.PlayoffContext import is_playoff_date, build_playoff_features, get_series_state
-        pf_rows = []
-        for _, row in df.iterrows():
-            date_str = str(row["Date"])[:10]
-            if is_playoff_date(date_str):
-                state = get_series_state(row["TEAM_NAME"], row["TEAM_NAME.1"], date_str)
-                pf_rows.append(build_playoff_features(state))
-            else:
-                pf_rows.append(build_playoff_features(None))
-        pf_df = pd.DataFrame(pf_rows)
-        for col in pf_df.columns:
-            df[col] = pf_df[col].values
-        print(f"Playoff features merged: {int(df['is_playoff'].sum())} playoff games")
-    except Exception as exc:
-        print(f"warn: playoff features: {exc}")
+    # Playoff context columns come from the dataset (state before each game). Rebuilding
+    # them from series_state_<season> would attach the finished series result to every row.
+    print(f"Playoff games: {int(df['is_playoff'].sum())}")
 
     return df
 

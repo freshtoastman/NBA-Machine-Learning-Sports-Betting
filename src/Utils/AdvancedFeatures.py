@@ -49,18 +49,37 @@ def ats_model_columns(columns):
             + [c for c in adv if c[2:] in POST_MODEL_STEMS])
 
 
-def _load_all_games() -> pd.DataFrame:
-    """Concatenate every season's games. Used as the foundation for features."""
+# Scheduled games without a score are kept this many days behind the newest result;
+# anything older is a postponement, not an upcoming game.
+PENDING_LOOKBACK_DAYS = 3
+# Completed games per team fed into the pre-game rows (longest window: 10 home games).
+PENDING_HISTORY_GAMES = 200
+_RESULT_COLUMNS = ["Spread", "Win_Margin", "Points", "TeamScore", "OppScore", "Won", "CoverMargin", "Covered"]
+_DENSITY_COLUMNS = ["days_since_prev", "b2b", "games_last_4d", "games_last_7d", "road_trip_len"]
+
+
+def _load_odds_games():
+    """Every season's games split into (completed, scheduled without a result yet)."""
     with sqlite3.connect(ODDS_DB) as con:
         df = load_seasons_odds(
             con, SEASON_KEYS, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points"]
         )
     if df.empty:
-        return pd.DataFrame()
+        return pd.DataFrame(), pd.DataFrame()
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df = df.dropna(subset=["Date"])
-    df = df[df["Points"].fillna(0) > 0].reset_index(drop=True)
-    return df
+    done = df["Points"].fillna(0) > 0
+    played = df[done].reset_index(drop=True)
+    if played.empty:
+        return played, played
+    cutoff = played["Date"].max() - pd.Timedelta(days=PENDING_LOOKBACK_DAYS)
+    pending = df[~done & (df["Date"] > cutoff)].reset_index(drop=True)
+    return played, pending
+
+
+def _load_all_games() -> pd.DataFrame:
+    """Concatenate every season's completed games. Used as the foundation for features."""
+    return _load_odds_games()[0]
 
 
 def _team_perspective_long(games: pd.DataFrame) -> pd.DataFrame:
@@ -73,7 +92,8 @@ def _team_perspective_long(games: pd.DataFrame) -> pd.DataFrame:
     home["Won"] = (home["Win_Margin"] > 0).astype(int)
     # Home-perspective cover margin = Win_Margin - Spread.
     home["CoverMargin"] = home["Win_Margin"] - home["Spread"]
-    home["Covered"] = (home["CoverMargin"] > 0).astype(int)
+    # No usable spread -> no cover result (NaN), not a failed cover.
+    home["Covered"] = (home["CoverMargin"] > 0).astype(float).where(home["CoverMargin"].notna())
 
     away = games[["Date", "Home", "Away", "Spread", "Win_Margin", "Points"]].copy()
     away.columns = ["Date", "Opp", "Team", "Spread", "Win_Margin", "Points"]
@@ -83,7 +103,7 @@ def _team_perspective_long(games: pd.DataFrame) -> pd.DataFrame:
     away["Won"] = (away["Win_Margin"] < 0).astype(int)
     # Away-perspective cover margin: away covers when home_cover < 0 → -home_cover.
     away["CoverMargin"] = -(away["Win_Margin"] - away["Spread"])
-    away["Covered"] = (away["CoverMargin"] > 0).astype(int)
+    away["Covered"] = (away["CoverMargin"] > 0).astype(float).where(away["CoverMargin"].notna())
 
     long = pd.concat([home, away], ignore_index=True)
     long = long.sort_values(["Team", "Date"]).reset_index(drop=True)
@@ -236,6 +256,49 @@ def _add_schedule_density(long: pd.DataFrame) -> pd.DataFrame:
     return long
 
 
+def _pending_feature_rows(played_long: pd.DataFrame, pending: pd.DataFrame) -> pd.DataFrame:
+    """Feature rows for scheduled games that have no result yet — what a pre-game
+    prediction sees.
+
+    Form and streak features read the team's completed games only. Schedule density
+    also counts earlier scheduled-but-unplayed games: the team still plays them.
+    """
+    sched = _team_perspective_long(pending)
+    sched[_RESULT_COLUMNS] = np.nan
+    history = played_long[played_long["Team"].isin(sched["Team"].unique())]
+    history = history.groupby("Team", sort=False).tail(PENDING_HISTORY_GAMES)
+
+    calendar = pd.concat([history, sched.assign(_pending=True)], ignore_index=True)
+    calendar = calendar.sort_values(["Team", "Date"], kind="stable").reset_index(drop=True)
+    density = _add_schedule_density(calendar)
+    density = density[density["_pending"].eq(True)].set_index(["Team", "Date"])[_DENSITY_COLUMNS]
+
+    out = []
+    for team, team_sched in sched.groupby("Team", sort=False):
+        team_history = history[history["Team"] == team]
+        form_cache = {}
+        for i in range(len(team_sched)):
+            target = team_sched.iloc[[i]]
+            date = target["Date"].iloc[0]
+            before = team_history[team_history["Date"] < date]
+            # Same completed games and same venue -> same form row (the home/away
+            # ATS splits depend on which side the team is on).
+            key = (len(before), int(target["IsHome"].iloc[0]))
+            if key not in form_cache:
+                form_cache[key] = _add_rolling_features(
+                    pd.concat([before, target], ignore_index=True)
+                ).iloc[[-1]]
+            row = form_cache[key].copy()
+            row["Date"] = date
+            row["month_num"] = date.month
+            row["month_sin"] = np.sin(2 * np.pi * date.month / 12)
+            row["month_cos"] = np.cos(2 * np.pi * date.month / 12)
+            for col in _DENSITY_COLUMNS:
+                row[col] = density.loc[(team, date), col]
+            out.append(row)
+    return pd.concat(out, ignore_index=True) if out else pd.DataFrame()
+
+
 _FEATURE_TABLE_CACHE: pd.DataFrame | None = None
 
 
@@ -248,14 +311,20 @@ def build_feature_table() -> pd.DataFrame:
     if _FEATURE_TABLE_CACHE is not None:
         return _FEATURE_TABLE_CACHE
 
-    games = _load_all_games()
+    games, pending = _load_odds_games()
     if games.empty:
         _FEATURE_TABLE_CACHE = pd.DataFrame()
         return _FEATURE_TABLE_CACHE
 
-    long = _team_perspective_long(games)
-    long = _add_rolling_features(long)
+    played_long = _team_perspective_long(games)
+    long = _add_rolling_features(played_long)
     long = _add_schedule_density(long)
+    if not pending.empty:
+        # Without these rows an upcoming game finds no match in merge_into and every
+        # rolling feature reaches the model as a zero-filled NaN.
+        upcoming = _pending_feature_rows(played_long, pending)
+        long = pd.concat([long, upcoming], ignore_index=True)
+        long = long.sort_values(["Team", "Date"], kind="stable").reset_index(drop=True)
 
     feature_cols = [
         "Team", "Date",

@@ -233,7 +233,7 @@
                 </div>
                 <p class="season-audit-lead">{{ season_review.headline_zh }}</p>
                 <div class="season-audit-grid">
-                    {% for block in [season_review.live, season_review.clean_backtest] %}
+                    {% for block in season_review.blocks %}
                     <div class="season-audit-block">
                         <div class="season-audit-label">{{ block.label_zh }}</div>
                         {% for it in block["items"] %}

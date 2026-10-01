@@ -464,12 +464,48 @@ def load_season_stats() -> dict | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def _walk_forward_block() -> dict | None:
+    """Out-of-sample record from scripts/walk_forward_clean.py, shaped like the
+    audited blocks in season_review.json."""
+    p = DATA_DIR / "walk_forward.json"
+    if not p.exists():
+        return None
+    wf = json.loads(p.read_text(encoding="utf-8"))
+    seasons = wf.get("test_seasons") or []
+    ats = (wf.get("ats") or {}).get(wf.get("ats_recipe"))
+    ml = wf.get("ml") or {}
+    if not seasons or not ats or not ml:
+        return None
+
+    def item(label, rec):
+        return {
+            "label_zh": label,
+            "wins": rec["hits"],
+            "losses": rec["n"] - rec["hits"],
+            "hit_rate": rec["pct"],
+            "ci95": [round(rec["ci_lo"]), round(rec["ci_hi"])],
+        }
+
+    return {
+        "label_zh": f"樣本外回測（{seasons[0]} → {seasons[-1]}，共 {len(seasons)} 季；每季只用之前的賽季訓練）",
+        "items": [
+            item("讓分：全部場次", ats["raw"]),
+            item("讓分：信心最高 5%", ats["top5"]),
+            item("勝負：模型", ml["model"]),
+            item("勝負：直接選盤口熱門（對照）", ml["market_favorite"]),
+        ],
+    }
+
+
 def load_season_review() -> dict | None:
     """Audited live / leak-free record that supersedes a season's backtest stats."""
     p = DATA_DIR / "season_review.json"
     if not p.exists():
         return None
-    return json.loads(p.read_text(encoding="utf-8"))
+    review = json.loads(p.read_text(encoding="utf-8"))
+    blocks = [review.get("live"), review.get("clean_backtest"), _walk_forward_block()]
+    review["blocks"] = [b for b in blocks if b]
+    return review
 
 
 def build_date_chips(selected_date, days=7):

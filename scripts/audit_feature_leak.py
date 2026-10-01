@@ -9,6 +9,8 @@
    "same_day": the table named D, what dataset.sqlite used until 2026-10-01) and CLEAN
    (SNAPSHOT_MODE "pregame", the production default) — and score both with the production
    models, thresholds and away-quality filter on the identical set of games.
+3. Pre-game skew: the ATS model scored with its 36 rolling-form columns zeroed, which is
+   what every export made before tip-off fed it until 2026-10-01.
 
 Nothing is written under Data/; rebuilt datasets go to --work-dir.
 
@@ -235,9 +237,14 @@ def score(seasons, work_db):
         Xa = _build_frame_ats(f_ml, spreads, advanced=helper[adv].fillna(0.0).reset_index(drop=True))
         Xa = Xa.astype(float).to_numpy()[:, :int(b_ats.num_features())]
         p_ats = np.asarray(b_ats.predict(xgb.DMatrix(Xa)))
+        # What exports made BEFORE tip-off scored until 2026-10-01: an unplayed game had
+        # no row in the rolling-feature table, so all 36 columns arrived as zero.
+        X0 = _build_frame_ats(f_ml, spreads, advanced=helper[adv].fillna(0.0).reset_index(drop=True) * 0.0)
+        p_zero = np.asarray(b_ats.predict(xgb.DMatrix(X0.astype(float).to_numpy()[:, :int(b_ats.num_features())])))
         r = pd.DataFrame({"Date": df["Date"], "Home": df["TEAM_NAME"], "Away": df["TEAM_NAME.1"],
                           "Spread": df["Spread"], "Win_Margin": df["Win_Margin"],
                           "home_win": df["Home-Team-Win"].astype(int), "p_ml": p_ml[:, 1], "p_ats": p_ats[:, 1],
+                          "p_zero": p_zero[:, 1],
                           "net_h": df.get("ADV_NET_RATING"), "net_a": df.get("ADV_NET_RATING.1"),
                           "po": df.get("is_playoff")})
         r = r[r.Spread.notna() & r.Win_Margin.notna()]
@@ -273,6 +280,29 @@ def report(frames, bounds):
                 print(f"           {name} value picks {fmt(int(z.ats_hit.sum()), len(z))}")
 
 
+def pregame_skew_report(frames, bounds):
+    """Same model, same clean stats; rolling form as the backtest sees it vs all-zero as
+    a pre-game export saw it before AdvancedFeatures produced rows for unplayed games."""
+    print("\n== 3. Pre-game exports vs backtest — ATS model with rolling features zeroed ==")
+    for s, (lo, hi) in bounds.items():
+        x = frames["clean"]
+        x = x[(x.Date >= lo) & (x.Date < hi)].copy()
+        x["pick0"] = (x.p_zero >= 0.5).astype(int)
+        x["edge0"] = (x.p_zero - 0.5).abs() * 100
+        x["hit0"] = (x.pick0 == x.home_cov).astype(int)
+        x["value0"] = x.edge0 >= np.where(x.pick0 == 1, 8.0, 9.0)
+        of = x[x.octfeb]
+        both = of[of.value & of.value0 & (of.pick_home == of.pick0)]
+        print(f"-- {s} --")
+        print(f"  side differs on {int((x.pick0 != x.pick_home).sum())} of {len(x)} games "
+              f"({100 * (x.pick0 != x.pick_home).mean():.1f}%) | mean |edge change| "
+              f"{(x.p_zero - x.p_ats).abs().mean() * 100:.1f} pts")
+        print(f"  ATS raw            backtest {fmt(int(x.ats_hit.sum()), len(x))} | zeroed {fmt(int(x.hit0.sum()), len(x))}")
+        print(f"  Oct-Feb value H8/A9 backtest {fmt(int(of[of.value].ats_hit.sum()), int(of.value.sum()))} "
+              f"| zeroed {fmt(int(of[of.value0].hit0.sum()), int(of.value0.sum()))} "
+              f"| flagged by both, same side: {len(both)}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seasons", nargs="+", default=["2024-25", "2025-26"])
@@ -292,7 +322,9 @@ def main():
     work_db = Path(args.work_dir) / "leak_audit.sqlite"
     if not args.skip_build:
         rebuild(args.seasons, bounds, cfg, work_db)
-    report(score(args.seasons, work_db), bounds)
+    frames = score(args.seasons, work_db)
+    report(frames, bounds)
+    pregame_skew_report(frames, bounds)
 
 
 if __name__ == "__main__":

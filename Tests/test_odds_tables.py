@@ -71,6 +71,47 @@ class TestOddsTables(unittest.TestCase):
             merged = load_seasons_odds(con, ["2007-08", "2008-09"], ["Date", "Home", "Away"])
         self.assertEqual(merged.values.tolist(), [["2007-10-30", "Team A", "Team B"]])
 
+    def test_unsigned_legacy_spreads_are_signed_from_the_moneylines(self):
+        games = []
+        for d in range(60):
+            home_fav = d % 3 != 0
+            g = _game(f"2016-{11 + d // 30:02d}-{d % 30 + 1:02d}", f"Team {d}", "Team X", spread=4.5)
+            g["ML_Home"], g["ML_Away"] = (-180, 160) if home_fav else (160, -180)
+            games.append(g)
+        games[1]["ML_Home"] = games[1]["ML_Away"] = -110          # side unknown
+        games[2]["Spread"] = 0.0                                   # pick'em stays 0
+        with sqlite3.connect(":memory:") as con:
+            _write(con, "odds_2016-17_new", games)
+            merged = load_season_odds(con, "2016-17")
+        self.assertEqual(merged["Spread"].iloc[0], -4.5)           # home underdog
+        self.assertTrue(pd.isna(merged["Spread"].iloc[1]))
+        self.assertEqual(merged["Spread"].iloc[2], 0.0)
+        self.assertEqual(merged["Spread"].iloc[4], 4.5)            # home favourite
+        self.assertEqual(int((merged["Spread"] < 0).sum()), 20)    # every third game
+
+    def test_home_referenced_tables_keep_their_spreads(self):
+        games = []
+        for d in range(60):
+            g = _game(f"2025-{11 + d // 30:02d}-{d % 30 + 1:02d}", f"Team {d}", "Team X",
+                      spread=-3.5 if d % 3 == 0 else 6.0)
+            # Moneylines that disagree with the spread must not flip a signed table.
+            g["ML_Home"], g["ML_Away"] = 150, -170
+            games.append(g)
+        with sqlite3.connect(":memory:") as con:
+            _write(con, "2025-26", games)
+            merged = load_season_odds(con, "2025-26")
+        self.assertEqual(sorted(merged["Spread"].unique()), [-3.5, 6.0])
+        self.assertEqual(int((merged["Spread"] < 0).sum()), 20)
+
+    def test_short_table_of_home_favourites_is_left_alone(self):
+        games = [_game(f"2026-10-{20 + d}", f"Team {d}", "Team X", spread=5.5) for d in range(8)]
+        for g in games:
+            g["ML_Home"], g["ML_Away"] = 170, -200
+        with sqlite3.connect(":memory:") as con:
+            _write(con, "2026-27", games)
+            merged = load_season_odds(con, "2026-27")
+        self.assertTrue((merged["Spread"] == 5.5).all())
+
 
 if __name__ == "__main__":
     unittest.main()
