@@ -19,6 +19,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from src.Utils.OddsTables import load_seasons_odds
+
 ODDS_DB = Path(__file__).resolve().parents[2] / "Data" / "OddsData.sqlite"
 
 SEASON_KEYS = [
@@ -29,56 +31,34 @@ SEASON_KEYS = [
 ]
 
 
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
+# Feature stems added after the 175-feature ATS model was trained. They must sit
+# after every other H_/A_/D_ column so the runner's trailing-column trim removes
+# them; left in place they shift the A_/D_ positions and the model reads the
+# wrong columns. Any new stem goes here until a model is trained with it.
+POST_MODEL_STEMS = {
+    "game_num_season", "month_sin", "month_cos",                    # temporal
+    "form_ats_pct_home_10", "form_ats_pct_away_10",                 # home/away ATS split
+    "form_pts_for_5", "form_pts_against_5", "form_pts_diff_10",     # off/def split
+}
 
 
-def _freshest_odds_table(con, season_key):
-    candidates = [
-        f"odds_{season_key}_new",
-        f"odds_{season_key}",
-        f"{season_key}_new",
-        season_key,
-    ]
-    existing = [t for t in candidates if _table_exists(con, t)]
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-    return max(
-        existing,
-        key=lambda t: con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()[0] or "",
-    )
+def ats_model_columns(columns):
+    """H_/A_/D_ columns in the order the production ATS model expects."""
+    adv = [c for c in columns if c.startswith(("H_", "A_", "D_"))]
+    return ([c for c in adv if c[2:] not in POST_MODEL_STEMS]
+            + [c for c in adv if c[2:] in POST_MODEL_STEMS])
 
 
 def _load_all_games() -> pd.DataFrame:
     """Concatenate every season's games. Used as the foundation for features."""
-    frames = []
     with sqlite3.connect(ODDS_DB) as con:
-        for season in SEASON_KEYS:
-            tbl = _freshest_odds_table(con, season)
-            if not tbl:
-                continue
-            try:
-                df = pd.read_sql_query(
-                    f'SELECT Date, Home, Away, Spread, Win_Margin, Points '
-                    f'FROM "{tbl}"',
-                    con,
-                )
-                frames.append(df)
-            except Exception:
-                continue
-    if not frames:
+        df = load_seasons_odds(
+            con, SEASON_KEYS, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points"]
+        )
+    if df.empty:
         return pd.DataFrame()
-    df = pd.concat(frames, ignore_index=True)
-    df = df.dropna(subset=["Date", "Home", "Away"])
-    df = df.drop_duplicates(subset=["Date", "Home", "Away"], keep="last")
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df = df.dropna(subset=["Date"])
-    for col in ("Spread", "Win_Margin", "Points"):
-        df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df[df["Points"].fillna(0) > 0].reset_index(drop=True)
     return df
 

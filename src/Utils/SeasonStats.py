@@ -24,6 +24,7 @@ from src.Predict.XGBoost_Runner import (
     _build_frame_uo,
     _build_frame_ats,
 )
+from src.Utils.OddsTables import load_season_odds
 from src.Utils.ValueFinder import evaluate_value, american_to_decimal
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -60,29 +61,6 @@ SEASON_BOUNDS = {
 }
 
 
-def _freshest_odds_table(con, season_key):
-    candidates = [
-        f"odds_{season_key}_new",
-        f"odds_{season_key}",
-        f"{season_key}_new",
-        season_key,
-    ]
-    existing = []
-    for t in candidates:
-        if con.execute(
-            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (t,)
-        ).fetchone():
-            existing.append(t)
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-    return max(
-        existing,
-        key=lambda t: con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()[0] or "",
-    )
-
-
 def _dataset_fingerprint():
     try:
         return DATASET_DB.stat().st_mtime
@@ -112,16 +90,11 @@ def _compute(season_key: str, _fingerprint: float):
 
     # Pull money lines + spread + win margin from OddsData.
     with sqlite3.connect(ODDS_DB) as con:
-        odds_table = _freshest_odds_table(con, season_key)
-        if odds_table:
-            odds = pd.read_sql_query(
-                f'SELECT Date, Home, Away, ML_Home, ML_Away, Spread, Win_Margin '
-                f'FROM "{odds_table}"',
-                con,
-            )
-            odds["Date"] = odds["Date"].astype(str)
-            for col in ("ML_Home", "ML_Away", "Spread", "Win_Margin"):
-                odds[col] = pd.to_numeric(odds[col], errors="coerce")
+        odds = load_season_odds(
+            con, season_key,
+            ["Date", "Home", "Away", "ML_Home", "ML_Away", "Spread", "Win_Margin"],
+        )
+        if not odds.empty:
             df = df.merge(
                 odds,
                 how="left",
@@ -182,29 +155,17 @@ def _compute(season_key: str, _fingerprint: float):
             booster_ats.load_model(str(ats_path))
             safe_spreads = np.where(pd.isna(spread_array), 0.0, spread_array.astype(float))
 
-            # Try to attach advanced rolling features (post-Apr 2026 ATS model
-            # was trained with these). Falls back to legacy if shape mismatch.
-            advanced_df = None
-            try:
-                from src.Utils.AdvancedFeatures import merge_into as _merge_adv
-                helper = df[["TEAM_NAME", "TEAM_NAME.1", "Date"]].copy()
-                helper = _merge_adv(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
-                cols = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
-                if cols:
-                    advanced_df = helper[cols].fillna(0.0).reset_index(drop=True)
-            except Exception:
-                advanced_df = None
+            # Rolling-form features in the same column order the live runner
+            # uses (main.py), trimmed to the model's width. Scoring without them
+            # evaluates a different model than the one making live picks.
+            from src.Utils.AdvancedFeatures import ats_model_columns, merge_into as _merge_adv
+            helper = df[["TEAM_NAME", "TEAM_NAME.1", "Date"]].copy()
+            helper = _merge_adv(helper, "TEAM_NAME", "TEAM_NAME.1", "Date")
+            advanced_df = helper[ats_model_columns(helper.columns)].fillna(0.0).reset_index(drop=True)
 
             frame_ats = _build_frame_ats(frame_for_ml, safe_spreads, advanced=advanced_df)
             X_ats = frame_ats.astype(float).to_numpy()
-            try:
-                probs_ats = np.asarray(booster_ats.predict(xgb.DMatrix(X_ats)))
-            except Exception:
-                # Shape mismatch (model expects different feature count) — try
-                # without advanced features as a fallback.
-                frame_ats = _build_frame_ats(frame_for_ml, safe_spreads)
-                X_ats = frame_ats.astype(float).to_numpy()
-                probs_ats = np.asarray(booster_ats.predict(xgb.DMatrix(X_ats)))
+            probs_ats = np.asarray(booster_ats.predict(xgb.DMatrix(_trim(booster_ats, X_ats))))
         except FileNotFoundError:
             probs_ats = None
 

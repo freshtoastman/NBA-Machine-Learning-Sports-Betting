@@ -13,7 +13,7 @@ import toml
 BASE_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(1, os.fspath(BASE_DIR))
 
-from src.Utils.tools import get_json_data, to_data_frame  # noqa: E402
+from src.Utils.tools import get_json_data, record_fetch, to_data_frame  # noqa: E402
 
 CONFIG_PATH = BASE_DIR / "config.toml"
 DB_PATH = BASE_DIR / "Data" / "TeamData.sqlite"
@@ -91,6 +91,7 @@ def backfill_season(con, url, season_key, value, existing_dates, today):
         table_name = date_pointer.strftime("%Y-%m-%d")
         df["Date"] = table_name
         df.to_sql(table_name, con, if_exists="replace", index=False)
+        record_fetch(con, table_name)
         existing_dates.add(date_pointer)
 
         time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
@@ -148,6 +149,7 @@ def main(config=None, db_path=DB_PATH, today=None, backfill=False, season=None):
             table_name = date_pointer.strftime("%Y-%m-%d")
             df["Date"] = table_name
             df.to_sql(table_name, con, if_exists="replace", index=False)
+            record_fetch(con, table_name)
 
             time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
 

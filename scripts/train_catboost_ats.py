@@ -21,6 +21,7 @@ from sklearn.model_selection import TimeSeriesSplit
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE_DIR))
+from src.Utils.OddsTables import load_season_odds
 DATASET_DB = BASE_DIR / "Data" / "dataset.sqlite"
 ODDS_DB = BASE_DIR / "Data" / "OddsData.sqlite"
 MODEL_DIR = BASE_DIR / "Models" / "XGBoost_Models"
@@ -49,22 +50,6 @@ DROP_COLUMNS = [
 ]
 
 
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
-
-
-def _freshest_odds_table(con, season_key):
-    candidates = [f"odds_{season_key}_new", f"odds_{season_key}", f"{season_key}_new", season_key]
-    existing = [t for t in candidates if _table_exists(con, t)]
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-    return max(existing, key=lambda t: con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()[0] or "")
-
-
 def load_dataset():
     with sqlite3.connect(DATASET_DB) as con:
         df = pd.read_sql_query('SELECT * FROM "dataset_2012-26"', con)
@@ -72,15 +57,12 @@ def load_dataset():
     frames = []
     with sqlite3.connect(ODDS_DB) as con:
         for season in SEASON_KEYS:
-            tbl = _freshest_odds_table(con, season)
-            if not tbl:
+            o = load_season_odds(
+                con, season, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points", "ML_Home", "ML_Away"],
+            )
+            if o.empty:
                 continue
-            try:
-                o = pd.read_sql_query(
-                    f'SELECT Date, Home, Away, Spread, Win_Margin, Points, ML_Home, ML_Away FROM "{tbl}"', con)
-                frames.append(o)
-            except Exception:
-                continue
+            frames.append(o)
 
     odds = pd.concat(frames, ignore_index=True)
     odds = odds.drop_duplicates(subset=["Date", "Home", "Away"], keep="last")

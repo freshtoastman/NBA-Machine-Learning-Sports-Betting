@@ -228,9 +228,9 @@
 - **休賽季評分**：ESPN B- / CBS C；陣容變動：medium。
 - **補進**：Kelly Oubre Jr.、Larry Nance Jr.
 - **流失**：第 5 順位籤（交易）
-- **傷兵**：Tyrese Haliburton 阿基里斯腱康復，開季可上，早季可能限制上場時間
+- **傷兵**：Tyrese Haliburton 阿基里斯腱康復，9/28 媒體日自述「100%、沒有任何限制」；實際上場時間待季前賽觀察
 - **狀況**：Haliburton 回歸是東區最大變數，但團隊補強保守；勝場盤 44.5 反映市場對阿基里斯腱回歸的保守。
-- **ATS 角度**：早季 Haliburton 限時 → 前 20 場的 IND 實力被高估，客場讓分不跟；1 月後重新評估。
+- **ATS 角度**：Haliburton 自述不限時，但阿基里斯腱傷後首季效率通常下滑 → 前 20 場的 IND 客場讓分仍不跟；季前賽若確認正常上場時間再提前重新評估。
 
 #### 亞特蘭大老鷹（Atlanta Hawks）
 
@@ -258,7 +258,7 @@
 - **上季**：44-38（主 21-20 / 客 23-18），淨效率 +4.9（第 8），ATS 51-0-31（主 26-0-15 / 客 25-0-16），附加賽出局。
 - **市場**：勝場盤 37.5（相對上季 -6.5），分層「附加賽以下」。
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
-- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White
+- **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易，9/30 已改與 DEN 簽雙向約、不在 CHA 名單）；#14 Hannes Steinbach；續約 Coby White
 - **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）
 - **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。

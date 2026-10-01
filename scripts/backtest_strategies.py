@@ -23,8 +23,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.Predict.XGBoost_Runner import _select_model_path, _load_calibrator
 from src.Utils.SeasonStats import (
     DATASET_DB, ODDS_DB, DATASET_TABLE, SEASON_BOUNDS,
-    DROP_FEATURE_COLS, _freshest_odds_table,
+    DROP_FEATURE_COLS,
 )
+from src.Utils.OddsTables import load_season_odds
 from src.Utils.ValueFinder import evaluate_value, american_to_decimal
 
 
@@ -40,15 +41,11 @@ def load_predictions(season_key: str):
         raise SystemExit(f"No graded games for season {season_key}")
 
     with sqlite3.connect(ODDS_DB) as con:
-        ot = _freshest_odds_table(con, season_key)
-        if ot:
-            odds = pd.read_sql_query(
-                f'SELECT Date, Home, Away, ML_Home, ML_Away, Spread, Win_Margin FROM "{ot}"',
-                con,
-            )
-            odds["Date"] = odds["Date"].astype(str)
-            for c in ("ML_Home", "ML_Away", "Spread", "Win_Margin"):
-                odds[c] = pd.to_numeric(odds[c], errors="coerce")
+        odds = load_season_odds(
+            con, season_key,
+            ["Date", "Home", "Away", "ML_Home", "ML_Away", "Spread", "Win_Margin"],
+        )
+        if not odds.empty:
             df = df.merge(
                 odds, how="left",
                 left_on=["Date", "TEAM_NAME", "TEAM_NAME.1"],

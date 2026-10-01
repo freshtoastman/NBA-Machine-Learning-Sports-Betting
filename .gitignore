@@ -56,6 +56,9 @@ coverage.xml
 local_settings.py
 db.sqlite3
 Data/*.sqlite
+Data/*.sqlite-shm
+Data/*.sqlite-wal
+Data/backups/
 dataset.sqlite
 
 # Flask stuff:

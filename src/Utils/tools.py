@@ -105,3 +105,19 @@ def current_nba_season(today=None):
     """Return the current NBA season label, e.g. '2025-26'."""
     start = current_nba_season_start_year(today)
     return f"{start}-{(start + 1) % 100:02d}"
+
+
+def record_fetch(con, table_name):
+    """Log when a stats snapshot was fetched (UTC).
+
+    A table named D fetched before D's games holds pre-game numbers; fetched
+    later it already includes them. The log lets audits tell the two apart.
+    """
+    from datetime import datetime as _dt, timezone as _tz
+    con.execute(
+        'CREATE TABLE IF NOT EXISTS "_fetch_log" (table_name TEXT PRIMARY KEY, fetched_at_utc TEXT)'
+    )
+    con.execute(
+        'INSERT OR REPLACE INTO "_fetch_log" VALUES (?, ?)',
+        (table_name, _dt.now(_tz.utc).isoformat(timespec="seconds")),
+    )

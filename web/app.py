@@ -1466,7 +1466,10 @@ _ODDS_DB_PATH = Path(__file__).parent.parent / "Data" / "OddsData.sqlite"
 
 
 def _freshest_table(con, season: str) -> str:
-    """Return the table name with the most-recent Date for a given season."""
+    """Return the most complete table (most rows) for a given season.
+
+    Picking by MAX(Date) let a partial table win once it held the latest game.
+    """
     candidates = [
         row[0] for row in
         con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
@@ -1476,13 +1479,12 @@ def _freshest_table(con, season: str) -> str:
         return season
     if len(candidates) == 1:
         return candidates[0]
-    best, best_date = candidates[0], ""
+    best, best_count = candidates[0], -1
     for c in candidates:
         try:
-            row = con.execute(f'SELECT MAX(Date) FROM "{c}"').fetchone()
-            d = row[0] or ""
-            if d > best_date:
-                best, best_date = c, d
+            count = con.execute(f'SELECT COUNT(*) FROM "{c}"').fetchone()[0]
+            if count > best_count:
+                best, best_count = c, count
         except Exception:
             pass
     return best

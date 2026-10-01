@@ -29,8 +29,9 @@ from src.Predict.XGBoost_Runner import _select_model_path
 from src.Utils.Calibration import IsotonicCalibrator
 from src.Utils.SeasonStats import (
     DATASET_DB, ODDS_DB, DATASET_TABLE, SEASON_BOUNDS,
-    DROP_FEATURE_COLS, _freshest_odds_table,
+    DROP_FEATURE_COLS,
 )
+from src.Utils.OddsTables import load_season_odds
 
 DEFAULT_SEASONS = ["2025-26"]
 
@@ -47,12 +48,8 @@ def load_raw_probs(season_key: str, booster: xgb.Booster):
         return None, None
 
     with sqlite3.connect(ODDS_DB) as con:
-        ot = _freshest_odds_table(con, season_key)
-        if ot:
-            odds = pd.read_sql_query(
-                f'SELECT Date, Home, Away, Spread FROM "{ot}"', con,
-            )
-            odds["Date"] = odds["Date"].astype(str)
+        odds = load_season_odds(con, season_key, ["Date", "Home", "Away", "Spread"])
+        if not odds.empty:
             df = df.merge(odds, how="left",
                           left_on=["Date", "TEAM_NAME", "TEAM_NAME.1"],
                           right_on=["Date", "Home", "Away"])

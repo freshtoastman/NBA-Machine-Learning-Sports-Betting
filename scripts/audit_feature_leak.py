@@ -1,18 +1,21 @@
 """Audit same-day stat leakage and its effect on the production ML/ATS models.
 
+0. Dataset test: does any row of the production dataset carry a GP that already counts
+   the game the row describes? Must be zero since Create_Games picks pre-game snapshots.
 1. Inclusion test: for teams that played on day D, does the stats table named D already
    count that game (GP == games through D)? Backfilled tables do, because Get_Data fetches
    leaguedashteamstats with DateTo=D after D is over.
-2. Re-scoring: rebuild the seasons twice with Create_Games — LEAKY (table for D, what
-   dataset.sqlite uses) and CLEAN (latest table strictly before D, same season, i.e. what
-   a live pre-game run can see) — and score both with the production models, thresholds
-   and away-quality filter on the identical set of games.
+2. Re-scoring: rebuild the seasons twice with Create_Games — LEAKY (SNAPSHOT_MODE
+   "same_day": the table named D, what dataset.sqlite used until 2026-10-01) and CLEAN
+   (SNAPSHOT_MODE "pregame", the production default) — and score both with the production
+   models, thresholds and away-quality filter on the identical set of games.
 
 Nothing is written under Data/; rebuilt datasets go to --work-dir.
 
 Usage:
     PYTHONPATH=. python3 scripts/audit_feature_leak.py [--seasons 2024-25 2025-26] [--work-dir DIR]
 """
+import bisect
 import argparse
 import datetime as dt
 import importlib.util
@@ -31,17 +34,88 @@ import toml
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 ODDS_DB = REPO / "Data" / "OddsData.sqlite"
-STEMS_NOT_IN_MODEL = {"game_num_season", "month_sin", "month_cos", "form_ats_pct_home_10",
-                      "form_ats_pct_away_10", "form_pts_for_5", "form_pts_against_5", "form_pts_diff_10"}
 
 
-def most_complete_odds_table(con, season_key):
-    cands = [f"odds_{season_key}_new", f"odds_{season_key}", f"{season_key}_new", season_key]
-    ex = [t for t in cands if con.execute(
-        "select 1 from sqlite_master where type='table' and name=?", (t,)).fetchone()]
-    if not ex:
-        return None
-    return max(ex, key=lambda t: con.execute(f'select count(*) from "{t}"').fetchone()[0])
+def season_odds(con, season_key):
+    from src.Utils.OddsTables import load_season_odds
+    return load_season_odds(con, season_key)
+
+
+def _shift(date_str, days):
+    return (dt.datetime.strptime(date_str, "%Y-%m-%d") + dt.timedelta(days=days)).strftime("%Y-%m-%d")
+
+
+def dataset_test(seasons, cfg, dataset_db, table="dataset_2012-26"):
+    """Count dataset team-rows whose GP already includes the row's own game.
+
+    The games a team had completed before date D are derived from a LATER anchor: the
+    first stats table named >= D+2 on whose date and eve the team was idle, minus the
+    games it played from D up to that anchor. This is independent of how Create_Games
+    counts (it anchors backwards), so the two cannot share a blind spot.
+    """
+    from src.Utils.Dictionaries import team_index_current
+
+    print(f"== 0. Dataset test ({Path(dataset_db).name}): rows whose GP counts their own game ==")
+    cup_finals = {"2023-12-09", "2024-12-17", "2025-12-16"}
+    tc = sqlite3.connect(REPO / "Data" / "TeamData.sqlite")
+    with sqlite3.connect(dataset_db) as con:
+        rows = pd.read_sql_query(f'select Date, GP, "GP.1" from "{table}"', con)
+        names = pd.read_sql_query(f'select Home, Away from "{table}_snapshots"', con)
+    rows["Home"], rows["Away"] = names["Home"], names["Away"]
+    total_leaks = 0
+    with sqlite3.connect(ODDS_DB) as oc:
+        for s in seasons:
+            start = dt.datetime.strptime(cfg["create-games"][s]["start_date"], "%Y-%m-%d").strftime("%Y-%m-%d")
+            po = cfg.get("get-playoffs", {}).get(s, {}).get("start_date", "9999-12-31")
+            po = dt.datetime.strptime(po, "%Y-%m-%d").strftime("%Y-%m-%d")
+            odds = season_odds(oc, s)
+            odds = odds[odds.Date < po]
+            scheduled, played = {}, {}
+            for d, h, a, pts in zip(odds.Date, odds.Home, odds.Away, odds.Points):
+                for t in (h, a):
+                    scheduled.setdefault(t, set()).add(d)
+                    if pts > 0 and d not in cup_finals:
+                        played.setdefault(t, []).append(d)
+            for v in played.values():
+                v.sort()
+            tables = sorted(r[0] for r in tc.execute(
+                "select name from sqlite_master where type='table' and name glob '????-??-??' "
+                "and name >= ? and name < ?", (start, _shift(po, 3))))
+            gp_cache = {}
+
+            def gp_of(tbl, team):
+                if tbl not in gp_cache:
+                    gp_cache[tbl] = pd.read_sql_query(f'select GP from "{tbl}"', tc)["GP"].tolist()
+                col = gp_cache[tbl]
+                return col[team_index_current[team]] if len(col) == 30 and team in team_index_current else None
+
+            x = rows[(rows.Date >= start) & (rows.Date < po)]
+            n = leak = stale = unknown = 0
+            for d, h, a, g, g1 in zip(x.Date, x.Home, x.Away, x.GP, x["GP.1"]):
+                for t, row_gp in ((h, g), (a, g1)):
+                    n += 1
+                    before = None
+                    i = bisect.bisect_left(tables, _shift(d, 2))
+                    for anchor in tables[i:i + 30]:
+                        if anchor in scheduled.get(t, ()) or _shift(anchor, -1) in scheduled.get(t, ()):
+                            continue
+                        shown = gp_of(anchor, t)
+                        if shown is None:
+                            continue
+                        pl = played.get(t, [])
+                        before = shown - (bisect.bisect_right(pl, _shift(anchor, -2)) - bisect.bisect_left(pl, d))
+                        break
+                    if before is None:
+                        unknown += 1
+                    elif row_gp > before:
+                        leak += 1
+                    elif row_gp < before:
+                        stale += 1
+            total_leaks += leak
+            print(f"  {s}: team-rows {n:5d} | counts own game: {leak:4d} | older than pre-game: {stale:4d} "
+                  f"| no later anchor: {unknown}")
+    tc.close()
+    return total_leaks
 
 
 def wilson(k, n, z=1.96):
@@ -73,8 +147,7 @@ def inclusion_test(seasons, bounds):
     print("== 1. Same-day inclusion test (teams that played on the table's date) ==")
     with sqlite3.connect(ODDS_DB) as oc:
         for s in seasons:
-            o = pd.read_sql_query(f'select Date, Home, Away from "{most_complete_odds_table(oc, s)}"', oc)
-            o["Date"] = o["Date"].astype(str).str[:10]
+            o = season_odds(oc, s)[["Date", "Home", "Away"]]
             lo, hi = bounds[s]
             o = o[(o.Date >= lo) & (o.Date < hi)].drop_duplicates()
             for db in ("TeamData.sqlite", "AdvancedTeamData.sqlite"):
@@ -107,23 +180,6 @@ def rebuild(seasons, bounds, cfg, work_db):
     spec = importlib.util.spec_from_file_location("cg", REPO / "src/Process-Data/Create_Games.py")
     cg = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cg)
-    leaky_team, leaky_adv = cg.fetch_team_table, cg.fetch_advanced_table
-
-    def prior(con, date_str):
-        start = next((lo for lo, hi in bounds.values() if lo <= date_str < hi), None)
-        if start is None:
-            return None
-        row = con.execute("select name from sqlite_master where type='table' and name < ? and name >= ? "
-                          "and name glob '????-??-??' order by name desc limit 1", (date_str, start)).fetchone()
-        return row[0] if row else None
-
-    def clean_team(con, date_str):
-        t = prior(con, date_str)
-        return pd.read_sql_query(f'select * from "{t}"', con) if t else None
-
-    def clean_adv(con, date_str):
-        t = prior(con, date_str) if con is not None else None
-        return leaky_adv(con, t) if t else None
 
     class _Toml:
         @staticmethod
@@ -133,10 +189,9 @@ def rebuild(seasons, bounds, cfg, work_db):
             return c
 
     cg.toml = _Toml
-    cg.select_odds_table = most_complete_odds_table
     cg.OUTPUT_DB_PATH = work_db
-    for mode, team_fn, adv_fn in (("leaky", leaky_team, leaky_adv), ("clean", clean_team, clean_adv)):
-        cg.fetch_team_table, cg.fetch_advanced_table = team_fn, adv_fn
+    for mode, snapshot_mode in (("leaky", "same_day"), ("clean", "pregame")):
+        cg.SNAPSHOT_MODE = snapshot_mode
         cg.OUTPUT_TABLE = f"ds_{mode}"
         print(f"  building {mode} dataset ...", flush=True)
         cg.main()
@@ -148,7 +203,6 @@ def score(seasons, work_db):
     from src.Predict.XGBoost_Runner import _build_frame_ats, _load_calibrator, _select_model_path
     from src.Utils import SeasonStats as SS
 
-    AF._freshest_odds_table = most_complete_odds_table
     AF.reset_cache()
     ml_path, ats_path = _select_model_path("ML"), _select_model_path("ATS")
     print("  models:", ml_path.name, "|", ats_path.name)
@@ -157,11 +211,9 @@ def score(seasons, work_db):
     b_ats.load_model(str(ats_path))
     cal_ml = _load_calibrator(ml_path)
     with sqlite3.connect(ODDS_DB) as oc:
-        odds = pd.concat([pd.read_sql_query(
-            f'select Date, Home, Away, ML_Home, ML_Away, Spread, Win_Margin from "{most_complete_odds_table(oc, s)}"', oc)
+        odds = pd.concat([
+            season_odds(oc, s)[["Date", "Home", "Away", "ML_Home", "ML_Away", "Spread", "Win_Margin"]]
             for s in seasons])
-    odds["Date"] = odds["Date"].astype(str).str[:10]
-    odds = odds.drop_duplicates(["Date", "Home", "Away"])
     frames = {}
     for mode in ("leaky", "clean"):
         with sqlite3.connect(work_db) as con:
@@ -178,8 +230,7 @@ def score(seasons, work_db):
         if cal_ml is not None:
             p_ml = np.asarray(cal_ml.predict_proba(p_ml))
         helper = AF.merge_into(df[["TEAM_NAME", "TEAM_NAME.1", "Date"]].copy(), "TEAM_NAME", "TEAM_NAME.1", "Date")
-        adv = [c for c in helper.columns if c.startswith(("H_", "A_", "D_"))]
-        adv = [c for c in adv if c[2:] not in STEMS_NOT_IN_MODEL] + [c for c in adv if c[2:] in STEMS_NOT_IN_MODEL]
+        adv = AF.ats_model_columns(helper.columns)
         spreads = np.where(pd.isna(df["Spread"]), 0.0, df["Spread"].astype(float))
         Xa = _build_frame_ats(f_ml, spreads, advanced=helper[adv].fillna(0.0).reset_index(drop=True))
         Xa = Xa.astype(float).to_numpy()[:, :int(b_ats.num_features())]
@@ -227,10 +278,15 @@ def main():
     ap.add_argument("--seasons", nargs="+", default=["2024-25", "2025-26"])
     ap.add_argument("--work-dir", default=os.path.join(tempfile.gettempdir(), "nba_leak_audit"))
     ap.add_argument("--skip-build", action="store_true")
+    ap.add_argument("--dataset-only", action="store_true",
+                    help="run only part 0 and exit non-zero if any row counts its own game")
     args = ap.parse_args()
     os.chdir(REPO)
     cfg = toml.load(REPO / "config.toml")
     bounds = season_bounds(cfg, args.seasons)
+    leaks = dataset_test(args.seasons, cfg, REPO / "Data" / "dataset.sqlite")
+    if args.dataset_only:
+        sys.exit(1 if leaks else 0)
     inclusion_test(args.seasons, bounds)
     Path(args.work_dir).mkdir(parents=True, exist_ok=True)
     work_db = Path(args.work_dir) / "leak_audit.sqlite"

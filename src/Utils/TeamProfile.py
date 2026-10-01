@@ -23,6 +23,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from src.Utils.OddsTables import load_seasons_odds
+
 ODDS_DB = Path(__file__).resolve().parents[2] / "Data" / "OddsData.sqlite"
 
 WEEKDAY_LABELS_ZH = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"]
@@ -34,36 +36,6 @@ SEASON_KEYS = [
 ]
 
 
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
-
-
-def _freshest_season_table(con, season_key):
-    """Mirror Create_Games' freshness rule so we read the latest snapshot."""
-    candidates = [
-        f"odds_{season_key}_new",
-        f"odds_{season_key}",
-        f"{season_key}_new",
-        season_key,
-    ]
-    existing = [t for t in candidates if _table_exists(con, t)]
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-
-    def freshness(t):
-        try:
-            row = con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()
-            return row[0] or ""
-        except Exception:
-            return ""
-
-    return max(existing, key=freshness)
-
-
 _ALL_GAMES_CACHE: pd.DataFrame | None = None
 
 
@@ -73,34 +45,17 @@ def _load_all_games() -> pd.DataFrame:
     if _ALL_GAMES_CACHE is not None:
         return _ALL_GAMES_CACHE
 
-    frames = []
     with sqlite3.connect(ODDS_DB) as con:
-        for season in SEASON_KEYS:
-            tbl = _freshest_season_table(con, season)
-            if not tbl:
-                continue
-            try:
-                df = pd.read_sql_query(
-                    f'SELECT Date, Home, Away, OU, Spread, ML_Home, ML_Away, '
-                    f'Points, Win_Margin FROM "{tbl}"',
-                    con,
-                )
-                frames.append(df)
-            except Exception:
-                continue
-    if not frames:
+        all_df = load_seasons_odds(
+            con, SEASON_KEYS,
+            ["Date", "Home", "Away", "OU", "Spread", "ML_Home", "ML_Away", "Points", "Win_Margin"],
+        )
+    if all_df.empty:
         _ALL_GAMES_CACHE = pd.DataFrame()
         return _ALL_GAMES_CACHE
 
-    all_df = pd.concat(frames, ignore_index=True)
-    all_df = all_df.dropna(subset=["Date", "Home", "Away"])
-    all_df = all_df.drop_duplicates(subset=["Date", "Home", "Away"], keep="last")
     all_df["Date"] = pd.to_datetime(all_df["Date"], errors="coerce")
     all_df = all_df.dropna(subset=["Date"])
-    # Coerce numeric columns — historical seasons sometimes contain strings.
-    for col in ("OU", "Spread", "ML_Home", "ML_Away", "Points", "Win_Margin"):
-        if col in all_df.columns:
-            all_df[col] = pd.to_numeric(all_df[col], errors="coerce")
     # Only keep games with final scores so we can compute team-perspective stats.
     all_df = all_df[all_df["Points"].fillna(0) > 0].reset_index(drop=True)
     all_df["weekday"] = all_df["Date"].dt.dayofweek

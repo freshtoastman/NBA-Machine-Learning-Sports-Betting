@@ -308,7 +308,7 @@ def predict_today_xgb(sportsbook):
     safe_spreads = [float(sp) if sp not in (None, "") else 0.0 for sp in spreads]
     advanced_df = None
     try:
-        from src.Utils.AdvancedFeatures import merge_into as _merge_adv
+        from src.Utils.AdvancedFeatures import ats_model_columns, merge_into as _merge_adv
         helper = pd.DataFrame({
             "TEAM_NAME": [g[0] for g in games],
             "TEAM_NAME.1": [g[1] for g in games],
@@ -324,14 +324,7 @@ def predict_today_xgb(sportsbook):
             # feature model was trained must be listed here so it lands in
             # adv_new (appended last) rather than adv_old (inline), which would
             # shift A_/D_ feature positions and silently break the model.
-            _NEW_ADV_STEMS = {
-                "game_num_season", "month_sin", "month_cos",   # temporal
-                "form_ats_pct_home_10", "form_ats_pct_away_10",  # home/away ATS split
-                "form_pts_for_5", "form_pts_against_5", "form_pts_diff_10",  # off/def split
-            }
-            adv_old = [c for c in adv_cols if c[2:] not in _NEW_ADV_STEMS]
-            adv_new = [c for c in adv_cols if c[2:] in _NEW_ADV_STEMS]
-            advanced_df = helper[adv_old + adv_new].fillna(0.0)
+            advanced_df = helper[ats_model_columns(adv_cols)].fillna(0.0)
     except Exception:
         advanced_df = None
     ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)
@@ -736,7 +729,7 @@ def predict_historical_xgb(target_date):
     # schedule density just like at training time.
     advanced_df = None
     try:
-        from src.Utils.AdvancedFeatures import merge_into as _merge_advanced
+        from src.Utils.AdvancedFeatures import ats_model_columns, merge_into as _merge_advanced
         helper = pd.DataFrame({
             "TEAM_NAME": [g[0] for g in games],
             "TEAM_NAME.1": [g[1] for g in games],
@@ -750,14 +743,7 @@ def predict_historical_xgb(target_date):
             # _align_features() truncation drops them until a new model is trained.
             # Any feature added after the 175-feature model was trained MUST be
             # listed here — omitting it shifts A_/D_ positions and breaks the model.
-            _NEW_ADV_STEMS = {
-                "game_num_season", "month_sin", "month_cos",   # temporal
-                "form_ats_pct_home_10", "form_ats_pct_away_10",  # home/away ATS split
-                "form_pts_for_5", "form_pts_against_5", "form_pts_diff_10",  # off/def split
-            }
-            adv_old = [c for c in advanced_cols if c[2:] not in _NEW_ADV_STEMS]
-            adv_new = [c for c in advanced_cols if c[2:] in _NEW_ADV_STEMS]
-            advanced_df = helper[adv_old + adv_new].fillna(0.0)
+            advanced_df = helper[ats_model_columns(advanced_cols)].fillna(0.0)
     except Exception:
         advanced_df = None
     ats_probs = XGBoost_Runner.predict_ats_probs(frame_ml, safe_spreads, advanced=advanced_df)

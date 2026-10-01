@@ -11,7 +11,13 @@ backtest_ats.py: Home_Cover_Margin = Win_Margin - Spread, positive => home
 covered).
 """
 import sqlite3
+import sys
+from pathlib import Path
+
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.Utils.OddsTables import load_season_odds  # noqa: E402
 
 DB = "Data/OddsData.sqlite"
 
@@ -33,31 +39,15 @@ PLAYOFF_RANGES = {
 }
 
 
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
-
-
-def _freshest_odds_table(con, season_key):
-    for t in (f"odds_{season_key}_new", f"odds_{season_key}",
-              f"{season_key}_new", season_key):
-        if _table_exists(con, t):
-            return t
-    return None
-
-
 def load_playoff_series():
     con = sqlite3.connect(DB)
     all_series = []
     for season, (start, end) in PLAYOFF_RANGES.items():
-        tbl = _freshest_odds_table(con, season)
-        if tbl is None:
-            continue
-        df = pd.read_sql(
-            f'SELECT Date, Home, Away, Spread, Win_Margin, Points FROM "{tbl}"',
-            con,
+        df = load_season_odds(
+            con, season, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points"]
         )
+        if df.empty:
+            continue
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
         for col in ("Spread", "Win_Margin"):
             df[col] = pd.to_numeric(df[col], errors="coerce")

@@ -55,6 +55,12 @@ run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-se
 # 4. Rebuild the merged dataset (now includes is_playoff + series cols).
 run_step "Create_Games"  python src/Process-Data/Create_Games.py
 
+# 4b. Leak guard (non-blocking): flag any dataset row whose stats already count its own game.
+if ! python scripts/audit_feature_leak.py --dataset-only --seasons 2025-26 2026-27 >> "$LOG_FILE" 2>&1; then
+    echo "WARNING: leak guard found dataset rows that include their own game" >> "$LOG_FILE"
+    /usr/bin/osascript -e 'display notification "Leak guard: dataset rows include their own game" with title "NBA-ML Pipeline"' || true
+fi
+
 # 5. Export predictions to static JSON for Vercel.
 run_step "Export_JSON"   python scripts/export_predictions.py
 

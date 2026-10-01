@@ -2,7 +2,8 @@
 # BetMGM win totals via Yahoo, ESPN 2027 title odds, ESPN injury returns, NBA.com coaching tracker).
 # Fetched 2026-09-22; roster moves updated 2026-09-30 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
 # media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus, GSW Porziņģis out indefinitely; CHA waives Dillingham 9/28; TOR Kawhi 2y/$115M extension 9/23;
-# GSW Curry 2y/$116M extension 9/25, Butler ACL rehab "ahead of schedule" 9/29 — target still early 2027).
+# GSW Curry 2y/$116M extension 9/25, Butler ACL rehab "ahead of schedule" 9/29 — target still early 2027;
+# IND Haliburton "100%, no restrictions" 9/28; Ryan Nembhard signs DEN two-way 9/30).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -66,7 +67,7 @@ TEAMS = {
         outlook="上季 20 勝球隊補進 Randle，但沒有長期方向；勝場盤 22.5 是聯盟倒數第二。",
         ats_angle="爛隊受讓早季常過盤（市場低估 Randle 的常規賽產出），但 3 月後擺爛風險高，需配合模型的時間抑制。"),
     "Charlotte Hornets": dict(grade=("A-", "A"),
-        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易）；#14 Hannes Steinbach；續約 Coby White",
+        adds="Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易，9/30 已改與 DEN 簽雙向約、不在 CHA 名單）；#14 Hannes Steinbach；續約 Coby White",
         departs="LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）",
         injury="Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑",
         outlook="賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。",
@@ -116,9 +117,9 @@ TEAMS = {
     "Indiana Pacers": dict(grade=("B-", "C"),
         adds="Kelly Oubre Jr.、Larry Nance Jr.",
         departs="第 5 順位籤（交易）",
-        injury="Tyrese Haliburton 阿基里斯腱康復，開季可上，早季可能限制上場時間",
+        injury="Tyrese Haliburton 阿基里斯腱康復，9/28 媒體日自述「100%、沒有任何限制」；實際上場時間待季前賽觀察",
         outlook="Haliburton 回歸是東區最大變數，但團隊補強保守；勝場盤 44.5 反映市場對阿基里斯腱回歸的保守。",
-        ats_angle="早季 Haliburton 限時 → 前 20 場的 IND 實力被高估，客場讓分不跟；1 月後重新評估。"),
+        ats_angle="Haliburton 自述不限時，但阿基里斯腱傷後首季效率通常下滑 → 前 20 場的 IND 客場讓分仍不跟；季前賽若確認正常上場時間再提前重新評估。"),
     "LA Clippers": dict(grade=("Incomplete", "A-"),
         adds="Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal",
         departs="Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin",

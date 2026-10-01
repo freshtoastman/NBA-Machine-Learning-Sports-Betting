@@ -30,10 +30,13 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
+import pandas as pd
 import toml
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(1, os.fspath(BASE_DIR))
+
+from src.Utils.OddsTables import load_season_odds  # noqa: E402
 
 CONFIG_PATH = BASE_DIR / "config.toml"
 ODDS_DB = BASE_DIR / "Data" / "OddsData.sqlite"
@@ -49,31 +52,6 @@ ROUND_LABELS = {
 
 def load_config():
     return toml.load(CONFIG_PATH)
-
-
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
-
-
-def _select_odds_table(con, season_key):
-    """Return the freshest odds table name for this season."""
-    candidates = [
-        f"odds_{season_key}_new",
-        f"odds_{season_key}",
-        f"{season_key}_new",
-        season_key,
-    ]
-    existing = [t for t in candidates if _table_exists(con, t)]
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-    return max(
-        existing,
-        key=lambda t: con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()[0] or "",
-    )
 
 
 def ensure_table(con, season_key):
@@ -223,18 +201,23 @@ def derive_series_for_season(season_key):
     end = bounds["end_date"]
 
     with sqlite3.connect(ODDS_DB) as con:
-        table = _select_odds_table(con, season_key)
-        if not table:
-            print(f"  no odds table for {season_key}")
-            return []
-        rows = con.execute(
-            f'SELECT Date, Home, Away, Win_Margin, Points FROM "{table}" '
-            f'WHERE Date >= ? AND Date <= ? ORDER BY Date',
-            (start, end),
-        ).fetchall()
+        odds = load_season_odds(con, season_key)
+    if odds.empty:
+        print(f"  no odds table for {season_key}")
+        return []
+    # Config dates are not always zero-padded ("2026-6-22"); normalise before comparing.
+    start = datetime.strptime(start, "%Y-%m-%d").strftime("%Y-%m-%d")
+    end = datetime.strptime(end, "%Y-%m-%d").strftime("%Y-%m-%d")
+    odds = odds[(odds["Date"] >= start) & (odds["Date"] <= end)]
+    rows = [
+        (r.Date, r.Home, r.Away,
+         None if pd.isna(r.Win_Margin) else r.Win_Margin,
+         None if pd.isna(r.Points) else r.Points)
+        for r in odds.itertuples(index=False)
+    ]
 
     if not rows:
-        print(f"  no playoff games found for {season_key} in {table}")
+        print(f"  no playoff games found for {season_key}")
         return []
 
     # Group by matchup (frozenset of two teams).

@@ -2290,28 +2290,25 @@ def build_season_h2h(season_key: str) -> dict | None:
     if not db.exists():
         return None
     try:
+        import pandas as pd
+        from src.Utils.OddsTables import load_season_odds
         con = sqlite3.connect(str(db))
-        # Pick the freshest table for the season
-        candidates = [
-            row[0] for row in
-            con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
-            if season_key in row[0]
-        ]
-        best, best_date, best_cnt = (candidates[0] if candidates else season_key), "", 0
-        for c in candidates:
-            try:
-                row = con.execute(f'SELECT MAX(Date) FROM "{c}"').fetchone()
-                d = row[0] or ""
-                cnt = con.execute(f'SELECT COUNT(*) FROM "{c}"').fetchone()[0]
-                if d > best_date or (d == best_date and cnt > best_cnt):
-                    best, best_date, best_cnt = c, d, cnt
-            except Exception:
-                pass
-
-        rows = con.execute(
-            f'SELECT Date, Home, Away, Spread, Win_Margin, Points FROM "{best}" ORDER BY Date'
-        ).fetchall()
+        odds = load_season_odds(
+            con, season_key, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points"]
+        )
         con.close()
+        if odds.empty:
+            return None
+        # NaN → None and whole numbers → int, so the JSON matches the raw SQL rows.
+        def _num(value, as_int=False):
+            if pd.isna(value):
+                return None
+            return int(value) if as_int and float(value).is_integer() else float(value)
+
+        rows = [
+            (r.Date, r.Home, r.Away, _num(r.Spread), _num(r.Win_Margin, True), _num(r.Points, True))
+            for r in odds.itertuples(index=False)
+        ]
     except Exception:
         return None
 
@@ -2347,6 +2344,31 @@ def build_season_h2h(season_key: str) -> dict | None:
     return {"season": season_key, "pairs": pairs}
 
 
+def _reporting_season(today: date) -> str:
+    """Season the site reports on: the current one once it has games, else the last that does.
+
+    The season label rolls over on Oct 1, weeks before opening night. Until the
+    new season's games exist, season stats / H2H / the date index keep describing
+    the season that just ended instead of pointing at an empty one.
+    """
+    import sqlite3
+    from src.Utils.OddsTables import load_season_odds
+
+    season_key = current_nba_season(today)
+    odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
+    if not odds_db.exists():
+        return season_key
+    start = int(season_key[:4])
+    previous = f"{start - 1}-{start % 100:02d}"
+    con = sqlite3.connect(str(odds_db))
+    try:
+        if load_season_odds(con, season_key).empty and not load_season_odds(con, previous).empty:
+            return previous
+    finally:
+        con.close()
+    return season_key
+
+
 def _update_playoff_quarters(today: date) -> None:
     """Fetch Q-by-Q scores from ESPN for completed playoff games missing from playoff_quarters.json."""
     import sqlite3
@@ -2360,17 +2382,18 @@ def _update_playoff_quarters(today: date) -> None:
             existing = []
     seen = {(g["date"], g["home_name"], g["away_name"]) for g in existing}
 
+    from src.Utils.OddsTables import load_season_odds
+
     season_key = current_nba_season(today)
     odds_db = Path(__file__).resolve().parents[1] / "Data" / "OddsData.sqlite"
     if not odds_db.exists():
         return
     con = sqlite3.connect(str(odds_db))
-    rows = con.execute(
-        f'SELECT Date, Home, Away, Win_Margin FROM "{season_key}" '
-        f'WHERE Date >= ? AND Win_Margin != 0 ORDER BY Date',
-        ((today - timedelta(days=30)).isoformat(),),
-    ).fetchall()
+    odds = load_season_odds(con, season_key, ["Date", "Home", "Away", "Win_Margin"])
     con.close()
+    odds = odds[(odds["Date"] >= (today - timedelta(days=30)).isoformat())
+                & odds["Win_Margin"].notna() & (odds["Win_Margin"] != 0)]
+    rows = odds.values.tolist()
 
     from src.Utils.PlayoffContext import is_playoff_date
     missing = []
@@ -2484,7 +2507,7 @@ def main():
     _update_playoff_quarters(today)
 
     # Season stats.
-    season_key = current_nba_season(today)
+    season_key = _reporting_season(today)
     reset_season_cache()
     stats = compute_season_stats(season_key)
     if stats:

@@ -34,6 +34,9 @@ import numpy as np
 import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BASE_DIR))
+from src.Utils.OddsTables import load_season_odds
+
 # Use main repo Data directory (worktrees may not have full data).
 _MAIN_REPO = Path(__file__).resolve().parents[1]
 _DATA_CANDIDATES = [
@@ -54,30 +57,6 @@ ALL_SEASONS = [
 # Data loading
 # ---------------------------------------------------------------------------
 
-def _table_exists(con, name):
-    return con.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
-    ).fetchone() is not None
-
-
-def _freshest_odds_table(con, season_key):
-    candidates = [
-        f"odds_{season_key}_new",
-        f"odds_{season_key}",
-        f"{season_key}_new",
-        season_key,
-    ]
-    existing = [t for t in candidates if _table_exists(con, t)]
-    if not existing:
-        return None
-    if len(existing) == 1:
-        return existing[0]
-    return max(
-        existing,
-        key=lambda t: con.execute(f'SELECT MAX(Date) FROM "{t}"').fetchone()[0] or "",
-    )
-
-
 def load_all_games(seasons: list[str] | None = None) -> pd.DataFrame:
     """Load completed games with spread outcomes from OddsData."""
     if seasons is None:
@@ -85,19 +64,13 @@ def load_all_games(seasons: list[str] | None = None) -> pd.DataFrame:
     frames = []
     with sqlite3.connect(ODDS_DB) as con:
         for season in seasons:
-            tbl = _freshest_odds_table(con, season)
-            if not tbl:
+            df = load_season_odds(
+                con, season, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points", "ML_Home", "ML_Away"],
+            )
+            if df.empty:
                 continue
-            try:
-                df = pd.read_sql_query(
-                    f'SELECT Date, Home, Away, Spread, Win_Margin, Points, '
-                    f'ML_Home, ML_Away FROM "{tbl}"',
-                    con,
-                )
-                df["Season"] = season
-                frames.append(df)
-            except Exception as exc:
-                print(f"warn: {season}: {exc}")
+            df["Season"] = season
+            frames.append(df)
     if not frames:
         raise RuntimeError("No odds data found.")
     df = pd.concat(frames, ignore_index=True)
@@ -622,17 +595,12 @@ def analyze_with_model(games: pd.DataFrame):
     odds_frames = []
     with sqlite3.connect(ODDS_DB) as con:
         for season in ALL_SEASONS:
-            tbl = _freshest_odds_table(con, season)
-            if not tbl:
+            o = load_season_odds(
+                con, season, ["Date", "Home", "Away", "Spread", "Win_Margin", "Points", "ML_Home", "ML_Away"],
+            )
+            if o.empty:
                 continue
-            try:
-                o = pd.read_sql_query(
-                    f'SELECT Date, Home, Away, Spread, Win_Margin, Points, ML_Home, ML_Away FROM "{tbl}"',
-                    con,
-                )
-                odds_frames.append(o)
-            except Exception:
-                continue
+            odds_frames.append(o)
     if not odds_frames:
         print("  No odds data for model merge.")
         return

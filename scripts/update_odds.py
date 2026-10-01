@@ -190,6 +190,12 @@ def main():
     fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with sqlite3.connect(str(DB_PATH)) as con:
         _ensure_history_table(con)
+        # The season label rolls over on Oct 1; its table only exists from opening night.
+        if not con.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (season_key,)
+        ).fetchone():
+            print(f"No odds table for {season_key} yet — nothing to update.")
+            return
         unplayed = get_unplayed_dates(con, season_key, today - timedelta(days=2))
         if not unplayed:
             print("No unplayed games found in DB — nothing to update.")

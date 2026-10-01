@@ -13,11 +13,28 @@ from datetime import date, timedelta
 import requests
 from sbrscrape import Scoreboard
 
-from src.Utils.tools import data_headers
+from src.Utils.tools import current_nba_season, data_headers
 
 ODDS_DB = "Data/OddsData.sqlite"
 DAYS_BACK = 3
+# Resolved in main(): the table Get_Odds_Data writes for the current season.
 SEASON_TABLE = "2025-26"
+
+
+def _season_table(con, today: date) -> str:
+    """Odds table for the season `today` falls in.
+
+    The season label rolls over on Oct 1 but its table only appears on opening
+    night, so fall back to the previous season's table until then.
+    """
+    season = current_nba_season(today)
+    exists = con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (season,)
+    ).fetchone()
+    if exists:
+        return season
+    start = int(season[:4])
+    return f"{start - 1}-{start % 100:02d}"
 
 
 def _normalize_team_name(name: str) -> str:
@@ -257,8 +274,10 @@ def _patch_from_espn(con, d_str: str) -> int:
 
 
 def main():
+    global SEASON_TABLE
     con = sqlite3.connect(ODDS_DB)
     today = date.today()
+    SEASON_TABLE = _season_table(con, today)
     total_updated = 0
 
     for offset in range(DAYS_BACK + 1):
