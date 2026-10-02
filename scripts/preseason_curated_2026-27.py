@@ -3,7 +3,8 @@
 # Fetched 2026-09-22; roster moves updated 2026-09-30 (ESPN/NBA.com/AP: ATL↔CHA trade 9/23, MEM waives Russell 9/25, CHA hamstrings 9/25, CHA→CHI Hield for Dillingham 9/27;
 # media day 9/28: LAC Ingram/Beal, DET Duren holdout, POR Sharpe meniscus, GSW Porziņģis out indefinitely; CHA waives Dillingham 9/28; TOR Kawhi 2y/$115M extension 9/23;
 # GSW Curry 2y/$116M extension 9/25, Butler ACL rehab "ahead of schedule" 9/29 — target still early 2027;
-# IND Haliburton "100%, no restrictions" 9/28; Ryan Nembhard signs DEN two-way 9/30).
+# IND Haliburton "100%, no restrictions" 9/28; Ryan Nembhard signs DEN two-way 9/30;
+# DET Duren re-signs 5y/$200M fully guaranteed 10/1, holdout over).
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -97,11 +98,11 @@ TEAMS = {
         outlook="幾乎沒動，Jokić 仍是聯盟最穩的地板；但 MPJ 交易後遺症與防守（季後賽 6 場 5 場失 110+）沒解決。勝場盤 49.5。",
         ats_angle="DEN 主場（高海拔）ATS 長期正期望；客場背靠背是模型歷來的負 EV 區，維持過濾。"),
     "Detroit Pistons": dict(grade=("C-", "C+"),
-        adds="John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Ausar Thompson 5 年續約、Huerter 續約",
+        adds="John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Jalen Duren 5 年 $200M 續約（10/1）、Ausar Thompson 5 年續約、Huerter 續約",
         departs="Isaiah Stewart、Tobias Harris、Caris LeVert",
-        injury="Jalen Duren（RFA，上季 19.5 分 10.5 籃板、All-NBA 三隊）拒絕 5 年 $200M 報價、缺席 9/28 媒體日與訓練營開訓；10/1 為 $9.6M 一年 qualifying offer 期限，開幕戰出賽成疑",
+        injury="Jalen Duren（上季 19.5 分 10.5 籃板、All-NBA 三隊）缺席 9/28 媒體日與訓練營開訓頭幾天後，10/1 期限前不到兩小時簽下 5 年 $200M 全額保障合約（無選項）；錯過開訓，季前賽與開幕戰的上場時間待觀察",
         outlook="東區第一防守效率仍在，但沒找到 Cade 身邊的第二持球者；換掉三名老將換成三名角色球員，屬於平移。勝場盤 50.5，冠軍賠率 25-1。",
-        ats_angle="防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 若持續 holdout 進入開季，DET 內線籃板與護框特徵全部失效，10 月信號降權處理。"),
+        ats_angle="防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 已續約歸隊（holdout 風險解除），但錯過訓練營開訓頭幾天，開季前幾場的內線數據先保守看待。"),
     "Golden State Warriors": dict(grade=("C+", "C-"),
         adds="Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）",
         departs="Quinten Post",

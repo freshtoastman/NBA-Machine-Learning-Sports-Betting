@@ -140,16 +140,15 @@ def create_todays_games_data(games, df, odds, schedule_df, today, interactive=Tr
 
 
 def _ats_value_threshold(game_date, is_away_pick: bool = False) -> float:
-    """Return the minimum edge% to flag a bet as ATS value on a given date.
+    """Return the minimum edge% for the ATS value rule on a given date.
 
-    OOS analysis with MCW=26 model (2024-25 + 2025-26, both seasons):
-      Oct-Feb home picks:  ≥8%  → 94.1% (2024-25: 9/10, 2025-26: 7/7)
-      Oct-Feb away picks:  ≥9%  → 82.1% (2024-25: 16/19, 2025-26: 7/9)
-      Combined (H≥8%, A≥9% + quality filter): 86.7% (39/45 across both OOS)
-      Per-season: 2024-25 86.2% (25/29), 2025-26 87.5% (14/16)
-      March (late regular):  100% — 0/3 hit rate, negative EV
-      April 1-13:            100% — garbage time / resting
-      Playoffs (Apr 14+):    10%  — thin OOS sample, elevated bar
+    These thresholds (home ≥8%, away ≥9%, March / early-April suppressed,
+    playoffs ≥10%) were tuned on 2024-25 + 2025-26 with leaky features and the
+    86.7% once quoted here was in-sample. Out of sample they are noise: the
+    10-season walk-forward gives 26-19 / 1-5 / 32-40 depending on the seed
+    (scripts/walk_forward_clean.py). The rule is kept only so its frozen
+    pre-game record can be scored (pred["ats_shadow_value"]); whether it is
+    shown as a recommendation is decided by config.toml [ats-policy].
     """
     import datetime as _dt
     if isinstance(game_date, _dt.datetime):
@@ -167,8 +166,7 @@ def _ats_value_threshold(game_date, is_away_pick: bool = False) -> float:
     if month == 4:
         return 10.0   # Playoffs/play-in: slightly higher bar (thin OOS sample)
     # Oct, Nov, Dec, Jan, Feb — standard regular season.
-    # Away picks use a 1pp higher threshold (9% vs 8%) since away picks at 8-9%
-    # edge are only break-even. MCW=26 OOS: 86.7% combined (39/45, both seasons ≥86%).
+    # Away picks use a 1pp higher threshold (9% vs 8%).
     return 9.0 if is_away_pick else 8.0
 
 
@@ -361,7 +359,6 @@ def predict_today_xgb(sportsbook):
             edge_pp = abs(p_home_cover - 0.5) * 100
             pred["ats_value_edge"] = round(edge_pp, 1)
             # Asymmetric threshold: home picks ≥8%, away picks ≥9%.
-            # MCW=26 OOS: 86.7% combined (39/45, both seasons ≥86%).
             _is_away = p_home_cover < 0.5
             pred["ats_is_value"] = edge_pp >= _ats_value_threshold(today, is_away_pick=_is_away)
             # Away-pick quality filter: suppress away bets where the home team
@@ -378,6 +375,9 @@ def predict_today_xgb(sportsbook):
                         pred["ats_away_quality_filter"] = True
                 except Exception:
                     pass
+            # Opening policy (config.toml [ats-policy]): the value flag is off
+            # until the frozen pre-game record clears the re-open bar.
+            apply_ats_policy(pred, today)
         else:
             pred["ats_model_pick"] = None
             pred["ats_model_home_prob"] = None
@@ -471,6 +471,7 @@ import sqlite3  # noqa: E402
 
 from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E402
 from src.Utils.ValueFinder import evaluate_value  # noqa: E402
+from src.Utils.Policy import apply_ats_policy  # noqa: E402
 from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict, has_conflict, strong_consensus_side  # noqa: E402
 
 def _build_team_form(home_team, away_team, date_str, pre_game=False):
@@ -764,11 +765,7 @@ def predict_historical_xgb(target_date):
             pred["ats_model_home_prob"] = round(p_home_cover * 100, 1)
             pred["ats_model_confidence"] = round(max(p_home_cover, 1 - p_home_cover) * 100, 1)
             # ATS edge: market implied is ~50% (vig-removed at -110 ≈ 0.5).
-            # OOS analysis (2025-26 full season, 1214 games):
-            #   ≥8% → 64.3% (56 games); ≥9% → 67.4% (43 games).
-            # Regular season (Oct-Mar): ≥8% → 70.8%, ≥9% → 75.7%.
-            # Late regular season (Mar / early Apr): suppressed — negative EV.
-            # Playoffs (Apr 14+): ≥10%.
+            # Thresholds: see _ats_value_threshold.
             edge_pp = abs(p_home_cover - 0.5) * 100
             pred["ats_value_edge"] = round(edge_pp, 1)
             _is_away = p_home_cover < 0.5
@@ -785,6 +782,9 @@ def predict_historical_xgb(target_date):
                         pred["ats_away_quality_filter"] = True
                 except Exception:
                     pass
+            # Opening policy (config.toml [ats-policy]): the value flag is off
+            # until the frozen pre-game record clears the re-open bar.
+            apply_ats_policy(pred, target_date)
         else:
             pred["ats_model_pick"] = None
             pred["ats_model_home_prob"] = None

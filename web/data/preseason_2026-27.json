@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-10-01",
+ "generated": "2026-10-02",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -439,14 +439,14 @@
    "offseason": {
     "grade_espn": "C-",
     "grade_cbs": "C+",
-    "adds": "John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Ausar Thompson 5 年續約、Huerter 續約",
+    "adds": "John Collins、Isaiah Joe、Gary Harris、Taurean Prince；Jalen Duren 5 年 $200M 續約（10/1）、Ausar Thompson 5 年續約、Huerter 續約",
     "departs": "Isaiah Stewart、Tobias Harris、Caris LeVert",
-    "injury": "Jalen Duren（RFA，上季 19.5 分 10.5 籃板、All-NBA 三隊）拒絕 5 年 $200M 報價、缺席 9/28 媒體日與訓練營開訓；10/1 為 $9.6M 一年 qualifying offer 期限，開幕戰出賽成疑",
+    "injury": "Jalen Duren（上季 19.5 分 10.5 籃板、All-NBA 三隊）缺席 9/28 媒體日與訓練營開訓頭幾天後，10/1 期限前不到兩小時簽下 5 年 $200M 全額保障合約（無選項）；錯過開訓，季前賽與開幕戰的上場時間待觀察",
     "new_coach": null,
     "roster_churn": "medium"
    },
    "outlook": "東區第一防守效率仍在，但沒找到 Cade 身邊的第二持球者；換掉三名老將換成三名角色球員，屬於平移。勝場盤 50.5，冠軍賠率 25-1。",
-   "ats_angle": "防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 若持續 holdout 進入開季，DET 內線籃板與護框特徵全部失效，10 月信號降權處理。"
+   "ats_angle": "防守型球隊過盤穩定，尤其主場對弱隊時「贏且過盤」機率高；上季 DET 主場 ATS 是東區前段，延續性高。Duren 已續約歸隊（holdout 風險解除），但錯過訓練營開訓頭幾天，開季前幾場的內線數據先保守看待。"
   },
   "Golden State Warriors": {
    "team": "Golden State Warriors",

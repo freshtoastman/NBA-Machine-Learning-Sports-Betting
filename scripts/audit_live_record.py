@@ -85,7 +85,9 @@ def grade(rows):
     ats = [r for r in graded if r["pre"].get("ats_model_pick") in ("home", "away")
            and r["final"].get("ats_winner") in ("home", "away")]
     out["ats_raw"] = rec(sum(r["pre"]["ats_model_pick"] == r["final"]["ats_winner"] for r in ats), len(ats))
-    val = [r for r in ats if r["pre"].get("ats_is_value")]
+    # Since the 2026-10-02 opening policy the shown flag is off; the rule's own
+    # output is kept in ats_shadow_value so its frozen record can still be graded.
+    val = [r for r in ats if r["pre"].get("ats_shadow_value", r["pre"].get("ats_is_value"))]
     out["ats_value"] = rec(sum(r["pre"]["ats_model_pick"] == r["final"]["ats_winner"] for r in val), len(val))
     out["ats_edge_changed_after_game"] = sum(
         r["pre"].get("ats_value_edge") != r["final"].get("ats_value_edge") for r in graded)

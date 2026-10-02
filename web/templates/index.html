@@ -232,6 +232,9 @@
                     <span class="season-audit-date">{{ season_review.audited }} 稽核</span>
                 </div>
                 <p class="season-audit-lead">{{ season_review.headline_zh }}</p>
+                {% if season_review.policy_zh %}
+                <p class="season-audit-lead"><strong>{{ season_review.policy_zh }}</strong></p>
+                {% endif %}
                 <div class="season-audit-grid">
                     {% for block in season_review.blocks %}
                     <div class="season-audit-block">
@@ -893,7 +896,11 @@
                     {% set abs_spread = spread_val if spread_val > 0 else -spread_val %}
                     {% set is_favorite = (pick_home and spread_val > 0) or (not pick_home and spread_val < 0) %}
                     <div class="pick-row {% if game.ats_is_value %}ats-value-row{% endif %}">
+                        {% if game.ats_reference_only %}
+                        <span class="pick-label" title="讓分模型 10 季樣本外命中率 50.5%，未過損益兩平 52.4%，方向僅供參考、不列為推薦">ATS 參考</span>
+                        {% else %}
                         <span class="pick-label">ATS 模型</span>
+                        {% endif %}
                         <strong>
                             {% if spread_val == 0 %}
                                 {{ team_name_zh(picked_team) }}（PK）

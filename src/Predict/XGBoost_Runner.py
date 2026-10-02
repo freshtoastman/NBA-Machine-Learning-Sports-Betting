@@ -9,6 +9,7 @@ import xgboost as xgb
 from colorama import Fore, Style, init, deinit
 from src.Utils import Expected_Value
 from src.Utils import Kelly_Criterion as kc
+from src.Utils.Policy import PinnedModelMissing, pinned_model_name
 
 
 init()
@@ -42,6 +43,21 @@ def reset_model_cache():
 
 
 def _select_model_path(kind):
+    """Model file for ``kind``: the one pinned in config.toml [production-models].
+
+    Only when nothing is pinned does it fall back to the legacy choice by the
+    accuracy in the file name — that number is an in-sample artefact, so a
+    retrained model would be picked (or ignored) for the wrong reason.
+    """
+    pinned = pinned_model_name(kind)
+    if pinned:
+        path = MODEL_DIR / pinned
+        if not path.exists():
+            raise PinnedModelMissing(
+                f"config.toml [production-models] xgb_{kind.lower()} = {pinned!r} not found in {MODEL_DIR}"
+            )
+        return path
+
     candidates = list(MODEL_DIR.glob(f"*{kind}*.json"))
     if not candidates:
         raise FileNotFoundError(f"No XGBoost {kind} model found in {MODEL_DIR}")

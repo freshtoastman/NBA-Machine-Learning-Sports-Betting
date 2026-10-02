@@ -723,6 +723,13 @@ def _call_gemini(prompt, use_search=True):
         return None
 
 
+def _ats_fallback_summary(game):
+    """One-line summary for the rule-based (no-AI) analysis."""
+    if game.get("ats_reference_only"):
+        return "讓分模型未通過樣本外驗證（10 季 50.5%），方向僅供參考，不建議據此下注。"
+    return f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。"
+
+
 def _parse_json(text):
     if not text:
         return None
@@ -835,12 +842,12 @@ def api_analysis():
             "golden_verdict": golden_verdict_str,
             "ats_pick": ats_pick_str,
             "ats_reason": f"ATS 模型 edge {game.get('ats_value_edge', 0)}pp",
-            "ats_units": 2 if game.get("ats_is_value") else 1,
+            "ats_units": 0 if game.get("ats_reference_only") else (2 if game.get("ats_is_value") else 1),
             "ou_pick": f"{'大分' if game.get('ou_pick')=='OVER' else '小分'} {game.get('ou_value','?')}",
             "ou_reason": f"模型信心 {game.get('ou_confidence','?')}%",
             "ml_note": "賠率過低不建議",
             "risk_warning": "AI 分析暫時不可用，僅供參考",
-            "summary": f"參考 ATS 模型方向下注，{2 if game.get('ats_is_value') else 1} 個單位。",
+            "summary": _ats_fallback_summary(game),
             "source": "fallback",
         }
     # Always attach ESPN injury data from prediction JSON (not from AI output)
@@ -973,12 +980,12 @@ def api_analyze_pinned():
                 "profile_insight": "離線模式無法取用歷史輪廓",
                 "ats_pick": ats_pick_str,
                 "ats_reason": f"ATS 模型 edge {g.get('ats_value_edge', 0)}pp",
-                "ats_units": 2 if g.get("ats_is_value") else 1,
+                "ats_units": 0 if g.get("ats_reference_only") else (2 if g.get("ats_is_value") else 1),
                 "ou_pick": f"{'大分' if g.get('ou_pick') == 'OVER' else '小分'} {g.get('ou_value', '?')}",
                 "ou_reason": f"模型信心 {g.get('ou_confidence', '?')}%",
                 "ml_note": "賠率過低不建議",
                 "risk_warning": "AI 分析暫時不可用，僅供參考",
-                "summary": f"參考 ATS 模型方向下注，{2 if g.get('ats_is_value') else 1} 個單位。",
+                "summary": _ats_fallback_summary(g),
             })
         result = {
             "picks": fb_picks,
@@ -1150,9 +1157,14 @@ def _build_game_context(g):
         if fair_h is not None:
             odds_line += f" | 模型公允機率: {home_zh} {fair_h:.1f}% / {away_zh} {fair_a:.1f}%"
 
+    # Opening policy: the ATS model has no out-of-sample edge, so its lean must
+    # not be used as a reason to bet (flag is written at export time).
+    ats_ref_line = ("\n⚠️ ATS 模型方向僅供參考（10 季樣本外 50.5%，未過損益兩平 52.4%），不可單獨作為下注理由"
+                    if g.get("ats_reference_only") else "")
+
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
 ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
-鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}{odds_line}
+鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}{odds_line}{ats_ref_line}
 {golden_line}
 {hp}
 {ap}{inj_block}{po_block}{pick_block}{bt_block}"""
