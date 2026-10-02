@@ -242,8 +242,8 @@
                         {% for it in block["items"] %}
                         <div class="season-audit-row">
                             <span class="sa-name">{{ it.label_zh }}</span>
-                            <span class="sa-val {% if it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{{ it.hit_rate }}%</span>
-                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · 95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%</span>
+                            <span class="sa-val {% if it.neutral %}{% elif it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{{ it.hit_rate }}%</span>
+                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · {% if it.note_zh %}{{ it.note_zh }}{% else %}95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%{% endif %}</span>
                         </div>
                         {% endfor %}
                     </div>

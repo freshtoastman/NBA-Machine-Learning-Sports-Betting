@@ -1,0 +1,133 @@
+{
+ "generated": "2026-10-02",
+ "script": "scripts/walk_forward_ml_value.py",
+ "method": "each season scored by an ML model trained only on earlier seasons; bets settled at the closing moneyline",
+ "rule": "model prob >= 70%, edge >= 5pp vs vig-free moneyline, EV > 0; golden: |spread| <= 6",
+ "test_seasons": [
+  "2016-17",
+  "2017-18",
+  "2018-19",
+  "2019-20",
+  "2020-21",
+  "2021-22",
+  "2022-23",
+  "2023-24",
+  "2024-25",
+  "2025-26"
+ ],
+ "seeds": [
+  42,
+  7,
+  2026
+ ],
+ "first_seed": 42,
+ "games_priced": 11567,
+ "favourite_every_game": {
+  "record": {
+   "hits": 7772,
+   "n": 11461,
+   "pct": 67.8,
+   "ci_lo": 67.0,
+   "ci_hi": 68.7
+  },
+  "roi": {
+   "n": 11461,
+   "roi": -4.7,
+   "ci_lo": -6.0,
+   "ci_hi": -3.5,
+   "units": -542.7
+  }
+ },
+ "raw": {
+  "value": {
+   "record": {
+    "hits": 259,
+    "n": 434,
+    "pct": 59.7,
+    "ci_lo": 55.0,
+    "ci_hi": 64.2
+   },
+   "roi": {
+    "n": 434,
+    "roi": -5.9,
+    "ci_lo": -13.6,
+    "ci_hi": 1.7,
+    "units": -25.6
+   },
+   "seasons_positive": 3,
+   "seed_roi": {
+    "42": -5.9,
+    "7": -4.7,
+    "2026": -5.0
+   }
+  },
+  "golden": {
+   "record": {
+    "hits": 190,
+    "n": 321,
+    "pct": 59.2,
+    "ci_lo": 53.7,
+    "ci_hi": 64.4
+   },
+   "roi": {
+    "n": 321,
+    "roi": -3.4,
+    "ci_lo": -12.3,
+    "ci_hi": 5.6,
+    "units": -11.0
+   },
+   "seasons_positive": 3,
+   "seed_roi": {
+    "42": -3.4,
+    "7": -3.3,
+    "2026": -4.7
+   }
+  }
+ },
+ "iso": {
+  "value": {
+   "record": {
+    "hits": 964,
+    "n": 1492,
+    "pct": 64.6,
+    "ci_lo": 62.2,
+    "ci_hi": 67.0
+   },
+   "roi": {
+    "n": 1492,
+    "roi": -5.0,
+    "ci_lo": -8.7,
+    "ci_hi": -1.2,
+    "units": -74.2
+   },
+   "seasons_positive": 1,
+   "seed_roi": {
+    "42": -5.0,
+    "7": -5.0,
+    "2026": -6.6
+   }
+  },
+  "golden": {
+   "record": {
+    "hits": 528,
+    "n": 890,
+    "pct": 59.3,
+    "ci_lo": 56.1,
+    "ci_hi": 62.5
+   },
+   "roi": {
+    "n": 890,
+    "roi": -3.5,
+    "ci_lo": -8.9,
+    "ci_hi": 1.9,
+    "units": -31.5
+   },
+   "seasons_positive": 5,
+   "seed_roi": {
+    "42": -3.5,
+    "7": -4.0,
+    "2026": -5.6
+   }
+  }
+ }
+}

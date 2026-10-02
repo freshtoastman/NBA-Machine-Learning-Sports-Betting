@@ -486,14 +486,38 @@ def _walk_forward_block() -> dict | None:
             "ci95": [round(rec["ci_lo"]), round(rec["ci_hi"])],
         }
 
+    items = [
+        item("讓分：全部場次", ats["raw"]),
+        item("讓分：信心最高 5%", ats["top5"]),
+        item("勝負：模型", ml["model"]),
+        item("勝負：直接選盤口熱門（對照）", ml["market_favorite"]),
+    ]
+
+    # Moneyline value ("diamond" / "golden") picks settled at the closing line
+    # (scripts/walk_forward_ml_value.py). Hit rate alone says nothing at
+    # moneyline prices, so these rows carry ROI and are not colour-graded.
+    vp = DATA_DIR / "walk_forward_ml_value.json"
+    if vp.exists():
+        mv = json.loads(vp.read_text(encoding="utf-8"))
+
+        def roi_item(label, cell):
+            r = cell["roi"]
+            row = item(label, cell["record"])
+            row["neutral"] = True
+            row["note_zh"] = f"投報率 {r['roi']:+.1f}%（95% CI {r['ci_lo']:+.1f}～{r['ci_hi']:+.1f}）"
+            return row
+
+        variant = mv.get("iso") or mv.get("raw") or {}
+        if variant.get("value") and variant.get("golden") and mv.get("favourite_every_game"):
+            items += [
+                roi_item("勝負鑽石注（以實際賠率結算）", variant["value"]),
+                roi_item("勝負金鑽注（以實際賠率結算）", variant["golden"]),
+                roi_item("每場都押盤口熱門（對照）", mv["favourite_every_game"]),
+            ]
+
     return {
         "label_zh": f"樣本外回測（{seasons[0]} → {seasons[-1]}，共 {len(seasons)} 季；每季只用之前的賽季訓練）",
-        "items": [
-            item("讓分：全部場次", ats["raw"]),
-            item("讓分：信心最高 5%", ats["top5"]),
-            item("勝負：模型", ml["model"]),
-            item("勝負：直接選盤口熱門（對照）", ml["market_favorite"]),
-        ],
+        "items": items,
     }
 
 

@@ -89,6 +89,12 @@ def evaluate_value(
         max_edge_pp    = None   ← no upper cap
 
     Result: 77.1% hit rate, +19.9% ROI on 214 picks across 2 seasons.
+
+    That result does not hold out of sample (the two seasons were scored with
+    leaky features and a model that had seen them). 10-season walk-forward,
+    settled at the closing moneyline (scripts/walk_forward_ml_value.py):
+    ROI -5.0% (95% CI -8.7 to -1.2) with calibrated probabilities, -5.9% raw —
+    the same as staking the favourite in every game (-4.7%).
     """
     result = {
         "is_value": False,
