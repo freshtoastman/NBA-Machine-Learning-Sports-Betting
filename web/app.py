@@ -854,7 +854,9 @@ def api_analysis():
         else:
             ats_pick_str = "不推薦"
         # 金鑽面向只寫觀察，不介入 units 決定（離線模式無法做全面判斷）
-        if game.get("is_golden"):
+        if game.get("ml_value_reference_only"):
+            golden_verdict_str = "金鑽面向：不適用（鑽石／金鑽規則已停用（10 季樣本外投報率 −5.0%／−3.5%，與每場押熱門的 −4.7% 相同））"
+        elif game.get("is_golden"):
             golden_verdict_str = "金鑽面向：是（鑽石 + |讓分|≤6，屬歷史甜蜜區）"
         elif game.get("is_value"):
             golden_verdict_str = "金鑽面向：否（鑽石但 |讓分|>6，銀鑽區）"
@@ -988,7 +990,9 @@ def api_analyze_pinned():
                 ats_pick_str = f"押 {ats_team} {'讓' if is_fav else '受讓'} {abs_sp} 分"
             else:
                 ats_pick_str = "不推薦"
-            if g.get("is_golden"):
+            if g.get("ml_value_reference_only"):
+                gv = "金鑽面向：不適用（鑽石／金鑽規則已停用（10 季樣本外投報率 −5.0%／−3.5%，與每場押熱門的 −4.7% 相同））"
+            elif g.get("is_golden"):
                 gv = "金鑽面向：是（甜蜜區）"
             elif g.get("is_value"):
                 gv = "金鑽面向：否（鑽石但 |讓分|>6）"
@@ -1122,7 +1126,10 @@ def _build_game_context(g):
     # Golden tier factor: value pick AND |spread| ≤ 6. Just surface the
     # factual status + historical reference — let the AI weigh it against
     # all the other signals before reaching a verdict.
-    if g.get("is_golden"):
+    if g.get("ml_value_reference_only"):
+        # Opening policy (config.toml [ml-value-policy]): no out-of-sample edge.
+        golden_line = ("🥇 金鑽面向: 不適用 — 鑽石／金鑽規則已停用（10 季樣本外投報率 −5.0%／−3.5%，與每場押熱門的 −4.7% 相同），不可作為下注理由")
+    elif g.get("is_golden"):
         abs_sp = f"{abs(float(spread)):.1f}" if spread is not None else "?"
         golden_line = (
             f"🥇 金鑽面向: 是 (押 {value_team}, +{value_edge}pp edge, |讓分| {abs_sp}) "
@@ -1293,14 +1300,18 @@ def api_daily_report():
     if not result:
         # Fallback
         value_games = [g for g in games.values() if g.get("is_value")]
+        ml_ref_only = any(g.get("ml_value_reference_only") for g in games.values())
         result = {
-            "headline": f"今日 {len(games)} 場比賽，{len(value_games)} 場鑽石",
+            "headline": (f"今日 {len(games)} 場比賽" if ml_ref_only
+                         else f"今日 {len(games)} 場比賽，{len(value_games)} 場鑽石"),
             "best_bets": [],
             "lean_picks": [],
             "avoid_games": [],
             "injury_alerts": all_injuries[:5] if all_injuries else ["無重大傷兵"],
             "bankroll_plan": f"建議保守操作，等待更好的場次。",
-            "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。",
+            "daily_summary": (f"共 {len(games)} 場比賽。模型的勝負與讓分方向都未通過樣本外驗證，僅供參考，不建議據此下注。"
+                              if ml_ref_only else
+                              f"共 {len(games)} 場比賽，{len(value_games)} 場鑽石訊號。建議集中在鑽石場次下注。"),
             "source": "fallback",
         }
     else:

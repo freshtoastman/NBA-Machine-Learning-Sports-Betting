@@ -54,6 +54,49 @@ class TestAtsPolicy(PolicyTestCase):
         self.assertEqual(policy["effective_from"], "2026-10-02")
 
 
+class TestMlValuePolicy(PolicyTestCase):
+    CONFIG = {"ml-value-policy": {"value_flag_enabled": False, "effective_from": "2026-10-04"}}
+
+    def test_flags_off_from_effective_date(self):
+        self._with_config(self.CONFIG)
+        pred = {"is_value": True, "is_golden": True, "value_side": "home", "value_edge": 6.1}
+        Policy.apply_ml_value_policy(pred, datetime.date(2026, 10, 20))
+        self.assertFalse(pred["is_value"])
+        self.assertFalse(pred["is_golden"])
+        self.assertTrue(pred["ml_shadow_value"])
+        self.assertTrue(pred["ml_shadow_golden"])
+        self.assertTrue(pred["ml_value_reference_only"])
+        # Kept so the frozen record can be settled at the moneyline.
+        self.assertEqual(pred["value_side"], "home")
+
+    def test_dates_before_effective_date_are_not_rewritten(self):
+        self._with_config(self.CONFIG)
+        pred = {"is_value": True, "is_golden": False}
+        Policy.apply_ml_value_policy(pred, "2026-04-10")
+        self.assertTrue(pred["is_value"])
+        self.assertFalse(pred["ml_value_reference_only"])
+        self.assertFalse(pred["ml_shadow_golden"])
+
+    def test_enabled_policy_keeps_flags(self):
+        self._with_config({"ml-value-policy": {"value_flag_enabled": True, "effective_from": "2026-10-04"}})
+        pred = {"is_value": True, "is_golden": True}
+        Policy.apply_ml_value_policy(pred, "2026-11-01")
+        self.assertTrue(pred["is_value"])
+        self.assertTrue(pred["is_golden"])
+
+    def test_missing_section_fails_closed(self):
+        self._with_config({})
+        pred = {"is_value": True, "is_golden": True}
+        Policy.apply_ml_value_policy(pred, "2026-11-01")
+        self.assertFalse(pred["is_value"])
+        self.assertTrue(pred["ml_shadow_value"])
+
+    def test_repo_config_has_flag_off(self):
+        policy = Policy.ml_value_policy()
+        self.assertFalse(policy["value_flag_enabled"])
+        self.assertEqual(policy["effective_from"], "2026-10-04")
+
+
 class TestPinnedModels(PolicyTestCase):
     def test_repo_pins_exist_on_disk(self):
         for kind in ("ML", "UO", "ATS"):

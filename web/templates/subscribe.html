@@ -73,15 +73,14 @@
         <div class="header">
             <div class="brand"><span class="brand-mark">NBA</span></div>
             <h1>機器學習預測訂閱方案</h1>
-            <p class="subtitle">2025-26 賽季回測驗證：嚴格 OOS 測試，無資料洩漏</p>
+            <p class="subtitle">10 季樣本外回測（2016-17 → 2025-26，每季只用之前的賽季訓練）</p>
         </div>
 
         <div class="proof">
-            <div class="proof-chip"><strong>70.1%</strong><span>勝負準確率 (OOS)</span></div>
-            <div class="proof-chip"><strong>77.1%</strong><span>鑽石場次命中</span></div>
-            <div class="proof-chip"><strong>+19.9%</strong><span>鑽石 ROI</span></div>
-            <div class="proof-chip"><strong>67.7%</strong><span>ATS 鑽石命中</span></div>
-            <div class="proof-chip"><strong>+28.7%</strong><span>ATS 鑽石 ROI</span></div>
+            <div class="proof-chip"><strong>63.6%</strong><span>勝負準確率（盤口熱門 68.1%）</span></div>
+            <div class="proof-chip"><strong>50.5%</strong><span>讓分命中率（損益兩平 52.4%）</span></div>
+            <div class="proof-chip"><strong>−5.0%</strong><span>鑽石注投報率</span></div>
+            <div class="proof-chip"><strong>−3.5%</strong><span>金鑽注投報率</span></div>
         </div>
 
         <div class="plans">
@@ -93,7 +92,7 @@
                     <li>讓分盤口 + 真實比分</li>
                     <li>7 天歷史回顧 + 命中對照</li>
                     <li>球隊近況輪廓（賽季 / 近 1-3 月）</li>
-                    <li class="no">鑽石場次 + ATS 模型</li>
+                    <li class="no">ATS 模型方向（僅供參考）</li>
                     <li class="no">AI 即時分析 + 傷兵</li>
                     <li class="no">每日分析報告</li>
                 </ul>
@@ -106,9 +105,8 @@
                 <div class="plan-price">$79<span>/月</span></div>
                 <ul class="plan-features">
                     <li>基礎版所有功能</li>
-                    <li>💎 ML 鑽石場次（77% 命中 · +20% ROI）</li>
-                    <li>💎 ATS 讓分鑽石（68% 命中 · +29% ROI）</li>
-                    <li>🔥 雙模型共識訊號</li>
+                    <li>ATS 讓分模型方向（僅供參考，樣本外 50.5%）</li>
+                    <li>樣本外回測與實戰紀錄（附信賴區間）</li>
                     <li>🤖 AI 即時傷兵 + 比賽分析</li>
                     <li>📊 每日綜合分析報告</li>
                     <li class="no">API 程式化存取</li>
@@ -123,7 +121,7 @@
                     <li>進階版所有功能</li>
                     <li>API 程式化存取（JSON endpoint）</li>
                     <li>歷史回測數據 CSV 下載</li>
-                    <li>自訂鑽石閾值</li>
+                    <li>自訂篩選條件</li>
                     <li>優先模型更新通知</li>
                     <li>一對一諮詢（每月 1 次）</li>
                 </ul>
@@ -161,11 +159,11 @@
             <h2>常見問題</h2>
             <div class="faq-item">
                 <div class="faq-q">模型真的有用嗎？你怎麼證明？</div>
-                <div class="faq-a">所有命中率數據都來自嚴格的 out-of-sample 回測（模型訓練時完全沒看過測試期的資料）。2024-25 + 2025-26 兩個完整賽季 2500+ 場驗證。你可以在免費頁面看到每日命中對照。</div>
+                <div class="faq-a">目前沒有證據顯示模型能打敗盤口。10 季樣本外回測（每季只用之前的賽季訓練）：勝負 63.6%，低於直接選盤口熱門的 68.1%；讓分 50.5%，低於損益兩平的 52.4%。先前頁面上的 77%／68% 命中率是在模型看過、且含資料洩漏的賽季上算的，已撤下。首頁有完整的稽核結果與每日命中對照。</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">鑽石場次多久出現一次？</div>
-                <div class="faq-a">ML 鑽石約每季 30-50 場（嚴選高信心 + 市場定價錯誤），ATS 鑽石約 60-80 場。平均每週 1-3 場鑽石推薦。</div>
+                <div class="faq-a">2026-27 賽季起不再標示鑽石／金鑽場次：10 季樣本外以收盤賠率結算，鑽石注投報率 −5.0%、金鑽注 −3.5%，和每場押熱門（−4.7%）沒有差別。規則仍在背景記錄，賽前凍結紀錄累積 ≥200 注且投報率的信賴區間下限高於 0 才會重新開放。</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">可以隨時取消嗎？</div>

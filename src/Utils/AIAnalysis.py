@@ -733,12 +733,16 @@ def generate_daily_report(games: dict, game_date: str, force: bool = False) -> d
     if result is None:
         # Minimal fallback.
         value_games = [g for g in games.values() if g.get("is_value")]
+        ml_ref_only = any(g.get("ml_value_reference_only") for g in games.values())
         result = {
-            "headline": f"今日 {len(games)} 場比賽，{len(value_games)} 場鑽石",
+            "headline": (f"今日 {len(games)} 場比賽" if ml_ref_only
+                         else f"今日 {len(games)} 場比賽，{len(value_games)} 場鑽石"),
             "top_picks": [],
             "avoid_games": [],
             "injury_impact": ["無法取得傷兵資訊（離線模式）"],
-            "daily_summary": f"共 {len(games)} 場比賽，{len(value_games)} 場觸發鑽石訊號。建議集中在鑽石場次。",
+            "daily_summary": (f"共 {len(games)} 場比賽。模型的勝負與讓分方向都未通過樣本外驗證，僅供參考，不建議據此下注。"
+                              if ml_ref_only else
+                              f"共 {len(games)} 場比賽，{len(value_games)} 場觸發鑽石訊號。建議集中在鑽石場次。"),
             "source": "rule-based",
         }
 

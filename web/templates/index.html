@@ -221,7 +221,7 @@
         <section class="model-compare">
             <div class="model-compare-head">
                 <span class="dash-tag season-tag">{{ season_key }} 賽季 · {{ season_stats.games }} 場</span>
-                <span class="model-compare-sub">金鑽為主要策略 · 鑽石/ATS 為輔</span>
+                <span class="model-compare-sub">2026-27 起鑽石／金鑽／ATS 都只列參考，不列為推薦</span>
             </div>
 
             {# Audited record — supersedes the backtest numbers below for the same season #}
@@ -522,8 +522,8 @@
             {% if season_stats.golden_picks %}
             <div class="golden-hero">
                 <div class="golden-hero-head">
-                    <span class="golden-hero-badge">🥇 金鑽策略</span>
-                    <span class="golden-hero-sub">鑽石 + |讓分|≤6 · 4 季回測甜蜜區</span>
+                    <span class="golden-hero-badge">🥇 金鑽（已停用的規則）</span>
+                    <span class="golden-hero-sub">鑽石 + |讓分|≤6 · 下方為 {{ season_stats.season }} 單季重算，模型看過這一季；10 季樣本外投報率 −3.5%，2026-27 起不再標示</span>
                 </div>
                 <div class="golden-hero-stats">
                     <div class="golden-stat">
