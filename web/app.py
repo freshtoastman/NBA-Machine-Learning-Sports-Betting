@@ -464,6 +464,47 @@ def load_season_stats() -> dict | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def load_production_models() -> dict | None:
+    """Provenance of the pinned boosters (scripts/retrain_production.py)."""
+    p = DATA_DIR / "production_models.json"
+    if not p.exists():
+        return None
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+def walk_forward_season(season: str | None) -> dict | None:
+    """Out-of-sample cells for one season from walk_forward.json: the model that
+    scored it was trained on earlier seasons only, so these are the numbers the
+    season cards show first. The in-sample rescoring in season_stats.json is a
+    model that has seen the season and may only be shown as secondary."""
+    p = DATA_DIR / "walk_forward.json"
+    if not season or not p.exists():
+        return None
+    wf = json.loads(p.read_text(encoding="utf-8"))
+    ml = (wf.get("ml_by_season") or {}).get(season)
+    ats = (wf.get("ats_by_season") or {}).get(season)
+    if not ml or not ats:
+        return None
+    pooled_ats = (wf.get("ats") or {}).get(wf.get("ats_recipe")) or {}
+    return {
+        "season": season,
+        "generated": wf.get("generated"),
+        "break_even_pct": wf.get("break_even_pct", 52.4),
+        "ml": ml.get("model"),
+        "ml_favorite": ml.get("market_favorite"),
+        "ml_conf70": ml.get("conf70"),
+        "ats": ats.get("raw"),
+        "ats_top5": ats.get("top5"),
+        "pooled": {
+            "seasons": wf.get("test_seasons") or [],
+            "ml": (wf.get("ml") or {}).get("model"),
+            "ml_favorite": (wf.get("ml") or {}).get("market_favorite"),
+            "ats": pooled_ats.get("raw"),
+            "ats_top5": pooled_ats.get("top5"),
+        },
+    }
+
+
 def _walk_forward_block() -> dict | None:
     """Out-of-sample record from scripts/walk_forward_clean.py, shaped like the
     audited blocks in season_review.json."""
@@ -685,6 +726,8 @@ def index():
         preseason=preseason,
         season_stats=season_stats,
         season_review=load_season_review(),
+        wf_season=walk_forward_season(season_stats.get("season") if season_stats else None),
+        production_models=load_production_models(),
         active_series=active_series,
         is_playoff_view=is_playoff_view,
         show_bracket_banner=show_bracket_banner,

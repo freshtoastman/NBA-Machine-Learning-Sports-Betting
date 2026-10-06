@@ -550,13 +550,37 @@
                 <div class="model-card ml-card">
                     <div class="model-card-head">
                         <span class="model-name">ML 勝負</span>
+                        {% if wf_season and wf_season.ml %}
+                        <span class="model-acc {% if wf_season.ml.pct >= 65 %}good{% elif wf_season.ml.pct < 55 %}bad{% endif %}" title="樣本外：只用 {{ wf_season.season }} 之前的賽季訓練">{{ wf_season.ml.pct }}%</span>
+                        {% else %}
                         <span class="model-acc {% if season_stats.ml_hit_rate >= 65 %}good{% elif season_stats.ml_hit_rate < 55 %}bad{% endif %}">{{ season_stats.ml_hit_rate }}%</span>
+                        {% endif %}
                     </div>
                     <div class="model-card-body">
+                        {% if wf_season and wf_season.ml %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">樣本外</span>
+                            <span class="model-stat-val">{{ wf_season.ml.hits }}-{{ wf_season.ml.n - wf_season.ml.hits }}</span>
+                            <span class="model-stat-sub">95% CI {{ wf_season.ml.ci_lo|round|int }}–{{ wf_season.ml.ci_hi|round|int }}%</span>
+                        </div>
+                        {% if wf_season.ml_favorite %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">盤口熱門（對照）</span>
+                            <span class="model-stat-val {% if wf_season.ml_favorite.pct > wf_season.ml.pct %}bad{% endif %}">{{ wf_season.ml_favorite.pct }}%</span>
+                            <span class="model-stat-sub">{{ wf_season.ml_favorite.hits }}-{{ wf_season.ml_favorite.n - wf_season.ml_favorite.hits }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">含訓練季重算</span>
+                            <span class="model-stat-val">{{ season_stats.ml_hit_rate }}%</span>
+                            <span class="model-stat-sub">正式模型看過這一季，僅供對照</span>
+                        </div>
+                        {% endif %}
                         {% if season_stats.value_picks %}
                         <div class="model-stat-row">
                             <span class="model-stat-lbl">💎 鑽石</span>
                             <span class="model-stat-val">{{ season_stats.value_picks }} 場</span>
+                            <span class="model-stat-sub">已停用規則；含訓練季重算</span>
                         </div>
                         <div class="model-stat-row">
                             <span class="model-stat-lbl">命中率</span>
@@ -579,13 +603,37 @@
                 <div class="model-card ats-card">
                     <div class="model-card-head">
                         <span class="model-name">ATS 讓分</span>
+                        {% if wf_season and wf_season.ats %}
+                        <span class="model-acc {% if wf_season.ats.ci_lo > wf_season.break_even_pct %}good{% elif wf_season.ats.pct < 50 %}bad{% endif %}" title="樣本外：只用 {{ wf_season.season }} 之前的賽季訓練">{{ wf_season.ats.pct }}%</span>
+                        {% else %}
                         <span class="model-acc {% if a.hit_rate >= 53 %}good{% elif a.hit_rate < 50 %}bad{% endif %}">{{ a.hit_rate }}%</span>
+                        {% endif %}
                     </div>
                     <div class="model-card-body">
+                        {% if wf_season and wf_season.ats %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">樣本外</span>
+                            <span class="model-stat-val">{{ wf_season.ats.hits }}-{{ wf_season.ats.n - wf_season.ats.hits }}</span>
+                            <span class="model-stat-sub">95% CI {{ wf_season.ats.ci_lo|round|int }}–{{ wf_season.ats.ci_hi|round|int }}% · 損益兩平 {{ wf_season.break_even_pct }}%</span>
+                        </div>
+                        {% if wf_season.ats_top5 %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">信心最高 5%</span>
+                            <span class="model-stat-val {% if wf_season.ats_top5.ci_lo > wf_season.break_even_pct %}good{% endif %}">{{ wf_season.ats_top5.pct }}%</span>
+                            <span class="model-stat-sub">{{ wf_season.ats_top5.hits }}-{{ wf_season.ats_top5.n - wf_season.ats_top5.hits }} · CI {{ wf_season.ats_top5.ci_lo|round|int }}–{{ wf_season.ats_top5.ci_hi|round|int }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="model-stat-row">
+                            <span class="model-stat-lbl">含訓練季重算</span>
+                            <span class="model-stat-val">{{ a.hit_rate }}%</span>
+                            <span class="model-stat-sub">正式模型看過這一季，僅供對照</span>
+                        </div>
+                        {% endif %}
                         {% if a.value_bets %}
                         <div class="model-stat-row">
                             <span class="model-stat-lbl">💎 鑽石</span>
                             <span class="model-stat-val">{{ a.value_bets }} 場</span>
+                            <span class="model-stat-sub">已停用規則；含訓練季重算</span>
                         </div>
                         {% if a.filtered_bets and a.filtered_hit_rate %}
                         <div class="model-stat-row" title="剔除劣質主場讓分陷阱後之實際命中率">

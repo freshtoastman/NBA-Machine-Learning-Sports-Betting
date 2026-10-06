@@ -12,7 +12,7 @@
 - [x] **P0 訓練時季後賽欄位洩漏**（10/01 完成）：ATS 訓練不再用系列賽最終結果覆寫賽前狀態
 - [x] **P0 賽前近況特徵為零**（10/01 完成）：`AdvancedFeatures` 會替未開賽的比賽產生特徵列
 - [x] **P0 讓分推薦的開季政策**（10/02 定案，`config.toml [ats-policy]`，生效日 2026-10-02）：value 標記關閉，模型方向只列為「ATS 參考」；原規則的輸出另存 `ats_shadow_value` 供評分。重新開放條件：賽前凍結紀錄 ≥100 注且 95% 信賴區間下限 > 52.4%
-- [ ] **P0 用修正後資料重訓正式 ML／ATS 模型**（「設定檔指定模型」已於 10/02 上線，重訓後改 `[production-models]` 即可換模型；重訓後首頁賽季卡片改讀 `walk_forward.json`，不可再用含訓練季的重算）
+- [x] **P0 用修正後資料重訓正式 ML／ATS 模型**（10/07 完成）：`scripts/retrain_production.py` 以 walk-forward 驗證過的同一組超參數重訓（尾端 10% 早停挑樹數 → 全部資料重擬合），`config.toml [production-models]` 改指向 `*_clean_2026-10-07_*`；檔名上的百分比是 10 季樣本外命中率（ML 63.6%／ATS 50.5%）。首頁賽季卡片改先列 `walk_forward.json` 的樣本外數字，含訓練季重算降為對照。UO 模型未動（未 walk-forward，前端待降級）
 - [x] **P0 正式模型改由設定檔指定**（10/02 完成）：`config.toml [production-models]` 指定 ML／UO／ATS 三個檔名；指定的檔案不存在會直接報錯，不再退回「檔名上準確率最高」
 - [ ] **P0 賽前預測凍結**：`pregame` 只寫一次，賽後只補結果；追蹤器只評分凍結預測
 - [ ] **P0 開幕夜演練**（模擬 10/20：零場數據、預覽旗標切換、賠率寫入、推送）。10/01 已先修掉三個換季地雷（見當日紀錄）；演練時還要確認：
@@ -263,3 +263,39 @@
 - 沒有變化：10 季樣本外讓分 50.5%，沒有任何門檻過得了 52.4%；勝負輸給盤口熱門。現有特徵做不到 85%，要靠新的資料來源（盤口移動、傷兵／輪休名單），而且每一項都要先過 walk-forward。
 
 **下一步（10/5）**：①用修正後資料重訓正式 ML／ATS、逐季 walk-forward 後才改 `[production-models]`，首頁賽季卡片改讀 `walk_forward.json`；②賽前預測凍結（`ats_shadow_value`、`ml_shadow_value`、`ml_shadow_golden` 一起凍結）；③開幕夜演練。
+
+### 2026-10-07 — 正式 ML／ATS 模型用修正後資料重訓並換線
+
+**排程檢查**：10/5（06:01）與 10/6（06:02）的 pipeline 都是 `daily_pipeline OK`、推送成功，兩天都只改 `dates.json`（季前賽不進 pipeline）。10/5、10/6 沒有人工回顧紀錄，本則接續 10/4。本次執行在 10/7 04:00，早於當天 06:00 的排程，所以 10/7 的排程會是第一次用新模型跑完整流程——請在下一次執行先讀 `~/Library/Logs/nba-ml/pipeline-2026-10.log`。
+
+**新聞**：沒有需要改季前預覽的異動。搜尋到的 Isaiah Stewart→MEM、Isaiah Joe→DET 都已在 curated 檔裡。Kawhi 10/3 魁北克那場沒打（教練賽前說「留一絲可能」，最後沒上），下一場是 10/10 溫哥華對快艇——開幕前一週再確認一次他的狀態。
+
+**做了什麼**
+1. **`scripts/retrain_production.py`**（可重跑，`PYTHONPATH=. python3 scripts/retrain_production.py --seed 42 --tag 2026-10-07`，約 2 分鐘）：
+   - 資料：`dataset_2012-26`（10/1 之後的版本：賽前快照、讓分已補正負號、季後賽欄位是賽前狀態）。ML 17,786 列；ATS 16,292 列（有讓分＋近況特徵）× 2（主客對稱增強）。
+   - 超參數：與 `walk_forward_clean.py` 的 `prod` 配方完全相同（md4、eta 0.033、mcw 16／26…），**沒有重新挑選**——10/1 的結論是四種配方、三個種子都沒有差異，再挑只是在雜訊裡找最大值。
+   - 兩階段：①按時間順序留最後 10% 早停（ML 從 2025-02-23 起 1,779 列、ATS 3,259 列），決定樹數（ML 118 棵、ATS 94 棵）；②同樣樹數在**全部**資料重擬合，讓 2025-26 整季進入訓練（對開季最有用的就是最近一季）。
+   - ML 校準：第一階段留出尾端的等張回歸，改存為折點陣列（`IsotonicCalibrator.from_isotonic`），不再把 sklearn 物件整個 pickle——pipeline 的 `.venv` 是 sklearn 1.3.1、訓練用的 conda 是 1.5.2，原本的 pickle 載入會跳 `InconsistentVersionWarning`；更早的 71.9% 模型旁邊那個 `_calibration.pkl` 其實是 `__main__.BoosterWrapper`，在 runner 裡**從來沒有載入成功過**（被 `_load_calibrator` 的 except 吞掉），所以舊正式模型一直是用原始機率。
+   - 檔名：`XGBoost_63.6%_ML_clean_2026-10-07_…_s42_t118.json`、`XGBoost_50.5%_ATS_clean_2026-10-07_…_s42_t94.json`，百分比是 `walk_forward.json` 的 10 季樣本外命中率。
+2. **`config.toml [production-models]`** 改指向上述兩個檔；UO 仍是 4 月的 52.2% 模型（含洩漏資料訓練、沒做過 walk-forward），因為大小分本來就排定要在前端降級或隱藏（P1），不值得再花時間。
+3. **首頁賽季卡片改讀 `walk_forward.json`**（`web/app.py` 的 `walk_forward_season`）：ML／ATS 卡片標題改成該季的**樣本外**命中率（只用之前賽季訓練的模型），卡片內多三列：樣本外 W-L 與 95% CI、盤口熱門對照（ML）／信心最高 5%（ATS）、「含訓練季重算」（即原本 `season_stats.json` 的數字，標明正式模型看過這一季、僅供對照）。鑽石列註明「已停用規則；含訓練季重算」。`season_review.json` 的標題與「無洩漏重算」區塊標籤改註明那是 10/7 之前的舊模型。
+4. **`web/data/production_models.json`**：模型出處（資料、列數、樹數、種子、早停起點、留出尾端命中率、Brier、樣本內 vs 樣本外）。
+5. `Tests/test_retrained_models.py` 新增 7 個測試（校準折點與 sklearn transform 逐點相等、pin 指向 clean 模型、特徵寬度 138／175、校準檔載入、出處檔與 pin 一致）；全部 67 個測試在 `.venv`（pytest）通過。
+
+**數字（都可由上面的腳本與 `compute_season_stats("2025-26")` 重跑）**
+
+| 項目 | 新 ML | 新 ATS |
+|---|---|---|
+| 10 季樣本外（檔名） | 63.6%（8023-4598，CI 63–64） | 50.5%（5720-5599，CI 50–52） |
+| 2025-26 樣本外（walk-forward 那一季的模型） | 66.5%（868-438） | 50.3%（653-646） |
+| 第一階段留出尾端（未參與擬合） | 66.5%（1183-596）Brier 原始 0.2117 → 校準 0.2031 | 50.3%（1639-1620） |
+| 2025-26 **含訓練季**重算（第二階段模型） | 69.5% 原始機率／71.4% 校準後 | 66.1%（訓練路徑）／66.2%（`SeasonStats` 路徑） |
+
+- ATS 從樣本外 50.3% 跳到含訓練季 66.1%，就是過擬合的指紋：模型記得這一季，但對下一季沒有預測力。這也是為什麼卡片不能再用含訓練季的重算當 KPI。
+- `SeasonStats` 路徑與訓練路徑的 ATS 命中率只差 0.1 個百分點（推桿處理不同），確認 `_build_frame_ats` 的 175 欄順序與訓練一致。
+- 新模型在舊政策規則下 2025-26 會標出 78 注金鑽（82.1%）——這是看過答案的數字，政策已關閉鑽石／金鑽，前端只會以「已停用規則」顯示。
+- 正式路徑 `predict_historical_xgb(2025-11-01)`：6 場都有 ML 機率、ATS 機率、shadow 旗標，校準器型別為 `IsotonicCalibrator`。
+
+**85% 目標的現況**：沒有變化。重訓只是讓正式模型和被驗證過的配方一致，樣本外讓分仍是 50.5%，沒有任何門檻超過 52.4%。要往上走只能靠新資料來源（盤口移動、傷兵／輪休），而且每一項都要先過 walk-forward。
+
+**下一步（10/8）**：①先讀 10/7 06:00 pipeline log（第一次用新 pin 跑 Export_JSON）；②賽前預測凍結（`pregame` 只寫一次，`ats_shadow_value`、`ml_shadow_value`、`ml_shadow_golden` 一起凍結）；③開幕夜演練；④P1：大小分前端降級（UO 模型沒有 walk-forward，不該再顯示成預測）。

@@ -7,9 +7,14 @@ series_state_url = "https://stats.nba.com/stats/playoffseriesresults?LeagueID=00
 # Models/XGBoost_Models; a missing file is an error, never a fallback. Change a pin
 # only together with a walk-forward result (scripts/walk_forward_clean.py).
 [production-models]
-xgb_ml = "XGBoost_71.9%_ML_md4_eta0p033_sub0p657_col0p919_cbl0p747_cbn0p558_mcw16_g0p721_mds9_mb883_l0p129_a0p057_nb1544.json"
+# 2026-10-07: retrained on the corrected (pre-game, signed-spread) dataset by
+# scripts/retrain_production.py; the % in the name is the 10-season walk-forward
+# out-of-sample hit rate (web/data/walk_forward.json), not an in-sample score.
+xgb_ml = "XGBoost_63.6%_ML_clean_2026-10-07_md4_eta0p033_sub0p657_col0p919_cbl0p747_cbn0p558_mcw16_g0p721_mds9_mb883_l0p129_a0p057_s42_t118.json"
 xgb_uo = "XGBoost_52.2%_UO_md10_eta0p081_sub0p636_col0p548_cbl0p951_cbn0p728_mcw9_g2p024_mds7_mb402_l1p440_a0p030_nb1319.json"
-xgb_ats = "XGBoost_51.8%_ATS_md4_eta0p033_sub0p657_col0p919_mcw26_g0p721_nb1544.json"
+xgb_ats = "XGBoost_50.5%_ATS_clean_2026-10-07_md4_eta0p033_sub0p657_col0p919_mcw26_g0p721_s42_t94.json"
+# xgb_uo is still the April 2026 model (trained on the leaky dataset, never walk-forwarded);
+# totals are slated for downgrade/hiding on the frontend (P1), so it is left as-is.
 
 # ATS opening policy for 2026-27, frozen 2026-10-02 (docs/preseason_review_2026-27.md).
 # 10-season walk-forward: ATS 50.5% (5720-5599), no threshold with a CI above the 52.4%
