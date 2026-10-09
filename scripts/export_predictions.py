@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.Utils.tools import today_taipei, current_nba_season
 from src.Utils.SeasonStats import compute_season_stats, reset_cache as reset_season_cache
 from src.Utils.Teams import team_name_zh, team_logo_url
+from src.Utils.PregameFreeze import apply_freeze
 
 _ESPN_INJURY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries"
 _ESPN_HEADERS = {
@@ -134,6 +135,13 @@ def fetch_injury_report(today_matchups: dict[str, str] | None = None) -> dict[st
 OUT_DIR = Path(__file__).resolve().parents[1] / "web" / "data"
 DAYS_BACK = 7
 DAYS_FORWARD = 7  # export upcoming game predictions up to 7 days ahead
+
+
+def _export_stamp() -> str:
+    """Taipei wall-clock stamp written into every exported file (exported_at / frozen_at)."""
+    from datetime import datetime as _dt
+    from src.Utils.tools import TAIPEI_TZ
+    return _dt.now(TAIPEI_TZ).isoformat(timespec="seconds")
 
 EAST_TEAMS = {
     "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
@@ -410,6 +418,20 @@ def export_date(target_date: date) -> dict | None:
                 g["ou_move"] = round(_ou_vals[-1] - _ou_vals[0], 1)
         games_dict[key] = g
 
+    # Pre-game freeze: carry the locked pre-tip prediction of every game that has
+    # already started over from the file on disk, so a re-export after the game
+    # cannot rewrite what was shown (and the summary below grades the frozen
+    # pick, not a post-game re-run). See src/Utils/PregameFreeze.py.
+    _existing_games = None
+    _prev_path = OUT_DIR / f"{target_date.isoformat()}.json"
+    if _prev_path.exists():
+        try:
+            with open(_prev_path, encoding="utf-8") as _pf:
+                _existing_games = json.load(_pf).get("games")
+        except Exception:
+            _existing_games = None
+    games_dict = apply_freeze(_existing_games, games_dict, _export_stamp())
+
     # Summary stats.
     n = len(games_list)
     home_picks = sum(1 for g in games_list if g.get("winner") == "home")
@@ -517,6 +539,7 @@ def export_date(target_date: date) -> dict | None:
     return {
         "date": target_date.isoformat(),
         "is_today": is_today,
+        "exported_at": _export_stamp(),
         "summary": summary,
         "games": games_dict,
         "active_series": active_series,
@@ -2505,6 +2528,14 @@ def main():
 
     # Auto-update playoff quarter scores for conviction classifier.
     _update_playoff_quarters(today)
+
+    # Frozen pre-game record (the only live record the tracker may quote).
+    try:
+        from src.Utils.FrozenRecord import write_frozen_record
+        _fr = write_frozen_record(OUT_DIR)
+        print(f"  frozen_record.json: {_fr['graded_games']} graded / {_fr['frozen_games']} frozen games")
+    except Exception as _e:  # never block the export
+        print(f"  frozen_record failed: {_e}")
 
     # Season stats.
     season_key = _reporting_season(today)

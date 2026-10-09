@@ -4722,3 +4722,17 @@ h3 {
 .pre-angle { color: #dfe9ff; border-left: 2px solid var(--accent); padding-left: 8px; margin-top: 6px; }
 .pre-foot { font-size: 11px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
 @media (max-width: 640px) { .pre-wrap { padding: 12px; } .pre-table { font-size: 11px; } }
+
+/* Pre-game freeze (src/Utils/PregameFreeze.py) */
+.frozen-tag {
+    font-size: 0.72rem;
+    margin-left: 4px;
+    opacity: 0.7;
+    cursor: help;
+}
+.season-audit.frozen-record { border-color: rgba(96, 165, 250, 0.45); }
+.sp-frozen-note {
+    font-size: 0.74rem;
+    color: var(--text-muted, #8b93a7);
+    margin: 4px 0 8px;
+}

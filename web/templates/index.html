@@ -253,6 +253,38 @@
             </div>
             {% endif %}
 
+            {# Frozen pre-game record — the only live record quoted from 2026-10-02 on #}
+            {% if frozen_record %}
+            <div class="season-audit frozen-record">
+                <div class="season-audit-head">
+                    <span class="season-audit-title">🔒 賽前凍結紀錄</span>
+                    <span class="season-audit-date">自 {{ frozen_record.since }} · {{ frozen_record.graded_games }} 場已結算 · {{ frozen_record.pending_games }} 場待開</span>
+                </div>
+                <p class="season-audit-lead">每場只評分開賽前最後一次輸出並凍結的預測，賽後不再重算；結果一律以凍結當下的盤口結算。沒有賽前快照的比賽不計{% if frozen_record.games_without_pregame_snapshot %}（目前 {{ frozen_record.games_without_pregame_snapshot|length }} 場）{% endif %}。</p>
+                {% if frozen_record.has_graded %}
+                <div class="season-audit-grid">
+                    {% for block in frozen_record.blocks %}
+                    <div class="season-audit-block">
+                        <div class="season-audit-label">{{ block.label_zh }}</div>
+                        {% for it in block["items"] %}
+                        <div class="season-audit-row">
+                            <span class="sa-name">{{ it.label_zh }}</span>
+                            <span class="sa-val {% if it.neutral or it.hit_rate is none %}{% elif it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{% if it.hit_rate is none %}—{% else %}{{ it.hit_rate }}%{% endif %}</span>
+                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · {% if it.note_zh %}{{ it.note_zh }}{% else %}95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%{% endif %}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="season-audit-foot">開季後第一批比賽結算後，這裡會出現真正的實戰紀錄；在那之前首頁的賽季數字都是回測或含訓練季重算。</p>
+                {% endif %}
+                {% if frozen_record.has_graded %}
+                <p class="season-audit-foot">讓分 value 規則重新開放條件：凍結紀錄 ≥ {{ frozen_record.reopen.ats.min_picks }} 注且 95% CI 下限 > {{ frozen_record.reopen.ats.ci_lower_pct }}%{% if frozen_record.reopen.ats.met %}（已達標，待人工覆核）{% else %}（未達標）{% endif %}；勝負鑽石注：≥ {{ frozen_record.reopen.ml_value.min_picks }} 注且投報率 CI 下限 > 0{% if frozen_record.reopen.ml_value.met %}（已達標，待人工覆核）{% else %}（未達標）{% endif %}。</p>
+                {% endif %}
+            </div>
+            {% endif %}
+
             {# 本週金鑽戰績 — 近 7 日金鑽明細, 可點擊回查 #}
             {% if weekly_golden and weekly_golden.total_picks %}
             <details class="weekly-golden" open>
@@ -933,6 +965,7 @@
                         <span class="pick-label">模型勝</span>
                         <strong>{{ team_name_zh(lean_team) }}</strong>
                         <span class="pick-conf">{{ lean_conf|round(1) }}%</span>
+                        {% if game.pregame and game.pregame.locked %}<span class="frozen-tag" title="賽前 {{ game.pregame.frozen_at[:16] }} 凍結，賽後不再重算；以凍結盤口結算{% if game.closing and game.closing.spread is not none and game.closing.spread != game.spread %}（收盤讓分 {{ game.closing.spread }}）{% endif %}">🔒</span>{% endif %}
                         {% if game.ml_correct is defined and game.ml_correct is not none %}
                         <span class="badge-mini {% if game.ml_correct %}ok{% else %}fail{% endif %}">{% if game.ml_correct %}✓{% else %}✗{% endif %}</span>
                         {% endif %}
@@ -959,6 +992,7 @@
                             {% endif %}
                         </strong>
                         <span class="pick-conf">{{ game.ats_model_confidence }}%</span>
+                        {% if game.pregame and game.pregame.locked %}<span class="frozen-tag" title="賽前 {{ game.pregame.frozen_at[:16] }} 凍結，賽後不再重算；以凍結盤口結算{% if game.closing and game.closing.spread is not none and game.closing.spread != game.spread %}（收盤讓分 {{ game.closing.spread }}）{% endif %}">🔒</span>{% endif %}
                         {% if game.ats_is_value %}
                         <span class="ats-edge-tag">edge +{{ game.ats_value_edge }}pp</span>
                         {% endif %}
@@ -1568,6 +1602,7 @@
                         <div class="sp-stat-sub">勝-負</div>
                     </div>
                 </div>`;
+                html += `<div class="sp-frozen-note">🔒 只計開賽前凍結的預測；${s.unfrozen || 0} 場尚未凍結（未開賽）${s.no_snapshot ? '，' + s.no_snapshot + ' 場無賽前快照不計' : ''}</div>`;
                 if (s.playoff_total > 0) {
                     html += `<div class="sp-ats-stats sp-playoff-stats">
                         <div class="sp-stat-header">🏀 季後賽策略</div>
@@ -1596,7 +1631,9 @@
                         const poPicks = picks.filter(p => p.pick_type === 'playoff');
                         const graded = mlPicks.filter(p => p.ats_correct !== null);
                         const dayWins = mlPicks.filter(p => p.ats_correct === 1).length;
-                        const rateStr = graded.length ? `${Math.round(dayWins / graded.length * 100)}% (${dayWins}/${graded.length})` : `${mlPicks.length} 待開`;
+                        const unfrozenDone = mlPicks.filter(p => !p.frozen && p.ats_winner).length;
+                        const rateStr = graded.length ? `${Math.round(dayWins / graded.length * 100)}% (${dayWins}/${graded.length})`
+                            : unfrozenDone ? `${unfrozenDone} 場未凍結，不計` : `${mlPicks.length} 待開`;
                         const rateClass = graded.length && dayWins / graded.length >= 0.6 ? 'sp-day-rate-good'
                                         : graded.length && dayWins / graded.length < 0.5 ? 'sp-day-rate-bad' : '';
 
@@ -1608,7 +1645,7 @@
 
                         mlPicks.forEach(p => {
                             const st = p.ats_correct === 1 ? 'win' : p.ats_correct === 0 ? 'loss' : 'pending';
-                            const stText = p.ats_correct === 1 ? '✓' : p.ats_correct === 0 ? '✗' : '⏳';
+                            const stText = p.ats_correct === 1 ? '✓' : p.ats_correct === 0 ? '✗' : (!p.frozen && p.ats_winner) ? '🔓' : '⏳';
                             const badge = p.is_golden ? '🥇 ' : p.ats_is_value ? '⭐ ' : '';
                             const edge = p.ats_edge ? `<span class="sp-edge">+${p.ats_edge}pp</span>` : '';
                             html += `<div class="sp-pick sp-pick-${st}">

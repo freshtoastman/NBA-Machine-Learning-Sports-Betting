@@ -1,0 +1,102 @@
+{
+ "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
+ "since": "2026-10-02",
+ "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計。",
+ "frozen_games": 0,
+ "graded_games": 0,
+ "game_dates": 0,
+ "ml": {
+  "wins": 0,
+  "losses": 0,
+  "n": 0,
+  "hit_rate": null,
+  "ci95": [
+   null,
+   null
+  ]
+ },
+ "ou": {
+  "wins": 0,
+  "losses": 0,
+  "n": 0,
+  "hit_rate": null,
+  "ci95": [
+   null,
+   null
+  ]
+ },
+ "ats_model": {
+  "wins": 0,
+  "losses": 0,
+  "n": 0,
+  "hit_rate": null,
+  "ci95": [
+   null,
+   null
+  ]
+ },
+ "ats_shadow_value": {
+  "wins": 0,
+  "losses": 0,
+  "n": 0,
+  "hit_rate": null,
+  "ci95": [
+   null,
+   null
+  ]
+ },
+ "ml_shadow_value_roi": {
+  "n": 0,
+  "roi_pct": null,
+  "ci95": [
+   null,
+   null
+  ],
+  "wins": 0,
+  "losses": 0
+ },
+ "ml_shadow_golden_roi": {
+  "n": 0,
+  "roi_pct": null,
+  "ci95": [
+   null,
+   null
+  ],
+  "wins": 0,
+  "losses": 0
+ },
+ "playoff_best_gold_silver": {
+  "wins": 0,
+  "losses": 0,
+  "n": 0,
+  "hit_rate": null,
+  "ci95": [
+   null,
+   null
+  ]
+ },
+ "pending_games": 0,
+ "games_without_pregame_snapshot": [],
+ "legacy_graded_games_without_block": 0,
+ "by_season": {},
+ "reopen": {
+  "ats": {
+   "rule": "ats_shadow_value picks: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
+   "min_picks": 100,
+   "ci_lower_pct": 52.4,
+   "n": 0,
+   "ci_lower": null,
+   "met": false
+  },
+  "ml_value": {
+   "rule": "ml_shadow_value picks settled at the frozen moneyline: n >= min_picks AND ROI 95% CI lower bound > roi_ci_lower_pct",
+   "min_picks": 200,
+   "roi_ci_lower_pct": 0.0,
+   "n": 0,
+   "roi_ci_lower": null,
+   "met": false
+  }
+ },
+ "ats_shadow_rows": [],
+ "generated_at": "2026-10-10T00:07:26"
+}

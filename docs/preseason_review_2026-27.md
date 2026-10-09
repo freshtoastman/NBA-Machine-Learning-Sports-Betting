@@ -14,7 +14,7 @@
 - [x] **P0 讓分推薦的開季政策**（10/02 定案，`config.toml [ats-policy]`，生效日 2026-10-02）：value 標記關閉，模型方向只列為「ATS 參考」；原規則的輸出另存 `ats_shadow_value` 供評分。重新開放條件：賽前凍結紀錄 ≥100 注且 95% 信賴區間下限 > 52.4%
 - [x] **P0 用修正後資料重訓正式 ML／ATS 模型**（10/07 完成）：`scripts/retrain_production.py` 以 walk-forward 驗證過的同一組超參數重訓（尾端 10% 早停挑樹數 → 全部資料重擬合），`config.toml [production-models]` 改指向 `*_clean_2026-10-07_*`；檔名上的百分比是 10 季樣本外命中率（ML 63.6%／ATS 50.5%）。首頁賽季卡片改先列 `walk_forward.json` 的樣本外數字，含訓練季重算降為對照。UO 模型未動（未 walk-forward，前端待降級）
 - [x] **P0 正式模型改由設定檔指定**（10/02 完成）：`config.toml [production-models]` 指定 ML／UO／ATS 三個檔名；指定的檔案不存在會直接報錯，不再退回「檔名上準確率最高」
-- [ ] **P0 賽前預測凍結**：`pregame` 只寫一次，賽後只補結果；追蹤器只評分凍結預測
+- [x] **P0 賽前預測凍結**（10/10 完成）：`src/Utils/PregameFreeze.py` 在 `export_predictions` 內替每場比賽維護 `pregame` 區塊——開賽前每次輸出都刷新（凍結的是開賽前最後一次輸出，和 git 稽核的定義一致），第一次看到比分（即時或終場）就鎖定，之後顯示欄位一律改自凍結區塊、結果以凍結盤口結算；`src/Utils/FrozenRecord.py` 只評分鎖定的預測 → `web/data/frozen_record.json`，首頁「🔒 賽前凍結紀錄」區塊與 `/api/ats-daily-log` 只讀這份
 - [ ] **P0 開幕夜演練**（模擬 10/20：零場數據、預覽旗標切換、賠率寫入、推送）。10/01 已先修掉三個換季地雷（見當日紀錄）；演練時還要確認：
   - `export_predictions.py` 季後賽 bracket 區段仍有 7 處寫死 `'2025-26'` 表名（約 1525–1870 行），4 月前要改成依日期取賽季
   - 開幕頭幾天數據表不足 30 隊時 `Create_Games` 不產生特徵列（只有賠率 stub、沒有模型預測）：決定是接受空窗，還是提供明確標示的替代方案
@@ -299,3 +299,29 @@
 **85% 目標的現況**：沒有變化。重訓只是讓正式模型和被驗證過的配方一致，樣本外讓分仍是 50.5%，沒有任何門檻超過 52.4%。要往上走只能靠新資料來源（盤口移動、傷兵／輪休），而且每一項都要先過 walk-forward。
 
 **下一步（10/8）**：①先讀 10/7 06:00 pipeline log（第一次用新 pin 跑 Export_JSON）；②賽前預測凍結（`pregame` 只寫一次，`ats_shadow_value`、`ml_shadow_value`、`ml_shadow_golden` 一起凍結）；③開幕夜演練；④P1：大小分前端降級（UO 模型沒有 walk-forward，不該再顯示成預測）。
+
+### 2026-10-10 — 賽前預測凍結上線（P0），追蹤器改為只評分凍結預測
+
+**排程檢查**：10/8（06:00→06:02）與 10/9（06:01→06:23）都是 `daily_pipeline OK`、推送成功，兩天都只改 `dates.json`；10/7 之後每次 Export_JSON 都用新 pin 跑，沒有錯誤。10/9 那次花了 22 分鐘，log 裡沒有失敗或重試（各步驟沒有時間戳，看不出卡在哪一步），下次若再超過 10 分鐘就在 `run_step` 加上每步耗時。`scoreboardv2` 500 仍是每天都有（裁判抓取），季前賽無影響。
+
+**新聞**：沒有需要改季前預覽的異動。Kawhi 10/5 首次完整練習，但球隊預計讓他缺席前兩場季前賽（10/3 魁北克已沒打、10/10 溫哥華對快艇也不打），開幕 10/21 對公牛；Giannis→MIA 是 6/22 的交易，預覽早已納入。
+
+**做了什麼**
+1. **`src/Utils/PregameFreeze.py`**（純函式，`apply_freeze(舊檔 games, 新 games, 時戳)`）：
+   - 每場比賽在輸出 JSON 裡多一個 `pregame` 區塊，內含 45 個預測欄位（勝負機率／獨贏賠率／鑽石影子旗標、大小分、讓分方向／機率／`ats_shadow_value`、季後賽訊號與系列賽狀態、盤口走勢）加 `frozen_at`、`revisions`、`locked`。
+   - **未開賽**：每次輸出都刷新區塊（盤口會動、賽前特徵會補齊；凍結的是「開賽前最後一次輸出」，這和 `scripts/audit_live_record.py` 用 git 歷史抓的定義相同）。以排程來說，美國 D 日的比賽在台北 D 日 06:00 與 D+1 06:00（美東 18:00，開賽前 1–2 小時）各輸出一次，D+1 那次就是凍結版。
+   - **一看到比分**（NBA CDN 即時比分、或 dataset 已有終場）就 `locked=True`，之後每次重新輸出都把顯示欄位改回凍結值，賽後重算的盤口與結果另存 `closing`。`ml_correct`／`ats_winner`／`ou_correct` 一律用**凍結當下的讓分、大小分、獨贏賠率**結算，不用收盤線、也不用賽後重跑的模型。
+   - 第一次輸出時就已有比分的比賽（例如 pipeline 停了幾天）寫 `pregame=null`、`pregame_missing=true`，追蹤器不計，不假裝有過預測。
+   - 這樣「只寫一次」的語意落在鎖定之後：鎖定後永遠不再改。沒有採用「第一次輸出就凍結」是因為提前 7 天的盤口與特徵都不是觀眾開賽前看到的版本。
+2. **`src/Utils/FrozenRecord.py` ＋ `scripts/frozen_record.py`**（`PYTHONPATH=. python3 scripts/frozen_record.py`）：只走訪 `pregame.locked` 的比賽，算勝負／大小分／讓分方向命中率（Wilson 95% CI）、`ats_shadow_value` 影子注、鑽石／金鑽影子注以凍結獨贏賠率平注結算的投報率（含 CI）、季後賽 GOLD+SILVER 主訊號，並對照 `config.toml` 的重新開放門檻輸出 `met`。每次 Export_JSON 結尾自動寫 `web/data/frozen_record.json`；預設只算 `[ats-policy].effective_from`（2026-10-02）之後的日期，舊季檔案沒有區塊、一律不計。
+3. **前端**：首頁賽季卡片區多一塊「🔒 賽前凍結紀錄」（有結算場次前顯示說明文字，之後顯示模型方向／影子規則兩組數字與重新開放門檻進度）；ML／ATS 推薦列在鎖定後顯示 🔒（hover 顯示凍結時間與收盤讓分差異）；側欄 ATS 追蹤器的命中率只計凍結預測，未凍結但已結束的比賽標 🔓、不計入。
+4. `Tests/test_pregame_freeze.py` 9 個測試（首次輸出、賽前刷新、鎖定與凍結盤口結算、鎖定後不受後續輸出影響、即時比分鎖定、無快照、凍結盤口 push、FrozenRecord 只算鎖定場次與投報率）；全部 76 個測試在 `.venv`（pytest）通過。
+
+**驗證（可重跑）**
+- 用正式路徑 `export_date(2026-04-10)`：15 場全部 `pregame_missing`（檔案裡早已有比分、沒有賽前快照）——這正是預期；把同一天模擬成「先賽前輸出、再賽後輸出」，鎖定後 `winner`／`spread` 維持賽前值、`closing` 記錄賽後值、`ml_correct` 以凍結值重算。
+- Flask test client（`session['authenticated']=True`）：首頁與 `?date=2026-04-10` 回 200 且含凍結紀錄區塊；`/api/ats-daily-log?days=400` 的 138 注全部 `frozen=false`、`graded=0`（舊季檔案沒有區塊，不再被當成實戰紀錄）。
+- 目前 `frozen_record.json` 全為 0：季前賽不進 pipeline，第一批真正鎖定會發生在 10/22 06:00 那次輸出（10/20–21 的比賽）。
+
+**85% 目標的現況**：沒有變化（樣本外讓分 50.5%）。但從開季起每一個命中率都會有「凍結、可重跑、附信賴區間」的來源，重新開放門檻（讓分 ≥100 注且 CI 下限 > 52.4%；鑽石 ≥200 注且投報率 CI 下限 > 0）會由 `frozen_record.json` 自動判定。
+
+**下一步（10/11）**：①開幕夜演練（模擬 10/20：零場數據、預覽旗標切換、賠率寫入、推送；順便確認 `is_today` 的 live 抓取在開賽前不會誤鎖）；②P1 大小分前端降級；③P1 抓取時機（台北下午加抓一次，讓 D+1 06:00 的凍結版特徵含前一天全部比賽）。

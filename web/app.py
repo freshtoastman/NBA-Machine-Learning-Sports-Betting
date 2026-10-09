@@ -562,6 +562,57 @@ def _walk_forward_block() -> dict | None:
     }
 
 
+def load_frozen_record() -> dict | None:
+    """Frozen pre-game record (web/data/frozen_record.json, src/Utils/FrozenRecord.py):
+    the only live record the dashboard may quote. Shaped into audit-style blocks."""
+    p = DATA_DIR / "frozen_record.json"
+    if not p.exists():
+        return None
+    try:
+        fr = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+    def item(label, r, note=None):
+        if not r or not r.get("n"):
+            return {"label_zh": label, "wins": 0, "losses": 0, "hit_rate": None, "ci95": [None, None],
+                    "neutral": True, "note_zh": note or "尚無已結算的凍結預測"}
+        return {"label_zh": label, "wins": r["wins"], "losses": r["losses"], "hit_rate": r["hit_rate"],
+                "ci95": [round(r["ci95"][0]), round(r["ci95"][1])], "note_zh": note}
+
+    def roi_item(label, r):
+        if not r or not r.get("n"):
+            return {"label_zh": label, "wins": 0, "losses": 0, "hit_rate": None, "ci95": [None, None],
+                    "neutral": True, "note_zh": "尚無已結算的凍結預測"}
+        lo, hi = r["ci95"]
+        ci = f"ROI 95% CI {lo:+.1f}～{hi:+.1f}%" if lo is not None else "樣本太少，無法算 CI"
+        return {"label_zh": label, "wins": r["wins"], "losses": r["losses"], "hit_rate": r["roi_pct"],
+                "ci95": r["ci95"], "neutral": True, "note_zh": f"{ci}（投報率，非命中率）"}
+
+    reopen = fr.get("reopen") or {}
+    ats_re = reopen.get("ats") or {}
+    ml_re = reopen.get("ml_value") or {}
+    fr["blocks"] = [
+        {"label_zh": "模型方向（參考）", "items": [
+            item("勝負預測", fr.get("ml")),
+            item("讓分方向", fr.get("ats_model")),
+            item("大小分", fr.get("ou")),
+        ]},
+        {"label_zh": "停用規則的影子紀錄（重新開放門檻）", "items": [
+            item("讓分 value 規則", fr.get("ats_shadow_value"),
+                 note=f"{(fr.get('ats_shadow_value') or {}).get('n', 0)}/{ats_re.get('min_picks', '?')} 注，"
+                      f"CI 下限需 > {ats_re.get('ci_lower_pct', '?')}%"
+                      + ("，已達標" if ats_re.get("met") else "")),
+            roi_item("勝負鑽石注", fr.get("ml_shadow_value_roi")),
+            roi_item("勝負金鑽注", fr.get("ml_shadow_golden_roi")),
+        ]},
+    ]
+    if (fr.get("playoff_best_gold_silver") or {}).get("n"):
+        fr["blocks"][0]["items"].append(item("季後賽 GOLD+SILVER 主訊號", fr["playoff_best_gold_silver"]))
+    fr["has_graded"] = bool(fr.get("graded_games"))
+    return fr
+
+
 def load_season_review() -> dict | None:
     """Audited live / leak-free record that supersedes a season's backtest stats."""
     p = DATA_DIR / "season_review.json"
@@ -726,6 +777,7 @@ def index():
         preseason=preseason,
         season_stats=season_stats,
         season_review=load_season_review(),
+        frozen_record=load_frozen_record(),
         wf_season=walk_forward_season(season_stats.get("season") if season_stats else None),
         production_models=load_production_models(),
         active_series=active_series,
@@ -1716,12 +1768,17 @@ def api_ats_daily_log():
 
         day_picks = []
         for key, g in (data.get("games") or {}).items():
-            ats_winner = g.get("ats_winner")           # 'home', 'away', 'push', or None
+            # Only a locked pre-game snapshot may be graded (src/Utils/PregameFreeze.py);
+            # a pick that is still pre-game is listed but not counted.
+            _frozen = bool((g.get("pregame") or {}).get("locked"))
+            ats_winner = g.get("ats_winner")           # 'home', 'away', 'push', or None (shown, graded only if frozen)
             spread = g.get("spread")
             home_zh = g.get("home_team_zh") or g.get("home_team", "?")
             away_zh = g.get("away_team_zh") or g.get("away_team", "?")
 
             def _ats_correct(pick_side, winner):
+                if not _frozen:
+                    return None
                 if winner and winner != "push":
                     return 1 if pick_side == winner else 0
                 return None
@@ -1755,6 +1812,10 @@ def api_ats_daily_log():
                     "is_golden": bool(g.get("is_golden")),
                     "is_value": bool(g.get("is_value")),
                     "ats_is_value": bool(g.get("ats_is_value")),
+                    "ats_shadow_value": bool(g.get("ats_shadow_value")),
+                    "frozen": _frozen,
+                    "frozen_at": (g.get("pregame") or {}).get("frozen_at"),
+                    "pregame_missing": bool(g.get("pregame_missing")),
                     "pick_type": "ml",
                 })
 
@@ -1779,6 +1840,7 @@ def api_ats_daily_log():
                     "is_golden": False,
                     "is_value": False,
                     "ats_is_value": False,
+                    "frozen": _frozen,
                     "pick_type": "playoff",
                     "playoff_tier": po_tier,
                     "playoff_signal": po_signal,
@@ -1805,6 +1867,9 @@ def api_ats_daily_log():
     po_wins = sum(1 for p in po_graded if p["ats_correct"] == 1)
 
     stats = {
+        "graded_only_frozen": True,
+        "unfrozen": sum(1 for p in ml_picks if not p.get("frozen")),
+        "no_snapshot": sum(1 for p in ml_picks if p.get("pregame_missing")),
         "total": len(ml_picks),
         "graded": len(graded),
         "wins": wins,
