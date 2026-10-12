@@ -148,6 +148,7 @@ class TestFrozenRecord(unittest.TestCase):
             self.assertEqual(out["graded_games"], 2)
             self.assertEqual(out["pending_games"], 1)
             self.assertEqual(out["legacy_graded_games_without_block"], 0)
+            self.assertEqual(out["settled_without_prediction"], 0)
             self.assertEqual([m["game"] for m in out["games_without_pregame_snapshot"]], ["C"])
             self.assertEqual(out["ml"]["wins"], 1)
             self.assertEqual(out["ml"]["losses"], 1)
@@ -161,6 +162,31 @@ class TestFrozenRecord(unittest.TestCase):
             self.assertFalse(out["reopen"]["ml_value"]["met"])
             self.assertIn("2026-27", out["by_season"])
             self.assertTrue((d / "frozen_record.json").exists())
+
+    def test_odds_only_stub_is_frozen_but_not_graded(self):
+        """Opening week: the export carries the line but no model output. The game
+        locks like any other, but nothing can be graded and it must not count."""
+        stub = {k: None for k in ("winner", "home_confidence", "away_confidence", "ou_pick",
+                                  "ou_value", "ats_model_pick", "ats_model_home_prob", "value_side")}
+        stub.update({"home_team": "Detroit Pistons", "away_team": "Boston Celtics", "spread": 2.5,
+                     "is_value": False, "home_score": None, "away_score": None, "actual_winner": None})
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            prev = {"S": dict(stub)}
+            PregameFreeze.apply_freeze(None, prev, "t1")
+            self.assertFalse(prev["S"]["pregame"]["locked"])
+            done = {"S": dict(stub, home_score=112, away_score=108, actual_winner="home")}
+            PregameFreeze.apply_freeze(prev, done, "t2")
+            self.assertTrue(done["S"]["pregame"]["locked"])
+            self.assertIsNone(done["S"]["ml_correct"])
+            self.assertEqual(done["S"]["ats_winner"], "home")  # the line itself is still settled
+            self._write_day(d, "2026-10-20", done)
+            out = FrozenRecord.write_frozen_record(d, since="2026-10-02")
+            self.assertEqual(out["frozen_games"], 1)
+            self.assertEqual(out["graded_games"], 0)
+            self.assertEqual(out["settled_without_prediction"], 1)
+            self.assertEqual(out["ml"]["n"], 0)
+            self.assertEqual(out["ats_model"]["n"], 0)
 
     def test_american_profit(self):
         self.assertAlmostEqual(FrozenRecord.american_profit(130, True), 1.3)

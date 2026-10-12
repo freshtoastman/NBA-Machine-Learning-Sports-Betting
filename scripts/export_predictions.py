@@ -434,9 +434,16 @@ def export_date(target_date: date) -> dict | None:
 
     # Summary stats.
     n = len(games_list)
-    home_picks = sum(1 for g in games_list if g.get("winner") == "home")
+    # Odds-only stubs (opening week before all 30 teams have stats, or a feature
+    # gap) carry no model fields; they must not be counted as away/under picks.
+    model_games = [g for g in games_list if g.get("winner") in ("home", "away")]
+    n_model = len(model_games)
+    home_picks = sum(1 for g in model_games if g.get("winner") == "home")
+    away_picks = sum(1 for g in model_games if g.get("winner") == "away")
     over_picks = sum(1 for g in games_list if g.get("ou_pick") == "OVER")
-    avg_conf = sum(max(g.get("home_confidence") or 0, g.get("away_confidence") or 0) for g in games_list) / n if n else 0
+    under_picks = sum(1 for g in games_list if g.get("ou_pick") == "UNDER")
+    avg_conf = (sum(max(g.get("home_confidence") or 0, g.get("away_confidence") or 0) for g in model_games) / n_model
+                if n_model else 0)
 
     # Collect GOLD/SILVER playoff ATS signals across all games.
     po_ats_alerts = []
@@ -480,10 +487,11 @@ def export_date(target_date: date) -> dict | None:
 
     summary = {
         "games": n,
+        "model_games": n_model,
         "home_picks": home_picks,
-        "away_picks": n - home_picks,
+        "away_picks": away_picks,
         "over_picks": over_picks,
-        "under_picks": n - over_picks,
+        "under_picks": under_picks,
         "avg_confidence": round(avg_conf, 1),
         "value_picks": sum(1 for g in games_list if g.get("is_value")),
         "golden_picks": sum(1 for g in games_list if g.get("is_golden")),

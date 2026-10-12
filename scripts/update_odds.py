@@ -1,6 +1,11 @@
 """Fetch latest SBR odds for unplayed games, update OddsData.sqlite, re-export JSON, push.
 
-Usage: PYTHONPATH=. python scripts/update_odds.py
+Usage: PYTHONPATH=. python scripts/update_odds.py            # refresh DB, re-export, push
+       PYTHONPATH=. python scripts/update_odds.py --db-only  # refresh DB only (daily_pipeline.sh)
+
+The daily pipeline inserts a game's line the first time it sees the date and
+never touches it again, so without this step the spread frozen pre-tip
+(src/Utils/PregameFreeze.py) would be the one captured a day or more earlier.
 """
 import sqlite3
 import subprocess
@@ -175,7 +180,7 @@ def _sync_series_states(con: sqlite3.Connection, season_key: str) -> int:
     return updated
 
 
-def main():
+def main(db_only: bool = False):
     today = today_taipei()
     # Check today and yesterday (Taipei +8 → may cover ET "today")
     check_dates = [today - timedelta(days=1), today]
@@ -220,6 +225,9 @@ def main():
     if total_updated == 0:
         print("Odds unchanged — skipping re-export and push.")
         return
+    if db_only:
+        print(f"Updated {total_updated} game(s) in OddsData.sqlite (--db-only: no re-export, no push).")
+        return
 
     print(f"\nUpdated {total_updated} game(s). Re-exporting JSON...")
     result = subprocess.run(
@@ -247,4 +255,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description="Refresh SBR odds for unplayed games.")
+    parser.add_argument("--db-only", action="store_true",
+                        help="update OddsData.sqlite only; skip the JSON re-export and git push")
+    args = parser.parse_args()
+    main(db_only=args.db_only)

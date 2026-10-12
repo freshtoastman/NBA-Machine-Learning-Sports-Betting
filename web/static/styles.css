@@ -1768,6 +1768,17 @@ a {
     border-radius: 4px;
     padding: 1px 6px;
 }
+/* Odds-only game (opening week before all 30 teams have season stats): no model output. */
+.rest-chip.no-model-chip {
+    color: #e0b84a;
+    background: rgba(224, 184, 74, 0.10);
+    border: 1px dashed rgba(224, 184, 74, 0.45);
+}
+.pick-row.no-model-row .no-model-text {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+}
 
 .compact-footer {
     text-align: center;

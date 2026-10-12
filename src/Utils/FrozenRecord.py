@@ -76,10 +76,20 @@ def _graded(g: dict) -> bool:
     return g.get("actual_winner") in ("home", "away")
 
 
+def _has_prediction(g: dict) -> bool:
+    """False for odds-only stubs: opening week before all 30 teams have season
+    stats (or a feature gap) exports the lines without any model output. Such a
+    game can be frozen and settled, but there is nothing to grade."""
+    return (g.get("winner") in ("home", "away")
+            or g.get("ats_model_pick") in ("home", "away")
+            or g.get("ou_pick") in ("OVER", "UNDER"))
+
+
 class _Bucket:
     def __init__(self):
         self.frozen = 0
         self.graded = 0
+        self.settled_without_prediction = 0
         self.ml = [0, 0]
         self.ou = [0, 0]
         self.ats = [0, 0]
@@ -94,6 +104,9 @@ class _Bucket:
         self.frozen += 1
         self.dates.add(iso)
         if not _graded(g):
+            return
+        if not _has_prediction(g):
+            self.settled_without_prediction += 1
             return
         self.graded += 1
         aw = g["actual_winner"]
@@ -132,6 +145,7 @@ class _Bucket:
         return {
             "frozen_games": self.frozen,
             "graded_games": self.graded,
+            "settled_without_prediction": self.settled_without_prediction,
             "game_dates": len(self.dates),
             "ml": rec(*self.ml),
             "ou": rec(*self.ou),
@@ -179,7 +193,7 @@ def collect(data_dir: Path, since: str | None = None) -> dict:
         "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
         "since": since,
         "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；"
-                         "沒有賽前快照的比賽不計。",
+                         "沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
         **ov,
         "pending_games": unfrozen,
         "games_without_pregame_snapshot": missing,

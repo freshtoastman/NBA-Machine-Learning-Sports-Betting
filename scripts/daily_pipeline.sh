@@ -46,6 +46,11 @@ cd "$PROJECT_DIR"
 # 2. Patch final scores for recent days (sbrscrape).
 run_step "Patch_Scores"  python scripts/patch_scores.py
 
+# 2a. Refresh the lines of unplayed games (non-blocking). Get_Odds_Data only inserts a
+# date once, so without this the line frozen pre-tip would be the one captured a day
+# or more earlier; also logs odds_history snapshots (spread_first/last/move).
+python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: update_odds --db-only failed" >> "$LOG_FILE"
+
 # 2b. Collect referee data for recent days (builds historical ATS profiles).
 python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
 

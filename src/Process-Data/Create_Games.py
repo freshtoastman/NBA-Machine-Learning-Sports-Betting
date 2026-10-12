@@ -38,7 +38,8 @@ SNAPSHOT_MODE = "pregame"
 
 # NBA Cup championship games are not counted in regular-season GP, so they are
 # left out when counting how many games a team has played before a date.
-NBA_CUP_FINAL_DATES = {"2023-12-09", "2024-12-17", "2025-12-16"}
+# 2026 Emirates NBA Cup final: Fri 2026-12-11, Hinkle Fieldhouse (Indianapolis).
+NBA_CUP_FINAL_DATES = {"2023-12-09", "2024-12-17", "2025-12-16", "2026-12-11"}
 
 # Advanced stat columns we want to merge (subset of MeasureType=Advanced).
 # These are the most predictive efficiency metrics not already in Base stats.

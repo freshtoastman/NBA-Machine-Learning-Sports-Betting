@@ -153,7 +153,11 @@
                 </span>
                 {% endif %}
 
+                {% if summary.model_games is not defined or summary.model_games %}
                 <span class="dash-chip muted" title="當日預測的主/客場勝隊比">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
+                {% else %}
+                <span class="dash-chip muted" title="模型特徵需要 30 隊都有本季數據；開季頭幾天只顯示盤口">模型尚未啟用 · 僅列盤口</span>
+                {% endif %}
             </div>
             {% endif %}
 
@@ -220,7 +224,7 @@
         {% if season_stats %}
         <section class="model-compare">
             <div class="model-compare-head">
-                <span class="dash-tag season-tag">{{ season_key }} 賽季 · {{ season_stats.games }} 場</span>
+                <span class="dash-tag season-tag">{{ season_stats.season or season_key }} 賽季 · {{ season_stats.games }} 場</span>
                 <span class="model-compare-sub">2026-27 起鑽石／金鑽／ATS 都只列參考，不列為推薦</span>
             </div>
 
@@ -813,6 +817,8 @@
             {% set away_team = teams[0] %}
             {% set home_team = teams[1] %}
             {% set is_upcoming = game.is_upcoming|default(false) %}
+            {# No model prediction (odds-only stub: opening week before all 30 teams have stats, or a feature gap) #}
+            {% set has_model = game.winner is defined and game.winner in ('home', 'away') %}
             {% set away_conf = game.away_confidence|default(0)|float %}
             {% set home_conf = game.home_confidence|default(0)|float %}
             {% set lean_is_home = home_conf >= away_conf %}
@@ -861,7 +867,7 @@
                             {% elif game.live_away_score is defined and game.live_away_score is not none %}
                             <span class="team-score live-score">{{ game.live_away_score }}</span>
                             {% endif %}
-                            {% if not is_upcoming %}
+                            {% if not is_upcoming and has_model %}
                             <span class="team-conf">{{ away_conf|round(1) }}%</span>
                             {% endif %}
                         </span>
@@ -889,7 +895,7 @@
                             {% elif game.live_home_score is defined and game.live_home_score is not none %}
                             <span class="team-score live-score">{{ game.live_home_score }}</span>
                             {% endif %}
-                            {% if not is_upcoming %}
+                            {% if not is_upcoming and has_model %}
                             <span class="team-conf">{{ home_conf|round(1) }}%</span>
                             {% endif %}
                         </span>
@@ -959,6 +965,15 @@
                         {% if game.Days_Rest_Away is defined and game.Days_Rest_Away %}
                         <span class="rest-chip">客隊休息 {{ game.Days_Rest_Away }} 天</span>
                         {% endif %}
+                        {% if not has_model %}
+                        <span class="rest-chip no-model-chip" title="模型特徵需要 30 隊都有本季數據；開季頭幾天只顯示盤口，不產生預測">模型尚未啟用（開季前 3–4 天只列盤口）</span>
+                        {% endif %}
+                    </div>
+                    {% elif not has_model %}
+                    <div class="pick-row no-model-row">
+                        <span class="pick-label">模型</span>
+                        <span class="no-model-text" title="這場比賽輸出時模型沒有可用特徵（開季頭幾天或資料缺口），沒有賽前預測，不計入任何紀錄">尚未啟用 · 無賽前預測，不計入紀錄</span>
+                        {% if game.pregame and game.pregame.locked %}<span class="frozen-tag" title="賽前 {{ game.pregame.frozen_at[:16] }} 凍結（只有盤口，沒有模型預測）">🔒</span>{% endif %}
                     </div>
                     {% else %}
                     <div class="pick-row">
