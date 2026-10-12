@@ -1,9 +1,10 @@
 {
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
- "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計。",
+ "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
  "frozen_games": 0,
  "graded_games": 0,
+ "settled_without_prediction": 0,
  "game_dates": 0,
  "ml": {
   "wins": 0,
@@ -98,5 +99,5 @@
   }
  },
  "ats_shadow_rows": [],
- "generated_at": "2026-10-12T06:01:41"
+ "generated_at": "2026-10-13T06:02:04"
 }
