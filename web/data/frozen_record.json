@@ -96,8 +96,16 @@
    "n": 0,
    "roi_ci_lower": null,
    "met": false
+  },
+  "ou": {
+   "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
+   "min_picks": 100,
+   "ci_lower_pct": 52.4,
+   "n": 0,
+   "ci_lower": null,
+   "met": false
   }
  },
  "ats_shadow_rows": [],
- "generated_at": "2026-10-13T06:02:04"
+ "generated_at": "2026-10-13T15:16:45"
 }

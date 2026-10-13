@@ -533,6 +533,12 @@ def _walk_forward_block() -> dict | None:
         item("勝負：模型", ml["model"]),
         item("勝負：直接選盤口熱門（對照）", ml["market_favorite"]),
     ]
+    uo = wf.get("uo") or {}
+    if uo.get("raw") and uo.get("always_under"):
+        items += [
+            item("大小分：全部場次", uo["raw"]),
+            item("大小分：每場都押小分（對照）", uo["always_under"]),
+        ]
 
     # Moneyline value ("diamond" / "golden") picks settled at the closing line
     # (scripts/walk_forward_ml_value.py). Hit rate alone says nothing at
@@ -592,11 +598,15 @@ def load_frozen_record() -> dict | None:
     reopen = fr.get("reopen") or {}
     ats_re = reopen.get("ats") or {}
     ml_re = reopen.get("ml_value") or {}
+    ou_re = reopen.get("ou") or {}
     fr["blocks"] = [
         {"label_zh": "模型方向（參考）", "items": [
             item("勝負預測", fr.get("ml")),
             item("讓分方向", fr.get("ats_model")),
-            item("大小分", fr.get("ou")),
+            item("大小分方向（模型未通過驗證，影子紀錄）", fr.get("ou"),
+                 note=f"10 季樣本外 50.6%；{(fr.get('ou') or {}).get('n', 0)}/{ou_re.get('min_picks', '?')} 注，"
+                      f"CI 下限需 > {ou_re.get('ci_lower_pct', '?')}%"
+                      + ("，已達標" if ou_re.get("met") else "")),
         ]},
         {"label_zh": "停用規則的影子紀錄（重新開放門檻）", "items": [
             item("讓分 value 規則", fr.get("ats_shadow_value"),
@@ -842,6 +852,20 @@ def _call_gemini(prompt, use_search=True):
         return None
 
 
+def _ou_fallback_pick(game):
+    """Totals line for the rule-based (no-AI) analysis: never a model direction
+    once config.toml [ou-policy] marks the lean reference-only."""
+    if game.get("ou_reference_only") or not game.get("ou_pick"):
+        return "不推薦"
+    return f"{'大分' if game.get('ou_pick') == 'OVER' else '小分'} {game.get('ou_value', '?')}"
+
+
+def _ou_fallback_reason(game):
+    if game.get("ou_reference_only") or not game.get("ou_pick"):
+        return f"大小分模型未通過樣本外驗證（10 季 50.6%），只列盤口 {game.get('ou_value', '?')}"
+    return f"模型信心 {game.get('ou_confidence', '?')}%"
+
+
 def _ats_fallback_summary(game):
     """One-line summary for the rule-based (no-AI) analysis."""
     if game.get("ats_reference_only"):
@@ -913,7 +937,7 @@ def api_analysis():
   "ats_pick": "從上方『選項A』或『選項B』中挑一個整段原封不動複製",
   "ats_reason": "為什麼選這一邊（2-3句，必須提到回測策略訊號和歷史輪廓的佐證）",
   "ats_units": 數字1到5,
-  "ou_pick": "大分 N / 小分 N / 不推薦",
+  "ou_pick": "不推薦（大小分模型未通過樣本外驗證，只列盤口）",
   "ou_reason": "一句話理由",
   "ml_note": "勝負盤備註（通常'賠率過低不建議'）",
   "risk_warning": "這場的風險",
@@ -923,6 +947,7 @@ def api_analysis():
 嚴格規則：
 - ats_pick 必須從『選項A』或『選項B』原封不動複製，不能改任何字、不能用 +/- 符號、不能用英文隊名
 - ats_units 必須是數字 1-5
+- ou_pick 一律填「不推薦」：大小分模型 10 季樣本外 50.6%（和每場押小分的 50.0% 一樣），不可把模型的大／小分方向當成推薦
 - **golden_verdict 為必填**：這是讓你確認你有把「金鑽面向」納入決策的欄位。請在整合傷兵、關鍵因素、回測訊號、歷史輪廓、金鑽面向、市場盤口後**自主判斷**，簡述金鑽因素如何（或為何無法）影響你對這場的信心。不要機械式地依金鑽狀態決定 units — units 應該是你綜合所有面向後的結論
 - **backtest_alignment 為必填**：必須引用「回測策略訊號」中至少一條，說明推薦與訊號的關係。若無訊號則填「無相關回測訊號」
 - **profile_insight 為必填**：必須引用「歷史輪廓」中的具體數據（勝率%、W-L、ATS cover率），分析近期走勢和本場相關模式
@@ -964,8 +989,8 @@ def api_analysis():
             "ats_pick": ats_pick_str,
             "ats_reason": f"ATS 模型 edge {game.get('ats_value_edge', 0)}pp",
             "ats_units": 0 if game.get("ats_reference_only") else (2 if game.get("ats_is_value") else 1),
-            "ou_pick": f"{'大分' if game.get('ou_pick')=='OVER' else '小分'} {game.get('ou_value','?')}",
-            "ou_reason": f"模型信心 {game.get('ou_confidence','?')}%",
+            "ou_pick": _ou_fallback_pick(game),
+            "ou_reason": _ou_fallback_reason(game),
             "ml_note": "賠率過低不建議",
             "risk_warning": "AI 分析暫時不可用，僅供參考",
             "summary": _ats_fallback_summary(game),
@@ -1020,7 +1045,7 @@ def api_analyze_pinned():
         contexts.append(f"=== 置頂場次 {i} ===\n{_build_game_context(g)}")
 
     prompt = f"""你是職業 NBA 讓分盤分析師。用戶從今天 {len(data['games'])} 場比賽中置頂了 {len(pinned_games)} 場要你重點分析。
-**每場分析的深度必須和單場 AI 分析完全一樣**：傷兵、關鍵因素、回測訊號引用、歷史輪廓數據、讓分推薦、大小分、勝負盤、風險、總結都要寫完整。
+**每場分析的深度必須和單場 AI 分析完全一樣**：傷兵、關鍵因素、回測訊號引用、歷史輪廓數據、讓分推薦、大小分（只列盤口、一律不推薦）、勝負盤、風險、總結都要寫完整。
 
 日期: {game_date}
 
@@ -1046,7 +1071,7 @@ def api_analyze_pinned():
       "ats_pick": "從該場『選項A』或『選項B』中挑一個整段原封不動複製",
       "ats_reason": "為什麼選這一邊（2-3句，必須提到回測訊號和歷史輪廓佐證）",
       "ats_units": 數字1到5,
-      "ou_pick": "大分 N / 小分 N / 不推薦",
+      "ou_pick": "不推薦（大小分模型未通過樣本外驗證，只列盤口）",
       "ou_reason": "一句話理由",
       "ml_note": "勝負盤備註（通常'賠率過低不建議'）",
       "risk_warning": "這場的風險",
@@ -1104,8 +1129,8 @@ def api_analyze_pinned():
                 "ats_pick": ats_pick_str,
                 "ats_reason": f"ATS 模型 edge {g.get('ats_value_edge', 0)}pp",
                 "ats_units": 0 if g.get("ats_reference_only") else (2 if g.get("ats_is_value") else 1),
-                "ou_pick": f"{'大分' if g.get('ou_pick') == 'OVER' else '小分'} {g.get('ou_value', '?')}",
-                "ou_reason": f"模型信心 {g.get('ou_confidence', '?')}%",
+                "ou_pick": _ou_fallback_pick(g),
+                "ou_reason": _ou_fallback_reason(g),
                 "ml_note": "賠率過低不建議",
                 "risk_warning": "AI 分析暫時不可用，僅供參考",
                 "summary": _ats_fallback_summary(g),
@@ -1165,8 +1190,11 @@ def _build_game_context(g):
     ats_team = home_zh if ats_side == "home" else away_zh if ats_side == "away" else "N/A"
     ats_conf = g.get("ats_model_confidence", "?")
     ats_edge = g.get("ats_value_edge", 0)
-    ou_pick = g.get("ou_pick", "?")
     ou_val = g.get("ou_value", "?")
+    if g.get("ou_reference_only") or not g.get("ou_pick"):
+        ou_txt = f"盤口 {ou_val}（模型方向停用：10 季樣本外 50.6%，不推薦）"
+    else:
+        ou_txt = f"{g.get('ou_pick')} {ou_val}"
     value_side = g.get("value_side")
     value_team = home_zh if value_side == "home" else away_zh if value_side else "無"
     value_edge = g.get("value_edge", 0)
@@ -1289,7 +1317,7 @@ def _build_game_context(g):
                     if g.get("ats_reference_only") else "")
 
     return f"""{away_zh} @ {home_zh} | 讓分盤: {spread_str}
-ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_pick} {ou_val}
+ML: {ml_pick_zh}({ml_conf}%) | ATS: {ats_team}({ats_conf}%,edge{ats_edge}pp) | OU: {ou_txt}
 鑽石ML:{'是 '+value_team+f'(+{value_edge}pp)' if g.get('is_value') else '否'} | ATS鑽石:{'是' if g.get('ats_is_value') else '否'} | 共識:{'🔥是' if g.get('is_consensus') else '否'}{odds_line}{ats_ref_line}
 {golden_line}
 {hp}

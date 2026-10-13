@@ -393,6 +393,8 @@ def predict_today_xgb(sportsbook):
         ))
         # Opening policy (config.toml [ml-value-policy]): diamond / golden off.
         apply_ml_value_policy(pred, today)
+        # Opening policy (config.toml [ou-policy]): totals lean is reference-only.
+        apply_ou_policy(pred, today)
 
         # Consensus.
         ml_value_side = pred.get("value_side") if pred.get("is_value") else None
@@ -473,7 +475,7 @@ import sqlite3  # noqa: E402
 
 from src.Utils.TeamProfile import team_profile_for_date, grade_spread  # noqa: E402
 from src.Utils.ValueFinder import evaluate_value  # noqa: E402
-from src.Utils.Policy import apply_ats_policy, apply_ml_value_policy  # noqa: E402
+from src.Utils.Policy import apply_ats_policy, apply_ml_value_policy, apply_ou_policy  # noqa: E402
 from src.Utils.PlayoffATSStrategy import evaluate_playoff_ats, best_pick, consensus_side, picks_to_dict, has_conflict, strong_consensus_side  # noqa: E402
 
 def _build_team_form(home_team, away_team, date_str, pre_game=False):
@@ -835,6 +837,8 @@ def predict_historical_xgb(target_date):
         away_ml = odds_row.get("ML_Away") if odds_row is not None else None
         pred.update(evaluate_value(model_home_prob, home_ml, away_ml, spread=pred.get("spread")))
         apply_ml_value_policy(pred, target_date)
+        # Opening policy (config.toml [ou-policy]): totals lean is reference-only.
+        apply_ou_policy(pred, target_date)
 
         if played:
             pred["home_score"] = int((total_points + win_margin) / 2)

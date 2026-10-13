@@ -97,6 +97,50 @@ class TestMlValuePolicy(PolicyTestCase):
         self.assertEqual(policy["effective_from"], "2026-10-04")
 
 
+class TestOuPolicy(PolicyTestCase):
+    CONFIG = {"ou-policy": {"pick_enabled": False, "effective_from": "2026-10-13"}}
+
+    def test_reference_only_from_effective_date(self):
+        self._with_config(self.CONFIG)
+        pred = {"ou_pick": "OVER", "ou_value": 225.5, "ou_confidence": 61.0}
+        Policy.apply_ou_policy(pred, datetime.date(2026, 10, 20))
+        self.assertTrue(pred["ou_reference_only"])
+        self.assertEqual(pred["ou_shadow_pick"], "OVER")
+        # Kept so the frozen record can grade the shadow pick.
+        self.assertEqual(pred["ou_pick"], "OVER")
+        self.assertEqual(pred["ou_confidence"], 61.0)
+
+    def test_dates_before_effective_date_are_not_rewritten(self):
+        self._with_config(self.CONFIG)
+        pred = {"ou_pick": "UNDER"}
+        Policy.apply_ou_policy(pred, "2026-04-10")
+        self.assertFalse(pred["ou_reference_only"])
+
+    def test_enabled_policy_shows_pick(self):
+        self._with_config({"ou-policy": {"pick_enabled": True, "effective_from": "2026-10-13"}})
+        pred = {"ou_pick": "UNDER"}
+        Policy.apply_ou_policy(pred, "2026-11-01")
+        self.assertFalse(pred["ou_reference_only"])
+
+    def test_missing_section_fails_closed(self):
+        self._with_config({})
+        pred = {"ou_pick": "UNDER"}
+        Policy.apply_ou_policy(pred, "2026-11-01")
+        self.assertTrue(pred["ou_reference_only"])
+
+    def test_odds_only_stub_has_no_shadow_pick(self):
+        self._with_config(self.CONFIG)
+        pred = {"ou_value": 225.5}
+        Policy.apply_ou_policy(pred, "2026-10-20")
+        self.assertIsNone(pred["ou_shadow_pick"])
+        self.assertTrue(pred["ou_reference_only"])
+
+    def test_repo_config_has_pick_off(self):
+        policy = Policy.ou_policy()
+        self.assertFalse(policy["pick_enabled"])
+        self.assertEqual(policy["effective_from"], "2026-10-13")
+
+
 class TestPinnedModels(PolicyTestCase):
     def test_repo_pins_exist_on_disk(self):
         for kind in ("ML", "UO", "ATS"):

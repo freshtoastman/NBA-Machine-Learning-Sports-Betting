@@ -186,9 +186,11 @@ def collect(data_dir: Path, since: str | None = None) -> dict:
                 legacy += 1
     ats_pol = Policy.ats_policy()
     ml_pol = Policy.ml_value_policy()
+    ou_pol = Policy.ou_policy()
     ov = overall.summary()
     shadow = ov["ats_shadow_value"]
     ml_roi = ov["ml_shadow_value_roi"]
+    ou_rec = ov["ou"]
     out = {
         "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
         "since": since,
@@ -219,6 +221,16 @@ def collect(data_dir: Path, since: str | None = None) -> dict:
                 "met": bool(ml_roi["n"] >= ml_pol["reopen_min_frozen_picks"]
                             and ml_roi["ci95"][0] is not None
                             and ml_roi["ci95"][0] > ml_pol["reopen_roi_ci_lower_pct"]),
+            },
+            "ou": {
+                "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
+                "min_picks": ou_pol["reopen_min_frozen_picks"],
+                "ci_lower_pct": ou_pol["reopen_ci_lower_pct"],
+                "n": ou_rec["n"],
+                "ci_lower": ou_rec["ci95"][0],
+                "met": bool(ou_rec["n"] >= ou_pol["reopen_min_frozen_picks"]
+                            and ou_rec["ci95"][0] is not None
+                            and ou_rec["ci95"][0] > ou_pol["reopen_ci_lower_pct"]),
             },
         },
         "ats_shadow_rows": overall.ats_shadow_rows[-50:],

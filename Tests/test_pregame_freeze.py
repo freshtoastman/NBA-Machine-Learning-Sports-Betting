@@ -118,6 +118,8 @@ class TestFrozenRecord(unittest.TestCase):
                            "reopen_min_frozen_picks": 2, "reopen_ci_lower_pct": 52.4},
             "ml-value-policy": {"value_flag_enabled": False, "effective_from": "2026-10-04",
                                 "reopen_min_frozen_picks": 2, "reopen_roi_ci_lower_pct": 0.0},
+            "ou-policy": {"pick_enabled": False, "effective_from": "2026-10-13",
+                          "reopen_min_frozen_picks": 2, "reopen_ci_lower_pct": 52.4},
         })
         patcher.start()
         self.addCleanup(patcher.stop)

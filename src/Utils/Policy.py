@@ -6,6 +6,7 @@ being implied by file names or hard-coded thresholds:
 * ``[production-models]`` — the exact model file the runner loads per kind.
 * ``[ats-policy]``        — whether the ATS value flag may be shown at all.
 * ``[ml-value-policy]``   — whether the moneyline diamond / golden flags may be shown.
+* ``[ou-policy]``         — whether the totals model's OVER/UNDER lean may be shown as a pick.
 
 Only the local pipeline reads this (Vercel deploys web/ without config.toml),
 so anything the frontend needs is written into the per-game JSON.
@@ -33,6 +34,14 @@ ML_VALUE_POLICY_DEFAULTS = {
     "effective_from": "2026-10-04",
     "reopen_min_frozen_picks": 200,
     "reopen_roi_ci_lower_pct": 0.0,
+}
+
+OU_POLICY_DEFAULTS = {
+    # Fail closed: with no [ou-policy] section the totals lean is reference-only.
+    "pick_enabled": False,
+    "effective_from": "2026-10-13",
+    "reopen_min_frozen_picks": 100,
+    "reopen_ci_lower_pct": 52.4,
 }
 
 
@@ -131,4 +140,30 @@ def apply_ml_value_policy(pred, game_date):
         pred["is_value"] = False
         pred["is_golden"] = False
         pred["ml_value_reference_only"] = True
+    return pred
+
+
+def ou_policy():
+    policy = dict(OU_POLICY_DEFAULTS)
+    policy.update(_config().get("ou-policy") or {})
+    return policy
+
+
+def ou_pick_active(game_date):
+    """True when the totals model's OVER/UNDER lean may be shown as a pick for ``game_date``."""
+    policy = ou_policy()
+    if policy["pick_enabled"]:
+        return True
+    return _as_date(game_date) < _as_date(policy["effective_from"])
+
+
+def apply_ou_policy(pred, game_date):
+    """Mark the totals lean as reference-only by the policy, in place.
+
+    ``ou_pick`` / ``ou_confidence`` are kept (the frozen pre-game record grades
+    them against the re-open bar) but ``ou_reference_only`` tells the frontend,
+    the AI prompt and the fallback summaries not to present them as a bet.
+    """
+    pred["ou_shadow_pick"] = pred.get("ou_pick") if pred.get("ou_pick") in ("OVER", "UNDER") else None
+    pred["ou_reference_only"] = not ou_pick_active(game_date)
     return pred

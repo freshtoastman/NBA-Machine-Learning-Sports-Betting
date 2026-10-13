@@ -39,8 +39,8 @@ FROZEN_FIELDS: tuple[str, ...] = (
     "value_side", "value_edge", "value_ev", "is_value", "is_golden",
     "ml_shadow_value", "ml_shadow_golden", "ml_value_reference_only",
     "consensus_pick", "is_consensus",
-    # totals model
-    "ou_pick", "ou_value", "ou_confidence",
+    # totals model (reference-only since config.toml [ou-policy]; graded as a shadow pick)
+    "ou_pick", "ou_value", "ou_confidence", "ou_shadow_pick", "ou_reference_only",
     # spread model
     "spread", "ats_model_pick", "ats_model_home_prob", "ats_model_confidence",
     "ats_value_edge", "ats_is_value", "ats_shadow_value", "ats_reference_only",

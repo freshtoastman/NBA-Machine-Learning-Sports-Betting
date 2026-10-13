@@ -1057,9 +1057,10 @@
                         {% endif %}
                     </div>
                     {% endif %}
-                    {# Show the OU line value only (no model prediction or hit/miss). #}
+                    {# Show the OU line value only: the totals model is reference-only
+                       (config.toml [ou-policy], 10-season walk-forward 50.6%). #}
                     {% if game.ou_value %}
-                    <div class="pick-row">
+                    <div class="pick-row" title="大小分模型 10 季樣本外 50.6%（和每場押小分一樣），不顯示模型方向、不推薦">
                         <span class="pick-label">總分盤</span>
                         <strong>O/U {{ game.ou_value }}</strong>
                         {% if game.actual_total %}<span class="pick-actual">實際 {{ game.actual_total }}</span>{% endif %}
