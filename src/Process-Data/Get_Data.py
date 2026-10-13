@@ -13,7 +13,12 @@ import toml
 BASE_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(1, os.fspath(BASE_DIR))
 
-from src.Utils.tools import get_json_data, record_fetch, to_data_frame  # noqa: E402
+from src.Utils.tools import (  # noqa: E402
+    get_json_data,
+    pregame_refresh_allowed,
+    record_fetch,
+    to_data_frame,
+)
 
 CONFIG_PATH = BASE_DIR / "config.toml"
 DB_PATH = BASE_DIR / "Data" / "TeamData.sqlite"
@@ -99,7 +104,8 @@ def backfill_season(con, url, season_key, value, existing_dates, today):
         # TODO: Add tests
 
 
-def main(config=None, db_path=DB_PATH, today=None, backfill=False, season=None):
+def main(config=None, db_path=DB_PATH, today=None, backfill=False, season=None,
+         refresh_latest=False, now_utc=None):
     if config is None:
         config = load_config()
     url = config["data_url"]
@@ -135,6 +141,17 @@ def main(config=None, db_path=DB_PATH, today=None, backfill=False, season=None):
         latest_date = max(season_dates) if season_dates else None
         fetch_start = start_date if latest_date is None else latest_date + timedelta(days=1)
 
+        if refresh_latest and latest_date == fetch_end:
+            # Afternoon (Taipei) run: the table named today was fetched at 06:00
+            # Taipei = 18:00 ET yesterday, before yesterday's games. Re-fetch it so
+            # it holds every game through yesterday, but only while today's own
+            # games cannot be in it yet.
+            if pregame_refresh_allowed(fetch_end, now_utc):
+                print(f"Refreshing today's table before tip-off:", fetch_end)
+                fetch_start = fetch_end
+            else:
+                print(f"Refresh window closed (past 12:00 ET); keeping table", fetch_end)
+
         if fetch_start > fetch_end:
             print("No new dates to fetch. Latest date:", latest_date)
             return
@@ -167,5 +184,11 @@ if __name__ == "__main__":
         "--season",
         help="Limit backfill to a single season key (e.g. 2025-26).",
     )
+    parser.add_argument(
+        "--refresh-latest",
+        action="store_true",
+        help="Re-fetch today's table if it already exists and it is before 12:00 ET "
+             "(afternoon Taipei run: pick up all of yesterday's games).",
+    )
     args = parser.parse_args()
-    main(backfill=args.backfill, season=args.season)
+    main(backfill=args.backfill, season=args.season, refresh_latest=args.refresh_latest)

@@ -107,6 +107,25 @@ def current_nba_season(today=None):
     return f"{start}-{(start + 1) % 100:02d}"
 
 
+def pregame_refresh_allowed(table_date, now_utc=None):
+    """True while a stats table named `table_date` can be re-fetched without
+    picking up that day's own games.
+
+    stats.nba.com fetches use DateTo=table_date (inclusive) and add a game once
+    it is final. The earliest NBA tip-offs are 12:00 ET (Christmas, MLK Day), so
+    re-fetching before 12:00 ET on `table_date` only adds the previous day's late
+    games; after that the table may already count games played on `table_date`.
+    """
+    from datetime import date as _date, time as _time, timezone as _tz
+    if isinstance(table_date, str):
+        table_date = _date.fromisoformat(table_date)
+    if now_utc is None:
+        now_utc = datetime.now(_tz.utc)
+    eastern = ZoneInfo("America/New_York")
+    cutoff = datetime.combine(table_date, _time(12, 0), tzinfo=eastern)
+    return now_utc.astimezone(eastern) < cutoff
+
+
 def record_fetch(con, table_name):
     """Log when a stats snapshot was fetched (UTC).
 

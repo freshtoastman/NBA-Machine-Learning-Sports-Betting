@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.lchao.nba-ml.afternoon</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/lchao/Documents/projects/NBA-Machine-Learning-Sports-Betting/scripts/daily_pipeline.sh</string>
+        <string>afternoon</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>15</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/lchao/Library/Logs/nba-ml/launchd.afternoon.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/lchao/Library/Logs/nba-ml/launchd.afternoon.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist>

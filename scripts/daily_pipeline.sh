@@ -4,8 +4,27 @@
 # export predictions to JSON → git push → triggers Vercel deploy.
 #
 # Scheduled by launchd (06:00 daily) or run manually.
+#
+# Usage: daily_pipeline.sh [morning|afternoon]
+#   morning   (default, 06:00 Taipei = 18:00 ET the previous day): fetch today's
+#             stats table (holds games through two US days ago), scores, odds.
+#   afternoon (15:00 Taipei = 03:00 ET, all of yesterday's games final): re-fetch
+#             today's stats table so pre-game features include every game through
+#             yesterday, refresh lines, re-export. Without it, games tipping before
+#             18:00 ET (128 of 1,207 in 2026-27) freeze with a one-day-stale table
+#             and 30-hour-old lines.
 
 set -euo pipefail
+
+MODE="${1:-morning}"
+case "$MODE" in
+    morning|afternoon) ;;
+    *) echo "unknown mode: $MODE (morning|afternoon)" >&2; exit 2 ;;
+esac
+REFRESH_ARGS=()
+if [ "$MODE" = "afternoon" ]; then
+    REFRESH_ARGS=(--refresh-latest)
+fi
 
 PROJECT_DIR="/Users/lchao/Documents/projects/NBA-Machine-Learning-Sports-Betting"
 LOG_DIR="$HOME/Library/Logs/nba-ml"
@@ -13,7 +32,7 @@ mkdir -p "$LOG_DIR"
 
 LOG_FILE="$LOG_DIR/pipeline-$(date +%Y-%m).log"
 STAMP=$(date '+%Y-%m-%d %H:%M:%S')
-echo "===== $STAMP daily_pipeline start =====" >> "$LOG_FILE"
+echo "===== $STAMP daily_pipeline start ($MODE) =====" >> "$LOG_FILE"
 
 notify_fail() {
     local step="$1"
@@ -37,8 +56,8 @@ run_step() {
 
 # 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
-run_step "Get_Data"           python -m Get_Data
-run_step "Get_Advanced_Data"  python -m Get_Advanced_Data   # CRITICAL: 28 ADV_ features for 175-feature ATS model
+run_step "Get_Data"           python -m Get_Data "${REFRESH_ARGS[@]}"
+run_step "Get_Advanced_Data"  python -m Get_Advanced_Data "${REFRESH_ARGS[@]}"   # CRITICAL: 28 ADV_ features for 175-feature ATS model
 run_step "Get_Odds_Data"      python -m Get_Odds_Data
 run_step "Get_Playoffs_Data"  python -m Get_Playoffs_Data || true
 cd "$PROJECT_DIR"
@@ -51,8 +70,10 @@ run_step "Patch_Scores"  python scripts/patch_scores.py
 # or more earlier; also logs odds_history snapshots (spread_first/last/move).
 python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: update_odds --db-only failed" >> "$LOG_FILE"
 
-# 2b. Collect referee data for recent days (builds historical ATS profiles).
-python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
+# 2b. Collect referee data for recent days (builds historical ATS profiles). Morning only.
+if [ "$MODE" = "morning" ]; then
+    python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
+fi
 
 # 3. Derive playoff series state from updated odds (idempotent).
 run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-seasons || true
@@ -75,7 +96,11 @@ if git diff --quiet web/data/ 2>/dev/null; then
     echo "No changes in web/data/, skipping push." >> "$LOG_FILE"
 else
     git add web/data/
-    git commit -m "daily update $(date +%Y-%m-%d)
+    COMMIT_PREFIX="daily update"
+    if [ "$MODE" = "afternoon" ]; then
+        COMMIT_PREFIX="afternoon update"
+    fi
+    git commit -m "$COMMIT_PREFIX $(date +%Y-%m-%d)
 
 Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
     # launchd cannot unlock the macOS Keychain, so the HTTPS osxkeychain helper
@@ -92,4 +117,4 @@ Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
     fi
 fi
 
-echo "===== $(date '+%Y-%m-%d %H:%M:%S') daily_pipeline OK =====" >> "$LOG_FILE"
+echo "===== $(date '+%Y-%m-%d %H:%M:%S') daily_pipeline OK ($MODE) =====" >> "$LOG_FILE"
