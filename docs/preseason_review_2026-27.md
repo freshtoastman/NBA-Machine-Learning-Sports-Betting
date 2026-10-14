@@ -411,3 +411,33 @@
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。這項改動不是為了命中率，是讓凍結紀錄評的是「真正的賽前狀態」，否則 10% 的場次評到的是少一天資料的預測。
 
 **下一步（10/14 起）**：①使用者載入 afternoon plist 後，讀 `pipeline-2026-10.log` 確認出現 `(afternoon)` 區段（10/20 前兩個 fetcher 都會寫「No current season」，正常）；②P1 新資料來源候選排序；③開季第一週 log 檢查，10/21 06:00 的 BOS@DET 已打完屬正常。
+
+### 2026-10-14 — 06:00 排程在第一步前就死掉（bash 3.2 空陣列）；補跑成功；P1 新資料來源排序＋ADV 回補試跑
+
+**排程檢查：10/14 06:00 失敗，log 只有 start 沒有結尾。** `launchd.err.log`：`daily_pipeline.sh: line 59: REFRESH_ARGS[@]: unbound variable`。根因是 10/13 第三次執行加的 `REFRESH_ARGS=()`：macOS 的 `/bin/bash` 是 3.2，`set -u` 下展開**空**陣列 `"${ARR[@]}"` 是致命錯誤（bash 4.4 才修）。morning 模式陣列是空的所以必死；afternoon 模式有一個元素反而沒事。錯誤發生在 `run_step` 的參數展開階段，不經過 `notify_fail`，所以沒有通知、log 也沒有 FAILED 標記，只有 `launchctl list` 的最後狀態 1。這是 10/13 改動沒有在 `/bin/bash` 下實際跑 morning 模式的疏漏（當時只以 afternoon 模式試過兩個 fetcher）。
+
+**修正（`scripts/daily_pipeline.sh`）**
+1. 旗標改成字串 `REFRESH_FLAG`（空字串／`--refresh-latest`），不加引號展開；morning 模式不傳任何參數。
+2. 新增 `trap on_exit EXIT`：凡不是走到最後 OK 行的退出（`set -e/-u` 在 `run_step` 外中止、筆電睡眠被 kill、`.venv` 不存在）都寫 `FAILED (exit N, unexpected abort)` 並送通知。bash 3.2 另一個坑：`set -u` 中止後 trap 內的 `$?` 是 0、程序也會以 0 退出（launchd 會當成功），所以 trap 內強制 `exit 1`。`run_step` 自己的失敗路徑維持 exit 1、只寫一個標記。
+3. 新測試 `Tests/test_daily_pipeline_sh.py`（7 個，用 `/bin/bash` 跑腳本的前段＋`run_step`）：語法、不得有未保護的 `"${X[@]}"`、morning 不傳旗標／afternoon 傳 `--refresh-latest`、`set -u` 中止必須非零退出且寫 FAILED、`run_step` 失敗 exit 1 且只有一個標記、未知模式 exit 2。全部 97 個測試通過。
+
+**補跑**：22:07 手動 `daily_pipeline.sh morning`，71 秒 OK（Get_Data／Advanced／Odds 都「No current season」、`update_odds` 「No odds table for 2026-27 yet」、裁判抓取對 10/12–14 回 scoreboardv2 500——季前沒有比賽，無害；開季後若再出現 500，`--days-back 3` 隔天會補）。推送 `9ebd3ca`（只有 `dates.json`／`frozen_record.json` 的時間戳），GitHub Deployments 顯示 Production `success`（14:08Z）。首頁需要登入，無法匿名驗證內容，以後用 Deployments API 看狀態即可。
+
+**afternoon plist 仍未載入**（`launchctl list` 只有 `com.lchao.nba-ml.daily`）。指令同 10/13 第三次執行的「需要使用者」段。
+
+**P1 新資料來源候選排序（本次的檢討項目）**
+
+先查了「能不能離線驗證」，因為 85% 目標的唯一可信做法是 10 季 walk-forward，沒有歷史資料的來源要等一整季才有答案：
+
+| 順位 | 候選 | 歷史資料 | 成本 | 預期 | 決定 |
+|---|---|---|---|---|---|
+| 1 | **進階數據回補**（stats.nba.com `leaguedashteamstats` Advanced，28 個 `ADV_` 欄位） | **可**：`Get_Advanced_Data --backfill --season X` 本來就支援 config 的 20 季；目前只有 2025-26 全季＋2024-25 季後賽，所以 walk-forward 裡 28 個 ADV_ 欄位對 2016-17～2024-25 全是 0 | 低（純等待，實測約 3 秒／日期，每季 170–245 個日期 ≈ 10–13 分鐘） | 低到中：`ADV_NET_RATING` 和現有評分差 1 分內，但 PACE／TS%／eFG%／TOV%／REB% 是現有累計欄位沒有的 | **先做**：每次執行回補一季；≥5 季後用 `walk_forward_clean.py --recipes logloss noadv` 比 ATS 命中與 log loss |
+| 2 | 開盤→收盤盤口移動 | **否**：20 季 odds 表只有收盤線；`odds_history` 277 列全是 2025-26 季後賽（6 月） | 低（已在累積；`odds_2026-27` 建表後 `update_odds --db-only` 每天 1–2 個快照） | 中：方向反映 CLV，不等於 ATS 優勢；之前 ≥2 分桶太小 | 等開季；約 12 月中（≥600 場）用 `analyze_clv_line_movement.py` 看方向×幅度 |
+| 3 | 傷兵／輪休名單 | 部分：NBA 官方傷兵報告 2019-20 起（PDF）、prosportstransactions 更早（要爬） | 高：新爬蟲＋歷史解析＋「名單→戰力」轉換（球員 BPM/EPM 權重） | 上限最高，但市場已定價明星缺陣；要贏盤口得量化得比莊家準 | 第三；1、2 都沒訊號再投入 |
+| 4 | 裁判 | 已有 1,465 場含裁判 | 低 | 低：p 值多數不顯著、樣本小 | 不優先 |
+
+**ADV 回補試跑（2024-25）**：22:08 起背景執行 `python -m Get_Advanced_Data --backfill --season 2024-25`（缺 2024-10-22～2025-04-13 共 174 個日期）。**8 分 54 秒完成，約 3.1 秒／日期，沒有被限流**；174 張表中 172 張 30 隊、開季前兩天 4／24 隊（本來就只有打過的球隊），47 欄。速度比預期快，所以接著回補 **2023-24**：188 個日期（2023-10-24～2024-04-28；10/23 沒有比賽所以沒有表）9 分 58 秒完成，186 張 30 隊。現在 ADV 有 2023-24、2024-25、2025-26 三季完整（2016-17～2022-23 仍是 0）。`Create_Games` 本來就按日期表合併 ADV，不用改程式；下次 pipeline 重建 dataset 時 2024-25 列自動帶 ADV。Data/*.sqlite 不在 git，回補只在本機。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天的改動是讓排程不再無聲死亡，以及開始補唯一能離線驗證的新特徵。
+
+**下一步（10/15 起）**：①讀 10/15 06:00 log 確認 morning 模式走完（第一次用修正後的腳本自動跑）；②繼續回補 ADV（下一季 2022-23，再往前到 2019-20；每季約 10 分鐘），累積 ≥5 季後跑 `walk_forward_clean.py --recipes logloss noadv --first-test 2021-22` 看 ADV 有沒有改善讓分；③使用者載入 afternoon plist；④開季第一週 log 檢查（同 10/13）。

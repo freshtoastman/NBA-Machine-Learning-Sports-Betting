@@ -21,9 +21,12 @@ case "$MODE" in
     morning|afternoon) ;;
     *) echo "unknown mode: $MODE (morning|afternoon)" >&2; exit 2 ;;
 esac
-REFRESH_ARGS=()
+# bash 3.2 (macOS /bin/bash) + `set -u`: expanding an EMPTY array with "${ARR[@]}"
+# is a fatal "unbound variable" (fixed only in bash 4.4). Keep the flag as a plain
+# string and expand it unquoted (it holds no spaces), so morning mode passes nothing.
+REFRESH_FLAG=""
 if [ "$MODE" = "afternoon" ]; then
-    REFRESH_ARGS=(--refresh-latest)
+    REFRESH_FLAG="--refresh-latest"
 fi
 
 PROJECT_DIR="/Users/lchao/Documents/projects/NBA-Machine-Learning-Sports-Betting"
@@ -39,6 +42,23 @@ notify_fail() {
     /usr/bin/osascript -e "display notification \"Step failed: $step\" with title \"NBA-ML Pipeline\" sound name \"Basso\"" || true
 }
 
+# Any exit that is not the final OK line (set -e/-u aborts outside run_step, a kill
+# from a sleeping laptop, a missing .venv) gets a FAILED marker in the log and a
+# notification; otherwise the log just ends after "start" and nobody notices.
+PIPELINE_OK=0
+on_exit() {
+    local rc=$?
+    if [ "$PIPELINE_OK" -ne 1 ]; then
+        # bash 3.2 reports rc=0 inside the trap after a set -u abort and would then
+        # exit 0 (launchd sees success); force a failure status.
+        [ "$rc" -eq 0 ] && rc=1
+        echo "===== $(date '+%Y-%m-%d %H:%M:%S') FAILED (exit $rc, unexpected abort) =====" >> "$LOG_FILE"
+        notify_fail "unexpected abort (exit $rc)"
+        exit "$rc"
+    fi
+}
+trap on_exit EXIT
+
 cd "$PROJECT_DIR"
 # shellcheck disable=SC1091
 source .venv/bin/activate
@@ -50,14 +70,15 @@ run_step() {
     if ! "$@" >> "$LOG_FILE" 2>&1; then
         notify_fail "$name"
         echo "===== $(date '+%Y-%m-%d %H:%M:%S') FAILED at $name =====" >> "$LOG_FILE"
+        PIPELINE_OK=1   # already logged + notified; keep the EXIT trap quiet
         exit 1
     fi
 }
 
 # 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
-run_step "Get_Data"           python -m Get_Data "${REFRESH_ARGS[@]}"
-run_step "Get_Advanced_Data"  python -m Get_Advanced_Data "${REFRESH_ARGS[@]}"   # CRITICAL: 28 ADV_ features for 175-feature ATS model
+run_step "Get_Data"           python -m Get_Data $REFRESH_FLAG
+run_step "Get_Advanced_Data"  python -m Get_Advanced_Data $REFRESH_FLAG   # CRITICAL: 28 ADV_ features for 175-feature ATS model
 run_step "Get_Odds_Data"      python -m Get_Odds_Data
 run_step "Get_Playoffs_Data"  python -m Get_Playoffs_Data || true
 cd "$PROJECT_DIR"
@@ -117,4 +138,5 @@ Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
     fi
 fi
 
+PIPELINE_OK=1
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') daily_pipeline OK ($MODE) =====" >> "$LOG_FILE"
