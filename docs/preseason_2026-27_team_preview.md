@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-10-02（開季 2026-10-20 前 4 週）  
+> 產出日期：2026-10-15（開季 2026-10-20 前 5 天）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -282,6 +282,7 @@
 - **休賽季評分**：ESPN C+ / CBS C；陣容變動：medium；新教練 Tiago Splitter。
 - **補進**：Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins
 - **流失**：Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA，隔日遭 CHA 裁掉）
+- **傷兵**：Nic Claxton 腿後肌拉傷，Splitter 10/13 稱「會缺陣一陣子」（至少兩週，開季前兩週中鋒輪替缺口）；Zach Collins 腳趾傷停、無時程；Isaac Okoro 不明原因缺練，日日觀察
 - **狀況**：新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。
 - **ATS 角度**：防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。
 
@@ -314,7 +315,7 @@
 - **休賽季評分**：ESPN C+ / CBS C+；陣容變動：medium。
 - **補進**：Isaiah Hartenstein 3 年續約、Kenrich Williams 續約、大量二輪籤
 - **流失**：Lu Dort、Aaron Wiggins（ATL）、Isaiah Joe（DET）
-- **傷兵**：Jalen Williams 腿後肌反覆，夏季調整身體，預計開季可上
+- **傷兵**：Jalen Williams 腿後肌反覆，夏季調整身體，預計開季可上；新秀 Otega Oweh 右阿基里斯腱斷裂（10/14 手術），整季報銷——只影響末端輪替
 - **狀況**：為脫離第二豪華稅線送走三名輪替，深度下降但核心 SGA / JDub / Chet 完整；西決敗給 SAS 後仍是共同冠軍熱門（+270）。勝場盤 60.5 聯盟最高。
 - **ATS 角度**：OKC 2024 年起主場 86-17；主場讓分即使 10+ 分過盤率仍高，是模型 home≥8% 信號的主要來源之一。
 
@@ -335,6 +336,7 @@
 - **休賽季評分**：ESPN C / CBS —；陣容變動：low。
 - **補進**：DeMar DeRozan（1 年）、Marvin Bagley III；續約 Tyus Jones
 - **流失**：Peyton Watson、Tim Hardaway Jr.、Jonas Valanciunas
+- **傷兵**：Julian Strawther 10/14 熱身賽對 LAC 左腿受傷，10/15 安排 MRI、結果未公布（側翼深度，開季輪替待確認）
 - **狀況**：幾乎沒動，Jokić 仍是聯盟最穩的地板；但 MPJ 交易後遺症與防守（季後賽 6 場 5 場失 110+）沒解決。勝場盤 49.5。
 - **ATS 角度**：DEN 主場（高海拔）ATS 長期正期望；客場背靠背是模型歷來的負 EV 區，維持過濾。
 
@@ -388,9 +390,9 @@
 - **休賽季評分**：ESPN C+ / CBS C-；陣容變動：medium。
 - **補進**：Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）
 - **流失**：Quinten Post
-- **傷兵**：Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季
+- **傷兵**：Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上、40 歲 Horford 替補
 - **狀況**：LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。
-- **ATS 角度**：沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 若開季缺陣，中鋒輪替只剩 40 歲 Horford + 新秀 Lendeborg，籃板與護框特徵需降權。
+- **ATS 角度**：沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 開季確定缺陣，中鋒輪替只剩 Green 客串 + 40 歲 Horford + Bassey，籃板與護框特徵需降權。
 
 #### 鳳凰城太陽（Phoenix Suns）
 
@@ -442,7 +444,7 @@
 - **休賽季評分**：ESPN Incomplete / CBS A-；陣容變動：high。
 - **補進**：Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal
 - **流失**：Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin
-- **傷兵**：Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），開季缺陣、無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席
+- **傷兵**：Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），10/14 恢復場上訓練但確定趕不上開幕戰、仍無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席；新秀 Yanic Konan Niederhauser 開季缺陣，Kobe Sanders 可上
 - **狀況**：正式進入重建，勝場盤 28.5；Ingram + Garland + Beal 是「有名字沒勝場」的組合，而且 Ingram 開季報銷、Beal 帶傷，10–11 月實際上只有 Garland 一名持球者。
 - **ATS 角度**：重建隊早季偶爾爆冷，但 12 月後多半崩盤；模型的 mcw 對 LAC 應偏低，客場信號降權。注意：2029–33 首輪籤全數沒收，LAC 沒有擺爛誘因，下半季不宜套用「重建隊尾盤崩盤」假設。
 

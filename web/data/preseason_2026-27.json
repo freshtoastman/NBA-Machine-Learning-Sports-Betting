@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-10-02",
+ "generated": "2026-10-15",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -265,7 +265,7 @@
     "grade_cbs": "C",
     "adds": "Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins",
     "departs": "Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA，隔日遭 CHA 裁掉）",
-    "injury": "",
+    "injury": "Nic Claxton 腿後肌拉傷，Splitter 10/13 稱「會缺陣一陣子」（至少兩週，開季前兩週中鋒輪替缺口）；Zach Collins 腳趾傷停、無時程；Isaac Okoro 不明原因缺練，日日觀察",
     "new_coach": "Tiago Splitter",
     "roster_churn": "medium"
    },
@@ -397,7 +397,7 @@
     "grade_cbs": null,
     "adds": "DeMar DeRozan（1 年）、Marvin Bagley III；續約 Tyus Jones",
     "departs": "Peyton Watson、Tim Hardaway Jr.、Jonas Valanciunas",
-    "injury": "",
+    "injury": "Julian Strawther 10/14 熱身賽對 LAC 左腿受傷，10/15 安排 MRI、結果未公布（側翼深度，開季輪替待確認）",
     "new_coach": null,
     "roster_churn": "low"
    },
@@ -485,12 +485,12 @@
     "grade_cbs": "C-",
     "adds": "Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）",
     "departs": "Quinten Post",
-    "injury": "Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣（9/28 公布），未隨隊赴夏威夷訓練營；GM Dunleavy 稱尚未認定會缺席開季",
+    "injury": "Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上、40 歲 Horford 替補",
     "new_coach": null,
     "roster_churn": "medium"
    },
    "outlook": "LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。",
-   "ats_angle": "沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 若開季缺陣，中鋒輪替只剩 40 歲 Horford + 新秀 Lendeborg，籃板與護框特徵需降權。"
+   "ats_angle": "沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 開季確定缺陣，中鋒輪替只剩 Green 客串 + 40 歲 Horford + Bassey，籃板與護框特徵需降權。"
   },
   "Houston Rockets": {
    "team": "Houston Rockets",
@@ -617,7 +617,7 @@
     "grade_cbs": "A-",
     "adds": "Brandon Ingram、Gradey Dick（Kawhi 交易）、Max Strus、Rui Hachimura、Johni Broome；#5 Keaton Wagler；續約 Beal",
     "departs": "Kawhi Leonard（9/14 交易至 TOR 正式完成；Aspiration 案結案：罰款 $30M、沒收 2029–33 五個首輪籤、Ballmer 禁賽一年、Frank 禁賽半年）、John Collins、Bogdanović、Mathurin",
-    "injury": "Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），開季缺陣、無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席",
+    "injury": "Brandon Ingram 5 月右腳跟手術時發現阿基里斯腱部分撕裂（9/28 媒體日首次公開），10/14 恢復場上訓練但確定趕不上開幕戰、仍無回歸時程；Bradley Beal 左髖手術康復但右膝發炎，訓練營開始缺席；新秀 Yanic Konan Niederhauser 開季缺陣，Kobe Sanders 可上",
     "new_coach": null,
     "roster_churn": "high"
    },
@@ -969,7 +969,7 @@
     "grade_cbs": "C+",
     "adds": "Isaiah Hartenstein 3 年續約、Kenrich Williams 續約、大量二輪籤",
     "departs": "Lu Dort、Aaron Wiggins（ATL）、Isaiah Joe（DET）",
-    "injury": "Jalen Williams 腿後肌反覆，夏季調整身體，預計開季可上",
+    "injury": "Jalen Williams 腿後肌反覆，夏季調整身體，預計開季可上；新秀 Otega Oweh 右阿基里斯腱斷裂（10/14 手術），整季報銷——只影響末端輪替",
     "new_coach": null,
     "roster_churn": "medium"
    },

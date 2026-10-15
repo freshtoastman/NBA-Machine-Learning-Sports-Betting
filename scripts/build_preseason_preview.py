@@ -176,7 +176,14 @@ def write_md(data: dict, path: Path) -> None:
     A = lines.append
     A(f"# {SEASON} 開季前瞻：各隊狀況分析")
     A("")
-    A(f"> 產出日期：{data['generated']}（開季 2026-10-20 前 4 週）  ")
+    days_to_opener = (date(2026, 10, 20) - date.fromisoformat(data["generated"])).days
+    if days_to_opener >= 14:
+        lead = f"開季 2026-10-20 前 {days_to_opener // 7} 週"
+    elif days_to_opener > 0:
+        lead = f"開季 2026-10-20 前 {days_to_opener} 天"
+    else:
+        lead = "2026-10-20 開季後更新"
+    A(f"> 產出日期：{data['generated']}（{lead}）  ")
     A(f"> 資料：上季 {PREV} 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  ")
     A("> 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。")
     A("")
