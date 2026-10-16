@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-10-15（開季 2026-10-20 前 5 天）  
+> 產出日期：2026-10-16（開季 2026-10-20 前 4 天）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -154,7 +154,8 @@
 - **市場**：勝場盤 52.5（相對上季 -0.5），冠軍賠率 +900，分層「分區前段」。
 - **休賽季評分**：ESPN B- / CBS C+；陣容變動：low。
 - **補進**：Andre Drummond、Landry Shamet 續約、Jose Alvarado 續約、Jordan Clarkson 續約
-- **流失**：Mitchell Robinson（BOS）、Jeremy Sochan、Ariel Hukporti
+- **流失**：Mitchell Robinson（BOS）、Jeremy Sochan、Ariel Hukporti、Drew Eubanks（胸肌撕裂，10/15 裁掉）、Tony Bradley、Ochai Agbaji（10/15 裁掉）
+- **傷兵**：Josh Hart 腳踝酸痛缺席 10/15 熱身賽（輕微）；第 15 人 James Wiseman 領先 Bruce Brown——Drummond 之外的替補中鋒只剩 Wiseman，中鋒深度是開季隱憂
 - **狀況**：衛冕軍核心完整，但用 Drummond 換 Robinson 是實質降級；留在第二豪華稅線下保有彈性。勝場盤 52.5（東區最高）、冠軍 +900。
 - **ATS 角度**：上季 NYK 總決賽客場 5-0 ATS；衛冕軍常規賽常「贏球不過盤」，主場讓分大於 8 分時需謹慎。
 
@@ -186,7 +187,7 @@
 - **休賽季評分**：ESPN A- / CBS A+；陣容變動：high。
 - **補進**：LeBron James（2 年）、Jaylen Brown（交易）、Dean Wade、Anfernee Simons、KCP、Hukporti
 - **流失**：Paul George、兩個首輪籤、Grimes、Oubre、Drummond、Broome
-- **傷兵**：Joel Embiid 膝蓋 / 斜腹肌，預計開季可上但缺賽史悠久；Adem Bona 左腳扭傷（FIBA）
+- **傷兵**：Joel Embiid 膝蓋 / 斜腹肌，預計開季可上但缺賽史悠久；Adem Bona 左腳扭傷（FIBA）；Ariel Hukporti 熱身賽阿基里斯腱撕裂、整季報銷——替補中鋒只剩 Bona，球團在找人（Sims／Cisse 被點名），Embiid 休息日的禁區深度更薄
 - **狀況**：用 George + 兩首輪 + MLE 換來 LeBron + Brown，是休賽季最大贏家；Maxey / Embiid / Brown / LeBron 是東區最深陣容。冠軍賠率從 60-1 飆到 +900，勝場盤 50.5。
 - **ATS 角度**：市場已反映到 +900，早季讓分會開得深；Embiid 缺陣場次的盤口修正是主要價值來源，傷兵即時更新最重要。
 
@@ -260,7 +261,7 @@
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
 - **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易，9/30 已改與 DEN 簽雙向約、不在 CHA 名單）；#14 Hannes Steinbach；續約 Coby White
 - **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）
-- **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑
+- **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑。名單：想留非保障的 Pat Connaughton，代價可能是交易或裁掉 2024 年第 6 順位 Tidjane Salaun（季前表現差）或 Liam McNeeley（10/19 前）
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。
 - **ATS 角度**：老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。
 
@@ -293,6 +294,7 @@
 - **休賽季評分**：ESPN B / CBS C-；陣容變動：high；新教練 Taylor Jenkins（接替 Doc Rivers）。
 - **補進**：Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis、Caris LeVert；Gary Trent Jr. 4 年續約；新教練 Taylor Jenkins
 - **流失**：Giannis Antetokounmpo、Bobby Portis、Gary Harris、Taurean Prince
+- **傷兵**：無傷兵。名單 17→15（10/19 前）：探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.，想保留非保障的 Pete Nance——LeVert 或 Porter 被送走會動到輪替，10/20 前再確認
 - **狀況**：失去 Giannis 後沒有核心，勝場盤 26.5；Herro 當第一得分手加上 Kuzma / Turner 老化，市場預期崩盤。
 - **ATS 角度**：Giannis 效應消失後市場可能仍慣性給 MIL 太多分；早季 MIL 客場受讓對手（讓分方）值得看。
 
@@ -368,7 +370,7 @@
 - **休賽季評分**：ESPN C+ / CBS —；陣容變動：high。
 - **補進**：Walker Kessler（sign-and-trade，4 年 $130M）、Quentin Grimes、Collin Sexton、Matisse Thybulle、Kevon Looney、Mamukelashvili；Reaves 4 年續約
 - **流失**：LeBron James（PHI）、Deandre Ayton、Rui Hachimura、Marcus Smart、Jaxson Hayes、Luke Kennard
-- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒
+- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部挫傷日日觀察。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」，10/19 前談不成就直接裁 Knecht（末端輪替，對模型無影響）
 - **狀況**：後 LeBron 時代由 Luka + Reaves 主導，補進 Kessler 補籃板，但前鋒群薄弱、選秀資產耗盡。勝場盤 45.5。
 - **ATS 角度**：Luka 主導的球隊上季得分王但季後賽失利；市場對 LAL 的「豪門溢價」仍在，客場讓分方 LAL 是歷來負 EV 之一，維持過濾。
 
@@ -455,7 +457,7 @@
 - **休賽季評分**：ESPN B / CBS B-；陣容變動：high。
 - **補進**：#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray
 - **流失**：Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）
-- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，預計開季可上
+- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。名單需再砍 2 人（10/19 前，多數球隊 10/17 週六執行）：Micah Peavy 最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新
 - **狀況**：送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。
 - **ATS 角度**：年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。
 

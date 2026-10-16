@@ -468,3 +468,24 @@
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天把唯一能離線驗證的新特徵驗完：沒有訊號。剩下的候選都要等開季後才有資料——盤口移動（`odds_history` 從 2026-27 賠率表建立起每天 1–2 個快照，約 12 月中 ≥600 場再看）與傷兵名單（需要新爬蟲＋歷史解析，投入前先看盤口移動的結果）。
 
 **下一步（10/16 起）**：①ADV 回補每次執行再補一季（下一季 2018-19，再到 2016-17），純補資料、不期待命中率變化；②使用者載入 afternoon plist；③10/19 前看 MIL／LAL／MEM 的減員交易，更新季前預覽；④開季第一週 log 檢查（10/21 06:00：`Get_Odds_Data` 是否建出 `odds_2026-27`、`update_odds --db-only` 是否更新到列、BOS@DET 15:00 ET 已打完屬正常、stub 是否出現且標「模型尚未啟用」）。
+
+### 2026-10-16 — 06:00 排程連續第二天自動成功；ADV 回補 2018-19；季前預覽補 10/15–16 名單裁減與傷兵（Hukporti 整季報銷）
+
+**排程檢查：10/16 06:00 morning 模式 OK（06:00:03 → 06:02:39，156 秒）。** 三個 fetcher 仍「No current season」、`update_odds --db-only`「No odds table for 2026-27 yet」、裁判抓取 10/14–16 三天 scoreboardv2 500（季前無比賽，同前）、leak guard 0 列、`Export_JSON` 2026-10-09～10-23 全部日期走過（沒有比賽只寫 stub）。只有 `dates.json`／`frozen_record.json` 時間戳變動 → 推送 `c860ff4`，GitHub Deployments Production `success`（22:02:56Z＝06:02 台北）。`launchd.err.log` 沒有新錯誤（最後一筆仍是 10/14 的 `REFRESH_ARGS[@]`）。**afternoon plist 仍未載入**（`launchctl list` 只有 `com.lchao.nba-ml.daily`），指令同 10/13 第三次執行。盤口移動：`odds_history` 仍 277 列（2025-26 季後賽），`OddsData.sqlite` 最新的表仍是 `series_state_2025-26`，2026-27 賠率表尚未建立，沒有 spread_move 可檢查。
+
+**P1 ADV 回補（本次的檢討項目）**：依 10/15 的順序回補 **2018-19**（2018-10-16 起，含季後賽到 6 月中），背景執行、約 3 秒／日期：**241 張表（2018-10-16～2019-06-13），239 張 30 隊**（開季前兩天只有打過的球隊），約 25 分鐘、無限流。`AdvancedTeamData` 現在 1,937 張表，**2018-19～2025-26 八季完整**；下次 pipeline 重建 dataset 時 2018-19 的列自動帶 ADV（Data/*.sqlite 不在 git，只在本機）。
+
+**季前預覽補 10/15–16 新聞（Hoops Rumors；Fischer／The Stein Line 10/15、Windhorst 10/16）**——名單截止是 **10/19（一）17:00 ET**，多數球隊會在 10/17（六）執行裁人以免多付一天薪水：
+- **LAL↔MIL**：10/15 探討 Dalton Knecht＋次輪籤換 Jericho Sims，MIL 拿到 Knecht 後裁掉；Fischer 稱「有些悲觀」，談不成 LAL 就直接裁 Knecht。兩邊都是末端輪替，對模型無影響。
+- **MIL**：17→15，另考慮交易 **Caris LeVert／Kevin Porter Jr.**，想保留非保障的 Pete Nance。LeVert 或 Porter 若被送走會動到輪替——這是 10/19 前唯一要再確認的「輪替層級」變動。
+- **MEM**：需再砍 2 人；Micah Peavy 最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（Commercial Appeal 否認 Jackson 部分）；Edey 10/15 自稱腳踝良好。
+- **PHI**：Ariel Hukporti 熱身賽阿基里斯腱撕裂、整季報銷——替補中鋒只剩 Bona，球團在找人（Sims／Cisse 被點名）。Embiid 休息日的禁區深度更薄，對「Embiid 缺陣場次盤口修正」這條 ATS 角度是加重因素。
+- **NYK**：10/15 裁掉 Drew Eubanks（胸肌撕裂）、Tony Bradley、Ochai Agbaji；第 15 人 Wiseman 領先 Bruce Brown；Hart 腳踝酸痛（輕微）。Drummond 之外的替補中鋒只剩 Wiseman。
+- **CHA**：想留非保障的 Connaughton，代價可能是交易／裁掉 2024 年第 6 順位 Salaun 或 McNeeley。
+- 其他（不入預覽）：DAL 想留 Powell、可能裁 Cisse；LAC 10/14 裁 Cam Christie、想改簽雙向；PHX 留 Bouyea、可能裁 Highsmith；ORL Anthony Black 延長談判 10/19 截止；Seattle 擴編出價落後 Las Vegas；Towns 傳 GSW／LAC／ATL 有興趣（Windhorst，無交易）。
+
+六隊（LAL／MIL／MEM／PHI／NYK／CHA）的 `injury` 欄已更新，`build_preseason_preview.py` 重建 `web/data/preseason_2026-27.json` 與 `docs/preseason_2026-27_team_preview.md`（30 隊）。97 個測試通過。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天沒有新的可驗證特徵；剩下兩個候選（盤口移動、傷兵名單）都要等 10/20 開季後才有資料。
+
+**下一步（10/17 起）**：①ADV 回補下一季 2017-18（再到 2016-17 即補齊 walk-forward 全部 10 季訓練資料）；②10/17（六）晚／10/18 讀裁人結果：MIL 的 LeVert／Porter、MEM 的 Jackson、CHA 的 Salaun 是否被送走，有則更新預覽；③使用者載入 afternoon plist；④開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、stub 是否標「模型尚未啟用」）。
