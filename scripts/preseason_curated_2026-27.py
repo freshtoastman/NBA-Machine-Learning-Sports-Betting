@@ -10,6 +10,8 @@
 # 10/15–16 (Hoops Rumors / Fischer): LAL↔MIL exploratory Knecht(+2nds)-for-Sims talks, "some pessimism", LAL may just waive Knecht; MIL also shopping LeVert / Porter Jr., wants to keep Nance;
 # MEM must cut 2 (Peavy likely waived; Jackson II / Clayton Jr. trade talk, disputed locally); CHA Salaun or McNeeley at risk to keep Connaughton;
 # PHI Hukporti torn Achilles in preseason (needs backup C); NYK waived Eubanks (torn pec) / Bradley / Agbaji, Hart sore ankle; roster deadline Mon 10/19 17:00 ET, most cuts Sat 10/17.
+# 10/17 noon ET (Hoops Rumors / Woike / ESPN): LAL Knecht still "murky" (16 guaranteed), MIL (17) and MEM (16 + Wells) still unmoved; WAS #1 pick Dybantsa rolled left ankle in 10/16 finale ("minor sprain", 10/21 opener in doubt);
+# MEM Isaiah Stewart moderate left ankle sprain 10/5 (re-eval ~10/19, expected to miss 10/21 opener); ORL Wagner shoulder still no timeline.
 
 TITLE_ODDS = {
     "Oklahoma City Thunder": "+270", "San Antonio Spurs": "+270",
@@ -135,13 +137,13 @@ TEAMS = {
     "Los Angeles Lakers": dict(grade=("C+", None),
         adds="Walker Kessler（sign-and-trade，4 年 $130M）、Quentin Grimes、Collin Sexton、Matisse Thybulle、Kevon Looney、Mamukelashvili；Reaves 4 年續約",
         departs="LeBron James（PHI）、Deandre Ayton、Rui Hachimura、Marcus Smart、Jaxson Hayes、Luke Kennard",
-        injury="Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部輕傷（10/16 季前最後一戰仍上場 11 分鐘得 14 分）。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」；10/17 仍未定（交易、留作籌碼或裁掉吃下 $4.2M），末端輪替、對模型無影響；Grimes 是否固定先發未定",
+        injury="Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部輕傷（10/16 季前最後一戰仍上場 11 分鐘得 14 分）。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」；10/17 中午（美東）Woike 仍稱前途「不明」（交易、留作籌碼或裁掉吃下 $4.2M；16 人保障），末端輪替、對模型無影響；Grimes 10/16 最後一戰坐板凳，Redick 說他「會先發很多場」但先發五人未定",
         outlook="後 LeBron 時代由 Luka + Reaves 主導，補進 Kessler 補籃板，但前鋒群薄弱、選秀資產耗盡。勝場盤 45.5。",
         ats_angle="Luka 主導的球隊上季得分王但季後賽失利；市場對 LAL 的「豪門溢價」仍在，客場讓分方 LAL 是歷來負 EV 之一，維持過濾。"),
     "Memphis Grizzlies": dict(grade=("B", "B-"),
         adds="#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray",
         departs="Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）",
-        injury="Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。名單需再砍 2 人（10/19 前）：10/17 止仍未動；Micah Peavy（腳踝傷、9 月自 NOP 交易來）最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新",
+        injury="Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。Isaiah Stewart 10/5 季前首戰在 ATL 第一節左腳踝中度扭傷，球隊 10/9 宣布兩週後再評估（約 10/19）、預計缺席 10/21 開幕戰對 UTA，最快 10/23 客場對 GSW 回歸——替補中鋒輪替開季少一人。名單需再砍 2 人（10/19 前）：10/17 中午（美東）止仍未動；Micah Peavy（腳踝傷、9 月自 NOP 交易來）最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新",
         outlook="送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。",
         ats_angle="年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。"),
     "Miami Heat": dict(grade=("B", "B-"),
@@ -153,7 +155,7 @@ TEAMS = {
     "Milwaukee Bucks": dict(grade=("B", "C-"),
         adds="Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis、Caris LeVert；Gary Trent Jr. 4 年續約；新教練 Taylor Jenkins",
         departs="Giannis Antetokounmpo、Bobby Portis、Gary Harris、Taurean Prince",
-        injury="無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 止仍未動——探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.（LeVert 全額保障，拖到 10/19 當天裁也不多付薪水）；LeVert 或 Porter 被送走會動到輪替，10/20 前再確認",
+        injury="無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 中午（美東）止仍未動——探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.（LeVert 全額保障，拖到 10/19 當天裁也不多付薪水）；LeVert 或 Porter 被送走會動到輪替，10/20 前再確認",
         outlook="失去 Giannis 後沒有核心，勝場盤 26.5；Herro 當第一得分手加上 Kuzma / Turner 老化，市場預期崩盤。",
         ats_angle="Giannis 效應消失後市場可能仍慣性給 MIL 太多分；早季 MIL 客場受讓對手（讓分方）值得看。"),
     "Minnesota Timberwolves": dict(grade=("C+", "B"),
@@ -231,7 +233,7 @@ TEAMS = {
     "Washington Wizards": dict(grade=("D+", "C-"),
         adds="#1 AJ Dybantsa、Deandre Ayton（交易）、Khris Middleton、Tre Mann；Trae Young 4 年續約",
         departs="D'Angelo Russell、Jaden Hardy、Cam Whitmore",
-        injury="Trae Young 右腿 MCL / 股四頭肌已痊癒；Anthony Davis 手傷已可訓練",
+        injury="Trae Young 右腿 MCL / 股四頭肌已痊癒；Anthony Davis 手傷已可訓練。狀元 AJ Dybantsa 10/16 季前最後一戰對 NOP 第二節左腳踝翻船退場（15 分鐘 12 分），Keefe 稱「輕微扭傷」但待進一步評估，10/17 ESPN 報導 10/21 主場開幕戰對 MIL 出賽成疑——他是預定先發小前鋒（排在 Coulibaly 之前），缺陣會動到先發",
         outlook="給 Trae Young 四年頂薪被兩家媒體批評（ATL 曾為避免一年 option 把他傾倒），Ayton + AD 前場重疊；但 Dybantsa + Sarr 讓底線抬高。勝場盤 35.5。",
         ats_angle="從 26 勝隊變 35 勝隊的球隊，早季受讓盤價值最高（市場定價落後）；是模型 away≥9% 信號可能出現的來源。"),
 }

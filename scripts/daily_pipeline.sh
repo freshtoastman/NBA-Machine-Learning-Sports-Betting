@@ -64,15 +64,21 @@ cd "$PROJECT_DIR"
 source .venv/bin/activate
 export PYTHONPATH="$PROJECT_DIR"
 
+# Each step logs its start time and elapsed seconds: the 2026-10-17 06:00 run took
+# 535 s against ~150 s on the two days before and the log could not say which step
+# was slow (likely a sluggish stats.nba.com request; see the 30 s timeout in tools.py).
 run_step() {
     local name="$1"; shift
-    echo "--- $name ---" >> "$LOG_FILE"
+    local t0
+    t0=$(date +%s)
+    echo "--- $name ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
     if ! "$@" >> "$LOG_FILE" 2>&1; then
         notify_fail "$name"
-        echo "===== $(date '+%Y-%m-%d %H:%M:%S') FAILED at $name =====" >> "$LOG_FILE"
+        echo "===== $(date '+%Y-%m-%d %H:%M:%S') FAILED at $name after $(( $(date +%s) - t0 )) s =====" >> "$LOG_FILE"
         PIPELINE_OK=1   # already logged + notified; keep the EXIT trap quiet
         exit 1
     fi
+    echo "--- $name done in $(( $(date +%s) - t0 )) s ---" >> "$LOG_FILE"
 }
 
 # 1. Update raw data (regular season + playoff stats snapshots).
@@ -89,10 +95,12 @@ run_step "Patch_Scores"  python scripts/patch_scores.py
 # 2a. Refresh the lines of unplayed games (non-blocking). Get_Odds_Data only inserts a
 # date once, so without this the line frozen pre-tip would be the one captured a day
 # or more earlier; also logs odds_history snapshots (spread_first/last/move).
+echo "--- update_odds --db-only ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
 python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: update_odds --db-only failed" >> "$LOG_FILE"
 
 # 2b. Collect referee data for recent days (builds historical ATS profiles). Morning only.
 if [ "$MODE" = "morning" ]; then
+    echo "--- collect_referee_data ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
     python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
 fi
 
@@ -103,6 +111,7 @@ run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-se
 run_step "Create_Games"  python src/Process-Data/Create_Games.py
 
 # 4b. Leak guard (non-blocking): flag any dataset row whose stats already count its own game.
+echo "--- leak_guard ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
 if ! python scripts/audit_feature_leak.py --dataset-only --seasons 2025-26 2026-27 >> "$LOG_FILE" 2>&1; then
     echo "WARNING: leak guard found dataset rows that include their own game" >> "$LOG_FILE"
     /usr/bin/osascript -e 'display notification "Leak guard: dataset rows include their own game" with title "NBA-ML Pipeline"' || true

@@ -19,7 +19,7 @@
   - 仍待辦（4 月前）：`export_predictions.py` 季後賽 bracket 區段 7 處寫死 `'2025-26'` 表名（約 1525–1870 行）要改成依日期取賽季
 - [ ] **P1 首頁儀表板改顯示實戰凍結紀錄＋無洩漏回測（附信賴區間）** — 10/01 先上線過渡版：`web/data/season_review.json` 以提示區塊顯示在舊卡片上方；完整改版等 P0 資料修正後
 - [ ] **P1 季後賽訊號在乾淨多季資料上重估**，未達標者降為觀察 — 10/01 初查（`scripts/audit_playoff_base_rates.py`）：GOLD 引用的勝率多數無法重現（R2 G2 主場 87.5% → 66.0%；R2 G5 83.7% → 52.4%；東西決 G1 83.3% → 48.0%）；要用 `PlayoffATSStrategy` 的實際訊號函式逐一重算，4 月前完成
-- [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–17 已回補 ADV 至 2017-18（9 季完整，剩 2016-17），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單
+- [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–18 已回補 ADV 至 2016-17（**10 季全部完整**，`AdvancedTeamData` 共 2,403 張表），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單
 - [x] **P1 勝負鑽石／金鑽注的樣本外投報率**（10/02 完成）：`scripts/walk_forward_ml_value.py`。10 季樣本外、以收盤獨贏賠率結算：鑽石注投報率 −5.0%（校準後機率）／−5.9%（原始機率），和「每場都押熱門」的 −4.7% 一樣，沒有優勢
 - [x] **P0 勝負鑽石／金鑽的開季政策**（10/04 定案，`config.toml [ml-value-policy]`，生效日 2026-10-04）：鑽石／金鑽／雙模型共識標記關閉，規則輸出另存 `ml_shadow_value`／`ml_shadow_golden`。重新開放條件：賽前凍結紀錄 ≥200 注且投報率的 95% 信賴區間下限 > 0
 - [ ] **P1 `predict_historical_xgb` 的共識旗標順序錯誤**（10/04 發現）：共識在鑽石判定之前計算，所以排程路徑的 `is_consensus` 從來沒有成立過；目前政策下共識本來就關閉，重新開放鑽石前要先修
@@ -509,3 +509,26 @@
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天沒有新的可驗證特徵；剩下兩個候選（盤口移動、傷兵名單）都要等 10/20 開季後才有資料。今天的收穫是可靠性：開季第一週最怕的就是 06:00 排程無聲卡住，這個洞補上了。
 
 **下一步（10/18 起）**：①ADV 回補 2016-17（最後一季，補完即 walk-forward 全部 10 季訓練資料都帶 ADV）；②10/18 讀 MIL（LeVert／Porter）、MEM（Jackson／Peavy）、LAL（Knecht）的最終名單與 ORL Wagner 時程，更新預覽；③看 10/18 06:00 的執行時間（>5 分鐘就在 `run_step` 加每步驟耗時）；④使用者載入 afternoon plist；⑤開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、stub 是否標「模型尚未啟用」）。
+
+### 2026-10-18 — 00:40 執行（06:00 排程尚未跑）；pipeline 加每步驟耗時；ADV 回補 2016-17 完成（10 季全部帶 ADV）；季前預覽補 10/17 中午前新聞＋補漏 MEM Stewart
+
+**排程檢查**：本次在台北 00:40 執行，10/18 06:00 的 morning 排程還沒跑，所以今天沒有新的執行時間可看；10/17 的 535 秒仍未解釋。**決定不等 10/18 的結果，先把每步驟耗時加進去**：`run_step` 現在寫 `--- 名稱 (HH:MM:SS) ---` 與 `--- 名稱 done in N s ---`，失敗訊息也帶耗時；三個非 `run_step` 的呼叫（`update_odds --db-only`、`collect_referee_data`、leak guard）各加一行時間戳標頭。這樣 10/18 06:00 的 log 就能直接指出哪一步慢。`Tests/test_daily_pipeline_sh.py` 7 個測試＋全部 **101 個測試通過**，`bash -n` 語法檢查過。**afternoon plist 仍未載入**（`launchctl list` 只有 `com.lchao.nba-ml.daily`），指令同 10/13 第三次執行。`launchd.err.log` 沒有新錯誤（最後一筆仍是 10/14）。盤口移動：`OddsData.sqlite` 仍無 2026-27 賠率表，沒有 spread_move 可檢查。
+
+**P1 ADV 回補 2016-17（本次的檢討項目，最後一季）**：00:40 以修正版（30 秒 timeout）背景啟動 `Get_Advanced_Data --backfill --season 2016-17`，00:41 起 232 個日期、00:53 完成（約 12 分鐘、3.1 秒／日期） 完成、沒有卡住、沒有限流；只有 2016-10-24（開幕前一天）無資料屬正常；2016-17 現在 **231 張表（2016-10-25～2017-06-12），229 張 30 隊**（開季前兩天只有打過的球隊）。`AdvancedTeamData` 現在 **2016-17～2025-26 十季完整，共 2,403 張表**；下次 pipeline 重建 dataset 時 2016-17 的列自動帶 ADV（`Data/*.sqlite` 不在 git，只在本機）。這代表 walk-forward 的 10 季訓練資料第一次全部帶 ADV——但 10/15 已用 4 季樣本外證明 ADV 對讓分沒有幫助（50.9% vs 50.6%，log loss 都是 ln 2），補完 10 季的意義是訓練列不再有「有 ADV／沒 ADV」兩種分布，而不是期待新訊號；若要確認，`walk_forward_clean.py` 重跑一次即可（低優先）。回補工作到此結束，P1 新資料來源只剩開季後才有的盤口移動與傷兵名單。
+
+**季前預覽工具的缺口（今天才踩到）**：`build_preseason_preview.py` 必須傳 `--summary <team_summary.json>`，但那份 JSON 是 9 月某次 session 的 scratchpad 產物，磁碟上已經沒有；前幾天能重建是因為同一個 session 還留著。新增 `scripts/preseason_summary_from_json.py`：`build()` 讀的每個欄位都原樣寫進 `web/data/preseason_2026-27.json`，所以把輸出反推回 summary（含 `PLAYOFF_ZH` 反查）。驗證：用反推的 summary 重建後逐欄位比對新舊 JSON，**只有 `generated` 與 4 隊的 `injury` 不同**，30 隊的上季戰績／ATS／進階數據全部一致。
+
+**季前預覽補 10/17 中午（美東）前新聞（Hoops Rumors／Woike／ESPN）**——美國 10/17（六）才過一半，MIL／MEM／LAL 的名單都還沒動：
+- **LAL Knecht**：Woike 10/17 稱前途「不明」（16 人保障；交易、留作籌碼或裁掉吃 $4.2M）；Grimes 10/16 最後一戰坐板凳，Redick 說他「會先發很多場」但先發五人未定。
+- **MIL（17 人）／MEM（16＋Wells）**：Hoops Rumors 球隊頁 10/16–17 沒有新項目，維持 10/15 Fischer 的描述。
+- **MEM Isaiah Stewart——預覽漏掉的傷**：10/5 季前首戰在 ATL 左腳踝中度扭傷，球隊 10/9 宣布兩週後再評估、預計缺 10/21 開幕戰對 UTA，最快 10/23 對 GSW。這是 10/9 的新聞，預覽到今天才補——9 天沒抓到一個替補中鋒層級的傷，原因是每天只看 Hoops Rumors 首頁的當日項目，沒有系統性掃 30 隊的球隊頁。開季後傷兵名單會改由 NBA 官方 injury report 抓，季前這幾天改成每天掃 Hoops Rumors 球隊頁的「Injuries」段落（今天掃了 LAL／MIL／MEM／NYK／WAS／ORL 六隊）。
+- **WAS Dybantsa**：狀元 10/16 最後一戰左腳踝翻船退場（15 分鐘 12 分），Keefe 稱輕微扭傷，10/17 ESPN 報 10/21 開幕戰對 MIL 出賽成疑；他是預定先發小前鋒，缺陣會動到先發。
+- **ORL Wagner**：10/16 的右肩酸痛仍無時程（Hoops Rumors 10/16 22:50 的 Magic Notes 是最新），Black／Isaac 開幕戰有望。
+- **NYK**：13 人保障＋Wiseman／Bruce Brown 爭最後兩席（兩人都留會超第二層，Dolan 不許），Dadiet 最可能被交易；Hart 腳踝無時程。預覽原本的描述仍正確，不改。
+- 10/17 上午的裁人全是 Exhibit 10（PHI 4 人、MIA 4 人、OKC Whitehead、TOR 5 人），不入預覽。
+
+LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／`preseason_2026-27_team_preview.md` 重建（30 隊，產出日期 10/18）。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天沒有新的可驗證特徵；ADV 回補完結、確定不是答案。
+
+**下一步（10/19 起）**：①看 10/18 06:00 的 log：現在有每步驟秒數，若總時間仍 >5 分鐘直接指出慢的步驟；②名單截止是 10/19 17:00 ET＝台北 10/20 05:00，所以 10/19 的執行看到的還是進行中，**10/20 的執行才會有 MIL／MEM／LAL 的最終名單**，同時確認 Dybantsa／Wagner／Stewart 開幕戰狀態；③使用者載入 afternoon plist；④開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、stub 是否標「模型尚未啟用」、每步驟秒數是否合理）；⑤（低優先）dataset 重建後用 10 季全帶 ADV 的資料重跑 `walk_forward_clean.py` 一次確認結論不變。
