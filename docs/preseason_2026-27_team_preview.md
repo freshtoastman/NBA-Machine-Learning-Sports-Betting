@@ -1,6 +1,6 @@
 # 2026-27 開季前瞻：各隊狀況分析
 
-> 產出日期：2026-10-16（開季 2026-10-20 前 4 天）  
+> 產出日期：2026-10-17（開季 2026-10-20 前 3 天）  
 > 資料：上季 2025-26 本地賽果與收盤盤口 + 2026 休賽季異動、勝場盤（BetMGM）、冠軍賠率、傷兵、教練異動  
 > 定位：作為 ATS 模型開季前 15 場的「特徵過時」提醒與市場定價落差清單，不是選隊指南。
 
@@ -229,7 +229,7 @@
 - **休賽季評分**：ESPN B- / CBS C；陣容變動：medium。
 - **補進**：Kelly Oubre Jr.、Larry Nance Jr.
 - **流失**：第 5 順位籤（交易）
-- **傷兵**：Tyrese Haliburton 阿基里斯腱康復，9/28 媒體日自述「100%、沒有任何限制」；實際上場時間待季前賽觀察
+- **傷兵**：Tyrese Haliburton 阿基里斯腱康復，9/28 媒體日自述「100%、沒有任何限制」；實際上場時間待季前賽觀察；10/16：Aaron Nesmith 預計出賽開幕戰，T.J. McConnell 狀態未定
 - **狀況**：Haliburton 回歸是東區最大變數，但團隊補強保守；勝場盤 44.5 反映市場對阿基里斯腱回歸的保守。
 - **ATS 角度**：Haliburton 自述不限時，但阿基里斯腱傷後首季效率通常下滑 → 前 20 場的 IND 客場讓分仍不跟；季前賽若確認正常上場時間再提前重新評估。
 
@@ -251,6 +251,7 @@
 - **休賽季評分**：ESPN D+ / CBS C-；陣容變動：low；新教練 Sean Sweeney。
 - **補進**：Nikola Vučević（底薪回歸）；續約 Isaac、Jevon Carter；新教練 Sean Sweeney
 - **流失**：Moritz Wagner
+- **傷兵**：10/16 季前最後一戰對 MIA 三人退場：Franz Wagner 右肩酸痛（第三節退場、無時程）、Noah Penda 右腿後肌緊繃（訓練營已拉傷過一次）、Jase Richardson 下背酸痛；Anthony Black（右腳踝）與 Jonathan Isaac（左膝）10/15 已恢復練習，開幕戰有望。Wagner 若缺開幕戰屬核心層級，10/20 前再確認
 - **狀況**：躲過第二豪華稅線但沒解決進攻問題（上季進攻效率第 21），換教練是唯一變數。勝場盤 43.5。
 - **ATS 角度**：防守強、進攻差的球隊小分盤有價值；讓分方面主場對弱隊過盤率尚可，客場不跟。
 
@@ -261,7 +262,7 @@
 - **休賽季評分**：ESPN A- / CBS A；陣容變動：high。
 - **補進**：Naz Reid、Dennis Schröder、Grayson Allen、Royce O'Neale、Ryan Nembhard（9/23 自 ATL 交易，9/30 已改與 DEN 簽雙向約、不在 CHA 名單）；#14 Hannes Steinbach；續約 Coby White
 - **流失**：LaMelo Ball（交易至 MIN）、Miles Bridges、Dorian Finney-Smith（9/23 交易至 ATL）、Buddy Hield（9/23 到隊、9/27 連同現金轉手 CHI）、Rob Dillingham（9/27 自 CHI 換來、9/28 隨即裁掉，只為取得 $9.6M 交易特例）
-- **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑。名單：想留非保障的 Pat Connaughton，代價可能是交易或裁掉 2024 年第 6 順位 Tidjane Salaun（季前表現差）或 Liam McNeeley（10/19 前）
+- **傷兵**：Kon Knueppel 左腿後肌、Grant Williams 右腿後肌（9/25 公布）：缺席全部季前賽，開季首週再評估，10/21 開幕戰成疑。名單：10/16 裁掉唯一非保障的 Pat Connaughton 回到 15 人（無死錢），2024 年第 6 順位 Tidjane Salaun 與 Liam McNeeley 都留下
 - **狀況**：賣掉 LaMelo 換來大量未來籤，帳面上「資產管理 A」但即戰力下降；老將補強讓底線不至於崩盤。勝場盤 37.5。
 - **ATS 角度**：老將多、上限低的球隊常是「輸球但過盤」型，主場受讓值得追蹤；前端 mcw 指標應偏低。
 
@@ -294,7 +295,7 @@
 - **休賽季評分**：ESPN B / CBS C-；陣容變動：high；新教練 Taylor Jenkins（接替 Doc Rivers）。
 - **補進**：Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis、Caris LeVert；Gary Trent Jr. 4 年續約；新教練 Taylor Jenkins
 - **流失**：Giannis Antetokounmpo、Bobby Portis、Gary Harris、Taurean Prince
-- **傷兵**：無傷兵。名單 17→15（10/19 前）：探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.，想保留非保障的 Pete Nance——LeVert 或 Porter 被送走會動到輪替，10/20 前再確認
+- **傷兵**：無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 止仍未動——探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.（LeVert 全額保障，拖到 10/19 當天裁也不多付薪水）；LeVert 或 Porter 被送走會動到輪替，10/20 前再確認
 - **狀況**：失去 Giannis 後沒有核心，勝場盤 26.5；Herro 當第一得分手加上 Kuzma / Turner 老化，市場預期崩盤。
 - **ATS 角度**：Giannis 效應消失後市場可能仍慣性給 MIL 太多分；早季 MIL 客場受讓對手（讓分方）值得看。
 
@@ -338,7 +339,7 @@
 - **休賽季評分**：ESPN C / CBS —；陣容變動：low。
 - **補進**：DeMar DeRozan（1 年）、Marvin Bagley III；續約 Tyus Jones
 - **流失**：Peyton Watson、Tim Hardaway Jr.、Jonas Valanciunas
-- **傷兵**：Julian Strawther 10/14 熱身賽對 LAC 左腿受傷，10/15 安排 MRI、結果未公布（側翼深度，開季輪替待確認）
+- **傷兵**：Julian Strawther 10/14 熱身賽對 LAC 左膝受傷，10/16 MRI 確認左膝扭傷、六週後再評估（最早 11 月底回歸）——側翼替補少一人，10/22 開幕戰對 OKC 起替補輪替縮短
 - **狀況**：幾乎沒動，Jokić 仍是聯盟最穩的地板；但 MPJ 交易後遺症與防守（季後賽 6 場 5 場失 110+）沒解決。勝場盤 49.5。
 - **ATS 角度**：DEN 主場（高海拔）ATS 長期正期望；客場背靠背是模型歷來的負 EV 區，維持過濾。
 
@@ -370,7 +371,7 @@
 - **休賽季評分**：ESPN C+ / CBS —；陣容變動：high。
 - **補進**：Walker Kessler（sign-and-trade，4 年 $130M）、Quentin Grimes、Collin Sexton、Matisse Thybulle、Kevon Looney、Mamukelashvili；Reaves 4 年續約
 - **流失**：LeBron James（PHI）、Deandre Ayton、Rui Hachimura、Marcus Smart、Jaxson Hayes、Luke Kennard
-- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部挫傷日日觀察。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」，10/19 前談不成就直接裁 Knecht（末端輪替，對模型無影響）
+- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部輕傷（10/16 季前最後一戰仍上場 11 分鐘得 14 分）。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」；10/17 仍未定（交易、留作籌碼或裁掉吃下 $4.2M），末端輪替、對模型無影響；Grimes 是否固定先發未定
 - **狀況**：後 LeBron 時代由 Luka + Reaves 主導，補進 Kessler 補籃板，但前鋒群薄弱、選秀資產耗盡。勝場盤 45.5。
 - **ATS 角度**：Luka 主導的球隊上季得分王但季後賽失利；市場對 LAL 的「豪門溢價」仍在，客場讓分方 LAL 是歷來負 EV 之一，維持過濾。
 
@@ -457,7 +458,7 @@
 - **休賽季評分**：ESPN B / CBS B-；陣容變動：high。
 - **補進**：#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray
 - **流失**：Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）
-- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。名單需再砍 2 人（10/19 前，多數球隊 10/17 週六執行）：Micah Peavy 最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新
+- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。名單需再砍 2 人（10/19 前）：10/17 止仍未動；Micah Peavy（腳踝傷、9 月自 NOP 交易來）最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新
 - **狀況**：送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。
 - **ATS 角度**：年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。
 

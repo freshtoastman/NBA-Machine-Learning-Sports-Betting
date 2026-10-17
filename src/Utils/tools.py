@@ -39,9 +39,17 @@ data_headers = {
 }
 
 
+# stats.nba.com occasionally accepts the TCP connection and then never answers.
+# Without a timeout that one request hangs the caller forever (the 2017-18 ADV
+# backfill sat 20+ minutes on a single ESTABLISHED socket on 2026-10-17, and the
+# 06:00 pipeline would do the same). A timeout turns it into an empty result,
+# which the callers' retry loops already handle.
+REQUEST_TIMEOUT_SECONDS = 30
+
+
 def get_json_data(url):
-    raw_data = requests.get(url, headers=data_headers)
     try:
+        raw_data = requests.get(url, headers=data_headers, timeout=REQUEST_TIMEOUT_SECONDS)
         json = raw_data.json()
     except Exception as e:
         print(e)
@@ -50,7 +58,7 @@ def get_json_data(url):
 
 
 def get_todays_games_json(url):
-    raw_data = requests.get(url, headers=games_header)
+    raw_data = requests.get(url, headers=games_header, timeout=REQUEST_TIMEOUT_SECONDS)
     json = raw_data.json()
     return json.get('gs').get('g')
 

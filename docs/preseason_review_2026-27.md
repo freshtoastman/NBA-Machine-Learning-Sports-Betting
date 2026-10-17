@@ -19,7 +19,7 @@
   - 仍待辦（4 月前）：`export_predictions.py` 季後賽 bracket 區段 7 處寫死 `'2025-26'` 表名（約 1525–1870 行）要改成依日期取賽季
 - [ ] **P1 首頁儀表板改顯示實戰凍結紀錄＋無洩漏回測（附信賴區間）** — 10/01 先上線過渡版：`web/data/season_review.json` 以提示區塊顯示在舊卡片上方；完整改版等 P0 資料修正後
 - [ ] **P1 季後賽訊號在乾淨多季資料上重估**，未達標者降為觀察 — 10/01 初查（`scripts/audit_playoff_base_rates.py`）：GOLD 引用的勝率多數無法重現（R2 G2 主場 87.5% → 66.0%；R2 G5 83.7% → 52.4%；東西決 G1 83.3% → 48.0%）；要用 `PlayoffATSStrategy` 的實際訊號函式逐一重算，4 月前完成
-- [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–15 已回補 ADV 至 2021-22（5 季完整），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單
+- [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–17 已回補 ADV 至 2017-18（9 季完整，剩 2016-17），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單
 - [x] **P1 勝負鑽石／金鑽注的樣本外投報率**（10/02 完成）：`scripts/walk_forward_ml_value.py`。10 季樣本外、以收盤獨贏賠率結算：鑽石注投報率 −5.0%（校準後機率）／−5.9%（原始機率），和「每場都押熱門」的 −4.7% 一樣，沒有優勢
 - [x] **P0 勝負鑽石／金鑽的開季政策**（10/04 定案，`config.toml [ml-value-policy]`，生效日 2026-10-04）：鑽石／金鑽／雙模型共識標記關閉，規則輸出另存 `ml_shadow_value`／`ml_shadow_golden`。重新開放條件：賽前凍結紀錄 ≥200 注且投報率的 95% 信賴區間下限 > 0
 - [ ] **P1 `predict_historical_xgb` 的共識旗標順序錯誤**（10/04 發現）：共識在鑽石判定之前計算，所以排程路徑的 `is_consensus` 從來沒有成立過；目前政策下共識本來就關閉，重新開放鑽石前要先修
@@ -489,3 +489,23 @@
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天沒有新的可驗證特徵；剩下兩個候選（盤口移動、傷兵名單）都要等 10/20 開季後才有資料。
 
 **下一步（10/17 起）**：①ADV 回補下一季 2017-18（再到 2016-17 即補齊 walk-forward 全部 10 季訓練資料）；②10/17（六）晚／10/18 讀裁人結果：MIL 的 LeVert／Porter、MEM 的 Jackson、CHA 的 Salaun 是否被送走，有則更新預覽；③使用者載入 afternoon plist；④開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、stub 是否標「模型尚未啟用」）。
+
+### 2026-10-17 — 06:00 排程連續第三天自動成功；ADV 回補 2017-18 時抓到「無 timeout 的 HTTP 請求會永久卡住」並修掉；季前預覽補 10/16–17 裁人與傷兵
+
+**排程檢查：10/17 06:00 morning 模式 OK（06:00:04 → 06:08:59，535 秒；前兩天約 140 秒／156 秒）。** 步驟輸出與前兩天完全相同：三個 fetcher「No current season」、`update_odds --db-only`「No odds table for 2026-27 yet」、裁判抓取 10/15–17 三天 scoreboardv2 500、leak guard 0 列、`Export_JSON` 2026-10-10～10-24 全部 skipped（沒有比賽）。只有 `dates.json`／`frozen_record.json` 時間戳變動 → 推送 `017d10b`，GitHub Deployments Production `success`（22:09:15Z＝06:09 台北）。`launchd.err.log` 沒有新錯誤（最後一筆仍是 10/14）。多出來的 6 分鐘沒有留下線索（log 沒有逐步驟時間戳；今天 `AdvancedTeamData` 多了 2018-19 的 241 張表，`Create_Games` 要多掃一季，但不太可能多 6 分鐘）——結合下面抓到的 bug，更可能是某個 stats.nba.com 請求回得很慢。10/18 06:00 若仍 >5 分鐘，在 `run_step` 加上每步驟耗時。**afternoon plist 仍未載入**（`launchctl list` 只有 `com.lchao.nba-ml.daily`），指令同 10/13 第三次執行。盤口移動：`OddsData.sqlite` 仍無 2026-27 賠率表，沒有 spread_move 可檢查。
+
+**P1 ADV 回補 2017-18（本次的檢討項目）＋修一個會卡死排程的 bug**：22:25 背景啟動 `Get_Advanced_Data --backfill --season 2017-18`。**抓到 2017-11-07 之後整整 20 分鐘沒有新表**：process 還活著（CPU 只用 4 秒）、`lsof` 看到一條對 stats.nba.com（Akamai）`ESTABLISHED` 的 socket——伺服器收了連線但永遠不回。根因是 `src/Utils/tools.py` 的 `get_json_data`／`get_todays_games_json` 用 `requests.get` **沒有 timeout**，而 `Get_Data`／`Get_Advanced_Data`／`Get_Playoffs_Data` 的重試迴圈只處理「回了空資料」，碰到不回的請求會無限等。這條路徑就是每天 06:00 排程的第一步：開季後任何一次 stats.nba.com 這樣卡住，pipeline 會掛到 launchd 下一次啟動、前端整天不更新、也不會有 FAILED 通知。修法：`REQUEST_TIMEOUT_SECONDS = 30`，`get_json_data` 把 timeout／連線錯誤一律當成空結果（和原本 JSON 解析失敗同一條路），交給既有的重試迴圈；`get_todays_games_json` 也加 timeout。新增 `Tests/test_tools_fetch.py` 4 個測試（timeout 有傳、ReadTimeout／ConnectionError 回空、空結果進 `to_data_frame` 是空表），**101 個測試通過**。殺掉卡住的 process 後用修正版重跑（`python -u` 讓進度即時寫 log），從缺的日期接續：22:47 起補 214 個日期，**8 分 48 秒完成（約 2.5 秒／日期）、無限流、沒有再卡住**；只有 2017-10-16（開幕前一天）無資料屬正常。2017-18 現在 **235 張表（2017-10-17～2018-06-08），233 張 30 隊**（開季前兩天只有打過的球隊）；`AdvancedTeamData` 共 2,172 張表，**2017-18～2025-26 九季完整**，下次 pipeline 重建 dataset 時 2017-18 的列自動帶 ADV（Data/*.sqlite 不在 git，只在本機）。
+
+**季前預覽補 10/16–17 新聞（Hoops Rumors 10/16–17）**——10/17（六）是裁非保障合約不付薪水的最後一天，正式名單截止仍是 10/19（一）17:00 ET：
+- **CHA 定案**：10/16 裁掉唯一非保障的 Pat Connaughton 回到 15 人（無死錢），Tidjane Salaun 與 Liam McNeeley 都留下——10/16 待確認的三個名單問題解掉一個。
+- **MIL／MEM／LAL 10/17 止都還沒動**：LAL Knecht 仍是「交易、留作籌碼或裁掉吃 $4.2M」三選一（Redick 10/16 說他處境艱難），Grimes 是否固定先發未定；MIL 的 LeVert 是全額保障，拖到 10/19 當天裁也不多付薪水，所以可能最後一天才有結果；MEM 最可能被裁的 Micah Peavy 本身帶腳踝傷。這三隊 10/18 再看一次。
+- **DEN Strawther**：10/16 MRI 確認左膝扭傷、六週後再評估（最早 11 月底），10/22 對 OKC 開幕戰起側翼替補少一人。
+- **ORL 三人退場**：10/16 季前最後一戰 Franz Wagner 右肩酸痛（第三節退場、無時程）、Noah Penda 右腿後肌緊繃（訓練營已拉傷過一次）、Jase Richardson 下背；Anthony Black（腳踝）與 Isaac（膝）已恢復練習、開幕戰有望。**Wagner 是唯一「核心層級」的新傷**，10/18–19 若有時程要更新。
+- **IND**：Nesmith 預計出賽開幕戰，T.J. McConnell 未定。
+- 沒有採用的：某則搜尋摘要提到 POR Sharpe 肩／Robert Williams 腿後肌、TOR Barrett、WAS Brogdon 的「連續兩天的壞消息」，但來源是 Marc Stein 2024-10-09 的付費文章，Hoops Rumors 的 POR／TOR／WAS 球隊頁 10 月都沒有這些傷——判定是 2024 年的舊聞混進來，不寫入。其他只有訓練營合約的裁人（TOR 五人、ORL 三人、GSW Dalen Terry、LAC Christie 改雙向、Raptors Bittle 雙向）不入預覽。
+
+七隊（CHA／DEN／ORL／LAL／MIL／MEM／IND）的 `injury` 欄已更新，`build_preseason_preview.py` 重建 `web/data/preseason_2026-27.json` 與 `docs/preseason_2026-27_team_preview.md`（30 隊，產出日期 10/17）。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天沒有新的可驗證特徵；剩下兩個候選（盤口移動、傷兵名單）都要等 10/20 開季後才有資料。今天的收穫是可靠性：開季第一週最怕的就是 06:00 排程無聲卡住，這個洞補上了。
+
+**下一步（10/18 起）**：①ADV 回補 2016-17（最後一季，補完即 walk-forward 全部 10 季訓練資料都帶 ADV）；②10/18 讀 MIL（LeVert／Porter）、MEM（Jackson／Peavy）、LAL（Knecht）的最終名單與 ORL Wagner 時程，更新預覽；③看 10/18 06:00 的執行時間（>5 分鐘就在 `run_step` 加每步驟耗時）；④使用者載入 afternoon plist；⑤開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、stub 是否標「模型尚未啟用」）。
