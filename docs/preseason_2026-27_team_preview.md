@@ -155,7 +155,7 @@
 - **休賽季評分**：ESPN B- / CBS C+；陣容變動：low。
 - **補進**：Andre Drummond、Landry Shamet 續約、Jose Alvarado 續約、Jordan Clarkson 續約
 - **流失**：Mitchell Robinson（BOS）、Jeremy Sochan、Ariel Hukporti、Drew Eubanks（胸肌撕裂，10/15 裁掉）、Tony Bradley、Ochai Agbaji（10/15 裁掉）
-- **傷兵**：Josh Hart 腳踝酸痛缺席 10/15 熱身賽（輕微）；第 15 人 James Wiseman 領先 Bruce Brown——Drummond 之外的替補中鋒只剩 Wiseman，中鋒深度是開季隱憂
+- **傷兵**：Josh Hart 右腳踝酸痛缺席 10/15 熱身賽（輕微，Diawara 代先發）。名單定案：10/17 Bruce Brown 被放上讓渡名單，James Wiseman 留下當第 14 人（Towns／Drummond 之後的第三中鋒），Dadiet 探過交易但沒有合意的，留隊；第 15 人不補（會超第二層）
 - **狀況**：衛冕軍核心完整，但用 Drummond 換 Robinson 是實質降級；留在第二豪華稅線下保有彈性。勝場盤 52.5（東區最高）、冠軍 +900。
 - **ATS 角度**：上季 NYK 總決賽客場 5-0 ATS；衛冕軍常規賽常「贏球不過盤」，主場讓分大於 8 分時需謹慎。
 
@@ -251,7 +251,7 @@
 - **休賽季評分**：ESPN D+ / CBS C-；陣容變動：low；新教練 Sean Sweeney。
 - **補進**：Nikola Vučević（底薪回歸）；續約 Isaac、Jevon Carter；新教練 Sean Sweeney
 - **流失**：Moritz Wagner
-- **傷兵**：10/16 季前最後一戰對 MIA 三人退場：Franz Wagner 右肩酸痛（第三節退場、無時程）、Noah Penda 右腿後肌緊繃（訓練營已拉傷過一次）、Jase Richardson 下背酸痛；Anthony Black（右腳踝）與 Jonathan Isaac（左膝）10/15 已恢復練習，開幕戰有望。Wagner 若缺開幕戰屬核心層級，10/20 前再確認
+- **傷兵**：10/16 季前最後一戰對 MIA 三人退場：Franz Wagner 右肩酸痛（第三節退場），10/17 球團仍在評估、10/21 主場開幕戰對 ATL 狀態未知；Noah Penda 10/17 確診右腿後肌部分撕裂、「缺陣相當時間」、無時程（末端輪替）；Jase Richardson 下背酸痛日日觀察。Anthony Black（右腳踝）10/16 已全場練習、Jonathan Isaac（左膝）10/16 輪休但開幕戰有望。Wagner 屬核心層級，10/20 前再確認
 - **狀況**：躲過第二豪華稅線但沒解決進攻問題（上季進攻效率第 21），換教練是唯一變數。勝場盤 43.5。
 - **ATS 角度**：防守強、進攻差的球隊小分盤有價值；讓分方面主場對弱隊過盤率尚可，客場不跟。
 
@@ -284,7 +284,7 @@
 - **休賽季評分**：ESPN C+ / CBS C；陣容變動：medium；新教練 Tiago Splitter。
 - **補進**：Nic Claxton、Norman Powell、Buddy Hield（9/27 自 CHA 交易，生涯三分 39.5%、史上第 15 多）、#4 Caleb Wilson；續約 Zach Collins
 - **流失**：Collin Sexton、Anfernee Simons、Nick Richards、Rob Dillingham（9/27 交易至 CHA，隔日遭 CHA 裁掉）
-- **傷兵**：Nic Claxton 腿後肌拉傷，Splitter 10/13 稱「會缺陣一陣子」（至少兩週，開季前兩週中鋒輪替缺口）；Zach Collins 腳趾傷停、無時程；Isaac Okoro 不明原因缺練，日日觀察
+- **傷兵**：Nic Claxton 腿後肌拉傷，Splitter 10/13 稱「會缺陣一陣子」（至少兩週）——10/17 報導他可能是開幕戰唯一缺席的球員；Zach Collins（股四頭肌／腳趾）10/17 已獲准全接觸訓練；Isaac Okoro 10/13 缺練後無新消息
 - **狀況**：新教練 Tiago Splitter，用薪資空間補了中鋒與射手，但 Powell 當第一得分手代表天花板有限。上季失分 121.5，防守是硬傷。
 - **ATS 角度**：防守爛隊在大分盤更有價值；讓分方面早季客場不宜跟。
 
@@ -295,7 +295,7 @@
 - **休賽季評分**：ESPN B / CBS C-；陣容變動：high；新教練 Taylor Jenkins（接替 Doc Rivers）。
 - **補進**：Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis、Caris LeVert；Gary Trent Jr. 4 年續約；新教練 Taylor Jenkins
 - **流失**：Giannis Antetokounmpo、Bobby Portis、Gary Harris、Taurean Prince
-- **傷兵**：無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 中午（美東）止仍未動——探討送 Jericho Sims 給 LAL 換 Knecht 後再裁掉、也考慮交易 Caris LeVert／Kevin Porter Jr.（LeVert 全額保障，拖到 10/19 當天裁也不多付薪水）；LeVert 或 Porter 被送走會動到輪替，10/20 前再確認
+- **傷兵**：無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 晚（美東）止仍未動——16 人保障要砍 1 人：Hoops Rumors 判斷 Caris LeVert 比 Jericho Sims 更危險（Sims 較可能上場），LeVert 季前 3 場 1/7 出手 3 分 7 失誤；Knecht 換 Sims 的框架（10/15）仍無進展、也考慮交易 Kevin Porter Jr.；第三個雙向名額自 7 月起空著，預期 10/19 前從讓渡名單撈人。LeVert 或 Porter 被送走會動到輪替，10/20 前再確認
 - **狀況**：失去 Giannis 後沒有核心，勝場盤 26.5；Herro 當第一得分手加上 Kuzma / Turner 老化，市場預期崩盤。
 - **ATS 角度**：Giannis 效應消失後市場可能仍慣性給 MIL 太多分；早季 MIL 客場受讓對手（讓分方）值得看。
 
@@ -329,6 +329,7 @@
 - **休賽季評分**：ESPN A / CBS B；陣容變動：low。
 - **補進**：Tobias Harris、Jayden Quaintance（選秀）；Wembanyama 5 年 $251M 續約（放棄 Rose Rule 加成）、Barnes / Champagnie 續約
 - **流失**：無重大流失
+- **傷兵**：Tobias Harris 左小腿拉傷，10/17 列 10/20 開幕戰對 OKC 出賽成疑（Mitch Johnson 稱「在好轉」，替補側翼）；De'Aaron Fox 自述上季第二輪 G4 起帶高位腳踝扭傷打完季後賽、現已無礙。開季先發三後衛：Fox／Castle／Harper＋Vassell＋Wembanyama
 - **狀況**：總決賽亞軍陣容完整回歸，Wemby 續約省下 $50M+ 彈性；勝場盤 59.5 是隊史 30 年最高，冠軍共同熱門 +270。
 - **ATS 角度**：上季總決賽 SAS 主場 0-3 ATS（讓分開太深）；常規賽 SAS 主場讓分過盤率高，但季後賽主場需降權。
 
@@ -371,7 +372,7 @@
 - **休賽季評分**：ESPN C+ / CBS —；陣容變動：high。
 - **補進**：Walker Kessler（sign-and-trade，4 年 $130M）、Quentin Grimes、Collin Sexton、Matisse Thybulle、Kevon Looney、Mamukelashvili；Reaves 4 年續約
 - **流失**：LeBron James（PHI）、Deandre Ayton、Rui Hachimura、Marcus Smart、Jaxson Hayes、Luke Kennard
-- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部輕傷（10/16 季前最後一戰仍上場 11 分鐘得 14 分）。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」；10/17 中午（美東）Woike 仍稱前途「不明」（交易、留作籌碼或裁掉吃下 $4.2M；16 人保障），末端輪替、對模型無影響；Grimes 10/16 最後一戰坐板凳，Redick 說他「會先發很多場」但先發五人未定
+- **傷兵**：Luka Dončić 二級腿後肌拉傷已痊癒；Kessler 肩膀唇盂撕裂已痊癒；Ziaire Williams 腳部輕傷（10/16 季前最後一戰仍上場 11 分鐘得 14 分）。名單 16→15：10/15 與 MIL 探討 Dalton Knecht＋次輪籤換 Jericho Sims，Fischer 稱「有些悲觀」；10/17 中午 Siegel 報 LAL 也接觸了 CHI／UTA 等隊，同日裁掉 Castro／Tait-Jones（訓練營合約）後仍是 16 人保障、要在 10/19 17:00 ET 前再動 1 人；Woike 稱前途「不明」（交易、留作籌碼或裁掉吃下 $4.2M；16 人保障），末端輪替、對模型無影響；Grimes 10/16 最後一戰坐板凳，Redick 說他「會先發很多場」但先發五人未定
 - **狀況**：後 LeBron 時代由 Luka + Reaves 主導，補進 Kessler 補籃板，但前鋒群薄弱、選秀資產耗盡。勝場盤 45.5。
 - **ATS 角度**：Luka 主導的球隊上季得分王但季後賽失利；市場對 LAL 的「豪門溢價」仍在，客場讓分方 LAL 是歷來負 EV 之一，維持過濾。
 
@@ -393,7 +394,7 @@
 - **休賽季評分**：ESPN C+ / CBS C-；陣容變動：medium。
 - **補進**：Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）
 - **流失**：Quinten Post
-- **傷兵**：Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上、40 歲 Horford 替補
+- **傷兵**：Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上（Kerr 10/17 稱「很放心」）、40 歲 Horford 10/17 傳出賽時間受限；Kerr 10/16 提醒球迷買票先看是否背靠背——Curry 等老將會輪休
 - **狀況**：LeBron 沒來、Butler 缺席半季，Curry 冠軍窗口實質關閉；勝場盤 40.5 但多數模型看 under。
 - **ATS 角度**：沒有 Butler 的 GSW 是典型「名氣 > 實力」隊，客場讓分容易開高 → 客場受讓對手值得看。Porziņģis 開季確定缺陣，中鋒輪替只剩 Green 客串 + 40 歲 Horford + Bassey，籃板與護框特徵需降權。
 
@@ -414,7 +415,7 @@
 - **休賽季評分**：ESPN A / CBS B+；陣容變動：medium。
 - **補進**：#2 Darryn Peterson、Josh Green、Jaxson Hayes、Josh Okogie；Keyonte George 5 年續約、Nurkić 續約
 - **流失**：Walker Kessler（sign-and-trade 換兩張無保護首輪）、Cody Williams
-- **傷兵**：Jaren Jackson Jr. 左膝增生，預計開季可上（DPOY 候選，補 Kessler 空缺）
+- **傷兵**：Jaren Jackson Jr. 左膝增生，預計開季可上（DPOY 候選，補 Kessler 空缺）。Jusuf Nurkić 腳趾傷（10/10 報導）開季缺陣、至少四週——10/17 從讓渡名單撈 NYK 裁掉的 Tony Bradley 補中鋒（第 15 人，1 月保障日前 $3.51M），Filipowski 背部手術後 10/16 季前首度出賽
 - **狀況**：Kessler 換到的籤比 Kawhi 還多，資產管理滿分；即戰力靠 JJJ + Peterson，勝場盤 35.5。
 - **ATS 角度**：年輕上升隊在主場受讓時歷來正期望；Peterson 若早段就爆發，市場調整慢。
 
@@ -425,7 +426,7 @@
 - **休賽季評分**：ESPN B- / CBS C；陣容變動：medium；新教練 Dusty May（自 Michigan 轉任）。
 - **補進**：Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May
 - **流失**：Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III
-- **傷兵**：Kyrie Irving ACL 康復 19 個月，訓練營可上；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）
+- **傷兵**：Kyrie Irving ACL 康復 19 個月，訓練營可上（10/14 一場熱身賽輪休）；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）；Marcus Sasser 左內收肌缺前三場熱身賽、Moussa Cissé 左腳踝（預防性）。名單 16 人保障，10/17 裁 Lundy／Poulakidas 後仍要再砍 1 人：Dwight Powell 最合理（部分保障 $1M，週二後升到 $1.5M），Cissé／Caleb Martin／Sasser 也在交易或釋出選項內——都非輪替核心
 - **狀況**：圍繞 Cooper Flagg 囤積前鋒，後場只剩 Kyrie 撐；新教練體系需要磨合期。勝場盤 34.5 明顯低於部分模型（37.5）。
 - **ATS 角度**：Flagg 第二年的成長是市場最可能低估的變數；11 月後若 Kyrie 健康，主場受讓有價值。
 
@@ -458,7 +459,7 @@
 - **休賽季評分**：ESPN B / CBS B-；陣容變動：high。
 - **補進**：#3 Cameron Boozer、Isaiah Stewart、Jerami Grant、Quinten Post、Kris Murray
 - **流失**：Ja Morant（交易至 POR）、Santi Aldama、KCP（買斷）、D'Angelo Russell（9/25 裁掉，19 人名單需砍至 15）
-- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。Isaiah Stewart 10/5 季前首戰在 ATL 第一節左腳踝中度扭傷，球隊 10/9 宣布兩週後再評估（約 10/19）、預計缺席 10/21 開幕戰對 UTA，最快 10/23 客場對 GSW 回歸——替補中鋒輪替開季少一人。名單需再砍 2 人（10/19 前）：10/17 中午（美東）止仍未動；Micah Peavy（腳踝傷、9 月自 NOP 交易來）最可能被裁；GG Jackson II／Walter Clayton Jr. 傳有交易談判（當地記者否認 Jackson 部分）——若 Jackson 被送走屬輪替層級，需更新
+- **傷兵**：Zach Edey 左腳踝 9 個月內第二次手術，10/15 自稱腳踝感覺良好、預計開季可上。Isaiah Stewart 10/5 季前首戰在 ATL 第一節左腳踝中度扭傷，球隊 10/9 宣布兩週後再評估（約 10/19）、預計缺席 10/21 開幕戰對 UTA，最快 10/23 客場對 GSW 回歸——替補中鋒輪替開季少一人。名單需再砍 2 人（10/19 前）：10/17 晚（美東）止仍未動（當天只裁了訓練營合約的 Zach Cleveland）；Hoops Rumors 預期沒有交易就是 Kris Murray 與 Micah Peavy（腳踝傷、9 月自 NOP 交易來）被裁，Walter Clayton Jr. 是第三候選、Jaylen Wells 雖非保障但不在危險名單；GG Jackson II 交易傳聞當地記者否認——若 Jackson 被送走屬輪替層級，需更新
 - **狀況**：送走 Morant 換來 Boozer + 前場深度，走年輕化路線；勝場盤 28.5 屬於「準擺爛」定價。
 - **ATS 角度**：年輕重建隊主場對強隊受讓大分時常過盤（垃圾時間）；模型 garbage-time 過濾需開啟。
 

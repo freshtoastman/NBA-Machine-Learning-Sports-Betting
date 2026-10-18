@@ -1,0 +1,4267 @@
+{
+ "dataset": "dataset_2012-26",
+ "first_test": "2016-17",
+ "seeds": [
+  42,
+  7,
+  2026
+ ],
+ "params": {
+  "max_depth": 4,
+  "eta": 0.033,
+  "subsample": 0.657,
+  "colsample_bytree": 0.919,
+  "colsample_bylevel": 0.747,
+  "colsample_bynode": 0.558,
+  "gamma": 0.721,
+  "max_delta_step": 9,
+  "max_bin": 883,
+  "lambda": 0.129,
+  "alpha": 0.057,
+  "tree_method": "hist",
+  "ml_min_child_weight": 16,
+  "ats_min_child_weight": 26
+ },
+ "fits": [
+  {
+   "season": "2016-17",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 110,
+   "train_rows": 5171
+  },
+  {
+   "season": "2016-17",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 71,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 9612,
+   "features": 147
+  },
+  {
+   "season": "2016-17",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 76,
+   "train_rows": 5171
+  },
+  {
+   "season": "2016-17",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 65,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 2,
+   "train_rows": 9612,
+   "features": 147
+  },
+  {
+   "season": "2016-17",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 182,
+   "train_rows": 5171
+  },
+  {
+   "season": "2016-17",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 63,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 2,
+   "train_rows": 9612,
+   "features": 175
+  },
+  {
+   "season": "2016-17",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 9612,
+   "features": 147
+  },
+  {
+   "season": "2017-18",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 62,
+   "train_rows": 6463
+  },
+  {
+   "season": "2017-18",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 61,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 11830,
+   "features": 147
+  },
+  {
+   "season": "2017-18",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 62,
+   "train_rows": 6463
+  },
+  {
+   "season": "2017-18",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 68,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 11830,
+   "features": 147
+  },
+  {
+   "season": "2017-18",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 204,
+   "train_rows": 6463
+  },
+  {
+   "season": "2017-18",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 77,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 5,
+   "train_rows": 11830,
+   "features": 175
+  },
+  {
+   "season": "2017-18",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 4,
+   "train_rows": 11830,
+   "features": 147
+  },
+  {
+   "season": "2018-19",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 70,
+   "train_rows": 7759
+  },
+  {
+   "season": "2018-19",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 66,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 18,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 46,
+   "train_rows": 14084,
+   "features": 147
+  },
+  {
+   "season": "2018-19",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 66,
+   "train_rows": 7759
+  },
+  {
+   "season": "2018-19",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 104,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 39,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 14084,
+   "features": 147
+  },
+  {
+   "season": "2018-19",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 63,
+   "train_rows": 7759
+  },
+  {
+   "season": "2018-19",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 63,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 26,
+   "train_rows": 14084,
+   "features": 175
+  },
+  {
+   "season": "2018-19",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 9,
+   "train_rows": 14084,
+   "features": 147
+  },
+  {
+   "season": "2019-20",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 111,
+   "train_rows": 9055
+  },
+  {
+   "season": "2019-20",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 78,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 34,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 18,
+   "train_rows": 16320,
+   "features": 147
+  },
+  {
+   "season": "2019-20",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 63,
+   "train_rows": 9055
+  },
+  {
+   "season": "2019-20",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 61,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 3,
+   "train_rows": 16320,
+   "features": 147
+  },
+  {
+   "season": "2019-20",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 98,
+   "train_rows": 9055
+  },
+  {
+   "season": "2019-20",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 61,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 3,
+   "train_rows": 16320,
+   "features": 175
+  },
+  {
+   "season": "2019-20",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 8,
+   "train_rows": 16320,
+   "features": 147
+  },
+  {
+   "season": "2020-21",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 64,
+   "train_rows": 10177
+  },
+  {
+   "season": "2020-21",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 76,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 19,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 12,
+   "train_rows": 18236,
+   "features": 147
+  },
+  {
+   "season": "2020-21",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 166,
+   "train_rows": 10177
+  },
+  {
+   "season": "2020-21",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 155,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 49,
+   "train_rows": 18236,
+   "features": 147
+  },
+  {
+   "season": "2020-21",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 61,
+   "train_rows": 10177
+  },
+  {
+   "season": "2020-21",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 92,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 18236,
+   "features": 175
+  },
+  {
+   "season": "2020-21",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 12,
+   "train_rows": 18236,
+   "features": 147
+  },
+  {
+   "season": "2021-22",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 67,
+   "train_rows": 11324
+  },
+  {
+   "season": "2021-22",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 74,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 1,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 6,
+   "train_rows": 20198,
+   "features": 147
+  },
+  {
+   "season": "2021-22",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 132,
+   "train_rows": 11324
+  },
+  {
+   "season": "2021-22",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 63,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 3,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 2,
+   "train_rows": 20198,
+   "features": 147
+  },
+  {
+   "season": "2021-22",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 145,
+   "train_rows": 11324
+  },
+  {
+   "season": "2021-22",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 71,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 8,
+   "train_rows": 20198,
+   "features": 175
+  },
+  {
+   "season": "2021-22",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 1,
+   "train_rows": 20198,
+   "features": 147
+  },
+  {
+   "season": "2022-23",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 62,
+   "train_rows": 12631
+  },
+  {
+   "season": "2022-23",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 61,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 2,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 88,
+   "train_rows": 22454,
+   "features": 147
+  },
+  {
+   "season": "2022-23",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 69,
+   "train_rows": 12631
+  },
+  {
+   "season": "2022-23",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 78,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 2,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 86,
+   "train_rows": 22454,
+   "features": 147
+  },
+  {
+   "season": "2022-23",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 63,
+   "train_rows": 12631
+  },
+  {
+   "season": "2022-23",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 62,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 2,
+   "train_rows": 22454,
+   "features": 175
+  },
+  {
+   "season": "2022-23",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 10,
+   "train_rows": 22454,
+   "features": 147
+  },
+  {
+   "season": "2023-24",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 237,
+   "train_rows": 13935
+  },
+  {
+   "season": "2023-24",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 159,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 105,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 80,
+   "train_rows": 24886,
+   "features": 147
+  },
+  {
+   "season": "2023-24",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 62,
+   "train_rows": 13935
+  },
+  {
+   "season": "2023-24",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 72,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 12,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 88,
+   "train_rows": 24886,
+   "features": 147
+  },
+  {
+   "season": "2023-24",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 64,
+   "train_rows": 13935
+  },
+  {
+   "season": "2023-24",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 106,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 67,
+   "train_rows": 24886,
+   "features": 175
+  },
+  {
+   "season": "2023-24",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 145,
+   "train_rows": 24886,
+   "features": 147
+  },
+  {
+   "season": "2024-25",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 106,
+   "train_rows": 15175
+  },
+  {
+   "season": "2024-25",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 88,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 85,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 75,
+   "train_rows": 27362,
+   "features": 147
+  },
+  {
+   "season": "2024-25",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 143,
+   "train_rows": 15175
+  },
+  {
+   "season": "2024-25",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 63,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 54,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 63,
+   "train_rows": 27362,
+   "features": 147
+  },
+  {
+   "season": "2024-25",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 118,
+   "train_rows": 15175
+  },
+  {
+   "season": "2024-25",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 75,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 83,
+   "train_rows": 27362,
+   "features": 175
+  },
+  {
+   "season": "2024-25",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 86,
+   "train_rows": 27362,
+   "features": 147
+  },
+  {
+   "season": "2025-26",
+   "seed": 42,
+   "model": "ML",
+   "rounds": 313,
+   "train_rows": 16480
+  },
+  {
+   "season": "2025-26",
+   "seed": 42,
+   "model": "ATS/prod",
+   "rounds": 72,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 42,
+   "model": "ATS/logloss",
+   "rounds": 30,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 42,
+   "model": "ATS/noadv",
+   "rounds": 16,
+   "train_rows": 29972,
+   "features": 147
+  },
+  {
+   "season": "2025-26",
+   "seed": 7,
+   "model": "ML",
+   "rounds": 120,
+   "train_rows": 16480
+  },
+  {
+   "season": "2025-26",
+   "seed": 7,
+   "model": "ATS/prod",
+   "rounds": 66,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 7,
+   "model": "ATS/logloss",
+   "rounds": 28,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 7,
+   "model": "ATS/noadv",
+   "rounds": 4,
+   "train_rows": 29972,
+   "features": 147
+  },
+  {
+   "season": "2025-26",
+   "seed": 2026,
+   "model": "ML",
+   "rounds": 189,
+   "train_rows": 16480
+  },
+  {
+   "season": "2025-26",
+   "seed": 2026,
+   "model": "ATS/prod",
+   "rounds": 68,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 2026,
+   "model": "ATS/logloss",
+   "rounds": 11,
+   "train_rows": 29972,
+   "features": 175
+  },
+  {
+   "season": "2025-26",
+   "seed": 2026,
+   "model": "ATS/noadv",
+   "rounds": 2,
+   "train_rows": 29972,
+   "features": 147
+  }
+ ],
+ "ml": {
+  "2016-17": {
+   "model": {
+    "hits": 816,
+    "n": 1292,
+    "pct": 63.2,
+    "ci_lo": 60.5,
+    "ci_hi": 65.7
+   },
+   "market_favorite": {
+    "hits": 727,
+    "n": 1073,
+    "pct": 67.8,
+    "ci_lo": 64.9,
+    "ci_hi": 70.5
+   },
+   "model_same_games": {
+    "hits": 688,
+    "n": 1073,
+    "pct": 64.1,
+    "ci_lo": 61.2,
+    "ci_hi": 66.9
+   },
+   "conf70": {
+    "hits": 298,
+    "n": 397,
+    "pct": 75.1,
+    "ci_lo": 70.6,
+    "ci_hi": 79.1
+   }
+  },
+  "2017-18": {
+   "model": {
+    "hits": 828,
+    "n": 1296,
+    "pct": 63.9,
+    "ci_lo": 61.2,
+    "ci_hi": 66.5
+   },
+   "market_favorite": {
+    "hits": 759,
+    "n": 1090,
+    "pct": 69.6,
+    "ci_lo": 66.8,
+    "ci_hi": 72.3
+   },
+   "model_same_games": {
+    "hits": 701,
+    "n": 1090,
+    "pct": 64.3,
+    "ci_lo": 61.4,
+    "ci_hi": 67.1
+   },
+   "conf70": {
+    "hits": 188,
+    "n": 227,
+    "pct": 82.8,
+    "ci_lo": 77.4,
+    "ci_hi": 87.2
+   }
+  },
+  "2018-19": {
+   "model": {
+    "hits": 810,
+    "n": 1296,
+    "pct": 62.5,
+    "ci_lo": 59.8,
+    "ci_hi": 65.1
+   },
+   "market_favorite": {
+    "hits": 732,
+    "n": 1089,
+    "pct": 67.2,
+    "ci_lo": 64.4,
+    "ci_hi": 69.9
+   },
+   "model_same_games": {
+    "hits": 690,
+    "n": 1089,
+    "pct": 63.4,
+    "ci_lo": 60.5,
+    "ci_hi": 66.2
+   },
+   "conf70": {
+    "hits": 155,
+    "n": 193,
+    "pct": 80.3,
+    "ci_lo": 74.1,
+    "ci_hi": 85.3
+   }
+  },
+  "2019-20": {
+   "model": {
+    "hits": 713,
+    "n": 1122,
+    "pct": 63.5,
+    "ci_lo": 60.7,
+    "ci_hi": 66.3
+   },
+   "market_favorite": {
+    "hits": 624,
+    "n": 929,
+    "pct": 67.2,
+    "ci_lo": 64.1,
+    "ci_hi": 70.1
+   },
+   "model_same_games": {
+    "hits": 598,
+    "n": 929,
+    "pct": 64.4,
+    "ci_lo": 61.2,
+    "ci_hi": 67.4
+   },
+   "conf70": {
+    "hits": 191,
+    "n": 253,
+    "pct": 75.5,
+    "ci_lo": 69.8,
+    "ci_hi": 80.4
+   }
+  },
+  "2020-21": {
+   "model": {
+    "hits": 723,
+    "n": 1153,
+    "pct": 62.7,
+    "ci_lo": 59.9,
+    "ci_hi": 65.5
+   },
+   "market_favorite": {
+    "hits": 640,
+    "n": 960,
+    "pct": 66.7,
+    "ci_lo": 63.6,
+    "ci_hi": 69.6
+   },
+   "model_same_games": {
+    "hits": 609,
+    "n": 960,
+    "pct": 63.4,
+    "ci_lo": 60.3,
+    "ci_hi": 66.4
+   },
+   "conf70": {
+    "hits": 132,
+    "n": 184,
+    "pct": 71.7,
+    "ci_lo": 64.8,
+    "ci_hi": 77.7
+   }
+  },
+  "2021-22": {
+   "model": {
+    "hits": 815,
+    "n": 1307,
+    "pct": 62.4,
+    "ci_lo": 59.7,
+    "ci_hi": 64.9
+   },
+   "market_favorite": {
+    "hits": 758,
+    "n": 1101,
+    "pct": 68.8,
+    "ci_lo": 66.0,
+    "ci_hi": 71.5
+   },
+   "model_same_games": {
+    "hits": 693,
+    "n": 1101,
+    "pct": 62.9,
+    "ci_lo": 60.0,
+    "ci_hi": 65.7
+   },
+   "conf70": {
+    "hits": 197,
+    "n": 267,
+    "pct": 73.8,
+    "ci_lo": 68.2,
+    "ci_hi": 78.7
+   }
+  },
+  "2022-23": {
+   "model": {
+    "hits": 771,
+    "n": 1304,
+    "pct": 59.1,
+    "ci_lo": 56.4,
+    "ci_hi": 61.8
+   },
+   "market_favorite": {
+    "hits": 805,
+    "n": 1216,
+    "pct": 66.2,
+    "ci_lo": 63.5,
+    "ci_hi": 68.8
+   },
+   "model_same_games": {
+    "hits": 716,
+    "n": 1216,
+    "pct": 58.9,
+    "ci_lo": 56.1,
+    "ci_hi": 61.6
+   },
+   "conf70": {
+    "hits": 110,
+    "n": 148,
+    "pct": 74.3,
+    "ci_lo": 66.7,
+    "ci_hi": 80.7
+   }
+  },
+  "2023-24": {
+   "model": {
+    "hits": 801,
+    "n": 1240,
+    "pct": 64.6,
+    "ci_lo": 61.9,
+    "ci_hi": 67.2
+   },
+   "market_favorite": {
+    "hits": 859,
+    "n": 1238,
+    "pct": 69.4,
+    "ci_lo": 66.8,
+    "ci_hi": 71.9
+   },
+   "model_same_games": {
+    "hits": 800,
+    "n": 1238,
+    "pct": 64.6,
+    "ci_lo": 61.9,
+    "ci_hi": 67.2
+   },
+   "conf70": {
+    "hits": 244,
+    "n": 302,
+    "pct": 80.8,
+    "ci_lo": 76.0,
+    "ci_hi": 84.8
+   }
+  },
+  "2024-25": {
+   "model": {
+    "hits": 855,
+    "n": 1305,
+    "pct": 65.5,
+    "ci_lo": 62.9,
+    "ci_hi": 68.0
+   },
+   "market_favorite": {
+    "hits": 903,
+    "n": 1305,
+    "pct": 69.2,
+    "ci_lo": 66.6,
+    "ci_hi": 71.6
+   },
+   "model_same_games": {
+    "hits": 855,
+    "n": 1305,
+    "pct": 65.5,
+    "ci_lo": 62.9,
+    "ci_hi": 68.0
+   },
+   "conf70": {
+    "hits": 225,
+    "n": 273,
+    "pct": 82.4,
+    "ci_lo": 77.5,
+    "ci_hi": 86.5
+   }
+  },
+  "2025-26": {
+   "model": {
+    "hits": 860,
+    "n": 1306,
+    "pct": 65.8,
+    "ci_lo": 63.2,
+    "ci_hi": 68.4
+   },
+   "market_favorite": {
+    "hits": 893,
+    "n": 1306,
+    "pct": 68.4,
+    "ci_lo": 65.8,
+    "ci_hi": 70.8
+   },
+   "model_same_games": {
+    "hits": 860,
+    "n": 1306,
+    "pct": 65.8,
+    "ci_lo": 63.2,
+    "ci_hi": 68.4
+   },
+   "conf70": {
+    "hits": 291,
+    "n": 358,
+    "pct": 81.3,
+    "ci_lo": 76.9,
+    "ci_hi": 85.0
+   }
+  },
+  "ALL": {
+   "model": {
+    "hits": 7992,
+    "n": 12621,
+    "pct": 63.3,
+    "ci_lo": 62.5,
+    "ci_hi": 64.2
+   },
+   "market_favorite": {
+    "hits": 7700,
+    "n": 11307,
+    "pct": 68.1,
+    "ci_lo": 67.2,
+    "ci_hi": 69.0
+   },
+   "model_same_games": {
+    "hits": 7210,
+    "n": 11307,
+    "pct": 63.8,
+    "ci_lo": 62.9,
+    "ci_hi": 64.6
+   },
+   "conf70": {
+    "hits": 2031,
+    "n": 2602,
+    "pct": 78.1,
+    "ci_lo": 76.4,
+    "ci_hi": 79.6
+   }
+  }
+ },
+ "ats": {
+  "prod": {
+   "by_season": {
+    "2016-17": {
+     "raw": {
+      "hits": 540,
+      "n": 1087,
+      "pct": 49.7,
+      "ci_lo": 46.7,
+      "ci_hi": 52.6
+     },
+     "home_pick_share": 54.5,
+     "top10": {
+      "hits": 52,
+      "n": 101,
+      "pct": 51.5,
+      "ci_lo": 41.9,
+      "ci_hi": 61.0
+     },
+     "top5": {
+      "hits": 25,
+      "n": 51,
+      "pct": 49.0,
+      "ci_lo": 35.9,
+      "ci_hi": 62.3
+     },
+     "top2": {
+      "hits": 11,
+      "n": 21,
+      "pct": 52.4,
+      "ci_lo": 32.4,
+      "ci_hi": 71.7
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     },
+     "prod_value_filtered": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     }
+    },
+    "2017-18": {
+     "raw": {
+      "hits": 533,
+      "n": 1103,
+      "pct": 48.3,
+      "ci_lo": 45.4,
+      "ci_hi": 51.3
+     },
+     "home_pick_share": 45.9,
+     "top10": {
+      "hits": 53,
+      "n": 105,
+      "pct": 50.5,
+      "ci_lo": 41.1,
+      "ci_hi": 59.9
+     },
+     "top5": {
+      "hits": 32,
+      "n": 54,
+      "pct": 59.3,
+      "ci_lo": 46.0,
+      "ci_hi": 71.3
+     },
+     "top2": {
+      "hits": 11,
+      "n": 21,
+      "pct": 52.4,
+      "ci_lo": 32.4,
+      "ci_hi": 71.7
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2018-19": {
+     "raw": {
+      "hits": 551,
+      "n": 1102,
+      "pct": 50.0,
+      "ci_lo": 47.1,
+      "ci_hi": 52.9
+     },
+     "home_pick_share": 54.8,
+     "top10": {
+      "hits": 47,
+      "n": 107,
+      "pct": 43.9,
+      "ci_lo": 34.9,
+      "ci_hi": 53.4
+     },
+     "top5": {
+      "hits": 20,
+      "n": 55,
+      "pct": 36.4,
+      "ci_lo": 24.9,
+      "ci_hi": 49.6
+     },
+     "top2": {
+      "hits": 9,
+      "n": 22,
+      "pct": 40.9,
+      "ci_lo": 23.3,
+      "ci_hi": 61.3
+     },
+     "prod_value": {
+      "hits": 2,
+      "n": 5,
+      "pct": 40.0,
+      "ci_lo": 11.8,
+      "ci_hi": 76.9
+     },
+     "prod_value_filtered": {
+      "hits": 2,
+      "n": 5,
+      "pct": 40.0,
+      "ci_lo": 11.8,
+      "ci_hi": 76.9
+     }
+    },
+    "2019-20": {
+     "raw": {
+      "hits": 467,
+      "n": 939,
+      "pct": 49.7,
+      "ci_lo": 46.5,
+      "ci_hi": 52.9
+     },
+     "home_pick_share": 45.8,
+     "top10": {
+      "hits": 40,
+      "n": 91,
+      "pct": 44.0,
+      "ci_lo": 34.2,
+      "ci_hi": 54.2
+     },
+     "top5": {
+      "hits": 20,
+      "n": 46,
+      "pct": 43.5,
+      "ci_lo": 30.2,
+      "ci_hi": 57.8
+     },
+     "top2": {
+      "hits": 10,
+      "n": 18,
+      "pct": 55.6,
+      "ci_lo": 33.7,
+      "ci_hi": 75.4
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 3,
+      "pct": 33.3,
+      "ci_lo": 6.1,
+      "ci_hi": 79.2
+     },
+     "prod_value_filtered": {
+      "hits": 1,
+      "n": 3,
+      "pct": 33.3,
+      "ci_lo": 6.1,
+      "ci_hi": 79.2
+     }
+    },
+    "2020-21": {
+     "raw": {
+      "hits": 463,
+      "n": 969,
+      "pct": 47.8,
+      "ci_lo": 44.7,
+      "ci_hi": 50.9
+     },
+     "home_pick_share": 45.3,
+     "top10": {
+      "hits": 50,
+      "n": 92,
+      "pct": 54.3,
+      "ci_lo": 44.2,
+      "ci_hi": 64.1
+     },
+     "top5": {
+      "hits": 26,
+      "n": 47,
+      "pct": 55.3,
+      "ci_lo": 41.2,
+      "ci_hi": 68.6
+     },
+     "top2": {
+      "hits": 10,
+      "n": 19,
+      "pct": 52.6,
+      "ci_lo": 31.7,
+      "ci_hi": 72.7
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 1,
+      "pct": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 79.3
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 1,
+      "pct": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 79.3
+     }
+    },
+    "2021-22": {
+     "raw": {
+      "hits": 563,
+      "n": 1114,
+      "pct": 50.5,
+      "ci_lo": 47.6,
+      "ci_hi": 53.5
+     },
+     "home_pick_share": 42.2,
+     "top10": {
+      "hits": 57,
+      "n": 105,
+      "pct": 54.3,
+      "ci_lo": 44.8,
+      "ci_hi": 63.5
+     },
+     "top5": {
+      "hits": 28,
+      "n": 55,
+      "pct": 50.9,
+      "ci_lo": 38.1,
+      "ci_hi": 63.6
+     },
+     "top2": {
+      "hits": 10,
+      "n": 22,
+      "pct": 45.5,
+      "ci_lo": 26.9,
+      "ci_hi": 65.3
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2022-23": {
+     "raw": {
+      "hits": 621,
+      "n": 1200,
+      "pct": 51.8,
+      "ci_lo": 48.9,
+      "ci_hi": 54.6
+     },
+     "home_pick_share": 53.7,
+     "top10": {
+      "hits": 63,
+      "n": 111,
+      "pct": 56.8,
+      "ci_lo": 47.5,
+      "ci_hi": 65.6
+     },
+     "top5": {
+      "hits": 34,
+      "n": 56,
+      "pct": 60.7,
+      "ci_lo": 47.6,
+      "ci_hi": 72.4
+     },
+     "top2": {
+      "hits": 17,
+      "n": 24,
+      "pct": 70.8,
+      "ci_lo": 50.8,
+      "ci_hi": 85.1
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2023-24": {
+     "raw": {
+      "hits": 616,
+      "n": 1224,
+      "pct": 50.3,
+      "ci_lo": 47.5,
+      "ci_hi": 53.1
+     },
+     "home_pick_share": 48.4,
+     "top10": {
+      "hits": 59,
+      "n": 119,
+      "pct": 49.6,
+      "ci_lo": 40.8,
+      "ci_hi": 58.4
+     },
+     "top5": {
+      "hits": 27,
+      "n": 61,
+      "pct": 44.3,
+      "ci_lo": 32.5,
+      "ci_hi": 56.7
+     },
+     "top2": {
+      "hits": 14,
+      "n": 24,
+      "pct": 58.3,
+      "ci_lo": 38.8,
+      "ci_hi": 75.5
+     },
+     "prod_value": {
+      "hits": 6,
+      "n": 11,
+      "pct": 54.5,
+      "ci_lo": 28.0,
+      "ci_hi": 78.7
+     },
+     "prod_value_filtered": {
+      "hits": 6,
+      "n": 11,
+      "pct": 54.5,
+      "ci_lo": 28.0,
+      "ci_hi": 78.7
+     }
+    },
+    "2024-25": {
+     "raw": {
+      "hits": 659,
+      "n": 1282,
+      "pct": 51.4,
+      "ci_lo": 48.7,
+      "ci_hi": 54.1
+     },
+     "home_pick_share": 47.3,
+     "top10": {
+      "hits": 64,
+      "n": 118,
+      "pct": 54.2,
+      "ci_lo": 45.3,
+      "ci_hi": 63.0
+     },
+     "top5": {
+      "hits": 33,
+      "n": 62,
+      "pct": 53.2,
+      "ci_lo": 41.0,
+      "ci_hi": 65.1
+     },
+     "top2": {
+      "hits": 14,
+      "n": 24,
+      "pct": 58.3,
+      "ci_lo": 38.8,
+      "ci_hi": 75.5
+     },
+     "prod_value": {
+      "hits": 7,
+      "n": 11,
+      "pct": 63.6,
+      "ci_lo": 35.4,
+      "ci_hi": 84.8
+     },
+     "prod_value_filtered": {
+      "hits": 7,
+      "n": 11,
+      "pct": 63.6,
+      "ci_lo": 35.4,
+      "ci_hi": 84.8
+     }
+    },
+    "2025-26": {
+     "raw": {
+      "hits": 680,
+      "n": 1299,
+      "pct": 52.3,
+      "ci_lo": 49.6,
+      "ci_hi": 55.1
+     },
+     "home_pick_share": 61.0,
+     "top10": {
+      "hits": 64,
+      "n": 125,
+      "pct": 51.2,
+      "ci_lo": 42.5,
+      "ci_hi": 59.8
+     },
+     "top5": {
+      "hits": 35,
+      "n": 61,
+      "pct": 57.4,
+      "ci_lo": 44.9,
+      "ci_hi": 69.0
+     },
+     "top2": {
+      "hits": 14,
+      "n": 25,
+      "pct": 56.0,
+      "ci_lo": 37.1,
+      "ci_hi": 73.3
+     },
+     "prod_value": {
+      "hits": 6,
+      "n": 8,
+      "pct": 75.0,
+      "ci_lo": 40.9,
+      "ci_hi": 92.9
+     },
+     "prod_value_filtered": {
+      "hits": 6,
+      "n": 8,
+      "pct": 75.0,
+      "ci_lo": 40.9,
+      "ci_hi": 92.9
+     }
+    },
+    "ALL": {
+     "raw": {
+      "hits": 5693,
+      "n": 11319,
+      "pct": 50.3,
+      "ci_lo": 49.4,
+      "ci_hi": 51.2
+     },
+     "home_pick_share": 50.1,
+     "top10": {
+      "hits": 549,
+      "n": 1074,
+      "pct": 51.1,
+      "ci_lo": 48.1,
+      "ci_hi": 54.1
+     },
+     "top5": {
+      "hits": 280,
+      "n": 548,
+      "pct": 51.1,
+      "ci_lo": 46.9,
+      "ci_hi": 55.3
+     },
+     "top2": {
+      "hits": 120,
+      "n": 220,
+      "pct": 54.5,
+      "ci_lo": 47.9,
+      "ci_hi": 61.0
+     },
+     "prod_value": {
+      "hits": 23,
+      "n": 40,
+      "pct": 57.5,
+      "ci_lo": 42.2,
+      "ci_hi": 71.5
+     },
+     "prod_value_filtered": {
+      "hits": 23,
+      "n": 40,
+      "pct": 57.5,
+      "ci_lo": 42.2,
+      "ci_hi": 71.5
+     }
+    }
+   },
+   "pooled": {
+    "oct_feb": {
+     "2": {
+      "all": {
+       "hits": 1341,
+       "n": 2615,
+       "pct": 51.3,
+       "ci_lo": 49.4,
+       "ci_hi": 53.2
+      },
+      "home": {
+       "hits": 641,
+       "n": 1249,
+       "pct": 51.3,
+       "ci_lo": 48.5,
+       "ci_hi": 54.1
+      },
+      "away": {
+       "hits": 700,
+       "n": 1366,
+       "pct": 51.2,
+       "ci_lo": 48.6,
+       "ci_hi": 53.9
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 414,
+       "n": 791,
+       "pct": 52.3,
+       "ci_lo": 48.9,
+       "ci_hi": 55.8
+      },
+      "home": {
+       "hits": 197,
+       "n": 360,
+       "pct": 54.7,
+       "ci_lo": 49.6,
+       "ci_hi": 59.8
+      },
+      "away": {
+       "hits": 217,
+       "n": 431,
+       "pct": 50.3,
+       "ci_lo": 45.6,
+       "ci_hi": 55.0
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 110,
+       "n": 219,
+       "pct": 50.2,
+       "ci_lo": 43.7,
+       "ci_hi": 56.8
+      },
+      "home": {
+       "hits": 49,
+       "n": 93,
+       "pct": 52.7,
+       "ci_lo": 42.6,
+       "ci_hi": 62.5
+      },
+      "away": {
+       "hits": 61,
+       "n": 126,
+       "pct": 48.4,
+       "ci_lo": 39.9,
+       "ci_hi": 57.1
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 37,
+       "n": 63,
+       "pct": 58.7,
+       "ci_lo": 46.4,
+       "ci_hi": 70.0
+      },
+      "home": {
+       "hits": 15,
+       "n": 25,
+       "pct": 60.0,
+       "ci_lo": 40.7,
+       "ci_hi": 76.6
+      },
+      "away": {
+       "hits": 22,
+       "n": 38,
+       "pct": 57.9,
+       "ci_lo": 42.2,
+       "ci_hi": 72.1
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 5,
+       "n": 9,
+       "pct": 55.6,
+       "ci_lo": 26.7,
+       "ci_hi": 81.1
+      },
+      "home": {
+       "hits": 2,
+       "n": 3,
+       "pct": 66.7,
+       "ci_lo": 20.8,
+       "ci_hi": 93.9
+      },
+      "away": {
+       "hits": 3,
+       "n": 6,
+       "pct": 50.0,
+       "ci_lo": 18.8,
+       "ci_hi": 81.2
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 2,
+       "n": 3,
+       "pct": 66.7,
+       "ci_lo": 20.8,
+       "ci_hi": 93.9
+      },
+      "home": {
+       "hits": 0,
+       "n": 1,
+       "pct": 0.0,
+       "ci_lo": 0.0,
+       "ci_hi": 79.3
+      },
+      "away": {
+       "hits": 2,
+       "n": 2,
+       "pct": 100.0,
+       "ci_lo": 34.2,
+       "ci_hi": 100.0
+      }
+     }
+    },
+    "mar_apr": {
+     "2": {
+      "all": {
+       "hits": 434,
+       "n": 875,
+       "pct": 49.6,
+       "ci_lo": 46.3,
+       "ci_hi": 52.9
+      },
+      "home": {
+       "hits": 200,
+       "n": 430,
+       "pct": 46.5,
+       "ci_lo": 41.8,
+       "ci_hi": 51.2
+      },
+      "away": {
+       "hits": 234,
+       "n": 445,
+       "pct": 52.6,
+       "ci_lo": 47.9,
+       "ci_hi": 57.2
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 106,
+       "n": 206,
+       "pct": 51.5,
+       "ci_lo": 44.7,
+       "ci_hi": 58.2
+      },
+      "home": {
+       "hits": 43,
+       "n": 89,
+       "pct": 48.3,
+       "ci_lo": 38.2,
+       "ci_hi": 58.5
+      },
+      "away": {
+       "hits": 63,
+       "n": 117,
+       "pct": 53.8,
+       "ci_lo": 44.8,
+       "ci_hi": 62.6
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 23,
+       "n": 48,
+       "pct": 47.9,
+       "ci_lo": 34.5,
+       "ci_hi": 61.7
+      },
+      "home": {
+       "hits": 11,
+       "n": 22,
+       "pct": 50.0,
+       "ci_lo": 30.7,
+       "ci_hi": 69.3
+      },
+      "away": {
+       "hits": 12,
+       "n": 26,
+       "pct": 46.2,
+       "ci_lo": 28.8,
+       "ci_hi": 64.5
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 6,
+       "n": 10,
+       "pct": 60.0,
+       "ci_lo": 31.3,
+       "ci_hi": 83.2
+      },
+      "home": {
+       "hits": 2,
+       "n": 4,
+       "pct": 50.0,
+       "ci_lo": 15.0,
+       "ci_hi": 85.0
+      },
+      "away": {
+       "hits": 4,
+       "n": 6,
+       "pct": 66.7,
+       "ci_lo": 30.0,
+       "ci_hi": 90.3
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    },
+    "playoffs": {
+     "2": {
+      "all": {
+       "hits": 103,
+       "n": 213,
+       "pct": 48.4,
+       "ci_lo": 41.7,
+       "ci_hi": 55.0
+      },
+      "home": {
+       "hits": 61,
+       "n": 123,
+       "pct": 49.6,
+       "ci_lo": 40.9,
+       "ci_hi": 58.3
+      },
+      "away": {
+       "hits": 42,
+       "n": 90,
+       "pct": 46.7,
+       "ci_lo": 36.7,
+       "ci_hi": 56.9
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 14,
+       "n": 42,
+       "pct": 33.3,
+       "ci_lo": 21.0,
+       "ci_hi": 48.4
+      },
+      "home": {
+       "hits": 11,
+       "n": 26,
+       "pct": 42.3,
+       "ci_lo": 25.5,
+       "ci_hi": 61.1
+      },
+      "away": {
+       "hits": 3,
+       "n": 16,
+       "pct": 18.8,
+       "ci_lo": 6.6,
+       "ci_hi": 43.0
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    }
+   },
+   "seeds": {
+    "42": {
+     "raw": {
+      "hits": 5693,
+      "n": 11319,
+      "pct": 50.3,
+      "ci_lo": 49.4,
+      "ci_hi": 51.2
+     },
+     "top5": {
+      "hits": 280,
+      "n": 548,
+      "pct": 51.1,
+      "ci_lo": 46.9,
+      "ci_hi": 55.3
+     },
+     "prod_value": {
+      "hits": 23,
+      "n": 40,
+      "pct": 57.5,
+      "ci_lo": 42.2,
+      "ci_hi": 71.5
+     }
+    },
+    "7": {
+     "raw": {
+      "hits": 5678,
+      "n": 11319,
+      "pct": 50.2,
+      "ci_lo": 49.2,
+      "ci_hi": 51.1
+     },
+     "top5": {
+      "hits": 292,
+      "n": 552,
+      "pct": 52.9,
+      "ci_lo": 48.7,
+      "ci_hi": 57.0
+     },
+     "prod_value": {
+      "hits": 31,
+      "n": 67,
+      "pct": 46.3,
+      "ci_lo": 34.9,
+      "ci_hi": 58.1
+     }
+    },
+    "2026": {
+     "raw": {
+      "hits": 5694,
+      "n": 11319,
+      "pct": 50.3,
+      "ci_lo": 49.4,
+      "ci_hi": 51.2
+     },
+     "top5": {
+      "hits": 283,
+      "n": 537,
+      "pct": 52.7,
+      "ci_lo": 48.5,
+      "ci_hi": 56.9
+     },
+     "prod_value": {
+      "hits": 27,
+      "n": 49,
+      "pct": 55.1,
+      "ci_lo": 41.3,
+      "ci_hi": 68.1
+     }
+    }
+   }
+  },
+  "logloss": {
+   "by_season": {
+    "2016-17": {
+     "raw": {
+      "hits": 568,
+      "n": 1087,
+      "pct": 52.3,
+      "ci_lo": 49.3,
+      "ci_hi": 55.2
+     },
+     "home_pick_share": 30.2,
+     "top10": {
+      "hits": 46,
+      "n": 88,
+      "pct": 52.3,
+      "ci_lo": 42.0,
+      "ci_hi": 62.4
+     },
+     "top5": {
+      "hits": 21,
+      "n": 42,
+      "pct": 50.0,
+      "ci_lo": 35.5,
+      "ci_hi": 64.5
+     },
+     "top2": {
+      "hits": 8,
+      "n": 15,
+      "pct": 53.3,
+      "ci_lo": 30.1,
+      "ci_hi": 75.2
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2017-18": {
+     "raw": {
+      "hits": 590,
+      "n": 1103,
+      "pct": 53.5,
+      "ci_lo": 50.5,
+      "ci_hi": 56.4
+     },
+     "home_pick_share": 29.1,
+     "top10": {
+      "hits": 60,
+      "n": 108,
+      "pct": 55.6,
+      "ci_lo": 46.2,
+      "ci_hi": 64.6
+     },
+     "top5": {
+      "hits": 31,
+      "n": 54,
+      "pct": 57.4,
+      "ci_lo": 44.2,
+      "ci_hi": 69.7
+     },
+     "top2": {
+      "hits": 10,
+      "n": 21,
+      "pct": 47.6,
+      "ci_lo": 28.3,
+      "ci_hi": 67.6
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2018-19": {
+     "raw": {
+      "hits": 535,
+      "n": 1102,
+      "pct": 48.5,
+      "ci_lo": 45.6,
+      "ci_hi": 51.5
+     },
+     "home_pick_share": 56.4,
+     "top10": {
+      "hits": 49,
+      "n": 105,
+      "pct": 46.7,
+      "ci_lo": 37.4,
+      "ci_hi": 56.2
+     },
+     "top5": {
+      "hits": 30,
+      "n": 54,
+      "pct": 55.6,
+      "ci_lo": 42.4,
+      "ci_hi": 68.0
+     },
+     "top2": {
+      "hits": 12,
+      "n": 22,
+      "pct": 54.5,
+      "ci_lo": 34.7,
+      "ci_hi": 73.1
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2019-20": {
+     "raw": {
+      "hits": 465,
+      "n": 939,
+      "pct": 49.5,
+      "ci_lo": 46.3,
+      "ci_hi": 52.7
+     },
+     "home_pick_share": 52.8,
+     "top10": {
+      "hits": 41,
+      "n": 91,
+      "pct": 45.1,
+      "ci_lo": 35.2,
+      "ci_hi": 55.3
+     },
+     "top5": {
+      "hits": 20,
+      "n": 46,
+      "pct": 43.5,
+      "ci_lo": 30.2,
+      "ci_hi": 57.8
+     },
+     "top2": {
+      "hits": 9,
+      "n": 18,
+      "pct": 50.0,
+      "ci_lo": 29.0,
+      "ci_hi": 71.0
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2020-21": {
+     "raw": {
+      "hits": 485,
+      "n": 969,
+      "pct": 50.1,
+      "ci_lo": 46.9,
+      "ci_hi": 53.2
+     },
+     "home_pick_share": 37.3,
+     "top10": {
+      "hits": 51,
+      "n": 94,
+      "pct": 54.3,
+      "ci_lo": 44.2,
+      "ci_hi": 64.0
+     },
+     "top5": {
+      "hits": 28,
+      "n": 46,
+      "pct": 60.9,
+      "ci_lo": 46.5,
+      "ci_hi": 73.6
+     },
+     "top2": {
+      "hits": 9,
+      "n": 18,
+      "pct": 50.0,
+      "ci_lo": 29.0,
+      "ci_hi": 71.0
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2021-22": {
+     "raw": {
+      "hits": 547,
+      "n": 1114,
+      "pct": 49.1,
+      "ci_lo": 46.2,
+      "ci_hi": 52.0
+     },
+     "home_pick_share": 93.2,
+     "top10": {
+      "hits": 39,
+      "n": 76,
+      "pct": 51.3,
+      "ci_lo": 40.3,
+      "ci_hi": 62.2
+     },
+     "top5": {
+      "hits": 25,
+      "n": 51,
+      "pct": 49.0,
+      "ci_lo": 35.9,
+      "ci_hi": 62.3
+     },
+     "top2": {
+      "hits": 9,
+      "n": 21,
+      "pct": 42.9,
+      "ci_lo": 24.5,
+      "ci_hi": 63.5
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2022-23": {
+     "raw": {
+      "hits": 589,
+      "n": 1200,
+      "pct": 49.1,
+      "ci_lo": 46.3,
+      "ci_hi": 51.9
+     },
+     "home_pick_share": 44.8,
+     "top10": {
+      "hits": 61,
+      "n": 117,
+      "pct": 52.1,
+      "ci_lo": 43.2,
+      "ci_hi": 61.0
+     },
+     "top5": {
+      "hits": 30,
+      "n": 59,
+      "pct": 50.8,
+      "ci_lo": 38.4,
+      "ci_hi": 63.2
+     },
+     "top2": {
+      "hits": 17,
+      "n": 24,
+      "pct": 70.8,
+      "ci_lo": 50.8,
+      "ci_hi": 85.1
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2023-24": {
+     "raw": {
+      "hits": 616,
+      "n": 1224,
+      "pct": 50.3,
+      "ci_lo": 47.5,
+      "ci_hi": 53.1
+     },
+     "home_pick_share": 52.3,
+     "top10": {
+      "hits": 59,
+      "n": 121,
+      "pct": 48.8,
+      "ci_lo": 40.0,
+      "ci_hi": 57.6
+     },
+     "top5": {
+      "hits": 30,
+      "n": 60,
+      "pct": 50.0,
+      "ci_lo": 37.7,
+      "ci_hi": 62.3
+     },
+     "top2": {
+      "hits": 12,
+      "n": 24,
+      "pct": 50.0,
+      "ci_lo": 31.4,
+      "ci_hi": 68.6
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 2,
+      "pct": 50.0,
+      "ci_lo": 9.5,
+      "ci_hi": 90.5
+     },
+     "prod_value_filtered": {
+      "hits": 1,
+      "n": 2,
+      "pct": 50.0,
+      "ci_lo": 9.5,
+      "ci_hi": 90.5
+     }
+    },
+    "2024-25": {
+     "raw": {
+      "hits": 652,
+      "n": 1282,
+      "pct": 50.9,
+      "ci_lo": 48.1,
+      "ci_hi": 53.6
+     },
+     "home_pick_share": 45.8,
+     "top10": {
+      "hits": 60,
+      "n": 116,
+      "pct": 51.7,
+      "ci_lo": 42.7,
+      "ci_hi": 60.6
+     },
+     "top5": {
+      "hits": 32,
+      "n": 61,
+      "pct": 52.5,
+      "ci_lo": 40.2,
+      "ci_hi": 64.5
+     },
+     "top2": {
+      "hits": 15,
+      "n": 24,
+      "pct": 62.5,
+      "ci_lo": 42.7,
+      "ci_hi": 78.8
+     },
+     "prod_value": {
+      "hits": 7,
+      "n": 10,
+      "pct": 70.0,
+      "ci_lo": 39.7,
+      "ci_hi": 89.2
+     },
+     "prod_value_filtered": {
+      "hits": 7,
+      "n": 10,
+      "pct": 70.0,
+      "ci_lo": 39.7,
+      "ci_hi": 89.2
+     }
+    },
+    "2025-26": {
+     "raw": {
+      "hits": 689,
+      "n": 1299,
+      "pct": 53.0,
+      "ci_lo": 50.3,
+      "ci_hi": 55.7
+     },
+     "home_pick_share": 53.1,
+     "top10": {
+      "hits": 57,
+      "n": 123,
+      "pct": 46.3,
+      "ci_lo": 37.8,
+      "ci_hi": 55.1
+     },
+     "top5": {
+      "hits": 36,
+      "n": 62,
+      "pct": 58.1,
+      "ci_lo": 45.7,
+      "ci_hi": 69.5
+     },
+     "top2": {
+      "hits": 12,
+      "n": 25,
+      "pct": 48.0,
+      "ci_lo": 30.0,
+      "ci_hi": 66.5
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "ALL": {
+     "raw": {
+      "hits": 5736,
+      "n": 11319,
+      "pct": 50.7,
+      "ci_lo": 49.8,
+      "ci_hi": 51.6
+     },
+     "home_pick_share": 49.7,
+     "top10": {
+      "hits": 523,
+      "n": 1039,
+      "pct": 50.3,
+      "ci_lo": 47.3,
+      "ci_hi": 53.4
+     },
+     "top5": {
+      "hits": 283,
+      "n": 535,
+      "pct": 52.9,
+      "ci_lo": 48.7,
+      "ci_hi": 57.1
+     },
+     "top2": {
+      "hits": 113,
+      "n": 212,
+      "pct": 53.3,
+      "ci_lo": 46.6,
+      "ci_hi": 59.9
+     },
+     "prod_value": {
+      "hits": 8,
+      "n": 12,
+      "pct": 66.7,
+      "ci_lo": 39.1,
+      "ci_hi": 86.2
+     },
+     "prod_value_filtered": {
+      "hits": 8,
+      "n": 12,
+      "pct": 66.7,
+      "ci_lo": 39.1,
+      "ci_hi": 86.2
+     }
+    }
+   },
+   "pooled": {
+    "oct_feb": {
+     "2": {
+      "all": {
+       "hits": 438,
+       "n": 860,
+       "pct": 50.9,
+       "ci_lo": 47.6,
+       "ci_hi": 54.3
+      },
+      "home": {
+       "hits": 219,
+       "n": 429,
+       "pct": 51.0,
+       "ci_lo": 46.3,
+       "ci_hi": 55.7
+      },
+      "away": {
+       "hits": 219,
+       "n": 431,
+       "pct": 50.8,
+       "ci_lo": 46.1,
+       "ci_hi": 55.5
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 100,
+       "n": 197,
+       "pct": 50.8,
+       "ci_lo": 43.8,
+       "ci_hi": 57.7
+      },
+      "home": {
+       "hits": 55,
+       "n": 95,
+       "pct": 57.9,
+       "ci_lo": 47.8,
+       "ci_hi": 67.3
+      },
+      "away": {
+       "hits": 45,
+       "n": 102,
+       "pct": 44.1,
+       "ci_lo": 34.9,
+       "ci_hi": 53.8
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 31,
+       "n": 60,
+       "pct": 51.7,
+       "ci_lo": 39.3,
+       "ci_hi": 63.8
+      },
+      "home": {
+       "hits": 19,
+       "n": 34,
+       "pct": 55.9,
+       "ci_lo": 39.5,
+       "ci_hi": 71.1
+      },
+      "away": {
+       "hits": 12,
+       "n": 26,
+       "pct": 46.2,
+       "ci_lo": 28.8,
+       "ci_hi": 64.5
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 9,
+       "n": 14,
+       "pct": 64.3,
+       "ci_lo": 38.8,
+       "ci_hi": 83.7
+      },
+      "home": {
+       "hits": 5,
+       "n": 7,
+       "pct": 71.4,
+       "ci_lo": 35.9,
+       "ci_hi": 91.8
+      },
+      "away": {
+       "hits": 4,
+       "n": 7,
+       "pct": 57.1,
+       "ci_lo": 25.0,
+       "ci_hi": 84.2
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 3,
+       "n": 6,
+       "pct": 50.0,
+       "ci_lo": 18.8,
+       "ci_hi": 81.2
+      },
+      "home": {
+       "hits": 1,
+       "n": 2,
+       "pct": 50.0,
+       "ci_lo": 9.5,
+       "ci_hi": 90.5
+      },
+      "away": {
+       "hits": 2,
+       "n": 4,
+       "pct": 50.0,
+       "ci_lo": 15.0,
+       "ci_hi": 85.0
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      }
+     }
+    },
+    "mar_apr": {
+     "2": {
+      "all": {
+       "hits": 128,
+       "n": 233,
+       "pct": 54.9,
+       "ci_lo": 48.5,
+       "ci_hi": 61.2
+      },
+      "home": {
+       "hits": 56,
+       "n": 113,
+       "pct": 49.6,
+       "ci_lo": 40.5,
+       "ci_hi": 58.6
+      },
+      "away": {
+       "hits": 72,
+       "n": 120,
+       "pct": 60.0,
+       "ci_lo": 51.1,
+       "ci_hi": 68.3
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 19,
+       "n": 34,
+       "pct": 55.9,
+       "ci_lo": 39.5,
+       "ci_hi": 71.1
+      },
+      "home": {
+       "hits": 10,
+       "n": 15,
+       "pct": 66.7,
+       "ci_lo": 41.7,
+       "ci_hi": 84.8
+      },
+      "away": {
+       "hits": 9,
+       "n": 19,
+       "pct": 47.4,
+       "ci_lo": 27.3,
+       "ci_hi": 68.3
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 2,
+       "n": 4,
+       "pct": 50.0,
+       "ci_lo": 15.0,
+       "ci_hi": 85.0
+      },
+      "home": {
+       "hits": 0,
+       "n": 1,
+       "pct": 0.0,
+       "ci_lo": 0.0,
+       "ci_hi": 79.3
+      },
+      "away": {
+       "hits": 2,
+       "n": 3,
+       "pct": 66.7,
+       "ci_lo": 20.8,
+       "ci_hi": 93.9
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    },
+    "playoffs": {
+     "2": {
+      "all": {
+       "hits": 25,
+       "n": 52,
+       "pct": 48.1,
+       "ci_lo": 35.1,
+       "ci_hi": 61.3
+      },
+      "home": {
+       "hits": 18,
+       "n": 35,
+       "pct": 51.4,
+       "ci_lo": 35.6,
+       "ci_hi": 67.0
+      },
+      "away": {
+       "hits": 7,
+       "n": 17,
+       "pct": 41.2,
+       "ci_lo": 21.6,
+       "ci_hi": 64.0
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 3,
+       "n": 11,
+       "pct": 27.3,
+       "ci_lo": 9.7,
+       "ci_hi": 56.6
+      },
+      "home": {
+       "hits": 3,
+       "n": 7,
+       "pct": 42.9,
+       "ci_lo": 15.8,
+       "ci_hi": 75.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 4,
+       "pct": 0.0,
+       "ci_lo": 0.0,
+       "ci_hi": 49.0
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    }
+   },
+   "seeds": {
+    "42": {
+     "raw": {
+      "hits": 5736,
+      "n": 11319,
+      "pct": 50.7,
+      "ci_lo": 49.8,
+      "ci_hi": 51.6
+     },
+     "top5": {
+      "hits": 283,
+      "n": 535,
+      "pct": 52.9,
+      "ci_lo": 48.7,
+      "ci_hi": 57.1
+     },
+     "prod_value": {
+      "hits": 8,
+      "n": 12,
+      "pct": 66.7,
+      "ci_lo": 39.1,
+      "ci_hi": 86.2
+     }
+    },
+    "7": {
+     "raw": {
+      "hits": 5738,
+      "n": 11319,
+      "pct": 50.7,
+      "ci_lo": 49.8,
+      "ci_hi": 51.6
+     },
+     "top5": {
+      "hits": 257,
+      "n": 505,
+      "pct": 50.9,
+      "ci_lo": 46.5,
+      "ci_hi": 55.2
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 1,
+      "pct": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 79.3
+     }
+    },
+    "2026": {
+     "raw": {
+      "hits": 5670,
+      "n": 11319,
+      "pct": 50.1,
+      "ci_lo": 49.2,
+      "ci_hi": 51.0
+     },
+     "top5": {
+      "hits": 277,
+      "n": 520,
+      "pct": 53.3,
+      "ci_lo": 49.0,
+      "ci_hi": 57.5
+     },
+     "prod_value": {
+      "hits": 6,
+      "n": 12,
+      "pct": 50.0,
+      "ci_lo": 25.4,
+      "ci_hi": 74.6
+     }
+    }
+   }
+  },
+  "noadv": {
+   "by_season": {
+    "2016-17": {
+     "raw": {
+      "hits": 543,
+      "n": 1087,
+      "pct": 50.0,
+      "ci_lo": 47.0,
+      "ci_hi": 52.9
+     },
+     "home_pick_share": 65.6,
+     "top10": {
+      "hits": 51,
+      "n": 100,
+      "pct": 51.0,
+      "ci_lo": 41.3,
+      "ci_hi": 60.6
+     },
+     "top5": {
+      "hits": 25,
+      "n": 48,
+      "pct": 52.1,
+      "ci_lo": 38.3,
+      "ci_hi": 65.5
+     },
+     "top2": {
+      "hits": 13,
+      "n": 22,
+      "pct": 59.1,
+      "ci_lo": 38.7,
+      "ci_hi": 76.7
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2017-18": {
+     "raw": {
+      "hits": 569,
+      "n": 1103,
+      "pct": 51.6,
+      "ci_lo": 48.6,
+      "ci_hi": 54.5
+     },
+     "home_pick_share": 54.2,
+     "top10": {
+      "hits": 42,
+      "n": 78,
+      "pct": 53.8,
+      "ci_lo": 42.9,
+      "ci_hi": 64.5
+     },
+     "top5": {
+      "hits": 24,
+      "n": 44,
+      "pct": 54.5,
+      "ci_lo": 40.1,
+      "ci_hi": 68.3
+     },
+     "top2": {
+      "hits": 14,
+      "n": 21,
+      "pct": 66.7,
+      "ci_lo": 45.4,
+      "ci_hi": 82.8
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2018-19": {
+     "raw": {
+      "hits": 535,
+      "n": 1102,
+      "pct": 48.5,
+      "ci_lo": 45.6,
+      "ci_hi": 51.5
+     },
+     "home_pick_share": 46.3,
+     "top10": {
+      "hits": 51,
+      "n": 100,
+      "pct": 51.0,
+      "ci_lo": 41.3,
+      "ci_hi": 60.6
+     },
+     "top5": {
+      "hits": 24,
+      "n": 53,
+      "pct": 45.3,
+      "ci_lo": 32.7,
+      "ci_hi": 58.5
+     },
+     "top2": {
+      "hits": 10,
+      "n": 21,
+      "pct": 47.6,
+      "ci_lo": 28.3,
+      "ci_hi": 67.6
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2019-20": {
+     "raw": {
+      "hits": 473,
+      "n": 939,
+      "pct": 50.4,
+      "ci_lo": 47.2,
+      "ci_hi": 53.6
+     },
+     "home_pick_share": 56.7,
+     "top10": {
+      "hits": 46,
+      "n": 89,
+      "pct": 51.7,
+      "ci_lo": 41.5,
+      "ci_hi": 61.8
+     },
+     "top5": {
+      "hits": 20,
+      "n": 44,
+      "pct": 45.5,
+      "ci_lo": 31.7,
+      "ci_hi": 59.9
+     },
+     "top2": {
+      "hits": 5,
+      "n": 18,
+      "pct": 27.8,
+      "ci_lo": 12.5,
+      "ci_hi": 50.9
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2020-21": {
+     "raw": {
+      "hits": 484,
+      "n": 969,
+      "pct": 49.9,
+      "ci_lo": 46.8,
+      "ci_hi": 53.1
+     },
+     "home_pick_share": 40.9,
+     "top10": {
+      "hits": 44,
+      "n": 93,
+      "pct": 47.3,
+      "ci_lo": 37.5,
+      "ci_hi": 57.4
+     },
+     "top5": {
+      "hits": 23,
+      "n": 48,
+      "pct": 47.9,
+      "ci_lo": 34.5,
+      "ci_hi": 61.7
+     },
+     "top2": {
+      "hits": 8,
+      "n": 19,
+      "pct": 42.1,
+      "ci_lo": 23.1,
+      "ci_hi": 63.7
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2021-22": {
+     "raw": {
+      "hits": 550,
+      "n": 1114,
+      "pct": 49.4,
+      "ci_lo": 46.4,
+      "ci_hi": 52.3
+     },
+     "home_pick_share": 56.1,
+     "top10": {
+      "hits": 54,
+      "n": 97,
+      "pct": 55.7,
+      "ci_lo": 45.8,
+      "ci_hi": 65.2
+     },
+     "top5": {
+      "hits": 27,
+      "n": 46,
+      "pct": 58.7,
+      "ci_lo": 44.3,
+      "ci_hi": 71.7
+     },
+     "top2": {
+      "hits": 9,
+      "n": 21,
+      "pct": 42.9,
+      "ci_lo": 24.5,
+      "ci_hi": 63.5
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2022-23": {
+     "raw": {
+      "hits": 608,
+      "n": 1200,
+      "pct": 50.7,
+      "ci_lo": 47.8,
+      "ci_hi": 53.5
+     },
+     "home_pick_share": 49.1,
+     "top10": {
+      "hits": 62,
+      "n": 107,
+      "pct": 57.9,
+      "ci_lo": 48.5,
+      "ci_hi": 66.9
+     },
+     "top5": {
+      "hits": 31,
+      "n": 54,
+      "pct": 57.4,
+      "ci_lo": 44.2,
+      "ci_hi": 69.7
+     },
+     "top2": {
+      "hits": 19,
+      "n": 24,
+      "pct": 79.2,
+      "ci_lo": 59.5,
+      "ci_hi": 90.8
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2023-24": {
+     "raw": {
+      "hits": 604,
+      "n": 1224,
+      "pct": 49.3,
+      "ci_lo": 46.6,
+      "ci_hi": 52.1
+     },
+     "home_pick_share": 48.2,
+     "top10": {
+      "hits": 61,
+      "n": 118,
+      "pct": 51.7,
+      "ci_lo": 42.8,
+      "ci_hi": 60.5
+     },
+     "top5": {
+      "hits": 34,
+      "n": 59,
+      "pct": 57.6,
+      "ci_lo": 44.9,
+      "ci_hi": 69.4
+     },
+     "top2": {
+      "hits": 14,
+      "n": 24,
+      "pct": 58.3,
+      "ci_lo": 38.8,
+      "ci_hi": 75.5
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "2024-25": {
+     "raw": {
+      "hits": 642,
+      "n": 1282,
+      "pct": 50.1,
+      "ci_lo": 47.3,
+      "ci_hi": 52.8
+     },
+     "home_pick_share": 49.8,
+     "top10": {
+      "hits": 57,
+      "n": 117,
+      "pct": 48.7,
+      "ci_lo": 39.8,
+      "ci_hi": 57.7
+     },
+     "top5": {
+      "hits": 29,
+      "n": 59,
+      "pct": 49.2,
+      "ci_lo": 36.8,
+      "ci_hi": 61.6
+     },
+     "top2": {
+      "hits": 13,
+      "n": 23,
+      "pct": 56.5,
+      "ci_lo": 36.8,
+      "ci_hi": 74.4
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     },
+     "prod_value_filtered": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     }
+    },
+    "2025-26": {
+     "raw": {
+      "hits": 677,
+      "n": 1299,
+      "pct": 52.1,
+      "ci_lo": 49.4,
+      "ci_hi": 54.8
+     },
+     "home_pick_share": 47.9,
+     "top10": {
+      "hits": 66,
+      "n": 123,
+      "pct": 53.7,
+      "ci_lo": 44.9,
+      "ci_hi": 62.2
+     },
+     "top5": {
+      "hits": 29,
+      "n": 59,
+      "pct": 49.2,
+      "ci_lo": 36.8,
+      "ci_hi": 61.6
+     },
+     "top2": {
+      "hits": 11,
+      "n": 21,
+      "pct": 52.4,
+      "ci_lo": 32.4,
+      "ci_hi": 71.7
+     },
+     "prod_value": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     },
+     "prod_value_filtered": {
+      "hits": 0,
+      "n": 0,
+      "pct": null,
+      "ci_lo": null,
+      "ci_hi": null
+     }
+    },
+    "ALL": {
+     "raw": {
+      "hits": 5685,
+      "n": 11319,
+      "pct": 50.2,
+      "ci_lo": 49.3,
+      "ci_hi": 51.1
+     },
+     "home_pick_share": 51.4,
+     "top10": {
+      "hits": 534,
+      "n": 1022,
+      "pct": 52.3,
+      "ci_lo": 49.2,
+      "ci_hi": 55.3
+     },
+     "top5": {
+      "hits": 266,
+      "n": 514,
+      "pct": 51.8,
+      "ci_lo": 47.4,
+      "ci_hi": 56.0
+     },
+     "top2": {
+      "hits": 116,
+      "n": 214,
+      "pct": 54.2,
+      "ci_lo": 47.5,
+      "ci_hi": 60.7
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     },
+     "prod_value_filtered": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     }
+    }
+   },
+   "pooled": {
+    "oct_feb": {
+     "2": {
+      "all": {
+       "hits": 352,
+       "n": 717,
+       "pct": 49.1,
+       "ci_lo": 45.4,
+       "ci_hi": 52.7
+      },
+      "home": {
+       "hits": 190,
+       "n": 371,
+       "pct": 51.2,
+       "ci_lo": 46.1,
+       "ci_hi": 56.3
+      },
+      "away": {
+       "hits": 162,
+       "n": 346,
+       "pct": 46.8,
+       "ci_lo": 41.6,
+       "ci_hi": 52.1
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 55,
+       "n": 105,
+       "pct": 52.4,
+       "ci_lo": 42.9,
+       "ci_hi": 61.7
+      },
+      "home": {
+       "hits": 32,
+       "n": 56,
+       "pct": 57.1,
+       "ci_lo": 44.1,
+       "ci_hi": 69.2
+      },
+      "away": {
+       "hits": 23,
+       "n": 49,
+       "pct": 46.9,
+       "ci_lo": 33.7,
+       "ci_hi": 60.6
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 10,
+       "n": 21,
+       "pct": 47.6,
+       "ci_lo": 28.3,
+       "ci_hi": 67.6
+      },
+      "home": {
+       "hits": 7,
+       "n": 12,
+       "pct": 58.3,
+       "ci_lo": 32.0,
+       "ci_hi": 80.7
+      },
+      "away": {
+       "hits": 3,
+       "n": 9,
+       "pct": 33.3,
+       "ci_lo": 12.1,
+       "ci_hi": 64.6
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 1,
+       "n": 2,
+       "pct": 50.0,
+       "ci_lo": 9.5,
+       "ci_hi": 90.5
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 1,
+       "pct": 0.0,
+       "ci_lo": 0.0,
+       "ci_hi": 79.3
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    },
+    "mar_apr": {
+     "2": {
+      "all": {
+       "hits": 119,
+       "n": 237,
+       "pct": 50.2,
+       "ci_lo": 43.9,
+       "ci_hi": 56.5
+      },
+      "home": {
+       "hits": 52,
+       "n": 109,
+       "pct": 47.7,
+       "ci_lo": 38.6,
+       "ci_hi": 57.0
+      },
+      "away": {
+       "hits": 67,
+       "n": 128,
+       "pct": 52.3,
+       "ci_lo": 43.7,
+       "ci_hi": 60.8
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 12,
+       "n": 20,
+       "pct": 60.0,
+       "ci_lo": 38.7,
+       "ci_hi": 78.1
+      },
+      "home": {
+       "hits": 7,
+       "n": 12,
+       "pct": 58.3,
+       "ci_lo": 32.0,
+       "ci_hi": 80.7
+      },
+      "away": {
+       "hits": 5,
+       "n": 8,
+       "pct": 62.5,
+       "ci_lo": 30.6,
+       "ci_hi": 86.3
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 2,
+       "n": 2,
+       "pct": 100.0,
+       "ci_lo": 34.2,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 1,
+       "n": 1,
+       "pct": 100.0,
+       "ci_lo": 20.7,
+       "ci_hi": 100.0
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    },
+    "playoffs": {
+     "2": {
+      "all": {
+       "hits": 32,
+       "n": 68,
+       "pct": 47.1,
+       "ci_lo": 35.7,
+       "ci_hi": 58.8
+      },
+      "home": {
+       "hits": 21,
+       "n": 41,
+       "pct": 51.2,
+       "ci_lo": 36.5,
+       "ci_hi": 65.7
+      },
+      "away": {
+       "hits": 11,
+       "n": 27,
+       "pct": 40.7,
+       "ci_lo": 24.5,
+       "ci_hi": 59.3
+      }
+     },
+     "4": {
+      "all": {
+       "hits": 3,
+       "n": 5,
+       "pct": 60.0,
+       "ci_lo": 23.1,
+       "ci_hi": 88.2
+      },
+      "home": {
+       "hits": 3,
+       "n": 5,
+       "pct": 60.0,
+       "ci_lo": 23.1,
+       "ci_hi": 88.2
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "6": {
+      "all": {
+       "hits": 2,
+       "n": 2,
+       "pct": 100.0,
+       "ci_lo": 34.2,
+       "ci_hi": 100.0
+      },
+      "home": {
+       "hits": 2,
+       "n": 2,
+       "pct": 100.0,
+       "ci_lo": 34.2,
+       "ci_hi": 100.0
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "8": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "10": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     },
+     "12": {
+      "all": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "home": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      },
+      "away": {
+       "hits": 0,
+       "n": 0,
+       "pct": null,
+       "ci_lo": null,
+       "ci_hi": null
+      }
+     }
+    }
+   },
+   "seeds": {
+    "42": {
+     "raw": {
+      "hits": 5685,
+      "n": 11319,
+      "pct": 50.2,
+      "ci_lo": 49.3,
+      "ci_hi": 51.1
+     },
+     "top5": {
+      "hits": 266,
+      "n": 514,
+      "pct": 51.8,
+      "ci_lo": 47.4,
+      "ci_hi": 56.0
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     }
+    },
+    "7": {
+     "raw": {
+      "hits": 5679,
+      "n": 11319,
+      "pct": 50.2,
+      "ci_lo": 49.3,
+      "ci_hi": 51.1
+     },
+     "top5": {
+      "hits": 279,
+      "n": 529,
+      "pct": 52.7,
+      "ci_lo": 48.5,
+      "ci_hi": 57.0
+     },
+     "prod_value": {
+      "hits": 1,
+      "n": 1,
+      "pct": 100.0,
+      "ci_lo": 20.7,
+      "ci_hi": 100.0
+     }
+    },
+    "2026": {
+     "raw": {
+      "hits": 5609,
+      "n": 11319,
+      "pct": 49.6,
+      "ci_lo": 48.6,
+      "ci_hi": 50.5
+     },
+     "top5": {
+      "hits": 263,
+      "n": 537,
+      "pct": 49.0,
+      "ci_lo": 44.8,
+      "ci_hi": 53.2
+     },
+     "prod_value": {
+      "hits": 3,
+      "n": 7,
+      "pct": 42.9,
+      "ci_lo": 15.8,
+      "ci_hi": 75.0
+     }
+    }
+   }
+  }
+ }
+}
