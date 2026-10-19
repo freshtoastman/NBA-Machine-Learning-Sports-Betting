@@ -21,6 +21,17 @@ case "$MODE" in
     morning|afternoon) ;;
     *) echo "unknown mode: $MODE (morning|afternoon)" >&2; exit 2 ;;
 esac
+
+# The 2026-10-19 06:00 run took 2 h 54 min for ~2 min of work: the laptop was asleep on
+# battery, launchd started the job inside a 12 s dark wake, and the process was frozen
+# between dark wakes (collect_referee_data 06:06 -> 08:19, Create_Games 2426 s vs 67 s).
+# Re-exec under caffeinate so the run holds a no-idle-sleep assertion from its first
+# step to the final OK line (-i idle, -m disk). It cannot wake a sleeping Mac (that
+# needs mains power or a pmset wake schedule), only keep an awake one awake.
+if [ -z "${NBA_ML_CAFFEINATED:-}" ] && [ -x /usr/bin/caffeinate ] && [ -f "$0" ]; then
+    export NBA_ML_CAFFEINATED=1
+    exec /usr/bin/caffeinate -i -m /bin/bash "$0" "$@"
+fi
 # bash 3.2 (macOS /bin/bash) + `set -u`: expanding an EMPTY array with "${ARR[@]}"
 # is a fatal "unbound variable" (fixed only in bash 4.4). Keep the flag as a plain
 # string and expand it unquoted (it holds no spaces), so morning mode passes nothing.
@@ -100,8 +111,10 @@ python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: up
 
 # 2b. Collect referee data for recent days (builds historical ATS profiles). Morning only.
 if [ "$MODE" = "morning" ]; then
+    t_ref=$(date +%s)
     echo "--- collect_referee_data ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
     python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
+    echo "--- collect_referee_data done in $(( $(date +%s) - t_ref )) s ---" >> "$LOG_FILE"
 fi
 
 # 3. Derive playoff series state from updated odds (idempotent).

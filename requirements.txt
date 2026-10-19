@@ -1,6 +1,6 @@
 colorama==0.4.6
 pandas==2.1.1
-sbrscrape==0.0.10
+sbrscrape==0.0.10  # unused since 2026-10-19 (SBR 403s its UA); src/Utils/sbr_scoreboard.py replaces it
 tensorflow==2.14.0
 #tensorflow-metal==1.1.0
 xgboost==2.0.0

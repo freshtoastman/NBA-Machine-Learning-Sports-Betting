@@ -47,7 +47,7 @@ class DailyPipelineShellTest(unittest.TestCase):
             harness = harness.replace('LOG_DIR="$HOME/Library/Logs/nba-ml"', f'LOG_DIR="{tmp}"')
             proc = subprocess.run(
                 [BASH, "-c", harness, "daily_pipeline.sh", mode],
-                capture_output=True, text=True, env={**os.environ, "HOME": tmp},
+                capture_output=True, text=True, env={**os.environ, "HOME": tmp, "NBA_ML_CAFFEINATED": "1"},
             )
             log = open(os.path.join(tmp, "test.log")).read() if os.path.exists(os.path.join(tmp, "test.log")) else ""
             monthly = [f for f in os.listdir(tmp) if f.startswith("pipeline-")]
@@ -76,7 +76,7 @@ class DailyPipelineShellTest(unittest.TestCase):
                 + 'echo "$UNSET_VARIABLE_FOR_TEST"\n'   # set -u abort outside run_step
             )
             proc = subprocess.run([BASH, "-c", harness, "daily_pipeline.sh", "morning"],
-                                  capture_output=True, text=True, env={**os.environ, "HOME": tmp})
+                                  capture_output=True, text=True, env={**os.environ, "HOME": tmp, "NBA_ML_CAFFEINATED": "1"})
             log = open(os.path.join(tmp, "test.log")).read()
         self.assertNotEqual(proc.returncode, 0, "bash 3.2 EXIT trap must not turn a set -u abort into exit 0")
         self.assertIn("FAILED (exit", log)
@@ -92,12 +92,26 @@ class DailyPipelineShellTest(unittest.TestCase):
                 + 'run_step "Boom" false\n'
             )
             proc = subprocess.run([BASH, "-c", harness, "daily_pipeline.sh", "morning"],
-                                  capture_output=True, text=True, env={**os.environ, "HOME": tmp})
+                                  capture_output=True, text=True, env={**os.environ, "HOME": tmp, "NBA_ML_CAFFEINATED": "1"})
             log = open(os.path.join(tmp, "test.log")).read()
         self.assertEqual(proc.returncode, 1)
         self.assertIn("FAILED at Boom", log)
         self.assertNotIn("unexpected abort", log)
         self.assertEqual(log.count("FAILED"), 1)
+
+    def test_reexecs_under_caffeinate_once(self):
+        # 2026-10-19: the run was frozen between dark wakes for 2 h 54 min. The script
+        # must hold a no-idle-sleep assertion for its whole life, and must not loop.
+        src = open(SCRIPT).read()
+        self.assertIn('exec /usr/bin/caffeinate -i -m /bin/bash "$0" "$@"', src)
+        self.assertIn('[ -z "${NBA_ML_CAFFEINATED:-}" ]', src)
+        self.assertIn("export NBA_ML_CAFFEINATED=1", src)
+        guard = src.index('NBA_ML_CAFFEINATED:-'); first_step = src.index('run_step "Get_Data"')
+        self.assertLess(guard, first_step, "caffeinate guard must precede the first step")
+
+    def test_referee_step_logs_elapsed_seconds(self):
+        src = open(SCRIPT).read()
+        self.assertIn("collect_referee_data done in", src)
 
     def test_unknown_mode_exits_2(self):
         proc = subprocess.run([BASH, SCRIPT, "evening"], capture_output=True, text=True)

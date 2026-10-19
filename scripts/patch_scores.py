@@ -1,6 +1,6 @@
 """Patch final scores for recent dates where Points=0.
 
-1) sbrscrape Scoreboard when status is Final (legacy).
+1) SBR scoreboard (src/Utils/sbr_scoreboard) when status is Final (legacy).
 2) NBA CDN boxscore (stats.nba.com GameHeader game ids + cdn.nba.com boxscore JSON)
    when games are Final but SBR still shows pregame / 0-0.
 
@@ -11,8 +11,8 @@ import time
 from datetime import date, timedelta
 
 import requests
-from sbrscrape import Scoreboard
 
+from src.Utils.sbr_scoreboard import Scoreboard  # browser UA + timeout; sbrscrape gets 403
 from src.Utils.tools import current_nba_season, data_headers
 
 ODDS_DB = "Data/OddsData.sqlite"

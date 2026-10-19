@@ -1,4 +1,4 @@
-from sbrscrape import Scoreboard
+from src.Utils.sbr_scoreboard import Scoreboard  # browser UA + timeout; sbrscrape gets 403
 
 
 class SbrOddsProvider:

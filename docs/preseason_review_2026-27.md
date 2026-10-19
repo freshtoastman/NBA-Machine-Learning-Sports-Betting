@@ -17,6 +17,7 @@
 - [x] **P0 賽前預測凍結**（10/10 完成）：`src/Utils/PregameFreeze.py` 在 `export_predictions` 內替每場比賽維護 `pregame` 區塊——開賽前每次輸出都刷新（凍結的是開賽前最後一次輸出，和 git 稽核的定義一致），第一次看到比分（即時或終場）就鎖定，之後顯示欄位一律改自凍結區塊、結果以凍結盤口結算；`src/Utils/FrozenRecord.py` 只評分鎖定的預測 → `web/data/frozen_record.json`，首頁「🔒 賽前凍結紀錄」區塊與 `/api/ats-daily-log` 只讀這份
 - [x] **P0 開幕夜演練**（10/13 完成，見當日紀錄）：在專案副本上模擬 10/20、10/22、10/24 三次排程（假賠率列、假 30 隊數據表、全程斷網），確認換季時 dataset 零列不出錯、首頁冠軍橫幅與季前預覽自動消失、只有盤口的比賽正常輸出並在開賽後鎖定、30 隊都有數據後模型照常產生預測與凍結快照。演練抓到並修掉：賽季卡片標籤錯標、只有盤口的比賽顯示「模型勝 X 0.0%」、日摘要把無預測場次算成客勝／小分、凍結紀錄把無預測場次算成「已結算」；同時補上 2026 NBA 盃決賽日（12/11）並把 `update_odds.py --db-only` 加進每日 pipeline。決定：開季頭 3–4 天（30 隊都打過之前）接受沒有模型預測，前端明確標示「模型尚未啟用」，不用上季末數據充數
   - 仍待辦（4 月前）：`export_predictions.py` 季後賽 bracket 區段 7 處寫死 `'2025-26'` 表名（約 1525–1870 行）要改成依日期取賽季
+- [x] **P0 盤口來源 SBR 回 403（10/19 發現並修復，開季前一天）**：sportsbookreview.com 對 `python-requests` 的預設 User-Agent 回 403，`sbrscrape` 沒帶標頭、沒 timeout、把 403 吞成「沒有 games 屬性」——`Get_Odds_Data`／`update_odds`／`patch_scores`／`export_predictions` 備援／`SbrOddsProvider` 五條路徑在 10/20 06:00 都會回「沒有比賽」。新增 `src/Utils/sbr_scoreboard.py`（瀏覽器 UA、30 秒 timeout、`buildId` 快取、`.games` 永遠存在）取代 `sbrscrape`，五個呼叫點全部改接；用臨時 DB 以 `today=2026-10-20` 演練 `Get_Odds_Data`：建出 `2026-27` 表、3 場開幕戰與 FanDuel 盤口都進表。測試 `Tests/test_sbr_scoreboard.py`
 - [ ] **P1 首頁儀表板改顯示實戰凍結紀錄＋無洩漏回測（附信賴區間）** — 10/01 先上線過渡版：`web/data/season_review.json` 以提示區塊顯示在舊卡片上方；完整改版等 P0 資料修正後
 - [ ] **P1 季後賽訊號在乾淨多季資料上重估**，未達標者降為觀察 — 10/01 初查（`scripts/audit_playoff_base_rates.py`）：GOLD 引用的勝率多數無法重現（R2 G2 主場 87.5% → 66.0%；R2 G5 83.7% → 52.4%；東西決 G1 83.3% → 48.0%）；要用 `PlayoffATSStrategy` 的實際訊號函式逐一重算，4 月前完成
 - [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–18 已回補 ADV 至 2016-17（**10 季全部完整**，`AdvancedTeamData` 共 2,403 張表），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單；**10/18 第二次執行用 10 季全帶 ADV 的 dataset 重跑 10 季 walk-forward：prod 50.3%／logloss 50.7%／noadv 50.2%，沒有任何格子的信賴區間下限過 52.4%，候選 1 正式結案**（`docs/walk_forward_adv10_2016-26.json`）
@@ -566,3 +567,34 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外；今天的重跑 50.2–50.7% 落在同一個區間）。季前能離線驗證的最後一項今天做完：10 季訓練資料全帶 ADV 也只有丟銅板。剩下的候選（盤口移動、傷兵名單）都要等 10/20 開季後才有資料。
 
 **下一步（10/19 起）**：①10/19 06:00 的 log：預期 ~2 分鐘，`collect_referee_data` 的 3×500 是季前常態；②名單截止 10/19 17:00 ET＝台北 10/20 05:00，**10/20 06:00 後的執行才看得到 MIL／MEM／LAL／DAL 的最終名單**，同時確認 Dybantsa（10/21）、Wagner（10/21）、Harris（10/20）、Stewart（10/21）開幕戰狀態；③使用者載入 afternoon plist；④開季第一週 log 檢查（10/21 06:00：`odds_2026-27` 是否建表、`update_odds --db-only` 是否更新到列、`odds_history` 是否開始累積快照、stub 是否標「模型尚未啟用」、每步驟秒數是否合理）；⑤開季後每隔幾週重跑 walk-forward 時順便看 `logloss` 配方的早停樹數——樹數在每一季都長起來，才值得再看命中率。
+
+### 2026-10-19（22:04）— 開季前一天：盤口來源 SBR 回 403（P0，已修）；06:00 排程因筆電睡眠拖成 2 小時 54 分（加 caffeinate）；季前預覽補 10/18–19 傷兵（9 隊）
+
+**排程檢查：10/19 06:06 morning 模式 OK 但耗時 2 小時 54 分（06:06:24 → 09:00:36），正常是 2 分鐘。** 每步驟耗時把問題定位得很清楚：`collect_referee_data` 06:06:27 → 08:19:55（**2 小時 13 分**；三天的 scoreboardv2 各「Read timed out (60 s)」、第三天 DNS 解析失敗）、`Create_Games` **2,426 秒**（10/18 是 67 秒），其餘步驟 0–8 秒。`pmset -g log` 給了原因：筆電用電池、06:00 前後只有 2–19 秒的 DarkWake（`rtc/Maintenance`、`SleepService`），**launchd 在 06:06:24 那次 12 秒的 DarkWake 裡把工作起起來，之後行程在每次 DarkWake 之間被凍結**，每 15–20 分鐘醒 2–19 秒跑一點，直到 09:00 後幾次較長的 DarkWake（50／127／128 秒）把 `Create_Games` 跑完；09:22 使用者才開蓋。和 9/26「睡著就延後到醒來」是同一件事的另一種樣子：這次是醒了一下又睡。**修法**：`daily_pipeline.sh` 開頭用 `exec /usr/bin/caffeinate -i -m /bin/bash "$0" "$@"` 重新執行自己（`NBA_ML_CAFFEINATED` 防止遞迴、`-f "$0"` 讓 shell 測試的 harness 不會 exec），整個執行期間持有「不進 idle sleep」的 assertion；`collect_referee_data` 也補上耗時行（原本不在 `run_step` 裡，log 看不到它花了多久）。**限制**：caffeinate 只能讓醒著的機器不睡，叫不醒睡著的機器——開季第一週 06:00（台北）請讓筆電接電源或開蓋，`pmset repeat wake` 需要 sudo、不在排程能做的範圍。shell 測試加兩條（caffeinate 守衛在第一步之前、裁判步驟有耗時行）。afternoon plist 仍未載入（`launchctl list` 只有 `com.lchao.nba-ml.daily`）。
+
+**P0：盤口來源壞了，開季前一天才發現。** 例行「開季前檢查明天的盤口」：`sbrscrape.Scoreboard(date="2026-10-20")` 回 0 場，連 2026-06-10（總冠軍賽）也回 `AttributeError: 'Scoreboard' object has no attribute 'games'`。原因：**sportsbookreview.com 對 `python-requests/2.x` 的 User-Agent 回 403**（curl 帶瀏覽器 UA 可拿到 287 KB 的頁面，裡面就有 10/20 的三場）；`sbrscrape` 0.0.12 不帶任何標頭、沒 timeout，403 之後 `re.findall` 找不到 `__NEXT_DATA__` → `IndexError` → `return []` 而沒設 `self.games`。什麼時候壞的不可考（最後一次成功抓盤口是 6 月總冠軍賽；10/13 演練用的是假賠率列；之後每天 `Get_Odds_Data` 都是「No current season」沒碰網路），**若今天沒查，10/20 06:00 五條路徑都會安靜地回「沒有比賽」**：`Get_Odds_Data`（建表）、`update_odds --db-only`（刷新盤口）、`patch_scores`（補比分）、`export_predictions` 的 SBR 備援、`SbrOddsProvider`（Flask／CLI）。
+
+修法：新增 `src/Utils/sbr_scoreboard.py`，介面與 `sbrscrape.Scoreboard` 相同（`Scoreboard(sport, date).games`，同一組鍵：`away_spread['fanduel']`／`total`／`home_ml`／`away_ml`／`home_score`／`status`…），差異是瀏覽器 UA＋`Referer`、每個請求 30 秒 timeout、`buildId` 一個行程只抓一次（回補多天時少一半請求）、`buildId` 過期（`_next/data` 回非 200）自動重抓一次、`.games` 永遠是 list、`.error` 存失敗原因。五個呼叫點改接（`Get_Odds_Data` 的 import 移到 `sys.path` 之後），`requirements.txt` 的 `sbrscrape` 留著但註明已不使用。`Tests/test_sbr_scoreboard.py` 六條：UA 不是 python-requests、403 → `games == []` 不炸、開幕戰 payload 解析成 `Get_Odds_Data.append_game_rows` 讀的鍵、`buildId` 跨日期快取與過期重抓、接受 `date` 物件、fixture 可序列化。**109 個測試全過**（10/18 是 97＋今天 12）。
+
+**用明天 06:00 的路徑實際演練**（臨時 DB、`Get_Odds_Data.main(today=2026-10-20)`，6.9 秒）：建出 `2026-27` 表、3 列、`Points=0`、`Days_Rest` 7／7，同日重跑是 no-op；`patch_scores` 走的 `Scoreboard(date="2026-06-10")` 回 `Final 106-107`。開幕戰 FanDuel 盤口（10/19 22:00 台北＝10:00 ET，`Spread` 欄＝客隊讓分）：
+
+| 10/20（ET） | 開球 | 讓分 | 大小分 | 獨贏（主／客） |
+|---|---|---|---|---|
+| BOS @ DET | 15:00 | DET −1.5 | 221.5 | −108／−108 |
+| PHI @ NYK | 19:00 | NYK −4.5 | 231.5 | −184／+154 |
+| OKC @ SAS | 21:30 | **SAS −2.5**（衛冕軍客場受讓） | 231.5 | −130／+110 |
+
+這三條是 `odds_history` 的第一批快照會拿到的「開盤」參考；明天 06:00 的表會寫入當時的線，之後 `update_odds --db-only` 每次執行都存快照，`spread_first/last/move` 才開始有值。
+
+**季前預覽補 10/18–19 傷兵與名單（Hoops Rumors 10/18 16:17–22:03 ET、10/19 06:50–09:00 ET，9 隊 `injury` 欄）**：
+- **SAC**：Ben Simmons 10/18 練習右阿基里斯腱斷裂，將手術、幾乎確定整季報銷（底薪改全額 $3.5M）；非先發。
+- **GSW**：Curry 10/18 公開練習右腳踝扭傷提前離場，Kerr 稱「沒事」、腳踝不是膝蓋，但未給時程、10/21 開幕戰狀態未定——**核心層級，10/20 再看**；Kerr 同日點名 Butler／Moody／Porziņģis 都不可用，Bassey 膝腱炎日日觀察。
+- **DAL**：Aldama（3 月右膝關節鏡）無時程，May 10/18 稱 10/21 對 HOU「還不知道」；第 15 人 Powell／Cissé 仍二選一；新秀 De Larrea 可能進輪替。
+- **ORL**：Wagner 10/18 只做輕量訓練、仍無時程；Black 再度全場練習；Penda「非常酸」。**WAS**：Keefe 10/18 改稱 Dybantsa「day-to-day」。**DEN**：Spencer Jones 腿後肌（MRI）自稱趕得上 10/22。**MIA**（原空白）：Adebayo 鼠蹊、Larsson 生病預計可打 10/21，Dru Smith 小腿較不確定。**PHX**（原空白）：Kennard 膝腱拉傷開幕戰未明、Mark Williams 肩手術康復中、Reath 預計轉雙向。**MIL**：10/17 已裁 Nance／Broome／Stephens／Garrett 仍 16 人、再砍 1 人（LeVert 最危險），Stein 10/19 稱想把 Nance 回簽雙向。
+- 名單截止 10/19 16:00 CT＝台北 10/20 05:00：DAL／HOU／LAL／MIL 各 16 人、MEM 17 人，截止前的最終動作今天美東上午還沒出來，**明天的執行補**。沒採用：Cason Wallace 5 年 $139M、Ighodaro 3 年 $29M 延長（不影響出賽）。
+
+重建方式同前（`preseason_summary_from_json.py` → `build_preseason_preview.py`），逐欄位比對：只有 `generated`（10/18 → 10/19）與 9 隊 `offseason.injury` 不同。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天的工作全是讓開季資料「進得來」：盤口來源若沒修，開季後唯一還能驗證的候選（盤口移動、`odds_history`）根本不會有資料。
+
+**下一步（10/20 起）**：①**10/20 06:00 的 log**：`Get_Odds_Data` 應印「Getting odds data: 2026-10-20」並建 `2026-27` 表 3 列（不是「No current season」）；`update_odds --db-only` 應更新到 3 列、`odds_history` 出現 3 筆快照；`Export_JSON` 的 2026-10-20 應輸出 3 場 stub 並標「模型尚未啟用」；總耗時應回到 ~2 分鐘（若又是幾十分鐘，先看 `pmset -g log` 有沒有 DarkWake）；②把 10/19 17:00 ET 的最終名單（LAL／MEM／MIL／DAL／HOU）與 Curry／Wagner／Harris／Dybantsa／Stewart／Aldama 的開幕戰狀態補進預覽；③使用者：06:00 讓筆電接電源或開蓋、載入 afternoon plist；④10/21 06:00 第一次有比分：`Patch_Scores` 走新模組、`frozen_record.json` 應出現 3 場已結算（只有盤口、無模型預測）。

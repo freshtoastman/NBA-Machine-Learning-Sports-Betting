@@ -1,7 +1,7 @@
 {
  "season": "2026-27",
  "prev_season": "2025-26",
- "generated": "2026-10-18",
+ "generated": "2026-10-19",
  "sources": [
   "Local: Data/OddsData.sqlite '2025-26' (closing spreads), AdvancedTeamData.sqlite 2026-05-28",
   "NBA.com offseason deals tracker (2026)",
@@ -353,7 +353,7 @@
     "grade_cbs": "C",
     "adds": "Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May",
     "departs": "Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III",
-    "injury": "Kyrie Irving ACL 康復 19 個月，訓練營可上（10/14 一場熱身賽輪休）；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）；Marcus Sasser 左內收肌缺前三場熱身賽、Moussa Cissé 左腳踝（預防性）。名單 16 人保障，10/17 裁 Lundy／Poulakidas 後仍要再砍 1 人：Dwight Powell 最合理（部分保障 $1M，週二後升到 $1.5M），Cissé／Caleb Martin／Sasser 也在交易或釋出選項內——都非輪替核心",
+    "injury": "Kyrie Irving ACL 康復 19 個月，訓練營可上（10/14 一場熱身賽輪休）；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）；Marcus Sasser 左內收肌缺前三場熱身賽、Moussa Cissé 左腳踝（預防性）。**Santi Aldama（3 月右膝關節鏡）無回歸時程，Dusty May 10/18 稱 10/21 開幕戰對 HOU「還不知道」——預定主要替補長人，缺陣動到第二陣容。** 新秀 Sergio De Larrea（第 25 順位，季前 4 場 9.5 分 5.0 助攻、三分 8/12）可能進開幕戰輪替；Morez Johnson Jr. 下肢傷只打 2 場季前賽、仍預計在輪替。名單 16 人保障，10/17 裁 Lundy／Poulakidas 後仍要再砍 1 人：10/18 止第 15 人仍是 Dwight Powell（部分保障 $1M，週二後升到 $1.5M）對 Cissé 二選一；Stein 10/19 稱 Lundy 可能回來簽空著的雙向——都非輪替核心",
     "new_coach": "Dusty May（自 Michigan 轉任）",
     "roster_churn": "medium"
    },
@@ -397,7 +397,7 @@
     "grade_cbs": null,
     "adds": "DeMar DeRozan（1 年）、Marvin Bagley III；續約 Tyus Jones",
     "departs": "Peyton Watson、Tim Hardaway Jr.、Jonas Valanciunas",
-    "injury": "Julian Strawther 10/14 熱身賽對 LAC 左膝受傷，10/16 MRI 確認左膝扭傷、六週後再評估（最早 11 月底回歸）——側翼替補少一人，10/22 開幕戰對 OKC 起替補輪替縮短",
+    "injury": "Julian Strawther 10/14 熱身賽對 LAC 左膝受傷，10/16 MRI 確認左膝扭傷、六週後再評估（最早 11 月底回歸）——側翼替補少一人，10/22 開幕戰對 OKC 起替補輪替縮短；Spencer Jones 訓練營腿後肌拉傷（MRI 確認），10/18 已參加部分對抗、自稱趕得上 10/22 開幕戰（末端輪替）",
     "new_coach": null,
     "roster_churn": "low"
    },
@@ -485,7 +485,7 @@
     "grade_cbs": "C-",
     "adds": "Al Horford、Porziņģis、De'Anthony Melton 續約；Georges Niang；#? Yaxel Lendeborg；Curry 2 年 $116M 延長合約（9/25，至 2028-29，末年球員選項）",
     "departs": "Quinten Post",
-    "injury": "Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上（Kerr 10/17 稱「很放心」）、40 歲 Horford 10/17 傳出賽時間受限；Kerr 10/16 提醒球迷買票先看是否背靠背——Curry 等老將會輪休",
+    "injury": "Jimmy Butler 右膝 ACL，確定趕不上開幕戰；9/29 自稱復健進度超前、測試數據「off the charts」、已可灌籃，但仍只能 3/4 速度跑動、做輕量場上訓練，隊方目標 2027 年初（1–2 月）啟用、不讓他跳過步驟。Kristaps Porziņģis 因未公開的「健康問題」無限期缺陣：9/28 公布、10/14 球團聲明再次確認「無限期」且不給時程，已缺席整個訓練營與前五場熱身賽（10/13 返回訓練館與 GM Dunleavy、醫療主管 Celebrini 會面）；開季中鋒改由 Draymond Green 頂上（Kerr 10/17 稱「很放心」）、40 歲 Horford 10/17 傳出賽時間受限；Kerr 10/16 提醒球迷買票先看是否背靠背——Curry 等老將會輪休。**10/18 公開練習 Stephen Curry 右腳踝扭傷提前離場：Kerr 稱「沒事」、是腳踝不是上季的膝蓋，但球團未給嚴重度與時程，10/21 開幕戰狀態未定（核心層級，10/20 再看）**；Kerr 同日點名 Butler、Moses Moody、Porziņģis 都不可用；Charles Bassey 膝腱炎日日觀察（Quinten Post 離隊後長人本就薄）",
     "new_coach": null,
     "roster_churn": "medium"
    },
@@ -749,7 +749,7 @@
     "grade_cbs": "B-",
     "adds": "Giannis Antetokounmpo（交易，6/22）、Klay Thompson、Bobby Portis、Tim Hardaway Jr.、Nick Richards；#13 Nate Ament；Wiggins 續約",
     "departs": "Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis（全部給 MIL）、Norman Powell",
-    "injury": "",
+    "injury": "Bam Adebayo 鼠蹊緊繃、Pelle Larsson 生病：10/18 報導都預計能打 10/21 開幕戰對 MIN；Dru Smith 右小腿拉傷，10/18 才第一天恢復跳躍類訓練、開幕戰較不確定（替補後衛）",
     "new_coach": null,
     "roster_churn": "high"
    },
@@ -793,7 +793,7 @@
     "grade_cbs": "C-",
     "adds": "Tyler Herro、Jaime Jaquez Jr.、Kel'el Ware、Jakučionis、Caris LeVert；Gary Trent Jr. 4 年續約；新教練 Taylor Jenkins",
     "departs": "Giannis Antetokounmpo、Bobby Portis、Gary Harris、Taurean Prince",
-    "injury": "無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 晚（美東）止仍未動——16 人保障要砍 1 人：Hoops Rumors 判斷 Caris LeVert 比 Jericho Sims 更危險（Sims 較可能上場），LeVert 季前 3 場 1/7 出手 3 分 7 失誤；Knecht 換 Sims 的框架（10/15）仍無進展、也考慮交易 Kevin Porter Jr.；第三個雙向名額自 7 月起空著，預期 10/19 前從讓渡名單撈人。LeVert 或 Porter 被送走會動到輪替，10/20 前再確認",
+    "injury": "無傷兵。名單 17→15（10/19 17:00 ET 前）：10/17 裁 Pete Nance（非保障）、Johni Broome、Jake Stephens（Exhibit 10）與 Marcus Garrett 後仍是 16 人保障、要再砍 1 人：Hoops Rumors 判斷 Caris LeVert 比 Jericho Sims 更危險（Sims 較可能上場），LeVert 季前 3 場 1/7 出手 3 分 7 失誤；Knecht 換 Sims 的框架（10/15）仍無進展、也考慮交易 Kevin Porter Jr.；第三個雙向名額自 7 月起空著，Stein 10/19 稱球團希望 Nance 清過讓渡後回簽雙向（怕被別隊撈走）。LeVert 或 Porter 被送走會動到輪替，10/20 前再確認；Jaime Jaquez Jr. 新秀延長合約 10/19 截止",
     "new_coach": "Taylor Jenkins（接替 Doc Rivers）",
     "roster_churn": "high"
    },
@@ -1013,7 +1013,7 @@
     "grade_cbs": "C-",
     "adds": "Nikola Vučević（底薪回歸）；續約 Isaac、Jevon Carter；新教練 Sean Sweeney",
     "departs": "Moritz Wagner",
-    "injury": "10/16 季前最後一戰對 MIA 三人退場：Franz Wagner 右肩酸痛（第三節退場），10/17 球團仍在評估、10/21 主場開幕戰對 ATL 狀態未知；Noah Penda 10/17 確診右腿後肌部分撕裂、「缺陣相當時間」、無時程（末端輪替）；Jase Richardson 下背酸痛日日觀察。Anthony Black（右腳踝）10/16 已全場練習、Jonathan Isaac（左膝）10/16 輪休但開幕戰有望。Wagner 屬核心層級，10/20 前再確認",
+    "injury": "10/16 季前最後一戰對 MIA 三人退場：Franz Wagner 右肩酸痛（第三節退場），10/17 球團仍在評估、10/18 練習只做「輕量訓練」、仍無時程，10/21 主場開幕戰對 ATL 狀態未知；Noah Penda 10/17 確診右腿後肌部分撕裂（與訓練營初期拉傷的位置不同）、10/18 自稱「非常酸」、對回歸時程「沒概念」（末端輪替）；Jase Richardson 下背酸痛日日觀察。Anthony Black（右腳踝）10/18 再度全場練習、持續加量，Jonathan Isaac（左膝）10/16 輪休但開幕戰有望。Wagner 屬核心層級，10/20 前再確認；Stein 10/19：Black 新秀延長合約大概率不簽、等受限自由球員",
     "new_coach": "Sean Sweeney",
     "roster_churn": "low"
    },
@@ -1101,7 +1101,7 @@
     "grade_cbs": null,
     "adds": "Miles Bridges（交易，付出 2033 無保護首輪）、Luke Kennard、Collin Gillespie 續約、Mark Williams 續約；Dillon Brooks 3 年延長",
     "departs": "Grayson Allen、Royce O'Neale",
-    "injury": "",
+    "injury": "Luke Kennard 膝腱拉傷，Ott 10/16 稱「狀況不錯」、季前不勉強上場，開幕戰狀態未明（替補射手）；Mark Williams 肩膀手術康復中，Oso Ighodaro（10/18 延長 3 年 $29M）預計扛主要前場。名單：Duop Reath 預計轉雙向，需裁一名雙向（CJ Huntley 最可能）",
     "new_coach": null,
     "roster_churn": "medium"
    },
@@ -1189,7 +1189,7 @@
     "grade_cbs": null,
     "adds": "Ben Simmons（1 年）、#7 Darius Acuff Jr.；續約 Achiuwa",
     "departs": "DeMar DeRozan（DEN）、Devin Carter",
-    "injury": "Domantas Sabonis 左膝半月板部分撕裂，預計開季可上",
+    "injury": "Domantas Sabonis 左膝半月板部分撕裂，預計開季可上。**Ben Simmons 10/18 練習右阿基里斯腱斷裂，將手術、幾乎確定整季報銷**（底薪、原本進開幕名單才部分保障 $1M，因傷改全額 $3.5M）——替補控球／前場少一人，非先發",
     "new_coach": null,
     "roster_churn": "low"
    },
@@ -1365,7 +1365,7 @@
     "grade_cbs": "C-",
     "adds": "#1 AJ Dybantsa、Deandre Ayton（交易）、Khris Middleton、Tre Mann；Trae Young 4 年續約",
     "departs": "D'Angelo Russell、Jaden Hardy、Cam Whitmore",
-    "injury": "Trae Young 右腿 MCL / 股四頭肌已痊癒；Anthony Davis 手傷已可訓練。狀元 AJ Dybantsa 10/16 季前最後一戰對 NOP 第二節左腳踝翻船退場（15 分鐘 12 分），Keefe 稱「輕微扭傷」但待進一步評估，10/17 ESPN 報導 10/21 主場開幕戰對 MIL 出賽成疑——他是預定先發小前鋒（排在 Coulibaly 之前），缺陣會動到先發",
+    "injury": "Trae Young 右腿 MCL / 股四頭肌已痊癒；Anthony Davis 手傷已可訓練。狀元 AJ Dybantsa 10/16 季前最後一戰對 NOP 第二節左腳踝翻船退場（15 分鐘 12 分），Keefe 稱「輕微扭傷」但待進一步評估，10/17 ESPN 報導 10/21 主場開幕戰對 MIL 出賽成疑；10/18 Keefe 改口「day-to-day」、開幕戰「一天一天看」——他是預定先發小前鋒（排在 Coulibaly 之前），缺陣會動到先發",
     "new_coach": null,
     "roster_churn": "high"
    },

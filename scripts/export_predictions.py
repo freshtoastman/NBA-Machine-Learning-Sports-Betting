@@ -240,7 +240,7 @@ def export_date(target_date: date) -> dict | None:
         # Fallback: SBR scraper (covers previous-day late games not on today's NBA board)
         try:
             from datetime import timedelta as _td
-            from sbrscrape import Scoreboard as _SBR
+            from src.Utils.sbr_scoreboard import Scoreboard as _SBR
             for _sbr_date in [target_date, target_date - _td(days=1)]:
                 try:
                     _sb = _SBR(date=_sbr_date)

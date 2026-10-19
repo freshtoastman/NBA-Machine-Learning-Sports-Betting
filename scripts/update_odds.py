@@ -81,7 +81,7 @@ def _log_history_snapshot(
 def fetch_sbr_odds_for_date(target_date: date) -> list[dict]:
     """Fetch SBR scoreboard for a given date, return list of game dicts."""
     try:
-        from sbrscrape import Scoreboard
+        from src.Utils.sbr_scoreboard import Scoreboard  # browser UA + timeout; sbrscrape gets 403
         sb = Scoreboard(date=target_date)
         return sb.games if hasattr(sb, "games") else []
     except Exception as e:

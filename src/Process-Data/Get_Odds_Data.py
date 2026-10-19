@@ -9,10 +9,12 @@ from pathlib import Path
 
 import pandas as pd
 import toml
-from sbrscrape import Scoreboard
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(1, os.fspath(BASE_DIR))
+
+# Not sbrscrape: SBR answers 403 to its python user agent since 2026-10 (see module doc).
+from src.Utils.sbr_scoreboard import Scoreboard  # noqa: E402
 
 CONFIG_PATH = BASE_DIR / "config.toml"
 DB_PATH = BASE_DIR / "Data" / "OddsData.sqlite"
