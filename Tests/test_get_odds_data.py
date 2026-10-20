@@ -175,3 +175,42 @@ class TestGetOddsData(unittest.TestCase):
                     )
                 df = pd.read_sql_query('SELECT * FROM "2025-26"', con)
         self.assertEqual(len(df.index), 2)
+
+
+class OpeningSnapshotTests(unittest.TestCase):
+    """The first line Get_Odds_Data sees for a game is its opening odds_history
+    snapshot; update_odds later appends closes, so spread_first keeps the open."""
+
+    def _rows(self):
+        return [{
+            "Date": date(2026, 10, 20), "Home": "New York Knicks", "Away": "Philadelphia 76ers",
+            "OU": 231.5, "Spread": 5.5, "ML_Home": -190, "ML_Away": 160,
+            "Points": 0, "Win_Margin": 0, "Days_Rest_Home": 7, "Days_Rest_Away": 7,
+        }]
+
+    def test_first_sighting_is_logged_as_open(self):
+        con = sqlite3.connect(":memory:")
+        n = get_odds_data.log_opening_snapshots(con, "2026-27", self._rows(), fetched_at="2026-10-20T00:57:57+00:00")
+        self.assertEqual(n, 1)
+        row = con.execute("SELECT fetched_at, Spread, OU, source FROM odds_history").fetchone()
+        self.assertEqual(row, ("2026-10-20T00:57:57+00:00", 5.5, 231.5, get_odds_data.OPEN_SOURCE_TAG))
+
+    def test_existing_snapshot_is_not_overwritten(self):
+        con = sqlite3.connect(":memory:")
+        get_odds_data.log_opening_snapshots(con, "2026-27", self._rows(), fetched_at="2026-10-20T00:57:57+00:00")
+        rows = self._rows(); rows[0]["Spread"] = 4.5
+        n = get_odds_data.log_opening_snapshots(con, "2026-27", rows, fetched_at="2026-10-20T06:57:14+00:00")
+        self.assertEqual(n, 0)
+        self.assertEqual(con.execute("SELECT COUNT(*) FROM odds_history").fetchone()[0], 1)
+
+    def test_schema_matches_update_odds(self):
+        """Both scripts CREATE IF NOT EXISTS: whichever runs first must leave a table the other accepts."""
+        upd_path = Path(__file__).resolve().parents[1] / "scripts" / "update_odds.py"
+        spec = importlib.util.spec_from_file_location("update_odds", upd_path)
+        upd = importlib.util.module_from_spec(spec); spec.loader.exec_module(upd)
+        con = sqlite3.connect(":memory:")
+        get_odds_data.ensure_history_table(con)
+        upd._ensure_history_table(con)
+        upd._log_history_snapshot(con, "2026-27", date(2026, 10, 20), "New York Knicks", "Philadelphia 76ers",
+                                  231.5, 4.5, -186, 156, "2026-10-20T06:57:14+00:00")
+        self.assertEqual(con.execute("SELECT COUNT(*) FROM odds_history").fetchone()[0], 1)

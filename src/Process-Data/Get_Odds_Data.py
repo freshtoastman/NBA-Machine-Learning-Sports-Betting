@@ -4,7 +4,7 @@ import random
 import sqlite3
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -211,6 +211,68 @@ def backfill_season(con, season_key, value, sportsbook, today):
         df.to_sql(season_key, con, if_exists="append", index=False)
 
 
+OPEN_SOURCE_TAG = "sbr_fanduel_open"
+
+
+def ensure_history_table(con):
+    """Same schema as scripts/update_odds.py (CREATE IF NOT EXISTS on both sides)."""
+    con.execute(
+        """
+        CREATE TABLE IF NOT EXISTS odds_history (
+            fetched_at TEXT NOT NULL,
+            season TEXT NOT NULL,
+            Date TEXT NOT NULL,
+            Home TEXT NOT NULL,
+            Away TEXT NOT NULL,
+            OU REAL,
+            Spread REAL,
+            ML_Home INTEGER,
+            ML_Away INTEGER,
+            source TEXT,
+            PRIMARY KEY (fetched_at, Date, Home, Away)
+        )
+        """
+    )
+    con.execute(
+        "CREATE INDEX IF NOT EXISTS idx_odds_history_game ON odds_history(season, Date, Home, Away)"
+    )
+
+
+def log_opening_snapshots(con, season_key, game_rows, fetched_at=None):
+    """Record the line a game is first seen with as its opening odds_history snapshot.
+
+    2026-10-20 (opening night): Get_Odds_Data inserted NYK -5.5 / total 230.5 at
+    08:57 Taipei, update_odds --db-only overwrote the season table with -4.5 /
+    232.5 at 14:57 and logged only that as the first snapshot, so spread_first
+    (the line-movement candidate feature) lost the real open. Only the daily
+    (non-backfill) path calls this; backfilled dates hold closing lines.
+    Returns the number of snapshots written.
+    """
+    if not game_rows:
+        return 0
+    ensure_history_table(con)
+    if fetched_at is None:
+        fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    written = 0
+    for row in game_rows:
+        date_str = str(row["Date"])
+        exists = con.execute(
+            "SELECT 1 FROM odds_history WHERE season=? AND Date=? AND Home=? AND Away=? LIMIT 1",
+            (season_key, date_str, row["Home"], row["Away"]),
+        ).fetchone()
+        if exists:
+            continue
+        con.execute(
+            "INSERT OR REPLACE INTO odds_history "
+            "(fetched_at, season, Date, Home, Away, OU, Spread, ML_Home, ML_Away, source) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (fetched_at, season_key, date_str, row["Home"], row["Away"],
+             row["OU"], row["Spread"], row["ML_Home"], row["ML_Away"], OPEN_SOURCE_TAG),
+        )
+        written += 1
+    return written
+
+
 def main(sportsbook="fanduel", backfill=False, season=None, today=None, db_path=DB_PATH):
     config = load_config()
     if today is None:
@@ -248,6 +310,8 @@ def main(sportsbook="fanduel", backfill=False, season=None, today=None, db_path=
         if df_data:
             df = pd.DataFrame(df_data)
             df.to_sql(season_key, con, if_exists="append", index=False)
+            n_open = log_opening_snapshots(con, season_key, df_data)
+            print(f"Logged {n_open} opening line snapshot(s) to odds_history.")
 
 
 if __name__ == "__main__":

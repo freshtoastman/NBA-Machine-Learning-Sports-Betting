@@ -8,7 +8,8 @@ Usage: PYTHONPATH=. python scripts/patch_scores.py
 """
 import sqlite3
 import time
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -19,6 +20,9 @@ ODDS_DB = "Data/OddsData.sqlite"
 DAYS_BACK = 3
 # Resolved in main(): the table Get_Odds_Data writes for the current season.
 SEASON_TABLE = "2025-26"
+# cdn.nba.com answers 403 to a bare "Mozilla/5.0" UA (seen 2026-10-20 06:00) but 200
+# with the stats.nba.com header set plus Referer/Origin.
+NBA_CDN_HEADERS = {**data_headers, "Referer": "https://www.nba.com/", "Origin": "https://www.nba.com"}
 
 
 def _season_table(con, today: date) -> str:
@@ -115,11 +119,10 @@ def _patch_from_nba_cdn(con, d_str: str) -> int:
         return 0
 
     updated = 0
-    ua = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15"}
     for gid in game_ids:
         try:
             url = f"https://cdn.nba.com/static/json/liveData/boxscore/boxscore_{gid}.json"
-            r = requests.get(url, headers=ua, timeout=30)
+            r = requests.get(url, headers=NBA_CDN_HEADERS, timeout=30)
             r.raise_for_status()
             game = r.json().get("game") or {}
         except Exception as exc:
@@ -173,11 +176,10 @@ def _patch_from_nba_live_scoreboard(con, d_str: str) -> int:
     yesterday_str = (date.today() - timedelta(days=1)).isoformat()
     if d_str not in (today_str, yesterday_str):
         return 0
-    ua = {"User-Agent": "Mozilla/5.0"}
     try:
         r = requests.get(
             "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
-            headers=ua, timeout=10,
+            headers=NBA_CDN_HEADERS, timeout=10,
         )
         r.raise_for_status()
         games = r.json().get("scoreboard", {}).get("games", [])
@@ -273,58 +275,73 @@ def _patch_from_espn(con, d_str: str) -> int:
     return updated
 
 
-def main():
+def _safe_patch(name: str, fn, con, d_str: str) -> int:
+    """Run one score source; a failing source is logged and skipped.
+
+    2026-10-20 (opening day, 06:00 Taipei = 18:00 ET the day before): the
+    stats.nba.com scoreboard answered 500 for a date whose games had not tipped
+    off yet, `_game_ids_for_date` raised, and the whole daily pipeline stopped
+    before Export_JSON. No score source may abort this step.
+    """
+    try:
+        updated = fn(con, d_str)
+    except Exception as exc:  # noqa: BLE001 - any source error is non-fatal
+        print(f"{d_str}: {name} error: {exc}")
+        updated = 0
+    con.commit()
+    if updated:
+        print(f"{d_str}: {name} patched {updated} games")
+    return updated
+
+
+def _unscored_count(con, d_str: str) -> int:
+    row = con.execute(
+        f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
+        (d_str,),
+    ).fetchone()
+    return int(row[0]) if row else 0
+
+
+def _us_today() -> date:
+    """Game dates are US (Eastern) dates; the pipeline runs on Taipei time."""
+    return datetime.now(ZoneInfo("America/New_York")).date()
+
+
+def main(con=None, today=None, us_today=None):
     global SEASON_TABLE
-    con = sqlite3.connect(ODDS_DB)
-    today = date.today()
+    close = con is None
+    if con is None:
+        con = sqlite3.connect(ODDS_DB)
+    today = today or date.today()
+    us_today = us_today or _us_today()
     SEASON_TABLE = _season_table(con, today)
     total_updated = 0
+
+    sources = (
+        # NBA live scoreboard (real-time, works for playoffs unlike boxscore 403)
+        ("nba live scoreboard", _patch_from_nba_live_scoreboard),
+        ("sbr", _patch_from_sbr),
+        ("nba cdn", _patch_from_nba_cdn),
+        ("espn", _patch_from_espn),
+    )
 
     for offset in range(DAYS_BACK + 1):
         d = today - timedelta(days=offset)
         d_str = d.isoformat()
-
-        rows = con.execute(
-            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
-            (d_str,),
-        ).fetchone()
-        if not rows or rows[0] == 0:
+        if d > us_today:
+            # Taipei is a day ahead of the US: this slate has not tipped off yet.
             continue
+        if _unscored_count(con, d_str) == 0:
+            continue
+        for name, fn in sources:
+            if name != "nba live scoreboard" and _unscored_count(con, d_str) == 0:
+                break
+            total_updated += _safe_patch(name, fn, con, d_str)
 
-        # NBA live scoreboard (real-time, works for playoffs unlike boxscore 403)
-        u0 = _patch_from_nba_live_scoreboard(con, d_str)
-        con.commit()
-
-        u1 = _patch_from_sbr(con, d_str)
-        con.commit()
-        if u1:
-            print(f"{d_str}: sbr patched {u1} games")
-
-        rows_left = con.execute(
-            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
-            (d_str,),
-        ).fetchone()
-        u2 = 0
-        if rows_left and rows_left[0] > 0:
-            u2 = _patch_from_nba_cdn(con, d_str)
-            con.commit()
-            if u2:
-                print(f"{d_str}: nba cdn patched {u2} games")
-
-        rows_left2 = con.execute(
-            f'SELECT COUNT(*) FROM "{SEASON_TABLE}" WHERE Date = ? AND (Points IS NULL OR Points = 0)',
-            (d_str,),
-        ).fetchone()
-        u3 = 0
-        if rows_left2 and rows_left2[0] > 0:
-            u3 = _patch_from_espn(con, d_str)
-            con.commit()
-            if u3:
-                print(f"{d_str}: espn patched {u3} games")
-        total_updated += u0 + u1 + u2 + u3
-
-    con.close()
+    if close:
+        con.close()
     print(f"Done. Total patched (sbr + cdn + espn): {total_updated}")
+    return total_updated
 
 
 if __name__ == "__main__":

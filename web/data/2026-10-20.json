@@ -1,7 +1,7 @@
 {
  "date": "2026-10-20",
  "is_today": true,
- "exported_at": "2026-10-20T14:58:39+08:00",
+ "exported_at": "2026-10-20T15:01:16+08:00",
  "summary": {
   "games": 3,
   "model_games": 0,
@@ -77,6 +77,14 @@
    "injuries_away": [],
    "odds_history": [
     {
+     "fetched_at": "2026-10-20T00:57:57+00:00",
+     "spread": -1.5,
+     "ou": 221.5,
+     "ml_home": 100,
+     "ml_away": -118,
+     "source": "sbr_fanduel_open"
+    },
+    {
      "fetched_at": "2026-10-20T06:57:14+00:00",
      "spread": -1.5,
      "ou": 221.5,
@@ -88,14 +96,14 @@
    "spread_first": -1.5,
    "spread_last": -1.5,
    "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-10-20T06:57:14+00:00",
+   "spread_first_fetched_at": "2026-10-20T00:57:57+00:00",
    "spread_last_fetched_at": "2026-10-20T06:57:14+00:00",
    "ou_first": 221.5,
    "ou_last": 221.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T14:58:39+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-20T15:01:16+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -177,6 +185,14 @@
    ],
    "odds_history": [
     {
+     "fetched_at": "2026-10-20T00:57:57+00:00",
+     "spread": 5.5,
+     "ou": 231.5,
+     "ml_home": -190,
+     "ml_away": 160,
+     "source": "sbr_fanduel_open"
+    },
+    {
      "fetched_at": "2026-10-20T06:57:14+00:00",
      "spread": 4.5,
      "ou": 231.5,
@@ -185,17 +201,17 @@
      "source": "sbr_fanduel"
     }
    ],
-   "spread_first": 4.5,
+   "spread_first": 5.5,
    "spread_last": 4.5,
-   "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-10-20T06:57:14+00:00",
+   "spread_move": -1.0,
+   "spread_first_fetched_at": "2026-10-20T00:57:57+00:00",
    "spread_last_fetched_at": "2026-10-20T06:57:14+00:00",
    "ou_first": 231.5,
    "ou_last": 231.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T14:58:39+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-20T15:01:16+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -214,9 +230,9 @@
     "playoff_ats_consensus": null,
     "playoff_ats_has_conflict": false,
     "playoff_ats_strong_consensus": null,
-    "spread_first": 4.5,
+    "spread_first": 5.5,
     "spread_last": 4.5,
-    "spread_move": 0.0,
+    "spread_move": -1.0,
     "ou_first": 231.5,
     "ou_last": 231.5,
     "ou_move": 0.0
@@ -275,6 +291,14 @@
    ],
    "odds_history": [
     {
+     "fetched_at": "2026-10-20T00:57:57+00:00",
+     "spread": 1.5,
+     "ou": 230.5,
+     "ml_home": -126,
+     "ml_away": 108,
+     "source": "sbr_fanduel_open"
+    },
+    {
      "fetched_at": "2026-10-20T06:57:14+00:00",
      "spread": 1.5,
      "ou": 232.5,
@@ -286,14 +310,14 @@
    "spread_first": 1.5,
    "spread_last": 1.5,
    "spread_move": 0.0,
-   "spread_first_fetched_at": "2026-10-20T06:57:14+00:00",
+   "spread_first_fetched_at": "2026-10-20T00:57:57+00:00",
    "spread_last_fetched_at": "2026-10-20T06:57:14+00:00",
-   "ou_first": 232.5,
+   "ou_first": 230.5,
    "ou_last": 232.5,
-   "ou_move": 0.0,
+   "ou_move": 2.0,
    "pregame": {
-    "frozen_at": "2026-10-20T14:58:39+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-20T15:01:16+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -315,9 +339,9 @@
     "spread_first": 1.5,
     "spread_last": 1.5,
     "spread_move": 0.0,
-    "ou_first": 232.5,
+    "ou_first": 230.5,
     "ou_last": 232.5,
-    "ou_move": 0.0
+    "ou_move": 2.0
    },
    "pregame_missing": false
   }

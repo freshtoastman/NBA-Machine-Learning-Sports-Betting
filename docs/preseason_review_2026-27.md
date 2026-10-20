@@ -18,6 +18,8 @@
 - [x] **P0 開幕夜演練**（10/13 完成，見當日紀錄）：在專案副本上模擬 10/20、10/22、10/24 三次排程（假賠率列、假 30 隊數據表、全程斷網），確認換季時 dataset 零列不出錯、首頁冠軍橫幅與季前預覽自動消失、只有盤口的比賽正常輸出並在開賽後鎖定、30 隊都有數據後模型照常產生預測與凍結快照。演練抓到並修掉：賽季卡片標籤錯標、只有盤口的比賽顯示「模型勝 X 0.0%」、日摘要把無預測場次算成客勝／小分、凍結紀錄把無預測場次算成「已結算」；同時補上 2026 NBA 盃決賽日（12/11）並把 `update_odds.py --db-only` 加進每日 pipeline。決定：開季頭 3–4 天（30 隊都打過之前）接受沒有模型預測，前端明確標示「模型尚未啟用」，不用上季末數據充數
   - 仍待辦（4 月前）：`export_predictions.py` 季後賽 bracket 區段 7 處寫死 `'2025-26'` 表名（約 1525–1870 行）要改成依日期取賽季
 - [x] **P0 盤口來源 SBR 回 403（10/19 發現並修復，開季前一天）**：sportsbookreview.com 對 `python-requests` 的預設 User-Agent 回 403，`sbrscrape` 沒帶標頭、沒 timeout、把 403 吞成「沒有 games 屬性」——`Get_Odds_Data`／`update_odds`／`patch_scores`／`export_predictions` 備援／`SbrOddsProvider` 五條路徑在 10/20 06:00 都會回「沒有比賽」。新增 `src/Utils/sbr_scoreboard.py`（瀏覽器 UA、30 秒 timeout、`buildId` 快取、`.games` 永遠存在）取代 `sbrscrape`，五個呼叫點全部改接；用臨時 DB 以 `today=2026-10-20` 演練 `Get_Odds_Data`：建出 `2026-27` 表、3 場開幕戰與 FanDuel 盤口都進表。測試 `Tests/test_sbr_scoreboard.py`
+- [x] **P0 開幕日 06:00 排程在 `Patch_Scores` 中止（10/20 發現並修復）**：stats.nba.com `scoreboardv2` 對還沒開打的 10/20 回 500，`_game_ids_for_date` 的 `raise_for_status` 沒被接住 → 整條 pipeline 在 `Export_JSON` 之前停掉、開幕日前端沒有任何輸出。修法：每個比分來源包進 `_safe_patch`（失敗只記 log）、略過美東日期還在未來的場次（06:00 台北＝前一天 18:00 ET）、cdn.nba.com 改帶完整 NBA 標頭（裸 `Mozilla/5.0` 回 403）。`Tests/test_patch_scores.py`。手動補跑 afternoon 模式 106 秒 OK、已推送
+- [x] **P1 開盤線快照（10/20）**：`Get_Odds_Data` 首次寫入一場比賽時同步寫 `odds_history`（`source=sbr_fanduel_open`，只寫第一次），否則 `update_odds` 的第一筆快照就是當下的線、`spread_first` 永遠等於 `spread_last`——開幕日 NYK 5.5→4.5 的移動就是這樣差點消失
 - [ ] **P1 首頁儀表板改顯示實戰凍結紀錄＋無洩漏回測（附信賴區間）** — 10/01 先上線過渡版：`web/data/season_review.json` 以提示區塊顯示在舊卡片上方；完整改版等 P0 資料修正後
 - [ ] **P1 季後賽訊號在乾淨多季資料上重估**，未達標者降為觀察 — 10/01 初查（`scripts/audit_playoff_base_rates.py`）：GOLD 引用的勝率多數無法重現（R2 G2 主場 87.5% → 66.0%；R2 G5 83.7% → 52.4%；東西決 G1 83.3% → 48.0%）；要用 `PlayoffATSStrategy` 的實際訊號函式逐一重算，4 月前完成
 - [ ] **P1 找新的資料來源，並一律用 walk-forward 驗證**：現有特徵（球隊累計數據＋近況＋賽程密度）對讓分沒有預測力；候選：開盤→收盤的盤口移動、傷兵／輪休名單、歷史進階數據回補 — 10/14–18 已回補 ADV 至 2016-17（**10 季全部完整**，`AdvancedTeamData` 共 2,403 張表），**10/15 walk-forward 結論：28 個 ADV_ 欄位對讓分沒有幫助**（4 季樣本外 50.9% vs 無 ADV 50.6%，log loss 兩者都是 0.693 = 丟銅板，見 `docs/walk_forward_adv_2022-26.json`）；候選 1 出局，剩盤口移動（開季後累積）與傷兵名單；**10/18 第二次執行用 10 季全帶 ADV 的 dataset 重跑 10 季 walk-forward：prod 50.3%／logloss 50.7%／noadv 50.2%，沒有任何格子的信賴區間下限過 52.4%，候選 1 正式結案**（`docs/walk_forward_adv10_2016-26.json`）
@@ -598,3 +600,29 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天的工作全是讓開季資料「進得來」：盤口來源若沒修，開季後唯一還能驗證的候選（盤口移動、`odds_history`）根本不會有資料。
 
 **下一步（10/20 起）**：①**10/20 06:00 的 log**：`Get_Odds_Data` 應印「Getting odds data: 2026-10-20」並建 `2026-27` 表 3 列（不是「No current season」）；`update_odds --db-only` 應更新到 3 列、`odds_history` 出現 3 筆快照；`Export_JSON` 的 2026-10-20 應輸出 3 場 stub 並標「模型尚未啟用」；總耗時應回到 ~2 分鐘（若又是幾十分鐘，先看 `pmset -g log` 有沒有 DarkWake）；②把 10/19 17:00 ET 的最終名單（LAL／MEM／MIL／DAL／HOU）與 Curry／Wagner／Harris／Dybantsa／Stewart／Aldama 的開幕戰狀態補進預覽；③使用者：06:00 讓筆電接電源或開蓋、載入 afternoon plist；④10/21 06:00 第一次有比分：`Patch_Scores` 走新模組、`frozen_record.json` 應出現 3 場已結算（只有盤口、無模型預測）。
+
+### 2026-10-20（14:53）— 開幕日：06:00 排程在 `Patch_Scores` 炸掉（P0，已修）、又因筆電睡眠拖 2 小時 49 分；手動補跑 afternoon 模式 OK、首頁已切成開季模式；開盤線快照補進 `odds_history`；季前預覽補最終名單與開幕戰傷兵（14 隊）
+
+**排程檢查：10/20 06:12:08 morning 模式 → 09:01:11 `FAILED at Patch_Scores`，開幕日前端沒有任何輸出。** 兩件事疊在一起：
+1. **筆電又在睡**：`pmset -g log` 05:13–06:12 全是 2–19 秒的 DarkWake、`Using BATT (Charge:100%)`——充飽但沒接電源，launchd 在 06:12 的 upkeep wake 裡起工作，`Get_Data` 跑了 **9,746 秒**（2 小時 42 分；內容只是對 2026-10-20 回「No data returned」一次，正確，因為還沒有比賽）、`Get_Advanced_Data` 203 秒。10/19 加的 caffeinate 如預期沒用：它只能讓醒著的機器不睡，叫不醒睡著的機器。
+2. **`Patch_Scores` 沒接住 500**：`Get_Odds_Data` 08:57 正常建出 `2026-27` 表 3 列（10/19 的 SBR 修法有效），接著 `patch_scores.py` 看到 10/20 三場 `Points=0` 就去補比分——此時美東才 10/19 20:58、比賽還沒開打。`cdn.nba.com` 的 `todaysScoreboard` 回 403（裸 `Mozilla/5.0` UA，這條有 try/except）；`stats.nba.com/scoreboardv2?gameDate=10/20/2026` 回 **500**，`_game_ids_for_date` 的 `raise_for_status()` 沒被接住 → 步驟失敗、`set -e` 停掉整條 pipeline：沒有 `update_odds`、`Create_Games`、`Export_JSON`、推送。
+
+**修法（`scripts/patch_scores.py`）**：①每個比分來源（live scoreboard／SBR／NBA CDN／ESPN）都包進 `_safe_patch`，失敗只印一行、`commit` 後跳下一個來源；②比賽日期晚於美東今天的場次直接略過（06:00 台北＝前一天 18:00 ET，根本沒有比分可補、也不必打 API）；③`NBA_CDN_HEADERS`＝`tools.data_headers`＋`Referer`／`Origin`——實測 cdn.nba.com 裸 UA 403、帶完整標頭 200；④`main(con, today, us_today)` 可注入，`Tests/test_patch_scores.py` 三條（來源拋例外不中止且後面的來源照跑、未來日期不打任何來源、CDN 標頭）。
+
+**手動補跑 `daily_pipeline.sh afternoon`（14:56:57 → 14:58:43，106 秒）**：`Get_Data` 5 s、`Get_Advanced_Data` 6 s（都「No data」，正確）、`Get_Odds_Data` 0 s（「No new odds dates」）、`Patch_Scores` 4 s（stats.nba.com 仍回 500，這次只記一行 `nba cdn error`）、`update_odds --db-only` 更新 3 列（NYK 5.5→**4.5**、SAS/OKC 大小分 230.5→**232.5**）、`Create_Games` 70 s（17,792 列，2026-27 零列不出錯）、洩漏檢查 0、`Export_JSON` 15 s → 新增 `web/data/2026-10-20.json`（3 場、`model_games=0`、`pregame.locked=false`、模型欄位全 `null`、傷兵清單已附：DET Prince、PHI Wade／Bona／Simons…）、commit `f0211da`、推送 3 s、**Vercel 部署 success（06:59:00Z）**。Flask test client 開首頁：「模型尚未啟用」×4、冠軍橫幅與季前預覽依設計消失（`load_preseason_preview` 只在橫幅期間載入）、凍結紀錄區塊正常；正式站 `/` → 302 `/login`、`/login` 200。
+
+**`odds_history` 少了開盤線（順手抓到）**：`Get_Odds_Data` 寫表時不寫快照，`update_odds` 的第一筆快照是 14:57 當下的線，所以 `spread_first` 等於 `spread_last`、NYK 從 5.5 到 4.5 的移動不存在。修法：`Get_Odds_Data.log_opening_snapshots`——每日路徑首次寫入一場就寫一筆 `source=sbr_fanduel_open`（已有快照就不動；backfill 路徑不寫，因為那是收盤線），`Tests/test_get_odds_data.py` 加三條（首見寫入、已有不覆寫、與 `update_odds` 的 `CREATE IF NOT EXISTS` 互相相容）。今天的三筆開盤線從 log 手動補回（`fetched_at=2026-10-20T00:57:57+00:00`），重新輸出後：
+
+| 10/20（ET） | 開盤（08:57 台北） | 14:57 台北 | 移動 |
+|---|---|---|---|
+| BOS @ DET 15:00 | DET −1.5 / 221.5 / 100·−118 | DET −1.5 / 221.5 / 102·−120 | 無 |
+| PHI @ NYK 19:00 | NYK −5.5 / 231.5 / −190·+160 | **NYK −4.5** / 231.5 / −186·+156 | **−1.0 往 PHI** |
+| OKC @ SAS 21:30 | SAS −1.5 / 230.5 / −126·+108 | SAS −1.5 / **232.5** / −116·−102 | 大分 +2 |
+
+這是 P1 候選 2（盤口移動）的第一筆真實資料；之後每天 `Get_Odds_Data` 印「Logged N opening line snapshot(s)」、`update_odds` 每次執行追加收盤前快照。**115 個測試全過**（10/19 是 109＋今天 6）。
+
+**季前預覽補 10/19 截止名單與開幕戰傷兵（14 隊 `injury` 欄；Yahoo／Hoops Wire／Heavy／Bleacher Report／Stein）**：名單定案——LAL 裁 Knecht、MEM 裁 Clayton Jr.＋Peavy（Murray／GG Jackson 留）、MIL 裁 Porter Jr.（LeVert／Sims 留）、HOU Phillips／Tshiebwe 改雙向、PHX 裁 Brea／Huntley；**DAL 第 15 人（Powell／Cissé／Biberović）查不到公開報導，10/21 前再補**。開幕戰傷兵——BOS Devin Carter 生病缺陣（Globe：單核白血球增多症、無時程）、DET Prince questionable（個人因素）、NYK Hart probable、PHI Bona／Wade questionable、OKC Sorber＋Topić 缺陣、Holmgren 股四頭肌 day-to-day、SAS Harris 小腿預計缺陣、GSW **Curry 會打 10/21**（Kerr 10/19）、WAS Dybantsa 仍 day-to-day。⚠️ curated 檔把 Devin Carter 列為 ATL 新援／SAS 離隊，但 NBA 官方報告把他列在 BOS——**下次執行查他到底在哪一隊並修 adds/departs**。重建方式同前，逐欄位比對：只有 `generated` 與 14 隊 `offseason.injury` 不同。預覽從今天起不再出現在首頁（依設計），`docs/preseason_2026-27_team_preview.md` 仍更新。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。開幕日還沒有任何一場打完，沒有新數字可量；今天的價值是「開季第一天的資料真的進得來、前端真的有東西」——若沒補跑，正式站到 10/21 06:00 都還是上季總冠軍畫面。模型預測預計 10/23–24（30 隊都打過）才會出現。
+
+**下一步（10/21 起）**：①**10/21 06:00 的 log**：`Patch_Scores` 應把 3 場終場補進（SBR 為主；cdn 現在帶標頭，但 `scoreboardv2` 的 500 不一定會好）、`frozen_record.json` 應出現 3 場已結算（只有盤口、無模型）、`Get_Odds_Data` 應建 10/21 的列並印「Logged N opening line snapshot(s)」、總耗時 ~2 分鐘——**使用者：06:00 筆電要接電源或開蓋（今天 100% 電量但沒接電源，照樣睡）、載入 afternoon plist（`launchctl list` 仍只有 daily）**；②DAL 第 15 人、Devin Carter 球隊歸屬；③10/23–24 第一批模型預測：確認 `pregame.locked` 含模型欄位、`ats_shadow_value` 一起凍結；④開季前每日回顧的規則到今天為止，本檔接下來當開季第一週的驗證日誌用。
