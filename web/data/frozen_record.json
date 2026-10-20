@@ -76,7 +76,7 @@
    null
   ]
  },
- "pending_games": 0,
+ "pending_games": 3,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {},
@@ -107,5 +107,5 @@
   }
  },
  "ats_shadow_rows": [],
- "generated_at": "2026-10-19T09:00:26"
+ "generated_at": "2026-10-20T14:58:40"
 }
