@@ -4747,3 +4747,19 @@ h3 {
     color: var(--text-muted, #8b93a7);
     margin: 4px 0 8px;
 }
+
+/* ── Season mode (regular / playoff) + folded last-season archive ───────── */
+.mode-chip {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+.mode-chip.mode-regular { background: rgba(79, 140, 255, 0.14); color: #9cc0ff; border: 1px solid rgba(79, 140, 255, 0.35); }
+.mode-chip.mode-playoff { background: rgba(255, 191, 64, 0.14); color: #ffdca0; border: 1px solid rgba(255, 191, 64, 0.4); }
+.legacy-season { border-color: rgba(255, 255, 255, 0.1); margin-top: 4px; }
+.legacy-season .weekly-golden-summary { background: rgba(255, 255, 255, 0.03); border-bottom-color: rgba(255, 255, 255, 0.08); }
+.legacy-season .wg-title { color: #c9d2e0; }
+.legacy-season-body { padding: 12px 14px 4px; }

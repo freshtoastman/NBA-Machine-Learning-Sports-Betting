@@ -735,6 +735,14 @@ def index():
     is_playoff_view = data.get("is_playoff_view", False) if data else False
     season_stats = load_season_stats()
     idx = load_dates_index()
+    season_key = idx.get("season", default_season())
+    # Layout mode. "playoff" only while the day's export is a playoff slate or the
+    # bracket window is open; everything else (incl. the opening-week odds-only
+    # stubs) is "regular", which hides every playoff-only panel. The season card
+    # is "current" only when season_stats.json already describes this season;
+    # until then last season's stats are shown folded as an archive.
+    season_mode = "playoff" if (is_playoff_view or show_bracket_banner) else "regular"
+    stats_is_current = bool(season_stats and season_stats.get("season") == season_key)
 
     # Build a name→game lookup so team_name_zh / team_logo_url can resolve any
     # team referenced from active_series (which has team names not in `games`).
@@ -783,7 +791,9 @@ def index():
         no_games_today=no_games_today,
         date_chips=build_date_chips(selected_date),
         summary=summary,
-        season_key=idx.get("season", default_season()),
+        season_key=season_key,
+        season_mode=season_mode,
+        stats_is_current=stats_is_current,
         preseason=preseason,
         season_stats=season_stats,
         season_review=load_season_review(),

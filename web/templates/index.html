@@ -222,40 +222,13 @@
 
         {# Model comparison: ML / UO / ATS side-by-side #}
         {% if season_stats %}
+        {% set legacy_stats = not stats_is_current %}
         <section class="model-compare">
             <div class="model-compare-head">
-                <span class="dash-tag season-tag">{{ season_stats.season or season_key }} 賽季 · {{ season_stats.games }} 場</span>
-                <span class="model-compare-sub">2026-27 起鑽石／金鑽／ATS 都只列參考，不列為推薦</span>
+                <span class="dash-tag season-tag">{{ season_key }} 賽季{% if stats_is_current %} · {{ season_stats.games }} 場{% endif %}</span>
+                <span class="mode-chip mode-{{ season_mode }}">{% if season_mode == 'playoff' %}🏆 季後賽模式{% else %}🏀 例行賽模式{% endif %}</span>
+                <span class="model-compare-sub">{% if season_mode == 'playoff' %}季後賽訊號、系列賽追蹤與對戰圖已開啟{% else %}鑽石／金鑽／ATS 只列參考、不列為推薦；季後賽面板在季後賽開打時自動開啟{% endif %}</span>
             </div>
-
-            {# Audited record — supersedes the backtest numbers below for the same season #}
-            {% if season_review and season_review.season == season_stats.season %}
-            <div class="season-audit">
-                <div class="season-audit-head">
-                    <span class="season-audit-title">⚠️ {{ season_review.season }} 賽季復盤</span>
-                    <span class="season-audit-date">{{ season_review.audited }} 稽核</span>
-                </div>
-                <p class="season-audit-lead">{{ season_review.headline_zh }}</p>
-                {% if season_review.policy_zh %}
-                <p class="season-audit-lead"><strong>{{ season_review.policy_zh }}</strong></p>
-                {% endif %}
-                <div class="season-audit-grid">
-                    {% for block in season_review.blocks %}
-                    <div class="season-audit-block">
-                        <div class="season-audit-label">{{ block.label_zh }}</div>
-                        {% for it in block["items"] %}
-                        <div class="season-audit-row">
-                            <span class="sa-name">{{ it.label_zh }}</span>
-                            <span class="sa-val {% if it.neutral %}{% elif it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{{ it.hit_rate }}%</span>
-                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · {% if it.note_zh %}{{ it.note_zh }}{% else %}95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%{% endif %}</span>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div>
-                <p class="season-audit-foot">{{ season_review.replaces_zh }}</p>
-            </div>
-            {% endif %}
 
             {# Frozen pre-game record — the only live record quoted from 2026-10-02 on #}
             {% if frozen_record %}
@@ -286,6 +259,45 @@
                 {% if frozen_record.has_graded %}
                 <p class="season-audit-foot">讓分 value 規則重新開放條件：凍結紀錄 ≥ {{ frozen_record.reopen.ats.min_picks }} 注且 95% CI 下限 > {{ frozen_record.reopen.ats.ci_lower_pct }}%{% if frozen_record.reopen.ats.met %}（已達標，待人工覆核）{% else %}（未達標）{% endif %}；勝負鑽石注：≥ {{ frozen_record.reopen.ml_value.min_picks }} 注且投報率 CI 下限 > 0{% if frozen_record.reopen.ml_value.met %}（已達標，待人工覆核）{% else %}（未達標）{% endif %}。</p>
                 {% endif %}
+            </div>
+            {% endif %}
+
+
+            {% if legacy_stats %}
+            <details class="weekly-golden legacy-season">
+                <summary class="weekly-golden-summary">
+                    <span class="wg-title">📁 {{ season_stats.season }} 賽季回顧</span>
+                    <span class="wg-total">{{ season_stats.games }} 場 · 復盤、模型卡與季後賽信號（點開查看）</span>
+                </summary>
+                <div class="weekly-golden-body legacy-season-body">
+            {% endif %}
+
+            {# Audited record — supersedes the backtest numbers below for the same season #}
+            {% if season_review and season_review.season == season_stats.season %}
+            <div class="season-audit">
+                <div class="season-audit-head">
+                    <span class="season-audit-title">⚠️ {{ season_review.season }} 賽季復盤</span>
+                    <span class="season-audit-date">{{ season_review.audited }} 稽核</span>
+                </div>
+                <p class="season-audit-lead">{{ season_review.headline_zh }}</p>
+                {% if season_review.policy_zh %}
+                <p class="season-audit-lead"><strong>{{ season_review.policy_zh }}</strong></p>
+                {% endif %}
+                <div class="season-audit-grid">
+                    {% for block in season_review.blocks %}
+                    <div class="season-audit-block">
+                        <div class="season-audit-label">{{ block.label_zh }}</div>
+                        {% for it in block["items"] %}
+                        <div class="season-audit-row">
+                            <span class="sa-name">{{ it.label_zh }}</span>
+                            <span class="sa-val {% if it.neutral %}{% elif it.hit_rate >= 60 %}good{% elif it.hit_rate < 52.4 %}bad{% endif %}">{{ it.hit_rate }}%</span>
+                            <span class="sa-sub">{{ it.wins }}-{{ it.losses }} · {% if it.note_zh %}{{ it.note_zh }}{% else %}95% CI {{ it.ci95[0] }}–{{ it.ci95[1] }}%{% endif %}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <p class="season-audit-foot">{{ season_review.replaces_zh }}</p>
             </div>
             {% endif %}
 
@@ -343,8 +355,8 @@
             </details>
             {% endif %}
 
-            {# 🏀 季後賽信號戰績追蹤 #}
-            {% if season_stats.playoff_signals and season_stats.playoff_signals.decided %}
+            {# 🏀 季後賽信號戰績追蹤 — only in playoff mode (or inside the folded archive) #}
+            {% if season_stats.playoff_signals and season_stats.playoff_signals.decided and (season_mode == 'playoff' or legacy_stats) %}
             {% set pos = season_stats.playoff_signals %}
             <div class="po-signal-tracker">
                 <div class="po-st-head">
@@ -719,10 +731,14 @@
                 <span class="diag-hint">(Brier 越低越好, 基準 0.25; gap 越近 0 越健康)</span>
             </div>
             {% endif %}
+            {% if legacy_stats %}
+                </div>
+            </details>
+            {% endif %}
         </section>
         {% endif %}
 
-        {% if is_playoff_view and active_series %}
+        {% if season_mode == 'playoff' and is_playoff_view and active_series %}
         {% set east_series = active_series|selectattr('conference','equalto','east')|list %}
         {% set west_series = active_series|selectattr('conference','equalto','west')|list %}
         {% set has_conf = east_series|length + west_series|length > 0 %}
@@ -1262,7 +1278,7 @@
         <script>const GAME_PROFILES = {{ game_profiles_json | safe }};</script>
 
         <footer class="compact-footer">
-            模型 {{ today }} · XGBoost ML 69.1% / UO 50.0%
+            {{ season_key }} · {% if season_mode == 'playoff' %}季後賽模式{% else %}例行賽模式{% endif %} · 更新 {{ today }}{% if wf_season and wf_season.pooled and wf_season.pooled.ml %} · 10 季樣本外 ML {{ wf_season.pooled.ml.pct }}% / ATS {{ wf_season.pooled.ats.pct }}%{% endif %}
         </footer>
     </div>
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
