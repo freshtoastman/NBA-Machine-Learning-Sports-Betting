@@ -164,7 +164,7 @@
 - **上季**：56-26（主 30-11 / 客 26-15），淨效率 +8.3（第 4），ATS 49-0-33（主 24-0-17 / 客 25-0-16），首輪敗，季後賽 3-4、ATS 3-0-4。
 - **市場**：勝場盤 51.5（相對上季 -4.5），冠軍賠率 +1300，分層「分區前段」。
 - **休賽季評分**：ESPN C- / CBS C-；陣容變動：high。
-- **補進**：Paul George（Brown 交易）、Mitchell Robinson（3 年 $47.4M）、Mike Conley
+- **補進**：Paul George（Brown 交易）、Mitchell Robinson（3 年 $47.4M）、Mike Conley；Devin Carter（9/14 Exhibit 10 → 雙向，ATL 9/11 裁掉）
 - **流失**：Jaylen Brown（交易至 PHI）、Nikola Vučević
 - **傷兵**：**10/20 開幕戰（@DET 15:00 ET）官方傷兵報告（10/19 16:00 ET）：Devin Carter（後衛）生病缺陣——Boston Globe 稱是單核白血球增多症、無回歸時程；BOS 唯一列名，Tatum／George 無註記。** 
 - **狀況**：震撼交易送走 Brown 換來 34 歲的 George，兩家媒體都給 C-；仍有 Tatum 與 Robinson 補強籃板，但缺乏持球突破與換防能量。勝場盤 51.5 偏高。
@@ -240,7 +240,7 @@
 - **上季**：46-36（主 24-17 / 客 22-19），淨效率 +2.2（第 12），ATS 43-0-39（主 20-0-21 / 客 23-0-18），首輪敗，季後賽 2-4、ATS 2-0-4。
 - **市場**：勝場盤 43.5（相對上季 -2.5），分層「季後賽邊緣」。
 - **休賽季評分**：ESPN A- / CBS B-；陣容變動：medium。
-- **補進**：Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Devin Carter、Dorian Finney-Smith（9/23 自 CHA 交易）；續約 CJ McCollum
+- **補進**：Lu Dort、Aaron Wiggins（自 OKC 薪資傾倒）、Dorian Finney-Smith（9/23 自 CHA 交易）；續約 CJ McCollum（6 月自 SAC 換來的 Devin Carter 已於 9/11 裁掉）
 - **流失**：Zaccharie Risacher、Jonathan Kuminga、Buddy Hield、Ryan Nembhard（9/23 交易至 CHA）
 - **傷兵**：新秀替補中鋒 Henri Veesaar ACL 撕裂（9/22），賽季報銷；補進 Finney-Smith 補前場深度
 - **狀況**：沒付出首輪籤就補進兩名 OKC 冠軍輪替側翼，防守深度大幅升級；Trae Young 已於上季被傾倒至 WAS，球隊改以 Jalen Johnson + 側翼防守為主軸，Nickeil Alexander-Walker 續進步。
@@ -429,7 +429,7 @@
 - **休賽季評分**：ESPN B- / CBS C；陣容變動：medium；新教練 Dusty May（自 Michigan 轉任）。
 - **補進**：Zaccharie Risacher、Santi Aldama、Marcus Sasser、#? Morez Johnson Jr.、Dwight Powell（9/25 回歸）；新教練 Dusty May
 - **流失**：Klay Thompson、Khris Middleton、Ryan Nembhard、Marvin Bagley III
-- **傷兵**：**10/19 17:00 ET 截止前的第 15 人（Powell／Cissé／Biberović）結果本次執行查不到公開報導，10/21 開幕戰前再補；10/16 已裁 Jorge Diaz-Graham（訓練營合約）。** Kyrie Irving ACL 康復 19 個月，訓練營可上（10/14 一場熱身賽輪休）；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）；Marcus Sasser 左內收肌缺前三場熱身賽、Moussa Cissé 左腳踝（預防性）。**Santi Aldama（3 月右膝關節鏡）無回歸時程，Dusty May 10/18 稱 10/21 開幕戰對 HOU「還不知道」——預定主要替補長人，缺陣動到第二陣容。** 新秀 Sergio De Larrea（第 25 順位，季前 4 場 9.5 分 5.0 助攻、三分 8/12）可能進開幕戰輪替；Morez Johnson Jr. 下肢傷只打 2 場季前賽、仍預計在輪替。名單 16 人保障，10/17 裁 Lundy／Poulakidas 後仍要再砍 1 人：10/18 止第 15 人仍是 Dwight Powell（部分保障 $1M，週二後升到 $1.5M）對 Cissé 二選一；Stein 10/19 稱 Lundy 可能回來簽空著的雙向——都非輪替核心
+- **傷兵**：**10/19 裁掉 Dwight Powell（12 年老將，$1M 部分保障），名單定案 15 人：第 15 人是 Moussa Cissé（Knicks 報價被比對後 10/1 全額保障），Biberović 留下；10/16 已裁 Jorge Diaz-Graham、10/17 裁 Lundy／Poulakidas。** Kyrie Irving ACL 康復 19 個月，訓練營可上（10/14 一場熱身賽輪休）；可能成為交易截止日籌碼。Dereck Lively II 腳部手術後尚未通過醫療許可（9/25）；Marcus Sasser 左內收肌缺前三場熱身賽、Moussa Cissé 左腳踝（預防性）。**Santi Aldama（3 月右膝關節鏡）無回歸時程，Dusty May 10/18 稱 10/21 開幕戰對 HOU「還不知道」——預定主要替補長人，缺陣動到第二陣容。** 新秀 Sergio De Larrea（第 25 順位，季前 4 場 9.5 分 5.0 助攻、三分 8/12）可能進開幕戰輪替；Morez Johnson Jr. 下肢傷只打 2 場季前賽、仍預計在輪替。名單 16 人保障，10/17 裁 Lundy／Poulakidas 後仍要再砍 1 人：10/18 止第 15 人仍是 Dwight Powell（部分保障 $1M，週二後升到 $1.5M）對 Cissé 二選一；Stein 10/19 稱 Lundy 可能回來簽空著的雙向——都非輪替核心
 - **狀況**：圍繞 Cooper Flagg 囤積前鋒，後場只剩 Kyrie 撐；新教練體系需要磨合期。勝場盤 34.5 明顯低於部分模型（37.5）。
 - **ATS 角度**：Flagg 第二年的成長是市場最可能低估的變數；11 月後若 Kyrie 健康，主場受讓有價值。
 

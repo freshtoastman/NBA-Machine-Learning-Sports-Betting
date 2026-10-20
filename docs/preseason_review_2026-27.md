@@ -626,3 +626,47 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。開幕日還沒有任何一場打完，沒有新數字可量；今天的價值是「開季第一天的資料真的進得來、前端真的有東西」——若沒補跑，正式站到 10/21 06:00 都還是上季總冠軍畫面。模型預測預計 10/23–24（30 隊都打過）才會出現。
 
 **下一步（10/21 起）**：①**10/21 06:00 的 log**：`Patch_Scores` 應把 3 場終場補進（SBR 為主；cdn 現在帶標頭，但 `scoreboardv2` 的 500 不一定會好）、`frozen_record.json` 應出現 3 場已結算（只有盤口、無模型）、`Get_Odds_Data` 應建 10/21 的列並印「Logged N opening line snapshot(s)」、總耗時 ~2 分鐘——**使用者：06:00 筆電要接電源或開蓋（今天 100% 電量但沒接電源，照樣睡）、載入 afternoon plist（`launchctl list` 仍只有 daily）**；②DAL 第 15 人、Devin Carter 球隊歸屬；③10/23–24 第一批模型預測：確認 `pregame.locked` 含模型欄位、`ats_shadow_value` 一起凍結；④開季前每日回顧的規則到今天為止，本檔接下來當開季第一週的驗證日誌用。
+
+### 2026-10-20（22:05）— 開幕日晚間：三場開幕戰尚未開打（美東 10:05）；盤口第三次快照（NYK 5.5→4.5→5.5 回到開盤）；10/21 的 11 場開幕戰提前建列＋記開盤線；DAL 第 15 人＝Cissé（Powell 10/19 被裁）、Devin Carter 歸屬修正（BOS 雙向）
+
+**排程檢查：14:58 手動 afternoon 之後沒有任何執行。** `launchctl list` 仍只有 `com.lchao.nba-ml.daily`（afternoon plist 未載入）；筆電此刻 **用電池、43%**——明天 06:00 若還是這樣，`Get_Data` 會再凍在 DarkWake 之間（10/19、10/20 兩次都是）。**使用者：睡前接電源。**
+
+**比分**：三場開幕戰（BOS @ DET 15:00 ET、PHI @ NYK 19:00、OKC @ SAS 21:30）此刻都還沒開打，沒有可回顧的比分；10/21 06:00 的 `Patch_Scores` 是第一次有終場可補。
+
+**盤口第三次快照（`update_odds --db-only`，22:05 台北＝10:05 ET）**，`spread_first/last/move` 三場都是 0：
+
+| 10/20 | 開盤 08:57 | 14:57 | **22:05** | 讓分移動 |
+|---|---|---|---|---|
+| BOS @ DET | DET +1.5 / 221.5 / +100·−118 | 同左 / +102·−120 | DET +1.5 / **220.5** / +100·−118 | 0（小分 −1） |
+| PHI @ NYK | NYK −5.5 / 231.5 / −190·+160 | NYK −4.5 / −186·+156 | **NYK −5.5** / 231.5 / −188·+156 | 0（往 PHI 1 分後又回來） |
+| OKC @ SAS | SAS −1.5 / 230.5 / −126·+108 | 232.5 / −116·−102 | SAS −1.5 / **231.5** / −116·+100 | 0（大分 +1） |
+
+沒有 ≥1.5 分的移動；NYK 的 1 分來回是 P1 候選 2（盤口移動）要處理的典型雜訊——`spread_move` 只比開盤與最後一筆，中間的來回不會算進去，這樣是對的。
+
+**10/21 的 11 場提前建列（本次執行的主動作）**：SBR 已經掛出 10/21 全部 11 場與 10/22 的 2 場。`Get_Odds_Data.main(today=2026-10-21)` 走的就是明天 06:00 會走的同一條路徑，提早 8 小時跑只是把「開盤線」記在更接近真正開盤的時間：`2026-27` 表新增 11 列（`Days_Rest` 7／7、`Points=0`）、`odds_history` 記 11 筆 `sbr_fanduel_open`，`export_predictions` 寫出 `web/data/2026-10-21.json`（11 場 stub、`model_games=0`、傷兵清單已附）。**明天 06:00 的 log 因此會印「No new odds dates to fetch. Latest date: 2026-10-21」而不是「Getting odds data: 2026-10-21」——這是預期的，不是故障**；`update_odds --db-only` 仍會更新 11 列並追加第二筆快照。10/21 開盤線（`Spread` 正值＝主隊讓分）：
+
+| 10/21（ET） | 讓分 | 大小分 | 獨贏（主／客） |
+|---|---|---|---|
+| ATL @ ORL 19:00 | ORL −2.5 | 234.5 | −134／+114 |
+| MIL @ WAS 19:00 | WAS −5.5 | 238.5 | −194／+162 |
+| MIN @ MIA 19:30 | MIA −1.5 | 243.5 | −118／+100 |
+| CHI @ TOR 19:30 | TOR −9.5 | 236.5 | −360／+290 |
+| CHA @ BKN 19:30 | BKN −2.5 | 219.5 | −138／+118 |
+| UTA @ MEM 20:00 | MEM −1.5 | 241.5 | −118／+102 |
+| IND @ NOP 20:00 | **IND −3.5**（客隊讓分） | 240.5 | +130／−154 |
+| DAL @ HOU 20:30 | HOU −9.5 | 230.5 | −335／+270 |
+| GSW @ LAL 22:00 | LAL −6.5 | 233.5 | −205／+172 |
+| PHX @ POR 22:00 | POR −3.5 | 232.5 | −158／+134 |
+| SAC @ LAC 22:30 | LAC −4.5 | 228.5 | −174／+146 |
+
+**官方傷兵（ESPN feed，`Export_JSON` 自動附在每場）**：10/20——DET Prince 存疑、PHI Wade／Bona／Simons 存疑＋Fall／Barlow／Hukporti 缺陣、SAS Harris 缺陣、OKC Sorber／Topić 缺陣（Holmgren 已不在名單上＝可打）；BOS Devin Carter 不在 ESPN feed（雙向球員不列）。10/21——**ORL Franz Wagner 缺陣**（Black、Richardson 也缺）、**MIA Adebayo 缺陣**（Larsson 也缺）、**GSW Curry 可能出賽**、Podziemski 存疑、Bassey 缺陣、LAL Sexton 缺陣／Vanderbilt 可能出賽、DAL Aldama 可能出賽、Biberović／Howard 缺陣、CHA Coby White／Knueppel／Diabaté／G. Williams 缺陣、MEM Grant／GG Jackson 缺陣、POR Jrue Holiday 缺陣、LAC Strus 缺陣、PHX Kennard／M. Williams 缺陣、UTA Nurkić 缺陣、CHI Okoro／Collins 缺陣、MIL Sims 缺陣。WAS 無人列名（Dybantsa 不在報告上）。Wagner＋Adebayo 兩個先發核心缺陣是 10/21 盤口最該盯的兩場（ORL −2.5、MIA −1.5 都是小讓分，傷兵進盤前後的移動明天 06:00 第二筆快照會看到）。NBA 官方 PDF（`Injury-Report_2026-10-20_10_00AM.pdf`）抓取逾時，沒用上。
+
+**季前預覽兩個懸案關閉**（`scripts/preseason_curated_2026-27.py`，重建方式同前，逐欄位比對只有 DAL `injury`、ATL `adds`、BOS `adds` 三處不同）：
+- **DAL 第 15 人＝Moussa Cissé**：10/19 裁掉 Dwight Powell（12 年老將，$1M 部分保障；Hoops Rumors／ESPN／Yahoo），Cissé 因 Knicks 報價被比對後 10/1 已全額保障，Biberović 留下（ESPN feed 列他 10/21 缺陣）。
+- **Devin Carter**：SAC 6 月把他連 2033 二輪送到 ATL 換 Alpha Kaba 簽約權 → ATL 9/11 裁掉 → BOS 9/14 Exhibit 10 → 開季雙向（Maine Celtics）。curated 檔原本把他列在 ATL `adds`，改成註記已裁；BOS `adds` 補上；SAC `departs` 原本就對。
+
+**前端**：Flask test client `/` 200（「模型尚未啟用」×4、開季模式）、`/?date=2026-10-21` 200（11 場 stub、Wagner 傷兵顯示）。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。開季第一場還沒打完，模型預測仍預計 10/23–24 出現；今天把 10/21 的 11 場開盤線提早 8 小時入庫，是 P1 候選 2（盤口移動）的資料品質改善——`spread_first` 越接近真正開盤，`spread_move` 才有意義。115 個測試全過。
+
+**下一步（10/21 起）**：①**10/21 06:00 的 log**：`Patch_Scores` 應把 10/20 三場終場補進（`frozen_record.json` 3 場已結算、只有盤口）、`Get_Odds_Data` 印「No new odds dates」（預期）、`update_odds --db-only` 更新 11 列＋`odds_history` 11 筆第二快照、`Export_JSON` 的 10/21 應仍是 11 場、總耗時 ~2 分鐘；②看 ORL（Wagner 缺）、MIA（Adebayo 缺）的讓分有沒有從開盤移動 ≥1.5；③10/22 的 2 場（CLE @ PHI、DEN @ OKC）SBR 已掛出，若 10/21 晚間執行再比照提前建列；④**使用者：筆電接電源、載入 afternoon plist**。
