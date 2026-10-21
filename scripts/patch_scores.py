@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+from src.Utils import nba_cdn
 from src.Utils.sbr_scoreboard import Scoreboard  # browser UA + timeout; sbrscrape gets 403
 from src.Utils.tools import current_nba_season, data_headers
 
@@ -84,6 +85,15 @@ def _patch_from_sbr(con, d_str: str) -> int:
 
 
 def _game_ids_for_date(d: date) -> list[str]:
+    """Game ids for a US date: cdn.nba.com season schedule first (finished games
+    only), stats.nba.com scoreboardv2 as fallback (500 all opening week 2026-27)."""
+    try:
+        cdn_games = nba_cdn.games_for_date(d)
+    except Exception as exc:  # noqa: BLE001 - fall through to stats.nba.com
+        print(f"{d.isoformat()}: cdn schedule error: {exc}")
+        cdn_games = []
+    if cdn_games:
+        return [g["game_id"] for g in cdn_games if g["status"] == 3]
     mmddyyyy = d.strftime("%m/%d/%Y")
     r = requests.get(
         "https://stats.nba.com/stats/scoreboardv2",

@@ -670,3 +670,32 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。開季第一場還沒打完，模型預測仍預計 10/23–24 出現；今天把 10/21 的 11 場開盤線提早 8 小時入庫，是 P1 候選 2（盤口移動）的資料品質改善——`spread_first` 越接近真正開盤，`spread_move` 才有意義。115 個測試全過。
 
 **下一步（10/21 起）**：①**10/21 06:00 的 log**：`Patch_Scores` 應把 10/20 三場終場補進（`frozen_record.json` 3 場已結算、只有盤口）、`Get_Odds_Data` 印「No new odds dates」（預期）、`update_odds --db-only` 更新 11 列＋`odds_history` 11 筆第二快照、`Export_JSON` 的 10/21 應仍是 11 場、總耗時 ~2 分鐘；②看 ORL（Wagner 缺）、MIA（Adebayo 缺）的讓分有沒有從開盤移動 ≥1.5；③10/22 的 2 場（CLE @ PHI、DEN @ OKC）SBR 已掛出，若 10/21 晚間執行再比照提前建列；④**使用者：筆電接電源、載入 afternoon plist**。
+
+### 2026-10-21（22:40–23:40）— 開季第一週驗證日誌：06:00 執行 OK 但又凍了 2 h 48 min（電池、DarkWake）；三場開幕戰終場補齊（兩場靠手動補跑）；裁判資料靠 cdn.nba.com 回補 1,250 場後檢定 → 裁判傾向是雜訊，前端 ⚠️ 徽章關閉（`[referee-policy]`）；終場比賽誤帶「🔴 02:45 4th」修掉；10/22 兩場提前建列
+
+**06:00 執行（log）**：`daily_pipeline OK (morning)`，但 06:09:46 才開始（launchd 晚了 10 分鐘＝睡著）、08:58:23 結束，**2 h 48 min**。`pmset -g log`：05:12 還在 DarkWake／`Using BATT (Charge:100%)`，之後每步都卡在 dark wake 之間——`Get_Advanced_Data` 980 s、`Patch_Scores` 4,461 s、`collect_referee_data` 858 s、`Create_Games` 853 s、`Export_JSON` 894 s（正常各 <60 s）。現在（22:40）已接電源但電池只剩 13%，表示 06:00 時沒接電源。**連續三天（10/19、10/20、10/21）同一原因；caffeinate 無法救，使用者 06:00 前請接電源。`launchctl list` 仍只有 daily（afternoon plist 未載入）。**
+
+**比分**：06:00 的 `Patch_Scores` 只補到 BOS @ DET（nba live scoreboard），PHI @ NYK、OKC @ SAS 沒補——SBR 逾時 30 s、`stats.nba.com scoreboardv2` 對 10/19、10/20、10/21 全部 500。22:40 手動 `patch_scores.py` 從 live scoreboard 補齊兩場。開幕夜三場：
+
+| 10/20 | 開盤 | 收盤 | 終場 | ATS |
+|---|---|---|---|---|
+| BOS @ DET | DET +1.5 | DET +1.5 | **DET 121–113** | 主隊（受讓）蓋盤 +9.5 |
+| PHI @ NYK | NYK −5.5 | NYK −4.5 | **PHI 106–100** | 客隊（受讓）蓋盤，直接贏 |
+| OKC @ SAS | OKC −1.5 | OKC −1.5 | **OKC 116–104** | 客隊（讓分）蓋盤 +10.5 |
+
+`frozen_record.json`：3 場 `settled_without_prediction`、0 場評分（只有盤口、無模型，符合定義）。受讓方 2–1，樣本太小，不下結論。
+
+**10/21 盤口第二快照（22:40 台北＝10:40 ET，開賽前 8–12 小時）**：11 場只有 7 場線動（`odds_history` 只在變動時寫）。ORL（Wagner 缺陣）**反而從 −2.5 加到 −3.5**、WAS −5.5 → −4.5、NOP/IND 大分 240.5 → 239.5、PHX/POR 232.5 → 231.5、LAC 228.5 → 227.5、ORL 大分 234.5 → 235.5；MIA（Adebayo 缺）−1.5 不動。**沒有 ≥1.5 分的移動**。10/22 兩場提前建列（同 10/20 晚的做法；明天 06:00 會印「No new odds dates」）：CLE @ PHI → PHI −2.5／236.5／−134·+114；DEN @ OKC → OKC −8.5／236.5／−300·+245。
+
+**裁判資料——cdn.nba.com 回補＋檢定（本次主要工作）**：
+- `stats.nba.com scoreboardv2` 整個開幕週 500、`boxscoresummaryv2` 上季多數為空（`referee_games` 有 1,253 場 2025-26 存了 game_id 卻沒有裁判）。改測 `cdn.nba.com/static/json/staticData/scheduleLeagueV2.json`（整季賽程＋game_id＋狀態＋比分，7 MB，每程序抓一次）與 `liveData/boxscore/boxscore_<id>.json`（終場比分＋三位裁判；開賽前 403；**上季 game_id 也還有**）。新 `src/Utils/nba_cdn.py`；`collect_referee_data.py` 與 `patch_scores.py` 改成 cdn 優先、stats.nba.com 備援；`collect_referee_data.py --backfill-null` 回補 **1,250／1,253**（缺的 3 場是 2026-04 兩場季後賽與 1 場，cdn 也沒有）。2025-26 從 175 場有裁判變成 **1,390 場**；10/20 三場裁判已入庫（DET：Kevin Scott／Ed Malloy／Aaron Smith；NYK：Josh Tiven／Justin Van Duyne／Matt Myers；SAS：Ben Taylor／Brian Forte／J.T. Orr）。
+- **檢定（2,626 場有 ATS 結果、67 位裁判 ≥50 場）**：雙尾二項檢定 p<0.05 只有 3 位（Simone Jelks 37.5%／88、Jonathan Sterling 61.7%／94、Phenizee Ransom 40.3%／119），**隨機預期 3.4 位**；60 位兩季都 ≥30 場的裁判，2024-25 與 2025-26 的主隊蓋盤率相關係數 **r = −0.22**（不但不穩定，還反向）。全體主隊蓋盤率 50.3%。結論：**裁判傾向是雜訊，不是訊號**——記憶中 Tyler Ford／Matt Boland／James Capers 的「顯著」是小樣本＋多重比較的產物。
+- **前端依「值得參考才輸出」**：`config.toml` 新增 `[referee-policy] bias_flag_enabled = false`（effective 2026-10-21，重開條件：兩季 r ≥ 0.3 且 p<0.05 人數 ≥ 隨機預期兩倍）；`export_predictions.build_referee_crew` 在旗標關閉時強制 `significant=False`、`direction=None`、`away/home_friendly=False`、`has_significant=False` 並附 `note`；卡片仍列三位裁判姓名與原始蓋盤率，標「（僅供參考）」，⚠️／▲▼／客隊友好·主隊友好全部不再出現。Flask test client（登入 session）`/?date=2026-10-20`：3 個裁判列、3 個「僅供參考」、0 個 ⚠️。
+
+**終場比賽誤帶 live 徽章**：08:58 輸出的 `2026-10-20.json` 在 DET 121–113 旁同時帶 `live_status="02:45 4th"`、`live_is_final=false`（112–101），首頁該場會閃「🔴 02:45 4th」。原因：守門條件 `g.get("Win_Margin") in (None, 0)`，但 `predict_historical_xgb` 的 dict 只有 `home_score` 沒有 `Win_Margin`，永遠成立。改成 `home_score is None` 才掛 live 欄位（已有終場的比賽永遠不帶）。
+
+**測試**：124 個全過（115 ＋ `test_nba_cdn.py` 6 ＋ `test_referee_policy.py` 3）。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。今天把 P1 候選清單又劃掉一個：裁判資料本來是「等 3 季再評估」的候選特徵，現在有兩季 2,626 場，跨季 r = −0.22，**不會進模型**。剩下的候選只有盤口移動（10/21 是第一天有「開盤→賽前 8 小時」兩個快照的 11 場）與傷兵。模型預測仍預計 10/23–24 出現。
+
+**下一步（10/22 起）**：①**10/22 06:00 的 log**：`Patch_Scores` 應從 cdn schedule（不再靠 500 的 scoreboardv2）補 10/21 的 11 場終場、`collect_referee_data` 印「cdn」路徑的 11 場裁判、`Get_Odds_Data` 印「No new odds dates」（10/22 已建列）、總耗時 ~2 分鐘——**使用者：接電源、載入 afternoon plist**；②10/21 的 11 場 `spread_move` 結算（開盤 vs 賽前 8 小時 vs 06:00 收盤）：ORL +1 往主隊、WAS −1 往客隊，看結果；③10/23–24 第一批模型預測：確認 `pregame.locked` 含模型欄位；④記憶檔 `project_referee_data.md` 已改寫（舊結論「API 不回補、資料凍結 175 場」被 cdn 推翻；新結論「有資料但無訊號」）。

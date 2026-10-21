@@ -181,6 +181,42 @@ def _serialize(obj):
     raise TypeError(f"Not serializable: {type(obj)}")
 
 
+REFEREE_NOTE_ZH = "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+
+
+def _referee_bias_flag_enabled() -> bool:
+    """config.toml [referee-policy].bias_flag_enabled (default True when absent)."""
+    try:
+        import toml as _toml
+        _cfg = _toml.load(Path(__file__).resolve().parents[1] / "config.toml")
+        return bool(_cfg.get("referee-policy", {}).get("bias_flag_enabled", True))
+    except Exception:
+        return True
+
+
+def build_referee_crew(crew_stats: list, sig_officials: list, bias_flag_enabled: bool = True) -> dict:
+    """Per-game referee block for the card. With the bias flag off ([referee-policy],
+    2026-10-21) every badge input is forced off (significant/direction/away- or
+    home-friendly/has_significant) and a reference-only note is attached; the crew
+    names and raw cover rates stay."""
+    avg_pct = sum(s["home_cover_pct"] for s in crew_stats) / len(crew_stats)
+    if not bias_flag_enabled:
+        for s in crew_stats:
+            s["significant"] = False
+            s["direction"] = None
+        sig_officials = []
+    return {
+        "officials": crew_stats,
+        "avg_home_cover_pct": round(avg_pct, 1),
+        "away_friendly": bias_flag_enabled and avg_pct < 44.0,
+        "home_friendly": bias_flag_enabled and avg_pct > 56.0,
+        "has_significant": len(sig_officials) > 0,
+        "significant_officials": sig_officials,
+        "bias_flag_enabled": bias_flag_enabled,
+        "note": None if bias_flag_enabled else REFEREE_NOTE_ZH,
+    }
+
+
 def export_date(target_date: date) -> dict | None:
     """Generate prediction dict for a single date."""
     from main import predict_historical_xgb
@@ -324,15 +360,9 @@ def export_date(target_date: date) -> dict | None:
                         if _sig:
                             sig_officials.append(stat)
                 if crew_stats:
-                    avg_pct = sum(s["home_cover_pct"] for s in crew_stats) / len(crew_stats)
-                    _ref_crew_map[(g["home_team"], g["away_team"])] = {
-                        "officials": crew_stats,
-                        "avg_home_cover_pct": round(avg_pct, 1),
-                        "away_friendly": avg_pct < 44.0,
-                        "home_friendly": avg_pct > 56.0,
-                        "has_significant": len(sig_officials) > 0,
-                        "significant_officials": sig_officials,
-                    }
+                    _ref_crew_map[(g["home_team"], g["away_team"])] = build_referee_crew(
+                        crew_stats, sig_officials, bias_flag_enabled=_referee_bias_flag_enabled()
+                    )
     except Exception:
         pass
 
@@ -390,7 +420,11 @@ def export_date(target_date: date) -> dict | None:
         g["injuries_home"] = injury_report.get(g["home_team"], [])
         # Live score (today only, if game in progress or recently finished).
         _live = _live_score_map.get((g["home_team"], g["away_team"]))
-        if _live and g.get("Win_Margin") in (None, 0):
+        # Never attach a live snapshot to a game whose final is already in the DB:
+        # the dicts carry home_score, not Win_Margin, so the old guard never fired
+        # and the 2026-10-21 08:58 export shipped DET 121-113 with a stale
+        # "02:45 4th" badge (cdn scoreboard lagging behind patch_scores).
+        if _live and g.get("home_score") is None and g.get("Win_Margin") in (None, 0):
             spread = g.get("Spread") or g.get("spread") or 0
             live_margin = _live["live_home_score"] - _live["live_away_score"]
             _live["live_home_covering"] = (live_margin - spread) > 0

@@ -57,6 +57,20 @@ effective_from = "2026-10-13"
 reopen_min_frozen_picks = 100
 reopen_ci_lower_pct = 52.4
 
+# Referee-crew ATS bias badges, frozen 2026-10-21. After cdn.nba.com boxscores backfilled
+# 1,250 missing 2025-26 crews (referee_games: 2,626 games with an ATS outcome, 67 officials
+# with >= 50 games), 3 officials pass a two-sided binomial test at p < 0.05 where 3.4 are
+# expected by chance, and the per-official home-cover rate of 2024-25 vs 2025-26 correlates
+# at -0.22 (60 officials with >= 30 games in both seasons). The tendency does not persist, so
+# from effective_from on the ⚠️ / ▲▼ / "客隊友好·主隊友好" badges are off; the crew names and
+# raw cover rates stay on the card as reference only. Re-open only when two full seasons'
+# per-official rates correlate at >= reopen_season_corr_min AND the number of officials at
+# p < 0.05 is at least twice the chance expectation.
+[referee-policy]
+bias_flag_enabled = false
+effective_from = "2026-10-21"
+reopen_season_corr_min = 0.3
+
 [get-data]
     [get-data.2007-08]
         start_date = "2007-10-30"

@@ -1,7 +1,7 @@
 {
  "date": "2026-10-20",
  "is_today": false,
- "exported_at": "2026-10-21T08:58:16+08:00",
+ "exported_at": "2026-10-21T23:16:18+08:00",
  "summary": {
   "games": 3,
   "model_games": 0,
@@ -14,16 +14,7 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Detroit Pistons: Taurean Prince (缺陣)",
-   "Philadelphia 76ers: Dean Wade (缺陣)",
-   "Philadelphia 76ers: Tacko Fall (缺陣)",
-   "Philadelphia 76ers: Dominick Barlow (缺陣)",
-   "Philadelphia 76ers: Ariel Hukporti (缺陣)",
-   "San Antonio Spurs: Tobias Harris (缺陣)",
-   "Oklahoma City Thunder: Thomas Sorber (缺陣)",
-   "Oklahoma City Thunder: Nikola Topic (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -83,14 +74,42 @@
    "away_team_zh": "波士頓塞爾提克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "injuries_home": [
-    "Taurean Prince (缺陣)"
-   ],
-   "live_home_score": 112,
-   "live_away_score": 101,
-   "live_status": "02:45 4th",
-   "live_is_final": false,
-   "live_home_covering": true,
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Kevin Scott",
+      "games": 140,
+      "home_cover_pct": 47.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6728
+     },
+     {
+      "name": "Ed Malloy",
+      "games": 112,
+      "home_cover_pct": 57.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1561
+     },
+     {
+      "name": "Aaron Smith",
+      "games": 40,
+      "home_cover_pct": 57.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4296
+     }
+    ],
+    "avg_home_cover_pct": 54.2,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -173,8 +192,8 @@
   "Philadelphia 76ers:New York Knicks": {
    "home_team": "New York Knicks",
    "away_team": "Philadelphia 76ers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 100,
+   "away_score": 106,
    "spread": 4.5,
    "Spread": 4.5,
    "OU": 231.5,
@@ -192,15 +211,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 206,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -10.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -214,12 +233,42 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "Dean Wade (缺陣)",
-    "Tacko Fall (缺陣)",
-    "Dominick Barlow (缺陣)",
-    "Ariel Hukporti (缺陣)"
-   ],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Josh Tiven",
+      "games": 148,
+      "home_cover_pct": 48.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6812
+     },
+     {
+      "name": "Justin Van Duyne",
+      "games": 141,
+      "home_cover_pct": 48.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8663
+     },
+     {
+      "name": "Matt Myers",
+      "games": 102,
+      "home_cover_pct": 55.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.276
+     }
+    ],
+    "avg_home_cover_pct": 50.9,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T00:57:57+00:00",
@@ -265,7 +314,7 @@
    "pregame": {
     "frozen_at": "2026-10-21T08:58:16+08:00",
     "revisions": 4,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -288,15 +337,21 @@
     "spread_move": -1.0,
     "ou_first": 231.5,
     "ou_last": 231.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-21T22:57:23+08:00"
+   },
+   "closing": {
+    "spread": 4.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -10.5
    },
    "pregame_missing": false
   },
   "Oklahoma City Thunder:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
    "away_team": "Oklahoma City Thunder",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 104,
+   "away_score": 116,
    "spread": -1.5,
    "Spread": -1.5,
    "OU": 230.5,
@@ -314,15 +369,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 220,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -10.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -335,13 +390,43 @@
    "away_team_zh": "奧克拉荷馬雷霆",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
-   "injuries_home": [
-    "Tobias Harris (缺陣)"
-   ],
-   "injuries_away": [
-    "Thomas Sorber (缺陣)",
-    "Nikola Topic (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Ben Taylor",
+      "games": 91,
+      "home_cover_pct": 49.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Brian Forte",
+      "games": 132,
+      "home_cover_pct": 52.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6636
+     },
+     {
+      "name": "J.T. Orr",
+      "games": 100,
+      "home_cover_pct": 55.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3682
+     }
+    ],
+    "avg_home_cover_pct": 52.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T00:57:57+00:00",
@@ -387,7 +472,7 @@
    "pregame": {
     "frozen_at": "2026-10-21T08:58:16+08:00",
     "revisions": 4,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -410,7 +495,13 @@
     "spread_move": -3.0,
     "ou_first": 230.5,
     "ou_last": 230.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-21T22:57:23+08:00"
+   },
+   "closing": {
+    "spread": -1.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -10.5
    },
    "pregame_missing": false
   }

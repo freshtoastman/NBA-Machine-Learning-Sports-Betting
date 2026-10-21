@@ -3,7 +3,13 @@
 Builds a historical referee database for future ATS model improvement.
 Run after each game day (e.g., as a post-pipeline step).
 
-Usage: PYTHONPATH=. python scripts/collect_referee_data.py [--days-back N]
+Usage: PYTHONPATH=. python scripts/collect_referee_data.py [--days-back N] [--backfill-null]
+
+Sources (2026-10-21): cdn.nba.com schedule + boxscore first (src/Utils/nba_cdn);
+stats.nba.com scoreboardv2 / boxscoresummaryv2 only as fallback, because they
+answered 500 for the whole 2026-27 opening week and were empty or 403 for most
+of 2025-26 (1,259 stored games had no officials). `--backfill-null` re-fetches
+officials for every stored game whose officials are still NULL.
 
 Schema:
   referee_games: one row per game, storing official IDs and names
@@ -16,6 +22,7 @@ from datetime import date, timedelta
 
 import requests
 
+from src.Utils import nba_cdn
 from src.Utils.tools import data_headers
 
 REF_DB = "Data/referee_data.sqlite"
@@ -57,9 +64,21 @@ def _init_db(con):
 def _get_game_ids_for_date(d: date) -> list[tuple[str, str, str]]:
     """Returns list of (game_id, home_team_id, away_team_id).
 
-    For today: only Final games (status_id=3).
-    For past dates: all games (scoreboardv2 shows historical games as status=1).
+    cdn.nba.com schedule first: finished games only (status 3), preseason ids
+    dropped. stats.nba.com scoreboardv2 as fallback (for today: only Final
+    games, status_id=3; for past dates: all games).
     """
+    try:
+        cdn_games = nba_cdn.games_for_date(d)
+    except Exception as e:  # noqa: BLE001 - fall through to stats.nba.com
+        print(f"  cdn schedule error: {e}")
+        cdn_games = []
+    if cdn_games:
+        return [
+            (g["game_id"], g["home_id"], g["away_id"])
+            for g in cdn_games
+            if g["status"] == 3
+        ]
     mmddyyyy = d.strftime("%m/%d/%Y")
     is_today = d == date.today()
     try:
@@ -110,7 +129,17 @@ _TEAM_ID_MAP = {
 
 
 def _fetch_game_officials(game_id: str) -> list[tuple[int, str]]:
-    """Returns list of (official_id, full_name) up to 3 officials."""
+    """Returns list of (official_id, full_name) up to 3 officials.
+
+    cdn.nba.com boxscore first (403 only before tip-off), stats.nba.com
+    boxscoresummaryv2 as fallback.
+    """
+    try:
+        box = nba_cdn.fetch_boxscore(game_id)
+        if box and box["officials"]:
+            return [(pid, name) for pid, name in box["officials"]][:3]
+    except Exception as e:  # noqa: BLE001 - fall through to stats.nba.com
+        print(f"    cdn boxscore error {game_id}: {e}")
     try:
         r = requests.get(
             "https://stats.nba.com/stats/boxscoresummaryv2",
@@ -232,8 +261,47 @@ def collect_for_date(d: date, con_ref, con_odds) -> int:
     return collected
 
 
+def backfill_null_officials(con_ref, con_odds, sleep_s: float = 0.15) -> int:
+    """Re-fetch officials for stored games whose officials are NULL (any season).
+
+    2025-26 left 1,259 such rows because boxscoresummaryv2 was empty/403; the
+    cdn boxscore still serves those game ids. Preseason ids are skipped (no
+    spread, never counted in referee_ats).
+    """
+    rows = con_ref.execute(
+        "SELECT game_id, game_date, home_team, away_team FROM referee_games "
+        "WHERE official1_name IS NULL OR official1_name = '' ORDER BY game_date"
+    ).fetchall()
+    rows = [r for r in rows if nba_cdn.is_season_game(r[0])]
+    print(f"Backfilling officials for {len(rows)} stored games with NULL officials...")
+    filled = 0
+    for i, (game_id, d_str, home, away) in enumerate(rows, 1):
+        officials = _fetch_game_officials(game_id)
+        time.sleep(sleep_s)
+        if not officials:
+            continue
+        while len(officials) < 3:
+            officials.append((None, None))
+        spread, wm, home_covered = _get_spread_and_margin(con_odds, d_str, home, away)
+        con_ref.execute(
+            "UPDATE referee_games SET spread=COALESCE(?, spread), win_margin=COALESCE(?, win_margin), "
+            "home_covered=COALESCE(?, home_covered), official1_id=?, official1_name=?, "
+            "official2_id=?, official2_name=?, official3_id=?, official3_name=? WHERE game_id=?",
+            (spread, wm, home_covered,
+             officials[0][0], officials[0][1], officials[1][0], officials[1][1],
+             officials[2][0], officials[2][1], game_id),
+        )
+        filled += 1
+        if i % 100 == 0:
+            con_ref.commit()
+            print(f"  {i}/{len(rows)} checked, {filled} filled")
+    con_ref.commit()
+    print(f"  backfilled {filled}/{len(rows)}")
+    return filled
+
+
 def print_top_refs(con_ref, min_games=20):
-    print("\n=== Top Referee ATS Tendencies (min {min_games} games) ===")
+    print(f"\n=== Top Referee ATS Tendencies (min {min_games} games) ===")
     rows = con_ref.execute("""
         SELECT official_name, games, home_covers, home_cover_pct
         FROM referee_ats
@@ -254,6 +322,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--days-back", type=int, default=DEFAULT_DAYS_BACK)
     parser.add_argument("--show-stats", action="store_true")
+    parser.add_argument("--backfill-null", action="store_true",
+                        help="re-fetch officials for every stored game whose officials are NULL")
     args = parser.parse_args()
 
     con_ref = sqlite3.connect(REF_DB)
@@ -266,6 +336,9 @@ def main():
         d = today - timedelta(days=i)
         total += collect_for_date(d, con_ref, con_odds)
         time.sleep(1)
+
+    if args.backfill_null:
+        total += backfill_null_officials(con_ref, con_odds)
 
     if total > 0:
         print(f"\nUpdating ATS stats for all referees...")

@@ -1105,9 +1105,9 @@
                 {% set crew = game.referee_crew %}
                 <div class="referee-row{% if crew.away_friendly or (crew.has_significant and crew.significant_officials|selectattr('direction','equalto','away')|list|length) %} ref-away-friendly{% elif crew.home_friendly or (crew.has_significant and crew.significant_officials|selectattr('direction','equalto','home')|list|length) %} ref-home-friendly{% endif %}">
                     <span class="ref-label">👨‍⚖️ 裁判{% if crew.has_significant %} ⚠️{% endif %}</span>
-                    <span class="ref-crew-avg {% if crew.away_friendly %}ref-away{% elif crew.home_friendly %}ref-home{% endif %}">
+                    <span class="ref-crew-avg {% if crew.away_friendly %}ref-away{% elif crew.home_friendly %}ref-home{% endif %}"{% if crew.note %} title="{{ crew.note }}"{% endif %}>
                         主隊蓋盤率 {{ crew.avg_home_cover_pct }}%
-                        {% if crew.away_friendly %}▼ 客隊友好{% elif crew.home_friendly %}▲ 主隊友好{% endif %}
+                        {% if crew.away_friendly %}▼ 客隊友好{% elif crew.home_friendly %}▲ 主隊友好{% elif crew.note %}<span style="color:#888;font-size:9px;">（僅供參考）</span>{% endif %}
                     </span>
                     <span class="ref-officials">
                         {% for off in crew.officials %}
