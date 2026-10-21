@@ -2,10 +2,10 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 0,
+ "frozen_games": 1,
  "graded_games": 0,
- "settled_without_prediction": 0,
- "game_dates": 0,
+ "settled_without_prediction": 1,
+ "game_dates": 1,
  "ml": {
   "wins": 0,
   "losses": 0,
@@ -76,10 +76,87 @@
    null
   ]
  },
- "pending_games": 14,
+ "pending_games": 13,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
- "by_season": {},
+ "by_season": {
+  "2026-27": {
+   "frozen_games": 1,
+   "graded_games": 0,
+   "settled_without_prediction": 1,
+   "game_dates": 1,
+   "ml": {
+    "wins": 0,
+    "losses": 0,
+    "n": 0,
+    "hit_rate": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ou": {
+    "wins": 0,
+    "losses": 0,
+    "n": 0,
+    "hit_rate": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ats_model": {
+    "wins": 0,
+    "losses": 0,
+    "n": 0,
+    "hit_rate": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ats_shadow_value": {
+    "wins": 0,
+    "losses": 0,
+    "n": 0,
+    "hit_rate": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ml_shadow_value_roi": {
+    "n": 0,
+    "roi_pct": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "wins": 0,
+    "losses": 0
+   },
+   "ml_shadow_golden_roi": {
+    "n": 0,
+    "roi_pct": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "wins": 0,
+    "losses": 0
+   },
+   "playoff_best_gold_silver": {
+    "wins": 0,
+    "losses": 0,
+    "n": 0,
+    "hit_rate": null,
+    "ci95": [
+     null,
+     null
+    ]
+   }
+  }
+ },
  "reopen": {
   "ats": {
    "rule": "ats_shadow_value picks: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
@@ -107,5 +184,5 @@
   }
  },
  "ats_shadow_rows": [],
- "generated_at": "2026-10-20T22:08:11"
+ "generated_at": "2026-10-21T08:58:16"
 }

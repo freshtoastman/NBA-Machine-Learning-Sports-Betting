@@ -1,7 +1,7 @@
 {
  "date": "2026-10-21",
- "is_today": false,
- "exported_at": "2026-10-20T22:08:10+08:00",
+ "is_today": true,
+ "exported_at": "2026-10-21T08:58:14+08:00",
  "summary": {
   "games": 11,
   "model_games": 0,
@@ -15,59 +15,51 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
+   "Orlando Magic: Jonathan Isaac (缺陣)",
    "Orlando Magic: Anthony Black (缺陣)",
-   "Orlando Magic: Franz Wagner (缺陣)",
-   "Orlando Magic: Jase Richardson (缺陣)",
-   "Milwaukee Bucks: Jericho Sims (缺陣)",
-   "Milwaukee Bucks: Nate Ament (缺陣)",
-   "Miami Heat: Bam Adebayo (缺陣)",
-   "Miami Heat: Pelle Larsson (缺陣)",
-   "Minnesota Timberwolves: Rocco Zikarsky (缺陣)",
-   "Chicago Bulls: Zach Collins (缺陣)",
-   "Chicago Bulls: Tobe Awaka (缺陣)",
-   "Chicago Bulls: Isaac Okoro (缺陣)",
+   "Washington Wizards: AJ Dybantsa (缺陣)",
+   "Milwaukee Bucks: Nate Ament (可能出賽)",
+   "Miami Heat: Vladislav Goldin (存疑)",
+   "Toronto Raptors: Nate Bittle (缺陣)",
+   "Chicago Bulls: Leonard Miller (可能出賽)",
+   "Chicago Bulls: Isaac Okoro (可能出賽)",
+   "Chicago Bulls: Dailyn Swain (可能缺陣)",
+   "Chicago Bulls: Zach Collins (可能出賽)",
+   "Chicago Bulls: Tobe Awaka (可能出賽)",
+   "Chicago Bulls: Jordan Hawkins (缺陣)",
    "Brooklyn Nets: Tyler Bilodeau (缺陣)",
-   "Charlotte Hornets: Coby White (缺陣)",
-   "Charlotte Hornets: Kon Knueppel (缺陣)",
-   "Charlotte Hornets: Moussa Diabate (缺陣)",
    "Charlotte Hornets: Kylan Boswell (缺陣)",
+   "Charlotte Hornets: Kon Knueppel (缺陣)",
    "Charlotte Hornets: Grant Williams (缺陣)",
-   "Memphis Grizzlies: Jerami Grant (缺陣)",
-   "Memphis Grizzlies: GG Jackson (缺陣)",
+   "Charlotte Hornets: Coby White (缺陣)",
+   "Memphis Grizzlies: Isaiah Stewart (可能缺陣)",
    "Utah Jazz: Blake Hinson (缺陣)",
+   "Utah Jazz: Tony Bradley (缺陣)",
+   "Utah Jazz: Trey Alexander (缺陣)",
    "Utah Jazz: Jusuf Nurkic (缺陣)",
-   "Dallas Mavericks: Santi Aldama (可能出賽)",
+   "Indiana Pacers: T.J. McConnell (缺陣)",
+   "Indiana Pacers: Aaron Nesmith (缺陣)",
+   "Houston Rockets: Steven Adams (存疑)",
+   "Dallas Mavericks: Jett Howard (存疑)",
+   "Dallas Mavericks: Caleb Martin (缺陣)",
    "Dallas Mavericks: Tarik Biberovic (缺陣)",
-   "Dallas Mavericks: Jett Howard (缺陣)",
-   "Los Angeles Lakers: Bronny James (缺陣)",
+   "Dallas Mavericks: Dereck Lively II (缺陣)",
+   "Dallas Mavericks: Santi Aldama (缺陣)",
    "Los Angeles Lakers: Cameron Carr (缺陣)",
+   "Los Angeles Lakers: Collin Sexton (存疑)",
    "Los Angeles Lakers: Adou Thiero (缺陣)",
-   "Los Angeles Lakers: Collin Sexton (缺陣)",
-   "Los Angeles Lakers: Jarred Vanderbilt (可能出賽)",
    "Golden State Warriors: Stephen Curry (可能出賽)",
-   "Golden State Warriors: Charles Bassey (缺陣)",
-   "Golden State Warriors: Brandin Podziemski (存疑)",
+   "Golden State Warriors: Brandin Podziemski (缺陣)",
+   "Golden State Warriors: Charles Bassey (存疑)",
+   "Portland Trail Blazers: Branden Carlson (缺陣)",
    "Portland Trail Blazers: Chris Youngblood (缺陣)",
-   "Portland Trail Blazers: Micah Potter (缺陣)",
-   "Portland Trail Blazers: Jrue Holiday (缺陣)",
-   "Phoenix Suns: Luke Kennard (缺陣)",
+   "Portland Trail Blazers: Micah Potter (存疑)",
+   "Portland Trail Blazers: Deni Avdija (存疑)",
+   "Phoenix Suns: Luke Kennard (存疑)",
    "Phoenix Suns: Mark Williams (缺陣)",
-   "LA Clippers: Max Strus (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
-  "value_decided": 0,
-  "value_wins": 0,
-  "value_losses": 0,
-  "value_hit_rate": null,
-  "golden_decided": 0,
-  "golden_wins": 0,
-  "golden_losses": 0,
-  "golden_hit_rate": null
+   "LA Clippers: Max Strus (缺陣)",
+   "Sacramento Kings: Malik Monk (存疑)"
+  ]
  },
  "games": {
   "Atlanta Hawks:Orlando Magic": {
@@ -114,9 +106,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "injuries_home": [
-    "Anthony Black (缺陣)",
-    "Franz Wagner (缺陣)",
-    "Jase Richardson (缺陣)"
+    "Jonathan Isaac (缺陣)",
+    "Anthony Black (缺陣)"
    ],
    "injuries_away": [],
    "odds_history": [
@@ -138,8 +129,8 @@
    "ou_last": 234.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -210,10 +201,11 @@
    "away_team_zh": "密爾瓦基公鹿",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "AJ Dybantsa (缺陣)"
+   ],
    "injuries_away": [
-    "Jericho Sims (缺陣)",
-    "Nate Ament (缺陣)"
+    "Nate Ament (可能出賽)"
    ],
    "odds_history": [
     {
@@ -234,8 +226,8 @@
    "ou_last": 238.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -307,12 +299,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "injuries_home": [
-    "Bam Adebayo (缺陣)",
-    "Pelle Larsson (缺陣)"
+    "Vladislav Goldin (存疑)"
    ],
-   "injuries_away": [
-    "Rocco Zikarsky (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -332,8 +321,8 @@
    "ou_last": 243.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -404,11 +393,16 @@
    "away_team_zh": "芝加哥公牛",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Nate Bittle (缺陣)"
+   ],
    "injuries_away": [
-    "Zach Collins (缺陣)",
-    "Tobe Awaka (缺陣)",
-    "Isaac Okoro (缺陣)"
+    "Leonard Miller (可能出賽)",
+    "Isaac Okoro (可能出賽)",
+    "Dailyn Swain (可能缺陣)",
+    "Zach Collins (可能出賽)",
+    "Tobe Awaka (可能出賽)",
+    "Jordan Hawkins (缺陣)"
    ],
    "odds_history": [
     {
@@ -429,8 +423,8 @@
    "ou_last": 236.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -505,11 +499,10 @@
     "Tyler Bilodeau (缺陣)"
    ],
    "injuries_away": [
-    "Coby White (缺陣)",
-    "Kon Knueppel (缺陣)",
-    "Moussa Diabate (缺陣)",
     "Kylan Boswell (缺陣)",
-    "Grant Williams (缺陣)"
+    "Kon Knueppel (缺陣)",
+    "Grant Williams (缺陣)",
+    "Coby White (缺陣)"
    ],
    "odds_history": [
     {
@@ -530,8 +523,8 @@
    "ou_last": 219.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -603,11 +596,12 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
    "injuries_home": [
-    "Jerami Grant (缺陣)",
-    "GG Jackson (缺陣)"
+    "Isaiah Stewart (可能缺陣)"
    ],
    "injuries_away": [
     "Blake Hinson (缺陣)",
+    "Tony Bradley (缺陣)",
+    "Trey Alexander (缺陣)",
     "Jusuf Nurkic (缺陣)"
    ],
    "odds_history": [
@@ -629,8 +623,8 @@
    "ou_last": 241.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -702,7 +696,10 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [],
+   "injuries_away": [
+    "T.J. McConnell (缺陣)",
+    "Aaron Nesmith (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -722,8 +719,8 @@
    "ou_last": 240.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -794,11 +791,15 @@
    "away_team_zh": "達拉斯獨行俠",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
-   "injuries_home": [],
+   "injuries_home": [
+    "Steven Adams (存疑)"
+   ],
    "injuries_away": [
-    "Santi Aldama (可能出賽)",
+    "Jett Howard (存疑)",
+    "Caleb Martin (缺陣)",
     "Tarik Biberovic (缺陣)",
-    "Jett Howard (缺陣)"
+    "Dereck Lively II (缺陣)",
+    "Santi Aldama (缺陣)"
    ],
    "odds_history": [
     {
@@ -819,8 +820,8 @@
    "ou_last": 230.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -892,16 +893,14 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
    "injuries_home": [
-    "Bronny James (缺陣)",
     "Cameron Carr (缺陣)",
-    "Adou Thiero (缺陣)",
-    "Collin Sexton (缺陣)",
-    "Jarred Vanderbilt (可能出賽)"
+    "Collin Sexton (存疑)",
+    "Adou Thiero (缺陣)"
    ],
    "injuries_away": [
     "Stephen Curry (可能出賽)",
-    "Charles Bassey (缺陣)",
-    "Brandin Podziemski (存疑)"
+    "Brandin Podziemski (缺陣)",
+    "Charles Bassey (存疑)"
    ],
    "odds_history": [
     {
@@ -922,8 +921,8 @@
    "ou_last": 233.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -995,12 +994,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "injuries_home": [
+    "Branden Carlson (缺陣)",
     "Chris Youngblood (缺陣)",
-    "Micah Potter (缺陣)",
-    "Jrue Holiday (缺陣)"
+    "Micah Potter (存疑)",
+    "Deni Avdija (存疑)"
    ],
    "injuries_away": [
-    "Luke Kennard (缺陣)",
+    "Luke Kennard (存疑)",
     "Mark Williams (缺陣)"
    ],
    "odds_history": [
@@ -1022,8 +1022,8 @@
    "ou_last": 232.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -1097,7 +1097,9 @@
    "injuries_home": [
     "Max Strus (缺陣)"
    ],
-   "injuries_away": [],
+   "injuries_away": [
+    "Malik Monk (存疑)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -1117,8 +1119,8 @@
    "ou_last": 228.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-20T22:08:10+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-21T08:58:14+08:00",
+    "revisions": 2,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
