@@ -1,7 +1,7 @@
 {
  "date": "2026-10-21",
  "is_today": false,
- "exported_at": "2026-10-22T06:01:48+08:00",
+ "exported_at": "2026-10-22T22:07:31+08:00",
  "summary": {
   "games": 11,
   "model_games": 0,
@@ -14,45 +14,7 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Orlando Magic: Jonathan Isaac (缺陣)",
-   "Orlando Magic: Anthony Black (缺陣)",
-   "Washington Wizards: AJ Dybantsa (缺陣)",
-   "Toronto Raptors: Nate Bittle (缺陣)",
-   "Chicago Bulls: Dailyn Swain (缺陣)",
-   "Chicago Bulls: Jordan Hawkins (缺陣)",
-   "Brooklyn Nets: Tyler Bilodeau (缺陣)",
-   "Charlotte Hornets: Kylan Boswell (缺陣)",
-   "Charlotte Hornets: Kon Knueppel (缺陣)",
-   "Charlotte Hornets: Grant Williams (缺陣)",
-   "Charlotte Hornets: Coby White (缺陣)",
-   "Memphis Grizzlies: Isaiah Stewart (可能缺陣)",
-   "Utah Jazz: Tony Bradley (缺陣)",
-   "Utah Jazz: Trey Alexander (缺陣)",
-   "Utah Jazz: Jusuf Nurkic (缺陣)",
-   "Indiana Pacers: T.J. McConnell (缺陣)",
-   "Indiana Pacers: Aaron Nesmith (缺陣)",
-   "Houston Rockets: Steven Adams (存疑)",
-   "Dallas Mavericks: Jett Howard (可能缺陣)",
-   "Dallas Mavericks: Caleb Martin (缺陣)",
-   "Dallas Mavericks: Tarik Biberovic (缺陣)",
-   "Dallas Mavericks: Dereck Lively II (缺陣)",
-   "Dallas Mavericks: Santi Aldama (缺陣)",
-   "Los Angeles Lakers: Collin Sexton (缺陣)",
-   "Los Angeles Lakers: Cameron Carr (缺陣)",
-   "Los Angeles Lakers: Adou Thiero (缺陣)",
-   "Golden State Warriors: Charles Bassey (缺陣)",
-   "Golden State Warriors: Stephen Curry (可能出賽)",
-   "Golden State Warriors: Brandin Podziemski (缺陣)",
-   "Portland Trail Blazers: Micah Potter (可能出賽)",
-   "Portland Trail Blazers: Branden Carlson (缺陣)",
-   "Portland Trail Blazers: Chris Youngblood (缺陣)",
-   "Portland Trail Blazers: Deni Avdija (存疑)",
-   "Phoenix Suns: Luke Kennard (存疑)",
-   "Phoenix Suns: Mark Williams (缺陣)",
-   "LA Clippers: Max Strus (缺陣)",
-   "Sacramento Kings: Malik Monk (存疑)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 0,
   "ml_graded": 0,
   "ml_hit_rate": null,
@@ -72,8 +34,8 @@
   "Atlanta Hawks:Orlando Magic": {
    "home_team": "Orlando Magic",
    "away_team": "Atlanta Hawks",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 125,
+   "away_score": 132,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 235.5,
@@ -91,15 +53,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 257,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -10.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -112,10 +74,42 @@
    "away_team_zh": "亞特蘭大老鷹",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
-   "injuries_home": [
-    "Jonathan Isaac (缺陣)",
-    "Anthony Black (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Pat Fraher",
+      "games": 141,
+      "home_cover_pct": 48.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7364
+     },
+     {
+      "name": "Eric Dalen",
+      "games": 121,
+      "home_cover_pct": 52.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5856
+     },
+     {
+      "name": "Jenna Reneau",
+      "games": 45,
+      "home_cover_pct": 40.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2327
+     }
+    ],
+    "avg_home_cover_pct": 47.0,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -146,7 +140,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -169,15 +163,21 @@
     "spread_move": 1.0,
     "ou_first": 234.5,
     "ou_last": 235.5,
-    "ou_move": 1.0
+    "ou_move": 1.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 3.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -10.5
    },
    "pregame_missing": false
   },
   "Milwaukee Bucks:Washington Wizards": {
    "home_team": "Washington Wizards",
    "away_team": "Milwaukee Bucks",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 128,
+   "away_score": 116,
    "spread": 4.5,
    "Spread": 4.5,
    "OU": 238.5,
@@ -195,15 +195,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 244,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 7.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -216,9 +216,42 @@
    "away_team_zh": "密爾瓦基公鹿",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
-   "injuries_home": [
-    "AJ Dybantsa (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "John Goble",
+      "games": 137,
+      "home_cover_pct": 56.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1238
+     },
+     {
+      "name": "Natalie Sago",
+      "games": 129,
+      "home_cover_pct": 50.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "CJ Washington",
+      "games": 104,
+      "home_cover_pct": 43.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2022
+     }
+    ],
+    "avg_home_cover_pct": 50.2,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -249,7 +282,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -272,15 +305,21 @@
     "spread_move": -1.0,
     "ou_first": 238.5,
     "ou_last": 238.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 4.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 7.5
    },
    "pregame_missing": false
   },
   "Minnesota Timberwolves:Miami Heat": {
    "home_team": "Miami Heat",
    "away_team": "Minnesota Timberwolves",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 106,
+   "away_score": 131,
    "spread": 1.5,
    "Spread": 1.5,
    "OU": 243.5,
@@ -298,15 +337,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 237,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -26.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -320,6 +359,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Nick Buchert",
+      "games": 147,
+      "home_cover_pct": 49.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.869
+     },
+     {
+      "name": "Nate Green",
+      "games": 116,
+      "home_cover_pct": 50.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Jonathan Sterling",
+      "games": 95,
+      "home_cover_pct": 61.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0396
+     }
+    ],
+    "avg_home_cover_pct": 53.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -342,7 +416,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -365,15 +439,21 @@
     "spread_move": 0.0,
     "ou_first": 243.5,
     "ou_last": 243.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 1.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -26.5
    },
    "pregame_missing": false
   },
   "Chicago Bulls:Toronto Raptors": {
    "home_team": "Toronto Raptors",
    "away_team": "Chicago Bulls",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 135,
+   "away_score": 92,
    "spread": 9.5,
    "Spread": 9.5,
    "OU": 236.5,
@@ -391,15 +471,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 227,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 33.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -412,13 +492,43 @@
    "away_team_zh": "芝加哥公牛",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
-   "injuries_home": [
-    "Nate Bittle (缺陣)"
-   ],
-   "injuries_away": [
-    "Dailyn Swain (缺陣)",
-    "Jordan Hawkins (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Courtney Kirkland",
+      "games": 138,
+      "home_cover_pct": 48.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7985
+     },
+     {
+      "name": "Brandon Schwab",
+      "games": 105,
+      "home_cover_pct": 50.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Sha'Rae Mitchell",
+      "games": 78,
+      "home_cover_pct": 50.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 49.7,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -440,7 +550,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -463,15 +573,21 @@
     "spread_move": 0.0,
     "ou_first": 236.5,
     "ou_last": 236.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 9.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 33.5
    },
    "pregame_missing": false
   },
   "Charlotte Hornets:Brooklyn Nets": {
    "home_team": "Brooklyn Nets",
    "away_team": "Charlotte Hornets",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 103,
+   "away_score": 110,
    "spread": 2.5,
    "Spread": 2.5,
    "OU": 219.5,
@@ -489,15 +605,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 213,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -9.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -510,15 +626,35 @@
    "away_team_zh": "夏洛特黃蜂",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
-   "injuries_home": [
-    "Tyler Bilodeau (缺陣)"
-   ],
-   "injuries_away": [
-    "Kylan Boswell (缺陣)",
-    "Kon Knueppel (缺陣)",
-    "Grant Williams (缺陣)",
-    "Coby White (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Scott Foster",
+      "games": 126,
+      "home_cover_pct": 48.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7894
+     },
+     {
+      "name": "Dedric Taylor",
+      "games": 80,
+      "home_cover_pct": 51.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9111
+     }
+    ],
+    "avg_home_cover_pct": 49.8,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -548,7 +684,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -571,15 +707,21 @@
     "spread_move": 0.0,
     "ou_first": 219.5,
     "ou_last": 219.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 2.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -9.5
    },
    "pregame_missing": false
   },
   "Utah Jazz:Memphis Grizzlies": {
    "home_team": "Memphis Grizzlies",
    "away_team": "Utah Jazz",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 123,
+   "away_score": 103,
    "spread": 1.5,
    "Spread": 1.5,
    "OU": 240.5,
@@ -597,15 +739,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 226,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 18.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -618,14 +760,43 @@
    "away_team_zh": "猶他爵士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
-   "injuries_home": [
-    "Isaiah Stewart (可能缺陣)"
-   ],
-   "injuries_away": [
-    "Tony Bradley (缺陣)",
-    "Trey Alexander (缺陣)",
-    "Jusuf Nurkic (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Tre Maddox",
+      "games": 114,
+      "home_cover_pct": 54.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3994
+     },
+     {
+      "name": "Andy Nagy",
+      "games": 132,
+      "home_cover_pct": 47.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5425
+     },
+     {
+      "name": "Ashley Moyer-Gleich",
+      "games": 52,
+      "home_cover_pct": 55.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4885
+     }
+    ],
+    "avg_home_cover_pct": 52.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -655,7 +826,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -678,15 +849,21 @@
     "spread_move": 0.0,
     "ou_first": 241.5,
     "ou_last": 240.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 1.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 18.5
    },
    "pregame_missing": false
   },
   "Indiana Pacers:New Orleans Pelicans": {
    "home_team": "New Orleans Pelicans",
    "away_team": "Indiana Pacers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 120,
+   "away_score": 123,
    "spread": -3.5,
    "Spread": -3.5,
    "OU": 239.5,
@@ -704,15 +881,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "actual_total": 243,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 0.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -726,10 +903,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
    "injuries_home": [],
-   "injuries_away": [
-    "T.J. McConnell (缺陣)",
-    "Aaron Nesmith (缺陣)"
-   ],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Kevin Cutler",
+      "games": 132,
+      "home_cover_pct": 47.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6636
+     },
+     {
+      "name": "Jason Goldenberg",
+      "games": 121,
+      "home_cover_pct": 46.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4672
+     },
+     {
+      "name": "Eric Lewis",
+      "games": 15,
+      "home_cover_pct": 60.0,
+      "significant": false,
+      "direction": null
+     }
+    ],
+    "avg_home_cover_pct": 51.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -759,7 +967,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -782,15 +990,21 @@
     "spread_move": 0.0,
     "ou_first": 240.5,
     "ou_last": 239.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": -3.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 0.5
    },
    "pregame_missing": false
   },
   "Dallas Mavericks:Houston Rockets": {
    "home_team": "Houston Rockets",
    "away_team": "Dallas Mavericks",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 128,
+   "away_score": 110,
    "spread": 9.5,
    "Spread": 9.5,
    "OU": 230.5,
@@ -808,15 +1022,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 238,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 8.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -829,16 +1043,43 @@
    "away_team_zh": "達拉斯獨行俠",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
-   "injuries_home": [
-    "Steven Adams (存疑)"
-   ],
-   "injuries_away": [
-    "Jett Howard (可能缺陣)",
-    "Caleb Martin (缺陣)",
-    "Tarik Biberovic (缺陣)",
-    "Dereck Lively II (缺陣)",
-    "Santi Aldama (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Williams",
+      "games": 144,
+      "home_cover_pct": 53.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4534
+     },
+     {
+      "name": "Gediminas Petraitis",
+      "games": 145,
+      "home_cover_pct": 51.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8682
+     },
+     {
+      "name": "Evan Scott",
+      "games": 101,
+      "home_cover_pct": 56.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2323
+     }
+    ],
+    "avg_home_cover_pct": 53.6,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -860,7 +1101,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -883,15 +1124,21 @@
     "spread_move": 0.0,
     "ou_first": 230.5,
     "ou_last": 230.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 9.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 8.5
    },
    "pregame_missing": false
   },
   "Golden State Warriors:Los Angeles Lakers": {
    "home_team": "Los Angeles Lakers",
    "away_team": "Golden State Warriors",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 127,
+   "away_score": 105,
    "spread": 6.5,
    "Spread": 6.5,
    "OU": 233.5,
@@ -909,15 +1156,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 232,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 15.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -930,16 +1177,43 @@
    "away_team_zh": "金州勇士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
-   "injuries_home": [
-    "Collin Sexton (缺陣)",
-    "Cameron Carr (缺陣)",
-    "Adou Thiero (缺陣)"
-   ],
-   "injuries_away": [
-    "Charles Bassey (缺陣)",
-    "Stephen Curry (可能出賽)",
-    "Brandin Podziemski (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Capers",
+      "games": 117,
+      "home_cover_pct": 54.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3553
+     },
+     {
+      "name": "Mousa Dagher",
+      "games": 115,
+      "home_cover_pct": 43.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1915
+     },
+     {
+      "name": "Scott Twardoski",
+      "games": 110,
+      "home_cover_pct": 53.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5047
+     }
+    ],
+    "avg_home_cover_pct": 50.6,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -961,7 +1235,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -984,15 +1258,21 @@
     "spread_move": 0.0,
     "ou_first": 233.5,
     "ou_last": 233.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 6.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 15.5
    },
    "pregame_missing": false
   },
   "Phoenix Suns:Portland Trail Blazers": {
    "home_team": "Portland Trail Blazers",
    "away_team": "Phoenix Suns",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 124,
+   "away_score": 83,
    "spread": 3.5,
    "Spread": 3.5,
    "OU": 231.5,
@@ -1010,15 +1290,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 207,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 37.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1031,16 +1311,43 @@
    "away_team_zh": "鳳凰城太陽",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
-   "injuries_home": [
-    "Micah Potter (可能出賽)",
-    "Branden Carlson (缺陣)",
-    "Chris Youngblood (缺陣)",
-    "Deni Avdija (存疑)"
-   ],
-   "injuries_away": [
-    "Luke Kennard (存疑)",
-    "Mark Williams (缺陣)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Mitchell Ervin",
+      "games": 142,
+      "home_cover_pct": 55.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.208
+     },
+     {
+      "name": "John Butler",
+      "games": 125,
+      "home_cover_pct": 50.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Rodney Mott",
+      "games": 94,
+      "home_cover_pct": 50.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 52.0,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -1070,7 +1377,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -1093,15 +1400,21 @@
     "spread_move": 0.0,
     "ou_first": 232.5,
     "ou_last": 231.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 3.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 37.5
    },
    "pregame_missing": false
   },
   "Sacramento Kings:LA Clippers": {
    "home_team": "LA Clippers",
    "away_team": "Sacramento Kings",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 121,
+   "away_score": 96,
    "spread": 4.5,
    "Spread": 4.5,
    "OU": 227.5,
@@ -1119,15 +1432,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 217,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 20.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1140,12 +1453,43 @@
    "away_team_zh": "沙加緬度國王",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
-   "injuries_home": [
-    "Max Strus (缺陣)"
-   ],
-   "injuries_away": [
-    "Malik Monk (存疑)"
-   ],
+   "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Mark Lindsay",
+      "games": 138,
+      "home_cover_pct": 48.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7985
+     },
+     {
+      "name": "Ray Acosta",
+      "games": 145,
+      "home_cover_pct": 49.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Brett Nansel",
+      "games": 70,
+      "home_cover_pct": 44.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.403
+     }
+    ],
+    "avg_home_cover_pct": 47.5,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-20T14:07:18+00:00",
@@ -1175,7 +1519,7 @@
    "pregame": {
     "frozen_at": "2026-10-22T06:01:48+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -1198,7 +1542,13 @@
     "spread_move": 0.0,
     "ou_first": 228.5,
     "ou_last": 227.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-22T22:07:31+08:00"
+   },
+   "closing": {
+    "spread": 4.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 20.5
    },
    "pregame_missing": false
   }
