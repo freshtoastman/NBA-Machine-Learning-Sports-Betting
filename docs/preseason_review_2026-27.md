@@ -701,3 +701,39 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **下一步（10/22 起）**：①**10/22 06:00 的 log**：`Patch_Scores` 應從 cdn schedule（不再靠 500 的 scoreboardv2）補 10/21 的 11 場終場、`collect_referee_data` 印「cdn」路徑的 11 場裁判、`Get_Odds_Data` 印「No new odds dates」（10/22 已建列）、總耗時 ~2 分鐘——**使用者：接電源、載入 afternoon plist**；②10/21 的 11 場 `spread_move` 結算（開盤 vs 賽前 8 小時 vs 06:00 收盤）：ORL +1 往主隊、WAS −1 往客隊，看結果；③10/23–24 第一批模型預測：確認 `pregame.locked` 含模型欄位；④記憶檔 `project_referee_data.md` 已改寫（舊結論「API 不回補、資料凍結 175 場」被 cdn 推翻；新結論「有資料但無訊號」）。
 
 **Vercel 部署延遲 21 分鐘（已解決）**：`528627f` 23:18 推上 GitHub，之前每次推送都在 30 秒內出現 Vercel deployment，這次 GitHub deployments API 到 23:39 都還是 08:58 的 `ca62b63`；23:30 推空 commit `f75808a` 再觸發 webhook也沒反應，Vercel 狀態頁 All Systems Operational、本機沒有 Vercel token 查不到佇列。**23:39:42Z+8 = 23:39 `528627f` 的 deployment 終於出現並 success**（純粹是 Vercel 端排隊延遲，不是 webhook 掉了）。正式站 `/login` 200、`/data/*.json` 302 → `/login`（登入牆，設計如此）。教訓：推送後若 GitHub deployments 沒有新筆，先等 20–30 分鐘再補推。
+
+### 2026-10-22（22:05–22:20）— 開季第一週驗證日誌：06:00 執行第一次乾淨跑完（接電源，108 秒）；但 06:00＝美東前一天 18:00，10/21 的 11 場根本還沒開打，比分要到晚間手動補；開季 14 場主隊 ATS 9–5、讓分方 8–6；10/20 OKC @ SAS 其實是本季第一個 ≥1.5 分的移動（SAS −1.5 → OKC −1.5，3 分翻盤、OKC 蓋盤），10/21 的表寫錯要更正；模型第一批預測預計 10/23 06:00（10/23 的 12 場）
+
+**排程檢查（log）**：`2026-10-22 06:00:04 start (morning)` → `06:01:52 OK`，**108 秒**，四天來第一次沒有卡在 DarkWake——`pmset -g log` 05:00:49 `Using AC (Charge:100%)`，使用者睡前接了電源。各步驟：`Get_Data` 5 s、`Get_Advanced_Data` 4 s、`Get_Odds_Data` 1 s（「No new odds dates to fetch. Latest date: 2026-10-22」，預期：10/22 兩場昨晚已提前建列）、`Patch_Scores` 6 s（patched 0）、`update_odds --db-only` 2 s（13 列、10/21 的 11 場與 10/22 的 2 場線都沒變，`odds_history` 沒有新快照）、`collect_referee_data` 4 s（0 場：「No final games found」）、`Create_Games` 65 s（17,792 列、2026-27 仍 0 列）、`Export_JSON` 16 s、推送 4 s、Vercel 部署 `b04d9ad` 06:02 success（這次沒有排隊延遲）。`launchctl list` 仍只有 daily（**afternoon plist 仍未載入**）；此刻（22:05）又是電池 53%——**明天 06:00 前請再接電源**。
+
+**為什麼 06:00 補不到比分——這不是故障，是時區**：06:00 台北＝美東前一天 18:00，10/21 的 11 場 19:00 ET 才開打，`Patch_Scores`／`collect_referee_data` 當然都是 0。10/20 三場之所以在 10/21 06:00 補到 1 場（BOS @ DET 15:00 ET）也是同一個原因。**意思是：morning 模式永遠只能補到「前前一天」的比分，前一天的終場要靠 afternoon 模式（15:00 台北＝03:00 ET，所有比賽都結束）。** 這就是 afternoon plist 必須載入的理由——不載入的話，每天的比分、裁判、`frozen_record` 結算都要等到隔天 06:00，首頁在比賽結束後 20 小時內都看不到終場。今天 22:05 手動補：`patch_scores.py` 從 nba live scoreboard 一次補齊 11 場、`collect_referee_data --days-back 2` 收 11 組裁判（cdn 路徑，`covered` 旗標已算）、`update_odds --db-only` 13 列無變動、`export_predictions` 重寫 10/20–10/22 三檔＋`frozen_record.json`（14 場 `settled_without_prediction`、0 場評分）、commit `6581221` 推送、Vercel 22:11 success。Flask test client（`web/app.py`，`session["authenticated"]=True`）：`/` 200、`/?date=2026-10-21` 200（11 場終場、22 個「僅供參考」＝11 組裁判、0 個比賽層級 ⚠️／🔴，頁面上 4 個 ⚠️ 與 2 個 🔴 在三個日期都一樣多，是模板的圖例／腳本字串）。124 個測試全過。
+
+**10/21 的 11 場（開盤＝10/20 22:07 台北、收盤＝06:00 快照；`Spread` 正值＝主隊讓分；`Win_Margin`＝主−客）**：
+
+| 10/21 | 開盤 | 收盤 | 終場 | 主隊 ATS | 讓分方 ATS | 大小分 |
+|---|---|---|---|---|---|---|
+| ATL @ ORL | ORL −2.5 | ORL −3.5 | ATL 132–125 | ✗ | ✗ | O（257／235.5） |
+| MIL @ WAS | WAS −5.5 | WAS −4.5 | WAS 128–116 | ✓ | ✓ | O |
+| MIN @ MIA | MIA −1.5 | MIA −1.5 | MIN 131–106 | ✗ | ✗ | U |
+| CHI @ TOR | TOR −9.5 | TOR −9.5 | TOR 135–92 | ✓ | ✓ | U |
+| CHA @ BKN | BKN −2.5 | BKN −2.5 | CHA 110–103 | ✗ | ✗ | U |
+| UTA @ MEM | MEM −1.5 | MEM −1.5 | MEM 123–103 | ✓ | ✓ | U |
+| IND @ NOP | IND −3.5 | IND −3.5 | IND 123–120 | ✓（NOP +3.5） | ✗ | O |
+| DAL @ HOU | HOU −9.5 | HOU −9.5 | HOU 128–110 | ✓ | ✓ | O |
+| GSW @ LAL | LAL −6.5 | LAL −6.5 | LAL 127–105 | ✓ | ✓ | U |
+| PHX @ POR | POR −3.5 | POR −3.5 | POR 124–83 | ✓ | ✓ | U |
+| SAC @ LAC | LAC −4.5 | LAC −4.5 | LAC 121–96 | ✓ | ✓ | U |
+
+10/21：主隊 ATS **8–3**、讓分方 **7–4**、大分 4–7、主隊直接贏 7–4；11 場只有 2 場讓分動（ORL +1 往主隊、WAS −1 往客隊），都沒跨過結果。**開季累計 14 場：主隊 ATS 9–5、讓分方 8–6、大分 5–9、主隊 SU 8–6**——14 場什麼都不是，只是記著。Wagner／Adebayo 兩個先發核心缺陣的兩場：ORL 盤口反而往主隊加 1 分、結果主隊輸；MIA 盤口不動、主隊輸 25。兩場都是「傷兵沒進盤」的樣子，但 2 場不是證據。
+
+**更正 10/21 的表：10/20 OKC @ SAS 是本季第一個 ≥1.5 分的移動。** `odds_history` 的完整時間軸：開盤 SAS −1.5（ML −126／+108，08:57 台北）→ 14:57 SAS −1.5 → 22:05 SAS −1.5（ML −116／+100）→ **07:42 台北＝19:42 ET（開賽前 1 小時 48 分）OKC −1.5（ML +100／−118）**。讓分 3 分翻盤、ML 主客對調，OKC 116–104 蓋盤。昨天的表把開盤寫成「OKC −1.5」是錯的（`spread_first=+1.5`、`spread_last=−1.5`、`spread_move=−3.0` 一直都在 JSON 裡）。這筆是 P1 候選 2（盤口移動）第一個有意義的樣本：賽前最後兩小時、小讓分翻盤、往最後兩小時的方向押對。1 場，不下結論，但從今天起「≥1.5 且跨過 0」要單獨列。
+
+**10/22 的 2 場（今晚美東）**：CLE @ PHI → PHI −2.5／236.5／−134·+114（開盤＝22:05 快照，沒動）；DEN @ OKC → OKC −8.5／236.5／−300·+245（沒動）。ESPN 傷兵：PHI Fall／Barlow 缺陣、Wade 存疑；CLE Diop 缺陣。這兩場 CLE、DEN 都是第一場，`TeamData` 沒有他們的列 → **這兩場不會有模型預測**（見下）。
+
+**10/23 的 12 場**：SBR 已掛出 12 場（CHI @ MIL 16:00 ET、ATL @ CHA、TOR @ WAS、MIN @ ORL、DAL @ IND、NYK @ BOS 19:00、DET @ MIA 20:00、NOP @ UTA、HOU @ SAS 21:30、LAC @ LAL、POR @ SAC、MEM @ GSW 22:00），但 **FanDuel 還沒掛線**（只有 NYK @ BOS：BOS −2.5／223.5、HOU @ SAS：SAS −6.5~−7.5／225.5 在 bet365／DK／fanatics／caesars），`Get_Odds_Data.main(today=2026-10-23)` 一列都沒寫——明天 06:00 會印「Getting odds data: 2026-10-23」自己建列，不用手動。
+
+**模型什麼時候開始——路徑查清楚了**：`predict_historical_xgb` 只在 `dataset_2012-26` 有該場的列時才跑模型，否則回 `OddsData` stub；`Create_Games` 對日期 D 挑「名稱 < D 的最新 `TeamData` 表」，兩隊任一隊不在表裡就 `build_game_features` 回 None、跳過。`TeamData` 表名是台北日期、內容是美東前一天 18:00 的戰績：`2026-10-21` 2 隊（BOS／DET，15:00 ET 那場已結束）、`2026-10-22` 6 隊（10/20 三場）。明天 06:00 的 `2026-10-23` 表會有 28 隊（10/20＋10/21），10/23 的 12 場 24 隊全在裡面 → **`Create_Games` 應第一次寫出 2026-27 的 12 列、`Export_JSON` 的 2026-10-23.json 應出現 `model_games=12`、`pregame.locked` 含 `home_confidence`／`ats_model_pick`／`ats_shadow_value`**。GP=1 的統計當特徵當然很糙，但這是設計（去年也是這樣）。10/22 的 CLE／DEN 兩場永遠不會有模型列（它們的第一場就是這場），會以 `settled_without_prediction` 結算。
+
+**85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。模型本季還沒出過一個預測；開季 14 場只有盤口。今天的價值：①確認 morning 模式的結構性限制（永遠補不到前一天比分）並把補比分、裁判、結算做完；②把本季第一個 ≥1.5 分且翻盤的盤口移動找回來並更正紀錄；③查清楚模型啟動的確切條件與日期。
+
+**下一步（10/23 起）**：①**10/23 06:00 的 log**：`Get_Odds_Data` 應建 10/23 的 12 列＋「Logged 12 opening line snapshot(s)」、`Patch_Scores` 應補 10/22 兩場（CLE @ PHI 19:00 ET、DEN @ OKC 21:30 ET 在 06:00 台北＝18:00 ET 都還沒打——**又是 0，預期**）、`Create_Games` 應印 2026-27 **12 列**、`Export_JSON` 2026-10-23 應 `model_games=12`、總耗時 ~2 分鐘；②第一批模型預測出來後：檢查 `pregame.locked` 有模型欄位、`ats_shadow_value` 一起凍結、首頁不再顯示「模型尚未啟用」、`frozen_record` 定義不變（只評鎖定前的預測）；③**使用者：睡前接電源；載入 afternoon plist**（檔案還沒複製到 `~/Library/LaunchAgents/`，只有 daily 在那裡：先 `cp scripts/launchd/*.plist ~/Library/LaunchAgents/` 再 `launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`，見 `scripts/launchd/README.md`）——不載入的話每天的比分都要等 20 小時或手動補；④盤口移動：從今天起把「≥1.5 且跨 0」單列（目前 1 筆：10/20 OKC @ SAS，押移動方向 1–0）。
