@@ -1,7 +1,7 @@
 {
  "date": "2026-10-22",
- "is_today": true,
- "exported_at": "2026-10-22T22:07:31+08:00",
+ "is_today": false,
+ "exported_at": "2026-10-23T09:30:50+08:00",
  "summary": {
   "games": 2,
   "model_games": 0,
@@ -14,16 +14,21 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Philadelphia 76ers: Tacko Fall (缺陣)",
-   "Philadelphia 76ers: Dean Wade (存疑)",
-   "Philadelphia 76ers: Dominick Barlow (缺陣)",
-   "Cleveland Cavaliers: Khalifa Diop (缺陣)",
-   "Cleveland Cavaliers: Jarrett Allen (存疑)",
-   "Oklahoma City Thunder: Nikola Topic (缺陣)",
-   "Oklahoma City Thunder: Thomas Sorber (缺陣)",
-   "Denver Nuggets: Spencer Jones (存疑)"
-  ]
+  "injury_alerts": [],
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Cleveland Cavaliers:Philadelphia 76ers": {
@@ -69,15 +74,8 @@
    "away_team_zh": "克里夫蘭騎士",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
-   "injuries_home": [
-    "Tacko Fall (缺陣)",
-    "Dean Wade (存疑)",
-    "Dominick Barlow (缺陣)"
-   ],
-   "injuries_away": [
-    "Khalifa Diop (缺陣)",
-    "Jarrett Allen (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-21T14:41:32+00:00",
@@ -97,8 +95,8 @@
    "ou_last": 236.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-22T22:07:31+08:00",
-    "revisions": 5,
+    "frozen_at": "2026-10-23T09:30:50+08:00",
+    "revisions": 6,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
@@ -169,13 +167,8 @@
    "away_team_zh": "丹佛金塊",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
-   "injuries_home": [
-    "Nikola Topic (缺陣)",
-    "Thomas Sorber (缺陣)"
-   ],
-   "injuries_away": [
-    "Spencer Jones (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-21T14:41:32+00:00",
@@ -195,8 +188,8 @@
    "ou_last": 236.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-22T22:07:31+08:00",
-    "revisions": 5,
+    "frozen_at": "2026-10-23T09:30:50+08:00",
+    "revisions": 6,
     "locked": false,
     "home_confidence": null,
     "away_confidence": null,
