@@ -775,3 +775,5 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **開季累計 16 場：主隊 ATS 11–5、讓分方 10–6、大分 5–11、主隊 SU 10–6**——還是什麼都不是，只是記著；小分 11–5 這種開季低分是每年都有的節奏（新陣容、防守先到）。讓分移動檢查：10/22 兩場沒有可比的收盤線（無 ≥1.5 可報）；10/23 的 12 場只有一個快照，第二個快照要等 10/24 06:00（＝美東 10/23 18:00，12 場裡 11 場尚未開打，`update_odds --db-only` 會順便把線換回 FanDuel 並記來源切換；CHI @ MIL 16:00 ET 例外，凍結線就是今晚這條 ESPN DK 線）。10/22 兩場裁判組已補（`collect_referee_data --days-back 3` 收 2 筆）。
 
 **下一步**：(1) 10/24 讀 log 時看三件事——`network wait` 有沒有出現、`Get_Odds_Data`／`update_odds` 有沒有印 `fallback source`、10/23 的 12 場 `source` 有沒有切回 `sbr_fanduel`；(2) 10/24 晚間第一批 12 場結算 → `frozen_record.json` 第一次有 `graded_games`；(3) 下午排程 plist 仍未複製／載入：`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`；(4) 06:00 連四天 DarkWake 凍結的根因（今天接著電源也凍）要另外查 `pmset -g log` 的 06:13–09:30 區間，本次沒時間。
+
+**部署驗證（22:45）**：GitHub deployments API——`bb31ce4` 14:07:30Z success、`e1ad187` 14:21:21Z success（推送後約 1 分鐘，沒有 10/21 那種 21 分鐘排隊）；正式站 `/login` 200。正式站有登入牆，頁面內容以本機 Flask test client 的同一份 `web/data` 渲染結果為準（12 張模型卡、12 個線源徽章）。
