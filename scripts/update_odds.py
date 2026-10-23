@@ -15,6 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from src.Utils.odds_sources import lines_for_games
 from src.Utils.tools import today_taipei
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -56,6 +57,7 @@ def _log_history_snapshot(
     ml_home,
     ml_away,
     fetched_at_iso: str,
+    source: str = SOURCE_TAG,
 ) -> None:
     """Insert a row into odds_history only when spread/OU/ML differ from the last snapshot."""
     row = con.execute(
@@ -74,7 +76,7 @@ def _log_history_snapshot(
         "INSERT OR REPLACE INTO odds_history "
         "(fetched_at, season, Date, Home, Away, OU, Spread, ML_Home, ML_Away, source) "
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        (fetched_at_iso, season, str(target_date), home, away, ou, spread, ml_home, ml_away, SOURCE_TAG),
+        (fetched_at_iso, season, str(target_date), home, away, ou, spread, ml_home, ml_away, source),
     )
 
 
@@ -102,20 +104,21 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
     """Update OU, Spread, ML_Home, ML_Away for unplayed games on target_date. Returns count updated.
 
     Also appends a snapshot to odds_history whenever any value changes.
+
+    `games` are sbrscrape-shaped SBR games (may be empty); a game the preferred book
+    does not price falls back to another SBR book, then ESPN (odds_sources), and the
+    history row records that source. Switching back to the preferred book later is
+    logged as a change too, so a half-point "move" next to a source change may be a
+    book difference — the export carries `line_source` for exactly that reason.
     """
     updated = 0
     if fetched_at_iso is None:
         fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    for game in games:
-        home = game.get("home_team", "")
-        away = game.get("away_team", "")
-        try:
-            ou = game["total"][sportsbook]
-            spread = game["away_spread"][sportsbook]  # positive = away underdog
-            ml_home = game["home_ml"][sportsbook]
-            ml_away = game["away_ml"][sportsbook]
-        except (KeyError, TypeError):
-            continue
+    for line in lines_for_games(games, target_date, sportsbook):
+        home = line["home_team"]
+        away = line["away_team"]
+        ou, spread = line["ou"], line["spread"]  # spread: positive = away underdog
+        ml_home, ml_away = line["ml_home"], line["ml_away"]
         if ou is None and spread is None:
             continue
         n = con.execute(
@@ -133,10 +136,12 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
         except Exception:
             pass
         _log_history_snapshot(
-            con, season_key, target_date, home, away, ou, spread, ml_home, ml_away, fetched_at_iso
+            con, season_key, target_date, home, away, ou, spread, ml_home, ml_away, fetched_at_iso,
+            source=line["source"],
         )
         if n:
-            print(f"  {home} vs {away}: spread={spread:+.1f}  OU={ou}")
+            tag = "" if line["source"] == f"sbr_{sportsbook}" else f"  [{line['source']}]"
+            print(f"  {home} vs {away}: spread={spread:+.1f}  OU={ou}{tag}")
             updated += n
     return updated
 
@@ -208,8 +213,7 @@ def main(db_only: bool = False):
             print(f"Fetching SBR odds for {d}...")
             games = fetch_sbr_odds_for_date(d)
             if not games:
-                print(f"  No games returned from SBR for {d}")
-                continue
+                print(f"  No games returned from SBR for {d} — trying the ESPN fallback")
             n = update_odds_for_date(con, season_key, d, games, fetched_at_iso=fetched_at_iso)
             total_updated += n
             if n == 0:

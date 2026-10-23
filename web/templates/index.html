@@ -954,6 +954,10 @@
                         <span class="spread-move-count">{{ _hist_points|length }} 次更新</span>
                         {% endif %}
                         <span class="spread-move-time" title="首次抓取: {{ _first_iso|tw_time }}&#10;最新抓取: {{ _last_iso|tw_time }} (台灣時間)">🕒 {{ _last_iso|tw_time }} 台灣時間</span>
+                        {% set _lsrc = game.line_source|default('') %}
+                        {% if _lsrc and _lsrc != 'sbr_fanduel' %}
+                        <span class="spread-move-source" title="FanDuel 當時未開盤，此線取自備援來源；與 FanDuel 可能差 0.5 分">📌 線源 {{ game.line_source_label|default(_lsrc) }}</span>
+                        {% endif %}
                     </div>
                     {% endif %}
                     {# OU (total) movement #}

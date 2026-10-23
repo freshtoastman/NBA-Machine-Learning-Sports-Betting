@@ -737,3 +737,41 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **85% 目標的現況**：沒有變化（讓分 50.5%／大小分 50.6%／勝負 63.6% 樣本外）。模型本季還沒出過一個預測；開季 14 場只有盤口。今天的價值：①確認 morning 模式的結構性限制（永遠補不到前一天比分）並把補比分、裁判、結算做完；②把本季第一個 ≥1.5 分且翻盤的盤口移動找回來並更正紀錄；③查清楚模型啟動的確切條件與日期。
 
 **下一步（10/23 起）**：①**10/23 06:00 的 log**：`Get_Odds_Data` 應建 10/23 的 12 列＋「Logged 12 opening line snapshot(s)」、`Patch_Scores` 應補 10/22 兩場（CLE @ PHI 19:00 ET、DEN @ OKC 21:30 ET 在 06:00 台北＝18:00 ET 都還沒打——**又是 0，預期**）、`Create_Games` 應印 2026-27 **12 列**、`Export_JSON` 2026-10-23 應 `model_games=12`、總耗時 ~2 分鐘；②第一批模型預測出來後：檢查 `pregame.locked` 有模型欄位、`ats_shadow_value` 一起凍結、首頁不再顯示「模型尚未啟用」、`frozen_record` 定義不變（只評鎖定前的預測）；③**使用者：睡前接電源；載入 afternoon plist**（檔案還沒複製到 `~/Library/LaunchAgents/`，只有 daily 在那裡：先 `cp scripts/launchd/*.plist ~/Library/LaunchAgents/` 再 `launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`，見 `scripts/launchd/README.md`）——不載入的話每天的比分都要等 20 小時或手動補；④盤口移動：從今天起把「≥1.5 且跨 0」單列（目前 1 筆：10/20 OKC @ SAS，押移動方向 1–0）。
+
+### 2026-10-23（22:05–22:40）— 模型上線日：06:00 排程整段**沒有網路**（所有主機 DNS 解析失敗 3 小時 17 分、`Create_Games` 凍 2 h 49 min、`Git_Push` 失敗）；22:05 手動補跑 99 秒 OK；SBR 盤口板空白（12 場 FanDuel 0 場、任何書只有 2 場）→ 新增「SBR 其他書 → ESPN（DraftKings）」備援鏈，10/23 的 12 場建列、**模型第一批 12 場預測上線**；10/22 兩場終場補齊，開季 16 場主隊 ATS 11–5
+
+**排程檢查（log）**：`2026-10-23 06:13:14 start (morning)`（晚 13 分鐘＝筆電剛醒）→ `09:30:51 FAILED at Git_Push`。從第一步到最後一步每個主機都是 `NameResolutionError: nodename nor servname provided`——stats.nba.com、sportsbookreview.com、cdn.nba.com、site.api.espn.com、github.com（`ssh: connect to host github.com port 22: Undefined error: 0`）。整段 3 小時 17 分**完全沒有網路**，不是哪個來源掛了。代價：`Get_Advanced_Data` 1023 s、`Get_Odds_Data` 674 s 全花在重試；`Create_Games` 06:41 → 09:30＝**10135 s**（又是 DarkWake 凍結；10/22 同一步 74 s）；`Export_JSON` 用舊表照跑（10/23 無盤口 → `skipped (no games)`），commit `7e3308f` 只留在本機。筆電 22:04 檢查是接電源、100%。**修法（今日已上）**：`daily_pipeline.sh` 第一步之前加 `net_up` 探測（curl cdn.nba.com schedule，8 s 逾時），不通就每 20 s 重試、最多等 `NBA_ML_NET_WAIT_MAX`（預設 600 s）再往下走，等滿會發通知但不中止——以後再遇到 Wi-Fi 醒來慢，最多損失 10 分鐘而不是整個早上。`Tests/test_daily_pipeline_sh.py` 9/9 通過（探測區塊在 `cd "$PROJECT_DIR"` 之後，不進測試 harness）。
+
+**手動補跑**：`22:05:33 start (afternoon)` → `22:07:12 OK`，**99 秒**。`Get_Data` 3 s（`TeamData` 的 `2026-10-23` 表 30 隊、GP 合計 32＝16 場 × 2 ✓，這就是模型要的「兩隊都在賽前快照裡」）、`Patch_Scores` 補 10/22 兩場（PHI 114–106 CLE、OKC 96–84 DEN，nba live scoreboard）、`Git_Push` 一次推掉 `7e3308f` + `bb31ce4`（`5c22c17..bb31ce4`）。但 `Get_Odds_Data` 印了 12 次 `No fanduel odds data found`，`update_odds --db-only` 說 `No unplayed games found in DB`，`Create_Games` 2026-27 仍是 0 列，`Export_JSON` 的 10/23 仍是 `skipped (no games)`——跑完是「OK」，卻等於什麼都沒產出。
+
+**SBR 盤口板空白 → 備援鏈（P0，已修）**：直接讀 SBR 的 `_next/data` JSON：10/23 的 12 場裡 10 場 8 個 `oddsViews` 全是 `None`（任何書都沒線），只有 NYK @ BOS、HOU @ SAS 有 bet365／DraftKings／Fanatics／Caesars，**FanDuel 12 場都沒有**。美東 10:05 開賽日早上整板空白，10/21、10/22 同一時間都有 FanDuel，所以是 SBR 端的問題，不是時間太早。同一時刻 ESPN 公開 API（`site.api.espn.com/.../scoreboard`＋`sports.core.api.espn.com/.../odds`）12 場都有 DraftKings 讓分、總分、ML，隊名拼法與 SBR 一字不差（含 `LA Clippers`）。新增 `src/Utils/odds_sources.py`：`sbr_line()` 先找慣用書（fanduel），沒有就依序 draftkings → betmgm → caesars → bet365 → fanatics；`lines_for_games()` 把仍沒線的場次用 ESPN 補（只在今天 ±3 天的「直播窗」才碰 ESPN，回補歷史日期與單元測試永遠不開 socket；SBR 整板沒球時 ESPN 名單直接當賽程）。`Get_Odds_Data`、`update_odds` 都改走這條鏈；`odds_history.source` 記實際書源（`espn_draftkings_open`／`sbr_draftkings_open`），export 多出 `line_source`／`line_source_label`，首頁讓分走勢列在非 FanDuel 時顯示「📌 線源 DraftKings (ESPN)」徽章（hover 說明可能與 FanDuel 差 0.5 分）。`Tests/test_odds_sources.py` 9 個新測試＋原 odds 測試共 26/26 通過。**代價要記住**：之後 `update_odds` 若抓回 FanDuel，`odds_history` 會多一筆「來源切換」快照，`spread_move` 裡的 0.5 分可能只是書與書的差，不是市場移動——看移動時先看 `source`。
+
+**10/23 建列結果（`Spread` 正值＝主隊讓分；台北 22:14 開盤快照）**：
+
+| 10/23 | 線 | 總分 | ML 主／客 | 來源 |
+|---|---|---|---|---|
+| NYK @ BOS | BOS −2.5 | 223.5 | −135／+114 | SBR DraftKings |
+| HOU @ SAS | SAS −7.5 | 225.5 | −290／+235 | SBR DraftKings（ESPN 同書寫 −5.5、221.5——ESPN 快照可能落後市場） |
+| CHI @ MIL | MIL −1.5 | 240.5 | −115／−105 | ESPN DK |
+| ATL @ CHA | ATL −2.5 | 226.5 | +120／−142 | ESPN DK |
+| TOR @ WAS | TOR −8.5 | 235.5 | +260／−325 | ESPN DK |
+| MIN @ ORL | ORL −1.5 | 234.5 | −112／−108 | ESPN DK |
+| DAL @ IND | IND −7.5 | 240.5 | −265／+215 | ESPN DK |
+| DET @ MIA | DET −1.5 | 235.5 | +100／−120 | ESPN DK |
+| NOP @ UTA | NOP −1.5 | 239.5 | −110／−110 | ESPN DK |
+| LAC @ LAL | LAL −9.5 | 225.5 | −380／+300 | ESPN DK |
+| POR @ SAC | POR −9.5 | 232.5 | +340／−440 | ESPN DK |
+| MEM @ GSW | GSW −4.5 | 237.5 | −180／+150 | ESPN DK |
+
+**模型第一批輸出（`Create_Games` 2026-27 12 列、leak guard 0、`model_games=12`、12 場 `pregame` 區塊都已凍結）**：ML 主勝率 7 主／5 客、ATS 模型 7 主／5 客、大小分 6／6，`value_picks=0`、`golden_picks=0`（政策關閉，照設計）。兩件事要記著：(1) ML 主勝率只有幾個值在重複——60.0% × 3（BOS、MIL、CHA）、37.1% × 3（SAS、MIA、SAC）、63.3% × 2、45.5／45.7——這是 isotonic 校正器的階梯點加上每隊只有 1–2 場的球隊統計，輸入極端、輸出被量化，**不是 bug，但這幾天的機率只能當參考**；(2) 因此 EV／Kelly 欄位很誇張（TOR @ WAS：WAS 63.3% 對 +260 → EV +128%、Kelly 49%），模板沒有顯示這兩欄、value 旗標也關著，所以前端看不到，但 JSON 裡有——不要拿來下注。ATS 影子價值只有 1 場：MIN @ ORL 主 59.0%（邊際 9.0 ≥ 主 8% 規則）→ `ats_shadow_value=True`，照 10/02 政策只記不標。前端用 Flask test client 登入後實測：`/` 與 `/?date=2026-10-23` 200、12 張卡、「模型尚未啟用」0 次、「讓分走勢」12 次、「📌 線源」12 次；`/?date=2026-10-22` 2 張卡仍標「模型尚未啟用」（CLE／DEN 首戰，永遠不會有模型列，10/22 已說明）；`/bracket` 200。
+
+**10/22 兩場（開盤＝10/21 22:41 台北；收盤快照缺——10/22 06:00 的 `update_odds` 說沒變、10/23 06:00 沒網路，所以只知道開盤）**：
+
+| 10/22 | 開盤 | 終場 | 主隊 ATS | 讓分方 ATS | 大小分 |
+|---|---|---|---|---|---|
+| CLE @ PHI | PHI −2.5 | PHI 114–106 | ✓ | ✓ | U（220／236.5） |
+| DEN @ OKC | OKC −8.5 | OKC 96–84 | ✓ | ✓ | U（180／236.5） |
+
+**開季累計 16 場：主隊 ATS 11–5、讓分方 10–6、大分 5–11、主隊 SU 10–6**——還是什麼都不是，只是記著；小分 11–5 這種開季低分是每年都有的節奏（新陣容、防守先到）。讓分移動檢查：10/22 兩場沒有可比的收盤線（無 ≥1.5 可報）；10/23 的 12 場只有一個快照，第二個快照要等 10/24 06:00（＝美東 10/23 18:00，12 場裡 11 場尚未開打，`update_odds --db-only` 會順便把線換回 FanDuel 並記來源切換；CHI @ MIL 16:00 ET 例外，凍結線就是今晚這條 ESPN DK 線）。10/22 兩場裁判組已補（`collect_referee_data --days-back 3` 收 2 筆）。
+
+**下一步**：(1) 10/24 讀 log 時看三件事——`network wait` 有沒有出現、`Get_Odds_Data`／`update_odds` 有沒有印 `fallback source`、10/23 的 12 場 `source` 有沒有切回 `sbr_fanduel`；(2) 10/24 晚間第一批 12 場結算 → `frozen_record.json` 第一次有 `graded_games`；(3) 下午排程 plist 仍未複製／載入：`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`；(4) 06:00 連四天 DarkWake 凍結的根因（今天接著電源也凍）要另外查 `pmset -g log` 的 06:13–09:30 區間，本次沒時間。

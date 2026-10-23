@@ -445,6 +445,16 @@ def export_date(target_date: date) -> dict | None:
                 g["spread_move"] = round(_sp_vals[-1] - _sp_vals[0], 2)
                 g["spread_first_fetched_at"] = _hist[0]["fetched_at"]
                 g["spread_last_fetched_at"] = _hist[-1]["fetched_at"]
+            # Which book the current line came from (SBR FanDuel unless the 2026-10-23
+            # fallback chain kicked in); the template flags anything but FanDuel.
+            _src = _hist[-1].get("source")
+            if _src:
+                g["line_source"] = _src[:-5] if _src.endswith("_open") else _src
+                try:
+                    from src.Utils.odds_sources import source_label as _source_label
+                    g["line_source_label"] = _source_label(_src)
+                except Exception:
+                    g["line_source_label"] = g["line_source"]
             _ou_vals = [h["ou"] for h in _hist if h.get("ou") is not None]
             if _ou_vals:
                 g["ou_first"] = _ou_vals[0]

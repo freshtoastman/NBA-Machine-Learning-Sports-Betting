@@ -1585,6 +1585,18 @@ a {
     cursor: help;
 }
 
+/* Line came from a fallback book (SBR other than FanDuel, or ESPN/DraftKings)
+   because FanDuel had nothing on the board when the game was first priced. */
+.spread-move-source {
+    color: #e0b35a;
+    font-size: 11px;
+    border: 1px solid rgba(224, 179, 90, 0.35);
+    border-radius: 4px;
+    padding: 0 5px;
+    cursor: help;
+    white-space: nowrap;
+}
+
 /* Use full-row tint to mark which side covered the spread.
    Cleaner than a "蓋過" badge that breaks column alignment. */
 .team-row.team-covered {

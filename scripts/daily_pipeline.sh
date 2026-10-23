@@ -92,6 +92,35 @@ run_step() {
     echo "--- $name done in $(( $(date +%s) - t0 )) s ---" >> "$LOG_FILE"
 }
 
+# 0. Wait for the network. The 2026-10-23 06:00 run had no DNS for its whole 3 h 17 min
+# (every host "nodename nor servname provided"): Get_Advanced_Data and Get_Odds_Data
+# burned 28 min in retries, Create_Games rebuilt from stale tables, Git_Push failed and
+# the first model slate shipped nothing. Wi-Fi after a wake can take minutes to
+# re-associate; probe a host the pipeline needs and wait up to NBA_ML_NET_WAIT_MAX
+# seconds (default 10 min) before the first fetch. Never fatal: a run with no network
+# still writes its FAILED marker where the steps fail, and the probe is skipped
+# when the budget is 0 (tests).
+NET_WAIT_MAX="${NBA_ML_NET_WAIT_MAX:-600}"
+net_up() {
+    /usr/bin/curl -sS -m 8 -o /dev/null -A "Mozilla/5.0" \
+        "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2.json" >/dev/null 2>&1
+}
+if [ "$NET_WAIT_MAX" -gt 0 ]; then
+    t_net=$(date +%s)
+    if ! net_up; then
+        echo "--- network not reachable at $(date '+%H:%M:%S'); waiting up to ${NET_WAIT_MAX}s ---" >> "$LOG_FILE"
+        while ! net_up; do
+            if [ $(( $(date +%s) - t_net )) -ge "$NET_WAIT_MAX" ]; then
+                echo "WARNING: network still unreachable after ${NET_WAIT_MAX}s; continuing anyway" >> "$LOG_FILE"
+                notify_fail "network unreachable for ${NET_WAIT_MAX}s"
+                break
+            fi
+            sleep 20
+        done
+        echo "--- network wait ended after $(( $(date +%s) - t_net )) s ---" >> "$LOG_FILE"
+    fi
+fi
+
 # 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
 run_step "Get_Data"           python -m Get_Data $REFRESH_FLAG

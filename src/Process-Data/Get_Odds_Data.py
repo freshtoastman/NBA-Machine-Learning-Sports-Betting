@@ -15,6 +15,9 @@ sys.path.insert(1, os.fspath(BASE_DIR))
 
 # Not sbrscrape: SBR answers 403 to its python user agent since 2026-10 (see module doc).
 from src.Utils.sbr_scoreboard import Scoreboard  # noqa: E402
+# 2026-10-23: SBR had FanDuel for 0 of 12 games at 10:05 ET; fall back to other
+# SBR books, then ESPN (DraftKings), instead of inserting nothing for the date.
+from src.Utils.odds_sources import lines_for_games, sbr_line  # noqa: E402
 
 CONFIG_PATH = BASE_DIR / "config.toml"
 DB_PATH = BASE_DIR / "Data" / "OddsData.sqlite"
@@ -126,7 +129,14 @@ def get_existing_games_by_date(con, season_key, start_date, end_date):
     return games_by_date
 
 
-def append_game_rows(game_rows, date_pointer, game, sportsbook, teams_last_played):
+def append_game_rows(game_rows, date_pointer, game, sportsbook, teams_last_played, line=None):
+    """Append one season-table row. `line` (see odds_sources) overrides the per-book
+    lookup; without it the preferred book, then any other SBR book, is used, and a
+    game no book prices raises KeyError like the original single-book code did."""
+    if line is None:
+        line = sbr_line(game, sportsbook)
+    if line is None:
+        raise KeyError(sportsbook)
     def days_rest(team):
         last_played = teams_last_played.get(team)
         if last_played is None:
@@ -145,15 +155,22 @@ def append_game_rows(game_rows, date_pointer, game, sportsbook, teams_last_playe
         "Date": date_pointer,
         "Home": home_team,
         "Away": away_team,
-        "OU": game["total"][sportsbook],
-        "Spread": game["away_spread"][sportsbook],
-        "ML_Home": game["home_ml"][sportsbook],
-        "ML_Away": game["away_ml"][sportsbook],
-        "Points": game["away_score"] + game["home_score"],
-        "Win_Margin": game["home_score"] - game["away_score"],
+        "OU": line["ou"],
+        "Spread": line["spread"],
+        "ML_Home": line["ml_home"],
+        "ML_Away": line["ml_away"],
+        "Points": (line["away_score"] or 0) + (line["home_score"] or 0),
+        "Win_Margin": (line["home_score"] or 0) - (line["away_score"] or 0),
         "Days_Rest_Home": home_days,
         "Days_Rest_Away": away_days,
+        # Not a table column (dropped by rows_frame); feeds the odds_history source tag.
+        "_source": line["source"],
     })
+
+
+def rows_frame(rows):
+    """DataFrame for to_sql without the private bookkeeping keys."""
+    return pd.DataFrame([{k: v for k, v in r.items() if not k.startswith("_")} for r in rows])
 
 
 def collect_odds_for_dates(dates, sportsbook, teams_last_played):
@@ -161,15 +178,23 @@ def collect_odds_for_dates(dates, sportsbook, teams_last_played):
     for date_pointer in dates:
         print("Getting odds data:", date_pointer)
         sb = fetch_scoreboard(date_pointer)
-        if not sb or not hasattr(sb, "games") or not sb.games:
+        sbr_games = list(sb.games) if sb and getattr(sb, "games", None) else []
+        # Preferred book → other SBR books → ESPN; with an empty SBR board inside the
+        # live window the ESPN slate itself is the game list.
+        lines = lines_for_games(sbr_games, date_pointer, sportsbook)
+        if not lines:
+            if sbr_games:
+                print(f"No priced games for {date_pointer} on SBR or ESPN ({len(sbr_games)} listed)")
             time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
             continue
 
-        for game in sb.games:
-            try:
-                append_game_rows(df_data, date_pointer, game, sportsbook, teams_last_played)
-            except KeyError:
-                print(f"No {sportsbook} odds data found for game: {game}")
+        for line in lines:
+            game = {"home_team": line["home_team"], "away_team": line["away_team"]}
+            append_game_rows(df_data, date_pointer, game, sportsbook, teams_last_played, line=line)
+        n_fallback = sum(1 for l in lines if l["source"] != f"sbr_{sportsbook}")
+        if n_fallback:
+            print(f"  {date_pointer}: {n_fallback} of {len(lines)} line(s) from a fallback source: "
+                  + ", ".join(sorted({l['source'] for l in lines if l['source'] != f'sbr_{sportsbook}'})))
 
         time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
 
@@ -207,8 +232,7 @@ def backfill_season(con, season_key, value, sportsbook, today):
         time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
 
     if new_rows:
-        df = pd.DataFrame(new_rows)
-        df.to_sql(season_key, con, if_exists="append", index=False)
+        rows_frame(new_rows).to_sql(season_key, con, if_exists="append", index=False)
 
 
 OPEN_SOURCE_TAG = "sbr_fanduel_open"
@@ -267,7 +291,8 @@ def log_opening_snapshots(con, season_key, game_rows, fetched_at=None):
             "(fetched_at, season, Date, Home, Away, OU, Spread, ML_Home, ML_Away, source) "
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (fetched_at, season_key, date_str, row["Home"], row["Away"],
-             row["OU"], row["Spread"], row["ML_Home"], row["ML_Away"], OPEN_SOURCE_TAG),
+             row["OU"], row["Spread"], row["ML_Home"], row["ML_Away"],
+             f"{row['_source']}_open" if row.get("_source") else OPEN_SOURCE_TAG),
         )
         written += 1
     return written
@@ -308,8 +333,7 @@ def main(sportsbook="fanduel", backfill=False, season=None, today=None, db_path=
         teams_last_played = get_teams_last_played(con, season_key, fetch_start)
         df_data = collect_odds_for_dates(iter_dates(fetch_start, fetch_end), sportsbook, teams_last_played)
         if df_data:
-            df = pd.DataFrame(df_data)
-            df.to_sql(season_key, con, if_exists="append", index=False)
+            rows_frame(df_data).to_sql(season_key, con, if_exists="append", index=False)
             n_open = log_opening_snapshots(con, season_key, df_data)
             print(f"Logged {n_open} opening line snapshot(s) to odds_history.")
 

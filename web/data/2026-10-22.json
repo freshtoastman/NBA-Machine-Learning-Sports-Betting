@@ -1,7 +1,7 @@
 {
  "date": "2026-10-22",
  "is_today": false,
- "exported_at": "2026-10-23T22:07:08+08:00",
+ "exported_at": "2026-10-23T22:18:23+08:00",
  "summary": {
   "games": 2,
   "model_games": 0,
@@ -75,6 +75,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Curtis Blair",
+      "games": 133,
+      "home_cover_pct": 51.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7289
+     },
+     {
+      "name": "Aaron Smith",
+      "games": 41,
+      "home_cover_pct": 58.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3489
+     },
+     {
+      "name": "CJ Washington",
+      "games": 105,
+      "home_cover_pct": 43.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2414
+     }
+    ],
+    "avg_home_cover_pct": 51.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -91,6 +126,8 @@
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-21T14:41:32+00:00",
    "spread_last_fetched_at": "2026-10-21T14:41:32+00:00",
+   "line_source": "sbr_fanduel",
+   "line_source_label": "FanDuel",
    "ou_first": 236.5,
    "ou_last": 236.5,
    "ou_move": 0.0,
@@ -174,6 +211,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Zach Zarba",
+      "games": 142,
+      "home_cover_pct": 52.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5571
+     },
+     {
+      "name": "Sean Corbin",
+      "games": 135,
+      "home_cover_pct": 54.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3895
+     },
+     {
+      "name": "Robert Hussey",
+      "games": 95,
+      "home_cover_pct": 50.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 52.5,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -190,6 +262,8 @@
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-21T14:41:32+00:00",
    "spread_last_fetched_at": "2026-10-21T14:41:32+00:00",
+   "line_source": "sbr_fanduel",
+   "line_source_label": "FanDuel",
    "ou_first": 236.5,
    "ou_last": 236.5,
    "ou_move": 0.0,
