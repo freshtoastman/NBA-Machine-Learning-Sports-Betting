@@ -1,7 +1,7 @@
 {
  "date": "2026-10-22",
  "is_today": false,
- "exported_at": "2026-10-23T09:30:50+08:00",
+ "exported_at": "2026-10-23T22:07:08+08:00",
  "summary": {
   "games": 2,
   "model_games": 0,
@@ -34,8 +34,8 @@
   "Cleveland Cavaliers:Philadelphia 76ers": {
    "home_team": "Philadelphia 76ers",
    "away_team": "Cleveland Cavaliers",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 114,
+   "away_score": 106,
    "spread": 2.5,
    "Spread": 2.5,
    "OU": 236.5,
@@ -53,15 +53,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 220,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 5.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -97,7 +97,7 @@
    "pregame": {
     "frozen_at": "2026-10-23T09:30:50+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -120,15 +120,21 @@
     "spread_move": 0.0,
     "ou_first": 236.5,
     "ou_last": 236.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-23T22:07:08+08:00"
+   },
+   "closing": {
+    "spread": 2.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 5.5
    },
    "pregame_missing": false
   },
   "Denver Nuggets:Oklahoma City Thunder": {
    "home_team": "Oklahoma City Thunder",
    "away_team": "Denver Nuggets",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 96,
+   "away_score": 84,
    "spread": 8.5,
    "Spread": 8.5,
    "OU": 236.5,
@@ -146,15 +152,15 @@
    "ats_value_edge": null,
    "ats_is_value": false,
    "is_historical": true,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "actual_total": null,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "actual_total": 180,
    "actual_ou_result": null,
    "ml_correct": null,
    "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
-   "is_upcoming": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 3.5,
+   "is_upcoming": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -190,7 +196,7 @@
    "pregame": {
     "frozen_at": "2026-10-23T09:30:50+08:00",
     "revisions": 6,
-    "locked": false,
+    "locked": true,
     "home_confidence": null,
     "away_confidence": null,
     "value_side": null,
@@ -213,7 +219,13 @@
     "spread_move": 0.0,
     "ou_first": 236.5,
     "ou_last": 236.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-23T22:07:08+08:00"
+   },
+   "closing": {
+    "spread": 8.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 3.5
    },
    "pregame_missing": false
   }
