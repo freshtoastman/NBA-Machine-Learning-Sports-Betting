@@ -2,48 +2,48 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 17,
- "graded_games": 1,
+ "frozen_games": 28,
+ "graded_games": 12,
  "settled_without_prediction": 16,
  "game_dates": 4,
  "ml": {
-  "wins": 0,
-  "losses": 1,
-  "n": 1,
-  "hit_rate": 0.0,
+  "wins": 6,
+  "losses": 6,
+  "n": 12,
+  "hit_rate": 50.0,
   "ci95": [
-   0.0,
-   79.3
+   25.4,
+   74.6
   ]
  },
  "ou": {
-  "wins": 0,
-  "losses": 1,
-  "n": 1,
-  "hit_rate": 0.0,
+  "wins": 5,
+  "losses": 7,
+  "n": 12,
+  "hit_rate": 41.7,
   "ci95": [
-   0.0,
-   79.3
+   19.3,
+   68.0
   ]
  },
  "ats_model": {
-  "wins": 1,
-  "losses": 0,
-  "n": 1,
-  "hit_rate": 100.0,
+  "wins": 5,
+  "losses": 7,
+  "n": 12,
+  "hit_rate": 41.7,
   "ci95": [
-   20.7,
-   100.0
+   19.3,
+   68.0
   ]
  },
  "ats_shadow_value": {
   "wins": 0,
-  "losses": 0,
-  "n": 0,
-  "hit_rate": null,
+  "losses": 1,
+  "n": 1,
+  "hit_rate": 0.0,
   "ci95": [
-   null,
-   null
+   0.0,
+   79.3
   ]
  },
  "ml_shadow_value_roi": {
@@ -76,53 +76,53 @@
    null
   ]
  },
- "pending_games": 11,
+ "pending_games": 8,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 17,
-   "graded_games": 1,
+   "frozen_games": 28,
+   "graded_games": 12,
    "settled_without_prediction": 16,
    "game_dates": 4,
    "ml": {
-    "wins": 0,
-    "losses": 1,
-    "n": 1,
-    "hit_rate": 0.0,
+    "wins": 6,
+    "losses": 6,
+    "n": 12,
+    "hit_rate": 50.0,
     "ci95": [
-     0.0,
-     79.3
+     25.4,
+     74.6
     ]
    },
    "ou": {
-    "wins": 0,
-    "losses": 1,
-    "n": 1,
-    "hit_rate": 0.0,
+    "wins": 5,
+    "losses": 7,
+    "n": 12,
+    "hit_rate": 41.7,
     "ci95": [
-     0.0,
-     79.3
+     19.3,
+     68.0
     ]
    },
    "ats_model": {
-    "wins": 1,
-    "losses": 0,
-    "n": 1,
-    "hit_rate": 100.0,
+    "wins": 5,
+    "losses": 7,
+    "n": 12,
+    "hit_rate": 41.7,
     "ci95": [
-     20.7,
-     100.0
+     19.3,
+     68.0
     ]
    },
    "ats_shadow_value": {
     "wins": 0,
-    "losses": 0,
-    "n": 0,
-    "hit_rate": null,
+    "losses": 1,
+    "n": 1,
+    "hit_rate": 0.0,
     "ci95": [
-     null,
-     null
+     0.0,
+     79.3
     ]
    },
    "ml_shadow_value_roi": {
@@ -162,8 +162,8 @@
    "rule": "ats_shadow_value picks: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 0,
-   "ci_lower": null,
+   "n": 1,
+   "ci_lower": 0.0,
    "met": false
   },
   "ml_value": {
@@ -178,11 +178,19 @@
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 1,
-   "ci_lower": 0.0,
+   "n": 12,
+   "ci_lower": 19.3,
    "met": false
   }
  },
- "ats_shadow_rows": [],
- "generated_at": "2026-10-24T09:00:23"
+ "ats_shadow_rows": [
+  {
+   "date": "2026-10-23",
+   "game": "Minnesota Timberwolves @ Orlando Magic",
+   "pick": "home",
+   "spread": 1.5,
+   "hit": false
+  }
+ ],
+ "generated_at": "2026-10-24T22:14:04"
 }
