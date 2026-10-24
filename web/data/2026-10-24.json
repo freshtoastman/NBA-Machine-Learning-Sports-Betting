@@ -1,7 +1,7 @@
 {
  "date": "2026-10-24",
  "is_today": true,
- "exported_at": "2026-10-24T22:14:03+08:00",
+ "exported_at": "2026-10-24T22:16:52+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -536,6 +536,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "injuries_home": [],
+   "tipoff_utc": "2026-10-24T22:00:00Z",
+   "tipoff_et": "18:00 ET",
+   "tipoff_taipei": "10/25 06:00 台北",
    "injuries_away": [],
    "odds_history": [
     {
@@ -558,8 +561,8 @@
    "ou_last": 230.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 66.3,
@@ -1114,6 +1117,9 @@
     "LeBron James (存疑)",
     "Dominick Barlow (缺陣)"
    ],
+   "tipoff_utc": "2026-10-24T23:30:00Z",
+   "tipoff_et": "19:30 ET",
+   "tipoff_taipei": "10/25 07:30 台北",
    "injuries_away": [],
    "odds_history": [
     {
@@ -1136,8 +1142,8 @@
    "ou_last": 234.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 69.2,
@@ -1687,6 +1693,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
    "injuries_home": [],
+   "tipoff_utc": "2026-10-24T23:30:00Z",
+   "tipoff_et": "19:30 ET",
+   "tipoff_taipei": "10/25 07:30 台北",
    "injuries_away": [
     "Tyler Bilodeau (缺陣)"
    ],
@@ -1711,8 +1720,8 @@
    "ou_last": 227.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 60.0,
@@ -2262,6 +2271,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
    "injuries_home": [],
+   "tipoff_utc": "2026-10-25T00:00:00Z",
+   "tipoff_et": "20:00 ET",
+   "tipoff_taipei": "10/25 08:00 台北",
    "injuries_away": [
     "AJ Dybantsa (缺陣)"
    ],
@@ -2286,8 +2298,8 @@
    "ou_last": 245.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -2844,6 +2856,9 @@
     "Santi Aldama (缺陣)",
     "Cooper Flagg (缺陣)"
    ],
+   "tipoff_utc": "2026-10-25T00:00:00Z",
+   "tipoff_et": "20:00 ET",
+   "tipoff_taipei": "10/25 08:00 台北",
    "injuries_away": [
     "Tobias Harris (缺陣)"
    ],
@@ -2868,8 +2883,8 @@
    "ou_last": 229.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 72.4,
@@ -3419,6 +3434,9 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
    "injuries_home": [],
+   "tipoff_utc": "2026-10-25T00:30:00Z",
+   "tipoff_et": "20:30 ET",
+   "tipoff_taipei": "10/25 08:30 台北",
    "injuries_away": [],
    "odds_history": [
     {
@@ -3441,8 +3459,8 @@
    "ou_last": 227.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 66.3,
@@ -3996,6 +4014,9 @@
     "Cameron Johnson (缺陣)",
     "Alpha Diallo (存疑)"
    ],
+   "tipoff_utc": "2026-10-25T01:00:00Z",
+   "tipoff_et": "21:00 ET",
+   "tipoff_taipei": "10/25 09:00 台北",
    "injuries_away": [],
    "odds_history": [
     {
@@ -4018,8 +4039,8 @@
    "ou_last": 239.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "away",
     "home_confidence": 45.5,
@@ -4573,6 +4594,9 @@
     "Oso Ighodaro (可能缺陣)",
     "Mark Williams (缺陣)"
    ],
+   "tipoff_utc": "2026-10-25T02:00:00Z",
+   "tipoff_et": "22:00 ET",
+   "tipoff_taipei": "10/25 10:00 台北",
    "injuries_away": [],
    "odds_history": [
     {
@@ -4595,8 +4619,8 @@
    "ou_last": 221.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-24T22:14:03+08:00",
-    "revisions": 1,
+    "frozen_at": "2026-10-24T22:16:52+08:00",
+    "revisions": 2,
     "locked": false,
     "winner": "home",
     "home_confidence": 63.3,

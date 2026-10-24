@@ -307,6 +307,19 @@ def export_date(target_date: date) -> dict | None:
         except Exception:
             pass
 
+    # Scheduled tip-off per game from the cdn.nba.com season schedule (any date,
+    # one cached fetch per process). Drives the pre-game freeze clock check and
+    # the "19:00 ET / 07:00 台北" chip on upcoming cards.
+    _tip_map: dict[tuple, str] = {}
+    if is_today or has_unplayed:
+        try:
+            from src.Utils import nba_cdn as _cdn
+            for _sg in _cdn.games_for_date(target_date):
+                if _sg.get("tipoff_utc"):
+                    _tip_map[(_sg["home"], _sg["away"])] = _sg["tipoff_utc"]
+        except Exception:
+            pass
+
     # Load referee crew data for all games (if available in referee_data.sqlite).
     _ref_db_path = Path(__file__).resolve().parents[1] / "Data" / "referee_data.sqlite"
     _ref_crew_map: dict[tuple, dict] = {}  # (home_team, away_team) -> crew_info
@@ -429,6 +442,21 @@ def export_date(target_date: date) -> dict | None:
             live_margin = _live["live_home_score"] - _live["live_away_score"]
             _live["live_home_covering"] = (live_margin - spread) > 0
             g.update(_live)
+        # Scheduled tip-off (UTC + display strings); None when the schedule has no entry.
+        _tip = _tip_map.get((g["home_team"], g["away_team"]))
+        if _tip:
+            g["tipoff_utc"] = _tip
+            try:
+                from datetime import datetime as _tdt
+                from zoneinfo import ZoneInfo as _ZI
+                from src.Utils.tools import TAIPEI_TZ as _TPE
+                _tdt_utc = _tdt.fromisoformat(_tip.replace("Z", "+00:00"))
+                _et = _tdt_utc.astimezone(_ZI("America/New_York"))
+                _tpe = _tdt_utc.astimezone(_TPE)
+                g["tipoff_et"] = _et.strftime("%H:%M ET")
+                g["tipoff_taipei"] = _tpe.strftime("%m/%d %H:%M 台北")
+            except Exception:
+                pass
         # Referee crew analysis (when available).
         _crew = _ref_crew_map.get((g["home_team"], g["away_team"]))
         if _crew:

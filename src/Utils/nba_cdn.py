@@ -95,6 +95,9 @@ def games_for_date(d: date, season_only: bool = True) -> list[dict]:
             "away_id": away.get("teamId"),
             "home_score": home.get("score"),
             "away_score": away.get("score"),
+            # Scheduled tip-off, e.g. "2026-10-24T22:00:00Z"; lets the pre-game
+            # freeze lock a game by the clock instead of waiting to see a score.
+            "tipoff_utc": g.get("gameDateTimeUTC"),
         })
     return games
 

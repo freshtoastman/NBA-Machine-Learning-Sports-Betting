@@ -47,6 +47,11 @@ mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/pipeline-$(date +%Y-%m).log"
 STAMP=$(date '+%Y-%m-%d %H:%M:%S')
 echo "===== $STAMP daily_pipeline start ($MODE) =====" >> "$LOG_FILE"
+# On battery a closed MacBook only gets 2 s dark wakes every ~16 min (pmset -g log,
+# 2026-10-24: 06:13:30 DarkWake -> 06:13:32 Sleep -> 06:29:36 DarkWake ...), so every
+# step below stalls for a multiple of ~960 s. caffeinate -s is AC-only; nothing in
+# this script can fix it. Record the power source so the log explains a 3 h run.
+echo "--- power: $(pmset -g batt 2>/dev/null | head -1 | sed "s/Now drawing from //") ---" >> "$LOG_FILE"
 
 notify_fail() {
     local step="$1"

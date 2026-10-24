@@ -777,3 +777,57 @@ LAL／MIL／MEM／WAS 四隊的 `injury` 欄更新，`preseason_2026-27.json`／
 **下一步**：(1) 10/24 讀 log 時看三件事——`network wait` 有沒有出現、`Get_Odds_Data`／`update_odds` 有沒有印 `fallback source`、10/23 的 12 場 `source` 有沒有切回 `sbr_fanduel`；(2) 10/24 晚間第一批 12 場結算 → `frozen_record.json` 第一次有 `graded_games`；(3) 下午排程 plist 仍未複製／載入：`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`；(4) 06:00 連四天 DarkWake 凍結的根因（今天接著電源也凍）要另外查 `pmset -g log` 的 06:13–09:30 區間，本次沒時間。
 
 **部署驗證（22:45）**：GitHub deployments API——`bb31ce4` 14:07:30Z success、`e1ad187` 14:21:21Z success（推送後約 1 分鐘，沒有 10/21 那種 21 分鐘排隊）；正式站 `/login` 200。正式站有登入牆，頁面內容以本機 Flask test client 的同一份 `web/data` 渲染結果為準（12 張模型卡、12 個線源徽章）。
+
+### 2026-10-24（22:11–22:40）— 第一批模型結算：10/23 12 場 **ML 6–6、ATS 5–7、大小分 5–7**；06:00 排程第五次在電池上凍 3 小時（`pmset -g log`：每 ~16 分鐘一次 2 秒的 DarkWake，`Git_Push` 失敗）；22:12 手動 afternoon 跑 119 秒 OK；凍結機制改成「依開賽時間鎖定」（09:00 匯出曾在開賽後重寫 8 場的盤口欄位）；10/24 8 場建列（SBR FanDuel 連兩天 0 場 → 全 ESPN DK）；首頁卡片加開賽時間
+
+**排程檢查（log）**：`06:13:30 start (morning)` → `09:16:01 FAILED at Git_Push`。每一步都是 ~960 秒的倍數：`Get_Data` 965 s、`Get_Odds_Data` 1078 s、`Patch_Scores` 2003 s、`collect_referee_data` 1007 s、`Create_Games` 857 s、`Export_JSON` 3080 s、`Git_Push` 938 s（`Connection closed by 20.27.177.113 port 22`——Wi-Fi 在 dark wake 裡還沒接上）。**根因終於有硬證據**：`pmset -g log` 06:13:30 `DarkWake from Deep Idle ... Using BATT (Charge:100%) 2 secs` → 06:13:32 `Entering Sleep state due to 'Sleep Service Back to Sleep'` 964 s → 06:29:36 DarkWake 2 s → 06:29:38 Sleep ……整個早上就是「醒 2 秒、睡 16 分鐘」的循環，程式只在那 2 秒裡跑。`caffeinate -i` 擋不住 `Sleep Service Back to Sleep`（那是電池模式下 dark wake 的強制回睡），而能擋系統睡眠的 `caffeinate -s` **只在接電源時有效**（man page 明寫）——所以腳本裡任何東西都救不了，只有兩條路：①睡前接電源（10/22 接電源那天 108 秒）；②使用者自己下 `sudo pmset repeat wakeorpoweron MTWRFSU 05:58:00`，讓 05:58 變成真正的喚醒而不是 dark wake（我不碰系統設定）。今天起 `daily_pipeline.sh` 第一行多記 `--- power: 'Battery Power' / 'AC Power' ---`，以後看 log 第一行就知道該不該怪步驟。**22:11 檢查：電池 97%、放電中**——今晚不接電源，明天 06:00 會是第六次。
+
+**手動補跑**：`22:12:09 start (afternoon)` → `22:14:08 OK`，**119 秒**。`Patch_Scores` 用 nba live scoreboard 一次補 10/23 的 11 場（CHI @ MIL 06:00 已補）；`Get_Odds_Data` 10/24 的 8 場 **SBR 仍然 FanDuel 0/8（美東 10:12）、8 場全由 ESPN DraftKings 補**（連續第二天，備援鏈第一次在排程裡實戰）；`Create_Games` 2026-27 從 12 列變 20 列（`dataset` 17812 列、leak guard 0）；`Export_JSON` 10/24 8 場 `model_games=8`、`frozen_record.json` **12 graded / 28 frozen**；`Git_Push` 一次推掉 `1fd21aa` + `5597532`（`4da9b30..5597532`）。Vercel：`5597532` 14:14:32Z success（推送後 24 秒）；正式站 `/login` 200。
+
+**10/23 第一批結算（凍結盤口＝rev 3，見下方「凍結完整性」）**：
+
+| 10/23 | 凍結線 | 終場 | 主隊 ATS | ML 模型 | ATS 模型 | 大小分模型 |
+|---|---|---|---|---|---|---|
+| NYK @ BOS | BOS −2.5 | BOS 107–103 | ✓ | BOS 60.0 ✓ | 客 ✗ | U 220.5 ✓（210） |
+| HOU @ SAS | SAS −4.5（開 −7.5） | HOU 114–110 | ✗ | HOU 62.9 ✓ | 客 ✓ | O 224.5 ✗（224，差 0.5） |
+| CHI @ MIL | MIL −1.5 | CHI 132–125 | ✗ | MIL 60.0 ✗ | 客 ✓ | U 240.5 ✗（257） |
+| ATL @ CHA | ATL −2.5 | ATL 128–81 | ✗ | CHA 60.0 ✗ | 客 ✓ | O 226.5 ✗（209） |
+| TOR @ WAS | TOR −9.5（開 −8.5） | TOR 112–102 | ✗ | WAS 63.3 ✗ | 主 ✗ | U 236.5 ✓（214） |
+| MIN @ ORL | ORL −1.5 | MIN 115–93 | ✗ | ORL 52.5 ✗ | 主 59.0 ✗（影子價值） | O 234.5 ✗（208） |
+| DAL @ IND | IND −7.5 | DAL 121–105 | ✗ | IND 63.3 ✗ | 客 ✓ | U 241.5 ✓（226） |
+| DET @ MIA | DET −1.5 | DET 128–111 | ✗ | DET 62.9 ✓ | 主 ✗ | O 235.5 ✓（239） |
+| NOP @ UTA | UTA −1.5（開 NOP −1.5） | UTA 120–119 | ✗（開盤線則 ✓） | NOP 54.5 ✗ | 主 ✗（開盤線則 ✓） | O 238.5 ✓（239，差 0.5） |
+| LAC @ LAL | LAL −8.5（開 −9.5） | LAL 125–117 | ✗ | LAL 66.3 ✓ | 主 ✗ | U 225.5 ✗（242） |
+| POR @ SAC | POR −9.5 | POR 128–120 | ✓ | POR 62.9 ✓ | 主 ✓ | U 231.5 ✗（248） |
+| MEM @ GSW | GSW −3.5（開 −4.5） | MEM 111–108 | ✗ | MEM 54.3 ✓ | 主 ✗ | O 236.5 ✗（219） |
+
+**`frozen_record.json`（本季第一次有數字）**：ML **6–6（50.0%，95% CI 25–75）**、ATS 模型 **5–7（41.7%）**、大小分 **5–7（41.7%）**、ATS 影子價值 **0–1**（MIN @ ORL 主 59% → ORL 輸 22 分）、ML 影子價值 0 筆。12 場＝什麼都不是；而且這 12 個機率是 isotonic 階梯點 + 每隊 1–2 場的球隊統計（60.0 × 3、63.3 × 2、37.1 × 3 一直重複），本來就只能當參考。reopen 規則三個市場都 `met=false`（ATS n=1／100、OU CI 下界 19.3）。
+
+**凍結完整性（今天發現、今天修）**：10/24 09:00 台北（＝美東 10/23 21:00）的 `Export_JSON` 把 12 場裡 **8 場已開打的比賽（19:00–21:30 ET 開賽）重新快照成 rev 3**——因為 `game_started()` 只看「有沒有看到比分／live_status」，而那次匯出在 dark wake 裡連 cdn 即時比分都抓不到（8 秒逾時），所以把 19:21 ET 的 ESPN DK 線（`update_odds --db-only` 07:21 台北那筆）寫進了「賽前」區塊。影響評估（用 `git show e1ad187` 的 rev 2 逐欄比對）：**模型欄位全部沒變**（ML／ATS／OU 的 pick 與機率都一樣；只有 GSW 的 ATS 52.9→53.0，而 GSW 22:00 ET 開賽、21:00 ET 的快照本來就合法），變的只有盤口／賠率／EV／Kelly 欄位。19:21 ET 的線對 19:00 ET 開賽的比賽其實就是收盤線（ESPN 賽後不再動賽前線），所以 10/23 的 ATS 結算是「對收盤線」而不是「對 22:14 台北的開盤線」。**唯一會因此翻結果的是 NOP @ UTA**：開盤 NOP −1.5、收盤 UTA −1.5，UTA 贏 1 分——對開盤線主隊蓋盤（ATS 模型主 ✓、ATS 模型會是 6–6），對收盤線不蓋（5–7）。兩種算法都說得通，紀錄照 `frozen_record` 的定義取 rev 3，但這段要留著。**修法（已上）**：`src/Utils/nba_cdn.games_for_date` 多回 `tipoff_utc`（`gameDateTimeUTC`）；`export_predictions` 把它掛到每場的 `tipoff_utc`／`tipoff_et`／`tipoff_taipei`；`PregameFreeze.game_started(g, now_iso)` 多一條「匯出時間 ≥ 開賽時間就算開打」——即使比分抓不到也鎖；`Tests/test_pregame_freeze.py` 新增 2 個測試（開賽後不重寫、開賽前照常更新），21/21 通過。副產品：**首頁卡片在未開打時顯示 `⏰ 19:30 ET · 07:30`（hover 看台北日期）**，10/24 8 張卡都有（Flask test client 實測：`tipoff-chip` 8、`📌 線源` 8、「模型尚未啟用」0；`/?date=2026-10-23` 12 張卡、chip 0 因已終場）。
+
+**盤口移動 10/23（開 22:14 台北 → 收 07:21 台北＝19:21 ET；來源都看過）**：
+- **NOP @ UTA：NOP −1.5 → UTA −1.5（3.0 分、翻盤）**——本季第 2 個「≥1.5 且跨 0」（第 1 個 10/20 OKC @ SAS）。UTA 120–119 贏但差 0.5 分沒蓋 → **押晚盤方向 1–1**。
+- HOU @ SAS：SAS −7.5 → −4.5 看起來 3.0，但開盤那筆是 SBR DraftKings、收盤是 ESPN DraftKings，而 10/23 當時 ESPN 寫的是 −5.5 → **同源只動 1.0，不列入 ≥1.5**（10/23 就預告過的「書源切換假移動」，第一次真的出現）。
+- 1.0 分：TOR @ WAS（−8.5 → −9.5，TOR 蓋）、LAC @ LAL（−9.5 → −8.5，LAL 沒蓋）、MEM @ GSW（−4.5 → −3.5，MEM 直接贏）。總分：NYK @ BOS 223.5 → 220.5（−3，結果 210 小分）。
+- 10/24 的 8 場只有一個快照（22:12 台北＝10:12 ET），第二個快照要等 10/25 06:00（若筆電有醒）。
+
+**10/24 的 8 場（`Spread` 正值＝主隊讓分；全 ESPN DK，SBR FanDuel 0/8）**：
+
+| 10/24 | 線 | 總分 | ML 主／客 | ML 模型 | ATS 模型 | O/U 模型 | 傷兵重點（ESPN） |
+|---|---|---|---|---|---|---|---|
+| MIA @ CHA 18:00 ET | MIA −3.5 | 230.5 | +130／−155 | CHA 66.3 | 主 54.9 | U 59.4 | — |
+| MIL @ PHI 19:30 | PHI −12.5 | 234.5 | −675／+490 | PHI 69.2 | 客 48.4 | O 60.3 | PHI：LeBron James 存疑、Wade 存疑、Fall／Barlow 缺 |
+| BKN @ CLE 19:30 | CLE −11.5 | 227.5 | −500／+380 | CLE 60.0 | 主 52.3 | O 58.4 | BKN Bilodeau 缺 |
+| WAS @ CHI 20:00 | CHI −1.5 | 245.5 | −118／−102 | WAS 62.9 | 主 51.7 | O 64.8 | WAS Dybantsa 缺 |
+| SAS @ DAL 20:00 | SAS −12.5 | 229.5 | +425／−575 | **DAL 72.4（+425 的狗）** | 主 53.6 | U 58.3 | **DAL：Cooper Flagg、Aldama、C. Martin、J. Howard、Biberovic 全缺**；SAS T. Harris 缺 |
+| HOU @ ATL 20:30 | ATL −1.5 | 227.5 | −115／−105 | ATL 66.3 | 主 53.5 | U 66.0 | — |
+| NOP @ DEN 21:00 | DEN −11.5 | 239.5 | −485／+370 | NOP 54.5 | 主 52.6 | U 49.1 | DEN C. Johnson、S. Jones 缺、Diallo 存疑 |
+| GSW @ PHX 22:00 | PHX −9.5 | 221.5 | −375／+295 | PHX 63.3 | 主 52.7 | U 58.7 | PHX M. Williams 缺、Kennard 存疑、Ighodaro 可能缺 |
+
+SAS @ DAL 那個 72.4% 就是「GP=2 的球隊統計餵進階梯校正器」會長的樣子（DAL 開季 2–0、SAS 1–1，而 DAL 今晚缺五個人、市場讓 12.5 分）——EV／Kelly 欄位照舊不顯示、不下注。ATS 模型 8 場裡 7 場押主隊、全在 48–55% 之間，沒有任何一場過影子門檻。
+
+**開季累計 28 場：主隊 ATS 13–15、讓分方 14–14、大分 10–18、主隊 SU 13–15**（10/23 一天主隊 ATS **2–10**，把前 16 場的 11–5 全吐回去——這就是為什麼 16 場不能叫趨勢）。
+
+**85% 目標的現況**：沒有變化（樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%）。本季第一批 12 場：ML 50%、ATS 41.7%、OU 41.7%。今天的價值：①第一批凍結結算真的跑出來了，而且在它被人引用之前就抓到「開賽後重寫」的洞並補上時鐘鎖；②06:00 凍結的根因有了 pmset 層級的證據與唯一可行的修法（接電源或 `pmset repeat`）；③SBR FanDuel 連兩天空白，備援鏈在排程裡第一次實戰成功。
+
+**下一步**：(1) **使用者：今晚接電源**（22:11 電池 97% 放電中），或自己執行一次 `sudo pmset repeat wakeorpoweron MTWRFSU 05:58:00`；下午 plist 仍未複製／載入（`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`）；(2) 10/25 讀 log 第一行 `--- power:` 再看步驟耗時；看 10/24 的 `update_odds` 第二快照有沒有 ≥1.5／翻盤、`source` 有沒有切回 FanDuel；(3) 10/25 晚結算 10/24 的 8 場後，`frozen_record` 累計 20 場——在 n<100 之前不解讀；(4) 盤口移動單列：「≥1.5 且跨 0」2 筆（OKC @ SAS ✓、NOP @ UTA ✗，押晚盤方向 1–1）、「≥1.5 不跨 0」0 筆（SAS 的 3.0 是書源差）。

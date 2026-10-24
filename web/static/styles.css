@@ -1627,6 +1627,8 @@ a {
     margin: 2px 8px;
 }
 
+.tipoff-chip { font-size: 10px; color: #90a4ae; white-space: nowrap; }
+
 .live-badge {
     font-size: 10px;
     font-weight: 700;

@@ -891,6 +891,8 @@
                     <div class="vs-divider">
                         {% if game.live_status is defined and not game.live_is_final %}
                         <span class="live-badge">🔴 {{ game.live_status }}</span>
+                        {% elif game.tipoff_et is defined and game.tipoff_et and (game.home_score is not defined or game.home_score is none) %}
+                        <span class="tipoff-chip" title="開賽時間（{{ game.tipoff_taipei }}）；凍結紀錄以此時間為準，開賽後預測不再改動">⏰ {{ game.tipoff_et }} · {{ game.tipoff_taipei[6:11] }}</span>
                         {% endif %}
                     </div>
 

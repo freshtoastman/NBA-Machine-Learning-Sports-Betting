@@ -94,6 +94,27 @@ class TestApplyFreeze(unittest.TestCase):
         self.assertEqual(live["K"]["spread"], 3.5)
         self.assertIsNone(live["K"]["ml_correct"])  # not graded until a final score exists
 
+    def test_scheduled_tipoff_locks_block_without_score(self):
+        # 19:00 ET tip = 23:00Z; an export at 21:00 ET (09:00+08:00 next day) that
+        # could not reach the live scoreboard must still lock, not re-snapshot.
+        prev = {"K": _pregame_game(tipoff_utc="2026-10-23T23:00:00Z")}
+        PregameFreeze.apply_freeze(None, prev, "2026-10-23T22:14:00+08:00")
+        self.assertFalse(prev["K"]["pregame"]["locked"])
+        late = {"K": _pregame_game(spread=4.5, tipoff_utc="2026-10-23T23:00:00Z")}
+        PregameFreeze.apply_freeze(prev, late, "2026-10-24T09:00:22+08:00")
+        self.assertTrue(late["K"]["pregame"]["locked"])
+        self.assertEqual(late["K"]["pregame"]["spread"], 3.5)
+        self.assertEqual(late["K"]["pregame"]["revisions"], 1)
+
+    def test_export_before_tipoff_still_refreshes(self):
+        prev = {"K": _pregame_game(tipoff_utc="2026-10-24T02:00:00Z")}  # 22:00 ET
+        PregameFreeze.apply_freeze(None, prev, "2026-10-23T22:14:00+08:00")
+        fresh = {"K": _pregame_game(spread=4.5, tipoff_utc="2026-10-24T02:00:00Z")}
+        PregameFreeze.apply_freeze(prev, fresh, "2026-10-24T09:00:22+08:00")  # 21:00 ET
+        self.assertFalse(fresh["K"]["pregame"]["locked"])
+        self.assertEqual(fresh["K"]["pregame"]["spread"], 4.5)
+        self.assertEqual(fresh["K"]["pregame"]["revisions"], 2)
+
     def test_game_first_seen_with_result_has_no_snapshot(self):
         fresh = {"K": _pregame_game(home_score=100, away_score=90, actual_winner="home")}
         PregameFreeze.apply_freeze(None, fresh, "t1")

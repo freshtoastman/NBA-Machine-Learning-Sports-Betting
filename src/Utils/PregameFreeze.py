@@ -65,13 +65,40 @@ def _has_score(g: dict) -> bool:
     return hs is not None and as_ is not None
 
 
-def game_started(g: dict) -> bool:
-    """True once the export has seen the game in progress or finished."""
+def _parse_iso(s: str | None):
+    """Aware datetime from an ISO string ("Z" accepted); None when unparsable."""
+    if not s:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.astimezone()  # naive stamps are local wall-clock
+    return dt
+
+
+def tipoff_passed(g: dict, now_iso: str | None) -> bool:
+    """True when the export runs at/after the game's scheduled tip-off (tipoff_utc)."""
+    tip = _parse_iso(g.get("tipoff_utc"))
+    now = _parse_iso(now_iso)
+    return bool(tip and now and now >= tip)
+
+
+def game_started(g: dict, now_iso: str | None = None) -> bool:
+    """True once the export has seen the game in progress or finished, or the
+    scheduled tip-off has passed. The clock check matters because the live
+    scoreboard can be unreachable (the 2026-10-24 09:00 Taipei export, 21:00 ET,
+    ran inside a frozen dark wake and re-snapshotted eight games that had tipped
+    at 19:00-21:30 ET; only odds changed, but the block must not be rewritable
+    after tip no matter what the fetch returns)."""
     if _has_score(g):
         return True
     if g.get("live_status"):
         return True
-    return bool(g.get("live_is_final"))
+    if g.get("live_is_final"):
+        return True
+    return tipoff_passed(g, now_iso)
 
 
 def snapshot(g: dict, now_iso: str, revisions: int = 1) -> dict:
@@ -167,7 +194,7 @@ def apply_freeze(existing_games: dict | None, fresh_games: dict, now_iso: str | 
             grade(g)
             g["pregame_missing"] = False
             continue
-        if not game_started(g):
+        if not game_started(g, now_iso):
             revisions = (prev_block or {}).get("revisions", 0) + 1
             g["pregame"] = snapshot(g, now_iso, revisions)
             g["pregame_missing"] = False
