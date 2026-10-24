@@ -342,7 +342,7 @@
     "date": "2026-10-24",
     "home": "Charlotte Hornets",
     "away": "Miami Heat",
-    "spread": -3.5,
+    "spread": -4.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -378,7 +378,7 @@
     "date": "2026-10-24",
     "home": "Chicago Bulls",
     "away": "Washington Wizards",
-    "spread": 1.5,
+    "spread": 2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -390,7 +390,7 @@
     "date": "2026-10-24",
     "home": "Dallas Mavericks",
     "away": "San Antonio Spurs",
-    "spread": -12.5,
+    "spread": -14.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -402,11 +402,11 @@
     "date": "2026-10-24",
     "home": "Atlanta Hawks",
     "away": "Houston Rockets",
-    "spread": 1.5,
+    "spread": -1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "away"
+    "ats_result": "home"
    }
   ],
   "Denver Nuggets:New Orleans Pelicans": [
@@ -431,6 +431,18 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "away"
+   }
+  ],
+  "Minnesota Timberwolves:Toronto Raptors": [
+   {
+    "date": "2026-10-25",
+    "home": "Minnesota Timberwolves",
+    "away": "Toronto Raptors",
+    "spread": -5.0,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ]
  }
