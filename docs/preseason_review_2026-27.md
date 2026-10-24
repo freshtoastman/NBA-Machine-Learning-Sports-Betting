@@ -831,3 +831,5 @@ SAS @ DAL 那個 72.4% 就是「GP=2 的球隊統計餵進階梯校正器」會�
 **85% 目標的現況**：沒有變化（樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%）。本季第一批 12 場：ML 50%、ATS 41.7%、OU 41.7%。今天的價值：①第一批凍結結算真的跑出來了，而且在它被人引用之前就抓到「開賽後重寫」的洞並補上時鐘鎖；②06:00 凍結的根因有了 pmset 層級的證據與唯一可行的修法（接電源或 `pmset repeat`）；③SBR FanDuel 連兩天空白，備援鏈在排程裡第一次實戰成功。
 
 **下一步**：(1) **使用者：今晚接電源**（22:11 電池 97% 放電中），或自己執行一次 `sudo pmset repeat wakeorpoweron MTWRFSU 05:58:00`；下午 plist 仍未複製／載入（`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`）；(2) 10/25 讀 log 第一行 `--- power:` 再看步驟耗時；看 10/24 的 `update_odds` 第二快照有沒有 ≥1.5／翻盤、`source` 有沒有切回 FanDuel；(3) 10/25 晚結算 10/24 的 8 場後，`frozen_record` 累計 20 場——在 n<100 之前不解讀；(4) 盤口移動單列：「≥1.5 且跨 0」2 筆（OKC @ SAS ✓、NOP @ UTA ✗，押晚盤方向 1–1）、「≥1.5 不跨 0」0 筆（SAS 的 3.0 是書源差）。
+
+**部署驗證（22:35）**：`465139d`（凍結修正＋開賽時間 chip＋10/24 紀錄）14:20:25Z success（推送後約 30 秒）；`5597532` 14:14:32Z success；正式站 `/login` 200。正式站有登入牆，頁面內容以本機 Flask test client 的同一份 `web/data` 渲染結果為準（10/24 8 張卡、8 個 ⏰ chip、8 個線源徽章）。
