@@ -2,38 +2,38 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 16,
- "graded_games": 0,
+ "frozen_games": 17,
+ "graded_games": 1,
  "settled_without_prediction": 16,
- "game_dates": 3,
+ "game_dates": 4,
  "ml": {
   "wins": 0,
-  "losses": 0,
-  "n": 0,
-  "hit_rate": null,
+  "losses": 1,
+  "n": 1,
+  "hit_rate": 0.0,
   "ci95": [
-   null,
-   null
+   0.0,
+   79.3
   ]
  },
  "ou": {
   "wins": 0,
-  "losses": 0,
-  "n": 0,
-  "hit_rate": null,
+  "losses": 1,
+  "n": 1,
+  "hit_rate": 0.0,
   "ci95": [
-   null,
-   null
+   0.0,
+   79.3
   ]
  },
  "ats_model": {
-  "wins": 0,
+  "wins": 1,
   "losses": 0,
-  "n": 0,
-  "hit_rate": null,
+  "n": 1,
+  "hit_rate": 100.0,
   "ci95": [
-   null,
-   null
+   20.7,
+   100.0
   ]
  },
  "ats_shadow_value": {
@@ -76,43 +76,43 @@
    null
   ]
  },
- "pending_games": 12,
+ "pending_games": 11,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 16,
-   "graded_games": 0,
+   "frozen_games": 17,
+   "graded_games": 1,
    "settled_without_prediction": 16,
-   "game_dates": 3,
+   "game_dates": 4,
    "ml": {
     "wins": 0,
-    "losses": 0,
-    "n": 0,
-    "hit_rate": null,
+    "losses": 1,
+    "n": 1,
+    "hit_rate": 0.0,
     "ci95": [
-     null,
-     null
+     0.0,
+     79.3
     ]
    },
    "ou": {
     "wins": 0,
-    "losses": 0,
-    "n": 0,
-    "hit_rate": null,
+    "losses": 1,
+    "n": 1,
+    "hit_rate": 0.0,
     "ci95": [
-     null,
-     null
+     0.0,
+     79.3
     ]
    },
    "ats_model": {
-    "wins": 0,
+    "wins": 1,
     "losses": 0,
-    "n": 0,
-    "hit_rate": null,
+    "n": 1,
+    "hit_rate": 100.0,
     "ci95": [
-     null,
-     null
+     20.7,
+     100.0
     ]
    },
    "ats_shadow_value": {
@@ -178,11 +178,11 @@
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 0,
-   "ci_lower": null,
+   "n": 1,
+   "ci_lower": 0.0,
    "met": false
   }
  },
  "ats_shadow_rows": [],
- "generated_at": "2026-10-23T22:18:23"
+ "generated_at": "2026-10-24T09:00:23"
 }
