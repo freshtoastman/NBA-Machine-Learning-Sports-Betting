@@ -176,6 +176,44 @@ class TestGetOddsData(unittest.TestCase):
                 df = pd.read_sql_query('SELECT * FROM "2025-26"', con)
         self.assertEqual(len(df.index), 2)
 
+    def test_complete_partial_dates_appends_only_missing_games(self):
+        """2026-10-25: 06:00 inserted 1 of 7 games; the evening rescan must add the
+        other six once they are priced, without duplicating the stored one."""
+        stored = build_game()
+        other = dict(build_game(), home_team="Team C", away_team="Team D")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = Path(tmpdir) / "odds.sqlite"
+            with sqlite3.connect(db_path) as con:
+                pd.DataFrame([
+                    dict(build_row("2026-10-24"), Points=215),           # played
+                    dict(build_row("2026-10-25"), Points=0, Win_Margin=0),  # unplayed, partial
+                ]).to_sql("2026-27", con, if_exists="replace", index=False)
+                with mock.patch.object(
+                    get_odds_data, "fetch_scoreboard",
+                    return_value=DummyScoreboard([stored, other]),
+                ), mock.patch.object(get_odds_data.time, "sleep"):
+                    rows = get_odds_data.complete_partial_dates(
+                        con, "2026-27", "fanduel", date(2026, 10, 25), date(2026, 10, 25)
+                    )
+        self.assertEqual([(r["Home"], r["Away"]) for r in rows], [("Team C", "Team D")])
+        self.assertEqual(rows[0]["Date"], date(2026, 10, 25))
+        # Days-rest comes from games before the slate (none for C/D → 7), not from the slate.
+        self.assertEqual(rows[0]["Days_Rest_Home"], 7)
+
+    def test_complete_partial_dates_skips_played_dates(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = Path(tmpdir) / "odds.sqlite"
+            with sqlite3.connect(db_path) as con:
+                pd.DataFrame([dict(build_row("2026-10-24"), Points=215)]).to_sql(
+                    "2026-27", con, if_exists="replace", index=False
+                )
+                with mock.patch.object(get_odds_data, "fetch_scoreboard") as fetch:
+                    rows = get_odds_data.complete_partial_dates(
+                        con, "2026-27", "fanduel", date(2026, 10, 25), date(2026, 10, 25)
+                    )
+        self.assertEqual(rows, [])
+        fetch.assert_not_called()
+
 
 class OpeningSnapshotTests(unittest.TestCase):
     """The first line Get_Odds_Data sees for a game is its opening odds_history

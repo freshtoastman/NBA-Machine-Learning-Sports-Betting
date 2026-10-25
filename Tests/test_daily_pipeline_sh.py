@@ -103,7 +103,7 @@ class DailyPipelineShellTest(unittest.TestCase):
         # 2026-10-19: the run was frozen between dark wakes for 2 h 54 min. The script
         # must hold a no-idle-sleep assertion for its whole life, and must not loop.
         src = open(SCRIPT).read()
-        self.assertIn('exec /usr/bin/caffeinate -i -m /bin/bash "$0" "$@"', src)
+        self.assertIn('exec /usr/bin/caffeinate -i -m -s /bin/bash "$0" "$@"', src)
         self.assertIn('[ -z "${NBA_ML_CAFFEINATED:-}" ]', src)
         self.assertIn("export NBA_ML_CAFFEINATED=1", src)
         guard = src.index('NBA_ML_CAFFEINATED:-'); first_step = src.index('run_step "Get_Data"')

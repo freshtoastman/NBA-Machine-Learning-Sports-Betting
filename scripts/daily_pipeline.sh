@@ -28,9 +28,15 @@ esac
 # Re-exec under caffeinate so the run holds a no-idle-sleep assertion from its first
 # step to the final OK line (-i idle, -m disk). It cannot wake a sleeping Mac (that
 # needs mains power or a pmset wake schedule), only keep an awake one awake.
+# 2026-10-25: ON AC the 06:00 run still took 22 min for ~2 min of work. pmset -g log:
+# 06:00:21 DarkWake (AC, 45 s) -> 06:01:06 'Maintenance Sleep' -> 06:09:24 DarkWake
+# (45 s) -> 06:10:09 Sleep -> 06:21:32 DarkWake -> 06:22:12 OK. A dark wake ends with a
+# *maintenance* sleep that -i (idle sleep only) does not block; -s (PreventSystemSleep)
+# does, and it is valid exactly when on AC. On battery -s is ignored (man caffeinate),
+# so it costs nothing there and the power line below still explains those mornings.
 if [ -z "${NBA_ML_CAFFEINATED:-}" ] && [ -x /usr/bin/caffeinate ] && [ -f "$0" ]; then
     export NBA_ML_CAFFEINATED=1
-    exec /usr/bin/caffeinate -i -m /bin/bash "$0" "$@"
+    exec /usr/bin/caffeinate -i -m -s /bin/bash "$0" "$@"
 fi
 # bash 3.2 (macOS /bin/bash) + `set -u`: expanding an EMPTY array with "${ARR[@]}"
 # is a fatal "unbound variable" (fixed only in bash 4.4). Keep the flag as a plain

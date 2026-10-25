@@ -173,8 +173,13 @@ def rows_frame(rows):
     return pd.DataFrame([{k: v for k, v in r.items() if not k.startswith("_")} for r in rows])
 
 
-def collect_odds_for_dates(dates, sportsbook, teams_last_played):
+def collect_odds_for_dates(dates, sportsbook, teams_last_played, skip_pairs=None):
+    """Fetch and build season-table rows for `dates`. `skip_pairs` maps a date to
+    the (Home, Away) pairs already stored for it, so a partially inserted slate
+    (2026-10-25: 1 of 7 games priced at 06:00) can be completed without duplicating
+    the rows that exist."""
     df_data = []
+    skip_pairs = skip_pairs or {}
     for date_pointer in dates:
         print("Getting odds data:", date_pointer)
         sb = fetch_scoreboard(date_pointer)
@@ -187,6 +192,15 @@ def collect_odds_for_dates(dates, sportsbook, teams_last_played):
                 print(f"No priced games for {date_pointer} on SBR or ESPN ({len(sbr_games)} listed)")
             time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
             continue
+
+        stored = set(skip_pairs.get(date_pointer, ()))
+        if stored:
+            before = len(lines)
+            lines = [l for l in lines if (l["home_team"], l["away_team"]) not in stored]
+            print(f"  {date_pointer}: {len(stored)} game(s) already stored, {len(lines)} of {before} priced game(s) new")
+            if not lines:
+                time.sleep(random.randint(MIN_DELAY_SECONDS, MAX_DELAY_SECONDS))
+                continue
 
         for line in lines:
             game = {"home_team": line["home_team"], "away_team": line["away_team"]}
@@ -326,16 +340,52 @@ def main(sportsbook="fanduel", backfill=False, season=None, today=None, db_path=
         existing_dates = get_existing_dates(con, season_key)
         latest_date = max(existing_dates) if existing_dates else None
         fetch_start = start_date if latest_date is None else latest_date + timedelta(days=1)
+        df_data = []
         if fetch_start > fetch_end:
             print("No new odds dates to fetch. Latest date:", latest_date)
-            return
+        else:
+            teams_last_played = get_teams_last_played(con, season_key, fetch_start)
+            df_data = collect_odds_for_dates(iter_dates(fetch_start, fetch_end), sportsbook, teams_last_played)
 
-        teams_last_played = get_teams_last_played(con, season_key, fetch_start)
-        df_data = collect_odds_for_dates(iter_dates(fetch_start, fetch_end), sportsbook, teams_last_played)
+        # A date inserted with a partial board is never revisited by the branch above
+        # (fetch_start = latest + 1) and update_odds only UPDATEs rows that exist, so the
+        # 2026-10-25 slate sat at 1 of 7 games all day (06:00: SBR priced one game, ESPN
+        # none). Re-scan the still-unplayed dates already in the table and append the
+        # games whose (Home, Away) pair is missing.
+        df_data += complete_partial_dates(con, season_key, sportsbook, today, fetch_end)
+
         if df_data:
             rows_frame(df_data).to_sql(season_key, con, if_exists="append", index=False)
             n_open = log_opening_snapshots(con, season_key, df_data)
             print(f"Logged {n_open} opening line snapshot(s) to odds_history.")
+
+
+def unplayed_dates(con, season_key, from_date, to_date):
+    """Dates in [from_date, to_date] whose stored games have no final score yet."""
+    if not table_exists(con, season_key):
+        return []
+    rows = con.execute(
+        f'SELECT DISTINCT Date FROM "{season_key}" WHERE Date BETWEEN ? AND ? '
+        f'AND (Points IS NULL OR Points = 0)',
+        (str(from_date), str(to_date)),
+    ).fetchall()
+    dates = {parse_date_value(v) for (v,) in rows}
+    return sorted(d for d in dates if d)
+
+
+def complete_partial_dates(con, season_key, sportsbook, today, fetch_end):
+    """Rows for games missing from already-inserted, still-unplayed dates (see main)."""
+    rescan = unplayed_dates(con, season_key, today - timedelta(days=1), fetch_end)
+    if not rescan:
+        return []
+    stored = get_existing_games_by_date(con, season_key, rescan[0], rescan[-1])
+    # Days-rest must be computed from games before the slate, not from the slate itself.
+    teams_last_played = get_teams_last_played(con, season_key, rescan[0])
+    rows = collect_odds_for_dates(rescan, sportsbook, teams_last_played, skip_pairs=stored)
+    if rows:
+        print(f"Completed {len(rows)} game(s) missing from partially inserted date(s): "
+              + ", ".join(str(d) for d in rescan))
+    return rows
 
 
 if __name__ == "__main__":
