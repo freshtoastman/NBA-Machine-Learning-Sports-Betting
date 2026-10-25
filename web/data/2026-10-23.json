@@ -1,7 +1,7 @@
 {
  "date": "2026-10-23",
  "is_today": false,
- "exported_at": "2026-10-25T22:13:22+08:00",
+ "exported_at": "2026-10-26T06:02:12+08:00",
  "summary": {
   "games": 12,
   "model_games": 12,
@@ -5528,11 +5528,11 @@
      },
      {
       "name": "Ray Acosta",
-      "games": 146,
-      "home_cover_pct": 49.3,
+      "games": 147,
+      "home_cover_pct": 49.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.9341
+      "p_value": 0.869
      },
      {
       "name": "Leon Wood",
@@ -5543,7 +5543,7 @@
       "p_value": 0.7552
      }
     ],
-    "avg_home_cover_pct": 49.9,
+    "avg_home_cover_pct": 49.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
