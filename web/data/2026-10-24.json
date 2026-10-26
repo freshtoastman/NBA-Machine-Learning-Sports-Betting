@@ -1,7 +1,7 @@
 {
  "date": "2026-10-24",
  "is_today": false,
- "exported_at": "2026-10-26T22:07:53+08:00",
+ "exported_at": "2026-10-27T06:06:11+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -1160,11 +1160,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 140,
-      "home_cover_pct": 45.0,
+      "games": 141,
+      "home_cover_pct": 44.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.2718
+      "p_value": 0.2383
      },
      {
       "name": "Dedric Taylor",
@@ -1183,7 +1183,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 48.5,
+    "avg_home_cover_pct": 48.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3669,11 +3669,11 @@
      },
      {
       "name": "Andy Nagy",
-      "games": 133,
-      "home_cover_pct": 46.6,
+      "games": 134,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.488
+      "p_value": 0.437
      },
      {
       "name": "CJ Washington",
@@ -3684,7 +3684,7 @@
       "p_value": 0.2065
      }
     ],
-    "avg_home_cover_pct": 46.2,
+    "avg_home_cover_pct": 46.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4294,14 +4294,14 @@
      },
      {
       "name": "John Butler",
-      "games": 126,
-      "home_cover_pct": 50.0,
+      "games": 127,
+      "home_cover_pct": 49.6,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.0,
+    "avg_home_cover_pct": 48.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
