@@ -107,6 +107,16 @@
     "home_score": 123,
     "away_score": 103,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-10-26",
+    "home": "Utah Jazz",
+    "away": "Memphis Grizzlies",
+    "spread": 1.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Indiana Pacers:New Orleans Pelicans": [
@@ -412,7 +422,7 @@
     "date": "2026-10-26",
     "home": "Houston Rockets",
     "away": "Atlanta Hawks",
-    "spread": 5.0,
+    "spread": 5.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -449,10 +459,10 @@
     "home": "Minnesota Timberwolves",
     "away": "Toronto Raptors",
     "spread": 1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 23,
+    "home_score": 117,
+    "away_score": 94,
+    "ats_result": "home"
    }
   ],
   "Los Angeles Lakers:Utah Jazz": [
@@ -461,10 +471,10 @@
     "home": "Utah Jazz",
     "away": "Los Angeles Lakers",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -9,
+    "home_score": 123,
+    "away_score": 132,
+    "ats_result": "away"
    }
   ],
   "Brooklyn Nets:Indiana Pacers": [
@@ -473,10 +483,10 @@
     "home": "Brooklyn Nets",
     "away": "Indiana Pacers",
     "spread": -6.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -27,
+    "home_score": 109,
+    "away_score": 136,
+    "ats_result": "away"
    }
   ],
   "LA Clippers:Oklahoma City Thunder": [
@@ -485,9 +495,9 @@
     "home": "Oklahoma City Thunder",
     "away": "LA Clippers",
     "spread": 16.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 7,
+    "home_score": 108,
+    "away_score": 101,
     "ats_result": "away"
    }
   ],
@@ -497,9 +507,9 @@
     "home": "New York Knicks",
     "away": "Orlando Magic",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -9,
+    "home_score": 102,
+    "away_score": 111,
     "ats_result": "away"
    }
   ],
@@ -509,10 +519,10 @@
     "home": "Philadelphia 76ers",
     "away": "Detroit Pistons",
     "spread": -1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -13,
+    "home_score": 93,
+    "away_score": 106,
+    "ats_result": "away"
    }
   ],
   "Memphis Grizzlies:Sacramento Kings": [
@@ -521,10 +531,10 @@
     "home": "Sacramento Kings",
     "away": "Memphis Grizzlies",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -11,
+    "home_score": 112,
+    "away_score": 123,
+    "ats_result": "away"
    }
   ],
   "Charlotte Hornets:Washington Wizards": [
@@ -532,7 +542,7 @@
     "date": "2026-10-26",
     "home": "Charlotte Hornets",
     "away": "Washington Wizards",
-    "spread": 3.0,
+    "spread": 2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -544,7 +554,7 @@
     "date": "2026-10-26",
     "home": "Miami Heat",
     "away": "Dallas Mavericks",
-    "spread": 8.0,
+    "spread": 8.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -573,6 +583,42 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "away"
+   }
+  ],
+  "Cleveland Cavaliers:Minnesota Timberwolves": [
+   {
+    "date": "2026-10-26",
+    "home": "Cleveland Cavaliers",
+    "away": "Minnesota Timberwolves",
+    "spread": 4.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Oklahoma City Thunder:Phoenix Suns": [
+   {
+    "date": "2026-10-26",
+    "home": "Oklahoma City Thunder",
+    "away": "Phoenix Suns",
+    "spread": 9.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Indiana Pacers:Milwaukee Bucks": [
+   {
+    "date": "2026-10-26",
+    "home": "Milwaukee Bucks",
+    "away": "Indiana Pacers",
+    "spread": -4.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ]
  }
