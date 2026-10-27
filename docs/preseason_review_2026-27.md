@@ -949,3 +949,56 @@ ML 模型押 3 場受讓方（WAS +114、MIN +148、**DAL +265 給 54.5%**——
 **下一步**：(1) **使用者：今晚已接電源（22:04 AC 100%）**，明早 log 第一行 `--- power:` 應是 AC、`Create_Games` 應 ~65–75 秒——這是第一個能驗證 `caffeinate -s` 的樣本（前提是筆電真的在睡）；下午 plist 仍未複製／載入（連兩天靠 22:00 手動補半張板）；(2) 10/27 06:00 看 10/27 的板是不是又半張（`fallback source` 那行）、10/26 九場第二快照有沒有 ≥1.5；(3) 10/27 晚結算 10/26 九場後累計 36 場，n<100 之前不解讀；(4) 盤口移動單列：翻盤 3 筆（2–1）、不跨 0 的 ≥1.5 1 筆（1–0）、假移動 2 筆；(5) 候選：`walk_forward_clean.py` 加 ATS 押注方向比例與主／客分開命中率；「單書開盤未經確認」規則縮小到 Fanatics／差 ≥3，等第 3 例。
 
 **部署驗證（22:14）**：`da52079`（afternoon 結算＋10/26 9 場）14:08:16Z success（推送後約 20 秒）；`1ed1450`（本篇回顧）14:13:15Z success；`a418613`（06:02）22:02:46Z success；正式站 `/login` 200。頁面內容以本機 Flask test client 同一份 `web/data` 為準（10/26 9 個 ⏰ chip、19 個傷兵標記、「模型尚未啟用」0）。
+
+### 2026-10-27（22:05–22:30）— 10/26 結算 **ML 4–5、ATS 4–5、大小分 6–3**（累計 36 場 ML 19–17／ATS 15–21／OU 20–16）；**`caffeinate -s` 第一次真正驗證成功**：筆電 05:52 進 Maintenance Sleep、06:04:12 dark wake 被 `-s` 接住、124 秒跑完；10/27 板 06:00 **整張空白（0／4）**→ 第三天手動 afternoon；10/26 **三個 ≥1.5 真實移動**（CLE 2.0、OKC 2.0、UTA→MEM 3.0 翻盤）押晚盤 2–1
+
+**排程檢查（log）**：`06:04:12 start (morning)`、`--- power: 'AC Power' ---`、`06:06:16 OK`，**共 124 秒**（`Create_Games` 65 秒、`Export_JSON` 15 秒）。`pmset -g log`：05:52:05 `Entering Sleep state due to 'Maintenance Sleep'`（AC 80%，機器真的在睡）→ 06:04:12 `DarkWake from Deep Idle … rtc/Maintenance` 與**同一秒** `caffeinate Created PreventSystemSleep` → 06:06:16 `ClientDied`（pipeline 結束）→ 06:09:47 再進 Maintenance Sleep。這是 10/25 加 `-s` 之後第一個「接電源＋真的在睡」的樣本：**dark wake 被完整撐到跑完，沒有再出現 22 分鐘的那種拖延**。一個副作用：launchd 的 06:00 `StartCalendarInterval` 在機器睡著時不會準時觸發，而是跟著下一次 rtc wake（這次是 calaccessd 的 06:04:12 定時器）——所以「06:00 排程」實際上是「06:00–06:15 之間」（Maintenance wake 週期 900 秒）。要準時，得由使用者設 `pmset repeat wakeorpoweron MTWRFSU 05:59:00`（系統設定，不由排程改）；不準時本身無害。`6dc6a86` 部署 22:06:33Z success（推送後 17 秒）。
+
+**10/27 板 06:00 整張空白——「半張板」第三種型態**：`4 game(s) without a fanduel line on SBR for 2026-10-27; 0 filled from ESPN` → `No priced games for 2026-10-27 on SBR or ESPN (4 listed)`。10/25 是 1／7、10/26 是 5／9（Caesars）、10/27 是 **0／4**：SBR 整張板連 Caesars 都沒掛、ESPN DK 也沒有，所以 06:00 匯出 `2026-10-27.json` 被 `skipped (no games)`、首頁早上只有 10/26 的 9 張卡。這不是抓取失敗（4 場都列出來了），是美東週一 18:00 四場週二的比賽**書商還沒開盤**——週二 4 場的小板開盤比週一 9 場晚。連續三天都要 22:00 手動 afternoon 補板；`scripts/launchd/com.lchao.nba-ml.afternoon.plist` 仍未複製／載入（`launchctl list` 只有 `com.lchao.nba-ml.daily`）。
+
+**手動補跑**：`22:06:13 start (afternoon)` → `22:08:05 OK`，112 秒。`Get_Odds_Data` 10/27 四場全部 FanDuel 開盤（`Logged 4 opening line snapshot(s)`，沒有備援書）；`Patch_Scores` nba live 一次補 10/26 的 9 場；`update_odds` 10/27 4 場；`Create_Games` 74 秒（17,832 列，2026-27 team-rows 80，`counts own game: 0`）；`Export_JSON` 10/27 4 場、10/26 9 場重匯（終場＋結算）；`frozen_record.json: 36 graded / 52 frozen`；`Git_Push` `6dc6a861..3ed80edc`。Vercel：`3ed80ed` 14:08:22Z success（推送後 17 秒）；正式站 `/login` 200。本機 Flask test client：`/` 與 `/?date=2026-10-27` 皆 200、4 個 ⏰ chip、6 個缺陣標記、「模型尚未啟用」0；`/?date=2026-10-26` 0 個 ⏰（9 場全終場）。
+
+**10/26 結算（凍結線，全 FanDuel；`locked` 9／9 於 06:06 匯出時鎖定，開賽 23:00Z 起＝台北 07:00）**：
+
+| 10/26 | 凍結線 | 終場 | 主隊 ATS | ML 模型 | ATS 模型 | 大小分模型 |
+|---|---|---|---|---|---|---|
+| WAS @ CHA | CHA −2.5 | CHA 110–103 | ✓ | WAS 62.9 ✗ | 主 ✓ | U 227.5 ✓（213） |
+| MIN @ CLE | CLE −2.5 | CLE 127–125 | ✗（差 0.5） | MIN 62.9 ✗ | 主 ✗ | O 234.5 ✓（252） |
+| DAL @ MIA | MIA −8.5 | **DAL 113–109** | ✗ | **DAL 54.5 ✓（+230）** | 主 ✗ | O 240.5 ✗（222） |
+| CHI @ BOS | BOS −14.5 | BOS 134–99 | ✓ | BOS 69.2 ✓ | 客 ✗ | O 232.5 ✓（233，差 0.5） |
+| PHX @ OKC | OKC −7.5 | OKC 125–114 | ✓ | OKC 69.2 ✓ | 主 ✓ | O 221.5 ✓（239） |
+| IND @ MIL | IND −4.5 | MIL 110–102 | ✓ | IND 62.9 ✗ | 主 ✓ | O 238.5 ✗（212） |
+| ATL @ HOU | HOU −4.5 | HOU 120–110 | ✓ | HOU 53.3 ✓ | 客 ✗ | O 229.5 ✓（230，差 0.5） |
+| MEM @ UTA | MEM −1.5 | MEM 110–105 | ✗ | UTA 52.5 ✗ | 主 ✗ | O 236.5 ✗（215） |
+| GSW @ DEN | DEN −7.5 | **GSW 134–114** | ✗ | DEN 66.7 ✗ | 客 ✓ | O 235.5 ✓（248） |
+
+10/26 一天：**ML 4–5、ATS 模型 4–5、大小分 6–3**；主隊 ATS **5–4**（主隊崩盤後第一個正數日）、主隊 SU 6–3、讓分方 5–4。ML 模型押的 3 個受讓方 1–2：**DAL +230 中了**（少 Flagg／Marshall／Aldama 的 DAL 在邁阿密贏球，模型那個 GP=3 校正器給的 54.5% 這次對了），WAS +126 與 MIN +120 都輸——MIN 只差 2 分。兩場半分結算（CLE 差 0.5 沒蓋、BOS／HOU 大分各差 0.5 過）提醒 n=36 的每一格都是硬幣。
+
+**`frozen_record.json` 累計 36 場**：ML **19–17（52.8%，95% CI 37.0–68.0）**、ATS 模型 **15–21（41.7%，CI 27.1–57.8）**、大小分 **20–16（55.6%）**、ATS 影子價值 0–1、ML 影子價值 1 筆（−100%）；reopen 三個市場 `met=false`；`pending_games` 4（10/27）。
+
+**ATS 模型押注方向（36 場）**：押主隊 **5–17**（10/26 押 6 場主隊 3–3）、押客隊 **10–4**（押 3 場 1–2）。主隊方向仍是整個虧損來源，但 10/26 是主隊 ATS 本季第一次單日正數（5–4）；若主場先驗開始回歸，這條拆解會自己收斂，不改模型。
+
+**開季累計 52 場：主隊 ATS 20–32、讓分方 26–26、大分 23–29、主隊 SU 26–26。**（前 16 場主隊 ATS 11–5 → 後 36 場 9–27。）
+
+**盤口移動 10/26（開 14:06Z＝10/26 22:06 台北 → 收 22:04Z＝10/27 06:04 台北；4 場 FanDuel 開盤、5 場 Caesars 開盤→FanDuel 已於 10/26 確認 ≤0.5；下列皆以 FanDuel 對 FanDuel 計）**：
+- **MEM @ UTA：UTA −1.5 → MEM −1.5（3.0 分、翻盤）**——本季第 4 個「≥1.5 且跨 0」。MEM 贏 5 蓋盤 → **押晚盤方向 3–1**（OKC ✓、NOP ✗、HOU ✓、MEM ✓）。
+- **MIN @ CLE：CLE −4.5 → −2.5（2.0 分，往 MIN）**——CLE 只贏 2，MIN +2.5 蓋 → 押晚盤 ✓。
+- **PHX @ OKC：OKC −9.5 → −7.5（2.0 分，往 PHX）**——OKC 贏 11 蓋 → 押晚盤 ✗。
+- 「≥1.5 不跨 0」本季 1 → **3 筆（2–1）**。
+- 1.0 的移動：CHI @ BOS 13.5 → 14.5（BOS 贏 35，晚盤 ✓）、ATL @ HOU 5.5 → 4.5（HOU 贏 10，晚盤 ✗）；其餘 4 場 ≤0.5。
+- **本季單列更新**：「≥1.5 且跨 0」**4 筆（押晚盤 3–1）**、「≥1.5 不跨 0」**3 筆（2–1）**、假移動 2 筆（SAS 書源差、MIN Fanatics 單書開盤）。真實 ≥1.5 移動合計 **7 筆、押晚盤 5–2**——和 playbook 第 3 節歷史 ≥1.5 的 62.5%（5／8）同一個方向、同樣的小樣本；兩邊加起來 n=15 仍是觀察級。
+
+**10/27 的 4 場（`Spread` 正值＝主隊讓分；全部 FanDuel 開盤；時間 ET，台北 10/28 07:30 起）**：
+
+| 10/27 | 線 | 總分 | ML 主／客 | ML 模型 | ATS 模型 | O/U 模型 | 傷兵重點 |
+|---|---|---|---|---|---|---|---|
+| BKN @ BOS 19:30 | BOS −11.5 | 220.5 | −560／+420 | **BOS 85.3** | 客 55.2 | U 60.0 | — |
+| SAC @ SAS 20:00 | SAS −18.5 | 231.5 | −1800／+980 | SAS 69.2 | 客 51.7 | O 54.7 | SAS T. Harris 缺；SAC K. Murray、Raynaud 缺 |
+| DET @ NYK 20:00 | NYK −4.5 | 218.5 | −164／+138 | **DET 70.4** | 主 50.0 | O 57.6 | NYK Alvarado 缺；DET I. Joe、A. Thompson 存疑 |
+| POR @ LAL 23:00 | LAL −2.5 | 234.5 | −130／+110 | LAL 63.3 | 客 50.6 | O 53.3 | LAL Thiero 缺；POR Henderson 存疑、Youngblood 缺 |
+
+**BOS 85.3% 是本季 ML 模型第一個破 70 的數字**（之前最高 69.2），**DET 70.4% 押 +138 受讓方**是本季 ML 模型第二高的信心值——兩隊都是 GP=3，仍是階梯校正器在小樣本上跳格的產物，不是模型「看到什麼」；SAS −18.5（−1800）是本季最大讓分。ATS 模型押 3 場客隊（BKN +11.5、SAC +18.5、POR +2.5）、1 場主隊；沒有任何一場過影子門檻。10/28 06:00 的匯出對 4 場都是賽前（BOS 23:30Z＝台北 07:30），凍結會在 06:0x 鎖定。
+
+**85% 目標的現況**：沒有變化（樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%；本季凍結 36 場 ML 52.8%、ATS 41.7%、OU 55.6%）。今天的價值：①`caffeinate -s` 修正在第一個「AC＋真睡」早晨驗證成功，06:00 卡 3 小時的問題鏈（電池 dark wake → Maintenance Sleep）到此全部有解，剩「準時」是 `pmset repeat` 的事；②半張板第三型態（整張空白＝書商未開盤）確認 afternoon plist 不是可選項，是每天的必要步驟；③線移動單列累積到 7 筆真實移動、押晚盤 5–2，和 playbook 歷史樣本同向。
+
+**下一步**：(1) **使用者：複製＋載入 afternoon plist**（`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`）——連三天手動補板；(2) 使用者可選：`sudo pmset repeat wakeorpoweron MTWRFSU 05:59:00` 讓 06:00 排程準時（現在是跟 rtc wake 浮動 0–15 分）；(3) 10/28 06:00 看 10/28 的板（週三 ~10 場，開盤應該早）與 10/27 四場的 `locked`；(4) 線移動單列到 n≥15 真實移動後，把「押晚盤」與 playbook 第 3 節合併成一張表。
