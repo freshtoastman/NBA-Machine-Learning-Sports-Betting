@@ -1002,3 +1002,5 @@ ML 模型押 3 場受讓方（WAS +114、MIN +148、**DAL +265 給 54.5%**——
 **85% 目標的現況**：沒有變化（樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%；本季凍結 36 場 ML 52.8%、ATS 41.7%、OU 55.6%）。今天的價值：①`caffeinate -s` 修正在第一個「AC＋真睡」早晨驗證成功，06:00 卡 3 小時的問題鏈（電池 dark wake → Maintenance Sleep）到此全部有解，剩「準時」是 `pmset repeat` 的事；②半張板第三型態（整張空白＝書商未開盤）確認 afternoon plist 不是可選項，是每天的必要步驟；③線移動單列累積到 7 筆真實移動、押晚盤 5–2，和 playbook 歷史樣本同向。
 
 **下一步**：(1) **使用者：複製＋載入 afternoon plist**（`cp scripts/launchd/*.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.lchao.nba-ml.afternoon.plist`）——連三天手動補板；(2) 使用者可選：`sudo pmset repeat wakeorpoweron MTWRFSU 05:59:00` 讓 06:00 排程準時（現在是跟 rtc wake 浮動 0–15 分）；(3) 10/28 06:00 看 10/28 的板（週三 ~10 場，開盤應該早）與 10/27 四場的 `locked`；(4) 線移動單列到 n≥15 真實移動後，把「押晚盤」與 playbook 第 3 節合併成一張表。
+
+**部署驗證（22:12）**：`3ed80ed`（afternoon 結算＋10/27 4 場）14:08:22Z success（推送後 17 秒）；`b6935f8`（本篇回顧＋playbook 第 3 節）14:12:11Z success；`6dc6a86`（06:06）22:06:33Z success；正式站 `/login` 200。頁面內容以本機 Flask test client 同一份 `web/data` 為準（10/27 4 個 ⏰ chip、6 個缺陣標記、「模型尚未啟用」0；10/26 九場全終場、0 個 ⏰）。
