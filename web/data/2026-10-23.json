@@ -1,7 +1,7 @@
 {
  "date": "2026-10-23",
  "is_today": false,
- "exported_at": "2026-10-28T23:20:36+08:00",
+ "exported_at": "2026-10-29T06:01:58+08:00",
  "summary": {
   "games": 12,
   "model_games": 12,
@@ -7403,11 +7403,11 @@
      },
      {
       "name": "Che Flores",
-      "games": 79,
-      "home_cover_pct": 46.8,
+      "games": 80,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.653
+      "p_value": 0.5764
      },
      {
       "name": "Brett Nansel",
@@ -7418,7 +7418,7 @@
       "p_value": 0.4096
      }
     ],
-    "avg_home_cover_pct": 46.4,
+    "avg_home_cover_pct": 46.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

@@ -326,11 +326,11 @@
     "date": "2026-10-28",
     "home": "LA Clippers",
     "away": "Los Angeles Lakers",
-    "spread": -4.5,
+    "spread": 1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    }
   ],
   "Portland Trail Blazers:Sacramento Kings": [
@@ -706,7 +706,7 @@
     "date": "2026-10-28",
     "home": "Atlanta Hawks",
     "away": "Miami Heat",
-    "spread": 2.5,
+    "spread": 1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -718,7 +718,7 @@
     "date": "2026-10-28",
     "home": "Indiana Pacers",
     "away": "Philadelphia 76ers",
-    "spread": -5.5,
+    "spread": -7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -754,7 +754,7 @@
     "date": "2026-10-28",
     "home": "Milwaukee Bucks",
     "away": "Houston Rockets",
-    "spread": -7.5,
+    "spread": -8.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -790,7 +790,7 @@
     "date": "2026-10-28",
     "home": "Utah Jazz",
     "away": "San Antonio Spurs",
-    "spread": -12.5,
+    "spread": -13.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -802,11 +802,23 @@
     "date": "2026-10-28",
     "home": "Dallas Mavericks",
     "away": "Oklahoma City Thunder",
-    "spread": -6.5,
+    "spread": -5.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
     "ats_result": "home"
+   }
+  ],
+  "Memphis Grizzlies:Portland Trail Blazers": [
+   {
+    "date": "2026-10-29",
+    "home": "Portland Trail Blazers",
+    "away": "Memphis Grizzlies",
+    "spread": 8.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ]
  }

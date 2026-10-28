@@ -1,7 +1,7 @@
 {
  "date": "2026-10-26",
  "is_today": false,
- "exported_at": "2026-10-28T23:20:36+08:00",
+ "exported_at": "2026-10-29T06:01:57+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -5542,11 +5542,11 @@
     "officials": [
      {
       "name": "Scott Foster",
-      "games": 128,
-      "home_cover_pct": 47.7,
+      "games": 129,
+      "home_cover_pct": 47.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.6587
+      "p_value": 0.5975
      },
      {
       "name": "Karl Lane",
@@ -5557,7 +5557,7 @@
       "p_value": 0.857
      }
     ],
-    "avg_home_cover_pct": 48.2,
+    "avg_home_cover_pct": 48.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
