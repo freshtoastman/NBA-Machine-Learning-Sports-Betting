@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import requests
 
+from . import net as _net  # noqa: F401  (side effect: IPv4-only outbound HTTP)
 from .Dictionaries import team_index_current
 
 TAIPEI_TZ = ZoneInfo("Asia/Taipei")

@@ -1006,3 +1006,59 @@ ML 模型押 3 場受讓方（WAS +114、MIN +148、**DAL +265 給 54.5%**——
 **部署驗證（22:12）**：`3ed80ed`（afternoon 結算＋10/27 4 場）14:08:22Z success（推送後 17 秒）；`b6935f8`（本篇回顧＋playbook 第 3 節）14:12:11Z success；`6dc6a86`（06:06）22:06:33Z success；正式站 `/login` 200。頁面內容以本機 Flask test client 同一份 `web/data` 為準（10/27 4 個 ⏰ chip、6 個缺陣標記、「模型尚未啟用」0；10/26 九場全終場、0 個 ⏰）。
 
 **afternoon plist 已載入（22:40）**：使用者回報已複製＋載入，但 `~/Library/LaunchAgents` 只有 daily、`launchctl list` 也沒有 afternoon（目錄最後修改 10/16），所以由排程重做：`cp scripts/launchd/com.lchao.nba-ml.afternoon.plist ~/Library/LaunchAgents/ && launchctl load …` → `launchctl list` 現在有 `com.lchao.nba-ml.afternoon`（state not running、program = `scripts/daily_pipeline.sh`、Hour 15 / Minute 0）。第一次自動 afternoon 跑應在 **10/28 15:00 台北**（03:00 ET，10/27 四場含 LAL 23:00 ET 都已終場）；log 會多一段 `start (afternoon)`。它和 06:00 一樣受筆電睡眠影響（`caffeinate -s` 需要接電源），15:00 若在睡會跟下一次 rtc wake 浮動。
+
+### 2026-10-28（23:02–23:40）— 10/27 結算 **ML 2–2、ATS 3–1、大小分 2–2**（累計 40 場 ML 21–19／ATS 18–22／OU 22–18）；**afternoon 排程第一次自動跑成功**（15:11 起、704 秒）；06:00 排程**電池上又凍 5 小時 43 分**（第 6 個電池早晨、第 6 次凍結）；**Export_JSON 15 秒→200+ 秒的根因＝這個網路的 IPv6 不通**（cdn.nba.com 五個 AAAA 全部連線逾時）→ 新增 `src/Utils/net.py` 強制 IPv4，匯出回到 15 秒；10/28 12 場 23:08 第四次快照：**PHI @ IND −3.5 → −5.5（2.0，本季第 8 個真實 ≥1.5 移動）**
+
+**排程檢查（log）**：
+- **06:00 morning**：`06:05:46 start (morning)`、`--- power: 'Battery Power' ---`（43%）→ `11:48:52 OK`，共 **5 小時 43 分**：`Get_Data` 9,272 秒、`Get_Advanced_Data` 3,486 秒、`Patch_Scores` 5,615 秒、`collect_referee_data` 1,845 秒；醒著之後 `Create_Games` 76 秒、`Export_JSON` 259 秒、`Git_Push` 6 秒。`pmset -g log`：06:05:46 `DarkWake … rtc/Maintenance Using BATT (Charge:43%)`、06:05:47 `caffeinate Created PreventSystemSleep`、**06:05:53 `Entering Sleep state due to 'Maintenance Sleep'`**——`caffeinate -s` 在電池上無效（文件如此），之後每 ~16 分鐘一次 2–10 秒的 dark wake 一路到 11:48。電池早晨 6／6 凍結，接電源早晨（10/22、10/25、10/27）108–124 秒：結論不變，**06:00 必須接電源**，排程端已無事可做。
+- **15:00 afternoon（第一次自動）**：`15:11:58 start (afternoon)`（launchd 跟 rtc wake 浮動 12 分，和 06:00 一樣）、`--- power: 'AC Power' ---`、`15:23:42 OK`，共 **704 秒**：`Get_Data` 64 秒（平常 3–5）、`Get_Advanced_Data` 68 秒、`Get_Odds_Data` 17 秒（`No new odds dates to fetch`，by design）、`Patch_Scores` **261 秒**（平常 3–4）、`update_odds --db-only` 12 場、`Create_Games` 67 秒、`Export_JSON` **206 秒**（平常 15）、`frozen_record.json: 40 graded / 56 frozen`（10/27 LAL 23:00 ET 的終場在這一跑補上；morning 11:48 時是 39）。推送 `9dedbc8`。afternoon plist 10/27 22:40 載入後第一天就自己跑完，連三天手動補板到此結束。
+- 部署：`c5ddf62`（morning）03:49:10Z success、`9dedbc8`（afternoon）07:24:02Z success。
+
+**Export_JSON 200 秒的根因（P1，已修）**：`cProfile` 跑 `export_date(2026-10-28)` 197 秒，其中 `src/Utils/nba_cdn.py:fetch_schedule` **151 秒**、`_socket.socket.connect` 14 次共 182 秒，其他日期（已終場、不抓傘單與直播）0.1 秒。`getaddrinfo('cdn.nba.com')` 回 **5 個 IPv6（2600:1417:1800:…）＋1 個 IPv4**；實測 5 個 v6 連線全部逾時、IPv4 20 ms；urllib3 依 getaddrinfo 順序逐一嘗試 → 5 × 30 秒才輪到 v4。`curl -6 https://www.google.com` 也不通：是這台機器所在網路（HiNet，DNS `2001:b000:168::*`）的 **IPv6 整個不通**，不是 NBA 端的問題；stats.nba.com 也有 AAAA（`Get_Data` 64 秒、`Patch_Scores` 261 秒同因）。ESPN／SBR／GitHub 只有 A 紀錄所以沒事。10/27 以前 export 一直 15 秒，所以是 10/28 才壞（網路 v6 掛掉，或 Akamai 當天才對這邊回 AAAA）。
+修法：新增 `src/Utils/net.py`，import 時把 `urllib3.util.connection.HAS_IPV6 = False`（`allowed_gai_family()` → `AF_INET`，整個 process 的 `requests` 只解 IPv4；`NBA_ML_ALLOW_IPV6=1` 可關），由 `src/Utils/tools.py` 與 `src/Utils/sbr_scoreboard.py` 帶入——涵蓋 `Get_Data`／`Get_Advanced_Data`／`Get_Odds_Data`／`Patch_Scores`／`collect_referee_data`／`Create_Games`／`export_predictions`／`update_odds`／`main.py`。驗證：同一份 10/28 匯出 **197 秒 → 11 秒**（整個 `Export_JSON` 15 秒）；`Tests/test_net.py` 4 個測試（子行程驗證 import 即 AF_INET、tools／sbr_scoreboard／nba_cdn 會帶入、env 可關、同行程切換）。10/29 06:00 的 log 應看到 `Export_JSON` ≤ 20 秒、`Patch_Scores` ≤ 10 秒。
+
+**10/27 結算（凍結線＝開盤線，全 FanDuel；`frozen_at` 10/27 22:07:59、`revisions` 1、`locked` 4／4）**——因為 06:00 跑在電池上凍到 11:48，4 場都在 11:44 匯出前開打，凍結沒有拿到更接近開賽的線（LAL 收盤 1.5 vs 凍結 2.5；結果不受影響）：
+
+| 10/27 | 凍結線 | 終場 | 主隊 ATS | ML 模型 | ATS 模型 | 大小分模型 |
+|---|---|---|---|---|---|---|
+| BKN @ BOS | BOS −11.5 | BOS 125–124 | ✗ | **BOS 85.3 ✓**（只贏 1） | 客 ✓ | U 220.5 ✗（249） |
+| SAC @ SAS | SAS −18.5 | SAS 130–103 | ✓ | SAS 69.2 ✓ | 客 ✗ | O 231.5 ✓（233，差 1.5） |
+| DET @ NYK | NYK −4.5 | NYK 111–97 | ✓ | **DET 70.4 ✗（+138）** | 主 ✓ | O 218.5 ✗（208） |
+| POR @ LAL | LAL −2.5 | **POR 136–129** | ✗ | LAL 63.3 ✗ | 客 ✓ | O 234.5 ✓（265） |
+
+10/27 一天：**ML 2–2、ATS 模型 3–1、大小分 2–2**；主隊 ATS 2–2、主隊 SU 3–1、讓分方 2–2。本季第一個 >70 的 ML 信心（BOS 85.3）對了但只贏 1 分（讓 11.5 遠遠沒蓋）；第二高的 DET 70.4 押 +138 受讓方輸了——這筆是本季第 1 個 `ml_shadow_golden`、第 2 個 `ml_shadow_value`（影子價值 0–2、ROI −100%）。GP=3 階梯校正器跳出來的兩個極端值一勝一負，和「是雜訊」一致。
+
+**`frozen_record.json` 累計 40 場**：ML **21–19（52.5%，95% CI 37.5–67.1）**、ATS 模型 **18–22（45.0%，CI 30.7–60.2）**、大小分 **22–18（55.0%，CI 39.8–69.3）**、ATS 影子 0–1、ML 影子價值 0–2（−100%）、ML 影子金鑽 0–1；reopen 三個市場 `met=false`；`pending_games` 12（10/28）。
+
+**ATS 模型押注方向（40 場）**：押主隊 **6–17**（10/27 押 1 場 ✓）、押客隊 **12–5**（押 3 場 2–1）。
+
+**開季累計 56 場：主隊 ATS 22–34、讓分方 28–28、大分 26–30、主隊 SU 29–27。**（前 16 場主隊 ATS 11–5 → 後 40 場 11–29。）
+
+**盤口移動 10/27（開 14:06Z → 收 03:12Z，FanDuel 對 FanDuel）**：BKN @ BOS 11.5 → 12.5（1.0 往 BOS，BOS 只贏 1 → 晚盤 ✗）、POR @ LAL 2.5 → 1.5（1.0 往 POR，POR 贏 → 晚盤 ✓）、NYK 4.5／SAS 18.5 不動。**沒有 ≥1.5**；本季單列不變：真實 ≥1.5 移動 7 筆、押晚盤 5–2。
+
+**10/28 的 12 場（週三大板；`Spread` 正值＝主隊讓分；全部 FanDuel 開盤，沒有備援書；開盤 01:38Z＝台北 09:38 由延遲的 06:00 跑建列，之後 03:12Z／07:18Z／**15:08Z（本次 `update_odds`，開賽前 4 小時）**三次快照；時間 ET，台北 10/29 07:00 起）**：
+
+| 10/28 | 開盤 → 23:08 | 總分 | ML 模型 | ATS 模型 | O/U 模型 | 傷兵重點 |
+|---|---|---|---|---|---|---|
+| WAS @ CLE 19:00 | CLE −9.5 → −9.5 | 239.5 → 238.5 | CLE 53.3 | 主 52.9 | O 54.8 | WAS Champagnie 缺、Dybantsa 存疑 |
+| MIA @ ATL 19:00 | ATL −3.5 → **−2.5**（1.0 往 MIA） | 239.5 → 241.5 | **ATL 85.3**（影子價值） | 主 51.7 | U 50.5 | ATL Wiggins 存疑；MIA Fontecchio 缺 |
+| PHI @ IND 19:00 | PHI −3.5 → **−5.5（2.0 往 PHI）** | 237.5 → 235.5 | IND 53.3（押 +168 受讓） | 客 50.1 | O 61.7 | IND Haliburton、Nembhard 存疑，McConnell、Zubac 缺；PHI 板凳 3 人缺 |
+| CHA @ DET 19:00 | DET −7.5 → 6.5 → −7.5（來回） | 215.5 → 214.5 | DET 66.3 | 客 50.4 | O 64.5 | — |
+| ORL @ TOR 19:30 | TOR −5.5 → **−4.5**（1.0 往 ORL） | 223.5 → 222.5 | TOR 66.7 | 主 51.4 | O 60.7 | TOR Bittle 缺；ORL Isaac 缺 |
+| HOU @ MIL 20:00 | HOU −8.5 → **−7.5**（1.0 往 MIL） | 227.5 → 225.5 | HOU 75.0 | 客 50.6 | U 51.6 | HOU Şengün 缺、Smart 存疑 |
+| NYK @ CHI 20:00 | NYK −7.5 → −7.5 | 234.5 → 232.5 | NYK 62.9 | 主 56.5 | O 57.0 | CHI P. Williams、Awaka 存疑 |
+| GSW @ MIN 20:00 | MIN −3.5 → −3.5 | 225.5 → **227.5** | **MIN 78.8**（影子價值） | 客 50.4 | U 66.0 | **MIN Anthony Edwards 缺陣**；GSW Lendeborg 存疑 |
+| DEN @ NOP 20:00 | DEN −5.5 → **−4.5**（1.0 往 NOP） | 239.5 → 240.5 | NOP 63.3（押 +168 受讓） | 主 50.6 | U 62.1 | NOP Missi 缺、Poole 可能出賽；DEN C. Johnson 可能缺 |
+| SAS @ UTA 21:00 | SAS −11.5 → **−12.5**（1.0 往 SAS） | 234.5 | SAS 62.9 | 主 50.0 | **O 72.1** | UTA Markkanen、Hayes 存疑，Nurkić 缺；SAS T. Harris 缺 |
+| OKC @ DAL 21:30 | OKC −6.5 → −6.5 | 230.5 → 229.5 | OKC 62.9 | 主 50.6 | U 50.6 | DAL Irving、Marshall、Martin 存疑，Aldama 缺；OKC Holmgren、Caruso 缺 |
+| LAL @ LAC 22:30 | LAL −5.5 → **−4.5**（1.0 往 LAC） | 227.5 → 228.5 | LAC 52.5（押 +148 受讓） | 主 53.5 | U 63.8 | LAC Hachimura、Strus 缺；LAL Thiero 缺 |
+
+ML 模型押 8 主 4 客、其中 3 個受讓方（IND、NOP、LAC，皆 52–63% 的低信心）；ATS 模型押 7 主 5 客、沒有一場過影子門檻；大小分 7 大 5 小、SAS @ UTA 的 O 72.1 是本季大小分最高信心。兩個 >75 的 ML 信心都值得打折：**ATL 85.3 又是 GP=3 校正器的同一格**（和昨天 BOS 85.3 一樣的階梯值），**MIN 78.8 是在 Anthony Edwards 缺陣的情況下算出來的**——模型沒有傷兵特徵，線沒動（MIN −3.5 不變）表示市場在開盤時就已經知道。這正是 P1 清單裡「傷兵／即時線移動」是唯一還沒進模型的資料的實例。
+
+**盤口移動 10/28（截至 15:08Z，開賽前 4 小時，FanDuel 對 FanDuel）**：**PHI @ IND −3.5 → −5.5（2.0 往 PHI，不跨 0）**——本季第 8 個真實 ≥1.5 移動（第 4 個「不跨 0」），結果 10/29 結算；1.0 的移動 6 場（ATL、TOR、MIL、NOP、UTA、LAC）、DET 來回、4 場不動。總分：MIN 225.5 → 227.5（+2）、ATL +2、MIL −2、CHI −2。**本季單列**：真實 ≥1.5 移動 **8 筆（7 筆已結算，押晚盤 5–2）**、假移動 2 筆。
+
+**85% 目標的現況**：沒有變化（樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%；本季凍結 40 場 ML 52.5%、ATS 45.0%、OU 55.0%）。今天的價值：①**afternoon 排程第一天就自己跑成**，10/25–10/27 連三天的手動補板到此結束；②**Export_JSON／Patch_Scores／Get_Data 三個步驟同一天變慢 10–60 倍的根因找到並修掉（IPv6）**——若沒修，每次匯出多 3 分鐘、`Patch_Scores` 多 4 分鐘，而且每個 cdn.nba.com 呼叫都先吃 150 秒；③電池早晨 6／6 凍結、接電源 3／3 正常，06:00 的問題已經完全是「有沒有插電」。
+
+**下一步**：(1) **使用者：06:00 前接電源**（今天 43% 電池又凍 5 小時 43 分；`sudo pmset repeat wakeorpoweron MTWRFSU 05:59:00` 仍是可選的準時方案）；(2) 10/29 06:00 log 驗證 IPv4 修正在排程裡生效（`Export_JSON` ≤ 20 秒、`Patch_Scores` ≤ 10 秒、`Get_Data` ≤ 10 秒）＋ 10/28 12 場 `locked` 12／12；(3) PHI @ IND 2.0 移動結算後更新單列（8 筆）；(4) 線移動單列到 n≥15 真實移動後，把「押晚盤」與 playbook 第 3 節合併成一張表。
+
+**部署驗證（23:16）**：`1ec1fcc`（23:08 線快照＋重匯）15:16:18Z success（推送後約 5 分鐘）；正式站 `/login` 200。本機 Flask test client（同一份 `web/data`）：`/` 與 `/?date=2026-10-28` 皆 200、12 個 ⏰ chip、28 個缺陣標記（Anthony Edwards 在列）、「模型尚未啟用」0；`/?date=2026-10-27` 0 個 ⏰（4 場全終場）。

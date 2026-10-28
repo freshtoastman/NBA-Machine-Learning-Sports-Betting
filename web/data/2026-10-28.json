@@ -1,7 +1,7 @@
 {
  "date": "2026-10-28",
  "is_today": true,
- "exported_at": "2026-10-28T23:11:46+08:00",
+ "exported_at": "2026-10-28T23:20:35+08:00",
  "summary": {
   "games": 12,
   "model_games": 12,
@@ -18,8 +18,8 @@
    "Washington Wizards: Justin Champagnie (缺陣)",
    "Washington Wizards: AJ Dybantsa (存疑)",
    "Atlanta Hawks: Aaron Wiggins (存疑)",
+   "Miami Heat: Simone Fontecchio (缺陣)",
    "Miami Heat: Pelle Larsson (可能出賽)",
-   "Miami Heat: Simone Fontecchio (可能缺陣)",
    "Indiana Pacers: Andrew Nembhard (存疑)",
    "Indiana Pacers: Tyrese Haliburton (存疑)",
    "Indiana Pacers: Obi Toppin (可能出賽)",
@@ -616,8 +616,8 @@
    "ou_last": 238.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 53.3,
@@ -1174,8 +1174,8 @@
    "tipoff_et": "19:00 ET",
    "tipoff_taipei": "10/29 07:00 台北",
    "injuries_away": [
-    "Pelle Larsson (可能出賽)",
-    "Simone Fontecchio (可能缺陣)"
+    "Simone Fontecchio (缺陣)",
+    "Pelle Larsson (可能出賽)"
    ],
    "odds_history": [
     {
@@ -1222,8 +1222,8 @@
    "ou_last": 241.5,
    "ou_move": 2.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 85.3,
@@ -1825,8 +1825,8 @@
    "ou_last": 235.5,
    "ou_move": -2.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 53.3,
@@ -2425,8 +2425,8 @@
    "ou_last": 214.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 66.3,
@@ -3021,8 +3021,8 @@
    "ou_last": 222.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 66.7,
@@ -3616,8 +3616,8 @@
    "ou_last": 225.5,
    "ou_move": -2.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "away",
     "home_confidence": 25.0,
@@ -4211,8 +4211,8 @@
    "ou_last": 232.5,
    "ou_move": -2.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -4816,8 +4816,8 @@
    "ou_last": 227.5,
    "ou_move": 2.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 78.8,
@@ -5415,8 +5415,8 @@
    "ou_last": 240.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 63.3,
@@ -6013,8 +6013,8 @@
    "ou_last": 234.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -6618,8 +6618,8 @@
    "ou_last": 229.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -7216,8 +7216,8 @@
    "ou_last": 228.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-10-28T23:11:46+08:00",
-    "revisions": 3,
+    "frozen_at": "2026-10-28T23:20:35+08:00",
+    "revisions": 4,
     "locked": false,
     "winner": "home",
     "home_confidence": 52.5,

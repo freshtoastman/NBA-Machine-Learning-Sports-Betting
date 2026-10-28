@@ -23,6 +23,8 @@ from typing import Any
 
 import requests
 
+from src.Utils import net as _net  # noqa: F401  (side effect: IPv4-only outbound HTTP)
+
 SBR_BASE = "https://www.sportsbookreview.com"
 SPORT_PATHS = {
     "NBA": "nba-basketball",
