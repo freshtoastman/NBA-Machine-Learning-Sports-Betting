@@ -1,7 +1,7 @@
 {
  "date": "2026-10-25",
  "is_today": false,
- "exported_at": "2026-10-27T22:08:00+08:00",
+ "exported_at": "2026-10-28T11:48:44+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -2418,11 +2418,11 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 119,
-      "home_cover_pct": 53.8,
+      "games": 120,
+      "home_cover_pct": 54.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.4635
+      "p_value": 0.4114
      },
      {
       "name": "Jason Goldenberg",
@@ -2441,7 +2441,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 49.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3043,11 +3043,11 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 138,
-      "home_cover_pct": 56.5,
+      "games": 139,
+      "home_cover_pct": 56.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.1476
+      "p_value": 0.1745
      },
      {
       "name": "Andy Nagy",
@@ -3059,14 +3059,14 @@
      },
      {
       "name": "JD Ralls",
-      "games": 81,
-      "home_cover_pct": 42.0,
+      "games": 82,
+      "home_cover_pct": 41.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.1821
+      "p_value": 0.1507
      }
     ],
-    "avg_home_cover_pct": 48.3,
+    "avg_home_cover_pct": 48.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3668,11 +3668,11 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 143,
-      "home_cover_pct": 52.4,
+      "games": 144,
+      "home_cover_pct": 52.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.616
+      "p_value": 0.5598
      },
      {
       "name": "Kevin Cutler",
@@ -3691,7 +3691,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 49.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

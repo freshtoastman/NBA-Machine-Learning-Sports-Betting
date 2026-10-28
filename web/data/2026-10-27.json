@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
- "is_today": true,
- "exported_at": "2026-10-27T22:07:59+08:00",
+ "is_today": false,
+ "exported_at": "2026-10-28T11:48:44+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -15,17 +15,29 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
+   "Brooklyn Nets: Egor Demin (缺陣)",
    "San Antonio Spurs: Tobias Harris (缺陣)",
    "Sacramento Kings: Maxime Raynaud (缺陣)",
    "Sacramento Kings: Keegan Murray (缺陣)",
    "New York Knicks: Jose Alvarado (缺陣)",
-   "Detroit Pistons: Isaiah Joe (存疑)",
-   "Detroit Pistons: Ausar Thompson (存疑)",
+   "Detroit Pistons: Isaiah Joe (缺陣)",
    "Los Angeles Lakers: Adou Thiero (缺陣)",
-   "Portland Trail Blazers: Chris Youngblood (缺陣)",
-   "Portland Trail Blazers: Branden Carlson (存疑)",
-   "Portland Trail Blazers: Scoot Henderson (存疑)"
-  ]
+   "Portland Trail Blazers: Chris Youngblood (缺陣)"
+  ],
+  "ml_correct": 2,
+  "ml_graded": 3,
+  "ml_hit_rate": 66.7,
+  "ou_correct": 1,
+  "ou_graded": 3,
+  "ou_hit_rate": 33.3,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Brooklyn Nets:Boston Celtics": {
@@ -505,16 +517,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 125,
+   "away_score": 124,
+   "actual_total": 249,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -10.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -531,7 +543,44 @@
    "tipoff_utc": "2026-10-27T23:30:00Z",
    "tipoff_et": "19:30 ET",
    "tipoff_taipei": "10/28 07:30 台北",
-   "injuries_away": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "John Goble",
+      "games": 139,
+      "home_cover_pct": 56.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1745
+     },
+     {
+      "name": "Jonathan Sterling",
+      "games": 97,
+      "home_cover_pct": 59.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0671
+     },
+     {
+      "name": "JD Ralls",
+      "games": 82,
+      "home_cover_pct": 41.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1507
+     }
+    ],
+    "avg_home_cover_pct": 52.5,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
+   "injuries_away": [
+    "Egor Demin (缺陣)"
+   ],
    "odds_history": [
     {
      "fetched_at": "2026-10-27T14:06:27+00:00",
@@ -540,13 +589,21 @@
      "ml_home": -560,
      "ml_away": 420,
      "source": "sbr_fanduel_open"
+    },
+    {
+     "fetched_at": "2026-10-28T03:12:21+00:00",
+     "spread": 12.5,
+     "ou": 222.5,
+     "ml_home": -700,
+     "ml_away": 490,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 11.5,
    "spread_last": 11.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-27T14:06:27+00:00",
-   "spread_last_fetched_at": "2026-10-27T14:06:27+00:00",
+   "spread_last_fetched_at": "2026-10-28T03:12:21+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 220.5,
@@ -555,7 +612,7 @@
    "pregame": {
     "frozen_at": "2026-10-27T22:07:59+08:00",
     "revisions": 1,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 85.3,
     "away_confidence": 14.7,
@@ -600,7 +657,16 @@
     "spread_move": 0.0,
     "ou_first": 220.5,
     "ou_last": 220.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-28T11:48:44+08:00"
+   },
+   "closing": {
+    "spread": 11.5,
+    "ou_value": 220.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -10.5,
+    "home_team_odds": -560,
+    "away_team_odds": 420
    },
    "pregame_missing": false
   },
@@ -1081,16 +1147,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 130,
+   "away_score": 103,
+   "actual_total": 233,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 8.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": true,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1109,6 +1175,41 @@
    "tipoff_utc": "2026-10-28T00:00:00Z",
    "tipoff_et": "20:00 ET",
    "tipoff_taipei": "10/28 08:00 台北",
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Capers",
+      "games": 120,
+      "home_cover_pct": 54.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4114
+     },
+     {
+      "name": "Natalie Sago",
+      "games": 131,
+      "home_cover_pct": 51.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8614
+     },
+     {
+      "name": "Suyash Mehta",
+      "games": 94,
+      "home_cover_pct": 53.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6063
+     }
+    ],
+    "avg_home_cover_pct": 52.8,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [
     "Maxime Raynaud (缺陣)",
     "Keegan Murray (缺陣)"
@@ -1121,13 +1222,21 @@
      "ml_home": -1800,
      "ml_away": 980,
      "source": "sbr_fanduel_open"
+    },
+    {
+     "fetched_at": "2026-10-28T03:12:21+00:00",
+     "spread": 18.5,
+     "ou": 232.5,
+     "ml_home": -1500,
+     "ml_away": 870,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 18.5,
    "spread_last": 18.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-27T14:06:27+00:00",
-   "spread_last_fetched_at": "2026-10-27T14:06:27+00:00",
+   "spread_last_fetched_at": "2026-10-28T03:12:21+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 231.5,
@@ -1136,7 +1245,7 @@
    "pregame": {
     "frozen_at": "2026-10-27T22:07:59+08:00",
     "revisions": 1,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 69.2,
     "away_confidence": 30.8,
@@ -1181,7 +1290,16 @@
     "spread_move": 0.0,
     "ou_first": 231.5,
     "ou_last": 231.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-28T11:48:44+08:00"
+   },
+   "closing": {
+    "spread": 18.5,
+    "ou_value": 231.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 8.5,
+    "home_team_odds": -1800,
+    "away_team_odds": 980
    },
    "pregame_missing": false
   },
@@ -1663,16 +1781,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 111,
+   "away_score": 97,
+   "actual_total": 208,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": false,
+   "ats_winner": "home",
+   "ats_cover_margin": 9.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1691,9 +1809,43 @@
    "tipoff_utc": "2026-10-28T00:00:00Z",
    "tipoff_et": "20:00 ET",
    "tipoff_taipei": "10/28 08:00 台北",
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Nick Buchert",
+      "games": 149,
+      "home_cover_pct": 49.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8699
+     },
+     {
+      "name": "Dedric Taylor",
+      "games": 82,
+      "home_cover_pct": 51.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9122
+     },
+     {
+      "name": "Brett Nansel",
+      "games": 72,
+      "home_cover_pct": 44.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4096
+     }
+    ],
+    "avg_home_cover_pct": 48.2,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [
-    "Isaiah Joe (存疑)",
-    "Ausar Thompson (存疑)"
+    "Isaiah Joe (缺陣)"
    ],
    "odds_history": [
     {
@@ -1703,13 +1855,21 @@
      "ml_home": -164,
      "ml_away": 138,
      "source": "sbr_fanduel_open"
+    },
+    {
+     "fetched_at": "2026-10-28T03:12:21+00:00",
+     "spread": 4.5,
+     "ou": 219.5,
+     "ml_home": -174,
+     "ml_away": 146,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 4.5,
    "spread_last": 4.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-27T14:06:27+00:00",
-   "spread_last_fetched_at": "2026-10-27T14:06:27+00:00",
+   "spread_last_fetched_at": "2026-10-28T03:12:21+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 218.5,
@@ -1718,7 +1878,7 @@
    "pregame": {
     "frozen_at": "2026-10-27T22:07:59+08:00",
     "revisions": 1,
-    "locked": false,
+    "locked": true,
     "winner": "away",
     "home_confidence": 29.6,
     "away_confidence": 70.4,
@@ -1763,7 +1923,16 @@
     "spread_move": 0.0,
     "ou_first": 218.5,
     "ou_last": 218.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-28T11:48:44+08:00"
+   },
+   "closing": {
+    "spread": 4.5,
+    "ou_value": 218.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 9.5,
+    "home_team_odds": -164,
+    "away_team_odds": 138
    },
    "pregame_missing": false
   },
@@ -2237,8 +2406,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 54.3,
-   "fair_away": 45.7,
+   "fair_home": 53.7,
+   "fair_away": 46.3,
    "ml_shadow_value": false,
    "ml_shadow_golden": false,
    "ml_value_reference_only": true,
@@ -2273,9 +2442,7 @@
    "tipoff_et": "23:00 ET",
    "tipoff_taipei": "10/28 11:00 台北",
    "injuries_away": [
-    "Chris Youngblood (缺陣)",
-    "Branden Carlson (存疑)",
-    "Scoot Henderson (存疑)"
+    "Chris Youngblood (缺陣)"
    ],
    "odds_history": [
     {
@@ -2285,13 +2452,21 @@
      "ml_home": -130,
      "ml_away": 110,
      "source": "sbr_fanduel_open"
+    },
+    {
+     "fetched_at": "2026-10-28T03:12:21+00:00",
+     "spread": 1.5,
+     "ou": 233.5,
+     "ml_home": -126,
+     "ml_away": 108,
+     "source": "sbr_fanduel"
     }
    ],
    "spread_first": 2.5,
    "spread_last": 2.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-10-27T14:06:27+00:00",
-   "spread_last_fetched_at": "2026-10-27T14:06:27+00:00",
+   "spread_last_fetched_at": "2026-10-28T03:12:21+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 234.5,
@@ -2300,7 +2475,7 @@
    "pregame": {
     "frozen_at": "2026-10-27T22:07:59+08:00",
     "revisions": 1,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 63.3,
     "away_confidence": 36.7,
@@ -2345,7 +2520,16 @@
     "spread_move": 0.0,
     "ou_first": 234.5,
     "ou_last": 234.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "locked_at": "2026-10-28T11:48:44+08:00"
+   },
+   "closing": {
+    "spread": 1.5,
+    "ou_value": 233.5,
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "home_team_odds": -126,
+    "away_team_odds": 108
    },
    "pregame_missing": false
   }
