@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
  "is_today": false,
- "exported_at": "2026-10-28T11:48:44+08:00",
+ "exported_at": "2026-10-28T15:23:37+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -14,22 +14,13 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Brooklyn Nets: Egor Demin (缺陣)",
-   "San Antonio Spurs: Tobias Harris (缺陣)",
-   "Sacramento Kings: Maxime Raynaud (缺陣)",
-   "Sacramento Kings: Keegan Murray (缺陣)",
-   "New York Knicks: Jose Alvarado (缺陣)",
-   "Detroit Pistons: Isaiah Joe (缺陣)",
-   "Los Angeles Lakers: Adou Thiero (缺陣)",
-   "Portland Trail Blazers: Chris Youngblood (缺陣)"
-  ],
+  "injury_alerts": [],
   "ml_correct": 2,
-  "ml_graded": 3,
-  "ml_hit_rate": 66.7,
-  "ou_correct": 1,
-  "ou_graded": 3,
-  "ou_hit_rate": 33.3,
+  "ml_graded": 4,
+  "ml_hit_rate": 50.0,
+  "ou_correct": 2,
+  "ou_graded": 4,
+  "ou_hit_rate": 50.0,
   "value_decided": 0,
   "value_wins": 0,
   "value_losses": 0,
@@ -540,9 +531,6 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
    "injuries_home": [],
-   "tipoff_utc": "2026-10-27T23:30:00Z",
-   "tipoff_et": "19:30 ET",
-   "tipoff_taipei": "10/28 07:30 台北",
    "referee_crew": {
     "officials": [
      {
@@ -578,9 +566,7 @@
     "bias_flag_enabled": false,
     "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
    },
-   "injuries_away": [
-    "Egor Demin (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-27T14:06:27+00:00",
@@ -1169,12 +1155,7 @@
    "away_team_zh": "沙加緬度國王",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
-   "injuries_home": [
-    "Tobias Harris (缺陣)"
-   ],
-   "tipoff_utc": "2026-10-28T00:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "10/28 08:00 台北",
+   "injuries_home": [],
    "referee_crew": {
     "officials": [
      {
@@ -1210,10 +1191,7 @@
     "bias_flag_enabled": false,
     "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
    },
-   "injuries_away": [
-    "Maxime Raynaud (缺陣)",
-    "Keegan Murray (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-27T14:06:27+00:00",
@@ -1803,12 +1781,7 @@
    "away_team_zh": "底特律活塞",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
-   "injuries_home": [
-    "Jose Alvarado (缺陣)"
-   ],
-   "tipoff_utc": "2026-10-28T00:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "10/28 08:00 台北",
+   "injuries_home": [],
    "referee_crew": {
     "officials": [
      {
@@ -1844,9 +1817,7 @@
     "bias_flag_enabled": false,
     "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
    },
-   "injuries_away": [
-    "Isaiah Joe (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-27T14:06:27+00:00",
@@ -2413,16 +2384,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 129,
+   "away_score": 136,
+   "actual_total": 265,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "ml_correct": false,
+   "ats_winner": "away",
+   "ats_cover_margin": -9.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": true,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -2435,15 +2406,8 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [
-    "Adou Thiero (缺陣)"
-   ],
-   "tipoff_utc": "2026-10-28T03:00:00Z",
-   "tipoff_et": "23:00 ET",
-   "tipoff_taipei": "10/28 11:00 台北",
-   "injuries_away": [
-    "Chris Youngblood (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-27T14:06:27+00:00",
@@ -2526,8 +2490,8 @@
    "closing": {
     "spread": 1.5,
     "ou_value": 233.5,
-    "ats_winner": null,
-    "ats_cover_margin": null,
+    "ats_winner": "away",
+    "ats_cover_margin": -8.5,
     "home_team_odds": -126,
     "away_team_odds": 108
    },
