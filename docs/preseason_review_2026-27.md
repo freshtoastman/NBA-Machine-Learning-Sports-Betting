@@ -1062,3 +1062,5 @@ ML 模型押 8 主 4 客、其中 3 個受讓方（IND、NOP、LAC，皆 52–63
 **下一步**：(1) **使用者：06:00 前接電源**（今天 43% 電池又凍 5 小時 43 分；`sudo pmset repeat wakeorpoweron MTWRFSU 05:59:00` 仍是可選的準時方案）；(2) 10/29 06:00 log 驗證 IPv4 修正在排程裡生效（`Export_JSON` ≤ 20 秒、`Patch_Scores` ≤ 10 秒、`Get_Data` ≤ 10 秒）＋ 10/28 12 場 `locked` 12／12；(3) PHI @ IND 2.0 移動結算後更新單列（8 筆）；(4) 線移動單列到 n≥15 真實移動後，把「押晚盤」與 playbook 第 3 節合併成一張表。
 
 **部署驗證（23:16）**：`1ec1fcc`（23:08 線快照＋重匯）15:16:18Z success（推送後約 5 分鐘）；正式站 `/login` 200。本機 Flask test client（同一份 `web/data`）：`/` 與 `/?date=2026-10-28` 皆 200、12 個 ⏰ chip、28 個缺陣標記（Anthony Edwards 在列）、「模型尚未啟用」0；`/?date=2026-10-27` 0 個 ⏰（4 場全終場）。
+
+**部署驗證（23:27）**：`08f34e0`（本篇回顧＋`src/Utils/net.py` IPv4 修正＋23:20 重匯）15:26:10Z success（推送後約 1 分鐘）；`1ec1fcc` 15:16:18Z success；正式站 `/login` 200。Vercel 只部署 `web/`，`net.py` 只影響本機排程，不影響正式站。
