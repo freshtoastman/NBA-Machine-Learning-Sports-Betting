@@ -1,7 +1,7 @@
 {
  "date": "2026-10-25",
  "is_today": false,
- "exported_at": "2026-10-30T22:07:09+08:00",
+ "exported_at": "2026-10-31T06:02:10+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -1793,11 +1793,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 141,
-      "home_cover_pct": 44.7,
+      "games": 142,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2383
+      "p_value": 0.208
      },
      {
       "name": "Brian Forte",
@@ -1816,7 +1816,7 @@
       "p_value": 0.8746
      }
     ],
-    "avg_home_cover_pct": 49.7,
+    "avg_home_cover_pct": 49.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3676,11 +3676,11 @@
      },
      {
       "name": "Kevin Cutler",
-      "games": 134,
-      "home_cover_pct": 47.0,
+      "games": 135,
+      "home_cover_pct": 46.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5455
+      "p_value": 0.4913
      },
      {
       "name": "Sha'Rae Mitchell",
@@ -3691,7 +3691,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.9,
+    "avg_home_cover_pct": 49.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

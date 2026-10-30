@@ -1,7 +1,7 @@
 {
  "date": "2026-10-26",
  "is_today": false,
- "exported_at": "2026-10-30T22:07:09+08:00",
+ "exported_at": "2026-10-31T06:02:10+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1160,11 +1160,11 @@
     "officials": [
      {
       "name": "Josh Tiven",
-      "games": 150,
-      "home_cover_pct": 47.3,
+      "games": 151,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5678
+      "p_value": 0.6255
      },
      {
       "name": "Kevin Scott",
@@ -1175,7 +1175,7 @@
       "p_value": 0.5571
      }
     ],
-    "avg_home_cover_pct": 47.2,
+    "avg_home_cover_pct": 47.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1793,14 +1793,14 @@
      },
      {
       "name": "Jacyn Goble",
-      "games": 141,
-      "home_cover_pct": 50.4,
+      "games": 142,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9332
      }
     ],
-    "avg_home_cover_pct": 51.6,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4933,14 +4933,14 @@
      },
      {
       "name": "Gediminas Petraitis",
-      "games": 147,
-      "home_cover_pct": 51.0,
+      "games": 148,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.869
+      "p_value": 0.8053
      }
     ],
-    "avg_home_cover_pct": 49.0,
+    "avg_home_cover_pct": 49.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

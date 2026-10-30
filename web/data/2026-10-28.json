@@ -1,7 +1,7 @@
 {
  "date": "2026-10-28",
  "is_today": false,
- "exported_at": "2026-10-30T22:07:08+08:00",
+ "exported_at": "2026-10-31T06:02:10+08:00",
  "summary": {
   "games": 12,
   "model_games": 12,
@@ -5689,19 +5689,19 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 143,
-      "home_cover_pct": 48.3,
+      "games": 144,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.7381
+      "p_value": 0.8027
      },
      {
       "name": "Jacyn Goble",
-      "games": 141,
-      "home_cover_pct": 50.4,
+      "games": 142,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9332
      },
      {
       "name": "Jenna Schroeder",
@@ -5712,7 +5712,7 @@
       "p_value": 0.4351
      }
     ],
-    "avg_home_cover_pct": 51.0,
+    "avg_home_cover_pct": 51.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

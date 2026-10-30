@@ -1,7 +1,7 @@
 {
  "date": "2026-10-24",
  "is_today": false,
- "exported_at": "2026-10-30T22:07:09+08:00",
+ "exported_at": "2026-10-31T06:02:11+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -1160,11 +1160,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 141,
-      "home_cover_pct": 44.7,
+      "games": 142,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2383
+      "p_value": 0.208
      },
      {
       "name": "Dedric Taylor",
@@ -1183,7 +1183,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 48.6,
+    "avg_home_cover_pct": 48.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2410,30 +2410,30 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 143,
-      "home_cover_pct": 48.3,
+      "games": 144,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.7381
+      "p_value": 0.8027
      },
      {
       "name": "Gediminas Petraitis",
-      "games": 147,
-      "home_cover_pct": 51.0,
+      "games": 148,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.869
+      "p_value": 0.8053
      },
      {
       "name": "Matt Kallio",
-      "games": 82,
-      "home_cover_pct": 54.9,
+      "games": 83,
+      "home_cover_pct": 55.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.4397
+      "p_value": 0.38
      }
     ],
-    "avg_home_cover_pct": 51.4,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
