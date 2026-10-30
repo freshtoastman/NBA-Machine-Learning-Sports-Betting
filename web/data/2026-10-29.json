@@ -1,7 +1,7 @@
 {
  "date": "2026-10-29",
  "is_today": false,
- "exported_at": "2026-10-30T06:08:21+08:00",
+ "exported_at": "2026-10-30T15:01:56+08:00",
  "summary": {
   "games": 3,
   "model_games": 3,
@@ -14,22 +14,13 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Portland Trail Blazers: Robert Williams III (可能缺陣)",
-   "Portland Trail Blazers: Chris Youngblood (缺陣)",
-   "Cleveland Cavaliers: Meleek Thomas (存疑)",
-   "Cleveland Cavaliers: Jaylon Tyson (存疑)",
-   "New Orleans Pelicans: Jordan Poole (可能缺陣)",
-   "New Orleans Pelicans: Yves Missi (缺陣)",
-   "Sacramento Kings: Maxime Raynaud (缺陣)",
-   "Sacramento Kings: Keegan Murray (缺陣)"
-  ],
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
+  "injury_alerts": [],
+  "ml_correct": 2,
+  "ml_graded": 3,
+  "ml_hit_rate": 66.7,
+  "ou_correct": 2,
+  "ou_graded": 3,
+  "ou_hit_rate": 66.7,
   "value_decided": 0,
   "value_wins": 0,
   "value_losses": 0,
@@ -517,16 +508,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 103,
+   "away_score": 124,
+   "actual_total": 227,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "ml_correct": false,
+   "ats_winner": "away",
+   "ats_cover_margin": -28.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": true,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -539,13 +530,7 @@
    "away_team_zh": "曼菲斯灰熊",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
-   "injuries_home": [
-    "Robert Williams III (可能缺陣)",
-    "Chris Youngblood (缺陣)"
-   ],
-   "tipoff_utc": "2026-10-30T02:00:00Z",
-   "tipoff_et": "22:00 ET",
-   "tipoff_taipei": "10/30 10:00 台北",
+   "injuries_home": [],
    "injuries_away": [],
    "odds_history": [
     {
@@ -594,7 +579,7 @@
    "pregame": {
     "frozen_at": "2026-10-30T06:08:21+08:00",
     "revisions": 4,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 69.2,
     "away_confidence": 30.8,
@@ -639,7 +624,16 @@
     "spread_move": -1.0,
     "ou_first": 233.5,
     "ou_last": 232.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-30T15:01:56+08:00"
+   },
+   "closing": {
+    "spread": 7.5,
+    "ou_value": 232.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -28.5,
+    "home_team_odds": -300,
+    "away_team_odds": 240
    },
    "pregame_missing": false
   },
@@ -1120,16 +1114,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 114,
+   "away_score": 111,
+   "actual_total": 225,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 1.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": true,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1143,13 +1137,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "injuries_home": [],
-   "tipoff_utc": "2026-10-30T00:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "10/30 08:00 台北",
-   "injuries_away": [
-    "Meleek Thomas (存疑)",
-    "Jaylon Tyson (存疑)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-29T07:00:20+00:00",
@@ -1189,7 +1177,7 @@
    "pregame": {
     "frozen_at": "2026-10-30T06:08:21+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 63.3,
     "away_confidence": 36.7,
@@ -1234,7 +1222,16 @@
     "spread_move": 0.0,
     "ou_first": 238.5,
     "ou_last": 237.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "locked_at": "2026-10-30T15:01:56+08:00"
+   },
+   "closing": {
+    "spread": 1.5,
+    "ou_value": 237.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 1.5,
+    "home_team_odds": -116,
+    "away_team_odds": -102
    },
    "pregame_missing": false
   },
@@ -1715,16 +1712,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 132,
+   "away_score": 120,
+   "actual_total": 252,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 5.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1737,17 +1734,8 @@
    "away_team_zh": "沙加緬度國王",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
-   "injuries_home": [
-    "Jordan Poole (可能缺陣)",
-    "Yves Missi (缺陣)"
-   ],
-   "tipoff_utc": "2026-10-30T00:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "10/30 08:00 台北",
-   "injuries_away": [
-    "Maxime Raynaud (缺陣)",
-    "Keegan Murray (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-10-29T07:00:20+00:00",
@@ -1787,7 +1775,7 @@
    "pregame": {
     "frozen_at": "2026-10-30T06:08:21+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 63.3,
     "away_confidence": 36.7,
@@ -1832,7 +1820,16 @@
     "spread_move": 1.0,
     "ou_first": 237.5,
     "ou_last": 235.5,
-    "ou_move": -2.0
+    "ou_move": -2.0,
+    "locked_at": "2026-10-30T15:01:56+08:00"
+   },
+   "closing": {
+    "spread": 6.5,
+    "ou_value": 235.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 5.5,
+    "home_team_odds": -245,
+    "away_team_odds": 200
    },
    "pregame_missing": false
   }

@@ -156,7 +156,7 @@
     "date": "2026-10-30",
     "home": "Dallas Mavericks",
     "away": "Houston Rockets",
-    "spread": -5.5,
+    "spread": -6.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -178,7 +178,7 @@
     "date": "2026-10-30",
     "home": "Golden State Warriors",
     "away": "Los Angeles Lakers",
-    "spread": -1.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -636,7 +636,7 @@
     "date": "2026-10-30",
     "home": "Boston Celtics",
     "away": "Chicago Bulls",
-    "spread": 15.5,
+    "spread": 14.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -875,9 +875,9 @@
     "home": "Portland Trail Blazers",
     "away": "Memphis Grizzlies",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -21,
+    "home_score": 103,
+    "away_score": 124,
     "ats_result": "away"
    }
   ],
@@ -887,10 +887,10 @@
     "home": "Atlanta Hawks",
     "away": "Cleveland Cavaliers",
     "spread": 1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 3,
+    "home_score": 114,
+    "away_score": 111,
+    "ats_result": "home"
    }
   ],
   "New Orleans Pelicans:Sacramento Kings": [
@@ -899,10 +899,10 @@
     "home": "New Orleans Pelicans",
     "away": "Sacramento Kings",
     "spread": 6.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 12,
+    "home_score": 132,
+    "away_score": 120,
+    "ats_result": "home"
    }
   ],
   "Brooklyn Nets:Detroit Pistons": [
@@ -910,7 +910,7 @@
     "date": "2026-10-30",
     "home": "Brooklyn Nets",
     "away": "Detroit Pistons",
-    "spread": -6.5,
+    "spread": -7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -934,7 +934,7 @@
     "date": "2026-10-30",
     "home": "Miami Heat",
     "away": "Indiana Pacers",
-    "spread": 7.5,
+    "spread": 8.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -946,7 +946,7 @@
     "date": "2026-10-30",
     "home": "Phoenix Suns",
     "away": "Denver Nuggets",
-    "spread": -3.5,
+    "spread": -4.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
