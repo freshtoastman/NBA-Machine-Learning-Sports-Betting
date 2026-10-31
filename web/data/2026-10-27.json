@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
  "is_today": false,
- "exported_at": "2026-10-31T22:08:43+08:00",
+ "exported_at": "2026-11-01T06:04:45+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1160,11 +1160,11 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 120,
-      "home_cover_pct": 54.2,
+      "games": 121,
+      "home_cover_pct": 54.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.4114
+      "p_value": 0.3634
      },
      {
       "name": "Natalie Sago",
@@ -1183,7 +1183,7 @@
       "p_value": 0.6063
      }
     ],
-    "avg_home_cover_pct": 52.8,
+    "avg_home_cover_pct": 52.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1802,14 +1802,14 @@
      },
      {
       "name": "Brett Nansel",
-      "games": 72,
-      "home_cover_pct": 44.4,
+      "games": 73,
+      "home_cover_pct": 45.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.4096
+      "p_value": 0.4828
      }
     ],
-    "avg_home_cover_pct": 48.2,
+    "avg_home_cover_pct": 48.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2419,14 +2419,14 @@
      },
      {
       "name": "Che Flores",
-      "games": 80,
-      "home_cover_pct": 46.3,
+      "games": 81,
+      "home_cover_pct": 46.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.5764
+      "p_value": 0.657
      }
     ],
-    "avg_home_cover_pct": 46.8,
+    "avg_home_cover_pct": 47.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

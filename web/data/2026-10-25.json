@@ -1,7 +1,7 @@
 {
  "date": "2026-10-25",
  "is_today": false,
- "exported_at": "2026-10-31T22:08:43+08:00",
+ "exported_at": "2026-11-01T06:04:46+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -543,11 +543,11 @@
      },
      {
       "name": "Pat Fraher",
-      "games": 143,
-      "home_cover_pct": 48.3,
+      "games": 144,
+      "home_cover_pct": 47.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.7381
+      "p_value": 0.6771
      },
      {
       "name": "Michael Smith",
@@ -558,7 +558,7 @@
       "p_value": 0.4999
      }
     ],
-    "avg_home_cover_pct": 50.5,
+    "avg_home_cover_pct": 50.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1168,11 +1168,11 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 118,
-      "home_cover_pct": 54.2,
+      "games": 119,
+      "home_cover_pct": 54.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.4075
+      "p_value": 0.3594
      },
      {
       "name": "Mark Lindsay",
@@ -1191,7 +1191,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.8,
+    "avg_home_cover_pct": 50.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1793,19 +1793,19 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 142,
-      "home_cover_pct": 44.4,
+      "games": 143,
+      "home_cover_pct": 44.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.208
+      "p_value": 0.1807
      },
      {
       "name": "Brian Forte",
-      "games": 135,
-      "home_cover_pct": 51.9,
+      "games": 136,
+      "home_cover_pct": 51.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.7308
+      "p_value": 0.7971
      },
      {
       "name": "Dannica Baroody",
@@ -1816,7 +1816,7 @@
       "p_value": 0.8746
      }
     ],
-    "avg_home_cover_pct": 49.6,
+    "avg_home_cover_pct": 49.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2418,30 +2418,30 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 120,
-      "home_cover_pct": 54.2,
+      "games": 121,
+      "home_cover_pct": 54.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.4114
+      "p_value": 0.3634
      },
      {
       "name": "Jason Goldenberg",
-      "games": 124,
-      "home_cover_pct": 46.0,
+      "games": 125,
+      "home_cover_pct": 45.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.4191
+      "p_value": 0.3712
      },
      {
       "name": "Brandon Schwab",
-      "games": 107,
-      "home_cover_pct": 49.5,
+      "games": 108,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.9,
+    "avg_home_cover_pct": 50.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3668,11 +3668,11 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 144,
-      "home_cover_pct": 52.8,
+      "games": 145,
+      "home_cover_pct": 53.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.5598
+      "p_value": 0.5066
      },
      {
       "name": "Kevin Cutler",
@@ -3691,7 +3691,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 49.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4293,16 +4293,16 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 145,
-      "home_cover_pct": 55.2,
+      "games": 146,
+      "home_cover_pct": 54.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.2449
+      "p_value": 0.2819
      },
      {
       "name": "John Butler",
-      "games": 128,
-      "home_cover_pct": 50.0,
+      "games": 129,
+      "home_cover_pct": 50.4,
       "significant": false,
       "direction": null,
       "p_value": 1.0

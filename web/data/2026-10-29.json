@@ -1,7 +1,7 @@
 {
  "date": "2026-10-29",
  "is_today": false,
- "exported_at": "2026-10-31T22:08:42+08:00",
+ "exported_at": "2026-11-01T06:04:45+08:00",
  "summary": {
   "games": 3,
   "model_games": 3,
@@ -535,11 +535,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 142,
-      "home_cover_pct": 44.4,
+      "games": 143,
+      "home_cover_pct": 44.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.208
+      "p_value": 0.1807
      },
      {
       "name": "Kevin Cutler",
@@ -550,7 +550,7 @@
       "p_value": 0.4913
      }
     ],
-    "avg_home_cover_pct": 45.5,
+    "avg_home_cover_pct": 45.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
