@@ -2,38 +2,38 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 71,
- "graded_games": 55,
+ "frozen_games": 81,
+ "graded_games": 65,
  "settled_without_prediction": 16,
- "game_dates": 10,
+ "game_dates": 11,
  "ml": {
-  "wins": 29,
-  "losses": 26,
-  "n": 55,
-  "hit_rate": 52.7,
+  "wins": 34,
+  "losses": 31,
+  "n": 65,
+  "hit_rate": 52.3,
   "ci95": [
-   39.8,
-   65.3
+   40.4,
+   64.0
   ]
  },
  "ou": {
-  "wins": 29,
-  "losses": 26,
-  "n": 55,
-  "hit_rate": 52.7,
+  "wins": 34,
+  "losses": 31,
+  "n": 65,
+  "hit_rate": 52.3,
   "ci95": [
-   39.8,
-   65.3
+   40.4,
+   64.0
   ]
  },
  "ats_model": {
-  "wins": 26,
-  "losses": 29,
-  "n": 55,
-  "hit_rate": 47.3,
+  "wins": 28,
+  "losses": 37,
+  "n": 65,
+  "hit_rate": 43.1,
   "ci95": [
-   34.7,
-   60.2
+   31.8,
+   55.2
   ]
  },
  "ats_shadow_value": {
@@ -47,6 +47,16 @@
   ]
  },
  "ml_shadow_value_roi": {
+  "n": 5,
+  "roi_pct": -100.0,
+  "ci95": [
+   -100.0,
+   -100.0
+  ],
+  "wins": 0,
+  "losses": 5
+ },
+ "ml_shadow_golden_roi": {
   "n": 4,
   "roi_pct": -100.0,
   "ci95": [
@@ -55,16 +65,6 @@
   ],
   "wins": 0,
   "losses": 4
- },
- "ml_shadow_golden_roi": {
-  "n": 3,
-  "roi_pct": -100.0,
-  "ci95": [
-   -100.0,
-   -100.0
-  ],
-  "wins": 0,
-  "losses": 3
  },
  "playoff_best_gold_silver": {
   "wins": 0,
@@ -76,43 +76,43 @@
    null
   ]
  },
- "pending_games": 10,
+ "pending_games": 7,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 71,
-   "graded_games": 55,
+   "frozen_games": 81,
+   "graded_games": 65,
    "settled_without_prediction": 16,
-   "game_dates": 10,
+   "game_dates": 11,
    "ml": {
-    "wins": 29,
-    "losses": 26,
-    "n": 55,
-    "hit_rate": 52.7,
+    "wins": 34,
+    "losses": 31,
+    "n": 65,
+    "hit_rate": 52.3,
     "ci95": [
-     39.8,
-     65.3
+     40.4,
+     64.0
     ]
    },
    "ou": {
-    "wins": 29,
-    "losses": 26,
-    "n": 55,
-    "hit_rate": 52.7,
+    "wins": 34,
+    "losses": 31,
+    "n": 65,
+    "hit_rate": 52.3,
     "ci95": [
-     39.8,
-     65.3
+     40.4,
+     64.0
     ]
    },
    "ats_model": {
-    "wins": 26,
-    "losses": 29,
-    "n": 55,
-    "hit_rate": 47.3,
+    "wins": 28,
+    "losses": 37,
+    "n": 65,
+    "hit_rate": 43.1,
     "ci95": [
-     34.7,
-     60.2
+     31.8,
+     55.2
     ]
    },
    "ats_shadow_value": {
@@ -126,6 +126,16 @@
     ]
    },
    "ml_shadow_value_roi": {
+    "n": 5,
+    "roi_pct": -100.0,
+    "ci95": [
+     -100.0,
+     -100.0
+    ],
+    "wins": 0,
+    "losses": 5
+   },
+   "ml_shadow_golden_roi": {
     "n": 4,
     "roi_pct": -100.0,
     "ci95": [
@@ -134,16 +144,6 @@
     ],
     "wins": 0,
     "losses": 4
-   },
-   "ml_shadow_golden_roi": {
-    "n": 3,
-    "roi_pct": -100.0,
-    "ci95": [
-     -100.0,
-     -100.0
-    ],
-    "wins": 0,
-    "losses": 3
    },
    "playoff_best_gold_silver": {
     "wins": 0,
@@ -170,7 +170,7 @@
    "rule": "ml_shadow_value picks settled at the frozen moneyline: n >= min_picks AND ROI 95% CI lower bound > roi_ci_lower_pct",
    "min_picks": 200,
    "roi_ci_lower_pct": 0.0,
-   "n": 4,
+   "n": 5,
    "roi_ci_lower": -100.0,
    "met": false
   },
@@ -178,8 +178,8 @@
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 55,
-   "ci_lower": 39.8,
+   "n": 65,
+   "ci_lower": 40.4,
    "met": false
   }
  },
@@ -192,5 +192,5 @@
    "hit": false
   }
  ],
- "generated_at": "2026-10-31T06:02:11"
+ "generated_at": "2026-10-31T15:02:02"
 }
