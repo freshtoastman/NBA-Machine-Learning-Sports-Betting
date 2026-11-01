@@ -1,7 +1,7 @@
 {
  "date": "2026-10-26",
  "is_today": false,
- "exported_at": "2026-11-01T15:01:57+08:00",
+ "exported_at": "2026-11-02T06:05:17+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -543,14 +543,14 @@
      },
      {
       "name": "Eric Dalen",
-      "games": 124,
-      "home_cover_pct": 53.2,
+      "games": 125,
+      "home_cover_pct": 53.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.5298
+      "p_value": 0.4744
      }
     ],
-    "avg_home_cover_pct": 55.0,
+    "avg_home_cover_pct": 55.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2410,11 +2410,11 @@
     "officials": [
      {
       "name": "Ray Acosta",
-      "games": 148,
-      "home_cover_pct": 49.3,
+      "games": 149,
+      "home_cover_pct": 49.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.9345
+      "p_value": 0.8699
      },
      {
       "name": "Brent Barnaky",
@@ -2433,7 +2433,7 @@
       "p_value": 0.2712
      }
     ],
-    "avg_home_cover_pct": 47.8,
+    "avg_home_cover_pct": 47.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3051,11 +3051,11 @@
      },
      {
       "name": "Marat Kogut",
-      "games": 131,
-      "home_cover_pct": 48.9,
+      "games": 132,
+      "home_cover_pct": 48.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.8614
+      "p_value": 0.7941
      },
      {
       "name": "J.T. Orr",
@@ -3066,7 +3066,7 @@
       "p_value": 0.4884
      }
     ],
-    "avg_home_cover_pct": 51.8,
+    "avg_home_cover_pct": 51.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5542,22 +5542,22 @@
     "officials": [
      {
       "name": "Scott Foster",
-      "games": 129,
-      "home_cover_pct": 47.3,
+      "games": 130,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5975
+      "p_value": 0.6612
      },
      {
       "name": "Karl Lane",
-      "games": 124,
-      "home_cover_pct": 48.4,
+      "games": 125,
+      "home_cover_pct": 48.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.7877
+      "p_value": 0.7207
      }
     ],
-    "avg_home_cover_pct": 47.8,
+    "avg_home_cover_pct": 47.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

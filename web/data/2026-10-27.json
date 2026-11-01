@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
  "is_today": false,
- "exported_at": "2026-11-01T15:01:57+08:00",
+ "exported_at": "2026-11-02T06:05:17+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -535,11 +535,11 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 139,
-      "home_cover_pct": 56.1,
+      "games": 140,
+      "home_cover_pct": 56.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.1745
+      "p_value": 0.1505
      },
      {
       "name": "Jonathan Sterling",
@@ -558,7 +558,7 @@
       "p_value": 0.1507
      }
     ],
-    "avg_home_cover_pct": 52.5,
+    "avg_home_cover_pct": 52.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1168,11 +1168,11 @@
      },
      {
       "name": "Natalie Sago",
-      "games": 131,
-      "home_cover_pct": 51.1,
+      "games": 132,
+      "home_cover_pct": 51.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.8614
+      "p_value": 0.7941
      },
      {
       "name": "Suyash Mehta",
@@ -1183,7 +1183,7 @@
       "p_value": 0.6063
      }
     ],
-    "avg_home_cover_pct": 52.9,
+    "avg_home_cover_pct": 53.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2411,11 +2411,11 @@
     "officials": [
      {
       "name": "Scott Foster",
-      "games": 129,
-      "home_cover_pct": 47.3,
+      "games": 130,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.5975
+      "p_value": 0.6612
      },
      {
       "name": "Che Flores",
@@ -2426,7 +2426,7 @@
       "p_value": 0.657
      }
     ],
-    "avg_home_cover_pct": 47.1,
+    "avg_home_cover_pct": 47.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
