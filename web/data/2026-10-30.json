@@ -1,7 +1,7 @@
 {
  "date": "2026-10-30",
  "is_today": false,
- "exported_at": "2026-11-02T22:13:03+08:00",
+ "exported_at": "2026-11-03T06:02:33+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -3092,11 +3092,11 @@
      },
      {
       "name": "Bill Kennedy",
-      "games": 87,
-      "home_cover_pct": 48.3,
+      "games": 88,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8304
+      "p_value": 0.7493
      },
      {
       "name": "Simone Jelks",
@@ -3107,7 +3107,7 @@
       "p_value": 0.0586
      }
     ],
-    "avg_home_cover_pct": 45.2,
+    "avg_home_cover_pct": 45.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3741,14 +3741,14 @@
      },
      {
       "name": "Che Flores",
-      "games": 81,
-      "home_cover_pct": 46.9,
+      "games": 82,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.657
+      "p_value": 0.5811
      }
     ],
-    "avg_home_cover_pct": 50.0,
+    "avg_home_cover_pct": 49.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5006,14 +5006,14 @@
      },
      {
       "name": "Robert Hussey",
-      "games": 97,
-      "home_cover_pct": 50.5,
+      "games": 98,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 52.7,
+    "avg_home_cover_pct": 52.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -6272,19 +6272,19 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 143,
-      "home_cover_pct": 44.1,
+      "games": 144,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.1807
+      "p_value": 0.2112
      },
      {
       "name": "Brian Forte",
-      "games": 136,
-      "home_cover_pct": 51.5,
+      "games": 137,
+      "home_cover_pct": 51.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.7971
+      "p_value": 0.7327
      },
      {
       "name": "Mousa Dagher",
@@ -6295,7 +6295,7 @@
       "p_value": 0.2712
      }
     ],
-    "avg_home_cover_pct": 46.7,
+    "avg_home_cover_pct": 46.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

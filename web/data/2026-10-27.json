@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
  "is_today": false,
- "exported_at": "2026-11-02T22:13:04+08:00",
+ "exported_at": "2026-11-03T06:02:34+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1786,11 +1786,11 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 149,
-      "home_cover_pct": 49.0,
+      "games": 150,
+      "home_cover_pct": 49.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.8699
+      "p_value": 0.935
      },
      {
       "name": "Dedric Taylor",
@@ -1809,7 +1809,7 @@
       "p_value": 0.4828
      }
     ],
-    "avg_home_cover_pct": 48.5,
+    "avg_home_cover_pct": 48.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2419,14 +2419,14 @@
      },
      {
       "name": "Che Flores",
-      "games": 81,
-      "home_cover_pct": 46.9,
+      "games": 82,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.657
+      "p_value": 0.5811
      }
     ],
-    "avg_home_cover_pct": 47.3,
+    "avg_home_cover_pct": 47.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
