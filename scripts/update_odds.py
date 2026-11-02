@@ -91,6 +91,22 @@ def fetch_sbr_odds_for_date(target_date: date) -> list[dict]:
         return []
 
 
+def started_games(target_date: date, now_iso: str) -> set[tuple[str, str]]:
+    """(home, away) pairs on `target_date` whose scheduled tip-off (cdn.nba.com
+    schedule) is at or before `now_iso`. Empty when the schedule is unreachable,
+    which keeps the old behaviour (refresh everything unplayed)."""
+    try:
+        from src.Utils import nba_cdn
+        from src.Utils.PregameFreeze import tipoff_passed
+        return {
+            (g["home"], g["away"])
+            for g in nba_cdn.games_for_date(target_date)
+            if tipoff_passed(g, now_iso)
+        }
+    except Exception:
+        return set()
+
+
 def get_unplayed_dates(con: sqlite3.Connection, season_key: str, from_date: date) -> list[date]:
     """Return dates in the DB where all games have Points=NULL (unplayed)."""
     rows = con.execute(
@@ -100,7 +116,7 @@ def get_unplayed_dates(con: sqlite3.Connection, season_key: str, from_date: date
     return [date.fromisoformat(r[0]) for r in rows]
 
 
-def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: date, games: list[dict], sportsbook: str = "fanduel", fetched_at_iso: str | None = None) -> int:
+def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: date, games: list[dict], sportsbook: str = "fanduel", fetched_at_iso: str | None = None, started: set[tuple[str, str]] | None = None) -> int:
     """Update OU, Spread, ML_Home, ML_Away for unplayed games on target_date. Returns count updated.
 
     Also appends a snapshot to odds_history whenever any value changes.
@@ -110,16 +126,29 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
     history row records that source. Switching back to the preferred book later is
     logged as a change too, so a half-point "move" next to a source change may be a
     book difference — the export carries `line_source` for exactly that reason.
+
+    `started` is the set of (home, away) pairs whose scheduled tip-off has passed
+    (see `started_games`). Those are skipped outright: SBR keeps showing a game's
+    board after tip, so the 22:00Z snapshot of a Sunday matinee is an in-game
+    line, not a closing line (2026-11-01 BOS @ ORL tipped 20:30Z and the 22:01Z
+    fetch wrote -7.5 over the -6.5 the pre-game freeze had locked; 2026-10-31
+    POR @ UTA was already final and only odds_history got the stray row).
+    Nothing is logged to odds_history either when the UPDATE matched no row,
+    i.e. the game already has a final in the table.
     """
     updated = 0
     if fetched_at_iso is None:
         fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    started = started or set()
     for line in lines_for_games(games, target_date, sportsbook):
         home = line["home_team"]
         away = line["away_team"]
         ou, spread = line["ou"], line["spread"]  # spread: positive = away underdog
         ml_home, ml_away = line["ml_home"], line["ml_away"]
         if ou is None and spread is None:
+            continue
+        if (home, away) in started:
+            print(f"  {home} vs {away}: tipped already — line not refreshed")
             continue
         n = con.execute(
             f'UPDATE "{season_key}" SET OU=?, Spread=?, ML_Home=?, ML_Away=? '
@@ -135,6 +164,10 @@ def update_odds_for_date(con: sqlite3.Connection, season_key: str, target_date: 
             )
         except Exception:
             pass
+        if not n:
+            # No unplayed row for this game (already final, or not in the table):
+            # a post-final board is not a line snapshot.
+            continue
         _log_history_snapshot(
             con, season_key, target_date, home, away, ou, spread, ml_home, ml_away, fetched_at_iso,
             source=line["source"],
@@ -214,7 +247,10 @@ def main(db_only: bool = False):
             games = fetch_sbr_odds_for_date(d)
             if not games:
                 print(f"  No games returned from SBR for {d} — trying the ESPN fallback")
-            n = update_odds_for_date(con, season_key, d, games, fetched_at_iso=fetched_at_iso)
+            n = update_odds_for_date(
+                con, season_key, d, games, fetched_at_iso=fetched_at_iso,
+                started=started_games(d, fetched_at_iso),
+            )
             total_updated += n
             if n == 0:
                 print(f"  No rows updated for {d} (odds unchanged or names mismatch)")

@@ -1,7 +1,7 @@
 {
  "date": "2026-10-31",
  "is_today": false,
- "exported_at": "2026-11-02T22:08:24+08:00",
+ "exported_at": "2026-11-02T22:13:03+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -583,21 +583,13 @@
      "ml_home": 260,
      "ml_away": -320,
      "source": "sbr_fanduel"
-    },
-    {
-     "fetched_at": "2026-10-31T22:03:09+00:00",
-     "spread": -6.5,
-     "ou": 232.5,
-     "ml_home": 200,
-     "ml_away": -245,
-     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -6.5,
    "spread_last": -8.5,
    "spread_move": -2.0,
    "spread_first_fetched_at": "2026-10-31T07:00:21+00:00",
-   "spread_last_fetched_at": "2026-10-31T22:03:09+00:00",
+   "spread_last_fetched_at": "2026-10-31T14:08:27+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 231.5,

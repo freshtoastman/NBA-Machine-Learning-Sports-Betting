@@ -1,7 +1,7 @@
 {
  "date": "2026-11-01",
  "is_today": false,
- "exported_at": "2026-11-02T22:08:24+08:00",
+ "exported_at": "2026-11-02T22:13:02+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -501,8 +501,8 @@
    "value_edge": null,
    "value_ev": null,
    "value_prob": null,
-   "fair_home": 28.6,
-   "fair_away": 71.4,
+   "fair_home": 31.5,
+   "fair_away": 68.5,
    "ml_shadow_value": false,
    "ml_shadow_golden": false,
    "ml_value_reference_only": true,
@@ -540,21 +540,13 @@
      "ml_home": 205,
      "ml_away": -250,
      "source": "sbr_fanduel_open"
-    },
-    {
-     "fetched_at": "2026-11-01T22:01:28+00:00",
-     "spread": -7.5,
-     "ou": 222.5,
-     "ml_home": 235,
-     "ml_away": -290,
-     "source": "sbr_fanduel"
     }
    ],
    "spread_first": -6.5,
    "spread_last": -6.5,
    "spread_move": 0.0,
    "spread_first_fetched_at": "2026-11-01T07:00:22+00:00",
-   "spread_last_fetched_at": "2026-11-01T22:01:28+00:00",
+   "spread_last_fetched_at": "2026-11-01T07:00:22+00:00",
    "line_source": "sbr_fanduel",
    "line_source_label": "FanDuel",
    "ou_first": 222.5,
@@ -612,12 +604,12 @@
     "locked_at": "2026-11-02T06:05:15+08:00"
    },
    "closing": {
-    "spread": -7.5,
+    "spread": -6.5,
     "ou_value": 222.5,
     "ats_winner": "away",
-    "ats_cover_margin": -3.5,
-    "home_team_odds": 235,
-    "away_team_odds": -290
+    "ats_cover_margin": -4.5,
+    "home_team_odds": 205,
+    "away_team_odds": -250
    },
    "pregame_missing": false
   },
