@@ -2,38 +2,38 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 90,
- "graded_games": 72,
+ "frozen_games": 92,
+ "graded_games": 76,
  "settled_without_prediction": 16,
  "game_dates": 13,
  "ml": {
-  "wins": 40,
-  "losses": 32,
-  "n": 72,
-  "hit_rate": 55.6,
+  "wins": 43,
+  "losses": 33,
+  "n": 76,
+  "hit_rate": 56.6,
   "ci95": [
-   44.1,
-   66.5
+   45.4,
+   67.1
   ]
  },
  "ou": {
   "wins": 36,
-  "losses": 36,
-  "n": 72,
-  "hit_rate": 50.0,
+  "losses": 40,
+  "n": 76,
+  "hit_rate": 47.4,
   "ci95": [
-   38.7,
-   61.3
+   36.5,
+   58.4
   ]
  },
  "ats_model": {
-  "wins": 31,
-  "losses": 41,
-  "n": 72,
-  "hit_rate": 43.1,
+  "wins": 32,
+  "losses": 44,
+  "n": 76,
+  "hit_rate": 42.1,
   "ci95": [
-   32.3,
-   54.6
+   31.6,
+   53.3
   ]
  },
  "ats_shadow_value": {
@@ -76,43 +76,43 @@
    null
   ]
  },
- "pending_games": 2,
+ "pending_games": 15,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 90,
-   "graded_games": 72,
+   "frozen_games": 92,
+   "graded_games": 76,
    "settled_without_prediction": 16,
    "game_dates": 13,
    "ml": {
-    "wins": 40,
-    "losses": 32,
-    "n": 72,
-    "hit_rate": 55.6,
+    "wins": 43,
+    "losses": 33,
+    "n": 76,
+    "hit_rate": 56.6,
     "ci95": [
-     44.1,
-     66.5
+     45.4,
+     67.1
     ]
    },
    "ou": {
     "wins": 36,
-    "losses": 36,
-    "n": 72,
-    "hit_rate": 50.0,
+    "losses": 40,
+    "n": 76,
+    "hit_rate": 47.4,
     "ci95": [
-     38.7,
-     61.3
+     36.5,
+     58.4
     ]
    },
    "ats_model": {
-    "wins": 31,
-    "losses": 41,
-    "n": 72,
-    "hit_rate": 43.1,
+    "wins": 32,
+    "losses": 44,
+    "n": 76,
+    "hit_rate": 42.1,
     "ci95": [
-     32.3,
-     54.6
+     31.6,
+     53.3
     ]
    },
    "ats_shadow_value": {
@@ -178,8 +178,8 @@
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 72,
-   "ci_lower": 38.7,
+   "n": 76,
+   "ci_lower": 36.5,
    "met": false
   }
  },
@@ -192,5 +192,5 @@
    "hit": false
   }
  ],
- "generated_at": "2026-11-02T06:05:17"
+ "generated_at": "2026-11-02T15:01:51"
 }
