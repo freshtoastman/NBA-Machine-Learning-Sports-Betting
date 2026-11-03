@@ -1,7 +1,7 @@
 {
  "date": "2026-10-29",
  "is_today": false,
- "exported_at": "2026-11-03T22:09:56+08:00",
+ "exported_at": "2026-11-04T06:02:48+08:00",
  "summary": {
   "games": 3,
   "model_games": 3,
@@ -543,14 +543,14 @@
      },
      {
       "name": "Kevin Cutler",
-      "games": 135,
-      "home_cover_pct": 46.7,
+      "games": 136,
+      "home_cover_pct": 47.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.4913
+      "p_value": 0.5485
      }
     ],
-    "avg_home_cover_pct": 45.5,
+    "avg_home_cover_pct": 45.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1176,22 +1176,22 @@
      },
      {
       "name": "Jacyn Goble",
-      "games": 142,
-      "home_cover_pct": 50.7,
+      "games": 143,
+      "home_cover_pct": 51.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.9332
+      "p_value": 0.8672
      },
      {
       "name": "Matt Kallio",
-      "games": 84,
-      "home_cover_pct": 54.8,
+      "games": 85,
+      "home_cover_pct": 55.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.4452
+      "p_value": 0.3857
      }
     ],
-    "avg_home_cover_pct": 51.5,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1801,22 +1801,22 @@
     "officials": [
      {
       "name": "Josh Tiven",
-      "games": 151,
-      "home_cover_pct": 47.7,
+      "games": 152,
+      "home_cover_pct": 47.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.6255
+      "p_value": 0.5703
      },
      {
       "name": "Gediminas Petraitis",
-      "games": 149,
-      "home_cover_pct": 51.0,
+      "games": 150,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8699
+      "p_value": 0.935
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

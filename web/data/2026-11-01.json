@@ -1,7 +1,7 @@
 {
  "date": "2026-11-01",
  "is_today": false,
- "exported_at": "2026-11-03T22:09:56+08:00",
+ "exported_at": "2026-11-04T06:02:48+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -543,11 +543,11 @@
      },
      {
       "name": "Gediminas Petraitis",
-      "games": 149,
-      "home_cover_pct": 51.0,
+      "games": 150,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8699
+      "p_value": 0.935
      },
      {
       "name": "Che Flores",
@@ -558,7 +558,7 @@
       "p_value": 0.5811
      }
     ],
-    "avg_home_cover_pct": 49.5,
+    "avg_home_cover_pct": 49.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1777,11 +1777,11 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 150,
-      "home_cover_pct": 49.3,
+      "games": 151,
+      "home_cover_pct": 49.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.935
+      "p_value": 1.0
      },
      {
       "name": "Justin Van Duyne",
@@ -1800,7 +1800,7 @@
       "p_value": 0.9132
      }
     ],
-    "avg_home_cover_pct": 49.0,
+    "avg_home_cover_pct": 49.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
