@@ -1409,3 +1409,40 @@ ML 模型押 3 主 4 客，**四場 ≥70**（MEM 85.3 追平 10/27 BOS 85.3 的
 **下一步**：(1) **使用者：06:00 前接電源**（今天兩次都在 AC，照舊）；(2) 11/4 06:00 log 應看到「No new odds dates」＋「Completed N game(s) missing from partially inserted date(s): 2026-11-04」（N 最多 9）＋ 11/4 TeamData → 14 場模型輸出；若 FanDuel 到 22:00Z 仍沒開其餘 9 場，15:00 run 會再補；(3) 11/4 結算 → 107 → 121 場；(4) 11/4 這 5 場的開盤是 14:09Z（比平常 07:00Z 早 17 小時），移動視窗更長——結算時照樣只看同源、凍結線；(5) 下週日 11/8 日場仍是 guard 的真正測試。
 
 **部署驗證（22:13）**：`ff62f63`（本篇＋11/4 五場 stub）14:13:04Z success（推送後約 20 秒）；正式站 `/login` 200。本機 `web/app.py` test client（session `authenticated`，同一份 `web/data`）：`/`（預設落在最新日期 11/4）與 `/?date=2026-11-04` 皆 200、5 個 ⏰ chip、「模型尚未啟用」6 處、缺陣 8 條、開盤標籤 5 處；`/?date=2026-11-02` 200、15 場全終場（0 個 ⏰）、DAL 85.7 仍在。
+
+### 2026-11-05（00:01–00:25）— **本次沒有結算**（11/3 選舉日 0 場；11/4 的 14 場要到 00:00Z＝台北 08:00 才開賽，離本次約 2 小時）；**第七天兩個排程全自動**（06:00 AC 171 秒；15:00 **電池但筆電醒著**、網路等了 415 秒＋`Get_Advanced_Data` 198 秒、總 736 秒仍 OK）；11/4 板 **5 → 12 → 14 全靠 `complete_partial_dates` 自己補齊**（06:00 補 7、15:00 補 2，10/25 修的路徑第一次連補兩輪）；14 場模型全部輸出、**四個 ML 影子價值同日**（BOS 85.3、NOP 83.6＋金鑽、MEM 83.6、POR 70.4＋金鑽）＝本季單日最多；16:03Z 第四次快照：**兩個 2.0 真實移動待結算**（ATL @ WAS −1.5 → −3.5 往 ATL；MIN @ HOU −9.5 → −7.5 往 MIN）；11/5 兩場 16:08Z SBR／ESPN 都還沒開價 → 不建 stub
+
+**排程驗證（pipeline-2026-11.log）**
+- 11/4 06:00（週三）：AC、06:00:02 準點起、06:02:53 OK＝171 秒。`Get_Odds_Data`：「No new odds dates」（11/4 已在表）→ `complete_partial_dates` 重掃 11/3–11/4：「5 game(s) already stored, 7 of 12 priced game(s) new」、**7 場裡 5 場是備援書（1 BetMGM、4 DraftKings）**、「Completed 7 game(s) missing … 2026-11-04」、記 7 筆開盤快照（22:00:23Z）；NOP／MEM 兩場 SBR 全無價、ESPN 也沒有 → 12／14。`update_odds --db-only` 22:00:24Z 刷新 12 場（FanDuel 已開的 5 場：DET 1.5 → 2.5、OKC 2.5 → 1.5、其餘不動）。`collect_referee_data` 55 秒（`scoreboardv2` 500 照舊、11/3 無賽）、`Create_Games` 65 秒、`Export_JSON` 20 秒（12 場模型卡）、推送 `fc26bc9` → Vercel 22:03:26Z success（推送後 36 秒）。
+- 11/4 15:00：**電池**、launchd 15:06:08 才醒（rtc float 6 分）、**網路不通等了 415 秒**（15:06 → 15:13:03，10/23 加的 ≤10 分鐘等待第一次真的派上用場），然後 `Get_Data` 4 秒、**`Get_Advanced_Data` 198 秒**（06:00 同一步 5 秒；IPv4 修正經 `src.Utils.tools` 匯入已生效、log 沒有 timeout 例外 → 是剛連上 Wi-Fi 的慢回應，不是 IPv6；僅收集，若在 AC 上重現再查 stats.nba.com 延遲）。`Get_Odds_Data`：「12 already stored, 2 of 14 new」→ NOP −5.5、MEM −6.5 以 FanDuel 開盤 07:16:33Z 進表 → **14／14**；`update_odds` 07:16:37Z 刷新 14 場（WAS −1.5 → −2.5、BKN −2.5 → −3.5、SAS 12.5 → 11.5、OKC 回到 2.5；NYK／DEN／PHX／SAC／LAC 五場從備援書切回 FanDuel，數字相同）。`Create_Games` 81 秒、`Export_JSON` 18 秒「wrote 14 games → 2026-11-04.json」、`frozen_record.json` 91 graded／107 frozen（14 pending）、推送 `be10fdb` → 07:18:44Z success（25 秒）。15:06:08 → 15:18:24＝736 秒，其中 613 秒是網路等待＋ADV。
+- 電池＋醒著現在 **3／3 正常**（11/2 06:00、11/4 15:00 ＋ 10/30 15:00），電池＋睡著仍 6／6 凍結 → 結論不變：06:00 前接電源。
+- 連續第七天唯一人工動作是晚上這次回顧。
+
+**11/4 的 14 場（週三；盤口以讓分方寫、FanDuel 對 FanDuel；開盤欄＝`odds_history` 第一列（來源／時間）；22:00Z 欄＝11/4 06:00 run；07:16Z＝15:00 run；16:03Z＝本次 `update_odds --db-only`；全部 00:00Z 後開賽 → 凍結線＝11/5 06:00 run 的 22:00Z 快照，本次 16:03Z 只是中途價）**
+
+| 11/4 | 開賽 ET | 開盤 | 22:00Z | 07:16Z | 16:03Z | 淨移動 | 總分 | ML 模型 | ATS 模型 | O/U | 傷兵重點 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| PHI @ DET | 19:00 | DET −1.5（FD 14:09Z） | −2.5 | −2.5 | −2.5 | 1.0 往 DET | 218.5 → 219.5 | DET 69.2（−124） | DET −2.5（50.3） | U 217.5 | DET I. Joe 缺 |
+| ATL @ WAS | 19:00 | ATL −1.5（FD 22:00Z） | （開盤） | −2.5 | **−3.5** | **2.0 往 ATL** | 234.5 → 231.5 | **WAS 66.3（+124 受讓）** | WAS +3.5（50.3） | O 231.5 | WAS Sarr 存疑；ATL J. Johnson 存疑、Landale 缺 |
+| CHA @ BKN | 19:30 | CHA −2.5（FD 14:09Z） | −2.5 | −3.5 | −3.5 | 1.0 往 CHA | 214.5 → 212.5 | BKN 53.3（+134 受讓） | CHA −3.5（48.7） | O 213.5 | BKN Demin 缺；CHA Knueppel／C. White 可能出賽 |
+| CHI @ NYK | 19:30 | NYK −12.5（DK 22:00Z） | （開盤） | −12.5 | −12.5 | 0 | 232.5 → 233.5 | NYK 69.2（−600） | CHI +12.5（45.8） | O 233.5 | NYK Hart 存疑；CHI Claxton 存疑 |
+| MIL @ BOS | 19:30 | BOS −11.5（FD 22:00Z） | （開盤） | −11.5 | −11.5 | 0 | 223.5 → 222.5 | **BOS 85.3（−480）影子價值** | BOS −11.5（51.5） | U 223.5 | **BOS Tatum 存疑、Pritchard 存疑** |
+| CLE @ OKC | 20:00 | OKC −2.5（FD 14:09Z） | −1.5 | −2.5 | −3.5 | 1.0 往 OKC（盤中 1.5 → 3.5＝2.0） | 228.5 → 227.5 | CLE 54.3（+114 受讓） | OKC −3.5（51.4） | O 227.5（56.6） | OKC Topic／Sorber 缺、J. Williams 存疑；CLE Tyson／P. Watson 缺 |
+| UTA @ NOP | 20:00 | NOP −5.5（FD 07:16Z） | — | （開盤） | −5.5 | 0 | 234.5 | **NOP 83.6（−205）影子價值＋金鑽（elite）** | UTA +5.5（47.0） | U 234.5 | NOP Missi 缺、Poole／Murphy 可能出賽；UTA Nurkić／T. Alexander 缺 |
+| IND @ MEM | 20:00 | MEM −6.5（FD 07:16Z） | — | （開盤） | −6.5 | 0 | 229.5 → 228.5 | **MEM 83.6（−260）影子價值** | MEM −6.5（50.7） | O 229.5 | IND Sheppard 缺、Zubac／Oubre／Toppin 存疑 |
+| MIN @ HOU | 20:30 | HOU −9.5（FD 14:09Z） | −8.5 | −8.5 | **−7.5** | **2.0 往 MIN** | 224.5 → 220.5 | HOU 69.2（−270） | HOU −7.5（50.4） | O 220.5 | HOU Capela 存疑；MIN Shannon Jr. 存疑 |
+| TOR @ DEN | 21:00 | DEN −5.5（DK 22:00Z） | （開盤） | −5.5 | −4.5 | 1.0 往 TOR | 231.5 | DEN 52.5（−194） | TOR +4.5（48.7） | U 230.5 | **TOR Kawhi 缺**、Poeltl 存疑；DEN S. Jones 缺 |
+| POR @ PHX | 21:00 | POR −3.5（DK 22:00Z） | （開盤） | −3.5 | −2.5 | 1.0 往 PHX | 228.5 → 227.5 | **POR 70.4（−148）影子價值＋金鑽** | POR −2.5（49.5） | U 227.5 | PHX M. Williams 缺、Goodwin／Fleming 存疑 |
+| DAL @ SAS | 21:30 | SAS −12.5（FD 14:09Z） | −12.5 | −11.5 | −12.5 | 0（盤中回縮） | 229.5 → 226.5 | SAS 66.7（−500） | DAL +12.5（49.7） | O 228.5 | DAL Christie 缺、Aldama 存疑 |
+| LAL @ SAC | 22:00 | LAL −11.5（DK 22:00Z） | （開盤） | −11.5 | −11.5 | 0 | 238.5 → 235.5 | LAL 82.3（−510） | LAL −11.5（49.1） | U 234.5 | SAC K. Murray／Raynaud 缺 |
+| MIA @ LAC | 22:30 | MIA −4.5（BetMGM 22:00Z） | （開盤） | −4.5 | −4.5 | 0 | 233.5 | LAC 53.1（+166 受讓） | LAC +4.5（**56.0，全板最高**） | O 233.5 | MIA Giannis 可能出賽 |
+
+- ML 信心分層：**≥70 五場**（BOS 85.3、NOP 83.6、MEM 83.6、LAL 82.3、POR 70.4）、60–70 五場（DET、HOU、NYK 69.2、SAS 66.7、WAS 66.3）、<60 四場（CLE 54.3、BKN 53.3、LAC 53.1、DEN 52.5）。押受讓方四場：WAS +124、CLE +114、BKN +134、LAC +166（本季受讓方 9–14）。平均信心 68.5。
+- **ML 影子價值 4 場同日＝本季最多**（10/31 三場 4–0 是前高）：BOS、NOP、MEM 都是 83–85 的重讓分主場（和 11/2 DAL 85.7 輸 15 分同型）、POR 是客場讓分；金鑽 2 場（NOP、POR）。結算後影子價值 n＝11 → 15、金鑽 5 → 7（目前 5–6／1–4）。注意：**BOS 85.3 的 Tatum 列存疑**，若賽前升級為缺陣，85.3 就是沒看到傷兵的機率——這正是 ML 影子價值要繼續「只收集」的原因。
+- ATS 模型押主 7（DET、WAS、OKC、MEM、HOU、BOS、LAC）／押客 7；14 場機率全在 45.8–56.0，只有 LAC 一場 ≥55；沒有價值旗（政策關閉）。大小分 O 8／U 6，只有 OKC 56.6 一場 ≥55。
+- 盤口：14 場裡 FanDuel 開盤 10 場、DraftKings 開盤 4 場（NYK／DEN／PHX／SAC）、BetMGM 1 場（LAC）——**備援書開盤 → 07:16Z FanDuel 接手時數字全部相同**，所以這 5 場的開盤欄可以直接當 FanDuel 開盤用（不像 10/30 Fanatics 單書開盤那種假移動）。16:03Z 止：**兩個 2.0 真實移動**（ATL @ WAS：22:00Z FanDuel 開 −1.5 → −3.5；MIN @ HOU：14:09Z 開 −9.5 → −7.5，兩段各 1.0），四個 1.0（DET、CHA、OKC、TOR、PHX）、SAS 盤中 1.0 回縮到開盤。**凍結線是 22:00Z 的快照**：若 WAS／HOU 到 22:00Z 回縮到 1.0 就不列（11/2 MEM 規則）、若 OKC 22:00Z 收 ≥4.0 才算（對開盤 2.5）。
+- 11/5（週四）兩場 ORL @ PHX、MIA @ GSW：16:08Z `Get_Odds_Data.main(today=11/5)`「No priced games … (2 listed)」→ 沒建 stub；明天 06:00 run 的 `fetch_start`＝11/5 ≤ `fetch_end`＝11/5 會正常抓（若 FanDuel 到 22:00Z 還沒開，15:00 run 用 `complete_partial_dates` 補）。
+
+**85% 目標的現況**：沒有新資料（本次 0 場結算）；樣本外讓分 50.5%／大小分 50.6%／勝負 63.6%，本季凍結 91 場 ML 60.4%／ATS 44.0%／OU 49.5% 不變。今天的價值：①`complete_partial_dates` 兩輪補齊 14 場、備援書開盤與 FanDuel 一致——週三大板從「14:09Z 只有 5 場」到 15:00 全板、全部不用人工；②網路等待（10/23）第一次在排程裡真的擋住了「無網路就全步驟 28 分鐘重試」的舊故障；③四個影子價值同日出現，明天結算會把 n 推到 15（10/31 4–0 之後 5–6 → 樣本仍遠低於 n≥50 的重開門檻）。
+
+**下一步**：(1) **使用者：06:00 前接電源**（今天 15:00 電池醒著撐過，但 06:00 睡著＋電池仍是 6／6 凍結）；(2) 11/5 06:00 log：11/4 14 場 `locked` 14／14（全部 22:00Z 快照、不該有 `tipped already`）、11/5 兩場「Getting odds data: 2026-11-05」（若 FanDuel 已開）、`Patch_Scores` 0（時區）；11/5 15:00 補 11/4 終場；(3) 11/4 結算 → graded 91 → 105、frozen 107 → 109＋；影子價值 +4（n＝15）、金鑽 +2、≥70 +5、60–70 +5、<60 +4、受讓方 +4、ATS 押主 +7／押客 +7、本季主隊 ATS 107 → 121 場；(4) 盤口移動結算：WAS 2.0、HOU 2.0（凍結線對開盤）→ 本季單列 21 → 最多 23 筆、playbook 第 3 節 n=29 → 31；OKC 盤中 2.0 只在凍結線對開盤 ≥1.5 時列入；(5) `Get_Advanced_Data` 198 秒僅收集（電池＋剛連網）；(6) 下週日 11/8 日場仍是 post-tip guard 的真正測試。
