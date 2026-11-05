@@ -311,12 +311,29 @@ def export_date(target_date: date) -> dict | None:
     # one cached fetch per process). Drives the pre-game freeze clock check and
     # the "19:00 ET / 07:00 台北" chip on upcoming cards.
     _tip_map: dict[tuple, str] = {}
+    # Scheduled games with no line yet (the board often opens in pieces); listed
+    # under the cards so a partial board does not read as the whole slate.
+    unpriced: list[dict] = []
     if is_today or has_unplayed:
         try:
             from src.Utils import nba_cdn as _cdn
-            for _sg in _cdn.games_for_date(target_date):
+            _sched = _cdn.games_for_date(target_date)
+            for _sg in _sched:
                 if _sg.get("tipoff_utc"):
                     _tip_map[(_sg["home"], _sg["away"])] = _sg["tipoff_utc"]
+            for _sg in _cdn.unpriced_games(
+                _sched, {(g["home_team"], g["away_team"]) for g in games_list}
+            ):
+                unpriced.append({
+                    "home_team": _sg["home"],
+                    "away_team": _sg["away"],
+                    "home_team_zh": team_name_zh(_sg["home"]),
+                    "away_team_zh": team_name_zh(_sg["away"]),
+                    "home_logo": team_logo_url(_sg["home"]),
+                    "away_logo": team_logo_url(_sg["away"]),
+                    "tipoff_utc": _sg.get("tipoff_utc"),
+                    **_cdn.tipoff_labels(_sg.get("tipoff_utc")),
+                })
         except Exception:
             pass
 
@@ -446,17 +463,7 @@ def export_date(target_date: date) -> dict | None:
         _tip = _tip_map.get((g["home_team"], g["away_team"]))
         if _tip:
             g["tipoff_utc"] = _tip
-            try:
-                from datetime import datetime as _tdt
-                from zoneinfo import ZoneInfo as _ZI
-                from src.Utils.tools import TAIPEI_TZ as _TPE
-                _tdt_utc = _tdt.fromisoformat(_tip.replace("Z", "+00:00"))
-                _et = _tdt_utc.astimezone(_ZI("America/New_York"))
-                _tpe = _tdt_utc.astimezone(_TPE)
-                g["tipoff_et"] = _et.strftime("%H:%M ET")
-                g["tipoff_taipei"] = _tpe.strftime("%m/%d %H:%M 台北")
-            except Exception:
-                pass
+            g.update(_cdn.tipoff_labels(_tip))
         # Referee crew analysis (when available).
         _crew = _ref_crew_map.get((g["home_team"], g["away_team"]))
         if _crew:
@@ -570,6 +577,8 @@ def export_date(target_date: date) -> dict | None:
         "playoff_ats_alerts": po_ats_alerts,
         "playoff_ats_count": len(po_ats_alerts),
         "injury_alerts": injury_alerts,
+        "scheduled_games": n + len(unpriced),
+        "unpriced_games": len(unpriced),
     }
 
     if not is_today:
@@ -622,6 +631,7 @@ def export_date(target_date: date) -> dict | None:
         "exported_at": _export_stamp(),
         "summary": summary,
         "games": games_dict,
+        "unpriced_games": unpriced,
         "active_series": active_series,
         "is_playoff_view": is_playoff_view,
     }

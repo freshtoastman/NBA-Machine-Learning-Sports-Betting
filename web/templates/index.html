@@ -122,6 +122,9 @@
             <div class="dash-row">
                 <span class="dash-tag today-tag">{% if no_games_today %}最近一場 {% else %}今日 {% endif %}{{ selected_date }}</span>
                 <span class="dash-chip"><b>{{ summary.games }}</b> 場</span>
+                {% if summary.unpriced_games %}
+                <span class="dash-chip muted" style="cursor:pointer" onclick="document.getElementById('unpriced-panel').scrollIntoView({behavior:'smooth'})" title="賽程共 {{ summary.scheduled_games }} 場；其餘 {{ summary.unpriced_games }} 場運彩還沒開盤，開盤後由排程自動補上">📅 賽程 <b>{{ summary.scheduled_games }}</b> 場 · <b>{{ summary.unpriced_games }}</b> 場未開盤</span>
+                {% endif %}
 
                 {% if summary.golden_picks %}
                 <span class="dash-chip golden" style="cursor:pointer" onclick="scrollToValue()" title="金鑽 = 鑽石場次 AND |讓分|≤6">
@@ -156,7 +159,7 @@
                 {% if summary.model_games is not defined or summary.model_games %}
                 <span class="dash-chip muted" title="當日預測的主/客場勝隊比">主 <b>{{ summary.home_picks }}</b> / 客 <b>{{ summary.away_picks }}</b></span>
                 {% else %}
-                <span class="dash-chip muted" title="模型特徵需要 30 隊都有本季數據；開季頭幾天只顯示盤口">模型尚未啟用 · 僅列盤口</span>
+                <span class="dash-chip muted" title="模型預測在比賽當天 06:00（台北）排程建好當日數據表後才輸出；在那之前只列盤口">模型預測尚未產生 · 僅列盤口</span>
                 {% endif %}
             </div>
             {% endif %}
@@ -988,7 +991,7 @@
                         <span class="rest-chip">客隊休息 {{ game.Days_Rest_Away }} 天</span>
                         {% endif %}
                         {% if not has_model %}
-                        <span class="rest-chip no-model-chip" title="模型特徵需要 30 隊都有本季數據；開季頭幾天只顯示盤口，不產生預測">模型尚未啟用（開季前 3–4 天只列盤口）</span>
+                        <span class="rest-chip no-model-chip" title="模型預測在比賽當天 06:00（台北）排程建好當日數據表後才輸出；提前建列的比賽（或開季頭幾天）只顯示盤口">模型預測尚未產生（當日 06:00 排程後輸出，目前只列盤口）</span>
                         {% endif %}
                     </div>
                     {% elif not has_model %}
@@ -1281,6 +1284,24 @@
             </article>
             {% endfor %}
         </main>
+        {# Scheduled games the books have not priced yet (board opens in pieces). #}
+        {% if unpriced_games %}
+        <section class="unpriced-panel" id="unpriced-panel">
+            <div class="unpriced-title">📅 已排賽程 · 尚未開盤 <b>{{ unpriced_games|length }}</b> 場
+                <span class="unpriced-sub">開盤後由 06:00／15:00 排程自動補上盤口與模型預測</span>
+            </div>
+            <div class="unpriced-list">
+                {% for u in unpriced_games %}
+                <div class="unpriced-row">
+                    <span class="unpriced-team">{% if u.away_logo %}<img class="team-logo-sm" src="{{ u.away_logo }}" alt="{{ u.away_team }}" loading="lazy">{% endif %}{{ u.away_team_zh }}</span>
+                    <span class="unpriced-at">@</span>
+                    <span class="unpriced-team">{% if u.home_logo %}<img class="team-logo-sm" src="{{ u.home_logo }}" alt="{{ u.home_team }}" loading="lazy">{% endif %}{{ u.home_team_zh }}</span>
+                    {% if u.tipoff_et %}<span class="tipoff-chip" title="開賽時間（{{ u.tipoff_taipei }}）">⏰ {{ u.tipoff_et }} · {{ u.tipoff_taipei[6:11] }}</span>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
         <script>const GAME_PROFILES = {{ game_profiles_json | safe }};</script>
 
         <footer class="compact-footer">

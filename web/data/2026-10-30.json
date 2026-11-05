@@ -1,7 +1,7 @@
 {
  "date": "2026-10-30",
  "is_today": false,
- "exported_at": "2026-11-05T15:01:57+08:00",
+ "exported_at": "2026-11-05T22:09:05+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -15,6 +15,8 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [],
+  "scheduled_games": 10,
+  "unpriced_games": 0,
   "ml_correct": 5,
   "ml_graded": 10,
   "ml_hit_rate": 50.0,
@@ -6410,6 +6412,7 @@
    "pregame_missing": false
   }
  },
+ "unpriced_games": [],
  "active_series": [],
  "is_playoff_view": false
 }

@@ -808,6 +808,7 @@ def index():
         bracket_stage=(bracket_data or {}).get("stage"),
         weekly_golden=load_weekly_golden(today),
         data={"fanduel": games, "draftkings": {}, "betmgm": {}},
+        unpriced_games=data.get("unpriced_games", []) if data else [],
         game_profiles_json=game_profiles_json,
     )
 

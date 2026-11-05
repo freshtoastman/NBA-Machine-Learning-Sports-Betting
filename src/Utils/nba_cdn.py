@@ -102,6 +102,39 @@ def games_for_date(d: date, season_only: bool = True) -> list[dict]:
     return games
 
 
+def tipoff_labels(tipoff_utc: str | None) -> dict:
+    """{"tipoff_et": "19:00 ET", "tipoff_taipei": "11/07 08:00 台北"} for a schedule
+    UTC stamp; {} when the stamp is missing or unparseable."""
+    if not tipoff_utc:
+        return {}
+    from zoneinfo import ZoneInfo
+    from src.Utils.tools import TAIPEI_TZ
+    try:
+        tip = datetime.fromisoformat(tipoff_utc.replace("Z", "+00:00"))
+    except ValueError:
+        return {}
+    return {
+        "tipoff_et": tip.astimezone(ZoneInfo("America/New_York")).strftime("%H:%M ET"),
+        "tipoff_taipei": tip.astimezone(TAIPEI_TZ).strftime("%m/%d %H:%M 台北"),
+    }
+
+
+def unpriced_games(schedule_games: list[dict], priced_pairs) -> list[dict]:
+    """Scheduled games that have not tipped off and have no line in the odds table.
+
+    `schedule_games` is the games_for_date() output, `priced_pairs` the (home, away)
+    names already stored. The odds board often opens in pieces (2026-11-04: 5 of 14
+    at 14:09Z, 2026-11-06: 2 of 9), and a page built from the odds table alone shows
+    the priced games as if they were the whole slate. Sorted by tip-off.
+    """
+    priced = set(priced_pairs)
+    out = [
+        g for g in schedule_games
+        if g.get("status") not in (2, 3) and (g["home"], g["away"]) not in priced
+    ]
+    return sorted(out, key=lambda g: g.get("tipoff_utc") or "")
+
+
 def fetch_boxscore(game_id: str, timeout: int = 30) -> dict | None:
     """Final-or-live boxscore summary, or None when the game has not tipped off
     (cdn answers 403 until then) or the request fails.

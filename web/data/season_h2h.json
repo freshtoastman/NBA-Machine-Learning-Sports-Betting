@@ -239,6 +239,16 @@
     "home_score": 114,
     "away_score": 106,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-11-06",
+    "home": "Cleveland Cavaliers",
+    "away": "Philadelphia 76ers",
+    "spread": 1.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Denver Nuggets:Oklahoma City Thunder": [
@@ -816,6 +826,16 @@
     "win_margin": -7,
     "home_score": 129,
     "away_score": 136,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-11-06",
+    "home": "Los Angeles Lakers",
+    "away": "Portland Trail Blazers",
+    "spread": 3.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "away"
    }
   ],

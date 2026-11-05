@@ -136,3 +136,39 @@ def test_referee_backfill_fills_only_null_season_games():
     row = con_ref.execute("SELECT official1_name, official3_name, spread, home_covered FROM referee_games "
                           "WHERE game_id='0022500001'").fetchone()
     assert row == ("A One", "C Three", -6.5, 1)
+
+
+def test_unpriced_games_are_scheduled_not_started_and_missing_from_the_odds_table():
+    # 2026-11-06 at 14:05Z: 9 games scheduled, the board had lines for 2 of them.
+    sched = [
+        {"home": "Los Angeles Lakers", "away": "Portland Trail Blazers", "status": 1,
+         "tipoff_utc": "2026-11-07T03:00:00Z"},
+        {"home": "Cleveland Cavaliers", "away": "Philadelphia 76ers", "status": 1,
+         "tipoff_utc": "2026-11-07T00:30:00Z"},
+        {"home": "Boston Celtics", "away": "Chicago Bulls", "status": 1,
+         "tipoff_utc": "2026-11-07T00:00:00Z"},
+        {"home": "Denver Nuggets", "away": "Utah Jazz", "status": 3,
+         "tipoff_utc": "2026-11-06T23:00:00Z"},      # final and never priced: not "未開盤"
+        {"home": "Miami Heat", "away": "Atlanta Hawks", "status": 2,
+         "tipoff_utc": "2026-11-06T23:30:00Z"},      # live
+        {"home": "LA Clippers", "away": "Dallas Mavericks", "status": None,
+         "tipoff_utc": None},
+    ]
+    priced = {("Cleveland Cavaliers", "Philadelphia 76ers")}
+    out = nba_cdn.unpriced_games(sched, priced)
+    # Sorted by tip-off; a missing stamp sorts first rather than raising.
+    assert [(g["away"], g["home"]) for g in out] == [
+        ("Dallas Mavericks", "LA Clippers"),
+        ("Chicago Bulls", "Boston Celtics"),
+        ("Portland Trail Blazers", "Los Angeles Lakers"),
+    ]
+    assert nba_cdn.unpriced_games(sched, {(g["home"], g["away"]) for g in sched}) == []
+
+
+def test_tipoff_labels_convert_utc_to_eastern_and_taipei():
+    assert nba_cdn.tipoff_labels("2026-11-07T00:30:00Z") == {
+        "tipoff_et": "19:30 ET", "tipoff_taipei": "11/07 08:30 台北"}
+    # Before the US clock change (2026-11-01) Eastern is UTC-4.
+    assert nba_cdn.tipoff_labels("2026-10-24T23:00:00Z")["tipoff_et"] == "19:00 ET"
+    assert nba_cdn.tipoff_labels(None) == {}
+    assert nba_cdn.tipoff_labels("TBD") == {}
