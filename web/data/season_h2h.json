@@ -111,9 +111,9 @@
     "home": "Brooklyn Nets",
     "away": "Charlotte Hornets",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 10,
+    "home_score": 114,
+    "away_score": 104,
     "ats_result": "home"
    }
   ],
@@ -211,10 +211,10 @@
     "home": "Phoenix Suns",
     "away": "Portland Trail Blazers",
     "spread": -2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -13,
+    "home_score": 119,
+    "away_score": 132,
+    "ats_result": "away"
    }
   ],
   "LA Clippers:Sacramento Kings": [
@@ -365,10 +365,10 @@
     "home": "New Orleans Pelicans",
     "away": "Utah Jazz",
     "spread": 4.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 7,
+    "home_score": 120,
+    "away_score": 113,
+    "ats_result": "home"
    }
   ],
   "LA Clippers:Los Angeles Lakers": [
@@ -481,9 +481,9 @@
     "home": "San Antonio Spurs",
     "away": "Dallas Mavericks",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 1,
+    "home_score": 112,
+    "away_score": 111,
     "ats_result": "away"
    }
   ],
@@ -639,9 +639,9 @@
     "home": "Detroit Pistons",
     "away": "Philadelphia 76ers",
     "spread": 2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -6,
+    "home_score": 106,
+    "away_score": 112,
     "ats_result": "away"
    }
   ],
@@ -927,10 +927,10 @@
     "home": "New York Knicks",
     "away": "Chicago Bulls",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 30,
+    "home_score": 135,
+    "away_score": 105,
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Minnesota Timberwolves": [
@@ -1187,10 +1187,10 @@
     "home": "Oklahoma City Thunder",
     "away": "Cleveland Cavaliers",
     "spread": 3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 8,
+    "home_score": 124,
+    "away_score": 116,
+    "ats_result": "home"
    }
   ],
   "Atlanta Hawks:Indiana Pacers": [
@@ -1331,9 +1331,9 @@
     "home": "Houston Rockets",
     "away": "Minnesota Timberwolves",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -10,
+    "home_score": 107,
+    "away_score": 117,
     "ats_result": "away"
    }
   ],
@@ -1343,10 +1343,10 @@
     "home": "Washington Wizards",
     "away": "Atlanta Hawks",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -15,
+    "home_score": 105,
+    "away_score": 120,
+    "ats_result": "away"
    }
   ],
   "Boston Celtics:Milwaukee Bucks": [
@@ -1355,9 +1355,9 @@
     "home": "Boston Celtics",
     "away": "Milwaukee Bucks",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 7,
+    "home_score": 109,
+    "away_score": 102,
     "ats_result": "away"
    }
   ],
@@ -1367,10 +1367,10 @@
     "home": "Denver Nuggets",
     "away": "Toronto Raptors",
     "spread": 4.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 19,
+    "home_score": 128,
+    "away_score": 109,
+    "ats_result": "home"
    }
   ],
   "Los Angeles Lakers:Sacramento Kings": [
@@ -1379,10 +1379,10 @@
     "home": "Sacramento Kings",
     "away": "Los Angeles Lakers",
     "spread": -12.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -13,
+    "home_score": 103,
+    "away_score": 116,
+    "ats_result": "away"
    }
   ],
   "LA Clippers:Miami Heat": [
@@ -1391,9 +1391,9 @@
     "home": "LA Clippers",
     "away": "Miami Heat",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -1,
+    "home_score": 116,
+    "away_score": 117,
     "ats_result": "home"
    }
   ],
@@ -1403,6 +1403,30 @@
     "home": "Memphis Grizzlies",
     "away": "Indiana Pacers",
     "spread": 5.5,
+    "win_margin": -4,
+    "home_score": 103,
+    "away_score": 107,
+    "ats_result": "away"
+   }
+  ],
+  "Orlando Magic:Phoenix Suns": [
+   {
+    "date": "2026-11-05",
+    "home": "Phoenix Suns",
+    "away": "Orlando Magic",
+    "spread": 1.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Golden State Warriors:Miami Heat": [
+   {
+    "date": "2026-11-05",
+    "home": "Golden State Warriors",
+    "away": "Miami Heat",
+    "spread": 7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
