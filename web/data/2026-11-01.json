@@ -1,7 +1,7 @@
 {
  "date": "2026-11-01",
  "is_today": false,
- "exported_at": "2026-11-05T22:09:05+08:00",
+ "exported_at": "2026-11-06T10:27:46+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -537,19 +537,19 @@
     "officials": [
      {
       "name": "Curtis Blair",
-      "games": 135,
-      "home_cover_pct": 51.1,
-      "significant": false,
-      "direction": null,
-      "p_value": 0.8634
-     },
-     {
-      "name": "Gediminas Petraitis",
-      "games": 150,
+      "games": 136,
       "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.935
+      "p_value": 0.9317
+     },
+     {
+      "name": "Gediminas Petraitis",
+      "games": 151,
+      "home_cover_pct": 50.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
      },
      {
       "name": "Che Flores",
@@ -560,7 +560,7 @@
       "p_value": 0.5811
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1162,8 +1162,8 @@
      },
      {
       "name": "Robert Hussey",
-      "games": 98,
-      "home_cover_pct": 50.0,
+      "games": 99,
+      "home_cover_pct": 49.5,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -1177,7 +1177,7 @@
       "p_value": 0.3245
      }
     ],
-    "avg_home_cover_pct": 51.0,
+    "avg_home_cover_pct": 50.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1779,19 +1779,19 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 151,
-      "home_cover_pct": 49.7,
+      "games": 152,
+      "home_cover_pct": 49.3,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9354
      },
      {
       "name": "Justin Van Duyne",
-      "games": 145,
-      "home_cover_pct": 49.0,
+      "games": 146,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.8682
+      "p_value": 0.804
      },
      {
       "name": "Derrick Collins",
@@ -1802,7 +1802,7 @@
       "p_value": 0.9132
      }
     ],
-    "avg_home_cover_pct": 49.2,
+    "avg_home_cover_pct": 48.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2404,22 +2404,22 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 144,
-      "home_cover_pct": 44.4,
+      "games": 145,
+      "home_cover_pct": 44.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.2112
+      "p_value": 0.1837
      },
      {
       "name": "Brian Forte",
-      "games": 137,
-      "home_cover_pct": 51.8,
+      "games": 138,
+      "home_cover_pct": 52.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.7327
+      "p_value": 0.6705
      }
     ],
-    "avg_home_cover_pct": 48.1,
+    "avg_home_cover_pct": 48.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
