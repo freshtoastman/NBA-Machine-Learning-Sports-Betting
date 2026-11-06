@@ -18,6 +18,7 @@ from src.Utils.tools import today_taipei, current_nba_season
 from src.Utils.SeasonStats import compute_season_stats, reset_cache as reset_season_cache
 from src.Utils.Teams import team_name_zh, team_logo_url
 from src.Utils.PregameFreeze import apply_freeze
+from src.Utils.LineMove import line_move_alert
 
 _ESPN_INJURY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries"
 _ESPN_HEADERS = {
@@ -510,6 +511,18 @@ def export_date(target_date: date) -> dict | None:
         except Exception:
             _existing_games = None
     games_dict = apply_freeze(_existing_games, games_dict, _export_stamp())
+
+    # Big move / favourite flip since the opener: the model cannot see the news
+    # behind it, so the card says so. After the freeze, so a finished game is
+    # compared with the pick that was locked, not a re-run.
+    for g in games_dict.values():
+        _lines = [h for h in g.get("odds_history") or [] if h.get("spread") is not None]
+        if not _lines:
+            continue
+        _alert = line_move_alert(g.get("spread_first"), g.get("spread_last"), g.get("winner"),
+                                 _lines[0].get("source"), _lines[-1].get("source"))
+        if _alert:
+            g["line_move_alert"] = _alert
 
     # Summary stats.
     n = len(games_list)

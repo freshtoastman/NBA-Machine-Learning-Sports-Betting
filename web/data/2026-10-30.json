@@ -1,7 +1,7 @@
 {
  "date": "2026-10-30",
  "is_today": false,
- "exported_at": "2026-11-06T15:01:57+08:00",
+ "exported_at": "2026-11-06T23:37:57+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -664,7 +664,14 @@
     "home_team_odds": -106,
     "away_team_odds": -110
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 3.0,
+    "flip": true,
+    "late_side": "away",
+    "against_model": true,
+    "mixed_source": false
+   }
   },
   "Detroit Pistons:Brooklyn Nets": {
    "home_team": "Brooklyn Nets",
@@ -3221,7 +3228,14 @@
     "home_team_odds": 128,
     "away_team_odds": -152
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 2.0,
+    "flip": false,
+    "late_side": "away",
+    "against_model": true,
+    "mixed_source": false
+   }
   },
   "LA Clippers:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -5768,7 +5782,14 @@
     "home_team_odds": 126,
     "away_team_odds": -148
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 2.0,
+    "flip": false,
+    "late_side": "away",
+    "against_model": false,
+    "mixed_source": false
+   }
   },
   "Denver Nuggets:Phoenix Suns": {
    "home_team": "Phoenix Suns",

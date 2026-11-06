@@ -1,7 +1,7 @@
 {
  "date": "2026-10-31",
  "is_today": false,
- "exported_at": "2026-11-06T15:01:56+08:00",
+ "exported_at": "2026-11-06T23:37:57+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -656,7 +656,14 @@
     "home_team_odds": 260,
     "away_team_odds": -320
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 2.0,
+    "flip": false,
+    "late_side": "away",
+    "against_model": false,
+    "mixed_source": false
+   }
   },
   "Philadelphia 76ers:Charlotte Hornets": {
    "home_team": "Charlotte Hornets",
@@ -3166,7 +3173,14 @@
     "home_team_odds": -360,
     "away_team_odds": 290
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 2.0,
+    "flip": false,
+    "late_side": "away",
+    "against_model": true,
+    "mixed_source": false
+   }
   },
   "Minnesota Timberwolves:San Antonio Spurs": {
    "home_team": "San Antonio Spurs",
@@ -4425,7 +4439,14 @@
     "home_team_odds": -148,
     "away_team_odds": 126
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "line_move_alert": {
+    "points": 2.0,
+    "flip": false,
+    "late_side": "away",
+    "against_model": true,
+    "mixed_source": false
+   }
   }
  },
  "unpriced_games": [],

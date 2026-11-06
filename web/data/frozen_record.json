@@ -76,6 +76,66 @@
    null
   ]
  },
+ "market_baseline": {
+  "favorite": {
+   "wins": 73,
+   "losses": 33,
+   "n": 106,
+   "hit_rate": 68.9,
+   "ci95": [
+    59.5,
+    76.9
+   ]
+  },
+  "model_when_disagreeing": {
+   "wins": 11,
+   "losses": 20,
+   "n": 31,
+   "hit_rate": 35.5,
+   "ci95": [
+    21.1,
+    53.1
+   ]
+  },
+  "n_prob": 107,
+  "logloss_model": 0.6571,
+  "logloss_market": 0.5694,
+  "brier_model": 0.2314,
+  "brier_market": 0.1953
+ },
+ "ml_by_line_move": {
+  "min_points": 1.0,
+  "toward": {
+   "wins": 14,
+   "losses": 6,
+   "n": 20,
+   "hit_rate": 70.0,
+   "ci95": [
+    48.1,
+    85.5
+   ]
+  },
+  "flat": {
+   "wins": 30,
+   "losses": 18,
+   "n": 48,
+   "hit_rate": 62.5,
+   "ci95": [
+    48.4,
+    74.8
+   ]
+  },
+  "against": {
+   "wins": 21,
+   "losses": 18,
+   "n": 39,
+   "hit_rate": 53.8,
+   "ci95": [
+    38.6,
+    68.4
+   ]
+  }
+ },
  "pending_games": 9,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
@@ -154,6 +214,66 @@
      null,
      null
     ]
+   },
+   "market_baseline": {
+    "favorite": {
+     "wins": 73,
+     "losses": 33,
+     "n": 106,
+     "hit_rate": 68.9,
+     "ci95": [
+      59.5,
+      76.9
+     ]
+    },
+    "model_when_disagreeing": {
+     "wins": 11,
+     "losses": 20,
+     "n": 31,
+     "hit_rate": 35.5,
+     "ci95": [
+      21.1,
+      53.1
+     ]
+    },
+    "n_prob": 107,
+    "logloss_model": 0.6571,
+    "logloss_market": 0.5694,
+    "brier_model": 0.2314,
+    "brier_market": 0.1953
+   },
+   "ml_by_line_move": {
+    "min_points": 1.0,
+    "toward": {
+     "wins": 14,
+     "losses": 6,
+     "n": 20,
+     "hit_rate": 70.0,
+     "ci95": [
+      48.1,
+      85.5
+     ]
+    },
+    "flat": {
+     "wins": 30,
+     "losses": 18,
+     "n": 48,
+     "hit_rate": 62.5,
+     "ci95": [
+      48.4,
+      74.8
+     ]
+    },
+    "against": {
+     "wins": 21,
+     "losses": 18,
+     "n": 39,
+     "hit_rate": 53.8,
+     "ci95": [
+      38.6,
+      68.4
+     ]
+    }
    }
   }
  },
@@ -192,5 +312,5 @@
    "hit": false
   }
  ],
- "generated_at": "2026-11-06T15:01:57"
+ "generated_at": "2026-11-06T23:37:58"
 }

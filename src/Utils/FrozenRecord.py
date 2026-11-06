@@ -62,6 +62,26 @@ def roi(returns: list[float]) -> dict:
             "wins": sum(1 for r in returns if r > 0), "losses": sum(1 for r in returns if r < 0)}
 
 
+def fair_home_prob(home_odds, away_odds) -> float | None:
+    """Market probability of a home win with the vig removed (None if a price is missing)."""
+    def implied(o):
+        o = float(o)
+        return -o / (-o + 100.0) if o < 0 else 100.0 / (o + 100.0)
+    try:
+        ph, pa = implied(home_odds), implied(away_odds)
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+    return ph / (ph + pa) if ph + pa > 0 else None
+
+
+def _log_loss(p: float, y: int) -> float:
+    p = min(max(p, 1e-6), 1 - 1e-6)
+    return -(y * math.log(p) + (1 - y) * math.log(1 - p))
+
+
+LINE_MOVE_POINTS = 1.0   # frozen spread vs opener, in points, to count as "moved"
+
+
 def season_of(iso: str) -> str:
     d = date.fromisoformat(iso[:10])
     y = d.year if d.month >= 10 else d.year - 1
@@ -99,6 +119,14 @@ class _Bucket:
         self.ml_golden_returns = []
         self.playoff_best = [0, 0]
         self.dates = set()
+        # Market baseline on the same graded games: is the model worth more than
+        # "take the favourite"? (frozen moneyline, vig removed)
+        self.favorite = [0, 0]
+        self.disagree = [0, 0]          # model pick != favourite: how often the model is right
+        self.prob_n = 0
+        self.ll_model = self.ll_market = self.brier_model = self.brier_market = 0.0
+        # Model ML record by where the spread went between the opener and the frozen line.
+        self.ml_by_move = {"toward": [0, 0], "flat": [0, 0], "against": [0, 0]}
 
     def add(self, iso: str, g: dict):
         self.frozen += 1
@@ -113,6 +141,7 @@ class _Bucket:
         if g.get("winner") in ("home", "away"):
             self.ml[0] += g["winner"] == aw
             self.ml[1] += 1
+            self._add_market_baseline(g, aw)
         if g.get("ou_pick") in ("OVER", "UNDER") and g.get("actual_ou_result") in ("OVER", "UNDER"):
             self.ou[0] += g["ou_pick"] == g["actual_ou_result"]
             self.ou[1] += 1
@@ -141,6 +170,47 @@ class _Bucket:
                 if g.get("ml_shadow_golden"):
                     self.ml_golden_returns.append(profit)
 
+    def _add_market_baseline(self, g: dict, aw: str):
+        hit = g["winner"] == aw
+        first, frozen = g.get("spread_first"), g.get("spread")
+        if first is not None and frozen is not None:
+            toward = (frozen - first) if g["winner"] == "home" else (first - frozen)
+            key = "toward" if toward >= LINE_MOVE_POINTS else "against" if toward <= -LINE_MOVE_POINTS else "flat"
+            self.ml_by_move[key][0] += hit
+            self.ml_by_move[key][1] += 1
+        fair = fair_home_prob(g.get("home_team_odds"), g.get("away_team_odds"))
+        if fair is None:
+            return
+        if fair != 0.5:
+            fav = "home" if fair > 0.5 else "away"
+            self.favorite[0] += fav == aw
+            self.favorite[1] += 1
+            if fav != g["winner"]:
+                self.disagree[0] += hit
+                self.disagree[1] += 1
+        conf = g.get("home_confidence")
+        if conf is None:
+            return
+        y, p = int(aw == "home"), float(conf) / 100.0
+        self.prob_n += 1
+        self.ll_model += _log_loss(p, y)
+        self.ll_market += _log_loss(fair, y)
+        self.brier_model += (p - y) ** 2
+        self.brier_market += (fair - y) ** 2
+
+    def _market_baseline(self) -> dict:
+        n = self.prob_n
+        avg = lambda total: round(total / n, 4) if n else None
+        return {
+            "favorite": rec(*self.favorite),
+            "model_when_disagreeing": rec(*self.disagree),
+            "n_prob": n,
+            "logloss_model": avg(self.ll_model),
+            "logloss_market": avg(self.ll_market),
+            "brier_model": avg(self.brier_model),
+            "brier_market": avg(self.brier_market),
+        }
+
     def summary(self) -> dict:
         return {
             "frozen_games": self.frozen,
@@ -154,6 +224,9 @@ class _Bucket:
             "ml_shadow_value_roi": roi(self.ml_shadow_returns),
             "ml_shadow_golden_roi": roi(self.ml_golden_returns),
             "playoff_best_gold_silver": rec(*self.playoff_best),
+            "market_baseline": self._market_baseline(),
+            "ml_by_line_move": {"min_points": LINE_MOVE_POINTS,
+                                **{k: rec(*v) for k, v in self.ml_by_move.items()}},
         }
 
 

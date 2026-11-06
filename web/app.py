@@ -568,6 +568,16 @@ def _walk_forward_block() -> dict | None:
     }
 
 
+def _move_split_note(moved: dict) -> str | None:
+    """'同向 14-6 · 沒動 30-18' for the line-move row of the frozen record."""
+    parts = []
+    for key, label in (("toward", "同向"), ("flat", "沒動")):
+        r = moved.get(key) or {}
+        if r.get("n"):
+            parts.append(f"{label} {r['wins']}-{r['losses']}（{r['hit_rate']}%）")
+    return "對照：" + " · ".join(parts) if parts else None
+
+
 def load_frozen_record() -> dict | None:
     """Frozen pre-game record (web/data/frozen_record.json, src/Utils/FrozenRecord.py):
     the only live record the dashboard may quote. Shaped into audit-style blocks."""
@@ -619,6 +629,23 @@ def load_frozen_record() -> dict | None:
     ]
     if (fr.get("playoff_best_gold_silver") or {}).get("n"):
         fr["blocks"][0]["items"].append(item("季後賽 GOLD+SILVER 主訊號", fr["playoff_best_gold_silver"]))
+    # Market baseline on the same frozen games: what "just take the favourite" did.
+    mb = fr.get("market_baseline") or {}
+    if (mb.get("favorite") or {}).get("n"):
+        fav = mb["favorite"]
+        ll = ""
+        if mb.get("logloss_model") is not None:
+            ll = (f" · 對數損失 市場 {mb['logloss_market']:.3f}／模型 {mb['logloss_model']:.3f}"
+                  "（越低越準，擲硬幣 0.693）")
+        moved = (fr.get("ml_by_line_move") or {})
+        pts = moved.get("min_points", 1.0)
+        fr["blocks"].append({"label_zh": "市場基準（同一批凍結比賽）", "items": [
+            item("只押盤口熱門（不用模型）", fav,
+                 note=f"95% CI {round(fav['ci95'][0])}–{round(fav['ci95'][1])}%{ll}"),
+            item("模型與熱門相反時，模型的勝率", mb.get("model_when_disagreeing")),
+            item(f"盤口往模型反方向移動 ≥{pts:g} 分時，模型的勝率", moved.get("against"),
+                 note=_move_split_note(moved)),
+        ]})
     fr["has_graded"] = bool(fr.get("graded_games"))
     return fr
 

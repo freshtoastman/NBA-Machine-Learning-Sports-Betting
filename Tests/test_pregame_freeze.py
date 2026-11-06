@@ -1,4 +1,5 @@
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -185,6 +186,46 @@ class TestFrozenRecord(unittest.TestCase):
             self.assertFalse(out["reopen"]["ml_value"]["met"])
             self.assertIn("2026-27", out["by_season"])
             self.assertTrue((d / "frozen_record.json").exists())
+
+    def test_market_baseline_on_the_same_frozen_games(self):
+        """Favourite record, model-vs-market log loss and the line-move split are
+        computed from the frozen moneyline / spread of the graded games only."""
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            prev = {
+                # Model on the favourite (home -150), line moved 2 toward it, wins.
+                "A": _pregame_game(spread_first=1.5),
+                # Model on the dog (away +130) against the favourite, line flat, loses.
+                "B": _pregame_game(winner="away", home_confidence=45.0, away_confidence=55.0,
+                                   spread_first=3.5),
+                # Model on the favourite, line moved 4 against it, wins anyway.
+                "C": _pregame_game(spread_first=7.5),
+            }
+            PregameFreeze.apply_freeze(None, prev, "t1")
+            done = {k: dict(g, home_score=110, away_score=100, actual_winner="home")
+                    for k, g in prev.items()}
+            PregameFreeze.apply_freeze(prev, done, "t2")
+            self._write_day(d, "2026-10-21", done)
+
+            out = FrozenRecord.write_frozen_record(d, since="2026-10-02")
+            mb = out["market_baseline"]
+            self.assertEqual((mb["favorite"]["wins"], mb["favorite"]["n"]), (3, 3))
+            self.assertEqual((mb["model_when_disagreeing"]["wins"], mb["model_when_disagreeing"]["n"]), (0, 1))
+            self.assertEqual(mb["n_prob"], 3)
+            fair = (150 / 250) / (150 / 250 + 100 / 230)
+            self.assertAlmostEqual(mb["logloss_market"], -math.log(fair), places=3)
+            self.assertAlmostEqual(mb["logloss_model"],
+                                   -(2 * math.log(0.61) + math.log(0.45)) / 3, places=3)
+            self.assertLess(mb["logloss_market"], mb["logloss_model"])
+            moved = out["ml_by_line_move"]
+            self.assertEqual((moved["toward"]["wins"], moved["toward"]["n"]), (1, 1))
+            self.assertEqual((moved["flat"]["wins"], moved["flat"]["n"]), (0, 1))
+            self.assertEqual((moved["against"]["wins"], moved["against"]["n"]), (1, 1))
+
+    def test_fair_home_prob_removes_the_vig(self):
+        self.assertAlmostEqual(FrozenRecord.fair_home_prob(-110, -110), 0.5)
+        self.assertGreater(FrozenRecord.fair_home_prob(-290, 235), 0.7)
+        self.assertIsNone(FrozenRecord.fair_home_prob(None, 235))
 
     def test_odds_only_stub_is_frozen_but_not_graded(self):
         """Opening week: the export carries the line but no model output. The game
