@@ -244,7 +244,7 @@
     "date": "2026-11-06",
     "home": "Cleveland Cavaliers",
     "away": "Philadelphia 76ers",
-    "spread": -1.5,
+    "spread": -2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1377,6 +1377,16 @@
     "home_score": 105,
     "away_score": 120,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-11-06",
+    "home": "Atlanta Hawks",
+    "away": "Washington Wizards",
+    "spread": 6.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Boston Celtics:Milwaukee Bucks": [
@@ -1445,10 +1455,10 @@
     "home": "Phoenix Suns",
     "away": "Orlando Magic",
     "spread": 1.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 13,
+    "home_score": 117,
+    "away_score": 104,
+    "ats_result": "home"
    }
   ],
   "Golden State Warriors:Miami Heat": [
@@ -1457,10 +1467,10 @@
     "home": "Golden State Warriors",
     "away": "Miami Heat",
     "spread": 3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 20,
+    "home_score": 120,
+    "away_score": 100,
+    "ats_result": "home"
    }
   ],
   "Minnesota Timberwolves:New Orleans Pelicans": [
@@ -1485,6 +1495,42 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "home"
+   }
+  ],
+  "Boston Celtics:Charlotte Hornets": [
+   {
+    "date": "2026-11-06",
+    "home": "Charlotte Hornets",
+    "away": "Boston Celtics",
+    "spread": -8.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
+   }
+  ],
+  "Memphis Grizzlies:Oklahoma City Thunder": [
+   {
+    "date": "2026-11-06",
+    "home": "Memphis Grizzlies",
+    "away": "Oklahoma City Thunder",
+    "spread": -3.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
+   }
+  ],
+  "Dallas Mavericks:Utah Jazz": [
+   {
+    "date": "2026-11-06",
+    "home": "Dallas Mavericks",
+    "away": "Utah Jazz",
+    "spread": 7.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ]
  }
