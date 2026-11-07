@@ -2,38 +2,38 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 123,
- "graded_games": 107,
+ "frozen_games": 132,
+ "graded_games": 116,
  "settled_without_prediction": 16,
- "game_dates": 16,
+ "game_dates": 17,
  "ml": {
-  "wins": 65,
-  "losses": 42,
-  "n": 107,
-  "hit_rate": 60.7,
+  "wins": 73,
+  "losses": 43,
+  "n": 116,
+  "hit_rate": 62.9,
   "ci95": [
-   51.3,
-   69.5
+   53.9,
+   71.2
   ]
  },
  "ou": {
-  "wins": 52,
-  "losses": 55,
-  "n": 107,
-  "hit_rate": 48.6,
+  "wins": 55,
+  "losses": 61,
+  "n": 116,
+  "hit_rate": 47.4,
   "ci95": [
-   39.3,
-   58.0
+   38.6,
+   56.4
   ]
  },
  "ats_model": {
-  "wins": 47,
-  "losses": 60,
-  "n": 107,
-  "hit_rate": 43.9,
+  "wins": 53,
+  "losses": 63,
+  "n": 116,
+  "hit_rate": 45.7,
   "ci95": [
-   34.9,
-   53.4
+   36.9,
+   54.7
   ]
  },
  "ats_shadow_value": {
@@ -47,23 +47,23 @@
   ]
  },
  "ml_shadow_value_roi": {
-  "n": 16,
-  "roi_pct": -20.2,
+  "n": 19,
+  "roi_pct": -10.9,
   "ci95": [
-   -56.5,
-   16.1
+   -43.0,
+   21.1
   ],
-  "wins": 9,
+  "wins": 12,
   "losses": 7
  },
  "ml_shadow_golden_roi": {
-  "n": 9,
-  "roi_pct": -28.2,
+  "n": 10,
+  "roi_pct": -20.1,
   "ci95": [
-   -83.9,
-   27.6
+   -72.4,
+   32.3
   ],
-  "wins": 4,
+  "wins": 5,
   "losses": 5
  },
  "playoff_best_gold_silver": {
@@ -78,101 +78,101 @@
  },
  "market_baseline": {
   "favorite": {
-   "wins": 73,
-   "losses": 33,
-   "n": 106,
-   "hit_rate": 68.9,
+   "wins": 81,
+   "losses": 34,
+   "n": 115,
+   "hit_rate": 70.4,
    "ci95": [
-    59.5,
-    76.9
+    61.5,
+    78.0
    ]
   },
   "model_when_disagreeing": {
-   "wins": 11,
-   "losses": 20,
-   "n": 31,
-   "hit_rate": 35.5,
+   "wins": 12,
+   "losses": 21,
+   "n": 33,
+   "hit_rate": 36.4,
    "ci95": [
-    21.1,
-    53.1
+    22.2,
+    53.4
    ]
   },
-  "n_prob": 107,
-  "logloss_model": 0.6571,
-  "logloss_market": 0.5694,
-  "brier_model": 0.2314,
-  "brier_market": 0.1953
+  "n_prob": 116,
+  "logloss_model": 0.6412,
+  "logloss_market": 0.5587,
+  "brier_model": 0.2245,
+  "brier_market": 0.1902
  },
  "ml_by_line_move": {
   "min_points": 1.0,
   "toward": {
-   "wins": 14,
+   "wins": 17,
    "losses": 6,
-   "n": 20,
-   "hit_rate": 70.0,
+   "n": 23,
+   "hit_rate": 73.9,
    "ci95": [
-    48.1,
-    85.5
+    53.5,
+    87.5
    ]
   },
   "flat": {
-   "wins": 30,
+   "wins": 31,
    "losses": 18,
-   "n": 48,
-   "hit_rate": 62.5,
+   "n": 49,
+   "hit_rate": 63.3,
    "ci95": [
-    48.4,
-    74.8
+    49.3,
+    75.3
    ]
   },
   "against": {
-   "wins": 21,
-   "losses": 18,
-   "n": 39,
-   "hit_rate": 53.8,
+   "wins": 25,
+   "losses": 19,
+   "n": 44,
+   "hit_rate": 56.8,
    "ci95": [
-    38.6,
-    68.4
+    42.2,
+    70.3
    ]
   }
  },
- "pending_games": 9,
+ "pending_games": 7,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 123,
-   "graded_games": 107,
+   "frozen_games": 132,
+   "graded_games": 116,
    "settled_without_prediction": 16,
-   "game_dates": 16,
+   "game_dates": 17,
    "ml": {
-    "wins": 65,
-    "losses": 42,
-    "n": 107,
-    "hit_rate": 60.7,
+    "wins": 73,
+    "losses": 43,
+    "n": 116,
+    "hit_rate": 62.9,
     "ci95": [
-     51.3,
-     69.5
+     53.9,
+     71.2
     ]
    },
    "ou": {
-    "wins": 52,
-    "losses": 55,
-    "n": 107,
-    "hit_rate": 48.6,
+    "wins": 55,
+    "losses": 61,
+    "n": 116,
+    "hit_rate": 47.4,
     "ci95": [
-     39.3,
-     58.0
+     38.6,
+     56.4
     ]
    },
    "ats_model": {
-    "wins": 47,
-    "losses": 60,
-    "n": 107,
-    "hit_rate": 43.9,
+    "wins": 53,
+    "losses": 63,
+    "n": 116,
+    "hit_rate": 45.7,
     "ci95": [
-     34.9,
-     53.4
+     36.9,
+     54.7
     ]
    },
    "ats_shadow_value": {
@@ -186,23 +186,23 @@
     ]
    },
    "ml_shadow_value_roi": {
-    "n": 16,
-    "roi_pct": -20.2,
+    "n": 19,
+    "roi_pct": -10.9,
     "ci95": [
-     -56.5,
-     16.1
+     -43.0,
+     21.1
     ],
-    "wins": 9,
+    "wins": 12,
     "losses": 7
    },
    "ml_shadow_golden_roi": {
-    "n": 9,
-    "roi_pct": -28.2,
+    "n": 10,
+    "roi_pct": -20.1,
     "ci95": [
-     -83.9,
-     27.6
+     -72.4,
+     32.3
     ],
-    "wins": 4,
+    "wins": 5,
     "losses": 5
    },
    "playoff_best_gold_silver": {
@@ -217,61 +217,61 @@
    },
    "market_baseline": {
     "favorite": {
-     "wins": 73,
-     "losses": 33,
-     "n": 106,
-     "hit_rate": 68.9,
+     "wins": 81,
+     "losses": 34,
+     "n": 115,
+     "hit_rate": 70.4,
      "ci95": [
-      59.5,
-      76.9
+      61.5,
+      78.0
      ]
     },
     "model_when_disagreeing": {
-     "wins": 11,
-     "losses": 20,
-     "n": 31,
-     "hit_rate": 35.5,
+     "wins": 12,
+     "losses": 21,
+     "n": 33,
+     "hit_rate": 36.4,
      "ci95": [
-      21.1,
-      53.1
+      22.2,
+      53.4
      ]
     },
-    "n_prob": 107,
-    "logloss_model": 0.6571,
-    "logloss_market": 0.5694,
-    "brier_model": 0.2314,
-    "brier_market": 0.1953
+    "n_prob": 116,
+    "logloss_model": 0.6412,
+    "logloss_market": 0.5587,
+    "brier_model": 0.2245,
+    "brier_market": 0.1902
    },
    "ml_by_line_move": {
     "min_points": 1.0,
     "toward": {
-     "wins": 14,
+     "wins": 17,
      "losses": 6,
-     "n": 20,
-     "hit_rate": 70.0,
+     "n": 23,
+     "hit_rate": 73.9,
      "ci95": [
-      48.1,
-      85.5
+      53.5,
+      87.5
      ]
     },
     "flat": {
-     "wins": 30,
+     "wins": 31,
      "losses": 18,
-     "n": 48,
-     "hit_rate": 62.5,
+     "n": 49,
+     "hit_rate": 63.3,
      "ci95": [
-      48.4,
-      74.8
+      49.3,
+      75.3
      ]
     },
     "against": {
-     "wins": 21,
-     "losses": 18,
-     "n": 39,
-     "hit_rate": 53.8,
+     "wins": 25,
+     "losses": 19,
+     "n": 44,
+     "hit_rate": 56.8,
      "ci95": [
-      38.6,
-      68.4
+      42.2,
+      70.3
      ]
     }
    }
@@ -290,16 +290,16 @@
    "rule": "ml_shadow_value picks settled at the frozen moneyline: n >= min_picks AND ROI 95% CI lower bound > roi_ci_lower_pct",
    "min_picks": 200,
    "roi_ci_lower_pct": 0.0,
-   "n": 16,
-   "roi_ci_lower": -56.5,
+   "n": 19,
+   "roi_ci_lower": -43.0,
    "met": false
   },
   "ou": {
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 107,
-   "ci_lower": 39.3,
+   "n": 116,
+   "ci_lower": 38.6,
    "met": false
   }
  },
@@ -312,5 +312,5 @@
    "hit": false
   }
  ],
- "generated_at": "2026-11-07T06:02:01"
+ "generated_at": "2026-11-07T15:02:04"
 }
