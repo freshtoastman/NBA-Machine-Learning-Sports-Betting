@@ -946,7 +946,7 @@
                         {# Big move / favourite flip: the model cannot see the news behind it #}
                         {% set _al = game.line_move_alert %}
                         {% if _al %}
-                        <span class="spread-move-alert{% if _al.against_model %} against-model{% endif %}" title="開盤後盤口大幅移動，通常是傷兵或輪休消息。模型只用球隊數據，卡片上的機率沒有反映這個消息。&#10;這只是提醒，不是推薦：本季跟著晚盤方下注的過盤率約五成。">⚠️ {% if _al.flip %}熱門易主 · {% endif %}盤口往{{ game.home_team_zh if _al.late_side == 'home' else game.away_team_zh }}移動 {{ '%.1f'|format(_al.points) }} 分{% if _al.against_model %} · 與模型勝負方向相反{% endif %}{% if _al.mixed_source %} · 開盤線來自其他書商{% endif %}</span>
+                        <span class="spread-move-alert{% if _al.against_model %} against-model{% endif %}" title="開盤後盤口大幅移動，通常是傷兵或輪休消息。模型只用球隊數據，卡片上的機率沒有反映這個消息。&#10;這只是提醒，不是推薦：本季跟著晚盤方下注的過盤率約四成。">⚠️ {% if _al.flip %}熱門易主 · {% endif %}盤口往{{ game.home_team_zh if _al.late_side == 'home' else game.away_team_zh }}移動 {{ '%.1f'|format(_al.points) }} 分{% if _al.against_model %} · 與模型勝負方向相反{% endif %}{% if _al.mixed_source %} · 開盤線來自其他書商{% if _al.same_source_points is defined %}（現書商自身移動 {{ '%.1f'|format(_al.same_source_points) }} 分）{% endif %}{% endif %}</span>
                         {% endif %}
                         {% if _hist_points|length >= 2 %}
                         {% set _vals = [] %}

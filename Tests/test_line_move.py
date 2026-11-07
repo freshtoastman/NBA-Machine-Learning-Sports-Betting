@@ -46,6 +46,30 @@ class TestLineMoveAlert(unittest.TestCase):
         alert = line_move_alert(-5.0, 1.5, "home", "sbr_fanatics_open", "sbr_fanduel")
         self.assertTrue(alert["flip"])
         self.assertTrue(alert["mixed_source"])
+        self.assertNotIn("same_source_points", alert)
+
+    def test_same_book_move_behind_a_fallback_opener(self):
+        # 2026-11-06 TOR @ MIL: DraftKings opener -7.5, FanDuel -7.5 -> -7.5 -> -4.5.
+        history = [{"spread": -7.5, "source": "sbr_draftkings_open"},
+                   {"spread": -7.5, "source": "sbr_fanduel"},
+                   {"spread": -7.5, "source": "sbr_fanduel"},
+                   {"spread": -4.5, "source": "sbr_fanduel"}]
+        alert = line_move_alert(-7.5, -4.5, "away", "sbr_draftkings_open", "sbr_fanduel", history)
+        self.assertTrue(alert["mixed_source"])
+        self.assertEqual(alert["same_source_points"], 3.0)
+
+    def test_same_book_points_show_a_book_difference(self):
+        # Fanatics-style artifact: the current book never moved at all.
+        history = [{"spread": -5.0, "source": "sbr_fanatics_open"},
+                   {"spread": 1.5, "source": "sbr_fanduel"}]
+        alert = line_move_alert(-5.0, 1.5, "home", "sbr_fanatics_open", "sbr_fanduel", history)
+        self.assertEqual(alert["same_source_points"], 0.0)
+
+    def test_same_book_points_only_when_sources_differ(self):
+        history = [{"spread": 7.5, "source": "sbr_fanduel_open"},
+                   {"spread": 3.5, "source": "sbr_fanduel"}]
+        alert = line_move_alert(7.5, 3.5, "home", "sbr_fanduel_open", "sbr_fanduel", history)
+        self.assertNotIn("same_source_points", alert)
 
 
 if __name__ == "__main__":

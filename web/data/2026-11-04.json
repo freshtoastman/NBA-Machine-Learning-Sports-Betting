@@ -1,7 +1,7 @@
 {
  "date": "2026-11-04",
  "is_today": false,
- "exported_at": "2026-11-07T15:02:03+08:00",
+ "exported_at": "2026-11-07T22:16:59+08:00",
  "summary": {
   "games": 14,
   "model_games": 14,
@@ -553,14 +553,14 @@
      },
      {
       "name": "Nate Green",
-      "games": 119,
-      "home_cover_pct": 48.7,
+      "games": 120,
+      "home_cover_pct": 49.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.8546
+      "p_value": 0.9273
      }
     ],
-    "avg_home_cover_pct": 48.6,
+    "avg_home_cover_pct": 48.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1834,11 +1834,11 @@
      },
      {
       "name": "John Butler",
-      "games": 131,
-      "home_cover_pct": 51.1,
+      "games": 132,
+      "home_cover_pct": 50.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.8614
+      "p_value": 0.9307
      },
      {
       "name": "Jonathan Sterling",
@@ -1849,7 +1849,7 @@
       "p_value": 0.0699
      }
     ],
-    "avg_home_cover_pct": 55.7,
+    "avg_home_cover_pct": 55.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2475,19 +2475,19 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 145,
-      "home_cover_pct": 44.1,
+      "games": 146,
+      "home_cover_pct": 44.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.1837
+      "p_value": 0.2143
      },
      {
       "name": "Justin Van Duyne",
-      "games": 146,
-      "home_cover_pct": 48.6,
+      "games": 147,
+      "home_cover_pct": 48.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.804
+      "p_value": 0.7416
      }
     ],
     "avg_home_cover_pct": 46.4,
@@ -3131,22 +3131,22 @@
      },
      {
       "name": "Brent Barnaky",
-      "games": 143,
-      "home_cover_pct": 49.0,
+      "games": 144,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.8672
+      "p_value": 0.8027
      },
      {
       "name": "Simone Jelks",
-      "games": 92,
-      "home_cover_pct": 39.1,
+      "games": 93,
+      "home_cover_pct": 38.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.047
+      "p_value": 0.0375
      }
     ],
-    "avg_home_cover_pct": 46.3,
+    "avg_home_cover_pct": 46.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4428,21 +4428,21 @@
      },
      {
       "name": "Ray Acosta",
-      "games": 151,
-      "home_cover_pct": 49.0,
+      "games": 152,
+      "home_cover_pct": 48.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8708
+      "p_value": 0.8078
      },
      {
       "name": "Brent Haskill",
-      "games": 17,
-      "home_cover_pct": 47.1,
+      "games": 18,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 48.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -6336,30 +6336,30 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 152,
-      "home_cover_pct": 49.3,
+      "games": 153,
+      "home_cover_pct": 49.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.9354
+      "p_value": 1.0
      },
      {
       "name": "Jacyn Goble",
-      "games": 144,
-      "home_cover_pct": 50.7,
+      "games": 145,
+      "home_cover_pct": 51.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.9336
+      "p_value": 0.8682
      },
      {
       "name": "Robert Hussey",
-      "games": 99,
-      "home_cover_pct": 49.5,
+      "games": 100,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 50.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -7602,11 +7602,11 @@
     "officials": [
      {
       "name": "Sean Wright",
-      "games": 130,
-      "home_cover_pct": 51.5,
+      "games": 131,
+      "home_cover_pct": 51.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.7926
+      "p_value": 0.7269
      },
      {
       "name": "Sha'Rae Mitchell",
@@ -7625,7 +7625,7 @@
       "p_value": 0.3318
      }
     ],
-    "avg_home_cover_pct": 53.0,
+    "avg_home_cover_pct": 53.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -8252,11 +8252,11 @@
      },
      {
       "name": "JB DeRosa",
-      "games": 120,
-      "home_cover_pct": 55.0,
+      "games": 121,
+      "home_cover_pct": 55.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.3153
+      "p_value": 0.2753
      },
      {
       "name": "Intae Hwang",
@@ -8267,7 +8267,7 @@
       "p_value": 0.8974
      }
     ],
-    "avg_home_cover_pct": 51.9,
+    "avg_home_cover_pct": 52.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -8874,6 +8874,33 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Ben Taylor",
+      "games": 96,
+      "home_cover_pct": 47.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7596
+     },
+     {
+      "name": "Mousa Dagher",
+      "games": 121,
+      "home_cover_pct": 43.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2029
+     }
+    ],
+    "avg_home_cover_pct": 45.8,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {

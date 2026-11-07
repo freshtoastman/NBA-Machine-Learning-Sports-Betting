@@ -520,7 +520,7 @@ def export_date(target_date: date) -> dict | None:
         if not _lines:
             continue
         _alert = line_move_alert(g.get("spread_first"), g.get("spread_last"), g.get("winner"),
-                                 _lines[0].get("source"), _lines[-1].get("source"))
+                                 _lines[0].get("source"), _lines[-1].get("source"), _lines)
         if _alert:
             g["line_move_alert"] = _alert
 

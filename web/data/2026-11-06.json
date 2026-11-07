@@ -1,7 +1,7 @@
 {
  "date": "2026-11-06",
  "is_today": false,
- "exported_at": "2026-11-07T15:02:02+08:00",
+ "exported_at": "2026-11-07T22:16:58+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -533,6 +533,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Kevin Scott",
+      "games": 145,
+      "home_cover_pct": 48.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7399
+     },
+     {
+      "name": "JB DeRosa",
+      "games": 121,
+      "home_cover_pct": 55.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2753
+     },
+     {
+      "name": "Pat O'Connell",
+      "games": 50,
+      "home_cover_pct": 72.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0026
+     }
+    ],
+    "avg_home_cover_pct": 58.6,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -651,7 +686,8 @@
     "flip": true,
     "late_side": "away",
     "against_model": true,
-    "mixed_source": true
+    "mixed_source": true,
+    "same_source_points": 0.0
    }
   },
   "Portland Trail Blazers:Los Angeles Lakers": {
@@ -1154,6 +1190,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Sean Wright",
+      "games": 131,
+      "home_cover_pct": 51.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7269
+     },
+     {
+      "name": "Sean Corbin",
+      "games": 140,
+      "home_cover_pct": 53.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.447
+     },
+     {
+      "name": "J.T. Orr",
+      "games": 104,
+      "home_cover_pct": 54.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3776
+     }
+    ],
+    "avg_home_cover_pct": 53.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -1768,6 +1839,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Williams",
+      "games": 148,
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4595
+     },
+     {
+      "name": "Aaron Smith",
+      "games": 45,
+      "home_cover_pct": 60.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2327
+     },
+     {
+      "name": "Simone Jelks",
+      "games": 93,
+      "home_cover_pct": 38.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0375
+     }
+    ],
+    "avg_home_cover_pct": 50.7,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -1886,7 +1992,8 @@
     "flip": false,
     "late_side": "home",
     "against_model": true,
-    "mixed_source": true
+    "mixed_source": true,
+    "same_source_points": 1.0
    }
   },
   "Toronto Raptors:Milwaukee Bucks": {
@@ -2390,6 +2497,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Scott Foster",
+      "games": 132,
+      "home_cover_pct": 47.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5425
+     },
+     {
+      "name": "Mousa Dagher",
+      "games": 121,
+      "home_cover_pct": 43.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2029
+     },
+     {
+      "name": "Leon Wood",
+      "games": 43,
+      "home_cover_pct": 46.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7608
+     }
+    ],
+    "avg_home_cover_pct": 45.8,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -2500,7 +2642,8 @@
     "flip": false,
     "late_side": "home",
     "against_model": true,
-    "mixed_source": true
+    "mixed_source": true,
+    "same_source_points": 3.0
    }
   },
   "San Antonio Spurs:Sacramento Kings": {
@@ -3003,6 +3146,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Jacyn Goble",
+      "games": 145,
+      "home_cover_pct": 51.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8682
+     },
+     {
+      "name": "Nate Green",
+      "games": 120,
+      "home_cover_pct": 49.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9273
+     },
+     {
+      "name": "Robert Hussey",
+      "games": 100,
+      "home_cover_pct": 50.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 50.1,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -3121,7 +3299,8 @@
     "flip": false,
     "late_side": "away",
     "against_model": false,
-    "mixed_source": true
+    "mixed_source": true,
+    "same_source_points": 2.0
    }
   },
   "Washington Wizards:Atlanta Hawks": {
@@ -3624,6 +3803,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Ray Acosta",
+      "games": 152,
+      "home_cover_pct": 48.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8078
+     },
+     {
+      "name": "John Butler",
+      "games": 132,
+      "home_cover_pct": 50.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9307
+     },
+     {
+      "name": "Phenizee Ransom",
+      "games": 122,
+      "home_cover_pct": 40.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0369
+     }
+    ],
+    "avg_home_cover_pct": 46.6,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -4230,6 +4444,40 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Tony Brothers",
+      "games": 142,
+      "home_cover_pct": 54.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.356
+     },
+     {
+      "name": "Marat Kogut",
+      "games": 134,
+      "home_cover_pct": 48.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7956
+     },
+     {
+      "name": "Brent Haskill",
+      "games": 18,
+      "home_cover_pct": 44.4,
+      "significant": false,
+      "direction": null
+     }
+    ],
+    "avg_home_cover_pct": 49.0,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -4828,6 +5076,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Justin Van Duyne",
+      "games": 147,
+      "home_cover_pct": 48.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7416
+     },
+     {
+      "name": "Brent Barnaky",
+      "games": 144,
+      "home_cover_pct": 48.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8027
+     },
+     {
+      "name": "Brett Nansel",
+      "games": 75,
+      "home_cover_pct": 45.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4887
+     }
+    ],
+    "avg_home_cover_pct": 47.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -5427,6 +5710,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Tyler Ford",
+      "games": 146,
+      "home_cover_pct": 44.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2143
+     },
+     {
+      "name": "Nick Buchert",
+      "games": 153,
+      "home_cover_pct": 49.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Che Flores",
+      "games": 83,
+      "home_cover_pct": 47.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6609
+     }
+    ],
+    "avg_home_cover_pct": 47.1,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
