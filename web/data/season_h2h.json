@@ -1269,6 +1269,16 @@
     "home_score": 126,
     "away_score": 107,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-11-08",
+    "home": "Chicago Bulls",
+    "away": "Philadelphia 76ers",
+    "spread": -8.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ],
   "Dallas Mavericks:Sacramento Kings": [
@@ -1550,7 +1560,7 @@
     "date": "2026-11-07",
     "home": "Atlanta Hawks",
     "away": "Brooklyn Nets",
-    "spread": 6.5,
+    "spread": 7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1574,7 +1584,7 @@
     "date": "2026-11-07",
     "home": "Cleveland Cavaliers",
     "away": "New York Knicks",
-    "spread": -4.5,
+    "spread": -5.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1586,7 +1596,7 @@
     "date": "2026-11-07",
     "home": "Golden State Warriors",
     "away": "Orlando Magic",
-    "spread": 6.5,
+    "spread": 7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1598,7 +1608,7 @@
     "date": "2026-11-07",
     "home": "Phoenix Suns",
     "away": "Houston Rockets",
-    "spread": -7.5,
+    "spread": -6.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1615,6 +1625,18 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "home"
+   }
+  ],
+  "Detroit Pistons:Los Angeles Lakers": [
+   {
+    "date": "2026-11-08",
+    "home": "Detroit Pistons",
+    "away": "Los Angeles Lakers",
+    "spread": 1.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ]
  }
