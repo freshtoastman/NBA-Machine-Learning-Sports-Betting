@@ -1274,7 +1274,7 @@
     "date": "2026-11-08",
     "home": "Chicago Bulls",
     "away": "Philadelphia 76ers",
-    "spread": -8.5,
+    "spread": -9.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1409,6 +1409,16 @@
     "home_score": 109,
     "away_score": 102,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-11-08",
+    "home": "Milwaukee Bucks",
+    "away": "Boston Celtics",
+    "spread": -12.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ],
   "Denver Nuggets:Toronto Raptors": [
@@ -1549,10 +1559,10 @@
     "home": "Indiana Pacers",
     "away": "Denver Nuggets",
     "spread": -7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -12,
+    "home_score": 102,
+    "away_score": 114,
+    "ats_result": "away"
    }
   ],
   "Atlanta Hawks:Brooklyn Nets": [
@@ -1561,9 +1571,9 @@
     "home": "Atlanta Hawks",
     "away": "Brooklyn Nets",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 3,
+    "home_score": 124,
+    "away_score": 121,
     "ats_result": "away"
    }
   ],
@@ -1573,10 +1583,10 @@
     "home": "Oklahoma City Thunder",
     "away": "Washington Wizards",
     "spread": 11.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 39,
+    "home_score": 114,
+    "away_score": 75,
+    "ats_result": "home"
    }
   ],
   "Cleveland Cavaliers:New York Knicks": [
@@ -1585,10 +1595,10 @@
     "home": "Cleveland Cavaliers",
     "away": "New York Knicks",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -12,
+    "home_score": 97,
+    "away_score": 109,
+    "ats_result": "away"
    }
   ],
   "Golden State Warriors:Orlando Magic": [
@@ -1597,9 +1607,9 @@
     "home": "Golden State Warriors",
     "away": "Orlando Magic",
     "spread": 7.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 7,
+    "home_score": 126,
+    "away_score": 119,
     "ats_result": "away"
    }
   ],
@@ -1609,9 +1619,9 @@
     "home": "Phoenix Suns",
     "away": "Houston Rockets",
     "spread": -6.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": 3,
+    "home_score": 102,
+    "away_score": 99,
     "ats_result": "home"
    }
   ],
@@ -1621,10 +1631,10 @@
     "home": "Portland Trail Blazers",
     "away": "San Antonio Spurs",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -22,
+    "home_score": 103,
+    "away_score": 125,
+    "ats_result": "away"
    }
   ],
   "Detroit Pistons:Los Angeles Lakers": [
@@ -1632,11 +1642,59 @@
     "date": "2026-11-08",
     "home": "Detroit Pistons",
     "away": "Los Angeles Lakers",
-    "spread": 1.5,
+    "spread": 4.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
     "ats_result": "away"
+   }
+  ],
+  "Minnesota Timberwolves:Utah Jazz": [
+   {
+    "date": "2026-11-08",
+    "home": "Minnesota Timberwolves",
+    "away": "Utah Jazz",
+    "spread": 11.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Brooklyn Nets:Dallas Mavericks": [
+   {
+    "date": "2026-11-08",
+    "home": "Dallas Mavericks",
+    "away": "Brooklyn Nets",
+    "spread": 9.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "LA Clippers:New Orleans Pelicans": [
+   {
+    "date": "2026-11-08",
+    "home": "LA Clippers",
+    "away": "New Orleans Pelicans",
+    "spread": -1.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
+   }
+  ],
+  "Miami Heat:Sacramento Kings": [
+   {
+    "date": "2026-11-08",
+    "home": "Sacramento Kings",
+    "away": "Miami Heat",
+    "spread": -9.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ]
  }
