@@ -1,7 +1,7 @@
 {
  "date": "2026-11-05",
  "is_today": false,
- "exported_at": "2026-11-08T22:12:57+08:00",
+ "exported_at": "2026-11-09T06:02:07+08:00",
  "summary": {
   "games": 2,
   "model_games": 2,
@@ -537,30 +537,30 @@
     "officials": [
      {
       "name": "Karl Lane",
-      "games": 127,
-      "home_cover_pct": 48.8,
+      "games": 128,
+      "home_cover_pct": 49.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.8592
+      "p_value": 0.9296
      },
      {
       "name": "Mark Lindsay",
-      "games": 144,
-      "home_cover_pct": 49.3,
+      "games": 145,
+      "home_cover_pct": 49.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.9336
+      "p_value": 0.8682
      },
      {
       "name": "Dannica Baroody",
-      "games": 43,
-      "home_cover_pct": 55.8,
+      "games": 44,
+      "home_cover_pct": 54.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.5424
+      "p_value": 0.6516
      }
     ],
-    "avg_home_cover_pct": 51.3,
+    "avg_home_cover_pct": 50.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1163,19 +1163,19 @@
     "officials": [
      {
       "name": "Bill Kennedy",
-      "games": 89,
-      "home_cover_pct": 48.3,
+      "games": 90,
+      "home_cover_pct": 47.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.8323
+      "p_value": 0.752
      },
      {
       "name": "Jason Goldenberg",
-      "games": 128,
-      "home_cover_pct": 45.3,
+      "games": 129,
+      "home_cover_pct": 45.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.3309
+      "p_value": 0.3787
      }
     ],
     "avg_home_cover_pct": 46.8,

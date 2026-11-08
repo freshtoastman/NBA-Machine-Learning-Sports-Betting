@@ -1,7 +1,7 @@
 {
  "date": "2026-11-06",
  "is_today": false,
- "exported_at": "2026-11-08T22:12:57+08:00",
+ "exported_at": "2026-11-09T06:02:07+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -3166,14 +3166,14 @@
      },
      {
       "name": "Robert Hussey",
-      "games": 100,
-      "home_cover_pct": 50.0,
+      "games": 101,
+      "home_cover_pct": 49.5,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.1,
+    "avg_home_cover_pct": 49.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5722,8 +5722,8 @@
      },
      {
       "name": "Nick Buchert",
-      "games": 153,
-      "home_cover_pct": 49.7,
+      "games": 154,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -5737,7 +5737,7 @@
       "p_value": 0.6609
      }
     ],
-    "avg_home_cover_pct": 47.1,
+    "avg_home_cover_pct": 47.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

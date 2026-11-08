@@ -1642,7 +1642,7 @@
     "date": "2026-11-08",
     "home": "Detroit Pistons",
     "away": "Los Angeles Lakers",
-    "spread": 4.5,
+    "spread": 7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1654,7 +1654,7 @@
     "date": "2026-11-08",
     "home": "Minnesota Timberwolves",
     "away": "Utah Jazz",
-    "spread": 11.5,
+    "spread": 12.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1666,7 +1666,7 @@
     "date": "2026-11-08",
     "home": "Dallas Mavericks",
     "away": "Brooklyn Nets",
-    "spread": 8.5,
+    "spread": 7.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1691,6 +1691,30 @@
     "home": "Sacramento Kings",
     "away": "Miami Heat",
     "spread": -9.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
+   }
+  ],
+  "Denver Nuggets:Houston Rockets": [
+   {
+    "date": "2026-11-09",
+    "home": "Houston Rockets",
+    "away": "Denver Nuggets",
+    "spread": 4.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Phoenix Suns:San Antonio Spurs": [
+   {
+    "date": "2026-11-09",
+    "home": "Phoenix Suns",
+    "away": "San Antonio Spurs",
+    "spread": -8.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
