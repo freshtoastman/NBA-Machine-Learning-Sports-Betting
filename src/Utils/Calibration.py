@@ -19,6 +19,14 @@ class IsotonicCalibrator:
     not depend on the scikit-learn version that wrote it (the pipeline's .venv
     runs an older sklearn than the conda python that trains)."""
 
+    # Isotonic regression maps its extreme bins to the bins' empirical rate, which
+    # is exactly 0.0 / 1.0 when every training game in the top (bottom) bin was
+    # won (lost) -- the 2026-10-07 ML calibrator's top step (raw >= 0.842) is
+    # y = 1.0, so on 2026-11-08 BOS @ MIL rendered as "100.0%" and fed a p = 1
+    # edge into the shadow value / EV columns. Those bins hold a few dozen games,
+    # so the honest estimate is "very likely", not certain: clip to [2%, 98%].
+    PROB_CLIP = 0.02
+
     def __init__(self, iso=None, x=None, y=None):
         self.iso = iso
         self.x = None if x is None else np.asarray(x, dtype=float)
@@ -42,5 +50,5 @@ class IsotonicCalibrator:
             p_home = raw
         else:
             p_home = raw[:, 1]
-        cal = np.clip(self.transform(p_home), 1e-6, 1 - 1e-6)
+        cal = np.clip(self.transform(p_home), self.PROB_CLIP, 1 - self.PROB_CLIP)
         return np.column_stack([1.0 - cal, cal])
