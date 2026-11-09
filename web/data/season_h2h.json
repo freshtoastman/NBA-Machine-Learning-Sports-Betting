@@ -350,7 +350,7 @@
     "date": "2026-11-09",
     "home": "Dallas Mavericks",
     "away": "Indiana Pacers",
-    "spread": 3.5,
+    "spread": 2.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1760,11 +1760,11 @@
     "date": "2026-11-09",
     "home": "Atlanta Hawks",
     "away": "Los Angeles Lakers",
-    "spread": -2.5,
+    "spread": 1.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
-    "ats_result": "home"
+    "ats_result": "away"
    }
   ],
   "Memphis Grizzlies:Toronto Raptors": [
