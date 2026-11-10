@@ -1,7 +1,7 @@
 {
  "date": "2026-11-06",
  "is_today": false,
- "exported_at": "2026-11-09T22:09:25+08:00",
+ "exported_at": "2026-11-10T10:18:53+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1202,11 +1202,11 @@
      },
      {
       "name": "Sean Corbin",
-      "games": 140,
-      "home_cover_pct": 53.6,
+      "games": 141,
+      "home_cover_pct": 53.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.447
+      "p_value": 0.3998
      },
      {
       "name": "J.T. Orr",
@@ -1217,7 +1217,7 @@
       "p_value": 0.3776
      }
     ],
-    "avg_home_cover_pct": 53.4,
+    "avg_home_cover_pct": 53.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2509,11 +2509,11 @@
      },
      {
       "name": "Mousa Dagher",
-      "games": 121,
-      "home_cover_pct": 43.8,
+      "games": 122,
+      "home_cover_pct": 44.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.2029
+      "p_value": 0.2391
      },
      {
       "name": "Leon Wood",
@@ -2524,7 +2524,7 @@
       "p_value": 0.7608
      }
     ],
-    "avg_home_cover_pct": 45.8,
+    "avg_home_cover_pct": 45.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5088,22 +5088,22 @@
      },
      {
       "name": "Brent Barnaky",
-      "games": 144,
-      "home_cover_pct": 48.6,
+      "games": 145,
+      "home_cover_pct": 48.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.8027
+      "p_value": 0.7399
      },
      {
       "name": "Brett Nansel",
-      "games": 75,
-      "home_cover_pct": 45.3,
+      "games": 76,
+      "home_cover_pct": 44.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.4887
+      "p_value": 0.4222
      }
     ],
-    "avg_home_cover_pct": 47.4,
+    "avg_home_cover_pct": 47.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5714,11 +5714,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 146,
-      "home_cover_pct": 44.5,
+      "games": 147,
+      "home_cover_pct": 44.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.2143
+      "p_value": 0.2481
      },
      {
       "name": "Nick Buchert",
@@ -5730,14 +5730,14 @@
      },
      {
       "name": "Che Flores",
-      "games": 83,
-      "home_cover_pct": 47.0,
+      "games": 84,
+      "home_cover_pct": 47.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.6609
+      "p_value": 0.7436
      }
     ],
-    "avg_home_cover_pct": 47.2,
+    "avg_home_cover_pct": 47.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

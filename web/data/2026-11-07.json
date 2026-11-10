@@ -1,7 +1,7 @@
 {
  "date": "2026-11-07",
  "is_today": false,
- "exported_at": "2026-11-09T22:09:25+08:00",
+ "exported_at": "2026-11-10T10:18:53+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -3054,11 +3054,11 @@
     "officials": [
      {
       "name": "Curtis Blair",
-      "games": 137,
-      "home_cover_pct": 50.4,
+      "games": 138,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9322
      },
      {
       "name": "Robert Hussey",
@@ -3077,7 +3077,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.2,
+    "avg_home_cover_pct": 50.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
