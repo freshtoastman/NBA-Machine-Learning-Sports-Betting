@@ -1861,6 +1861,40 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-11-11",
+    "home": "Portland Trail Blazers",
+    "away": "Oklahoma City Thunder",
+    "spread": null,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   }
+  ],
+  "Chicago Bulls:San Antonio Spurs": [
+   {
+    "date": "2026-11-11",
+    "home": "Chicago Bulls",
+    "away": "San Antonio Spurs",
+    "spread": null,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
+   }
+  ],
+  "Brooklyn Nets:New Orleans Pelicans": [
+   {
+    "date": "2026-11-11",
+    "home": "New Orleans Pelicans",
+    "away": "Brooklyn Nets",
+    "spread": null,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": null
    }
   ]
  }

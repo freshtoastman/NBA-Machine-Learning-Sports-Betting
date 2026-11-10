@@ -1,7 +1,7 @@
 {
  "date": "2026-11-10",
- "is_today": true,
- "exported_at": "2026-11-10T22:10:06+08:00",
+ "is_today": false,
+ "exported_at": "2026-11-11T06:02:07+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -15,27 +15,40 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "New York Knicks: Josh Hart (存疑)",
+   "New York Knicks: Josh Hart (可能缺陣)",
+   "Milwaukee Bucks: Kel'el Ware (存疑)",
    "Milwaukee Bucks: Tyler Herro (存疑)",
    "Philadelphia 76ers: Adem Bona (缺陣)",
    "Philadelphia 76ers: Dominick Barlow (缺陣)",
-   "Phoenix Suns: Jordan Goodwin (缺陣)",
    "Phoenix Suns: Mark Williams (缺陣)",
    "LA Clippers: Yanic Konan Niederhauser (缺陣)",
    "LA Clippers: Brandon Ingram (缺陣)",
    "LA Clippers: Cam Christie (存疑)",
+   "Utah Jazz: Lauri Markkanen (缺陣)",
    "Utah Jazz: Keyonte George (缺陣)",
-   "Utah Jazz: Lauri Markkanen (存疑)",
    "Miami Heat: Giannis Antetokounmpo (可能出賽)",
    "Sacramento Kings: Maxime Raynaud (缺陣)",
-   "Sacramento Kings: Keegan Murray (存疑)",
-   "Sacramento Kings: Domantas Sabonis (存疑)",
+   "Orlando Magic: Tristan da Silva (存疑)",
    "Orlando Magic: Jalen Suggs (缺陣)",
    "Orlando Magic: Jonathan Isaac (缺陣)",
    "Oklahoma City Thunder: Jaylin Williams (缺陣)"
   ],
   "scheduled_games": 6,
-  "unpriced_games": 0
+  "unpriced_games": 0,
+  "ml_correct": 0,
+  "ml_graded": 0,
+  "ml_hit_rate": null,
+  "ou_correct": 0,
+  "ou_graded": 0,
+  "ou_hit_rate": null,
+  "value_decided": 0,
+  "value_wins": 0,
+  "value_losses": 0,
+  "value_hit_rate": null,
+  "golden_decided": 0,
+  "golden_wins": 0,
+  "golden_losses": 0,
+  "golden_hit_rate": null
  },
  "games": {
   "Milwaukee Bucks:New York Knicks": {
@@ -538,12 +551,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
    "injuries_home": [
-    "Josh Hart (存疑)"
+    "Josh Hart (可能缺陣)"
    ],
    "tipoff_utc": "2026-11-11T00:30:00Z",
    "tipoff_et": "19:30 ET",
    "tipoff_taipei": "11/11 08:30 台北",
    "injuries_away": [
+    "Kel'el Ware (存疑)",
     "Tyler Herro (存疑)"
    ],
    "odds_history": [
@@ -567,8 +581,8 @@
    "ou_last": 219.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "home",
     "home_confidence": 85.7,
@@ -1146,8 +1160,8 @@
    "ou_last": 217.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "away",
     "home_confidence": 45.5,
@@ -1205,7 +1219,7 @@
    "winner": "home",
    "ou_pick": "UNDER",
    "ou_value": 224.5,
-   "ou_confidence": 53.4,
+   "ou_confidence": 53.1,
    "home_team_ev": -16.21,
    "away_team_ev": 14.89,
    "home_team_odds": -168,
@@ -1697,7 +1711,6 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
    "injuries_home": [
-    "Jordan Goodwin (缺陣)",
     "Mark Williams (缺陣)"
    ],
    "tipoff_utc": "2026-11-11T02:00:00Z",
@@ -1737,8 +1750,8 @@
    "ou_last": 224.5,
    "ou_move": -2.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "home",
     "home_confidence": 52.5,
@@ -1761,7 +1774,7 @@
     "is_consensus": false,
     "ou_pick": "UNDER",
     "ou_value": 224.5,
-    "ou_confidence": 53.4,
+    "ou_confidence": 53.1,
     "ou_shadow_pick": "UNDER",
     "ou_reference_only": true,
     "spread": 3.5,
@@ -2288,8 +2301,8 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "injuries_home": [
-    "Keyonte George (缺陣)",
-    "Lauri Markkanen (存疑)"
+    "Lauri Markkanen (缺陣)",
+    "Keyonte George (缺陣)"
    ],
    "tipoff_utc": "2026-11-11T02:00:00Z",
    "tipoff_et": "21:00 ET",
@@ -2326,8 +2339,8 @@
    "ou_last": 228.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -2877,14 +2890,13 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
    "injuries_home": [
-    "Maxime Raynaud (缺陣)",
-    "Keegan Murray (存疑)",
-    "Domantas Sabonis (存疑)"
+    "Maxime Raynaud (缺陣)"
    ],
    "tipoff_utc": "2026-11-11T03:00:00Z",
    "tipoff_et": "22:00 ET",
    "tipoff_taipei": "11/11 11:00 台北",
    "injuries_away": [
+    "Tristan da Silva (存疑)",
     "Jalen Suggs (缺陣)",
     "Jonathan Isaac (缺陣)"
    ],
@@ -2917,8 +2929,8 @@
    "ou_last": 222.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "away",
     "home_confidence": 45.5,
@@ -3503,8 +3515,8 @@
    "ou_last": 225.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-10T22:10:06+08:00",
-    "revisions": 2,
+    "frozen_at": "2026-11-11T06:02:07+08:00",
+    "revisions": 3,
     "locked": false,
     "winner": "home",
     "home_confidence": 53.3,

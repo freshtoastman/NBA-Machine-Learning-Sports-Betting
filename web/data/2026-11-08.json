@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "is_today": false,
- "exported_at": "2026-11-10T22:10:07+08:00",
+ "exported_at": "2026-11-11T06:02:08+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -545,11 +545,11 @@
      },
      {
       "name": "Che Flores",
-      "games": 84,
-      "home_cover_pct": 47.6,
+      "games": 85,
+      "home_cover_pct": 47.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.7436
+      "p_value": 0.6646
      },
      {
       "name": "Matt Myers",
@@ -560,7 +560,7 @@
       "p_value": 0.2807
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
