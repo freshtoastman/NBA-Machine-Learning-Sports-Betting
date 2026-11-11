@@ -1,7 +1,7 @@
 {
  "date": "2026-11-09",
  "is_today": false,
- "exported_at": "2026-11-11T15:02:11+08:00",
+ "exported_at": "2026-11-11T22:14:50+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -1834,14 +1834,14 @@
      },
      {
       "name": "Pat O'Connell",
-      "games": 51,
-      "home_cover_pct": 72.5,
+      "games": 52,
+      "home_cover_pct": 71.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.0018
+      "p_value": 0.0032
      }
     ],
-    "avg_home_cover_pct": 59.5,
+    "avg_home_cover_pct": 59.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4992,14 +4992,14 @@
      },
      {
       "name": "Brandon Schwab",
-      "games": 110,
-      "home_cover_pct": 50.0,
+      "games": 111,
+      "home_cover_pct": 50.5,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.5,
+    "avg_home_cover_pct": 49.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

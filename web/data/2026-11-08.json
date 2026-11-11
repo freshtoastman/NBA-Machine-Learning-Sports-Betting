@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "is_today": false,
- "exported_at": "2026-11-11T15:02:12+08:00",
+ "exported_at": "2026-11-11T22:14:50+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -553,14 +553,14 @@
      },
      {
       "name": "Matt Myers",
-      "games": 104,
-      "home_cover_pct": 55.8,
+      "games": 105,
+      "home_cover_pct": 55.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.2807
+      "p_value": 0.3291
      }
     ],
-    "avg_home_cover_pct": 49.3,
+    "avg_home_cover_pct": 49.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1170,19 +1170,19 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 124,
-      "home_cover_pct": 53.2,
+      "games": 125,
+      "home_cover_pct": 52.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.5298
+      "p_value": 0.5917
      },
      {
       "name": "Brent Barnaky",
-      "games": 145,
-      "home_cover_pct": 48.3,
+      "games": 146,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.7399
+      "p_value": 0.804
      },
      {
       "name": "Brett Nansel",
@@ -1810,11 +1810,11 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 148,
-      "home_cover_pct": 55.4,
+      "games": 149,
+      "home_cover_pct": 55.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.2174
+      "p_value": 0.1898
      },
      {
       "name": "Mousa Dagher",
@@ -1833,7 +1833,7 @@
       "p_value": 0.6609
      }
     ],
-    "avg_home_cover_pct": 50.9,
+    "avg_home_cover_pct": 51.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3072,6 +3072,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Kevin Scott",
+      "games": 146,
+      "home_cover_pct": 47.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6792
+     },
+     {
+      "name": "Jonathan Sterling",
+      "games": 100,
+      "home_cover_pct": 59.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0886
+     },
+     {
+      "name": "Pat O'Connell",
+      "games": 52,
+      "home_cover_pct": 71.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.0032
+     }
+    ],
+    "avg_home_cover_pct": 59.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -3674,22 +3709,22 @@
     "officials": [
      {
       "name": "Kevin Cutler",
-      "games": 138,
-      "home_cover_pct": 47.8,
+      "games": 139,
+      "home_cover_pct": 47.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.6705
+      "p_value": 0.611
      },
      {
       "name": "Sean Corbin",
-      "games": 141,
-      "home_cover_pct": 53.9,
+      "games": 142,
+      "home_cover_pct": 54.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.3998
+      "p_value": 0.356
      }
     ],
-    "avg_home_cover_pct": 50.8,
+    "avg_home_cover_pct": 50.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4299,16 +4334,16 @@
     "officials": [
      {
       "name": "Curtis Blair",
-      "games": 138,
-      "home_cover_pct": 50.7,
+      "games": 139,
+      "home_cover_pct": 51.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.9322
+      "p_value": 0.8654
      },
      {
       "name": "Eric Lewis",
-      "games": 21,
-      "home_cover_pct": 66.7,
+      "games": 22,
+      "home_cover_pct": 68.2,
       "significant": false,
       "direction": null
      },
@@ -4321,7 +4356,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 55.8,
+    "avg_home_cover_pct": 56.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

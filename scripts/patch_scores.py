@@ -192,15 +192,26 @@ def _patch_from_nba_live_scoreboard(con, d_str: str) -> int:
             headers=NBA_CDN_HEADERS, timeout=10,
         )
         r.raise_for_status()
-        games = r.json().get("scoreboard", {}).get("games", [])
+        board = r.json().get("scoreboard", {})
+        games = board.get("games", [])
     except Exception as exc:
         print(f"{d_str}: nba live scoreboard error: {exc}")
         return 0
 
+    board_date = str(board.get("gameDate") or "")[:10]
     updated = 0
     for g in games:
         status_text = g.get("gameStatusText", "")
         if "Final" not in status_text:
+            continue
+        # The feed is "today's" board in ET, but the row we are patching is keyed by
+        # ET date too, so a final from the previous ET day must never land on a
+        # same-matchup row for the next day (2026-11-11: OKC @ POR back-to-back —
+        # the 11/10 final 123-103 was written onto the unplayed 11/11 row and the
+        # frozen record graded it). gameEt carries the ET date; fall back to the
+        # board's gameDate when it is missing.
+        game_et_date = str(g.get("gameEt") or "")[:10] or board_date
+        if game_et_date and game_et_date != d_str:
             continue
         home_t = g.get("homeTeam", {})
         away_t = g.get("awayTeam", {})

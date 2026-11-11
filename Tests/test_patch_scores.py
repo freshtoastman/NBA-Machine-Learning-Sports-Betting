@@ -68,3 +68,37 @@ def test_future_us_date_is_skipped():
 def test_cdn_headers_carry_browser_ua_and_referer():
     h = patch_scores.NBA_CDN_HEADERS
     assert "Mozilla" in h["User-Agent"] and h["Referer"].startswith("https://www.nba.com")
+
+
+def _live_board(game_date, games):
+    resp = mock.Mock()
+    resp.raise_for_status = lambda: None
+    resp.json = lambda: {"scoreboard": {"gameDate": game_date, "games": games}}
+    return resp
+
+
+def _final(game_et, home, away, hs, aws):
+    return {"gameStatusText": "Final", "gameEt": game_et,
+            "homeTeam": {"teamCity": home[0], "teamName": home[1], "score": hs},
+            "awayTeam": {"teamCity": away[0], "teamName": away[1], "score": aws}}
+
+
+def test_live_scoreboard_final_only_patches_its_own_et_date():
+    # 2026-11-11: OKC @ POR played on consecutive nights. The 15:00 Taipei run on
+    # 11/11 (07:00Z) saw the 11/10 final on "today's" board and wrote 123-103 onto
+    # the unplayed 11/11 row, which the frozen record then graded.
+    con = _db_with_opener()
+    for d in ("2026-11-10", "2026-11-11"):
+        con.execute('INSERT INTO "2026-27" VALUES (?,"Portland Trail Blazers","Oklahoma City Thunder",'
+                    "225.5,-2.5,120,-142,0,0,1,1)", (d,))
+    board = _live_board("2026-11-10", [
+        _final("2026-11-10T23:00:00Z", ("Portland", "Trail Blazers"), ("Oklahoma City", "Thunder"), 123, 103),
+    ])
+    fake_date = mock.Mock()
+    fake_date.today.return_value = date(2026, 11, 11)
+    with mock.patch.object(patch_scores.requests, "get", return_value=board), \
+         mock.patch.object(patch_scores, "date", fake_date):
+        assert patch_scores._patch_from_nba_live_scoreboard(con, "2026-11-11") == 0
+        assert patch_scores._patch_from_nba_live_scoreboard(con, "2026-11-10") == 1
+    rows = dict(con.execute('SELECT Date, Points FROM "2026-27" WHERE Home="Portland Trail Blazers"').fetchall())
+    assert rows == {"2026-11-10": 226, "2026-11-11": 0}

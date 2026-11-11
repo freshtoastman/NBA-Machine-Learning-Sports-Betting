@@ -253,8 +253,17 @@ def export_date(target_date: date) -> dict | None:
             _nba_url = "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json"
             _nba_r = _req.get(_nba_url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
             if _nba_r.status_code == 200:
-                _nba_games = _nba_r.json().get("scoreboard", {}).get("games", [])
+                _nba_board = _nba_r.json().get("scoreboard", {})
+                _nba_games = _nba_board.get("games", [])
+                _board_date = str(_nba_board.get("gameDate") or "")[:10]
                 for _ng in _nba_games:
+                    # The board is "today" in ET; a final from another ET day must not
+                    # be keyed onto this date's same-matchup row (2026-11-11 OKC @ POR
+                    # back-to-back: the 11/10 final showed as the 11/11 result and
+                    # locked the unplayed game's pregame block).
+                    _ng_date = str(_ng.get("gameEt") or "")[:10] or _board_date
+                    if _ng_date and _ng_date != target_date.isoformat():
+                        continue
                     _ht_obj = _ng.get("homeTeam", {})
                     _at_obj = _ng.get("awayTeam", {})
                     _hs = _ht_obj.get("score", 0) or 0
@@ -274,11 +283,12 @@ def export_date(target_date: date) -> dict | None:
                     }
         except Exception:
             pass
-        # Fallback: SBR scraper (covers previous-day late games not on today's NBA board)
+        # Fallback: SBR scraper for this date only. The map is consulted only for
+        # this date's games, so a previous-day pass could match nothing but a
+        # same-matchup back-to-back, which is always the wrong game.
         try:
-            from datetime import timedelta as _td
             from src.Utils.sbr_scoreboard import Scoreboard as _SBR
-            for _sbr_date in [target_date, target_date - _td(days=1)]:
+            for _sbr_date in [target_date]:
                 try:
                     _sb = _SBR(date=_sbr_date)
                     _sbr_games = _sb.games if hasattr(_sb, "games") else []
