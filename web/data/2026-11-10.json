@@ -1,7 +1,7 @@
 {
  "date": "2026-11-10",
  "is_today": false,
- "exported_at": "2026-11-12T15:02:04+08:00",
+ "exported_at": "2026-11-12T22:08:58+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -1771,16 +1771,16 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 149,
-      "home_cover_pct": 55.7,
+      "games": 150,
+      "home_cover_pct": 56.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.1898
+      "p_value": 0.1649
      },
      {
       "name": "Eric Lewis",
-      "games": 22,
-      "home_cover_pct": 68.2,
+      "games": 23,
+      "home_cover_pct": 69.6,
       "significant": false,
       "direction": null
      },
@@ -1792,7 +1792,7 @@
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 57.1,
+    "avg_home_cover_pct": 57.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
