@@ -1615,9 +1615,9 @@
     "home": "New York Knicks",
     "away": "Cleveland Cavaliers",
     "spread": 4.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -8,
+    "home_score": 107,
+    "away_score": 115,
     "ats_result": "away"
    }
   ],
@@ -1751,6 +1751,16 @@
     "home_score": 122,
     "away_score": 111,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-11-12",
+    "home": "Washington Wizards",
+    "away": "Detroit Pistons",
+    "spread": -9.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ],
   "Charlotte Hornets:Cleveland Cavaliers": [
@@ -1877,10 +1887,10 @@
     "home": "Portland Trail Blazers",
     "away": "Oklahoma City Thunder",
     "spread": 2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 10,
+    "home_score": 118,
+    "away_score": 108,
+    "ats_result": "home"
    }
   ],
   "Chicago Bulls:San Antonio Spurs": [
@@ -1889,9 +1899,9 @@
     "home": "Chicago Bulls",
     "away": "San Antonio Spurs",
     "spread": -15.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -5,
+    "home_score": 119,
+    "away_score": 124,
     "ats_result": "home"
    }
   ],
@@ -1901,9 +1911,9 @@
     "home": "New Orleans Pelicans",
     "away": "Brooklyn Nets",
     "spread": 3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -34,
+    "home_score": 111,
+    "away_score": 145,
     "ats_result": "away"
    }
   ],
@@ -1913,9 +1923,9 @@
     "home": "Toronto Raptors",
     "away": "Boston Celtics",
     "spread": -5.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -5,
+    "home_score": 93,
+    "away_score": 98,
     "ats_result": "home"
    }
   ],
@@ -1925,10 +1935,10 @@
     "home": "Indiana Pacers",
     "away": "Washington Wizards",
     "spread": 2.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "away"
+    "win_margin": 13,
+    "home_score": 114,
+    "away_score": 101,
+    "ats_result": "home"
    }
   ],
   "Denver Nuggets:Memphis Grizzlies": [
@@ -1937,10 +1947,10 @@
     "home": "Memphis Grizzlies",
     "away": "Denver Nuggets",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -5,
+    "home_score": 118,
+    "away_score": 123,
+    "ats_result": "away"
    }
   ],
   "Los Angeles Lakers:Milwaukee Bucks": [
@@ -1949,9 +1959,9 @@
     "home": "Milwaukee Bucks",
     "away": "Los Angeles Lakers",
     "spread": -14.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
+    "win_margin": -11,
+    "home_score": 112,
+    "away_score": 123,
     "ats_result": "home"
    }
   ],
@@ -1961,10 +1971,10 @@
     "home": "Utah Jazz",
     "away": "Orlando Magic",
     "spread": -3.5,
-    "win_margin": 0,
-    "home_score": null,
-    "away_score": null,
-    "ats_result": "home"
+    "win_margin": -17,
+    "home_score": 106,
+    "away_score": 123,
+    "ats_result": "away"
    }
   ],
   "Golden State Warriors:Houston Rockets": [
@@ -1972,6 +1982,42 @@
     "date": "2026-11-11",
     "home": "Houston Rockets",
     "away": "Golden State Warriors",
+    "spread": 6.5,
+    "win_margin": 10,
+    "home_score": 115,
+    "away_score": 105,
+    "ats_result": "home"
+   }
+  ],
+  "Philadelphia 76ers:Toronto Raptors": [
+   {
+    "date": "2026-11-12",
+    "home": "Philadelphia 76ers",
+    "away": "Toronto Raptors",
+    "spread": 10.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Dallas Mavericks:Minnesota Timberwolves": [
+   {
+    "date": "2026-11-12",
+    "home": "Minnesota Timberwolves",
+    "away": "Dallas Mavericks",
+    "spread": 5.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Charlotte Hornets:Phoenix Suns": [
+   {
+    "date": "2026-11-12",
+    "home": "Phoenix Suns",
+    "away": "Charlotte Hornets",
     "spread": 6.5,
     "win_margin": 0,
     "home_score": null,
