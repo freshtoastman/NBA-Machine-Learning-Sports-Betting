@@ -1,7 +1,7 @@
 {
  "date": "2026-11-07",
  "is_today": false,
- "exported_at": "2026-11-13T15:01:54+08:00",
+ "exported_at": "2026-11-13T22:08:26+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -1170,14 +1170,14 @@
      },
      {
       "name": "Eric Dalen",
-      "games": 128,
-      "home_cover_pct": 53.9,
+      "games": 129,
+      "home_cover_pct": 53.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.4264
+      "p_value": 0.4814
      }
     ],
-    "avg_home_cover_pct": 51.6,
+    "avg_home_cover_pct": 51.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
