@@ -1,7 +1,7 @@
 {
  "date": "2026-11-09",
  "is_today": false,
- "exported_at": "2026-11-14T15:01:55+08:00",
+ "exported_at": "2026-11-14T22:08:10+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -1185,30 +1185,30 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 149,
-      "home_cover_pct": 48.3,
+      "games": 150,
+      "home_cover_pct": 48.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.7433
+      "p_value": 0.8066
      },
      {
       "name": "Natalie Sago",
-      "games": 135,
-      "home_cover_pct": 50.4,
+      "games": 136,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9317
      },
      {
       "name": "Brandon Adair",
-      "games": 87,
-      "home_cover_pct": 49.4,
+      "games": 88,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1818,19 +1818,19 @@
     "officials": [
      {
       "name": "Tony Brothers",
-      "games": 144,
-      "home_cover_pct": 54.9,
+      "games": 145,
+      "home_cover_pct": 55.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.2786
+      "p_value": 0.2449
      },
      {
       "name": "Jacyn Goble",
-      "games": 146,
-      "home_cover_pct": 51.4,
+      "games": 147,
+      "home_cover_pct": 51.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.804
+      "p_value": 0.869
      },
      {
       "name": "Pat O'Connell",
@@ -3069,11 +3069,11 @@
     "officials": [
      {
       "name": "James Williams",
-      "games": 150,
-      "home_cover_pct": 52.7,
+      "games": 151,
+      "home_cover_pct": 53.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.5678
+      "p_value": 0.5152
      },
      {
       "name": "Brian Forte",
@@ -3092,7 +3092,7 @@
       "p_value": 0.6646
      }
     ],
-    "avg_home_cover_pct": 50.5,
+    "avg_home_cover_pct": 50.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3709,11 +3709,11 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 143,
-      "home_cover_pct": 55.9,
+      "games": 144,
+      "home_cover_pct": 56.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.1807
+      "p_value": 0.1563
      },
      {
       "name": "Ashley Moyer-Gleich",
@@ -3732,7 +3732,7 @@
       "p_value": 0.8284
      }
     ],
-    "avg_home_cover_pct": 51.9,
+    "avg_home_cover_pct": 52.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4343,11 +4343,11 @@
     "officials": [
      {
       "name": "Sean Wright",
-      "games": 132,
-      "home_cover_pct": 51.5,
+      "games": 133,
+      "home_cover_pct": 51.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.7941
+      "p_value": 0.8624
      },
      {
       "name": "JB DeRosa",
@@ -4359,14 +4359,14 @@
      },
      {
       "name": "JD Ralls",
-      "games": 85,
-      "home_cover_pct": 41.2,
+      "games": 86,
+      "home_cover_pct": 41.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.1284
+      "p_value": 0.1606
      }
     ],
-    "avg_home_cover_pct": 49.3,
+    "avg_home_cover_pct": 49.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
