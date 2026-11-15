@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-15T22:08:36+08:00",
+ "exported_at": "2026-11-16T07:18:32+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -9,7 +9,7 @@
   "away_picks": 1,
   "over_picks": 3,
   "under_picks": 1,
-  "avg_confidence": 66.2,
+  "avg_confidence": 66.1,
   "value_picks": 0,
   "golden_picks": 0,
   "playoff_ats_alerts": [],
@@ -1818,11 +1818,11 @@
      },
      {
       "name": "Sean Corbin",
-      "games": 143,
-      "home_cover_pct": 54.5,
+      "games": 144,
+      "home_cover_pct": 54.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.3156
+      "p_value": 0.3594
      },
      {
       "name": "Brent Haskill",
@@ -1832,7 +1832,7 @@
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 52.7,
+    "avg_home_cover_pct": 52.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2458,14 +2458,14 @@
      },
      {
       "name": "Matt Myers",
-      "games": 106,
-      "home_cover_pct": 54.7,
+      "games": 107,
+      "home_cover_pct": 54.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.3821
+      "p_value": 0.4394
      }
     ],
-    "avg_home_cover_pct": 52.0,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

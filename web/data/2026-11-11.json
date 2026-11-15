@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "is_today": false,
- "exported_at": "2026-11-15T22:08:36+08:00",
+ "exported_at": "2026-11-16T07:18:32+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -2444,11 +2444,11 @@
     "officials": [
      {
       "name": "Karl Lane",
-      "games": 129,
-      "home_cover_pct": 48.8,
+      "games": 130,
+      "home_cover_pct": 48.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.8603
+      "p_value": 0.7926
      },
      {
       "name": "Marat Kogut",
@@ -2467,7 +2467,7 @@
       "p_value": 0.2529
      }
     ],
-    "avg_home_cover_pct": 46.0,
+    "avg_home_cover_pct": 45.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
