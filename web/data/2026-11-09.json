@@ -1,7 +1,7 @@
 {
  "date": "2026-11-09",
  "is_today": false,
- "exported_at": "2026-11-15T15:01:47+08:00",
+ "exported_at": "2026-11-15T22:08:37+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -537,8 +537,8 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 155,
-      "home_cover_pct": 50.3,
+      "games": 156,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -560,7 +560,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.3,
+    "avg_home_cover_pct": 50.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2460,14 +2460,14 @@
      },
      {
       "name": "Suyash Mehta",
-      "games": 96,
-      "home_cover_pct": 53.1,
+      "games": 97,
+      "home_cover_pct": 53.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.6101
+      "p_value": 0.5426
      }
     ],
-    "avg_home_cover_pct": 54.7,
+    "avg_home_cover_pct": 54.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3077,11 +3077,11 @@
      },
      {
       "name": "Brian Forte",
-      "games": 141,
-      "home_cover_pct": 51.8,
+      "games": 142,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.7364
+      "p_value": 0.8013
      },
      {
       "name": "Che Flores",
@@ -3092,7 +3092,7 @@
       "p_value": 0.6646
      }
     ],
-    "avg_home_cover_pct": 50.6,
+    "avg_home_cover_pct": 50.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4984,8 +4984,8 @@
      },
      {
       "name": "Nate Green",
-      "games": 122,
-      "home_cover_pct": 50.0,
+      "games": 123,
+      "home_cover_pct": 50.4,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -4999,7 +4999,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.0,
+    "avg_home_cover_pct": 50.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

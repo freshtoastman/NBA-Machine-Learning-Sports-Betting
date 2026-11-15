@@ -17,7 +17,7 @@
  "golden_hit_rate": 54.5,
  "golden_pl": -1.41,
  "golden_roi": -12.8,
- "brier": 0.2201,
+ "brier": 0.2202,
  "calib_gap_mid": -0.0288,
  "elite_bets": 26,
  "elite_wins": 12,

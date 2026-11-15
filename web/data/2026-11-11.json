@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "is_today": false,
- "exported_at": "2026-11-15T15:01:47+08:00",
+ "exported_at": "2026-11-15T22:08:36+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -545,11 +545,11 @@
      },
      {
       "name": "Brian Forte",
-      "games": 141,
-      "home_cover_pct": 51.8,
+      "games": 142,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.7364
+      "p_value": 0.8013
      },
      {
       "name": "JD Ralls",
@@ -560,7 +560,7 @@
       "p_value": 0.1606
      }
     ],
-    "avg_home_cover_pct": 47.3,
+    "avg_home_cover_pct": 47.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1194,14 +1194,14 @@
      },
      {
       "name": "Scott Twardoski",
-      "games": 114,
-      "home_cover_pct": 53.5,
+      "games": 115,
+      "home_cover_pct": 53.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.5123
+      "p_value": 0.576
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1827,8 +1827,8 @@
      },
      {
       "name": "Nate Green",
-      "games": 122,
-      "home_cover_pct": 50.0,
+      "games": 123,
+      "home_cover_pct": 50.4,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -1842,7 +1842,7 @@
       "p_value": 0.7436
      }
     ],
-    "avg_home_cover_pct": 50.6,
+    "avg_home_cover_pct": 50.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3717,11 +3717,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 148,
-      "home_cover_pct": 45.3,
+      "games": 149,
+      "home_cover_pct": 45.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.2852
+      "p_value": 0.3256
      },
      {
       "name": "Dedric Taylor",
@@ -3733,14 +3733,14 @@
      },
      {
       "name": "CJ Washington",
-      "games": 110,
-      "home_cover_pct": 43.6,
+      "games": 111,
+      "home_cover_pct": 44.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.215
+      "p_value": 0.2546
      }
     ],
-    "avg_home_cover_pct": 46.7,
+    "avg_home_cover_pct": 47.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -6249,16 +6249,16 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 151,
-      "home_cover_pct": 55.6,
+      "games": 152,
+      "home_cover_pct": 55.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.1927
+      "p_value": 0.1677
      },
      {
       "name": "Eric Lewis",
-      "games": 23,
-      "home_cover_pct": 69.6,
+      "games": 24,
+      "home_cover_pct": 70.8,
       "significant": false,
       "direction": null
      },
@@ -6271,7 +6271,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 58.4,
+    "avg_home_cover_pct": 58.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

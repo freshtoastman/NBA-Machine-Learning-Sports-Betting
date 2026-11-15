@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-15T15:01:46+08:00",
+ "exported_at": "2026-11-15T22:08:36+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -9,7 +9,7 @@
   "away_picks": 1,
   "over_picks": 3,
   "under_picks": 1,
-  "avg_confidence": 66.1,
+  "avg_confidence": 66.2,
   "value_picks": 0,
   "golden_picks": 0,
   "playoff_ats_alerts": [],
@@ -1193,14 +1193,14 @@
      },
      {
       "name": "Jenna Schroeder",
-      "games": 108,
-      "home_cover_pct": 55.6,
+      "games": 109,
+      "home_cover_pct": 56.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.2898
+      "p_value": 0.2503
      }
     ],
-    "avg_home_cover_pct": 57.5,
+    "avg_home_cover_pct": 57.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1810,11 +1810,11 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 126,
-      "home_cover_pct": 53.2,
+      "games": 127,
+      "home_cover_pct": 53.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.5331
+      "p_value": 0.4779
      },
      {
       "name": "Sean Corbin",
@@ -1832,7 +1832,7 @@
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 52.6,
+    "avg_home_cover_pct": 52.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

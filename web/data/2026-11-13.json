@@ -1,7 +1,7 @@
 {
  "date": "2026-11-13",
  "is_today": false,
- "exported_at": "2026-11-15T15:01:46+08:00",
+ "exported_at": "2026-11-15T22:08:36+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1827,11 +1827,11 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 151,
-      "home_cover_pct": 55.6,
+      "games": 152,
+      "home_cover_pct": 55.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.1927
+      "p_value": 0.1677
      },
      {
       "name": "Jacyn Goble",
@@ -1850,7 +1850,7 @@
       "p_value": 0.03
      }
     ],
-    "avg_home_cover_pct": 48.8,
+    "avg_home_cover_pct": 48.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2468,22 +2468,22 @@
      },
      {
       "name": "Brent Barnaky",
-      "games": 147,
-      "home_cover_pct": 48.3,
+      "games": 148,
+      "home_cover_pct": 48.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.7416
+      "p_value": 0.8053
      },
      {
       "name": "CJ Washington",
-      "games": 110,
-      "home_cover_pct": 43.6,
+      "games": 111,
+      "home_cover_pct": 44.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.215
+      "p_value": 0.2546
      }
     ],
-    "avg_home_cover_pct": 47.5,
+    "avg_home_cover_pct": 47.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
