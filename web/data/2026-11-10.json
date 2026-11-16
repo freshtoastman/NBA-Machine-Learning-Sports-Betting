@@ -1,7 +1,7 @@
 {
  "date": "2026-11-10",
  "is_today": false,
- "exported_at": "2026-11-16T15:02:04+08:00",
+ "exported_at": "2026-11-16T22:07:22+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -3011,19 +3011,19 @@
     "officials": [
      {
       "name": "Bill Kennedy",
-      "games": 92,
-      "home_cover_pct": 47.8,
+      "games": 93,
+      "home_cover_pct": 47.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.7547
+      "p_value": 0.6785
      },
      {
       "name": "Kevin Cutler",
-      "games": 140,
-      "home_cover_pct": 47.1,
+      "games": 141,
+      "home_cover_pct": 47.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.5543
+      "p_value": 0.6135
      },
      {
       "name": "Matt Myers",

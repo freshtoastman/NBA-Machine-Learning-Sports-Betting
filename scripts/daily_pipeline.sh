@@ -191,7 +191,13 @@ Co-Authored-By: Claude <noreply@anthropic.com>" >> "$LOG_FILE" 2>&1
     # passphrase-less deploy key when it exists; fall back to plain push otherwise.
     DEPLOY_KEY="$HOME/.ssh/nba-ml-deploy"
     if [ -f "$DEPLOY_KEY" ]; then
-        export GIT_SSH_COMMAND="ssh -F /dev/null -i $DEPLOY_KEY -o IdentitiesOnly=yes -o BatchMode=yes -o UserKnownHostsFile=$HOME/.ssh/nba-ml-known_hosts -o StrictHostKeyChecking=accept-new"
+        # 2026-11-16 06:00 (battery, asleep): the push sat in a dead TCP session from
+        # 07:18 until the kernel gave up at 13:22 ("Read from remote host github.com:
+        # Operation timed out", 6 h 4 min). ServerAlive* makes ssh drop a silent peer
+        # after ~60 s and ConnectTimeout bounds the handshake; run_step then logs the
+        # FAILED marker and the 15:00 run pushes the commit (it did today, by luck of
+        # the hang ending first).
+        export GIT_SSH_COMMAND="ssh -F /dev/null -i $DEPLOY_KEY -o IdentitiesOnly=yes -o BatchMode=yes -o UserKnownHostsFile=$HOME/.ssh/nba-ml-known_hosts -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
         # Push through the named remote (pushurl override) so refs/remotes/origin/master
         # is updated; pushing to a raw URL leaves `git status` showing a phantom "ahead".
         run_step "Git_Push" git -c remote.origin.pushurl=git@github.com:freshtoastman/NBA-Machine-Learning-Sports-Betting.git push origin HEAD:master

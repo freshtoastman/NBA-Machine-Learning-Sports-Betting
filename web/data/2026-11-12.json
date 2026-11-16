@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-16T15:02:03+08:00",
+ "exported_at": "2026-11-16T22:07:22+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "Ray Acosta",
-      "games": 154,
-      "home_cover_pct": 49.4,
+      "games": 155,
+      "home_cover_pct": 49.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.9358
+      "p_value": 1.0
      },
      {
       "name": "Marat Kogut",
@@ -560,7 +560,7 @@
       "p_value": 0.3425
      }
     ],
-    "avg_home_cover_pct": 47.2,
+    "avg_home_cover_pct": 47.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1177,11 +1177,11 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 123,
-      "home_cover_pct": 55.3,
+      "games": 124,
+      "home_cover_pct": 55.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.2792
+      "p_value": 0.2429
      },
      {
       "name": "Aaron Smith",
@@ -1200,7 +1200,7 @@
       "p_value": 0.2503
      }
     ],
-    "avg_home_cover_pct": 57.7,
+    "avg_home_cover_pct": 57.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

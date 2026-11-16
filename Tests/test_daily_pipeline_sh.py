@@ -109,6 +109,16 @@ class DailyPipelineShellTest(unittest.TestCase):
         guard = src.index('NBA_ML_CAFFEINATED:-'); first_step = src.index('run_step "Get_Data"')
         self.assertLess(guard, first_step, "caffeinate guard must precede the first step")
 
+    def test_push_ssh_drops_dead_connection(self):
+        # 2026-11-16 06:00: a battery dark-wake left the deploy-key push hanging on a
+        # dead TCP session for 6 h 4 min before the kernel timed it out. Keepalives
+        # bound the hang to ~60 s so the FAILED marker lands and the 15:00 run can push.
+        src = open(SCRIPT).read()
+        m = re.search(r'export GIT_SSH_COMMAND="(.*?)"\n', src)
+        self.assertIsNotNone(m)
+        for opt in ("ConnectTimeout=30", "ServerAliveInterval=15", "ServerAliveCountMax=4"):
+            self.assertIn(f"-o {opt}", m.group(1))
+
     def test_referee_step_logs_elapsed_seconds(self):
         src = open(SCRIPT).read()
         self.assertIn("collect_referee_data done in", src)
