@@ -8,13 +8,19 @@ pre-game team profile of each game date, so the list on the site is the
 same test a reader could run by hand: it never uses the finished game's
 own result in its own filter.
 
-Historical hit rates in `hist_wr` are the 2025-26 backtest figures quoted in
-the original checklist; this season's record is recomputed on every export.
+`hist_wr` is the pooled record over the 19 past seasons 2007-08 → 2025-26
+(scripts/validate_strategies.py, 2026-11-17); `claimed_wr` is the figure the old
+checklist quoted from a single-season backtest. None of the seven rules, nor the
+weighted verdict (49.5%, n=6,496), beats the 52.6–53.5% break-even of a 0.87–0.90
+payout over those seasons, so every card carries that warning; this season's
+record is recomputed on every export and shown beside it.
 """
 from __future__ import annotations
 
+import json
 import math
 import sqlite3
+from pathlib import Path
 from datetime import datetime
 
 import pandas as pd
@@ -25,28 +31,28 @@ from src.Utils.TeamProfile import grade_spread, team_profile_for_date
 from src.Utils.Teams import team_name_zh
 
 STRATEGIES: list[dict] = [
-    {"key": "home_weak_big_spread", "icon": "🔥", "tier": "hot", "hist_wr": 70.0,
+    {"key": "home_weak_big_spread", "icon": "🔥", "tier": "hot", "hist_wr": 50.6, "hist_n": 2752, "claimed_wr": 70.0,
      "name_zh": "主場弱隊大讓分", "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
      # scripts/backtest_ats.py analyze_combined measured this as side="dog" (押冷門);
      # the old card text "押客場/受讓" was ambiguous and contradicted the 5–10 rule
      # whenever the weak home team was the underdog.
      "pick_rule": "dog", "pick_rule_zh": "押受讓方"},
-    {"key": "mid_spread_home_weak", "icon": "🔥", "tier": "hot", "hist_wr": 70.1,
+    {"key": "mid_spread_home_weak", "icon": "🔥", "tier": "hot", "hist_wr": 49.9, "hist_n": 2167, "claimed_wr": 70.1,
      "name_zh": "讓分 5–10 ＋ 主場弱隊", "rule_zh": "讓分 5–10 且主隊近 30 天勝率 ≤35%",
      "pick_rule": "dog", "pick_rule_zh": "押受讓方"},
-    {"key": "home_ats_cold", "icon": "📉", "tier": "warm", "hist_wr": 61.7,
+    {"key": "home_ats_cold", "icon": "📉", "tier": "warm", "hist_wr": 50.5, "hist_n": 1828, "claimed_wr": 61.7,
      "name_zh": "主隊近期 ATS 差", "rule_zh": "主隊近 90 天過盤率 ≤35%",
      "pick_rule": "away", "pick_rule_zh": "押客隊"},
-    {"key": "away_hot_1m", "icon": "📈", "tier": "warm", "hist_wr": 60.1,
+    {"key": "away_hot_1m", "icon": "📈", "tier": "warm", "hist_wr": 49.6, "hist_n": 5679, "claimed_wr": 60.1,
      "name_zh": "客隊近期強勢", "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_rule": "away", "pick_rule_zh": "押客隊"},
-    {"key": "away_ats_hot", "icon": "📈", "tier": "warm", "hist_wr": 59.0,
+    {"key": "away_ats_hot", "icon": "📈", "tier": "warm", "hist_wr": 50.8, "hist_n": 1818, "claimed_wr": 59.0,
      "name_zh": "客隊 ATS 近期熱", "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_rule": "away", "pick_rule_zh": "押客隊"},
-    {"key": "home_dog_strong", "icon": "💡", "tier": "warm", "hist_wr": 61.5,
+    {"key": "home_dog_strong", "icon": "💡", "tier": "warm", "hist_wr": 49.4, "hist_n": 1232, "claimed_wr": 61.5,
      "name_zh": "主場受讓 ＋ 例行賽強隊", "rule_zh": "主隊受讓且本季勝率 ≥55%",
      "pick_rule": "home", "pick_rule_zh": "押主隊"},
-    {"key": "mid_spread_dog", "icon": "📊", "tier": "base", "hist_wr": 58.9,
+    {"key": "mid_spread_dog", "icon": "📊", "tier": "base", "hist_wr": 49.4, "hist_n": 8957, "claimed_wr": 58.9,
      "name_zh": "中讓分（5–10）", "rule_zh": "讓分 5–10（不看戰績）",
      "pick_rule": "dog", "pick_rule_zh": "押受讓方"},
 ]
@@ -134,7 +140,7 @@ def _signal(key: str, spread: float, home: str, away: str, home_zh: str, away_zh
         "key": key, "icon": s["icon"], "tier": s["tier"], "hist_wr": s["hist_wr"],
         "name_zh": s["name_zh"], "rule_zh": s["rule_zh"],
         "pick_side": side, "pick_team": team, "pick_team_zh": team_zh, "pick_line": line,
-        "text": f"{s['name_zh']} → 押 {team_zh} {line}（歷史 {s['hist_wr']:g}%）",
+        "text": f"{s['name_zh']} → 押 {team_zh} {line}（19 季驗證 {s['hist_wr']:g}%）",
     }
 
 
@@ -163,8 +169,8 @@ def _result_for(side: str, spread, win_margin) -> tuple[str, float | None]:
 
 
 # ── Single verdict when several rules fire on one game ──────────────────────
-# Weight of a rule = its hit rate above 50%, where the rate pools the 2025-26
-# backtest figure (worth PRIOR_N games) with this season's record BEFORE the
+# Weight of a rule = its hit rate above 50%, where the rate pools the 19-season
+# validated figure (worth PRIOR_N games) with this season's record BEFORE the
 # game date (walk-forward: a game never votes with its own result). A rule
 # running under 50% gets weight 0. The three "buy the underdog on a 5+ spread"
 # rules are nested, so only the strongest of them votes. The side with the
@@ -175,7 +181,7 @@ VERDICT_KEY = "verdict"
 VERDICT_META = {
     "key": VERDICT_KEY, "icon": "🎯", "tier": "hot", "hist_wr": None,
     "name_zh": "綜合結論（策略衝突時的單一答案）",
-    "rule_zh": f"每條策略的票重＝(歷史回測×{PRIOR_N} 場＋本季賽前戰績) 的合併勝率減 50；受讓方三條巢狀規則只取最強一條；票重高的一邊勝出，平手或全為 0 不下注",
+    "rule_zh": f"每條策略的票重＝(19 季驗證勝率×{PRIOR_N} 場＋本季賽前戰績) 的合併勝率減 50；受讓方三條巢狀規則只取最強一條；票重高的一邊勝出，平手或全為 0 不下注",
     "pick_rule": "weighted", "pick_rule_zh": "買票重較高的一隊",
 }
 
@@ -252,6 +258,14 @@ def verdict_tier(margin: float) -> int:
         if lo <= margin < hi:
             return i
     return len(VERDICT_TIERS) - 1
+
+
+def _load_validation() -> dict | None:
+    p = Path(__file__).resolve().parents[2] / "web" / "data" / "strategy_validation.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
 
 def build_strategy_matches(season_key: str, today_iso: str) -> dict:
@@ -341,7 +355,7 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
             "n": decided, "hit_rate": round(wins / decided * 100, 1) if decided else None,
         }
 
-    meta_keys = ("key", "icon", "tier", "hist_wr", "name_zh", "rule_zh", "pick_rule", "pick_rule_zh")
+    meta_keys = ("key", "icon", "tier", "hist_wr", "hist_n", "claimed_wr", "name_zh", "rule_zh", "pick_rule", "pick_rule_zh")
     verdict_games.reverse()
     conflict_games = [g for g in verdict_games if g.get("conflict")]
     strategies = [{**VERDICT_META, "season": _season(verdict_games),
@@ -362,7 +376,28 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
             v["tier_hit_rate"] = t["season"]["hit_rate"]
             v["risk"], v["risk_label"] = t["season"]["risk"], t["season"]["risk_label"]
             v["tier_roi_low"], v["tier_roi_high"] = t["season"]["roi_low"], t["season"]["roi_high"]
+    validation = _load_validation()
+    if validation:
+        vall = validation["verdict_walk_forward"]["all"]
+        for st in strategies:
+            past = (validation["strategies"].get(st["key"]) or {}).get("past")
+            if st["key"] == VERDICT_KEY:
+                past = vall
+            if past:
+                st["validated"] = {k: past[k] for k in ("wins", "losses", "n", "hit_rate", "ci95", "roi_low", "roi_high", "risk", "risk_label")}
+        if vall["risk"] == "lose":
+            # 19 seasons outweigh a few dozen games: the long-run flag wins.
+            for v in verdicts.values():
+                if v and v.get("side"):
+                    v["season_tier_risk"] = v.get("risk")
+                    v["risk"], v["risk_label"] = "lose", RISK_LABEL["lose"]
+                    v["validated_hit_rate"], v["validated_n"] = vall["hit_rate"], vall["n"]
     return {
+        "validation": None if not validation else {
+            "seasons": len(validation["past_seasons"]), "first": validation["past_seasons"][0],
+            "last": validation["past_seasons"][-1], "verdict": validation["verdict_walk_forward"]["all"],
+            "note_zh": f"{len(validation['past_seasons'])} 季驗證（{validation['past_seasons'][0]} → {validation['past_seasons'][-1]}）：七條策略合併勝率都在 49.4%–50.8%，綜合結論 {validation['verdict_walk_forward']['all']['wins']}–{validation['verdict_walk_forward']['all']['losses']}（{validation['verdict_walk_forward']['all']['hit_rate']}%），沒有任何一條能過 1 賠 0.87–0.90 的打平線。舊版寫的「歷史 59%–70%」是單季回測，不成立。本季戰績較好的幾條目前應視為短期波動。",
+        },
         "payout": {"low": PAYOUT_LOW, "high": PAYOUT_HIGH, "breakeven_low": BREAKEVEN_LOW,
                    "breakeven_high": BREAKEVEN_HIGH, "edge_ceiling": EDGE_CEILING,
                    "note_zh": f"讓分賠率約 1 賠 {PAYOUT_LOW}–{PAYOUT_HIGH}：過盤率要 {BREAKEVEN_LOW}%–{BREAKEVEN_HIGH}% 才打平。低於 {BREAKEVEN_HIGH}% 標「容易虧錢」，{BREAKEVEN_HIGH}%–{EDGE_CEILING:g}% 標「接近打平」（獲利小於正常波動）。"},
@@ -370,7 +405,7 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
         "season": season_key,
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "as_of": today_iso,
-        "note_zh": "條件用該場開賽前的球隊輪廓（嚴格早於比賽日）計算；盤口為資料庫最後一次刷新的讓分，正值＝主隊讓分。歷史勝率是 2025-26 回測數字，本季戰績每次匯出重算，僅供參考、不列為推薦。",
+        "note_zh": "條件用該場開賽前的球隊輪廓（嚴格早於比賽日）計算；盤口為資料庫最後一次刷新的讓分，正值＝主隊讓分。「19 季驗證」是 2007-08 → 2025-26 全部例行賽的合併勝率，本季戰績每次匯出重算，僅供參考、不列為推薦。",
         "strategies": strategies,
         "verdicts": verdicts,
     }

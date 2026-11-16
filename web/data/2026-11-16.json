@@ -1,7 +1,7 @@
 {
  "date": "2026-11-16",
  "is_today": false,
- "exported_at": "2026-11-17T00:00:32+08:00",
+ "exported_at": "2026-11-17T00:20:27+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -597,8 +597,8 @@
    "ou_last": 230.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "away",
     "home_confidence": 17.7,
@@ -644,7 +644,17 @@
     "spread_move": 0.0,
     "ou_first": 229.5,
     "ou_last": 230.5,
-    "ou_move": 1.0
+    "ou_move": 1.0,
+    "injuries_home": [],
+    "injuries_away": [
+     "GG Jackson (缺陣)",
+     "Isaiah Stewart (存疑)",
+     "Ty Jerome (缺陣)",
+     "Quinten Post (存疑)",
+     "Zach Edey (存疑)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -652,27 +662,27 @@
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Memphis Grizzlies",
      "pick_team_zh": "曼菲斯灰熊",
      "pick_line": "−3.5",
-     "text": "客隊近期強勢 → 押 曼菲斯灰熊 −3.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 曼菲斯灰熊 −3.5（19 季驗證 49.6%）"
     },
     {
      "key": "away_ats_hot",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 59.0,
+     "hist_wr": 50.8,
      "name_zh": "客隊 ATS 近期熱",
      "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_side": "away",
      "pick_team": "Memphis Grizzlies",
      "pick_team_zh": "曼菲斯灰熊",
      "pick_line": "−3.5",
-     "text": "客隊 ATS 近期熱 → 押 曼菲斯灰熊 −3.5（歷史 59%）"
+     "text": "客隊 ATS 近期熱 → 押 曼菲斯灰熊 −3.5（19 季驗證 50.8%）"
     }
    ]
   },
@@ -1212,8 +1222,8 @@
    "ou_last": 212.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "home",
     "home_confidence": 83.6,
@@ -1259,7 +1269,13 @@
     "spread_move": -1.0,
     "ou_first": 211.5,
     "ou_last": 212.5,
-    "ou_move": 1.0
+    "ou_move": 1.0,
+    "injuries_home": [],
+    "injuries_away": [
+     "Jonathan Isaac (缺陣)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -1267,14 +1283,14 @@
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "away",
      "pick_team": "Orlando Magic",
      "pick_team_zh": "奧蘭多魔術",
      "pick_line": "+8.5",
-     "text": "中讓分（5–10） → 押 奧蘭多魔術 +8.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 奧蘭多魔術 +8.5（19 季驗證 49.4%）"
     }
    ]
   },
@@ -1820,8 +1836,8 @@
    "ou_last": 241.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "home",
     "home_confidence": 83.6,
@@ -1867,7 +1883,19 @@
     "spread_move": 0.0,
     "ou_first": 242.5,
     "ou_last": 241.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "injuries_home": [
+     "Jaylon Tyson (存疑)",
+     "Peyton Watson (存疑)",
+     "Evan Mobley (缺陣)",
+     "Sam Merrill (缺陣)"
+    ],
+    "injuries_away": [
+     "Tobe Awaka (缺陣)",
+     "Jalen Smith (存疑)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -1875,14 +1903,14 @@
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "away",
      "pick_team": "Chicago Bulls",
      "pick_team_zh": "芝加哥公牛",
      "pick_line": "+9.5",
-     "text": "中讓分（5–10） → 押 芝加哥公牛 +9.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 芝加哥公牛 +9.5（19 季驗證 49.4%）"
     }
    ]
   },
@@ -2419,8 +2447,8 @@
    "ou_last": 225.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "away",
     "home_confidence": 37.1,
@@ -2466,7 +2494,11 @@
     "spread_move": 1.0,
     "ou_first": 225.5,
     "ou_last": 225.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "injuries_home": [],
+    "injuries_away": [],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -2474,53 +2506,53 @@
      "key": "home_weak_big_spread",
      "icon": "🔥",
      "tier": "hot",
-     "hist_wr": 70.0,
+     "hist_wr": 50.6,
      "name_zh": "主場弱隊大讓分",
      "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
      "pick_side": "home",
      "pick_team": "Brooklyn Nets",
      "pick_team_zh": "布魯克林籃網",
      "pick_line": "+5.5",
-     "text": "主場弱隊大讓分 → 押 布魯克林籃網 +5.5（歷史 70%）"
+     "text": "主場弱隊大讓分 → 押 布魯克林籃網 +5.5（19 季驗證 50.6%）"
     },
     {
      "key": "mid_spread_home_weak",
      "icon": "🔥",
      "tier": "hot",
-     "hist_wr": 70.1,
+     "hist_wr": 49.9,
      "name_zh": "讓分 5–10 ＋ 主場弱隊",
      "rule_zh": "讓分 5–10 且主隊近 30 天勝率 ≤35%",
      "pick_side": "home",
      "pick_team": "Brooklyn Nets",
      "pick_team_zh": "布魯克林籃網",
      "pick_line": "+5.5",
-     "text": "讓分 5–10 ＋ 主場弱隊 → 押 布魯克林籃網 +5.5（歷史 70.1%）"
+     "text": "讓分 5–10 ＋ 主場弱隊 → 押 布魯克林籃網 +5.5（19 季驗證 49.9%）"
     },
     {
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Philadelphia 76ers",
      "pick_team_zh": "費城七六人",
      "pick_line": "−5.5",
-     "text": "客隊近期強勢 → 押 費城七六人 −5.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 費城七六人 −5.5（19 季驗證 49.6%）"
     },
     {
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "home",
      "pick_team": "Brooklyn Nets",
      "pick_team_zh": "布魯克林籃網",
      "pick_line": "+5.5",
-     "text": "中讓分（5–10） → 押 布魯克林籃網 +5.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 布魯克林籃網 +5.5（19 季驗證 49.4%）"
     }
    ]
   },
@@ -3063,8 +3095,8 @@
    "ou_last": 230.5,
    "ou_move": 1.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "away",
     "home_confidence": 17.7,
@@ -3110,7 +3142,16 @@
     "spread_move": 0.0,
     "ou_first": 229.5,
     "ou_last": 230.5,
-    "ou_move": 1.0
+    "ou_move": 1.0,
+    "injuries_home": [
+     "Pelle Larsson (存疑)"
+    ],
+    "injuries_away": [
+     "Fred VanVleet (缺陣)",
+     "Clint Capela (缺陣)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -3118,40 +3159,40 @@
      "key": "home_ats_cold",
      "icon": "📉",
      "tier": "warm",
-     "hist_wr": 61.7,
+     "hist_wr": 50.5,
      "name_zh": "主隊近期 ATS 差",
      "rule_zh": "主隊近 90 天過盤率 ≤35%",
      "pick_side": "away",
      "pick_team": "Houston Rockets",
      "pick_team_zh": "休士頓火箭",
      "pick_line": "−2.5",
-     "text": "主隊近期 ATS 差 → 押 休士頓火箭 −2.5（歷史 61.7%）"
+     "text": "主隊近期 ATS 差 → 押 休士頓火箭 −2.5（19 季驗證 50.5%）"
     },
     {
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Houston Rockets",
      "pick_team_zh": "休士頓火箭",
      "pick_line": "−2.5",
-     "text": "客隊近期強勢 → 押 休士頓火箭 −2.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 休士頓火箭 −2.5（19 季驗證 49.6%）"
     },
     {
      "key": "away_ats_hot",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 59.0,
+     "hist_wr": 50.8,
      "name_zh": "客隊 ATS 近期熱",
      "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_side": "away",
      "pick_team": "Houston Rockets",
      "pick_team_zh": "休士頓火箭",
      "pick_line": "−2.5",
-     "text": "客隊 ATS 近期熱 → 押 休士頓火箭 −2.5（歷史 59%）"
+     "text": "客隊 ATS 近期熱 → 押 休士頓火箭 −2.5（19 季驗證 50.8%）"
     }
    ]
   },
@@ -3697,8 +3738,8 @@
    "ou_last": 225.5,
    "ou_move": -1.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "away",
     "home_confidence": 17.7,
@@ -3744,7 +3785,19 @@
     "spread_move": 0.0,
     "ou_first": 226.5,
     "ou_last": 225.5,
-    "ou_move": -1.0
+    "ou_move": -1.0,
+    "injuries_home": [
+     "Bryce McGowens (缺陣)",
+     "Bennedict Mathurin (缺陣)",
+     "Trey Murphy III (缺陣)",
+     "Trendon Watford (缺陣)"
+    ],
+    "injuries_away": [
+     "Gui Santos (存疑)",
+     "Brandon Williams (缺陣)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": []
@@ -4284,8 +4337,8 @@
    "ou_last": 228.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "home",
     "home_confidence": 63.3,
@@ -4331,7 +4384,13 @@
     "spread_move": 0.0,
     "ou_first": 228.5,
     "ou_last": 228.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "injuries_home": [],
+    "injuries_away": [
+     "Chris Youngblood (缺陣)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -4339,27 +4398,27 @@
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Portland Trail Blazers",
      "pick_team_zh": "波特蘭拓荒者",
      "pick_line": "+2.5",
-     "text": "客隊近期強勢 → 押 波特蘭拓荒者 +2.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 波特蘭拓荒者 +2.5（19 季驗證 49.6%）"
     },
     {
      "key": "away_ats_hot",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 59.0,
+     "hist_wr": 50.8,
      "name_zh": "客隊 ATS 近期熱",
      "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_side": "away",
      "pick_team": "Portland Trail Blazers",
      "pick_team_zh": "波特蘭拓荒者",
      "pick_line": "+2.5",
-     "text": "客隊 ATS 近期熱 → 押 波特蘭拓荒者 +2.5（歷史 59%）"
+     "text": "客隊 ATS 近期熱 → 押 波特蘭拓荒者 +2.5（19 季驗證 50.8%）"
     }
    ]
   },
@@ -4898,8 +4957,8 @@
    "ou_last": 228.5,
    "ou_move": 0.0,
    "pregame": {
-    "frozen_at": "2026-11-17T00:00:32+08:00",
-    "revisions": 6,
+    "frozen_at": "2026-11-17T00:20:27+08:00",
+    "revisions": 7,
     "locked": false,
     "winner": "home",
     "home_confidence": 69.2,
@@ -4945,7 +5004,13 @@
     "spread_move": -1.0,
     "ou_first": 228.5,
     "ou_last": 228.5,
-    "ou_move": 0.0
+    "ou_move": 0.0,
+    "injuries_home": [],
+    "injuries_away": [
+     "Mark Williams (缺陣)"
+    ],
+    "spread_last_fetched_at": "2026-11-16T14:06:42+00:00",
+    "line_source": "sbr_fanduel"
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -4953,14 +5018,14 @@
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "away",
      "pick_team": "Phoenix Suns",
      "pick_team_zh": "鳳凰城太陽",
      "pick_line": "+9.5",
-     "text": "中讓分（5–10） → 押 鳳凰城太陽 +9.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 鳳凰城太陽 +9.5（19 季驗證 49.4%）"
     }
    ]
   }

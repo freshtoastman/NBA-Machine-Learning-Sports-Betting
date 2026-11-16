@@ -259,5 +259,20 @@ class TestFrozenRecord(unittest.TestCase):
         self.assertIsNone(FrozenRecord.american_profit(None, True))
 
 
+
+class PregameContextTest(unittest.TestCase):
+    def test_snapshot_keeps_injuries_and_line_time_without_overlaying_them(self):
+        from src.Utils.PregameFreeze import snapshot, overlay
+        g = {"winner": "home", "spread": 3.5, "injuries_home": ["A (缺陣)"], "injuries_away": [],
+             "spread_last_fetched_at": "2026-11-16T22:00:31+00:00", "line_source": "sbr_fanduel"}
+        block = snapshot(g, "2026-11-17T06:02:00")
+        self.assertEqual(block["injuries_home"], ["A (缺陣)"])
+        self.assertEqual(block["spread_last_fetched_at"], "2026-11-16T22:00:31+00:00")
+        after = {"winner": "away", "spread": 4.5, "injuries_home": []}
+        overlay(after, block)
+        self.assertEqual(after["injuries_home"], [])        # card field untouched
+        self.assertEqual(after["winner"], "home")           # prediction restored
+
+
 if __name__ == "__main__":
     unittest.main()

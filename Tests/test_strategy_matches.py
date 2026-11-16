@@ -55,6 +55,7 @@ class StrategyMatchesTest(unittest.TestCase):
         self.assertEqual(first["pick_team_zh"], "灰熊")
         self.assertEqual(first["pick_line"], "+7.5")
         self.assertIn("押 灰熊 +7.5", first["text"])
+        self.assertIn("19 季驗證", first["text"])
         self.assertEqual(signals_for_game({**game, "is_playoff": True}), [])
 
     def test_result_grading(self):
@@ -72,26 +73,31 @@ class StrategyMatchesTest(unittest.TestCase):
         return signals_for_game(game)
 
     def test_weight_pools_history_with_season_and_floors_at_zero(self):
-        self.assertEqual(rule_weight("mid_spread_dog", 0, 0), 8.9)       # history only
-        self.assertEqual(rule_weight("home_dog_strong", 3, 10), 0.0)     # (3+12.3)/33 < 50%
-        self.assertGreater(rule_weight("away_hot_1m", 41, 30), 0)
+        self.assertEqual(rule_weight("mid_spread_dog", 0, 0), 0.0)       # 19 seasons: 49.4%
+        self.assertEqual(rule_weight("home_weak_big_spread", 0, 0), 0.6) # 50.6%
+        self.assertEqual(rule_weight("home_dog_strong", 3, 10), 0.0)
+        self.assertGreater(rule_weight("away_hot_1m", 41, 30), 0)        # this season lifts it
 
     def test_conflict_gives_one_side_and_nested_dog_rules_vote_once(self):
         sigs = self._sigs(home={"wr_1m": 25}, away={"wr_1m": 80})
         self.assertEqual({s["pick_side"] for s in sigs}, {"home", "away"})
-        v = verdict_for(sigs, {})
+        v = verdict_for(sigs, {"home_weak_big_spread": (26, 16), "away_hot_1m": (41, 30)})
         self.assertTrue(v["conflict"])
-        nested = [x for x in v["votes"] if x.get("nested")]
-        self.assertEqual(len(nested), 2)                    # 3 dog rules, 1 votes
-        self.assertEqual(v["score_home"], 20.1)             # 70.1 − 50
-        self.assertEqual(v["score_away"], 10.1)             # 60.1 − 50
+        self.assertEqual(len([x for x in v["votes"] if x.get("nested")]), 2)   # 3 dog rules, 1 votes
+        self.assertEqual(v["score_home"], rule_weight("home_weak_big_spread", 26, 16))
+        self.assertEqual(v["score_away"], rule_weight("away_hot_1m", 41, 30))
         self.assertEqual(v["side"], "home")
         self.assertIn("買 籃網 +5.5", v["text"])
 
+    def test_validated_rates_are_all_under_breakeven(self):
+        from src.Utils.StrategyMatches import BREAKEVEN_LOW
+        for s in STRATEGIES:
+            self.assertLess(s["hist_wr"], BREAKEVEN_LOW)
+            self.assertGreater(s["hist_n"], 1000)
+
     def test_season_record_can_flip_the_verdict(self):
         sigs = self._sigs(home={"wr_1m": 25}, away={"wr_1m": 80})
-        bad_dog = {k: (0, 40) for k in ("home_weak_big_spread", "mid_spread_home_weak", "mid_spread_dog")}
-        v = verdict_for(sigs, bad_dog)
+        v = verdict_for(sigs, {"home_weak_big_spread": (0, 40), "away_hot_1m": (41, 30)})
         self.assertEqual(v["side"], "away")
         self.assertEqual(v["team_zh"], "七六人")
 

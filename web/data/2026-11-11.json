@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "is_today": false,
- "exported_at": "2026-11-17T00:00:34+08:00",
+ "exported_at": "2026-11-17T00:20:28+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -678,27 +678,27 @@
      "key": "home_weak_big_spread",
      "icon": "🔥",
      "tier": "hot",
-     "hist_wr": 70.0,
+     "hist_wr": 50.6,
      "name_zh": "主場弱隊大讓分",
      "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
      "pick_side": "home",
      "pick_team": "Chicago Bulls",
      "pick_team_zh": "芝加哥公牛",
      "pick_line": "+15.5",
-     "text": "主場弱隊大讓分 → 押 芝加哥公牛 +15.5（歷史 70%）"
+     "text": "主場弱隊大讓分 → 押 芝加哥公牛 +15.5（19 季驗證 50.6%）"
     },
     {
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "San Antonio Spurs",
      "pick_team_zh": "聖安東尼奧馬刺",
      "pick_line": "−15.5",
-     "text": "客隊近期強勢 → 押 聖安東尼奧馬刺 −15.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 聖安東尼奧馬刺 −15.5（19 季驗證 49.6%）"
     }
    ]
   },
@@ -1973,14 +1973,14 @@
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Oklahoma City Thunder",
      "pick_team_zh": "奧克拉荷馬雷霆",
      "pick_line": "+2.5",
-     "text": "客隊近期強勢 → 押 奧克拉荷馬雷霆 +2.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 奧克拉荷馬雷霆 +2.5（19 季驗證 49.6%）"
     }
    ]
   },
@@ -3262,27 +3262,27 @@
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Boston Celtics",
      "pick_team_zh": "波士頓塞爾提克",
      "pick_line": "−5.5",
-     "text": "客隊近期強勢 → 押 波士頓塞爾提克 −5.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 波士頓塞爾提克 −5.5（19 季驗證 49.6%）"
     },
     {
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "home",
      "pick_team": "Toronto Raptors",
      "pick_team_zh": "多倫多暴龍",
      "pick_line": "+5.5",
-     "text": "中讓分（5–10） → 押 多倫多暴龍 +5.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 多倫多暴龍 +5.5（19 季驗證 49.4%）"
     }
    ]
   },
@@ -4557,14 +4557,14 @@
      "key": "home_dog_strong",
      "icon": "💡",
      "tier": "warm",
-     "hist_wr": 61.5,
+     "hist_wr": 49.4,
      "name_zh": "主場受讓 ＋ 例行賽強隊",
      "rule_zh": "主隊受讓且本季勝率 ≥55%",
      "pick_side": "home",
      "pick_team": "Memphis Grizzlies",
      "pick_team_zh": "曼菲斯灰熊",
      "pick_line": "+3.5",
-     "text": "主場受讓 ＋ 例行賽強隊 → 押 曼菲斯灰熊 +3.5（歷史 61.5%）"
+     "text": "主場受讓 ＋ 例行賽強隊 → 押 曼菲斯灰熊 +3.5（19 季驗證 49.4%）"
     }
    ]
   },
@@ -5205,53 +5205,53 @@
      "key": "home_weak_big_spread",
      "icon": "🔥",
      "tier": "hot",
-     "hist_wr": 70.0,
+     "hist_wr": 50.6,
      "name_zh": "主場弱隊大讓分",
      "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
      "pick_side": "home",
      "pick_team": "Milwaukee Bucks",
      "pick_team_zh": "密爾瓦基公鹿",
      "pick_line": "+14.5",
-     "text": "主場弱隊大讓分 → 押 密爾瓦基公鹿 +14.5（歷史 70%）"
+     "text": "主場弱隊大讓分 → 押 密爾瓦基公鹿 +14.5（19 季驗證 50.6%）"
     },
     {
      "key": "home_ats_cold",
      "icon": "📉",
      "tier": "warm",
-     "hist_wr": 61.7,
+     "hist_wr": 50.5,
      "name_zh": "主隊近期 ATS 差",
      "rule_zh": "主隊近 90 天過盤率 ≤35%",
      "pick_side": "away",
      "pick_team": "Los Angeles Lakers",
      "pick_team_zh": "洛杉磯湖人",
      "pick_line": "−14.5",
-     "text": "主隊近期 ATS 差 → 押 洛杉磯湖人 −14.5（歷史 61.7%）"
+     "text": "主隊近期 ATS 差 → 押 洛杉磯湖人 −14.5（19 季驗證 50.5%）"
     },
     {
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Los Angeles Lakers",
      "pick_team_zh": "洛杉磯湖人",
      "pick_line": "−14.5",
-     "text": "客隊近期強勢 → 押 洛杉磯湖人 −14.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 洛杉磯湖人 −14.5（19 季驗證 49.6%）"
     },
     {
      "key": "away_ats_hot",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 59.0,
+     "hist_wr": 50.8,
      "name_zh": "客隊 ATS 近期熱",
      "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_side": "away",
      "pick_team": "Los Angeles Lakers",
      "pick_team_zh": "洛杉磯湖人",
      "pick_line": "−14.5",
-     "text": "客隊 ATS 近期熱 → 押 洛杉磯湖人 −14.5（歷史 59%）"
+     "text": "客隊 ATS 近期熱 → 押 洛杉磯湖人 −14.5（19 季驗證 50.8%）"
     }
    ]
   },
@@ -5892,14 +5892,14 @@
      "key": "home_ats_cold",
      "icon": "📉",
      "tier": "warm",
-     "hist_wr": 61.7,
+     "hist_wr": 50.5,
      "name_zh": "主隊近期 ATS 差",
      "rule_zh": "主隊近 90 天過盤率 ≤35%",
      "pick_side": "away",
      "pick_team": "Orlando Magic",
      "pick_team_zh": "奧蘭多魔術",
      "pick_line": "−3.5",
-     "text": "主隊近期 ATS 差 → 押 奧蘭多魔術 −3.5（歷史 61.7%）"
+     "text": "主隊近期 ATS 差 → 押 奧蘭多魔術 −3.5（19 季驗證 50.5%）"
     }
    ]
   },
@@ -6539,40 +6539,40 @@
      "key": "away_hot_1m",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 60.1,
+     "hist_wr": 49.6,
      "name_zh": "客隊近期強勢",
      "rule_zh": "客隊近 30 天勝率 ≥65%",
      "pick_side": "away",
      "pick_team": "Golden State Warriors",
      "pick_team_zh": "金州勇士",
      "pick_line": "+6.5",
-     "text": "客隊近期強勢 → 押 金州勇士 +6.5（歷史 60.1%）"
+     "text": "客隊近期強勢 → 押 金州勇士 +6.5（19 季驗證 49.6%）"
     },
     {
      "key": "away_ats_hot",
      "icon": "📈",
      "tier": "warm",
-     "hist_wr": 59.0,
+     "hist_wr": 50.8,
      "name_zh": "客隊 ATS 近期熱",
      "rule_zh": "客隊近 90 天過盤率 ≥65%",
      "pick_side": "away",
      "pick_team": "Golden State Warriors",
      "pick_team_zh": "金州勇士",
      "pick_line": "+6.5",
-     "text": "客隊 ATS 近期熱 → 押 金州勇士 +6.5（歷史 59%）"
+     "text": "客隊 ATS 近期熱 → 押 金州勇士 +6.5（19 季驗證 50.8%）"
     },
     {
      "key": "mid_spread_dog",
      "icon": "📊",
      "tier": "base",
-     "hist_wr": 58.9,
+     "hist_wr": 49.4,
      "name_zh": "中讓分（5–10）",
      "rule_zh": "讓分 5–10（不看戰績）",
      "pick_side": "away",
      "pick_team": "Golden State Warriors",
      "pick_team_zh": "金州勇士",
      "pick_line": "+6.5",
-     "text": "中讓分（5–10） → 押 金州勇士 +6.5（歷史 58.9%）"
+     "text": "中讓分（5–10） → 押 金州勇士 +6.5（19 季驗證 49.4%）"
     }
    ]
   }

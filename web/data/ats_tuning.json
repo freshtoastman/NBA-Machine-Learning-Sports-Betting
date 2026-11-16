@@ -1,0 +1,350 @@
+{
+ "protocol": "walk-forward, tests 2016-17..2025-26, selection < 2023-24 <= holdout, seed 42, coin-flip logloss 0.6931",
+ "configs": {
+  "prod": {
+   "params": "production",
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.28,
+    "ci95": [
+     49.1,
+     51.4
+    ],
+    "logloss": 0.6934,
+    "edge5_n": 1,
+    "edge5_hit_rate": 100.0
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.43,
+    "ci95": [
+     48.8,
+     52.0
+    ],
+    "logloss": 0.6942,
+    "edge5_n": 206,
+    "edge5_hit_rate": 47.6
+   },
+   "mean_rounds": 32.3
+  },
+  "shallow_d2": {
+   "params": {
+    "max_depth": 2
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.37,
+    "ci95": [
+     49.2,
+     51.5
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 51.41,
+    "ci95": [
+     49.8,
+     53.0
+    ],
+    "logloss": 0.6933,
+    "edge5_n": 36,
+    "edge5_hit_rate": 58.3
+   },
+   "mean_rounds": 40.4
+  },
+  "shallow_d3": {
+   "params": {
+    "max_depth": 3
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 51.1,
+    "ci95": [
+     50.0,
+     52.2
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 49.96,
+    "ci95": [
+     48.4,
+     51.5
+    ],
+    "logloss": 0.6934,
+    "edge5_n": 35,
+    "edge5_hit_rate": 51.4
+   },
+   "mean_rounds": 24.2
+  },
+  "deep_d6": {
+   "params": {
+    "max_depth": 6
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.9,
+    "ci95": [
+     49.8,
+     52.0
+    ],
+    "logloss": 0.693,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 48.96,
+    "ci95": [
+     47.4,
+     50.6
+    ],
+    "logloss": 0.6937,
+    "edge5_n": 17,
+    "edge5_hit_rate": 58.8
+   },
+   "mean_rounds": 8.7
+  },
+  "slow_eta": {
+   "params": {
+    "eta": 0.01
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 49.41,
+    "ci95": [
+     48.3,
+     50.5
+    ],
+    "logloss": 0.6932,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.09,
+    "ci95": [
+     48.5,
+     51.7
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "mean_rounds": 13.6
+  },
+  "fast_eta": {
+   "params": {
+    "eta": 0.1
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 49.37,
+    "ci95": [
+     48.2,
+     50.5
+    ],
+    "logloss": 0.6934,
+    "edge5_n": 1,
+    "edge5_hit_rate": 100.0
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.07,
+    "ci95": [
+     48.5,
+     51.7
+    ],
+    "logloss": 0.6946,
+    "edge5_n": 235,
+    "edge5_hit_rate": 48.5
+   },
+   "mean_rounds": 8.9
+  },
+  "mcw_5": {
+   "params": {
+    "min_child_weight": 5
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 49.95,
+    "ci95": [
+     48.8,
+     51.1
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 29,
+    "edge5_hit_rate": 55.2
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 49.36,
+    "ci95": [
+     47.8,
+     50.9
+    ],
+    "logloss": 0.6942,
+    "edge5_n": 166,
+    "edge5_hit_rate": 53.6
+   },
+   "mean_rounds": 36.9
+  },
+  "mcw_100": {
+   "params": {
+    "min_child_weight": 100
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.69,
+    "ci95": [
+     49.6,
+     51.8
+    ],
+    "logloss": 0.6929,
+    "edge5_n": 94,
+    "edge5_hit_rate": 59.6
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.41,
+    "ci95": [
+     48.8,
+     52.0
+    ],
+    "logloss": 0.6933,
+    "edge5_n": 78,
+    "edge5_hit_rate": 52.6
+   },
+   "mean_rounds": 40.6
+  },
+  "heavy_reg": {
+   "params": {
+    "max_depth": 3,
+    "gamma": 5.0,
+    "lambda": 10.0,
+    "alpha": 2.0,
+    "min_child_weight": 100
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.33,
+    "ci95": [
+     49.2,
+     51.5
+    ],
+    "logloss": 0.6935,
+    "edge5_n": 53,
+    "edge5_hit_rate": 47.2
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.22,
+    "ci95": [
+     48.6,
+     51.8
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "mean_rounds": 42.4
+  },
+  "stumps_reg": {
+   "params": {
+    "max_depth": 1,
+    "eta": 0.05,
+    "lambda": 20.0,
+    "min_child_weight": 200
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.49,
+    "ci95": [
+     49.4,
+     51.6
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 15,
+    "edge5_hit_rate": 53.3
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 49.01,
+    "ci95": [
+     47.4,
+     50.6
+    ],
+    "logloss": 0.6932,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "mean_rounds": 49.7
+  },
+  "subsample_low": {
+   "params": {
+    "subsample": 0.4,
+    "colsample_bytree": 0.4
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.72,
+    "ci95": [
+     49.6,
+     51.8
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 4,
+    "edge5_hit_rate": 50.0
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.2,
+    "ci95": [
+     48.6,
+     51.8
+    ],
+    "logloss": 0.6932,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "mean_rounds": 19.8
+  },
+  "d3_mcw60_slow": {
+   "params": {
+    "max_depth": 3,
+    "eta": 0.02,
+    "min_child_weight": 60
+   },
+   "selection": {
+    "n": 7514,
+    "hit_rate": 50.59,
+    "ci95": [
+     49.5,
+     51.7
+    ],
+    "logloss": 0.6931,
+    "edge5_n": 0,
+    "edge5_hit_rate": null
+   },
+   "holdout": {
+    "n": 3805,
+    "hit_rate": 50.59,
+    "ci95": [
+     49.0,
+     52.2
+    ],
+    "logloss": 0.6936,
+    "edge5_n": 132,
+    "edge5_hit_rate": 50.0
+   },
+   "mean_rounds": 66.9
+  }
+ },
+ "best_on_selection": "mcw_100"
+}

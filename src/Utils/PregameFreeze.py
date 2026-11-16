@@ -55,6 +55,12 @@ FROZEN_FIELDS: tuple[str, ...] = (
     "spread_first", "spread_last", "spread_move", "ou_first", "ou_last", "ou_move",
 )
 
+# Pre-game context stored in the block but never overlaid on the card: the injury
+# list is wiped from the game dict once the game is final, and the timestamp of the
+# last line refresh tells which snapshot (evening vs 22:00Z) a frozen line came from.
+# Collected from 2026-11-17 so injuries / snapshot time can be tested as signals.
+CONTEXT_FIELDS: tuple[str, ...] = ("injuries_home", "injuries_away", "spread_last_fetched_at", "line_source")
+
 # Closing-number fields that are kept beside the frozen ones for comparison.
 _CLOSING_FIELDS: tuple[str, ...] = ("spread", "ou_value", "ats_winner", "ats_cover_margin",
                                     "home_team_odds", "away_team_odds")
@@ -104,7 +110,7 @@ def game_started(g: dict, now_iso: str | None = None) -> bool:
 def snapshot(g: dict, now_iso: str, revisions: int = 1) -> dict:
     """Build an (unlocked) pregame block from the current prediction fields."""
     block = {"frozen_at": now_iso, "revisions": revisions, "locked": False}
-    for f in FROZEN_FIELDS:
+    for f in FROZEN_FIELDS + CONTEXT_FIELDS:
         if f in g:
             block[f] = copy.deepcopy(g[f])
     return block

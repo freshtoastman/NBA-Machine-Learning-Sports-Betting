@@ -1298,7 +1298,7 @@ def _build_game_context(g):
     if signals:
         tier_label = {"hot": "🔥強", "warm": "⚡中", "base": "📊參考", "danger": "🚫警告"}
         sig_lines = "\n".join(f"  [{tier_label.get(s['tier'], '📊')}] {s['text']}" for s in signals)
-        bt_block = f"\n回測策略訊號（根據歷史數據回測結果，勝率已驗證）:\n{sig_lines}"
+        bt_block = f"\n回測策略訊號（例行賽七條規則經 19 季驗證合併勝率只有 49.4%–50.8%，沒有優勢；只能當背景描述，不可當成推薦依據）:\n{sig_lines}"
     else:
         bt_block = ""
 
@@ -1468,7 +1468,7 @@ def api_daily_report():
 - units 必須是數字 1-5
 - 勝負盤（moneyline）只有在大冷門有價值時才提及
 - injury_alerts 必須來自已提供的 ESPN 傷兵名單，彙整影響讓分盤最大的球員缺陣情況
-- **best_bets 的 reason 和 model_support 必須引用該場「回測策略訊號」和「歷史輪廓」**：例如「回測顯示主場弱隊大讓分歷史 70% 冷門 cover」或「近1月 ATS cover 率 65%，走勢火熱」。若該場無回測訊號則註明「無相關回測訊號」
+- **best_bets 的 reason 和 model_support 必須引用該場「回測策略訊號」和「歷史輪廓」**：例如「主場弱隊大讓分訊號（19 季驗證 50.6%，無優勢）」或「近1月 ATS cover 率 65%，走勢火熱」。若該場無回測訊號則註明「無相關回測訊號」
 - **lean_picks 的 reason 也須提到回測訊號或歷史輪廓**
 - **avoid_games 的 reason 可引用歷史輪廓走勢不佳的數據**
 - 隊名一律用繁體中文
