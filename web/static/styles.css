@@ -4903,3 +4903,16 @@ h3 {
 .sm-margin { color: var(--muted); font-weight: 400; font-size: 11px; }
 .sm-empty { text-align: center; color: var(--muted); padding: 18px 0 !important; }
 .sm-foot { padding: 8px 2px 0; font-size: 11px; color: var(--muted); }
+.strategy-verdict {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+    margin: 6px 2px 4px; padding: 7px 9px; border-radius: 9px;
+    border: 1px solid rgba(242, 201, 76, 0.35); background: rgba(242, 201, 76, 0.07);
+}
+.strategy-verdict.no-pick { border-color: var(--stroke); background: rgba(255, 255, 255, 0.03); }
+.sv-tag { font-size: 10.5px; font-weight: 700; color: var(--accent-3); white-space: nowrap; }
+.sv-text { font-size: 13px; font-weight: 700; color: var(--text); }
+.strategy-verdict.no-pick .sv-text { color: var(--muted); }
+.sv-votes { flex-basis: 100%; display: flex; flex-direction: column; gap: 2px; font-size: 10.5px; color: var(--muted); }
+.sv-vote.for { color: #5ee0a0; }
+.sv-vote.against { color: #ff9a8a; }
+.sv-vote.zero { opacity: 0.6; }

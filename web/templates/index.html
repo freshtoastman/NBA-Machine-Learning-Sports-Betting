@@ -290,7 +290,7 @@
                         <span class="so-icon">{{ s.icon }}</span>
                         <div class="so-main">
                             <div class="so-name">{{ s.name_zh }} <span class="so-pick">→ {{ s.pick_rule_zh }}</span></div>
-                            <div class="so-rule">{{ s.rule_zh }} · 歷史回測 {{ s.hist_wr }}%</div>
+                            <div class="so-rule">{{ s.rule_zh }}{% if s.hist_wr is not none %} · 歷史回測 {{ s.hist_wr }}%{% endif %}{% if s.weight_now is defined %} · 目前票重 {{ s.weight_now }}{% endif %}{% if s.season_conflict_only is defined %} · 其中有衝突的場次 {{ s.season_conflict_only.wins }}–{{ s.season_conflict_only.losses }}{% endif %}</div>
                         </div>
                         <div class="so-stat">
                             <span class="so-val {% if s.season.hit_rate is none %}{% elif s.season.hit_rate >= 60 %}good{% elif s.season.hit_rate < 52.4 %}bad{% endif %}">{% if s.season.hit_rate is none %}—{% else %}{{ s.season.hit_rate }}%{% endif %}</span>
@@ -1258,6 +1258,16 @@
                 {% if ns.checks|length > 0 %}
                 <details class="strategy-checklist" open>
                     <summary>📋 回測策略 Checklist ({{ ns.checks|length }})</summary>
+                    {% set vk = selected_date.isoformat() ~ '|' ~ home_team ~ '|' ~ away_team %}
+                    {% set verdict = strategy_matches.verdicts[vk] if (strategy_matches and strategy_matches.verdicts and vk in strategy_matches.verdicts) else none %}
+                    {% if verdict %}
+                    <div class="strategy-verdict {% if verdict.side %}has-pick{% else %}no-pick{% endif %}">
+                        <span class="sv-tag">🎯 {% if verdict.conflict %}策略衝突 · 單一結論{% else %}策略結論{% endif %}</span>
+                        <span class="sv-text">{{ verdict.text }}</span>
+                        <button type="button" class="strategy-season-btn" title="展開本季所有綜合結論的場次" onclick="openStrategyModal('verdict','{{ game.home_team_zh|default(home_team) }}','{{ game.away_team_zh|default(away_team) }}')">本季 {{ strategy_matches.by_key.verdict.season.wins }}–{{ strategy_matches.by_key.verdict.season.losses }} ▸</button>
+                        <div class="sv-votes">{% for v in verdict.votes %}<span class="sv-vote {% if v.side == verdict.side %}for{% elif v.weight == 0 %}zero{% else %}against{% endif %}">{{ v.name_zh }} → {{ game.home_team_zh|default(home_team) if v.side == 'home' else game.away_team_zh|default(away_team) }}　票重 {{ v.weight }}{% if v.nested %}（巢狀不重複計）{% endif %}</span>{% endfor %}</div>
+                    </div>
+                    {% endif %}
                     <div class="strategy-list">
                         {% for c in ns.checks %}
                         <label class="strategy-item tier-{{ c.tier }}">
@@ -2017,7 +2027,7 @@
         });
         document.querySelectorAll('#sm-chips .sm-chip').forEach(b => b.classList.toggle('active', !q && b.dataset.mode === SM_MODE));
         document.getElementById('sm-title').textContent = s.icon + ' ' + s.name_zh + ' → ' + s.pick_rule_zh;
-        document.getElementById('sm-sub').textContent = '條件：' + s.rule_zh + ' · 歷史回測 ' + s.hist_wr + '% · 本季 ' + s.season.wins + '–' + s.season.losses + (s.season.pushes ? '–' + s.season.pushes : '') + (s.season.hit_rate === null ? '' : '（' + s.season.hit_rate + '%）') + (s.season.pending ? ' · ' + s.season.pending + ' 場待開' : '');
+        document.getElementById('sm-sub').textContent = '條件：' + s.rule_zh + (s.hist_wr === null ? '' : ' · 歷史回測 ' + s.hist_wr + '%') + ' · 本季 ' + s.season.wins + '–' + s.season.losses + (s.season.pushes ? '–' + s.season.pushes : '') + (s.season.hit_rate === null ? '' : '（' + s.season.hit_rate + '%）') + (s.season.pending ? ' · ' + s.season.pending + ' 場待開' : '');
         const esc = (t) => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
         const resLabel = {win: '✓ 過盤', loss: '✗ 沒過', push: '＝ 退款', pending: '待開'};
         let w = 0, l = 0;
@@ -2028,11 +2038,11 @@
             const home = pickHome ? '<b>' + esc(g.home_zh) + '</b>' : esc(g.home_zh);
             const score = g.home_score === null ? '待開' : esc(g.away_score) + '–' + esc(g.home_score);
             const margin = g.cover_margin === null ? '' : ' <span class="sm-margin">(' + (g.cover_margin > 0 ? '+' : '') + esc(g.cover_margin) + ')</span>';
-            return '<tr class="sm-' + esc(g.result) + '"><td>' + esc(g.date) + '</td><td>' + away + ' @ ' + home + '</td><td>' + esc(g.home_zh) + ' ' + esc(g.home_line) + '</td><td class="sm-pick">' + esc(g.pick_team_zh) + ' ' + esc(g.pick_line) + '</td><td>' + score + '</td><td>' + (resLabel[g.result] || esc(g.result)) + margin + '</td></tr>';
+            return '<tr class="sm-' + esc(g.result) + '"><td>' + esc(g.date) + '</td><td>' + away + ' @ ' + home + '</td><td>' + esc(g.home_zh) + ' ' + esc(g.home_line) + '</td><td class="sm-pick"' + (g.reason_zh ? ' title="' + esc(g.reason_zh) + '"' : '') + '>' + (g.conflict ? '⚔ ' : '') + esc(g.pick_team_zh) + ' ' + esc(g.pick_line) + '</td><td>' + score + '</td><td>' + (resLabel[g.result] || esc(g.result)) + margin + '</td></tr>';
         }).join('');
         document.getElementById('sm-rows').innerHTML = html || '<tr><td colspan="6" class="sm-empty">沒有符合的場次</td></tr>';
         const n = w + l;
-        document.getElementById('sm-foot').textContent = '顯示 ' + rows.length + ' 場 · 已結算 ' + w + '–' + l + (n ? '（' + Math.round(w / n * 1000) / 10 + '%）' : '') + ' · 粗體＝策略要買的隊；盤口欄為主隊讓分（負值＝主隊讓）';
+        document.getElementById('sm-foot').textContent = '顯示 ' + rows.length + ' 場 · 已結算 ' + w + '–' + l + (n ? '（' + Math.round(w / n * 1000) / 10 + '%）' : '') + ' · 粗體＝策略要買的隊；⚔＝該場策略互相衝突；盤口欄為主隊讓分（負值＝主隊讓）';
     }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeStrategyModal(); });
     </script>

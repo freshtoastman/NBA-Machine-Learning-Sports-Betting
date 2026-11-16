@@ -162,74 +162,165 @@ def _result_for(side: str, spread, win_margin) -> tuple[str, float | None]:
     return ("win" if winner == side else "loss"), (margin if side == "home" else -margin)
 
 
+# ── Single verdict when several rules fire on one game ──────────────────────
+# Weight of a rule = its hit rate above 50%, where the rate pools the 2025-26
+# backtest figure (worth PRIOR_N games) with this season's record BEFORE the
+# game date (walk-forward: a game never votes with its own result). A rule
+# running under 50% gets weight 0. The three "buy the underdog on a 5+ spread"
+# rules are nested, so only the strongest of them votes. The side with the
+# larger total is the verdict; equal totals or all-zero weights → no bet.
+PRIOR_N = 20
+DOG_FAMILY = ("home_weak_big_spread", "mid_spread_home_weak", "mid_spread_dog")
+VERDICT_KEY = "verdict"
+VERDICT_META = {
+    "key": VERDICT_KEY, "icon": "🎯", "tier": "hot", "hist_wr": None,
+    "name_zh": "綜合結論（策略衝突時的單一答案）",
+    "rule_zh": f"每條策略的票重＝(歷史回測×{PRIOR_N} 場＋本季賽前戰績) 的合併勝率減 50；受讓方三條巢狀規則只取最強一條；票重高的一邊勝出，平手或全為 0 不下注",
+    "pick_rule": "weighted", "pick_rule_zh": "買票重較高的一隊",
+}
+
+
+def rule_weight(key: str, wins: int, losses: int) -> float:
+    hist = STRATEGY_BY_KEY[key]["hist_wr"] / 100.0
+    pooled = (wins + PRIOR_N * hist) / (wins + losses + PRIOR_N)
+    return round(max(0.0, pooled * 100 - 50), 1)
+
+
+def verdict_for(signals: list[dict], records: dict[str, tuple[int, int]]) -> dict | None:
+    """One side to buy for a game, or side=None (no bet). `records` maps a
+    strategy key to its (wins, losses) before this game's date."""
+    if not signals:
+        return None
+    votes = []
+    for sg in signals:
+        w, l = records.get(sg["key"], (0, 0))
+        votes.append({"key": sg["key"], "name_zh": sg["name_zh"], "side": sg["pick_side"],
+                      "weight": rule_weight(sg["key"], w, l), "record": f"{w}–{l}"})
+    dog = [v for v in votes if v["key"] in DOG_FAMILY]
+    if len(dog) > 1:
+        keep = max(dog, key=lambda v: v["weight"])
+        for v in dog:
+            if v is not keep:
+                v["weight"], v["nested"] = 0.0, True
+    score = {"home": 0.0, "away": 0.0}
+    for v in votes:
+        score[v["side"]] += v["weight"]
+    score = {k: round(x, 1) for k, x in score.items()}
+    side = None
+    if score["home"] != score["away"]:
+        side = "home" if score["home"] > score["away"] else "away"
+    conflict = len({v["side"] for v in votes}) > 1
+    out = {"side": side, "conflict": conflict, "score_home": score["home"], "score_away": score["away"], "votes": votes}
+    ref = next((sg for sg in signals if sg["pick_side"] == side), None)
+    if ref:
+        out.update({"team": ref["pick_team"], "team_zh": ref["pick_team_zh"], "line": ref["pick_line"]})
+        other = "away" if side == "home" else "home"
+        out["text"] = f"買 {ref['pick_team_zh']} {ref['pick_line']}（票重 {score[side]:g} 對 {score[other]:g}）"
+    else:
+        out["text"] = f"不下注（兩邊票重 {score['home']:g} 對 {score['away']:g}）"
+    return out
+
+
 def build_strategy_matches(season_key: str, today_iso: str) -> dict:
-    """Season-wide match list per strategy, newest game first."""
+    """Season-wide match list per strategy plus the single verdict per game,
+    newest game first."""
     with sqlite3.connect(ODDS_DB) as con:
         df = load_season_odds(
             con, season_key,
             ["Date", "Home", "Away", "Spread", "ML_Home", "ML_Away", "Points", "Win_Margin"],
         )
     per_key: dict[str, list[dict]] = {s["key"]: [] for s in STRATEGIES}
-    if df is not None and not df.empty:
-        df = df.sort_values("Date", ascending=False).reset_index(drop=True)
-        for row in df.itertuples(index=False):
-            spread = row.Spread
-            if spread is None or (isinstance(spread, float) and math.isnan(spread)):
-                continue
-            date_iso = str(row.Date)[:10]
-            hp = team_profile_for_date(row.Home, date_iso)
-            ap = team_profile_for_date(row.Away, date_iso)
-            keys = matched_keys(spread, hp, ap)
-            if not keys:
-                continue
-            played = _num(row.Points, 0.0) > 0
-            win_margin = row.Win_Margin if played else None
-            home_zh, away_zh = team_name_zh(row.Home), team_name_zh(row.Away)
-            for k in keys:
-                sig = _signal(k, float(spread), row.Home, row.Away, home_zh, away_zh)
-                result, cover = _result_for(sig["pick_side"], spread, win_margin)
-                entry = {
-                    "date": date_iso, "home": row.Home, "away": row.Away,
-                    "home_zh": home_zh, "away_zh": away_zh,
-                    "spread": float(spread),
-                    "home_line": side_line("home", spread), "away_line": side_line("away", spread),
-                    "pick_side": sig["pick_side"], "pick_team": sig["pick_team"],
-                    "pick_team_zh": sig["pick_team_zh"], "pick_line": sig["pick_line"],
-                    "result": result,
-                    "cover_margin": None if cover is None else round(float(cover), 1),
-                    "home_score": None, "away_score": None,
-                    "h_wr_1m": _window(hp, "last_1m", "win_rate"),
-                    "a_wr_1m": _window(ap, "last_1m", "win_rate"),
-                    "h_ats_3m": _window(hp, "last_3m", "ats_rate"),
-                    "a_ats_3m": _window(ap, "last_3m", "ats_rate"),
-                    "h_season_wr": _window(hp, "season", "win_rate"),
-                }
-                if played:
-                    pts, wm = float(row.Points), float(row.Win_Margin)
-                    entry["home_score"] = int(round((pts + wm) / 2))
-                    entry["away_score"] = int(round((pts - wm) / 2))
-                per_key[k].append(entry)
+    verdict_games: list[dict] = []
+    verdicts: dict[str, dict] = {}
+    running = {s["key"]: [0, 0] for s in STRATEGIES}
 
-    strategies = []
-    for s in STRATEGIES:
-        games = per_key[s["key"]]
+    def _entry(row, date_iso, side, team, team_zh, line, hp, ap, played):
+        spread = row.Spread
+        result, cover = _result_for(side, spread, row.Win_Margin if played else None)
+        e = {
+            "date": date_iso, "home": row.Home, "away": row.Away,
+            "home_zh": team_name_zh(row.Home), "away_zh": team_name_zh(row.Away),
+            "spread": float(spread),
+            "home_line": side_line("home", spread), "away_line": side_line("away", spread),
+            "pick_side": side, "pick_team": team, "pick_team_zh": team_zh, "pick_line": line,
+            "result": result,
+            "cover_margin": None if cover is None else round(float(cover), 1),
+            "home_score": None, "away_score": None,
+            "h_wr_1m": _window(hp, "last_1m", "win_rate"),
+            "a_wr_1m": _window(ap, "last_1m", "win_rate"),
+            "h_ats_3m": _window(hp, "last_3m", "ats_rate"),
+            "a_ats_3m": _window(ap, "last_3m", "ats_rate"),
+            "h_season_wr": _window(hp, "season", "win_rate"),
+        }
+        if played:
+            pts, wm = float(row.Points), float(row.Win_Margin)
+            e["home_score"] = int(round((pts + wm) / 2))
+            e["away_score"] = int(round((pts - wm) / 2))
+        return e
+
+    if df is not None and not df.empty:
+        df = df.sort_values("Date").reset_index(drop=True)
+        for date_val, day in df.groupby("Date", sort=True):
+            date_iso = str(date_val)[:10]
+            before = {k: tuple(v) for k, v in running.items()}  # records before this date
+            day_results = []
+            for row in day.itertuples(index=False):
+                spread = row.Spread
+                if spread is None or (isinstance(spread, float) and math.isnan(spread)):
+                    continue
+                hp = team_profile_for_date(row.Home, date_iso)
+                ap = team_profile_for_date(row.Away, date_iso)
+                keys = matched_keys(spread, hp, ap)
+                if not keys:
+                    continue
+                played = _num(row.Points, 0.0) > 0
+                home_zh, away_zh = team_name_zh(row.Home), team_name_zh(row.Away)
+                sigs = [_signal(k, float(spread), row.Home, row.Away, home_zh, away_zh) for k in keys]
+                for sg in sigs:
+                    e = _entry(row, date_iso, sg["pick_side"], sg["pick_team"], sg["pick_team_zh"], sg["pick_line"], hp, ap, played)
+                    per_key[sg["key"]].append(e)
+                    day_results.append((sg["key"], e["result"]))
+                v = verdict_for(sigs, before)
+                verdicts[f"{date_iso}|{row.Home}|{row.Away}"] = v
+                if v and v.get("side"):
+                    e = _entry(row, date_iso, v["side"], v["team"], v["team_zh"], v["line"], hp, ap, played)
+                    e["conflict"] = v["conflict"]
+                    e["reason_zh"] = "；".join(
+                        f"{x['name_zh']}→{'主' if x['side'] == 'home' else '客'} {x['weight']:g}" for x in v["votes"])
+                    v["result"] = e["result"]
+                    verdict_games.append(e)
+            for k, res in day_results:
+                if res == "win":
+                    running[k][0] += 1
+                elif res == "loss":
+                    running[k][1] += 1
+
+    def _season(games):
         wins = sum(1 for g in games if g["result"] == "win")
         losses = sum(1 for g in games if g["result"] == "loss")
-        pushes = sum(1 for g in games if g["result"] == "push")
-        pending = sum(1 for g in games if g["result"] == "pending")
         decided = wins + losses
-        strategies.append({
-            **{k: s[k] for k in ("key", "icon", "tier", "hist_wr", "name_zh", "rule_zh", "pick_rule", "pick_rule_zh")},
-            "season": {
-                "wins": wins, "losses": losses, "pushes": pushes, "pending": pending,
-                "n": decided, "hit_rate": round(wins / decided * 100, 1) if decided else None,
-            },
-            "games": games,
-        })
+        return {
+            "wins": wins, "losses": losses,
+            "pushes": sum(1 for g in games if g["result"] == "push"),
+            "pending": sum(1 for g in games if g["result"] == "pending"),
+            "n": decided, "hit_rate": round(wins / decided * 100, 1) if decided else None,
+        }
+
+    meta_keys = ("key", "icon", "tier", "hist_wr", "name_zh", "rule_zh", "pick_rule", "pick_rule_zh")
+    verdict_games.reverse()
+    conflict_games = [g for g in verdict_games if g.get("conflict")]
+    strategies = [{**VERDICT_META, "season": _season(verdict_games),
+                   "season_conflict_only": _season(conflict_games), "games": verdict_games}]
+    for s in STRATEGIES:
+        games = per_key[s["key"]][::-1]
+        w, l = running[s["key"]]
+        strategies.append({**{k: s[k] for k in meta_keys}, "season": _season(games),
+                           "weight_now": rule_weight(s["key"], w, l), "games": games})
     return {
         "season": season_key,
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "as_of": today_iso,
         "note_zh": "條件用該場開賽前的球隊輪廓（嚴格早於比賽日）計算；盤口為資料庫最後一次刷新的讓分，正值＝主隊讓分。歷史勝率是 2025-26 回測數字，本季戰績每次匯出重算，僅供參考、不列為推薦。",
         "strategies": strategies,
+        "verdicts": verdicts,
     }

@@ -2,6 +2,7 @@ import unittest
 
 from src.Utils.StrategyMatches import (
     STRATEGIES, matched_keys, pick_side, side_line, signals_for_game, _result_for,
+    rule_weight, verdict_for,
 )
 
 
@@ -63,6 +64,42 @@ class StrategyMatchesTest(unittest.TestCase):
         self.assertEqual(_result_for("away", 7.5, 7)[0], "win")
         self.assertEqual(_result_for("away", 7, 7)[0], "push")
         self.assertEqual(_result_for("away", 7.5, None)[0], "pending")
+
+    def _sigs(self, spread=-5.5, **kw):
+        game = {"spread": spread, "home_team": "Brooklyn Nets", "away_team": "Philadelphia 76ers",
+                "home_team_zh": "籃網", "away_team_zh": "七六人",
+                "home_profile": _prof(**kw.get("home", {})), "away_profile": _prof(**kw.get("away", {}))}
+        return signals_for_game(game)
+
+    def test_weight_pools_history_with_season_and_floors_at_zero(self):
+        self.assertEqual(rule_weight("mid_spread_dog", 0, 0), 8.9)       # history only
+        self.assertEqual(rule_weight("home_dog_strong", 3, 10), 0.0)     # (3+12.3)/33 < 50%
+        self.assertGreater(rule_weight("away_hot_1m", 41, 30), 0)
+
+    def test_conflict_gives_one_side_and_nested_dog_rules_vote_once(self):
+        sigs = self._sigs(home={"wr_1m": 25}, away={"wr_1m": 80})
+        self.assertEqual({s["pick_side"] for s in sigs}, {"home", "away"})
+        v = verdict_for(sigs, {})
+        self.assertTrue(v["conflict"])
+        nested = [x for x in v["votes"] if x.get("nested")]
+        self.assertEqual(len(nested), 2)                    # 3 dog rules, 1 votes
+        self.assertEqual(v["score_home"], 20.1)             # 70.1 − 50
+        self.assertEqual(v["score_away"], 10.1)             # 60.1 − 50
+        self.assertEqual(v["side"], "home")
+        self.assertIn("買 籃網 +5.5", v["text"])
+
+    def test_season_record_can_flip_the_verdict(self):
+        sigs = self._sigs(home={"wr_1m": 25}, away={"wr_1m": 80})
+        bad_dog = {k: (0, 40) for k in ("home_weak_big_spread", "mid_spread_home_weak", "mid_spread_dog")}
+        v = verdict_for(sigs, bad_dog)
+        self.assertEqual(v["side"], "away")
+        self.assertEqual(v["team_zh"], "七六人")
+
+    def test_all_zero_weights_mean_no_bet(self):
+        sigs = self._sigs(spread=-2.5, home={"season_wr": 60})
+        v = verdict_for(sigs, {"home_dog_strong": (3, 10)})
+        self.assertIsNone(v["side"])
+        self.assertIn("不下注", v["text"])
 
 
 if __name__ == "__main__":
