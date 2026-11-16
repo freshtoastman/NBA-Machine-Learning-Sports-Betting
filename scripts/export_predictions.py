@@ -19,6 +19,7 @@ from src.Utils.SeasonStats import compute_season_stats, reset_cache as reset_sea
 from src.Utils.Teams import team_name_zh, team_logo_url
 from src.Utils.PregameFreeze import apply_freeze
 from src.Utils.LineMove import line_move_alert
+from src.Utils.StrategyMatches import signals_for_game, build_strategy_matches
 
 _ESPN_INJURY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries"
 _ESPN_HEADERS = {
@@ -533,6 +534,14 @@ def export_date(target_date: date) -> dict | None:
                                  _lines[0].get("source"), _lines[-1].get("source"), _lines)
         if _alert:
             g["line_move_alert"] = _alert
+
+    # Regular-season backtest strategies, naming the team and line to buy
+    # (src/Utils/StrategyMatches.py); the card and the AI prompt read these.
+    for g in games_dict.values():
+        try:
+            g["strategy_signals"] = signals_for_game(g)
+        except Exception:
+            g["strategy_signals"] = []
 
     # Summary stats.
     n = len(games_list)
@@ -3085,6 +3094,16 @@ def main():
         with open(stats_path, "w", encoding="utf-8") as f:
             json.dump(stats, f, ensure_ascii=False, indent=1, default=_serialize)
         print(f"Season stats → {stats_path.name}")
+
+    # Season-wide list of games that matched each backtest strategy (pre-game
+    # profiles, graded against the stored line) → web/data/strategy_matches.json.
+    try:
+        _sm = build_strategy_matches(season_key, today.isoformat())
+        with open(OUT_DIR / "strategy_matches.json", "w", encoding="utf-8") as f:
+            json.dump(_sm, f, ensure_ascii=False, indent=1, default=_serialize)
+        print(f"Strategy matches → strategy_matches.json ({sum(len(x['games']) for x in _sm['strategies'])} rows)")
+    except Exception as _e:  # never block the export
+        print(f"  strategy_matches failed: {_e}")
 
     # Playoff bracket (only meaningful near/after playoff start).
     try:

@@ -4814,3 +4814,92 @@ h3 {
 .legacy-season .weekly-golden-summary { background: rgba(255, 255, 255, 0.03); border-bottom-color: rgba(255, 255, 255, 0.08); }
 .legacy-season .wg-title { color: #c9d2e0; }
 .legacy-season-body { padding: 12px 14px 4px; }
+
+/* ── Backtest strategies: team to buy + season match list (2026-11-16) ── */
+.strategy-season-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-3);
+    font-size: 10.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.strategy-season-btn:hover { background: rgba(105, 170, 255, 0.18); color: var(--text); }
+.strategy-overview-grid { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.strategy-overview-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.025);
+}
+.strategy-overview-row.tier-hot { border-left: 3px solid #ff7a59; }
+.strategy-overview-row.tier-warm { border-left: 3px solid #ffc857; }
+.strategy-overview-row.tier-base { border-left: 3px solid rgba(255, 255, 255, 0.25); }
+.so-icon { font-size: 16px; flex-shrink: 0; }
+.so-main { flex: 1 1 auto; min-width: 0; }
+.so-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.so-pick { color: var(--accent-3); font-weight: 700; margin-left: 4px; }
+.so-rule { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.so-stat { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; min-width: 96px; }
+.so-val { font-size: 16px; font-weight: 700; color: var(--text); }
+.so-val.good { color: #5ee0a0; }
+.so-val.bad { color: #ff7a7a; }
+.so-sub { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+.so-btn { margin-left: 0; }
+@media (max-width: 640px) {
+    .strategy-overview-row { flex-wrap: wrap; }
+    .so-stat { align-items: flex-start; min-width: 0; }
+}
+.strategy-modal-inner { height: min(760px, 92vh); }
+.sm-sub { padding: 8px 16px 0; font-size: 12px; color: var(--muted); }
+.sm-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 16px; }
+.sm-filter-input {
+    flex: 1 1 220px;
+    min-width: 160px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 12.5px;
+}
+.sm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sm-chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--muted);
+    font-size: 11.5px;
+    cursor: pointer;
+}
+.sm-chip.active { background: rgba(105, 170, 255, 0.22); color: #c4ddff; border-color: rgba(105, 170, 255, 0.5); }
+.sm-body { flex: 1 1 auto; overflow: auto; padding: 0 16px 12px; }
+.sm-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.sm-table th {
+    position: sticky; top: 0;
+    background: #0e1526;
+    color: var(--muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--stroke);
+    white-space: nowrap;
+}
+.sm-table td { padding: 6px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); white-space: nowrap; }
+.sm-table tr.sm-win td:last-child { color: #5ee0a0; font-weight: 600; }
+.sm-table tr.sm-loss td:last-child { color: #ff7a7a; font-weight: 600; }
+.sm-table tr.sm-pending td { color: var(--muted); }
+.sm-pick { color: var(--accent-3); font-weight: 700; }
+.sm-margin { color: var(--muted); font-weight: 400; font-size: 11px; }
+.sm-empty { text-align: center; color: var(--muted); padding: 18px 0 !important; }
+.sm-foot { padding: 8px 2px 0; font-size: 11px; color: var(--muted); }

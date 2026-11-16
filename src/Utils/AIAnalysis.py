@@ -156,7 +156,12 @@ def _build_backtest_signals(game: dict) -> list[dict]:
     a_zh = team_name_zh(game.get("away_team", "?"))
 
     # ── Regular season strategies ──
-    if not is_po:
+    exported = game.get("strategy_signals")
+    if not is_po and isinstance(exported, list):
+        # Export already named the team and line (src/Utils/StrategyMatches.py).
+        for sg in exported:
+            signals.append({"text": sg.get("text", ""), "tier": sg.get("tier", "base"), "key": sg.get("key")})
+    elif not is_po:
         if abs_sp >= 5 and h_wr_1m <= 35:
             signals.append({"text": f"主場弱隊大讓分 → 押客場/受讓（歷史 70% WR）", "tier": "hot"})
         if abs_sp >= 5 and abs_sp < 10 and h_wr_1m <= 35:

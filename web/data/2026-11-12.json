@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-16T22:07:22+08:00",
+ "exported_at": "2026-11-16T23:51:19+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -671,7 +671,22 @@
     "late_side": "away",
     "against_model": true,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "away",
+     "pick_team": "Toronto Raptors",
+     "pick_team_zh": "多倫多暴龍",
+     "pick_line": "+7.5",
+     "text": "中讓分（5–10） → 押 多倫多暴龍 +7.5（歷史 58.9%）"
+    }
+   ]
   },
   "Detroit Pistons:Washington Wizards": {
    "home_team": "Washington Wizards",
@@ -1304,7 +1319,48 @@
     "home_team_odds": 360,
     "away_team_odds": -460
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Washington Wizards",
+     "pick_team_zh": "華盛頓巫師",
+     "pick_line": "+10.5",
+     "text": "主場弱隊大讓分 → 押 華盛頓巫師 +10.5（歷史 70%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Detroit Pistons",
+     "pick_team_zh": "底特律活塞",
+     "pick_line": "−10.5",
+     "text": "客隊近期強勢 → 押 底特律活塞 −10.5（歷史 60.1%）"
+    },
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Detroit Pistons",
+     "pick_team_zh": "底特律活塞",
+     "pick_line": "−10.5",
+     "text": "客隊 ATS 近期熱 → 押 底特律活塞 −10.5（歷史 59%）"
+    }
+   ]
   },
   "Dallas Mavericks:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1936,7 +1992,22 @@
     "home_team_odds": -225,
     "away_team_odds": 188
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "away",
+     "pick_team": "Dallas Mavericks",
+     "pick_team_zh": "達拉斯獨行俠",
+     "pick_line": "+5.5",
+     "text": "中讓分（5–10） → 押 達拉斯獨行俠 +5.5（歷史 58.9%）"
+    }
+   ]
   },
   "Charlotte Hornets:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -2569,7 +2640,35 @@
     "home_team_odds": -230,
     "away_team_odds": 190
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Charlotte Hornets",
+     "pick_team_zh": "夏洛特黃蜂",
+     "pick_line": "+6.5",
+     "text": "主隊近期 ATS 差 → 押 夏洛特黃蜂 +6.5（歷史 61.7%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "away",
+     "pick_team": "Charlotte Hornets",
+     "pick_team_zh": "夏洛特黃蜂",
+     "pick_line": "+6.5",
+     "text": "中讓分（5–10） → 押 夏洛特黃蜂 +6.5（歷史 58.9%）"
+    }
+   ]
   }
  },
  "unpriced_games": [],

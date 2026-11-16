@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "is_today": false,
- "exported_at": "2026-11-16T22:07:21+08:00",
+ "exported_at": "2026-11-16T23:51:19+08:00",
  "summary": {
   "games": 5,
   "model_games": 5,
@@ -664,7 +664,22 @@
     "home_team_odds": 490,
     "away_team_odds": -670
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "New Orleans Pelicans",
+     "pick_team_zh": "紐奧良鵜鶘",
+     "pick_line": "+12.5",
+     "text": "主場弱隊大讓分 → 押 紐奧良鵜鶘 +12.5（歷史 70%）"
+    }
+   ]
   },
   "Dallas Mavericks:Cleveland Cavaliers": {
    "home_team": "Cleveland Cavaliers",
@@ -1303,7 +1318,35 @@
     "late_side": "away",
     "against_model": true,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Dallas Mavericks",
+     "pick_team_zh": "達拉斯獨行俠",
+     "pick_line": "−5.5",
+     "text": "主隊近期 ATS 差 → 押 達拉斯獨行俠 −5.5（歷史 61.7%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "home",
+     "pick_team": "Cleveland Cavaliers",
+     "pick_team_zh": "克里夫蘭騎士",
+     "pick_line": "+5.5",
+     "text": "中讓分（5–10） → 押 克里夫蘭騎士 +5.5（歷史 58.9%）"
+    }
+   ]
   },
   "Chicago Bulls:Minnesota Timberwolves": {
    "home_team": "Minnesota Timberwolves",
@@ -1936,7 +1979,8 @@
     "home_team_odds": -1100,
     "away_team_odds": 700
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "Detroit Pistons:Miami Heat": {
    "home_team": "Miami Heat",
@@ -2569,7 +2613,35 @@
     "home_team_odds": 146,
     "away_team_odds": -174
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Detroit Pistons",
+     "pick_team_zh": "底特律活塞",
+     "pick_line": "−3.5",
+     "text": "主隊近期 ATS 差 → 押 底特律活塞 −3.5（歷史 61.7%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Detroit Pistons",
+     "pick_team_zh": "底特律活塞",
+     "pick_line": "−3.5",
+     "text": "客隊近期強勢 → 押 底特律活塞 −3.5（歷史 60.1%）"
+    }
+   ]
   },
   "Brooklyn Nets:Memphis Grizzlies": {
    "home_team": "Memphis Grizzlies",
@@ -3209,7 +3281,8 @@
     "late_side": "away",
     "against_model": true,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": []
   }
  },
  "unpriced_games": [],

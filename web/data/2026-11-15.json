@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "is_today": false,
- "exported_at": "2026-11-16T22:07:21+08:00",
+ "exported_at": "2026-11-16T23:51:19+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -656,7 +656,22 @@
     "home_team_odds": -290,
     "away_team_odds": 235
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "away",
+     "pick_team": "Indiana Pacers",
+     "pick_team_zh": "印第安納溜馬",
+     "pick_line": "+7.5",
+     "text": "中讓分（5–10） → 押 印第安納溜馬 +7.5（歷史 58.9%）"
+    }
+   ]
   },
   "Los Angeles Lakers:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1281,7 +1296,48 @@
     "home_team_odds": 134,
     "away_team_odds": -158
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Los Angeles Lakers",
+     "pick_team_zh": "洛杉磯湖人",
+     "pick_line": "−2.5",
+     "text": "主隊近期 ATS 差 → 押 洛杉磯湖人 −2.5（歷史 61.7%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Los Angeles Lakers",
+     "pick_team_zh": "洛杉磯湖人",
+     "pick_line": "−2.5",
+     "text": "客隊近期強勢 → 押 洛杉磯湖人 −2.5（歷史 60.1%）"
+    },
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Los Angeles Lakers",
+     "pick_team_zh": "洛杉磯湖人",
+     "pick_line": "−2.5",
+     "text": "客隊 ATS 近期熱 → 押 洛杉磯湖人 −2.5（歷史 59%）"
+    }
+   ]
   },
   "Charlotte Hornets:LA Clippers": {
    "home_team": "LA Clippers",
@@ -1898,7 +1954,8 @@
     "home_team_odds": -118,
     "away_team_odds": 100
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "San Antonio Spurs:Utah Jazz": {
    "home_team": "Utah Jazz",
@@ -2524,7 +2581,48 @@
     "home_team_odds": 810,
     "away_team_odds": -1400
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Utah Jazz",
+     "pick_team_zh": "猶他爵士",
+     "pick_line": "+16.5",
+     "text": "主場弱隊大讓分 → 押 猶他爵士 +16.5（歷史 70%）"
+    },
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "San Antonio Spurs",
+     "pick_team_zh": "聖安東尼奧馬刺",
+     "pick_line": "−16.5",
+     "text": "主隊近期 ATS 差 → 押 聖安東尼奧馬刺 −16.5（歷史 61.7%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "San Antonio Spurs",
+     "pick_team_zh": "聖安東尼奧馬刺",
+     "pick_line": "−16.5",
+     "text": "客隊近期強勢 → 押 聖安東尼奧馬刺 −16.5（歷史 60.1%）"
+    }
+   ]
   },
   "New York Knicks:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -3157,7 +3255,8 @@
     "home_team_odds": 148,
     "away_team_odds": -176
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "Dallas Mavericks:Boston Celtics": {
    "home_team": "Boston Celtics",
@@ -3790,7 +3889,8 @@
     "home_team_odds": -1000,
     "away_team_odds": 660
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "Houston Rockets:Washington Wizards": {
    "home_team": "Washington Wizards",
@@ -4424,7 +4524,74 @@
     "home_team_odds": 280,
     "away_team_odds": -350
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Washington Wizards",
+     "pick_team_zh": "華盛頓巫師",
+     "pick_line": "+8.5",
+     "text": "主場弱隊大讓分 → 押 華盛頓巫師 +8.5（歷史 70%）"
+    },
+    {
+     "key": "mid_spread_home_weak",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.1,
+     "name_zh": "讓分 5–10 ＋ 主場弱隊",
+     "rule_zh": "讓分 5–10 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Washington Wizards",
+     "pick_team_zh": "華盛頓巫師",
+     "pick_line": "+8.5",
+     "text": "讓分 5–10 ＋ 主場弱隊 → 押 華盛頓巫師 +8.5（歷史 70.1%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Houston Rockets",
+     "pick_team_zh": "休士頓火箭",
+     "pick_line": "−8.5",
+     "text": "客隊近期強勢 → 押 休士頓火箭 −8.5（歷史 60.1%）"
+    },
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Houston Rockets",
+     "pick_team_zh": "休士頓火箭",
+     "pick_line": "−8.5",
+     "text": "客隊 ATS 近期熱 → 押 休士頓火箭 −8.5（歷史 59%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "home",
+     "pick_team": "Washington Wizards",
+     "pick_team_zh": "華盛頓巫師",
+     "pick_line": "+8.5",
+     "text": "中讓分（5–10） → 押 華盛頓巫師 +8.5（歷史 58.9%）"
+    }
+   ]
   },
   "Atlanta Hawks:Milwaukee Bucks": {
    "home_team": "Milwaukee Bucks",
@@ -5050,7 +5217,48 @@
     "home_team_odds": 260,
     "away_team_odds": -320
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Milwaukee Bucks",
+     "pick_team_zh": "密爾瓦基公鹿",
+     "pick_line": "+7.5",
+     "text": "主場弱隊大讓分 → 押 密爾瓦基公鹿 +7.5（歷史 70%）"
+    },
+    {
+     "key": "mid_spread_home_weak",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.1,
+     "name_zh": "讓分 5–10 ＋ 主場弱隊",
+     "rule_zh": "讓分 5–10 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Milwaukee Bucks",
+     "pick_team_zh": "密爾瓦基公鹿",
+     "pick_line": "+7.5",
+     "text": "讓分 5–10 ＋ 主場弱隊 → 押 密爾瓦基公鹿 +7.5（歷史 70.1%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "home",
+     "pick_team": "Milwaukee Bucks",
+     "pick_team_zh": "密爾瓦基公鹿",
+     "pick_line": "+7.5",
+     "text": "中讓分（5–10） → 押 密爾瓦基公鹿 +7.5（歷史 58.9%）"
+    }
+   ]
   },
   "Oklahoma City Thunder:Sacramento Kings": {
    "home_team": "Sacramento Kings",
@@ -5690,7 +5898,35 @@
     "late_side": "away",
     "against_model": false,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Sacramento Kings",
+     "pick_team_zh": "沙加緬度國王",
+     "pick_line": "+11.5",
+     "text": "主場弱隊大讓分 → 押 沙加緬度國王 +11.5（歷史 70%）"
+    },
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Oklahoma City Thunder",
+     "pick_team_zh": "奧克拉荷馬雷霆",
+     "pick_line": "−11.5",
+     "text": "主隊近期 ATS 差 → 押 奧克拉荷馬雷霆 −11.5（歷史 61.7%）"
+    }
+   ]
   }
  },
  "unpriced_games": [],

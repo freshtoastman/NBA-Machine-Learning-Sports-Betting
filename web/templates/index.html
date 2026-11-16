@@ -276,6 +276,33 @@
             {% endif %}
 
             {# Audited record — supersedes the backtest numbers below for the same season #}
+            {# Backtest strategies: which team each rule buys + every game this season that matched #}
+            {% if strategy_matches and strategy_matches.strategies and season_mode != 'playoff' %}
+            <div class="season-audit strategy-overview">
+                <div class="season-audit-head">
+                    <span class="season-audit-title">📋 回測策略 · 本季對照</span>
+                    <span class="season-audit-date">{{ strategy_matches.season }} · 截至 {{ strategy_matches.as_of }}</span>
+                </div>
+                <p class="season-audit-lead">每條策略寫明買哪一隊，「展開」列出本季所有符合條件的場次（客 @ 主、盤口、買哪隊、比分、結果），可依球隊篩選。{{ strategy_matches.note_zh }}</p>
+                <div class="strategy-overview-grid">
+                    {% for s in strategy_matches.strategies %}
+                    <div class="strategy-overview-row tier-{{ s.tier }}">
+                        <span class="so-icon">{{ s.icon }}</span>
+                        <div class="so-main">
+                            <div class="so-name">{{ s.name_zh }} <span class="so-pick">→ {{ s.pick_rule_zh }}</span></div>
+                            <div class="so-rule">{{ s.rule_zh }} · 歷史回測 {{ s.hist_wr }}%</div>
+                        </div>
+                        <div class="so-stat">
+                            <span class="so-val {% if s.season.hit_rate is none %}{% elif s.season.hit_rate >= 60 %}good{% elif s.season.hit_rate < 52.4 %}bad{% endif %}">{% if s.season.hit_rate is none %}—{% else %}{{ s.season.hit_rate }}%{% endif %}</span>
+                            <span class="so-sub">本季 {{ s.season.wins }}–{{ s.season.losses }}{% if s.season.pushes %}–{{ s.season.pushes }}{% endif %}{% if s.season.pending %} · {{ s.season.pending }} 場待開{% endif %}</span>
+                        </div>
+                        <button type="button" class="strategy-season-btn so-btn" onclick="openStrategyModal('{{ s.key }}')">展開 {{ s.games|length }} 場 ▸</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
             {% if season_review and season_review.season == season_stats.season %}
             <div class="season-audit">
                 <div class="season-audit-head">
@@ -1170,8 +1197,12 @@
 
                 {% set ns = namespace(checks=[]) %}
 
-                {# ── 例行賽策略 ── #}
-                {% if not is_po %}
+                {# ── 例行賽策略：匯出已算好並寫明買哪隊（src/Utils/StrategyMatches.py）；舊匯出沒有該欄位時才用下方的模板規則 ── #}
+                {% if not is_po and game.strategy_signals is defined and game.strategy_signals is not none %}
+                  {% for sg in game.strategy_signals %}
+                    {% set ns.checks = ns.checks + [{'icon': sg.icon, 'text': sg.text, 'tier': sg.tier, 'key': sg.key}] %}
+                  {% endfor %}
+                {% elif not is_po %}
                   {% if abs_sp >= 5 and h_wr <= 35 %}
                     {% set ns.checks = ns.checks + [{'icon':'🔥','text':'主場弱隊大讓分 → 押客場/受讓 (歷史 70% WR)','tier':'hot'}] %}
                   {% endif %}
@@ -1233,6 +1264,10 @@
                             <input type="checkbox" class="strategy-cb">
                             <span class="strategy-icon">{{ c.icon }}</span>
                             <span class="strategy-text">{{ c.text }}</span>
+                            {% if c.key is defined and c.key and strategy_matches and c.key in strategy_matches.by_key %}
+                            {% set sm = strategy_matches.by_key[c.key] %}
+                            <button type="button" class="strategy-season-btn" title="展開本季符合這條策略的場次" onclick="event.stopPropagation();openStrategyModal('{{ c.key }}','{{ game.home_team_zh|default(home_team) }}','{{ game.away_team_zh|default(away_team) }}')">本季 {{ sm.season.wins }}–{{ sm.season.losses }}{% if sm.season.hit_rate is not none %}（{{ sm.season.hit_rate }}%）{% endif %} ▸</button>
+                            {% endif %}
                         </label>
                         {% endfor %}
                     </div>
@@ -1916,6 +1951,91 @@
     </script>
 
     <!-- ── Live-stream modal ─────────────────────────────────────── -->
+    <div id="strategy-modal" class="live-modal" style="display:none;" onclick="if(event.target===this)closeStrategyModal()">
+        <div class="live-modal-inner strategy-modal-inner">
+            <div class="live-modal-header">
+                <span class="live-modal-title" id="sm-title">📋 回測策略</span>
+                <button type="button" class="live-modal-close" onclick="closeStrategyModal()">✕</button>
+            </div>
+            <div class="sm-sub" id="sm-sub"></div>
+            <div class="sm-filter">
+                <input type="text" id="sm-filter-input" class="sm-filter-input" placeholder="輸入球隊名稱篩選（中/英）…" oninput="SM_MODE='all';renderStrategyModal()">
+                <div class="sm-chips" id="sm-chips"></div>
+            </div>
+            <div class="sm-body">
+                <table class="sm-table">
+                    <thead><tr><th>日期</th><th>對戰（客 @ 主）</th><th>盤口</th><th>買哪隊</th><th>比分（客–主）</th><th>結果</th></tr></thead>
+                    <tbody id="sm-rows"></tbody>
+                </table>
+                <div class="sm-foot" id="sm-foot"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    const STRATEGY_MATCHES = {{ strategy_matches_json | safe }};
+    let SM_KEY = null, SM_TEAMS = [], SM_MODE = 'all';
+    function openStrategyModal(key, homeZh, awayZh) {
+        if (!STRATEGY_MATCHES || !STRATEGY_MATCHES.by_key || !STRATEGY_MATCHES.by_key[key]) return;
+        SM_KEY = key;
+        SM_TEAMS = [homeZh, awayZh].filter(Boolean);
+        SM_MODE = 'all';
+        document.getElementById('sm-filter-input').value = '';
+        const chips = document.getElementById('sm-chips');
+        chips.innerHTML = '';
+        const mk = (label, mode) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'sm-chip'; b.textContent = label; b.dataset.mode = mode;
+            b.onclick = () => { SM_MODE = mode; document.getElementById('sm-filter-input').value = ''; renderStrategyModal(); };
+            chips.appendChild(b);
+        };
+        mk('全部', 'all');
+        if (SM_TEAMS.length === 2) {
+            mk(SM_TEAMS[0] + ' 的場次', 't0');
+            mk(SM_TEAMS[1] + ' 的場次', 't1');
+            mk(SM_TEAMS[0] + ' vs ' + SM_TEAMS[1], 'both');
+        }
+        renderStrategyModal();
+        document.getElementById('strategy-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeStrategyModal() {
+        document.getElementById('strategy-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    function renderStrategyModal() {
+        const s = STRATEGY_MATCHES.by_key[SM_KEY];
+        if (!s) return;
+        const q = (document.getElementById('sm-filter-input').value || '').trim().toLowerCase();
+        const has = (g, t) => !t || g.home_zh === t || g.away_zh === t;
+        const txt = (g) => (g.home_zh + g.away_zh + g.home + g.away).toLowerCase();
+        let rows = s.games.filter(g => {
+            if (q) return txt(g).includes(q);
+            if (SM_MODE === 't0') return has(g, SM_TEAMS[0]);
+            if (SM_MODE === 't1') return has(g, SM_TEAMS[1]);
+            if (SM_MODE === 'both') return has(g, SM_TEAMS[0]) && has(g, SM_TEAMS[1]);
+            return true;
+        });
+        document.querySelectorAll('#sm-chips .sm-chip').forEach(b => b.classList.toggle('active', !q && b.dataset.mode === SM_MODE));
+        document.getElementById('sm-title').textContent = s.icon + ' ' + s.name_zh + ' → ' + s.pick_rule_zh;
+        document.getElementById('sm-sub').textContent = '條件：' + s.rule_zh + ' · 歷史回測 ' + s.hist_wr + '% · 本季 ' + s.season.wins + '–' + s.season.losses + (s.season.pushes ? '–' + s.season.pushes : '') + (s.season.hit_rate === null ? '' : '（' + s.season.hit_rate + '%）') + (s.season.pending ? ' · ' + s.season.pending + ' 場待開' : '');
+        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+        const resLabel = {win: '✓ 過盤', loss: '✗ 沒過', push: '＝ 退款', pending: '待開'};
+        let w = 0, l = 0;
+        const html = rows.map(g => {
+            if (g.result === 'win') w++; else if (g.result === 'loss') l++;
+            const pickHome = g.pick_side === 'home';
+            const away = pickHome ? esc(g.away_zh) : '<b>' + esc(g.away_zh) + '</b>';
+            const home = pickHome ? '<b>' + esc(g.home_zh) + '</b>' : esc(g.home_zh);
+            const score = g.home_score === null ? '待開' : esc(g.away_score) + '–' + esc(g.home_score);
+            const margin = g.cover_margin === null ? '' : ' <span class="sm-margin">(' + (g.cover_margin > 0 ? '+' : '') + esc(g.cover_margin) + ')</span>';
+            return '<tr class="sm-' + esc(g.result) + '"><td>' + esc(g.date) + '</td><td>' + away + ' @ ' + home + '</td><td>' + esc(g.home_zh) + ' ' + esc(g.home_line) + '</td><td class="sm-pick">' + esc(g.pick_team_zh) + ' ' + esc(g.pick_line) + '</td><td>' + score + '</td><td>' + (resLabel[g.result] || esc(g.result)) + margin + '</td></tr>';
+        }).join('');
+        document.getElementById('sm-rows').innerHTML = html || '<tr><td colspan="6" class="sm-empty">沒有符合的場次</td></tr>';
+        const n = w + l;
+        document.getElementById('sm-foot').textContent = '顯示 ' + rows.length + ' 場 · 已結算 ' + w + '–' + l + (n ? '（' + Math.round(w / n * 1000) / 10 + '%）' : '') + ' · 粗體＝策略要買的隊；盤口欄為主隊讓分（負值＝主隊讓）';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeStrategyModal(); });
+    </script>
     <div id="live-modal" class="live-modal" style="display:none;" onclick="if(event.target===this)closeLiveStream()">
         <div class="live-modal-inner">
             <div class="live-modal-header">

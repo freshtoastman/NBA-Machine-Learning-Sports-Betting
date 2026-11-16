@@ -1,7 +1,7 @@
 {
  "date": "2026-11-09",
  "is_today": false,
- "exported_at": "2026-11-16T22:07:22+08:00",
+ "exported_at": "2026-11-16T23:51:20+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -679,7 +679,22 @@
     "late_side": "home",
     "against_model": false,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "away",
+     "pick_team": "Denver Nuggets",
+     "pick_team_zh": "丹佛金塊",
+     "pick_line": "+8.5",
+     "text": "中讓分（5–10） → 押 丹佛金塊 +8.5（歷史 58.9%）"
+    }
+   ]
   },
   "San Antonio Spurs:Phoenix Suns": {
    "home_team": "Phoenix Suns",
@@ -1312,7 +1327,48 @@
     "home_team_odds": 300,
     "away_team_odds": -375
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "San Antonio Spurs",
+     "pick_team_zh": "聖安東尼奧馬刺",
+     "pick_line": "−8.5",
+     "text": "主隊近期 ATS 差 → 押 聖安東尼奧馬刺 −8.5（歷史 61.7%）"
+    },
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "San Antonio Spurs",
+     "pick_team_zh": "聖安東尼奧馬刺",
+     "pick_line": "−8.5",
+     "text": "客隊近期強勢 → 押 聖安東尼奧馬刺 −8.5（歷史 60.1%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "home",
+     "pick_team": "Phoenix Suns",
+     "pick_team_zh": "鳳凰城太陽",
+     "pick_line": "+8.5",
+     "text": "中讓分（5–10） → 押 鳳凰城太陽 +8.5（歷史 58.9%）"
+    }
+   ]
   },
   "Washington Wizards:Detroit Pistons": {
    "home_team": "Detroit Pistons",
@@ -1937,7 +1993,8 @@
     "home_team_odds": -460,
     "away_team_odds": 360
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "Cleveland Cavaliers:Charlotte Hornets": {
    "home_team": "Charlotte Hornets",
@@ -2563,7 +2620,61 @@
     "home_team_odds": 275,
     "away_team_odds": -340
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "home_weak_big_spread",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.0,
+     "name_zh": "主場弱隊大讓分",
+     "rule_zh": "讓分 ≥5 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Charlotte Hornets",
+     "pick_team_zh": "夏洛特黃蜂",
+     "pick_line": "+8.5",
+     "text": "主場弱隊大讓分 → 押 夏洛特黃蜂 +8.5（歷史 70%）"
+    },
+    {
+     "key": "mid_spread_home_weak",
+     "icon": "🔥",
+     "tier": "hot",
+     "hist_wr": 70.1,
+     "name_zh": "讓分 5–10 ＋ 主場弱隊",
+     "rule_zh": "讓分 5–10 且主隊近 30 天勝率 ≤35%",
+     "pick_side": "home",
+     "pick_team": "Charlotte Hornets",
+     "pick_team_zh": "夏洛特黃蜂",
+     "pick_line": "+8.5",
+     "text": "讓分 5–10 ＋ 主場弱隊 → 押 夏洛特黃蜂 +8.5（歷史 70.1%）"
+    },
+    {
+     "key": "home_ats_cold",
+     "icon": "📉",
+     "tier": "warm",
+     "hist_wr": 61.7,
+     "name_zh": "主隊近期 ATS 差",
+     "rule_zh": "主隊近 90 天過盤率 ≤35%",
+     "pick_side": "away",
+     "pick_team": "Cleveland Cavaliers",
+     "pick_team_zh": "克里夫蘭騎士",
+     "pick_line": "−8.5",
+     "text": "主隊近期 ATS 差 → 押 克里夫蘭騎士 −8.5（歷史 61.7%）"
+    },
+    {
+     "key": "mid_spread_dog",
+     "icon": "📊",
+     "tier": "base",
+     "hist_wr": 58.9,
+     "name_zh": "中讓分（5–10）",
+     "rule_zh": "讓分 5–10（不看戰績）",
+     "pick_side": "home",
+     "pick_team": "Charlotte Hornets",
+     "pick_team_zh": "夏洛特黃蜂",
+     "pick_line": "+8.5",
+     "text": "中讓分（5–10） → 押 夏洛特黃蜂 +8.5（歷史 58.9%）"
+    }
+   ]
   },
   "Los Angeles Lakers:Atlanta Hawks": {
    "home_team": "Atlanta Hawks",
@@ -3203,7 +3314,35 @@
     "late_side": "home",
     "against_model": false,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Los Angeles Lakers",
+     "pick_team_zh": "洛杉磯湖人",
+     "pick_line": "+1.5",
+     "text": "客隊近期強勢 → 押 洛杉磯湖人 +1.5（歷史 60.1%）"
+    },
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Los Angeles Lakers",
+     "pick_team_zh": "洛杉磯湖人",
+     "pick_line": "+1.5",
+     "text": "客隊 ATS 近期熱 → 押 洛杉磯湖人 +1.5（歷史 59%）"
+    }
+   ]
   },
   "Memphis Grizzlies:Toronto Raptors": {
    "home_team": "Toronto Raptors",
@@ -3836,7 +3975,35 @@
     "home_team_odds": -134,
     "away_team_odds": 114
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": [
+    {
+     "key": "away_hot_1m",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 60.1,
+     "name_zh": "客隊近期強勢",
+     "rule_zh": "客隊近 30 天勝率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Memphis Grizzlies",
+     "pick_team_zh": "曼菲斯灰熊",
+     "pick_line": "+3.5",
+     "text": "客隊近期強勢 → 押 曼菲斯灰熊 +3.5（歷史 60.1%）"
+    },
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "Memphis Grizzlies",
+     "pick_team_zh": "曼菲斯灰熊",
+     "pick_line": "+3.5",
+     "text": "客隊 ATS 近期熱 → 押 曼菲斯灰熊 +3.5（歷史 59%）"
+    }
+   ]
   },
   "Indiana Pacers:Dallas Mavericks": {
    "home_team": "Dallas Mavericks",
@@ -4470,7 +4637,8 @@
     "home_team_odds": -168,
     "away_team_odds": 142
    },
-   "pregame_missing": false
+   "pregame_missing": false,
+   "strategy_signals": []
   },
   "New Orleans Pelicans:Golden State Warriors": {
    "home_team": "Golden State Warriors",
@@ -5102,7 +5270,22 @@
     "late_side": "home",
     "against_model": false,
     "mixed_source": false
-   }
+   },
+   "strategy_signals": [
+    {
+     "key": "away_ats_hot",
+     "icon": "📈",
+     "tier": "warm",
+     "hist_wr": 59.0,
+     "name_zh": "客隊 ATS 近期熱",
+     "rule_zh": "客隊近 90 天過盤率 ≥65%",
+     "pick_side": "away",
+     "pick_team": "New Orleans Pelicans",
+     "pick_team_zh": "紐奧良鵜鶘",
+     "pick_line": "+11.5",
+     "text": "客隊 ATS 近期熱 → 押 紐奧良鵜鶘 +11.5（歷史 59%）"
+    }
+   ]
   }
  },
  "unpriced_games": [],

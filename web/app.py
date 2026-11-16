@@ -578,6 +578,21 @@ def _move_split_note(moved: dict) -> str | None:
     return "對照：" + " · ".join(parts) if parts else None
 
 
+def load_strategy_matches() -> dict | None:
+    """Season-wide backtest-strategy match list (web/data/strategy_matches.json,
+    src/Utils/StrategyMatches.py): which games fired each rule and which team
+    the rule said to buy."""
+    p = DATA_DIR / "strategy_matches.json"
+    if not p.exists():
+        return None
+    try:
+        sm = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    sm["by_key"] = {s["key"]: s for s in sm.get("strategies", [])}
+    return sm
+
+
 def load_frozen_record() -> dict | None:
     """Frozen pre-game record (web/data/frozen_record.json, src/Utils/FrozenRecord.py):
     the only live record the dashboard may quote. Shaped into audit-style blocks."""
@@ -806,6 +821,7 @@ def index():
     }
     import json as _json
     game_profiles_json = _json.dumps(game_profiles, ensure_ascii=False)
+    _strategy_matches = load_strategy_matches()
 
     from datetime import timedelta as _td
     yesterday = today - _td(days=1)
@@ -825,6 +841,8 @@ def index():
         season_stats=season_stats,
         season_review=load_season_review(),
         frozen_record=load_frozen_record(),
+        strategy_matches=_strategy_matches,
+        strategy_matches_json=_json.dumps(_strategy_matches or {}, ensure_ascii=False),
         wf_season=walk_forward_season(season_stats.get("season") if season_stats else None),
         production_models=load_production_models(),
         active_series=active_series,
