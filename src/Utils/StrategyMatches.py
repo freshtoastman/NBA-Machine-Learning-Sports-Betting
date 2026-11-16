@@ -210,7 +210,9 @@ def verdict_for(signals: list[dict], records: dict[str, tuple[int, int]]) -> dic
     if score["home"] != score["away"]:
         side = "home" if score["home"] > score["away"] else "away"
     conflict = len({v["side"] for v in votes}) > 1
-    out = {"side": side, "conflict": conflict, "score_home": score["home"], "score_away": score["away"], "votes": votes}
+    margin = round(abs(score["home"] - score["away"]), 1)
+    out = {"side": side, "conflict": conflict, "score_home": score["home"], "score_away": score["away"],
+           "margin": margin, "tier": verdict_tier(margin) if side else None, "votes": votes}
     ref = next((sg for sg in signals if sg["pick_side"] == side), None)
     if ref:
         out.update({"team": ref["pick_team"], "team_zh": ref["pick_team_zh"], "line": ref["pick_line"]})
@@ -219,6 +221,37 @@ def verdict_for(signals: list[dict], records: dict[str, tuple[int, int]]) -> dic
     else:
         out["text"] = f"不下注（兩邊票重 {score['home']:g} 對 {score['away']:g}）"
     return out
+
+
+# ── Payout check: a spread bet pays about 0.87–0.90 per unit staked ─────────
+PAYOUT_LOW, PAYOUT_HIGH = 0.87, 0.90
+BREAKEVEN_LOW = round(100 / (1 + PAYOUT_HIGH), 1)   # 52.6% at 0.90
+BREAKEVEN_HIGH = round(100 / (1 + PAYOUT_LOW), 1)   # 53.5% at 0.87
+EDGE_CEILING = 58.0   # under this a few results flip the sign of the ROI
+VERDICT_TIERS = [(0.0, 6.0, "票重差 <6"), (6.0, 15.0, "票重差 6–15"), (15.0, 1e9, "票重差 ≥15")]
+RISK_LABEL = {
+    "lose": "⚠ 容易虧錢", "edge": "≈ 接近打平", "ok": "目前為正", "na": "尚無結果",
+}
+
+
+def payout_profile(wins: int, losses: int) -> dict:
+    """ROI per unit at both ends of the payout range, plus a risk flag:
+    lose = hit rate under the 0.87 break-even (53.5%); edge = above it but
+    under 58%, where the profit is smaller than ordinary variance."""
+    n = wins + losses
+    if n == 0:
+        return {"roi_low": None, "roi_high": None, "risk": "na", "risk_label": RISK_LABEL["na"]}
+    rate = wins / n * 100
+    roi = lambda pay: round((wins * pay - losses) / n * 100, 1)
+    risk = "lose" if rate < BREAKEVEN_HIGH else ("edge" if rate < EDGE_CEILING else "ok")
+    return {"roi_low": roi(PAYOUT_LOW), "roi_high": roi(PAYOUT_HIGH), "risk": risk, "risk_label": RISK_LABEL[risk]}
+
+
+def verdict_tier(margin: float) -> int:
+    for i, (lo, hi, _) in enumerate(VERDICT_TIERS):
+        if lo <= margin < hi:
+            return i
+    return len(VERDICT_TIERS) - 1
 
 
 def build_strategy_matches(season_key: str, today_iso: str) -> dict:
@@ -285,6 +318,7 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
                 if v and v.get("side"):
                     e = _entry(row, date_iso, v["side"], v["team"], v["team_zh"], v["line"], hp, ap, played)
                     e["conflict"] = v["conflict"]
+                    e["margin"], e["tier"] = v["margin"], v["tier"]
                     e["reason_zh"] = "；".join(
                         f"{x['name_zh']}→{'主' if x['side'] == 'home' else '客'} {x['weight']:g}" for x in v["votes"])
                     v["result"] = e["result"]
@@ -300,6 +334,7 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
         losses = sum(1 for g in games if g["result"] == "loss")
         decided = wins + losses
         return {
+            **payout_profile(wins, losses),
             "wins": wins, "losses": losses,
             "pushes": sum(1 for g in games if g["result"] == "push"),
             "pending": sum(1 for g in games if g["result"] == "pending"),
@@ -316,7 +351,22 @@ def build_strategy_matches(season_key: str, today_iso: str) -> dict:
         w, l = running[s["key"]]
         strategies.append({**{k: s[k] for k in meta_keys}, "season": _season(games),
                            "weight_now": rule_weight(s["key"], w, l), "games": games})
+    tiers = []
+    for i, (lo, hi, label) in enumerate(VERDICT_TIERS):
+        tiers.append({"index": i, "label_zh": label, "season": _season([g for g in verdict_games if g.get("tier") == i])})
+    for v in verdicts.values():
+        if v and v.get("tier") is not None:
+            t = tiers[v["tier"]]
+            v["tier_label_zh"] = t["label_zh"]
+            v["tier_record"] = f"{t['season']['wins']}–{t['season']['losses']}"
+            v["tier_hit_rate"] = t["season"]["hit_rate"]
+            v["risk"], v["risk_label"] = t["season"]["risk"], t["season"]["risk_label"]
+            v["tier_roi_low"], v["tier_roi_high"] = t["season"]["roi_low"], t["season"]["roi_high"]
     return {
+        "payout": {"low": PAYOUT_LOW, "high": PAYOUT_HIGH, "breakeven_low": BREAKEVEN_LOW,
+                   "breakeven_high": BREAKEVEN_HIGH, "edge_ceiling": EDGE_CEILING,
+                   "note_zh": f"讓分賠率約 1 賠 {PAYOUT_LOW}–{PAYOUT_HIGH}：過盤率要 {BREAKEVEN_LOW}%–{BREAKEVEN_HIGH}% 才打平。低於 {BREAKEVEN_HIGH}% 標「容易虧錢」，{BREAKEVEN_HIGH}%–{EDGE_CEILING:g}% 標「接近打平」（獲利小於正常波動）。"},
+        "verdict_tiers": tiers,
         "season": season_key,
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "as_of": today_iso,

@@ -4916,3 +4916,13 @@ h3 {
 .sv-vote.for { color: #5ee0a0; }
 .sv-vote.against { color: #ff9a8a; }
 .sv-vote.zero { opacity: 0.6; }
+.risk-chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 600; white-space: nowrap; border: 1px solid var(--stroke); color: var(--muted); }
+.risk-chip.risk-lose { color: #ff8a80; border-color: rgba(255, 122, 122, 0.5); background: rgba(255, 122, 122, 0.1); }
+.risk-chip.risk-edge { color: #ffc857; border-color: rgba(255, 200, 87, 0.45); background: rgba(255, 200, 87, 0.08); }
+.risk-chip.risk-ok { color: #5ee0a0; border-color: rgba(94, 224, 160, 0.4); background: rgba(94, 224, 160, 0.07); }
+.so-stat .risk-chip { margin-top: 3px; }
+.strategy-season-btn.risk-lose { color: #ff8a80; border-color: rgba(255, 122, 122, 0.5); }
+.strategy-season-btn.risk-edge { color: #ffc857; border-color: rgba(255, 200, 87, 0.45); }
+.so-tiers { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
+.so-tiers-title { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+@media (max-width: 640px) { .risk-chip { white-space: normal; } }

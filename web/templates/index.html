@@ -284,6 +284,7 @@
                     <span class="season-audit-date">{{ strategy_matches.season }} · 截至 {{ strategy_matches.as_of }}</span>
                 </div>
                 <p class="season-audit-lead">每條策略寫明買哪一隊，「展開」列出本季所有符合條件的場次（客 @ 主、盤口、買哪隊、比分、結果），可依球隊篩選。{{ strategy_matches.note_zh }}</p>
+                {% if strategy_matches.payout %}<p class="season-audit-lead"><strong>💰 {{ strategy_matches.payout.note_zh }}</strong></p>{% endif %}
                 <div class="strategy-overview-grid">
                     {% for s in strategy_matches.strategies %}
                     <div class="strategy-overview-row tier-{{ s.tier }}">
@@ -295,11 +296,20 @@
                         <div class="so-stat">
                             <span class="so-val {% if s.season.hit_rate is none %}{% elif s.season.hit_rate >= 60 %}good{% elif s.season.hit_rate < 52.4 %}bad{% endif %}">{% if s.season.hit_rate is none %}—{% else %}{{ s.season.hit_rate }}%{% endif %}</span>
                             <span class="so-sub">本季 {{ s.season.wins }}–{{ s.season.losses }}{% if s.season.pushes %}–{{ s.season.pushes }}{% endif %}{% if s.season.pending %} · {{ s.season.pending }} 場待開{% endif %}</span>
+                            {% if s.season.risk is defined and s.season.risk != 'na' %}<span class="risk-chip risk-{{ s.season.risk }}">{{ s.season.risk_label }} · 投報 {{ s.season.roi_low }}%～{{ s.season.roi_high }}%</span>{% endif %}
                         </div>
                         <button type="button" class="strategy-season-btn so-btn" onclick="openStrategyModal('{{ s.key }}')">展開 {{ s.games|length }} 場 ▸</button>
                     </div>
                     {% endfor %}
                 </div>
+                {% if strategy_matches.verdict_tiers %}
+                <div class="so-tiers">
+                    <span class="so-tiers-title">🎯 綜合結論依票重差分層：</span>
+                    {% for t in strategy_matches.verdict_tiers %}
+                    <span class="risk-chip risk-{{ t.season.risk }}">{{ t.label_zh }}　{{ t.season.wins }}–{{ t.season.losses }}{% if t.season.hit_rate is not none %}（{{ t.season.hit_rate }}%）· 投報 {{ t.season.roi_low }}%～{{ t.season.roi_high }}% · {{ t.season.risk_label }}{% endif %}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 
@@ -1264,6 +1274,7 @@
                     <div class="strategy-verdict {% if verdict.side %}has-pick{% else %}no-pick{% endif %}">
                         <span class="sv-tag">🎯 {% if verdict.conflict %}策略衝突 · 單一結論{% else %}策略結論{% endif %}</span>
                         <span class="sv-text">{{ verdict.text }}</span>
+                        {% if verdict.risk is defined and verdict.risk %}<span class="risk-chip risk-{{ verdict.risk }}" title="同一票重差分層的本季戰績（含已結算場次），以 1 賠 0.87～0.90 計算">{{ verdict.risk_label }} · {{ verdict.tier_label_zh }} 本季 {{ verdict.tier_record }}{% if verdict.tier_hit_rate is not none %}（{{ verdict.tier_hit_rate }}%，投報 {{ verdict.tier_roi_low }}%～{{ verdict.tier_roi_high }}%）{% endif %}</span>{% endif %}
                         <button type="button" class="strategy-season-btn" title="展開本季所有綜合結論的場次" onclick="openStrategyModal('verdict','{{ game.home_team_zh|default(home_team) }}','{{ game.away_team_zh|default(away_team) }}')">本季 {{ strategy_matches.by_key.verdict.season.wins }}–{{ strategy_matches.by_key.verdict.season.losses }} ▸</button>
                         <div class="sv-votes">{% for v in verdict.votes %}<span class="sv-vote {% if v.side == verdict.side %}for{% elif v.weight == 0 %}zero{% else %}against{% endif %}">{{ v.name_zh }} → {{ game.home_team_zh|default(home_team) if v.side == 'home' else game.away_team_zh|default(away_team) }}　票重 {{ v.weight }}{% if v.nested %}（巢狀不重複計）{% endif %}</span>{% endfor %}</div>
                     </div>
@@ -1276,7 +1287,7 @@
                             <span class="strategy-text">{{ c.text }}</span>
                             {% if c.key is defined and c.key and strategy_matches and c.key in strategy_matches.by_key %}
                             {% set sm = strategy_matches.by_key[c.key] %}
-                            <button type="button" class="strategy-season-btn" title="展開本季符合這條策略的場次" onclick="event.stopPropagation();openStrategyModal('{{ c.key }}','{{ game.home_team_zh|default(home_team) }}','{{ game.away_team_zh|default(away_team) }}')">本季 {{ sm.season.wins }}–{{ sm.season.losses }}{% if sm.season.hit_rate is not none %}（{{ sm.season.hit_rate }}%）{% endif %} ▸</button>
+                            <button type="button" class="strategy-season-btn{% if sm.season.risk in ('lose','edge') %} risk-{{ sm.season.risk }}{% endif %}" title="{% if sm.season.risk != 'na' %}{{ sm.season.risk_label }}：1 賠 0.87～0.90 的投報 {{ sm.season.roi_low }}%～{{ sm.season.roi_high }}%。{% endif %}展開本季符合這條策略的場次" onclick="event.stopPropagation();openStrategyModal('{{ c.key }}','{{ game.home_team_zh|default(home_team) }}','{{ game.away_team_zh|default(away_team) }}')">{% if sm.season.risk == 'lose' %}⚠ {% elif sm.season.risk == 'edge' %}≈ {% endif %}本季 {{ sm.season.wins }}–{{ sm.season.losses }}{% if sm.season.hit_rate is not none %}（{{ sm.season.hit_rate }}%）{% endif %} ▸</button>
                             {% endif %}
                         </label>
                         {% endfor %}
@@ -2027,7 +2038,7 @@
         });
         document.querySelectorAll('#sm-chips .sm-chip').forEach(b => b.classList.toggle('active', !q && b.dataset.mode === SM_MODE));
         document.getElementById('sm-title').textContent = s.icon + ' ' + s.name_zh + ' → ' + s.pick_rule_zh;
-        document.getElementById('sm-sub').textContent = '條件：' + s.rule_zh + (s.hist_wr === null ? '' : ' · 歷史回測 ' + s.hist_wr + '%') + ' · 本季 ' + s.season.wins + '–' + s.season.losses + (s.season.pushes ? '–' + s.season.pushes : '') + (s.season.hit_rate === null ? '' : '（' + s.season.hit_rate + '%）') + (s.season.pending ? ' · ' + s.season.pending + ' 場待開' : '');
+        document.getElementById('sm-sub').textContent = '條件：' + s.rule_zh + (s.hist_wr === null ? '' : ' · 歷史回測 ' + s.hist_wr + '%') + ' · 本季 ' + s.season.wins + '–' + s.season.losses + (s.season.pushes ? '–' + s.season.pushes : '') + (s.season.hit_rate === null ? '' : '（' + s.season.hit_rate + '%）') + (s.season.pending ? ' · ' + s.season.pending + ' 場待開' : '') + (s.season.roi_low === null || s.season.roi_low === undefined ? '' : ' · 1 賠 0.87～0.90 投報 ' + s.season.roi_low + '%～' + s.season.roi_high + '% · ' + s.season.risk_label);
         const esc = (t) => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
         const resLabel = {win: '✓ 過盤', loss: '✗ 沒過', push: '＝ 退款', pending: '待開'};
         let w = 0, l = 0;

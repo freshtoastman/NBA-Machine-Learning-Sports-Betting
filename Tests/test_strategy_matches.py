@@ -2,7 +2,7 @@ import unittest
 
 from src.Utils.StrategyMatches import (
     STRATEGIES, matched_keys, pick_side, side_line, signals_for_game, _result_for,
-    rule_weight, verdict_for,
+    rule_weight, verdict_for, payout_profile, verdict_tier,
 )
 
 
@@ -100,6 +100,20 @@ class StrategyMatchesTest(unittest.TestCase):
         v = verdict_for(sigs, {"home_dog_strong": (3, 10)})
         self.assertIsNone(v["side"])
         self.assertIn("不下注", v["text"])
+
+    def test_payout_profile_flags_losers_and_near_breakeven(self):
+        self.assertEqual(payout_profile(36, 34)["risk"], "lose")      # 51.4% < 53.5%
+        self.assertLess(payout_profile(36, 34)["roi_high"], 0)
+        self.assertEqual(payout_profile(32, 28)["risk"], "lose")      # 53.3%: wins at 0.90, loses at 0.87
+        self.assertGreater(payout_profile(32, 28)["roi_high"], 0)
+        self.assertLess(payout_profile(32, 28)["roi_low"], 0)
+        self.assertEqual(payout_profile(41, 30)["risk"], "edge")      # 57.7%
+        self.assertEqual(payout_profile(26, 16)["risk"], "ok")        # 61.9%
+        self.assertEqual(payout_profile(0, 0)["risk"], "na")
+        self.assertEqual(payout_profile(10, 10)["roi_low"], -6.5)     # (10*0.87-10)/20
+
+    def test_verdict_tiers(self):
+        self.assertEqual([verdict_tier(m) for m in (3.1, 6.0, 14.9, 22.8)], [0, 1, 1, 2])
 
 
 if __name__ == "__main__":
