@@ -57,7 +57,23 @@ echo "===== $STAMP daily_pipeline start ($MODE) =====" >> "$LOG_FILE"
 # 2026-10-24: 06:13:30 DarkWake -> 06:13:32 Sleep -> 06:29:36 DarkWake ...), so every
 # step below stalls for a multiple of ~960 s. caffeinate -s is AC-only; nothing in
 # this script can fix it. Record the power source so the log explains a 3 h run.
-echo "--- power: $(pmset -g batt 2>/dev/null | head -1 | sed "s/Now drawing from //") ---" >> "$LOG_FILE"
+POWER_SRC="${NBA_ML_POWER_SOURCE:-$(pmset -g batt 2>/dev/null | head -1 | sed "s/Now drawing from //")}"
+echo "--- power: $POWER_SRC ---" >> "$LOG_FILE"
+# 2026-11-16 06:00 (battery, asleep, 9th of 9 such mornings): Patch_Scores 646 s,
+# collect_referee_data 1033 s, Create_Games 2069 s, so Export_JSON finished 07:18,
+# after the 23:00Z tips, and two games froze on the previous day's line instead of
+# the 22:17Z closing snapshot. On a battery morning skip the two steps the export
+# does not read (referee crews, dataset.sqlite rebuild + leak guard); the 15:00 run
+# does both anyway. NBA_ML_BATTERY_LEAN=0 turns this off.
+BATTERY_LEAN=0
+case "$POWER_SRC" in
+    *Battery*)
+        if [ "$MODE" = "morning" ] && [ "${NBA_ML_BATTERY_LEAN:-1}" != "0" ]; then
+            BATTERY_LEAN=1
+            echo "--- battery morning: lean run (skip collect_referee_data, Create_Games, leak_guard) ---" >> "$LOG_FILE"
+        fi
+        ;;
+esac
 
 notify_fail() {
     local step="$1"
@@ -150,7 +166,7 @@ echo "--- update_odds --db-only ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
 python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: update_odds --db-only failed" >> "$LOG_FILE"
 
 # 2b. Collect referee data for recent days (builds historical ATS profiles). Morning only.
-if [ "$MODE" = "morning" ]; then
+if [ "$MODE" = "morning" ] && [ "$BATTERY_LEAN" -eq 0 ]; then
     t_ref=$(date +%s)
     echo "--- collect_referee_data ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
     python scripts/collect_referee_data.py --days-back 3 >> "$LOG_FILE" 2>&1 || true
@@ -160,14 +176,16 @@ fi
 # 3. Derive playoff series state from updated odds (idempotent).
 run_step "Get_Series_State" python src/Process-Data/Get_Series_State.py --all-seasons || true
 
-# 4. Rebuild the merged dataset (now includes is_playoff + series cols).
-run_step "Create_Games"  python src/Process-Data/Create_Games.py
+if [ "$BATTERY_LEAN" -eq 0 ]; then
+    # 4. Rebuild the merged dataset (now includes is_playoff + series cols).
+    run_step "Create_Games"  python src/Process-Data/Create_Games.py
 
-# 4b. Leak guard (non-blocking): flag any dataset row whose stats already count its own game.
-echo "--- leak_guard ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
-if ! python scripts/audit_feature_leak.py --dataset-only --seasons 2025-26 2026-27 >> "$LOG_FILE" 2>&1; then
-    echo "WARNING: leak guard found dataset rows that include their own game" >> "$LOG_FILE"
-    /usr/bin/osascript -e 'display notification "Leak guard: dataset rows include their own game" with title "NBA-ML Pipeline"' || true
+    # 4b. Leak guard (non-blocking): flag any dataset row whose stats already count its own game.
+    echo "--- leak_guard ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
+    if ! python scripts/audit_feature_leak.py --dataset-only --seasons 2025-26 2026-27 >> "$LOG_FILE" 2>&1; then
+        echo "WARNING: leak guard found dataset rows that include their own game" >> "$LOG_FILE"
+        /usr/bin/osascript -e 'display notification "Leak guard: dataset rows include their own game" with title "NBA-ML Pipeline"' || true
+    fi
 fi
 
 # 5. Export predictions to static JSON for Vercel.

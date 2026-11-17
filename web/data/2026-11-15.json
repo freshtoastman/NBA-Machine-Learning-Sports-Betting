@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "is_today": false,
- "exported_at": "2026-11-17T15:01:47+08:00",
+ "exported_at": "2026-11-17T22:06:24+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -2470,11 +2470,11 @@
      },
      {
       "name": "Dedric Taylor",
-      "games": 87,
-      "home_cover_pct": 51.7,
+      "games": 88,
+      "home_cover_pct": 51.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.8304
+      "p_value": 0.9152
      },
      {
       "name": "Pat O'Connell",
@@ -2485,7 +2485,7 @@
       "p_value": 0.0038
      }
     ],
-    "avg_home_cover_pct": 58.5,
+    "avg_home_cover_pct": 58.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3762,16 +3762,16 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 124,
-      "home_cover_pct": 55.6,
+      "games": 125,
+      "home_cover_pct": 55.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.2429
+      "p_value": 0.2831
      },
      {
       "name": "Ray Acosta",
-      "games": 155,
-      "home_cover_pct": 49.7,
+      "games": 156,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -3785,7 +3785,7 @@
       "p_value": 0.9142
      }
     ],
-    "avg_home_cover_pct": 51.4,
+    "avg_home_cover_pct": 51.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4405,11 +4405,11 @@
      },
      {
       "name": "Jacyn Goble",
-      "games": 148,
-      "home_cover_pct": 50.7,
+      "games": 149,
+      "home_cover_pct": 50.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.9345
+      "p_value": 1.0
      },
      {
       "name": "Simone Jelks",
@@ -4420,7 +4420,7 @@
       "p_value": 0.0298
      }
     ],
-    "avg_home_cover_pct": 45.4,
+    "avg_home_cover_pct": 45.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

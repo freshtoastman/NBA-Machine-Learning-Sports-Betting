@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-17T15:01:47+08:00",
+ "exported_at": "2026-11-17T22:06:25+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -537,27 +537,27 @@
     "officials": [
      {
       "name": "Ray Acosta",
-      "games": 155,
-      "home_cover_pct": 49.7,
+      "games": 156,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      },
      {
       "name": "Marat Kogut",
-      "games": 136,
-      "home_cover_pct": 48.5,
+      "games": 137,
+      "home_cover_pct": 48.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.7971
+      "p_value": 0.8644
      },
      {
       "name": "Tyler Ricks",
-      "games": 71,
-      "home_cover_pct": 43.7,
+      "games": 72,
+      "home_cover_pct": 43.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.3425
+      "p_value": 0.2888
      }
     ],
     "avg_home_cover_pct": 47.3,
@@ -1192,11 +1192,11 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 124,
-      "home_cover_pct": 55.6,
+      "games": 125,
+      "home_cover_pct": 55.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.2429
+      "p_value": 0.2831
      },
      {
       "name": "Aaron Smith",
@@ -1215,7 +1215,7 @@
       "p_value": 0.2503
      }
     ],
-    "avg_home_cover_pct": 57.8,
+    "avg_home_cover_pct": 57.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2521,11 +2521,11 @@
      },
      {
       "name": "Eric Dalen",
-      "games": 130,
-      "home_cover_pct": 53.8,
+      "games": 131,
+      "home_cover_pct": 54.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.43
+      "p_value": 0.3824
      },
      {
       "name": "Matt Myers",
@@ -2536,7 +2536,7 @@
       "p_value": 0.4394
      }
     ],
-    "avg_home_cover_pct": 51.8,
+    "avg_home_cover_pct": 51.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

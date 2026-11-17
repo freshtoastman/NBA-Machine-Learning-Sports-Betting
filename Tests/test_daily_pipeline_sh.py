@@ -119,6 +119,43 @@ class DailyPipelineShellTest(unittest.TestCase):
         for opt in ("ConnectTimeout=30", "ServerAliveInterval=15", "ServerAliveCountMax=4"):
             self.assertIn(f"-o {opt}", m.group(1))
 
+    def _power_log(self, mode, power, extra_env=None):
+        with tempfile.TemporaryDirectory() as home:
+            env = dict(os.environ, HOME=home, NBA_ML_CAFFEINATED="1", NBA_ML_POWER_SOURCE=power)
+            env.update(extra_env or {})
+            harness = _prologue() + 'echo "LEAN=$BATTERY_LEAN"\nPIPELINE_OK=1\n'
+            proc = subprocess.run([BASH, "-c", harness, "daily_pipeline.sh", mode],
+                                  capture_output=True, text=True, env=env)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            logs = os.path.join(home, "Library", "Logs", "nba-ml")
+            log = open(os.path.join(logs, os.listdir(logs)[0])).read()
+            return proc.stdout, log
+
+    def test_battery_morning_runs_lean(self):
+        # 2026-11-16: a battery morning took 72 min to reach Export_JSON and two games
+        # froze on the wrong line. Referee + Create_Games are skipped there only.
+        out, log = self._power_log("morning", "'Battery Power'")
+        self.assertIn("LEAN=1", out)
+        self.assertIn("battery morning: lean run", log)
+        out, log = self._power_log("morning", "'AC Power'")
+        self.assertIn("LEAN=0", out)
+        self.assertNotIn("lean run", log)
+        out, _ = self._power_log("afternoon", "'Battery Power'")
+        self.assertIn("LEAN=0", out)
+        out, _ = self._power_log("morning", "'Battery Power'", {"NBA_ML_BATTERY_LEAN": "0"})
+        self.assertIn("LEAN=0", out)
+
+    def test_lean_run_guards_the_slow_steps_only(self):
+        src = open(SCRIPT).read()
+        self.assertIn('[ "$MODE" = "morning" ] && [ "$BATTERY_LEAN" -eq 0 ]', src)
+        guard = src.index('if [ "$BATTERY_LEAN" -eq 0 ]; then\n    # 4. Rebuild')
+        self.assertLess(guard, src.index('run_step "Create_Games"'))
+        export = src[src.index("# 5. Export predictions"):]
+        self.assertTrue(export.split("\n")[1].startswith('run_step "Export_JSON"'))
+        for step in ("Patch_Scores", "Get_Odds_Data"):
+            line = [l for l in src.split("\n") if f'run_step "{step}"' in l][0]
+            self.assertFalse(line.startswith(" "), f"{step} must not be skipped")
+
     def test_referee_step_logs_elapsed_seconds(self):
         src = open(SCRIPT).read()
         self.assertIn("collect_referee_data done in", src)
