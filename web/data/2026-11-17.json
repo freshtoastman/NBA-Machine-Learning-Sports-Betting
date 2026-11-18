@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
  "is_today": false,
- "exported_at": "2026-11-18T06:01:49+08:00",
+ "exported_at": "2026-11-18T15:02:00+08:00",
  "summary": {
   "games": 5,
   "model_games": 5,
@@ -15,7 +15,7 @@
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
   "injury_alerts": [
-   "Toronto Raptors: Scottie Barnes (存疑)",
+   "Toronto Raptors: Kawhi Leonard (缺陣)",
    "Toronto Raptors: Nate Bittle (缺陣)",
    "Toronto Raptors: Kevin McCullar Jr. (缺陣)",
    "Detroit Pistons: Isaiah Joe (缺陣)",
@@ -24,22 +24,23 @@
    "Detroit Pistons: Jalen Duren (缺陣)",
    "Minnesota Timberwolves: Zyon Pullin (缺陣)",
    "Minnesota Timberwolves: Jonathan Kuminga (缺陣)",
-   "Portland Trail Blazers: Deni Avdija (存疑)",
+   "Portland Trail Blazers: Deni Avdija (缺陣)",
    "Portland Trail Blazers: Chris Youngblood (缺陣)",
    "LA Clippers: Yanic Konan Niederhauser (缺陣)",
    "Utah Jazz: Jaxson Hayes (缺陣)",
-   "Los Angeles Lakers: Austin Reaves (缺陣)",
    "Los Angeles Lakers: Walker Kessler (缺陣)",
+   "Los Angeles Lakers: Austin Reaves (缺陣)",
+   "Charlotte Hornets: Grayson Allen (缺陣)",
    "Charlotte Hornets: Dennis Schroder (缺陣)"
   ],
   "scheduled_games": 5,
   "unpriced_games": 0,
-  "ml_correct": 0,
-  "ml_graded": 0,
-  "ml_hit_rate": null,
-  "ou_correct": 0,
-  "ou_graded": 0,
-  "ou_hit_rate": null,
+  "ml_correct": 2,
+  "ml_graded": 4,
+  "ml_hit_rate": 50.0,
+  "ou_correct": 1,
+  "ou_graded": 4,
+  "ou_hit_rate": 25.0,
   "value_decided": 0,
   "value_wins": 0,
   "value_losses": 0,
@@ -527,16 +528,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 102,
+   "away_score": 111,
+   "actual_total": 213,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "ml_correct": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -4.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -550,7 +551,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "injuries_home": [
-    "Scottie Barnes (存疑)",
+    "Kawhi Leonard (缺陣)",
     "Nate Bittle (缺陣)",
     "Kevin McCullar Jr. (缺陣)"
    ],
@@ -597,7 +598,7 @@
    "pregame": {
     "frozen_at": "2026-11-18T06:01:49+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "away",
     "home_confidence": 45.5,
     "away_confidence": 54.5,
@@ -650,7 +651,16 @@
     ],
     "injuries_away": [],
     "spread_last_fetched_at": "2026-11-17T22:00:28+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-18T15:01:59+08:00"
+   },
+   "closing": {
+    "spread": -4.5,
+    "ou_value": 214.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -4.5,
+    "home_team_odds": 148,
+    "away_team_odds": -176
    },
    "pregame_missing": false,
    "strategy_signals": []
@@ -1133,16 +1143,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 93,
+   "away_score": 105,
+   "actual_total": 198,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "ml_correct": false,
+   "ats_winner": "away",
+   "ats_cover_margin": -21.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1204,7 +1214,7 @@
    "pregame": {
     "frozen_at": "2026-11-18T06:01:49+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 83.6,
     "away_confidence": 16.4,
@@ -1258,7 +1268,16 @@
      "Jalen Duren (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-17T22:00:28+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-18T15:01:59+08:00"
+   },
+   "closing": {
+    "spread": 9.5,
+    "ou_value": 221.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -21.5,
+    "home_team_odds": -430,
+    "away_team_odds": 340
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -1767,16 +1786,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 106,
+   "away_score": 105,
+   "actual_total": 211,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "away",
+   "ats_cover_margin": -2.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": true,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1797,7 +1816,7 @@
    "tipoff_et": "20:00 ET",
    "tipoff_taipei": "11/18 09:00 台北",
    "injuries_away": [
-    "Deni Avdija (存疑)",
+    "Deni Avdija (缺陣)",
     "Chris Youngblood (缺陣)"
    ],
    "odds_history": [
@@ -1839,7 +1858,7 @@
    "pregame": {
     "frozen_at": "2026-11-18T06:01:49+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 63.3,
     "away_confidence": 36.7,
@@ -1894,7 +1913,16 @@
      "Chris Youngblood (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-17T22:00:28+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-18T15:01:59+08:00"
+   },
+   "closing": {
+    "spread": 3.5,
+    "ou_value": 224.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -2.5,
+    "home_team_odds": -146,
+    "away_team_odds": 124
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -2390,16 +2418,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "UNDER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 107,
+   "away_score": 132,
+   "actual_total": 239,
+   "actual_home_win": false,
+   "actual_winner": "away",
+   "ml_correct": false,
+   "ats_winner": "away",
+   "ats_cover_margin": -31.5,
+   "actual_ou_result": "OVER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -2452,7 +2480,7 @@
    "pregame": {
     "frozen_at": "2026-11-18T06:01:49+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 69.2,
     "away_confidence": 30.8,
@@ -2505,7 +2533,16 @@
      "Jaxson Hayes (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-17T14:05:42+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-18T15:01:59+08:00"
+   },
+   "closing": {
+    "spread": 6.5,
+    "ou_value": 225.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -31.5,
+    "home_team_odds": -235,
+    "away_team_odds": 194
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -3051,13 +3088,19 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
    "injuries_home": [
-    "Austin Reaves (缺陣)",
-    "Walker Kessler (缺陣)"
+    "Walker Kessler (缺陣)",
+    "Austin Reaves (缺陣)"
    ],
+   "live_home_score": 101,
+   "live_away_score": 102,
+   "live_status": "04:05 4th",
+   "live_is_final": false,
+   "live_home_covering": false,
    "tipoff_utc": "2026-11-18T04:00:00Z",
    "tipoff_et": "23:00 ET",
    "tipoff_taipei": "11/18 12:00 台北",
    "injuries_away": [
+    "Grayson Allen (缺陣)",
     "Dennis Schroder (缺陣)"
    ],
    "odds_history": [
@@ -3099,7 +3142,7 @@
    "pregame": {
     "frozen_at": "2026-11-18T06:01:49+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 85.3,
     "away_confidence": 14.7,
@@ -3153,7 +3196,16 @@
      "Dennis Schroder (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-17T22:00:28+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-18T15:01:59+08:00"
+   },
+   "closing": {
+    "spread": 7.5,
+    "ou_value": 220.5,
+    "ats_winner": null,
+    "ats_cover_margin": null,
+    "home_team_odds": -295,
+    "away_team_odds": 240
    },
    "pregame_missing": false,
    "strategy_signals": [
