@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "is_today": false,
- "exported_at": "2026-11-18T15:02:01+08:00",
+ "exported_at": "2026-11-18T22:06:24+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1866,11 +1866,11 @@
     "officials": [
      {
       "name": "James Capers",
-      "games": 127,
-      "home_cover_pct": 53.5,
+      "games": 128,
+      "home_cover_pct": 53.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.4779
+      "p_value": 0.5363
      },
      {
       "name": "Sean Corbin",
@@ -1888,7 +1888,7 @@
       "direction": null
      }
     ],
-    "avg_home_cover_pct": 52.6,
+    "avg_home_cover_pct": 52.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

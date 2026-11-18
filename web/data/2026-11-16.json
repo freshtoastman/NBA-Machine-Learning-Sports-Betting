@@ -1,7 +1,7 @@
 {
  "date": "2026-11-16",
  "is_today": false,
- "exported_at": "2026-11-18T15:02:00+08:00",
+ "exported_at": "2026-11-18T22:06:23+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -5192,11 +5192,11 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 157,
-      "home_cover_pct": 49.7,
+      "games": 158,
+      "home_cover_pct": 49.4,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9366
      },
      {
       "name": "Dedric Taylor",
@@ -5215,7 +5215,7 @@
       "p_value": 0.6137
      }
     ],
-    "avg_home_cover_pct": 51.3,
+    "avg_home_cover_pct": 51.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

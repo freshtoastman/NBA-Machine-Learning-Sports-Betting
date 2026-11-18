@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "is_today": false,
- "exported_at": "2026-11-18T15:02:00+08:00",
+ "exported_at": "2026-11-18T22:06:24+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1177,11 +1177,11 @@
     "officials": [
      {
       "name": "James Williams",
-      "games": 152,
-      "home_cover_pct": 52.6,
+      "games": 153,
+      "home_cover_pct": 52.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.5703
+      "p_value": 0.6278
      },
      {
       "name": "John Butler",
@@ -1200,7 +1200,7 @@
       "p_value": 0.8284
      }
     ],
-    "avg_home_cover_pct": 51.6,
+    "avg_home_cover_pct": 51.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1851,14 +1851,14 @@
      },
      {
       "name": "Andy Nagy",
-      "games": 139,
-      "home_cover_pct": 45.3,
+      "games": 140,
+      "home_cover_pct": 45.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.3088
+      "p_value": 0.2718
      }
     ],
-    "avg_home_cover_pct": 45.8,
+    "avg_home_cover_pct": 45.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2462,11 +2462,11 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 150,
-      "home_cover_pct": 53.3,
+      "games": 151,
+      "home_cover_pct": 53.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.4625
+      "p_value": 0.5152
      },
      {
       "name": "Dedric Taylor",
@@ -2485,7 +2485,7 @@
       "p_value": 0.0038
      }
     ],
-    "avg_home_cover_pct": 58.3,
+    "avg_home_cover_pct": 58.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3778,14 +3778,14 @@
      },
      {
       "name": "Derrick Collins",
-      "games": 86,
-      "home_cover_pct": 48.8,
+      "games": 87,
+      "home_cover_pct": 48.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.9142
+      "p_value": 0.8304
      }
     ],
-    "avg_home_cover_pct": 51.3,
+    "avg_home_cover_pct": 51.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
