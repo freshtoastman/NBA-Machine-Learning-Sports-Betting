@@ -470,7 +470,7 @@
     "date": "2026-11-19",
     "home": "Memphis Grizzlies",
     "away": "Golden State Warriors",
-    "spread": 8.5,
+    "spread": 5.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -1847,6 +1847,16 @@
     "home_score": 110,
     "away_score": 100,
     "ats_result": "home"
+   },
+   {
+    "date": "2026-11-20",
+    "home": "Denver Nuggets",
+    "away": "Houston Rockets",
+    "spread": 3.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Phoenix Suns:San Antonio Spurs": [
@@ -2600,7 +2610,7 @@
     "date": "2026-11-19",
     "home": "San Antonio Spurs",
     "away": "LA Clippers",
-    "spread": 16.5,
+    "spread": 15.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
@@ -2612,11 +2622,23 @@
     "date": "2026-11-19",
     "home": "Milwaukee Bucks",
     "away": "Portland Trail Blazers",
-    "spread": -9.5,
+    "spread": -11.5,
     "win_margin": 0,
     "home_score": null,
     "away_score": null,
     "ats_result": "home"
+   }
+  ],
+  "Detroit Pistons:Toronto Raptors": [
+   {
+    "date": "2026-11-20",
+    "home": "Detroit Pistons",
+    "away": "Toronto Raptors",
+    "spread": 8.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ]
  }
