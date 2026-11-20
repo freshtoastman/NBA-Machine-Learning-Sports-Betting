@@ -309,6 +309,16 @@
     "home_score": 81,
     "away_score": 128,
     "ats_result": "away"
+   },
+   {
+    "date": "2026-11-20",
+    "home": "Atlanta Hawks",
+    "away": "Charlotte Hornets",
+    "spread": 6.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
    }
   ],
   "Toronto Raptors:Washington Wizards": [
@@ -522,6 +532,16 @@
     "win_margin": -4,
     "home_score": 120,
     "away_score": 124,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-11-20",
+    "home": "Chicago Bulls",
+    "away": "Washington Wizards",
+    "spread": 2.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "away"
    }
   ],
@@ -1572,6 +1592,16 @@
     "win_margin": -13,
     "home_score": 103,
     "away_score": 116,
+    "ats_result": "away"
+   },
+   {
+    "date": "2026-11-20",
+    "home": "Los Angeles Lakers",
+    "away": "Sacramento Kings",
+    "spread": 14.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
     "ats_result": "away"
    }
   ],
@@ -2639,6 +2669,54 @@
     "home_score": null,
     "away_score": null,
     "ats_result": "away"
+   }
+  ],
+  "Brooklyn Nets:Orlando Magic": [
+   {
+    "date": "2026-11-20",
+    "home": "Brooklyn Nets",
+    "away": "Orlando Magic",
+    "spread": -5.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
+   }
+  ],
+  "Cleveland Cavaliers:Indiana Pacers": [
+   {
+    "date": "2026-11-20",
+    "home": "Cleveland Cavaliers",
+    "away": "Indiana Pacers",
+    "spread": 6.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "New Orleans Pelicans:Oklahoma City Thunder": [
+   {
+    "date": "2026-11-20",
+    "home": "Oklahoma City Thunder",
+    "away": "New Orleans Pelicans",
+    "spread": 10.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "away"
+   }
+  ],
+  "Phoenix Suns:Utah Jazz": [
+   {
+    "date": "2026-11-20",
+    "home": "Utah Jazz",
+    "away": "Phoenix Suns",
+    "spread": -4.5,
+    "win_margin": 0,
+    "home_score": null,
+    "away_score": null,
+    "ats_result": "home"
    }
   ]
  }
