@@ -661,6 +661,16 @@ def load_frozen_record() -> dict | None:
             item(f"盤口往模型反方向移動 ≥{pts:g} 分時，模型的勝率", moved.get("against"),
                  note=_move_split_note(moved)),
         ]})
+    # Late side of big spread moves, graded at the frozen spread (reference only).
+    sm = fr.get("spread_move_ats") or {}
+    if (sm.get("late_side") or {}).get("n"):
+        fade, fwd = sm.get("fade") or {}, sm.get("forward") or {}
+        ff = fwd.get("fade") or {}
+        note = (f"反過來押開盤方 {fade.get('wins', 0)}-{fade.get('losses', 0)}（{fade.get('hit_rate')}%），"
+                f"但這是事後才發現的方向，不能當訊號；{fwd.get('from', '')[5:].replace('-', '/')} 起另計前瞻樣本 "
+                f"{ff.get('wins', 0)}-{ff.get('losses', 0)}，滿 {fwd.get('min_moves', 50)} 筆才檢定")
+        fr["blocks"][-1]["items"].append(
+            item(f"讓分移動 ≥{sm.get('min_points', 1.5):g} 分時，跟著移動方向下注的過盤率", sm["late_side"], note=note))
     fr["has_graded"] = bool(fr.get("graded_games"))
     return fr
 

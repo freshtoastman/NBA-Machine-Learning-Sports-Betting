@@ -148,6 +148,22 @@ if [ "$NET_WAIT_MAX" -gt 0 ]; then
     fi
 fi
 
+# 0b. Battery morning: freeze first. 2026-11-20 06:10 (battery, asleep, the first real
+# lean run): Get_Advanced_Data 939 s + Get_Odds_Data 1866 s ran before update_odds
+# (06:57, itself 1 h 53 min of 2 s dark wakes), so the export that freezes the
+# pre-game lines finished 08:58:42 Taipei -- 78 seconds before four 01:00Z tips. A
+# 00:30Z slate would have frozen on the previous afternoon's opener. The freeze needs
+# only the line refresh and the export, so on a lean run do those two before any other
+# fetch; the normal steps below then repeat them (update_odds skips tipped games, the
+# export never rewrites a locked block). Never fatal.
+if [ "$BATTERY_LEAN" -eq 1 ]; then
+    t_ff=$(date +%s)
+    echo "--- freeze_first: update_odds --db-only + Export_JSON ($(date '+%H:%M:%S')) ---" >> "$LOG_FILE"
+    python scripts/update_odds.py --db-only >> "$LOG_FILE" 2>&1 || echo "WARNING: freeze_first update_odds failed" >> "$LOG_FILE"
+    python scripts/export_predictions.py >> "$LOG_FILE" 2>&1 || echo "WARNING: freeze_first export failed" >> "$LOG_FILE"
+    echo "--- freeze_first done in $(( $(date +%s) - t_ff )) s ---" >> "$LOG_FILE"
+fi
+
 # 1. Update raw data (regular season + playoff stats snapshots).
 cd src/Process-Data
 run_step "Get_Data"           python -m Get_Data $REFRESH_FLAG

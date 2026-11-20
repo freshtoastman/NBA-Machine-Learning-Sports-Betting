@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
  "is_today": false,
- "exported_at": "2026-11-20T08:58:45+08:00",
+ "exported_at": "2026-11-20T13:40:50+08:00",
  "summary": {
   "games": 5,
   "model_games": 5,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 153,
-      "home_cover_pct": 55.6,
+      "games": 154,
+      "home_cover_pct": 55.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.1957
+      "p_value": 0.1705
      },
      {
       "name": "Eric Lewis",
@@ -3166,11 +3166,11 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 151,
-      "home_cover_pct": 53.0,
+      "games": 152,
+      "home_cover_pct": 52.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.5152
+      "p_value": 0.5703
      },
      {
       "name": "Nick Buchert",
@@ -3182,14 +3182,14 @@
      },
      {
       "name": "Jonathan Sterling",
-      "games": 102,
-      "home_cover_pct": 58.8,
+      "games": 103,
+      "home_cover_pct": 58.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.0918
+      "p_value": 0.1145
      }
     ],
-    "avg_home_cover_pct": 53.7,
+    "avg_home_cover_pct": 53.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

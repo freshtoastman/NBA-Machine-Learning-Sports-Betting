@@ -80,12 +80,46 @@ def _log_loss(p: float, y: int) -> float:
 
 
 LINE_MOVE_POINTS = 1.0   # frozen spread vs opener, in points, to count as "moved"
+# Spread-move ATS tally: the frozen spread vs the SAME book's first odds_history row.
+# Through 2026-11-19 following the late side covered about one time in three, so the
+# opposite ("fade") looks good in sample -- but that reading was found after the fact
+# (the original hypothesis was "follow the steam"). Moves from FADE_FORWARD_FROM on
+# are tallied separately as the only out-of-sample evidence; nothing is a pick until
+# that forward sample alone reaches FADE_FORWARD_MIN with a CI lower bound > 52.4%.
+SPREAD_MOVE_ATS_POINTS = 1.5
+FADE_FORWARD_FROM = "2026-11-20"
+FADE_FORWARD_MIN = 50
 
 
 def season_of(iso: str) -> str:
     d = date.fromisoformat(iso[:10])
     y = d.year if d.month >= 10 else d.year - 1
     return f"{y}-{(y + 1) % 100:02d}"
+
+
+def _book(source) -> str | None:
+    if not source:
+        return None
+    return source[:-5] if source.endswith("_open") else source
+
+
+def same_book_spread_move(g: dict) -> float | None:
+    """Frozen spread minus the first odds_history spread from the same book
+    (home-positive: > 0 = the line moved toward the home side). None when the
+    game has no frozen spread or no row from the book the frozen line came from,
+    so a fallback-book opener never counts as a move."""
+    frozen = g.get("spread")
+    rows = [r for r in (g.get("odds_history") or []) if isinstance(r, dict) and r.get("spread") is not None]
+    if frozen is None or not rows:
+        return None
+    book = _book(g.get("line_source") or rows[-1].get("source"))
+    for r in rows:
+        if _book(r.get("source")) == book:
+            try:
+                return round(float(frozen) - float(r["spread"]), 1)
+            except (TypeError, ValueError):
+                return None
+    return None
 
 
 def _is_locked(g: dict) -> bool:
@@ -127,12 +161,47 @@ class _Bucket:
         self.ll_model = self.ll_market = self.brier_model = self.brier_market = 0.0
         # Model ML record by where the spread went between the opener and the frozen line.
         self.ml_by_move = {"toward": [0, 0], "flat": [0, 0], "against": [0, 0]}
+        # Late side of a >= SPREAD_MOVE_ATS_POINTS same-book move, graded at the frozen spread.
+        self.move_late = [0, 0]
+        self.move_late_forward = [0, 0]
+        self.move_rows = []
+
+    def _add_spread_move(self, iso: str, g: dict):
+        atsw = g.get("ats_winner")
+        move = same_book_spread_move(g)
+        if atsw not in ("home", "away") or move is None or abs(move) < SPREAD_MOVE_ATS_POINTS:
+            return
+        late = "home" if move > 0 else "away"
+        hit = late == atsw
+        self.move_late[0] += hit
+        self.move_late[1] += 1
+        if iso >= FADE_FORWARD_FROM:
+            self.move_late_forward[0] += hit
+            self.move_late_forward[1] += 1
+        self.move_rows.append({"date": iso, "game": f"{g.get('away_team')} @ {g.get('home_team')}",
+                               "from": round(float(g["spread"]) - move, 1), "to": g["spread"],
+                               "late_side": late, "late_side_covered": hit})
+
+    def _spread_move_ats(self) -> dict:
+        def both(pair):
+            w, n = pair
+            return {"late_side": rec(w, n), "fade": rec(n - w, n)}
+        fwd = both(self.move_late_forward)
+        ats_floor = 52.4
+        lo = fwd["fade"]["ci95"][0]
+        return {"min_points": SPREAD_MOVE_ATS_POINTS,
+                **both(self.move_late),
+                "forward": {"from": FADE_FORWARD_FROM, "min_moves": FADE_FORWARD_MIN,
+                            "ci_lower_pct": ats_floor, **fwd,
+                            "met": bool(fwd["fade"]["n"] >= FADE_FORWARD_MIN and lo is not None and lo > ats_floor)},
+                "rows": self.move_rows[-80:]}
 
     def add(self, iso: str, g: dict):
         self.frozen += 1
         self.dates.add(iso)
         if not _graded(g):
             return
+        self._add_spread_move(iso, g)   # needs lines + a final only, so opening-week stubs count
         if not _has_prediction(g):
             self.settled_without_prediction += 1
             return
@@ -227,6 +296,7 @@ class _Bucket:
             "market_baseline": self._market_baseline(),
             "ml_by_line_move": {"min_points": LINE_MOVE_POINTS,
                                 **{k: rec(*v) for k, v in self.ml_by_move.items()}},
+            "spread_move_ats": self._spread_move_ats(),
         }
 
 

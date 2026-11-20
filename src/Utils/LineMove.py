@@ -6,7 +6,8 @@ statistics; a late scratch moves the line but not the model's probability
 (2026-11-05 MIA @ GSW: 7.5 -> 3.5 while the card still said GSW 83.6%). The
 alert tells the reader the number on the card predates whatever the market
 just learned. It is not a pick: through 2026-11-06 following the late side of
-such moves covered 15 of 37 times.
+such moves covered 15 of 37 times (17 of 51 through 2026-11-19; the running
+count is ``spread_move_ats`` in web/data/frozen_record.json).
 """
 from __future__ import annotations
 

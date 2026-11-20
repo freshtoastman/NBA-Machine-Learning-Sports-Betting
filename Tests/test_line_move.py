@@ -72,5 +72,43 @@ class TestLineMoveAlert(unittest.TestCase):
         self.assertNotIn("same_source_points", alert)
 
 
+
+class SpreadMoveAtsTally(unittest.TestCase):
+    """FrozenRecord.spread_move_ats: late side of a >=1.5 same-book move at the frozen spread."""
+
+    @staticmethod
+    def _game(frozen, rows, ats_winner, source="sbr_fanduel"):
+        return {"home_team": "H", "away_team": "A", "spread": frozen, "line_source": source,
+                "odds_history": [{"spread": s, "source": src} for s, src in rows],
+                "ats_winner": ats_winner, "actual_winner": "home", "pregame": {"locked": True}}
+
+    def test_same_book_move_ignores_a_fallback_opener(self):
+        from src.Utils.FrozenRecord import same_book_spread_move
+        g = self._game(-8.5, [(-2.5, "sbr_draftkings_open"), (-7.5, "sbr_fanduel"), (-8.5, "sbr_fanduel")], "home")
+        self.assertEqual(same_book_spread_move(g), -1.0)       # 6.0 across books, 1.0 of its own
+        g = self._game(4.5, [(6.5, "sbr_fanduel_open"), (4.5, "sbr_fanduel")], "home")
+        self.assertEqual(same_book_spread_move(g), -2.0)
+        self.assertIsNone(same_book_spread_move(self._game(None, [(6.5, "sbr_fanduel_open")], "home")))
+        self.assertIsNone(same_book_spread_move(self._game(4.5, [], "home")))
+
+    def test_tally_counts_late_side_fade_and_forward_sample(self):
+        from src.Utils import FrozenRecord
+        b = FrozenRecord._Bucket()
+        fd = [(6.5, "sbr_fanduel_open")]
+        b.add("2026-11-18", self._game(4.5, fd, "home"))                    # moved to away, home covered
+        b.add("2026-11-18", self._game(8.5, fd, "home"))                    # moved to home, home covered
+        b.add("2026-11-18", self._game(5.5, fd, "away"))                    # 1.0: below the bar
+        b.add("2026-11-18", self._game(4.5, fd, None))                      # push: not counted
+        b.add(FrozenRecord.FADE_FORWARD_FROM, self._game(3.5, fd, "home"))  # forward sample, late side lost
+        out = b.summary()["spread_move_ats"]
+        self.assertEqual((out["late_side"]["wins"], out["late_side"]["n"]), (1, 3))
+        self.assertEqual((out["fade"]["wins"], out["fade"]["n"]), (2, 3))
+        fwd = out["forward"]
+        self.assertEqual((fwd["fade"]["wins"], fwd["fade"]["n"]), (1, 1))
+        self.assertFalse(fwd["met"])
+        self.assertEqual(out["rows"][0]["from"], 6.5)
+        self.assertEqual(out["rows"][0]["late_side"], "away")
+
+
 if __name__ == "__main__":
     unittest.main()

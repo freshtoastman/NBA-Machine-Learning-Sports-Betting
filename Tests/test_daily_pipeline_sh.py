@@ -156,6 +156,19 @@ class DailyPipelineShellTest(unittest.TestCase):
             line = [l for l in src.split("\n") if f'run_step "{step}"' in l][0]
             self.assertFalse(line.startswith(" "), f"{step} must not be skipped")
 
+    def test_lean_run_freezes_before_any_other_fetch(self):
+        """Battery morning: the line refresh + export that lock the pre-game block
+        must run before Get_Data / Get_Advanced_Data / Get_Odds_Data (2026-11-20:
+        the export beat four tip-offs by 78 seconds)."""
+        with open(SCRIPT, encoding="utf-8") as fh:
+            src = fh.read()
+        ff = src.index('if [ "$BATTERY_LEAN" -eq 1 ]; then')
+        block = src[ff:src.index("fi\n", ff)]
+        self.assertLess(block.index("update_odds.py --db-only"), block.index("export_predictions.py"))
+        self.assertLess(ff, src.index('run_step "Get_Data"'))
+        self.assertGreater(ff, src.index("net_up; do"))        # after the network wait
+        self.assertNotIn("run_step", block)                     # never fatal
+
     def test_referee_step_logs_elapsed_seconds(self):
         src = open(SCRIPT).read()
         self.assertIn("collect_referee_data done in", src)

@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "is_today": false,
- "exported_at": "2026-11-20T08:58:47+08:00",
+ "exported_at": "2026-11-20T13:40:51+08:00",
  "summary": {
   "games": 5,
   "model_games": 5,
@@ -1185,11 +1185,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 150,
-      "home_cover_pct": 46.0,
+      "games": 151,
+      "home_cover_pct": 45.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.3692
+      "p_value": 0.3288
      },
      {
       "name": "Eric Lewis",
@@ -1200,14 +1200,14 @@
      },
      {
       "name": "Jenna Schroeder",
-      "games": 109,
-      "home_cover_pct": 56.0,
+      "games": 110,
+      "home_cover_pct": 55.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.2503
+      "p_value": 0.2942
      }
     ],
-    "avg_home_cover_pct": 56.7,
+    "avg_home_cover_pct": 56.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1860,19 +1860,19 @@
      },
      {
       "name": "Brian Forte",
-      "games": 143,
-      "home_cover_pct": 51.7,
+      "games": 144,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.7381
+      "p_value": 0.8027
      },
      {
       "name": "Scott Twardoski",
-      "games": 115,
-      "home_cover_pct": 53.0,
+      "games": 116,
+      "home_cover_pct": 53.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.576
+      "p_value": 0.5159
      }
     ],
     "avg_home_cover_pct": 51.4,
@@ -2486,30 +2486,30 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 153,
-      "home_cover_pct": 55.6,
+      "games": 154,
+      "home_cover_pct": 55.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.1957
+      "p_value": 0.1705
      },
      {
       "name": "Jonathan Sterling",
-      "games": 102,
-      "home_cover_pct": 58.8,
+      "games": 103,
+      "home_cover_pct": 58.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.0918
+      "p_value": 0.1145
      },
      {
       "name": "Suyash Mehta",
-      "games": 98,
-      "home_cover_pct": 53.1,
+      "games": 99,
+      "home_cover_pct": 53.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.6137
+      "p_value": 0.5467
      }
     ],
-    "avg_home_cover_pct": 55.8,
+    "avg_home_cover_pct": 55.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3155,8 +3155,8 @@
      },
      {
       "name": "Nate Green",
-      "games": 124,
-      "home_cover_pct": 50.0,
+      "games": 125,
+      "home_cover_pct": 49.6,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -3170,7 +3170,7 @@
       "p_value": 0.3203
      }
     ],
-    "avg_home_cover_pct": 51.2,
+    "avg_home_cover_pct": 51.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
