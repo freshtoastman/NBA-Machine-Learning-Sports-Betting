@@ -1,7 +1,7 @@
 {
  "date": "2026-11-16",
  "is_today": false,
- "exported_at": "2026-11-21T22:05:19+08:00",
+ "exported_at": "2026-11-22T06:02:19+08:00",
  "summary": {
   "games": 8,
   "model_games": 8,
@@ -538,11 +538,11 @@
     "officials": [
      {
       "name": "Sean Wright",
-      "games": 135,
-      "home_cover_pct": 50.4,
+      "games": 136,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9317
      },
      {
       "name": "Mousa Dagher",
@@ -554,14 +554,14 @@
      },
      {
       "name": "Tyler Ricks",
-      "games": 73,
-      "home_cover_pct": 42.5,
+      "games": 74,
+      "home_cover_pct": 43.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.2416
+      "p_value": 0.2954
      }
     ],
-    "avg_home_cover_pct": 45.5,
+    "avg_home_cover_pct": 45.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2530,19 +2530,19 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 126,
-      "home_cover_pct": 54.8,
+      "games": 127,
+      "home_cover_pct": 54.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.3271
+      "p_value": 0.375
      },
      {
       "name": "Jacyn Goble",
-      "games": 150,
-      "home_cover_pct": 50.7,
+      "games": 151,
+      "home_cover_pct": 51.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.935
+      "p_value": 0.8708
      },
      {
       "name": "Jenna Reneau",
@@ -2553,7 +2553,7 @@
       "p_value": 0.2026
      }
     ],
-    "avg_home_cover_pct": 48.5,
+    "avg_home_cover_pct": 48.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3887,8 +3887,8 @@
      },
      {
       "name": "Mark Lindsay",
-      "games": 148,
-      "home_cover_pct": 50.0,
+      "games": 149,
+      "home_cover_pct": 50.3,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -3902,7 +3902,7 @@
       "p_value": 0.3203
      }
     ],
-    "avg_home_cover_pct": 52.5,
+    "avg_home_cover_pct": 52.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4525,11 +4525,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 151,
-      "home_cover_pct": 45.7,
+      "games": 152,
+      "home_cover_pct": 45.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.3288
+      "p_value": 0.2917
      },
      {
       "name": "Eric Dalen",
@@ -4548,7 +4548,7 @@
       "p_value": 0.198
      }
     ],
-    "avg_home_cover_pct": 47.6,
+    "avg_home_cover_pct": 47.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5192,16 +5192,16 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 158,
-      "home_cover_pct": 49.4,
+      "games": 159,
+      "home_cover_pct": 49.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.9366
+      "p_value": 1.0
      },
      {
       "name": "Dedric Taylor",
-      "games": 89,
-      "home_cover_pct": 50.6,
+      "games": 90,
+      "home_cover_pct": 50.0,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -5215,7 +5215,7 @@
       "p_value": 0.5467
      }
     ],
-    "avg_home_cover_pct": 51.2,
+    "avg_home_cover_pct": 51.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
