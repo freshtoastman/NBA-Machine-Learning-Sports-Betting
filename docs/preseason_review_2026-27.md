@@ -2498,7 +2498,7 @@ ML 模型押 3 主 4 客，**四場 ≥70**（MEM 85.3 追平 10/27 BOS 85.3 的
 - **凍結**：MIL @ PHI 18:00Z 開賽（台北 02:00），在明早 06:00 之前 → 它的凍結線就是本篇 14:05Z 這一版（rev 2）；其餘五場凍結在明早 06:00（22:00Z）的匯出。
 
 **驗證**
-- 測試 153／153 通過（`python -m unittest discover -s Tests`；上一篇寫的 186 是 pytest 的參數化計數）。
+- 測試通過：`python -m unittest discover -s Tests` 153／153、`python -m pytest Tests` 186／186（兩個指令收集到的數量不同，差異原因未查）。
 - `11a8f97` deployments API（完整 SHA）Production state **success**（14:05:45Z）；正式站 `/login` 200。
 - `frozen_record.json`：219 graded／235 frozen、pending 6。
 
