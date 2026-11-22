@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "is_today": false,
- "exported_at": "2026-11-22T06:02:18+08:00",
+ "exported_at": "2026-11-22T15:02:04+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -14,37 +14,15 @@
   "golden_picks": 0,
   "playoff_ats_alerts": [],
   "playoff_ats_count": 0,
-  "injury_alerts": [
-   "Philadelphia 76ers: Dean Wade (缺陣)",
-   "Philadelphia 76ers: Adem Bona (缺陣)",
-   "New York Knicks: OG Anunoby (缺陣)",
-   "New York Knicks: Karl-Anthony Towns (存疑)",
-   "New York Knicks: Jordan Clarkson (缺陣)",
-   "Portland Trail Blazers: Chris Youngblood (缺陣)",
-   "Portland Trail Blazers: Deni Avdija (存疑)",
-   "Memphis Grizzlies: Jerami Grant (缺陣)",
-   "Memphis Grizzlies: Javon Small (缺陣)",
-   "Memphis Grizzlies: Cameron Boozer (缺陣)",
-   "Memphis Grizzlies: Scotty Pippen Jr. (缺陣)",
-   "New Orleans Pelicans: Trey Murphy III (缺陣)",
-   "New Orleans Pelicans: Trendon Watford (缺陣)",
-   "Dallas Mavericks: P.J. Washington (存疑)",
-   "Dallas Mavericks: Tobi Lawal (缺陣)",
-   "Dallas Mavericks: Walter Clayton Jr. (存疑)",
-   "LA Clippers: Brandon Ingram (缺陣)",
-   "Sacramento Kings: Precious Achiuwa (存疑)",
-   "Boston Celtics: Mitchell Robinson (缺陣)",
-   "Boston Celtics: Derrick White (缺陣)",
-   "Boston Celtics: Jayson Tatum (缺陣)"
-  ],
+  "injury_alerts": [],
   "scheduled_games": 6,
   "unpriced_games": 0,
-  "ml_correct": 1,
-  "ml_graded": 1,
-  "ml_hit_rate": 100.0,
+  "ml_correct": 4,
+  "ml_graded": 6,
+  "ml_hit_rate": 66.7,
   "ou_correct": 1,
-  "ou_graded": 1,
-  "ou_hit_rate": 100.0,
+  "ou_graded": 6,
+  "ou_hit_rate": 16.7,
   "value_decided": 0,
   "value_wins": 0,
   "value_losses": 0,
@@ -554,13 +532,7 @@
    "away_team_zh": "密爾瓦基公鹿",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
-   "injuries_home": [
-    "Dean Wade (缺陣)",
-    "Adem Bona (缺陣)"
-   ],
-   "tipoff_utc": "2026-11-21T18:00:00Z",
-   "tipoff_et": "13:00 ET",
-   "tipoff_taipei": "11/22 02:00 台北",
+   "injuries_home": [],
    "referee_crew": {
     "officials": [
      {
@@ -1173,16 +1145,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 97,
+   "away_score": 96,
+   "actual_total": 193,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": false,
+   "ats_winner": "away",
+   "ats_cover_margin": -2.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1195,18 +1167,8 @@
    "away_team_zh": "波特蘭拓荒者",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
-   "injuries_home": [
-    "OG Anunoby (缺陣)",
-    "Karl-Anthony Towns (存疑)",
-    "Jordan Clarkson (缺陣)"
-   ],
-   "tipoff_utc": "2026-11-22T00:30:00Z",
-   "tipoff_et": "19:30 ET",
-   "tipoff_taipei": "11/22 08:30 台北",
-   "injuries_away": [
-    "Chris Youngblood (缺陣)",
-    "Deni Avdija (存疑)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-11-21T07:00:23+00:00",
@@ -1246,7 +1208,7 @@
    "pregame": {
     "frozen_at": "2026-11-22T06:02:17+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "away",
     "home_confidence": 45.7,
     "away_confidence": 54.3,
@@ -1302,7 +1264,16 @@
      "Deni Avdija (存疑)"
     ],
     "spread_last_fetched_at": "2026-11-21T22:00:33+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-22T15:02:04+08:00"
+   },
+   "closing": {
+    "spread": 3.5,
+    "ou_value": 215.5,
+    "ats_winner": "away",
+    "ats_cover_margin": -2.5,
+    "home_team_odds": -156,
+    "away_team_odds": 132
    },
    "pregame_missing": false,
    "line_move_alert": {
@@ -1791,16 +1762,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 104,
+   "away_score": 95,
+   "actual_total": 199,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 2.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -1814,15 +1785,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "injuries_home": [],
-   "tipoff_utc": "2026-11-22T01:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "11/22 09:00 台北",
-   "injuries_away": [
-    "Jerami Grant (缺陣)",
-    "Javon Small (缺陣)",
-    "Cameron Boozer (缺陣)",
-    "Scotty Pippen Jr. (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-11-21T07:00:23+00:00",
@@ -1862,7 +1825,7 @@
    "pregame": {
     "frozen_at": "2026-11-22T06:02:17+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 60.0,
     "away_confidence": 40.0,
@@ -1916,7 +1879,16 @@
      "Scotty Pippen Jr. (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-21T22:00:33+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-22T15:02:04+08:00"
+   },
+   "closing": {
+    "spread": 6.5,
+    "ou_value": 229.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 2.5,
+    "home_team_odds": -230,
+    "away_team_odds": 190
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -2438,16 +2410,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 114,
+   "away_score": 91,
+   "actual_total": 205,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 4.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -2461,13 +2433,7 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "injuries_home": [],
-   "tipoff_utc": "2026-11-22T01:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "11/22 09:00 台北",
-   "injuries_away": [
-    "Trey Murphy III (缺陣)",
-    "Trendon Watford (缺陣)"
-   ],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-11-21T07:00:23+00:00",
@@ -2507,7 +2473,7 @@
    "pregame": {
     "frozen_at": "2026-11-22T06:02:17+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 85.7,
     "away_confidence": 14.3,
@@ -2559,7 +2525,16 @@
      "Trendon Watford (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-21T22:00:33+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-22T15:02:04+08:00"
+   },
+   "closing": {
+    "spread": 18.5,
+    "ou_value": 228.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 4.5,
+    "home_team_odds": -1800,
+    "away_team_odds": 980
    },
    "pregame_missing": false,
    "line_move_alert": {
@@ -3048,16 +3023,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 110,
+   "away_score": 100,
+   "actual_total": 210,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": true,
+   "ats_winner": "home",
+   "ats_cover_margin": 4.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -3070,17 +3045,8 @@
    "away_team_zh": "洛杉磯快艇",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
-   "injuries_home": [
-    "P.J. Washington (存疑)",
-    "Tobi Lawal (缺陣)",
-    "Walter Clayton Jr. (存疑)"
-   ],
-   "tipoff_utc": "2026-11-22T01:00:00Z",
-   "tipoff_et": "20:00 ET",
-   "tipoff_taipei": "11/22 09:00 台北",
-   "injuries_away": [
-    "Brandon Ingram (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-11-21T07:00:23+00:00",
@@ -3120,7 +3086,7 @@
    "pregame": {
     "frozen_at": "2026-11-22T06:02:17+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "home",
     "home_confidence": 69.2,
     "away_confidence": 30.8,
@@ -3175,7 +3141,16 @@
      "Brandon Ingram (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-21T22:00:33+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-22T15:02:04+08:00"
+   },
+   "closing": {
+    "spread": 5.5,
+    "ou_value": 230.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 4.5,
+    "home_team_odds": -200,
+    "away_team_odds": 168
    },
    "pregame_missing": false,
    "strategy_signals": [
@@ -3672,16 +3647,16 @@
    "ml_value_reference_only": true,
    "ou_shadow_pick": "OVER",
    "ou_reference_only": true,
-   "home_score": null,
-   "away_score": null,
-   "actual_total": null,
-   "actual_home_win": null,
-   "actual_winner": null,
-   "ml_correct": null,
-   "actual_ou_result": null,
-   "ou_correct": null,
-   "ats_winner": null,
-   "ats_cover_margin": null,
+   "home_score": 97,
+   "away_score": 96,
+   "actual_total": 193,
+   "actual_home_win": true,
+   "actual_winner": "home",
+   "ml_correct": false,
+   "ats_winner": "home",
+   "ats_cover_margin": 12.5,
+   "actual_ou_result": "UNDER",
+   "ou_correct": false,
    "is_playoff": false,
    "playoff_ats_picks": [],
    "playoff_ats_best_side": null,
@@ -3694,17 +3669,8 @@
    "away_team_zh": "波士頓塞爾提克",
    "home_logo": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
-   "injuries_home": [
-    "Precious Achiuwa (存疑)"
-   ],
-   "tipoff_utc": "2026-11-22T03:00:00Z",
-   "tipoff_et": "22:00 ET",
-   "tipoff_taipei": "11/22 11:00 台北",
-   "injuries_away": [
-    "Mitchell Robinson (缺陣)",
-    "Derrick White (缺陣)",
-    "Jayson Tatum (缺陣)"
-   ],
+   "injuries_home": [],
+   "injuries_away": [],
    "odds_history": [
     {
      "fetched_at": "2026-11-21T07:00:23+00:00",
@@ -3744,7 +3710,7 @@
    "pregame": {
     "frozen_at": "2026-11-22T06:02:17+08:00",
     "revisions": 3,
-    "locked": false,
+    "locked": true,
     "winner": "away",
     "home_confidence": 2.0,
     "away_confidence": 98.0,
@@ -3799,7 +3765,16 @@
      "Jayson Tatum (缺陣)"
     ],
     "spread_last_fetched_at": "2026-11-21T22:00:33+00:00",
-    "line_source": "sbr_fanduel"
+    "line_source": "sbr_fanduel",
+    "locked_at": "2026-11-22T15:02:04+08:00"
+   },
+   "closing": {
+    "spread": -11.5,
+    "ou_value": 216.5,
+    "ats_winner": "home",
+    "ats_cover_margin": 12.5,
+    "home_team_odds": 440,
+    "away_team_odds": -590
    },
    "pregame_missing": false,
    "line_move_alert": {
