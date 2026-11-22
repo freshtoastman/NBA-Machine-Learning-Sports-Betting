@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
  "is_today": false,
- "exported_at": "2026-11-22T22:05:31+08:00",
+ "exported_at": "2026-11-23T06:02:14+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1230,11 +1230,11 @@
      },
      {
       "name": "Karl Lane",
-      "games": 132,
-      "home_cover_pct": 48.5,
+      "games": 133,
+      "home_cover_pct": 48.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.7941
+      "p_value": 0.8624
      },
      {
       "name": "Dannica Baroody",
@@ -1245,7 +1245,7 @@
       "p_value": 0.7709
      }
     ],
-    "avg_home_cover_pct": 51.5,
+    "avg_home_cover_pct": 51.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5199,11 +5199,11 @@
     "officials": [
      {
       "name": "Tyler Ford",
-      "games": 152,
-      "home_cover_pct": 45.4,
+      "games": 153,
+      "home_cover_pct": 45.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.2917
+      "p_value": 0.332
      },
      {
       "name": "Brent Barnaky",
@@ -5222,7 +5222,7 @@
       "p_value": 0.5203
      }
     ],
-    "avg_home_cover_pct": 46.5,
+    "avg_home_cover_pct": 46.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

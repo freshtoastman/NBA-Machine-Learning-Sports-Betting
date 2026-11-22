@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "is_today": false,
- "exported_at": "2026-11-22T22:05:31+08:00",
+ "exported_at": "2026-11-23T06:02:14+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1173,19 +1173,19 @@
     "officials": [
      {
       "name": "Brian Forte",
-      "games": 144,
-      "home_cover_pct": 51.4,
+      "games": 145,
+      "home_cover_pct": 51.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8027
+      "p_value": 0.7399
      },
      {
       "name": "Kevin Cutler",
-      "games": 142,
-      "home_cover_pct": 47.2,
+      "games": 143,
+      "home_cover_pct": 47.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.5571
+      "p_value": 0.616
      },
      {
       "name": "Brandon Schwab",
@@ -1196,7 +1196,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.5,
+    "avg_home_cover_pct": 49.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2471,14 +2471,14 @@
      },
      {
       "name": "Justin Van Duyne",
-      "games": 152,
-      "home_cover_pct": 48.7,
+      "games": 153,
+      "home_cover_pct": 49.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.8078
+      "p_value": 0.8716
      }
     ],
-    "avg_home_cover_pct": 52.2,
+    "avg_home_cover_pct": 52.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
