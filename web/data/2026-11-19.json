@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "is_today": false,
- "exported_at": "2026-11-23T22:06:13+08:00",
+ "exported_at": "2026-11-24T06:02:22+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1189,14 +1189,14 @@
      },
      {
       "name": "Brandon Schwab",
-      "games": 112,
-      "home_cover_pct": 50.0,
+      "games": 113,
+      "home_cover_pct": 49.6,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 49.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1813,11 +1813,11 @@
      },
      {
       "name": "Marat Kogut",
-      "games": 138,
-      "home_cover_pct": 49.3,
+      "games": 139,
+      "home_cover_pct": 49.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.9322
+      "p_value": 1.0
      },
      {
       "name": "Scott Twardoski",
@@ -1828,7 +1828,7 @@
       "p_value": 0.5159
      }
     ],
-    "avg_home_cover_pct": 51.2,
+    "avg_home_cover_pct": 51.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2463,11 +2463,11 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 154,
-      "home_cover_pct": 55.8,
+      "games": 155,
+      "home_cover_pct": 56.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.1705
+      "p_value": 0.148
      },
      {
       "name": "Justin Van Duyne",
@@ -2478,7 +2478,7 @@
       "p_value": 0.8716
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
