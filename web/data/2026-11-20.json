@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
  "is_today": false,
- "exported_at": "2026-11-24T22:05:22+08:00",
+ "exported_at": "2026-11-25T06:02:18+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -537,19 +537,19 @@
     "officials": [
      {
       "name": "James Williams",
-      "games": 154,
-      "home_cover_pct": 51.9,
+      "games": 155,
+      "home_cover_pct": 51.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.6871
+      "p_value": 0.7481
      },
      {
       "name": "JB DeRosa",
-      "games": 127,
-      "home_cover_pct": 54.3,
+      "games": 128,
+      "home_cover_pct": 53.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.375
+      "p_value": 0.4264
      },
      {
       "name": "Dedric Taylor",
@@ -560,7 +560,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 52.1,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1907,11 +1907,11 @@
      },
      {
       "name": "Jacyn Goble",
-      "games": 151,
-      "home_cover_pct": 51.0,
+      "games": 152,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8708
+      "p_value": 0.9354
      },
      {
       "name": "Leon Wood",
@@ -1922,7 +1922,7 @@
       "p_value": 0.8804
      }
     ],
-    "avg_home_cover_pct": 48.9,
+    "avg_home_cover_pct": 48.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2580,22 +2580,22 @@
      },
      {
       "name": "Mark Lindsay",
-      "games": 149,
-      "home_cover_pct": 50.3,
+      "games": 150,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.935
      },
      {
       "name": "Sha'Rae Mitchell",
-      "games": 87,
-      "home_cover_pct": 51.7,
+      "games": 88,
+      "home_cover_pct": 51.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.8304
+      "p_value": 0.9152
      }
     ],
-    "avg_home_cover_pct": 50.0,
+    "avg_home_cover_pct": 49.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3252,11 +3252,11 @@
     "officials": [
      {
       "name": "Sean Wright",
-      "games": 136,
-      "home_cover_pct": 50.7,
+      "games": 137,
+      "home_cover_pct": 50.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.9317
+      "p_value": 1.0
      },
      {
       "name": "Nick Buchert",
@@ -3275,7 +3275,7 @@
       "p_value": 0.2954
      }
     ],
-    "avg_home_cover_pct": 48.0,
+    "avg_home_cover_pct": 47.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3913,11 +3913,11 @@
     "officials": [
      {
       "name": "Ed Malloy",
-      "games": 123,
-      "home_cover_pct": 55.3,
+      "games": 124,
+      "home_cover_pct": 55.6,
       "significant": false,
       "direction": null,
-      "p_value": 0.2792
+      "p_value": 0.2429
      },
      {
       "name": "Andy Nagy",
@@ -3936,7 +3936,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.0,
+    "avg_home_cover_pct": 50.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5207,11 +5207,11 @@
      },
      {
       "name": "Brent Barnaky",
-      "games": 150,
-      "home_cover_pct": 48.0,
+      "games": 151,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.6832
+      "p_value": 0.6255
      },
      {
       "name": "Che Flores",
@@ -5222,7 +5222,7 @@
       "p_value": 0.5943
      }
     ],
-    "avg_home_cover_pct": 46.8,
+    "avg_home_cover_pct": 46.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5849,11 +5849,11 @@
      },
      {
       "name": "Ashley Moyer-Gleich",
-      "games": 60,
-      "home_cover_pct": 51.7,
+      "games": 61,
+      "home_cover_pct": 52.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.8974
+      "p_value": 0.7982
      },
      {
       "name": "Robert Hussey",
@@ -5864,7 +5864,7 @@
       "p_value": 0.9219
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

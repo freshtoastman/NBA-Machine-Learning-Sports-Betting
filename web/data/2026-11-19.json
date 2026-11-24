@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "is_today": false,
- "exported_at": "2026-11-24T22:05:22+08:00",
+ "exported_at": "2026-11-25T06:02:18+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "JB DeRosa",
-      "games": 127,
-      "home_cover_pct": 54.3,
+      "games": 128,
+      "home_cover_pct": 53.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.375
+      "p_value": 0.4264
      },
      {
       "name": "Ray Acosta",
@@ -552,7 +552,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 52.0,
+    "avg_home_cover_pct": 51.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1181,11 +1181,11 @@
      },
      {
       "name": "Kevin Cutler",
-      "games": 143,
-      "home_cover_pct": 47.6,
+      "games": 144,
+      "home_cover_pct": 47.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.616
+      "p_value": 0.5598
      },
      {
       "name": "Brandon Schwab",
@@ -1196,7 +1196,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.6,
+    "avg_home_cover_pct": 49.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1805,11 +1805,11 @@
     "officials": [
      {
       "name": "Jacyn Goble",
-      "games": 151,
-      "home_cover_pct": 51.0,
+      "games": 152,
+      "home_cover_pct": 50.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8708
+      "p_value": 0.9354
      },
      {
       "name": "Marat Kogut",
@@ -1821,14 +1821,14 @@
      },
      {
       "name": "Scott Twardoski",
-      "games": 116,
-      "home_cover_pct": 53.4,
+      "games": 117,
+      "home_cover_pct": 53.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.5159
+      "p_value": 0.5793
      }
     ],
-    "avg_home_cover_pct": 51.3,
+    "avg_home_cover_pct": 51.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2471,14 +2471,14 @@
      },
      {
       "name": "Justin Van Duyne",
-      "games": 153,
-      "home_cover_pct": 49.0,
+      "games": 154,
+      "home_cover_pct": 48.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.8716
+      "p_value": 0.8091
      }
     ],
-    "avg_home_cover_pct": 52.5,
+    "avg_home_cover_pct": 52.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
