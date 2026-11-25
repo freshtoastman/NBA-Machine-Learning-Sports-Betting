@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "is_today": false,
- "exported_at": "2026-11-25T22:05:09+08:00",
+ "exported_at": "2026-11-26T06:02:39+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -1206,14 +1206,14 @@
      },
      {
       "name": "Evan Scott",
-      "games": 108,
-      "home_cover_pct": 54.6,
+      "games": 109,
+      "home_cover_pct": 54.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.3866
+      "p_value": 0.4437
      }
     ],
-    "avg_home_cover_pct": 56.3,
+    "avg_home_cover_pct": 56.1,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3189,22 +3189,22 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 147,
-      "home_cover_pct": 56.5,
+      "games": 148,
+      "home_cover_pct": 56.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.1374
+      "p_value": 0.1621
      },
      {
       "name": "Marat Kogut",
-      "games": 139,
-      "home_cover_pct": 49.6,
+      "games": 140,
+      "home_cover_pct": 49.3,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9327
      }
     ],
-    "avg_home_cover_pct": 53.0,
+    "avg_home_cover_pct": 52.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

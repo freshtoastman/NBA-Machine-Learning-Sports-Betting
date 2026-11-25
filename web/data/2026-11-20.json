@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
  "is_today": false,
- "exported_at": "2026-11-25T22:05:09+08:00",
+ "exported_at": "2026-11-26T06:02:40+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -1230,11 +1230,11 @@
      },
      {
       "name": "Karl Lane",
-      "games": 133,
-      "home_cover_pct": 48.9,
+      "games": 134,
+      "home_cover_pct": 48.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.8624
+      "p_value": 0.7956
      },
      {
       "name": "Dannica Baroody",
@@ -1245,7 +1245,7 @@
       "p_value": 0.7709
      }
     ],
-    "avg_home_cover_pct": 51.8,
+    "avg_home_cover_pct": 51.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3921,11 +3921,11 @@
      },
      {
       "name": "Andy Nagy",
-      "games": 141,
-      "home_cover_pct": 44.7,
+      "games": 142,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2383
+      "p_value": 0.208
      },
      {
       "name": "Intae Hwang",
@@ -3936,7 +3936,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 50.1,
+    "avg_home_cover_pct": 50.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5841,11 +5841,11 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 147,
-      "home_cover_pct": 56.5,
+      "games": 148,
+      "home_cover_pct": 56.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.1374
+      "p_value": 0.1621
      },
      {
       "name": "Ashley Moyer-Gleich",
@@ -5864,7 +5864,7 @@
       "p_value": 0.9219
      }
     ],
-    "avg_home_cover_pct": 52.7,
+    "avg_home_cover_pct": 52.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

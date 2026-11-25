@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "is_today": false,
- "exported_at": "2026-11-25T22:05:09+08:00",
+ "exported_at": "2026-11-26T06:02:40+08:00",
  "summary": {
   "games": 4,
   "model_games": 4,
@@ -1813,11 +1813,11 @@
      },
      {
       "name": "Marat Kogut",
-      "games": 139,
-      "home_cover_pct": 49.6,
+      "games": 140,
+      "home_cover_pct": 49.3,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9327
      },
      {
       "name": "Scott Twardoski",
@@ -1828,7 +1828,7 @@
       "p_value": 0.5793
      }
     ],
-    "avg_home_cover_pct": 51.1,
+    "avg_home_cover_pct": 51.0,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2471,14 +2471,14 @@
      },
      {
       "name": "Justin Van Duyne",
-      "games": 154,
-      "home_cover_pct": 48.7,
+      "games": 155,
+      "home_cover_pct": 48.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.8091
+      "p_value": 0.7481
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

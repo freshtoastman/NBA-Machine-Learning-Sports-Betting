@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "is_today": false,
- "exported_at": "2026-11-25T22:05:08+08:00",
+ "exported_at": "2026-11-26T06:02:39+08:00",
  "summary": {
   "games": 10,
   "model_games": 10,
@@ -5142,11 +5142,11 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 154,
-      "home_cover_pct": 48.7,
+      "games": 155,
+      "home_cover_pct": 48.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.8091
+      "p_value": 0.7481
      },
      {
       "name": "Mousa Dagher",
@@ -5165,7 +5165,7 @@
       "p_value": 0.1716
      }
     ],
-    "avg_home_cover_pct": 49.8,
+    "avg_home_cover_pct": 49.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
