@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "is_today": false,
- "exported_at": "2026-11-26T15:01:50+08:00",
+ "exported_at": "2026-11-26T22:07:35+08:00",
  "summary": {
   "games": 7,
   "model_games": 7,
@@ -537,19 +537,19 @@
     "officials": [
      {
       "name": "Curtis Blair",
-      "games": 143,
-      "home_cover_pct": 51.0,
+      "games": 144,
+      "home_cover_pct": 51.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.8672
+      "p_value": 0.8027
      },
      {
       "name": "Kevin Scott",
-      "games": 150,
-      "home_cover_pct": 48.0,
+      "games": 151,
+      "home_cover_pct": 47.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.6832
+      "p_value": 0.6255
      },
      {
       "name": "Derrick Collins",
@@ -1869,19 +1869,19 @@
     "officials": [
      {
       "name": "Josh Tiven",
-      "games": 156,
-      "home_cover_pct": 48.1,
+      "games": 157,
+      "home_cover_pct": 48.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.6891
+      "p_value": 0.7497
      },
      {
       "name": "Mitchell Ervin",
-      "games": 155,
-      "home_cover_pct": 56.1,
+      "games": 156,
+      "home_cover_pct": 56.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.148
+      "p_value": 0.1279
      },
      {
       "name": "Phenizee Ransom",
@@ -1892,7 +1892,7 @@
       "p_value": 0.0255
      }
     ],
-    "avg_home_cover_pct": 48.0,
+    "avg_home_cover_pct": 48.2,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2545,8 +2545,8 @@
     "officials": [
      {
       "name": "Nick Buchert",
-      "games": 160,
-      "home_cover_pct": 50.0,
+      "games": 161,
+      "home_cover_pct": 50.3,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -2561,14 +2561,14 @@
      },
      {
       "name": "Che Flores",
-      "games": 88,
-      "home_cover_pct": 46.6,
+      "games": 89,
+      "home_cover_pct": 47.2,
       "significant": false,
       "direction": null,
-      "p_value": 0.5943
+      "p_value": 0.6718
      }
     ],
-    "avg_home_cover_pct": 49.2,
+    "avg_home_cover_pct": 49.5,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3825,11 +3825,11 @@
     "officials": [
      {
       "name": "Marc Davis",
-      "games": 158,
-      "home_cover_pct": 45.6,
+      "games": 159,
+      "home_cover_pct": 45.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.301
+      "p_value": 0.3413
      },
      {
       "name": "Brandon Schwab",
@@ -3848,7 +3848,7 @@
       "p_value": 0.1654
      }
     ],
-    "avg_home_cover_pct": 45.7,
+    "avg_home_cover_pct": 45.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4493,19 +4493,19 @@
     "officials": [
      {
       "name": "Zach Zarba",
-      "games": 154,
-      "home_cover_pct": 53.2,
+      "games": 155,
+      "home_cover_pct": 53.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.4684
+      "p_value": 0.4219
      },
      {
       "name": "CJ Washington",
-      "games": 113,
-      "home_cover_pct": 44.2,
+      "games": 114,
+      "home_cover_pct": 44.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.2589
+      "p_value": 0.3029
      },
      {
       "name": "Simone Jelks",
@@ -4516,7 +4516,7 @@
       "p_value": 0.0519
      }
     ],
-    "avg_home_cover_pct": 45.7,
+    "avg_home_cover_pct": 45.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

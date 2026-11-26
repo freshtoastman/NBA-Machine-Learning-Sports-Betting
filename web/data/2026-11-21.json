@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "is_today": false,
- "exported_at": "2026-11-26T15:01:50+08:00",
+ "exported_at": "2026-11-26T22:07:35+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -537,19 +537,19 @@
     "officials": [
      {
       "name": "Tre Maddox",
-      "games": 124,
-      "home_cover_pct": 50.0,
+      "games": 125,
+      "home_cover_pct": 50.4,
       "significant": false,
       "direction": null,
       "p_value": 1.0
      },
      {
       "name": "Jason Goldenberg",
-      "games": 133,
-      "home_cover_pct": 45.1,
+      "games": 134,
+      "home_cover_pct": 44.8,
       "significant": false,
       "direction": null,
-      "p_value": 0.2981
+      "p_value": 0.2614
      },
      {
       "name": "Jonathan Sterling",
@@ -560,7 +560,7 @@
       "p_value": 0.1716
      }
     ],
-    "avg_home_cover_pct": 50.7,
+    "avg_home_cover_pct": 50.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1172,8 +1172,8 @@
     "officials": [
      {
       "name": "Gediminas Petraitis",
-      "games": 156,
-      "home_cover_pct": 50.0,
+      "games": 157,
+      "home_cover_pct": 49.7,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -1195,7 +1195,7 @@
       "p_value": 0.6338
      }
     ],
-    "avg_home_cover_pct": 50.9,
+    "avg_home_cover_pct": 50.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3155,11 +3155,11 @@
     "officials": [
      {
       "name": "Tony Brothers",
-      "games": 149,
-      "home_cover_pct": 55.0,
+      "games": 150,
+      "home_cover_pct": 54.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.2513
+      "p_value": 0.2885
      },
      {
       "name": "Karl Lane",
@@ -3171,14 +3171,14 @@
      },
      {
       "name": "John Conley",
-      "games": 86,
-      "home_cover_pct": 54.7,
+      "games": 87,
+      "home_cover_pct": 54.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.4505
+      "p_value": 0.5203
      }
     ],
-    "avg_home_cover_pct": 52.7,
+    "avg_home_cover_pct": 52.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3822,11 +3822,11 @@
      },
      {
       "name": "Sean Corbin",
-      "games": 147,
-      "home_cover_pct": 54.4,
+      "games": 148,
+      "home_cover_pct": 54.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.3223
+      "p_value": 0.2852
      },
      {
       "name": "Brett Nansel",
@@ -3837,7 +3837,7 @@
       "p_value": 0.4944
      }
     ],
-    "avg_home_cover_pct": 48.6,
+    "avg_home_cover_pct": 48.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
