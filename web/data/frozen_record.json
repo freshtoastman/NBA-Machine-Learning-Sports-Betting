@@ -2,38 +2,38 @@
  "generated_for": "src/Utils/FrozenRecord.py — graded from locked pregame blocks only",
  "since": "2026-10-02",
  "definition_zh": "每場只評分開賽前最後一次輸出並凍結的預測（pregame.locked），結果一律以凍結當下的盤口結算；沒有賽前快照的比賽不計；只有盤口、沒有模型輸出的比賽（開季頭幾天）也不計。",
- "frozen_games": 262,
- "graded_games": 245,
+ "frozen_games": 270,
+ "graded_games": 254,
  "settled_without_prediction": 16,
  "game_dates": 36,
  "ml": {
-  "wins": 162,
-  "losses": 83,
-  "n": 245,
+  "wins": 168,
+  "losses": 86,
+  "n": 254,
   "hit_rate": 66.1,
   "ci95": [
-   60.0,
-   71.8
+   60.1,
+   71.7
   ]
  },
  "ou": {
-  "wins": 118,
-  "losses": 127,
-  "n": 245,
-  "hit_rate": 48.2,
+  "wins": 124,
+  "losses": 130,
+  "n": 254,
+  "hit_rate": 48.8,
   "ci95": [
-   42.0,
-   54.4
+   42.7,
+   54.9
   ]
  },
  "ats_model": {
-  "wins": 121,
-  "losses": 124,
-  "n": 245,
-  "hit_rate": 49.4,
+  "wins": 126,
+  "losses": 128,
+  "n": 254,
+  "hit_rate": 49.6,
   "ci95": [
-   43.2,
-   55.6
+   43.5,
+   55.7
   ]
  },
  "ats_shadow_value": {
@@ -47,13 +47,13 @@
   ]
  },
  "ml_shadow_value_roi": {
-  "n": 45,
-  "roi_pct": -13.0,
+  "n": 47,
+  "roi_pct": -11.0,
   "ci95": [
-   -33.6,
-   7.6
+   -30.9,
+   8.9
   ],
-  "wins": 28,
+  "wins": 30,
   "losses": 17
  },
  "ml_shadow_golden_roi": {
@@ -78,84 +78,84 @@
  },
  "market_baseline": {
   "favorite": {
-   "wins": 171,
-   "losses": 72,
-   "n": 243,
-   "hit_rate": 70.4,
+   "wins": 176,
+   "losses": 76,
+   "n": 252,
+   "hit_rate": 69.8,
    "ci95": [
-    64.3,
-    75.8
+    63.9,
+    75.2
    ]
   },
   "model_when_disagreeing": {
-   "wins": 17,
+   "wins": 18,
    "losses": 28,
-   "n": 45,
-   "hit_rate": 37.8,
+   "n": 46,
+   "hit_rate": 39.1,
    "ci95": [
-    25.1,
-    52.4
+    26.4,
+    53.5
    ]
   },
-  "n_prob": 245,
-  "logloss_model": 0.6569,
-  "logloss_market": 0.5754,
-  "brier_model": 0.2236,
-  "brier_market": 0.1968
+  "n_prob": 254,
+  "logloss_model": 0.6514,
+  "logloss_market": 0.5763,
+  "brier_model": 0.2214,
+  "brier_market": 0.1972
  },
  "ml_by_line_move": {
   "min_points": 1.0,
   "toward": {
-   "wins": 45,
-   "losses": 15,
-   "n": 60,
+   "wins": 48,
+   "losses": 16,
+   "n": 64,
    "hit_rate": 75.0,
    "ci95": [
-    62.8,
-    84.2
+    63.2,
+    84.0
    ]
   },
   "flat": {
-   "wins": 69,
-   "losses": 36,
-   "n": 105,
+   "wins": 71,
+   "losses": 37,
+   "n": 108,
    "hit_rate": 65.7,
    "ci95": [
-    56.2,
-    74.1
+    56.4,
+    74.0
    ]
   },
   "against": {
-   "wins": 48,
-   "losses": 32,
-   "n": 80,
-   "hit_rate": 60.0,
+   "wins": 49,
+   "losses": 33,
+   "n": 82,
+   "hit_rate": 59.8,
    "ci95": [
-    49.0,
-    70.0
+    48.9,
+    69.7
    ]
   }
  },
  "spread_move_ats": {
   "min_points": 1.5,
   "late_side": {
-   "wins": 23,
+   "wins": 24,
    "losses": 33,
-   "n": 56,
-   "hit_rate": 41.1,
+   "n": 57,
+   "hit_rate": 42.1,
    "ci95": [
-    29.2,
-    54.1
+    30.2,
+    55.0
    ]
   },
   "fade": {
    "wins": 33,
-   "losses": 23,
-   "n": 56,
-   "hit_rate": 58.9,
+   "losses": 24,
+   "n": 57,
+   "hit_rate": 57.9,
    "ci95": [
-    45.9,
-    70.8
+    45.0,
+    69.8
    ]
   },
   "forward": {
@@ -163,23 +163,23 @@
    "min_moves": 50,
    "ci_lower_pct": 52.4,
    "late_side": {
-    "wins": 6,
+    "wins": 7,
     "losses": 1,
-    "n": 7,
-    "hit_rate": 85.7,
+    "n": 8,
+    "hit_rate": 87.5,
     "ci95": [
-     48.7,
-     97.4
+     52.9,
+     97.8
     ]
    },
    "fade": {
     "wins": 1,
-    "losses": 6,
-    "n": 7,
-    "hit_rate": 14.3,
+    "losses": 7,
+    "n": 8,
+    "hit_rate": 12.5,
     "ci95": [
-     2.6,
-     51.3
+     2.2,
+     47.1
     ]
    },
    "met": false
@@ -632,46 +632,54 @@
     "to": -12.5,
     "late_side": "away",
     "late_side_covered": true
+   },
+   {
+    "date": "2026-11-25",
+    "game": "Sacramento Kings @ Golden State Warriors",
+    "from": 5.5,
+    "to": 7.5,
+    "late_side": "home",
+    "late_side_covered": true
    }
   ]
  },
- "pending_games": 8,
+ "pending_games": 0,
  "games_without_pregame_snapshot": [],
  "legacy_graded_games_without_block": 0,
  "by_season": {
   "2026-27": {
-   "frozen_games": 262,
-   "graded_games": 245,
+   "frozen_games": 270,
+   "graded_games": 254,
    "settled_without_prediction": 16,
    "game_dates": 36,
    "ml": {
-    "wins": 162,
-    "losses": 83,
-    "n": 245,
+    "wins": 168,
+    "losses": 86,
+    "n": 254,
     "hit_rate": 66.1,
     "ci95": [
-     60.0,
-     71.8
+     60.1,
+     71.7
     ]
    },
    "ou": {
-    "wins": 118,
-    "losses": 127,
-    "n": 245,
-    "hit_rate": 48.2,
+    "wins": 124,
+    "losses": 130,
+    "n": 254,
+    "hit_rate": 48.8,
     "ci95": [
-     42.0,
-     54.4
+     42.7,
+     54.9
     ]
    },
    "ats_model": {
-    "wins": 121,
-    "losses": 124,
-    "n": 245,
-    "hit_rate": 49.4,
+    "wins": 126,
+    "losses": 128,
+    "n": 254,
+    "hit_rate": 49.6,
     "ci95": [
-     43.2,
-     55.6
+     43.5,
+     55.7
     ]
    },
    "ats_shadow_value": {
@@ -685,13 +693,13 @@
     ]
    },
    "ml_shadow_value_roi": {
-    "n": 45,
-    "roi_pct": -13.0,
+    "n": 47,
+    "roi_pct": -11.0,
     "ci95": [
-     -33.6,
-     7.6
+     -30.9,
+     8.9
     ],
-    "wins": 28,
+    "wins": 30,
     "losses": 17
    },
    "ml_shadow_golden_roi": {
@@ -716,84 +724,84 @@
    },
    "market_baseline": {
     "favorite": {
-     "wins": 171,
-     "losses": 72,
-     "n": 243,
-     "hit_rate": 70.4,
+     "wins": 176,
+     "losses": 76,
+     "n": 252,
+     "hit_rate": 69.8,
      "ci95": [
-      64.3,
-      75.8
+      63.9,
+      75.2
      ]
     },
     "model_when_disagreeing": {
-     "wins": 17,
+     "wins": 18,
      "losses": 28,
-     "n": 45,
-     "hit_rate": 37.8,
+     "n": 46,
+     "hit_rate": 39.1,
      "ci95": [
-      25.1,
-      52.4
+      26.4,
+      53.5
      ]
     },
-    "n_prob": 245,
-    "logloss_model": 0.6569,
-    "logloss_market": 0.5754,
-    "brier_model": 0.2236,
-    "brier_market": 0.1968
+    "n_prob": 254,
+    "logloss_model": 0.6514,
+    "logloss_market": 0.5763,
+    "brier_model": 0.2214,
+    "brier_market": 0.1972
    },
    "ml_by_line_move": {
     "min_points": 1.0,
     "toward": {
-     "wins": 45,
-     "losses": 15,
-     "n": 60,
+     "wins": 48,
+     "losses": 16,
+     "n": 64,
      "hit_rate": 75.0,
      "ci95": [
-      62.8,
-      84.2
+      63.2,
+      84.0
      ]
     },
     "flat": {
-     "wins": 69,
-     "losses": 36,
-     "n": 105,
+     "wins": 71,
+     "losses": 37,
+     "n": 108,
      "hit_rate": 65.7,
      "ci95": [
-      56.2,
-      74.1
+      56.4,
+      74.0
      ]
     },
     "against": {
-     "wins": 48,
-     "losses": 32,
-     "n": 80,
-     "hit_rate": 60.0,
+     "wins": 49,
+     "losses": 33,
+     "n": 82,
+     "hit_rate": 59.8,
      "ci95": [
-      49.0,
-      70.0
+      48.9,
+      69.7
      ]
     }
    },
    "spread_move_ats": {
     "min_points": 1.5,
     "late_side": {
-     "wins": 23,
+     "wins": 24,
      "losses": 33,
-     "n": 56,
-     "hit_rate": 41.1,
+     "n": 57,
+     "hit_rate": 42.1,
      "ci95": [
-      29.2,
-      54.1
+      30.2,
+      55.0
      ]
     },
     "fade": {
      "wins": 33,
-     "losses": 23,
-     "n": 56,
-     "hit_rate": 58.9,
+     "losses": 24,
+     "n": 57,
+     "hit_rate": 57.9,
      "ci95": [
-      45.9,
-      70.8
+      45.0,
+      69.8
      ]
     },
     "forward": {
@@ -801,23 +809,23 @@
      "min_moves": 50,
      "ci_lower_pct": 52.4,
      "late_side": {
-      "wins": 6,
+      "wins": 7,
       "losses": 1,
-      "n": 7,
-      "hit_rate": 85.7,
+      "n": 8,
+      "hit_rate": 87.5,
       "ci95": [
-       48.7,
-       97.4
+       52.9,
+       97.8
       ]
      },
      "fade": {
       "wins": 1,
-      "losses": 6,
-      "n": 7,
-      "hit_rate": 14.3,
+      "losses": 7,
+      "n": 8,
+      "hit_rate": 12.5,
       "ci95": [
-       2.6,
-       51.3
+       2.2,
+       47.1
       ]
      },
      "met": false
@@ -1270,6 +1278,14 @@
       "to": -12.5,
       "late_side": "away",
       "late_side_covered": true
+     },
+     {
+      "date": "2026-11-25",
+      "game": "Sacramento Kings @ Golden State Warriors",
+      "from": 5.5,
+      "to": 7.5,
+      "late_side": "home",
+      "late_side_covered": true
      }
     ]
    }
@@ -1288,16 +1304,16 @@
    "rule": "ml_shadow_value picks settled at the frozen moneyline: n >= min_picks AND ROI 95% CI lower bound > roi_ci_lower_pct",
    "min_picks": 200,
    "roi_ci_lower_pct": 0.0,
-   "n": 45,
-   "roi_ci_lower": -33.6,
+   "n": 47,
+   "roi_ci_lower": -30.9,
    "met": false
   },
   "ou": {
    "rule": "frozen ou_pick vs actual total: n >= min_picks AND 95% CI lower bound > ci_lower_pct",
    "min_picks": 100,
    "ci_lower_pct": 52.4,
-   "n": 245,
-   "ci_lower": 42.0,
+   "n": 254,
+   "ci_lower": 42.7,
    "met": false
   }
  },
@@ -1317,5 +1333,5 @@
    "hit": true
   }
  ],
- "generated_at": "2026-11-26T06:02:41"
+ "generated_at": "2026-11-26T15:01:52"
 }
