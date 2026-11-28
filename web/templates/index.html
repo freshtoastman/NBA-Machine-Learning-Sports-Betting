@@ -984,7 +984,7 @@
                         {# Big move / favourite flip: the model cannot see the news behind it #}
                         {% set _al = game.line_move_alert %}
                         {% if _al %}
-                        <span class="spread-move-alert{% if _al.against_model %} against-model{% endif %}" title="開盤後盤口大幅移動，通常是傷兵或輪休消息。模型只用球隊數據，卡片上的機率沒有反映這個消息。&#10;這只是提醒，不是推薦：{% set _sm = (frozen_record.spread_move_ats if frozen_record else none) %}{% if _sm and _sm.late_side.n %}本季這類移動共 {{ _sm.late_side.n }} 筆，跟著移動方向下注過盤 {{ _sm.late_side.wins }} 次（{{ _sm.late_side.hit_rate }}%）。{% else %}本季跟著移動方向下注的過盤率不到四成。{% endif %}">⚠️ {% if _al.flip %}熱門易主 · {% endif %}盤口往{{ game.home_team_zh if _al.late_side == 'home' else game.away_team_zh }}移動 {{ '%.1f'|format(_al.points) }} 分{% if _al.against_model %} · 與模型勝負方向相反{% endif %}{% if _al.mixed_source %} · 開盤線來自其他書商{% if _al.same_source_points is defined %}（現書商自身移動 {{ '%.1f'|format(_al.same_source_points) }} 分）{% endif %}{% endif %}</span>
+                        <span class="spread-move-alert{% if _al.against_model %} against-model{% endif %}" title="開盤後盤口大幅移動，通常是傷兵或輪休消息。模型只用球隊數據，卡片上的機率沒有反映這個消息。&#10;這只是提醒，不是推薦：{% set _sm = (frozen_record.spread_move_ats if frozen_record else none) %}{% if _sm and _sm.late_side.n %}本季這類移動共 {{ _sm.late_side.n }} 筆，跟著移動方向下注過盤 {{ _sm.late_side.wins }} 次（{{ _sm.late_side.hit_rate }}%）。{% else %}本季跟著移動方向下注的過盤率不到四成。{% endif %}">⚠️ {% if _al.flip %}熱門易主 · {% endif %}盤口往{{ game.home_team_zh if _al.late_side == 'home' else game.away_team_zh }}移動 {{ '%.1f'|format(_al.points) }} 分{% if _al.against_model %} · 與模型勝負方向相反{% endif %}{% if _al.mixed_source %} · 開盤價與現價來源不同{% if _al.same_source_points is defined %}（實際移動約 {{ '%.1f'|format(_al.same_source_points) }} 分）{% endif %}{% endif %}</span>
                         {% endif %}
                         {% if _hist_points|length >= 2 %}
                         {% set _vals = [] %}
@@ -1002,10 +1002,6 @@
                         <span class="spread-move-count">{{ _hist_points|length }} 次更新</span>
                         {% endif %}
                         <span class="spread-move-time" title="首次抓取: {{ _first_iso|tw_time }}&#10;最新抓取: {{ _last_iso|tw_time }} (台灣時間)">🕒 {{ _last_iso|tw_time }} 台灣時間</span>
-                        {% set _lsrc = game.line_source|default('') %}
-                        {% if _lsrc and _lsrc != 'sbr_fanduel' %}
-                        <span class="spread-move-source" title="FanDuel 當時未開盤，此線取自備援來源；與 FanDuel 可能差 0.5 分">📌 線源 {{ game.line_source_label|default(_lsrc) }}</span>
-                        {% endif %}
                     </div>
                     {% endif %}
                     {# OU (total) movement #}
