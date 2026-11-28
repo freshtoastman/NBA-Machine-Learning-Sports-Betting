@@ -1,7 +1,7 @@
 {
  "date": "2026-11-25",
  "is_today": false,
- "exported_at": "2026-11-28T15:01:58+08:00",
+ "exported_at": "2026-11-28T22:07:31+08:00",
  "summary": {
   "games": 9,
   "model_games": 9,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "Marc Davis",
-      "games": 159,
-      "home_cover_pct": 45.9,
+      "games": 160,
+      "home_cover_pct": 46.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.3413
+      "p_value": 0.3846
      },
      {
       "name": "Nick Buchert",
@@ -553,11 +553,11 @@
      },
      {
       "name": "Che Flores",
-      "games": 89,
-      "home_cover_pct": 47.2,
+      "games": 90,
+      "home_cover_pct": 46.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.6718
+      "p_value": 0.5984
      }
     ],
     "avg_home_cover_pct": 47.8,
@@ -1193,11 +1193,11 @@
     "officials": [
      {
       "name": "Kevin Scott",
-      "games": 151,
-      "home_cover_pct": 47.7,
+      "games": 152,
+      "home_cover_pct": 47.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.6255
+      "p_value": 0.5703
      },
      {
       "name": "Jason Goldenberg",
@@ -1216,7 +1216,7 @@
       "p_value": 0.0065
      }
     ],
-    "avg_home_cover_pct": 53.9,
+    "avg_home_cover_pct": 53.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1880,14 +1880,14 @@
      },
      {
       "name": "Tre Maddox",
-      "games": 125,
-      "home_cover_pct": 50.4,
+      "games": 126,
+      "home_cover_pct": 50.8,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9291
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2519,30 +2519,30 @@
     "officials": [
      {
       "name": "Mitchell Ervin",
-      "games": 156,
-      "home_cover_pct": 56.4,
+      "games": 157,
+      "home_cover_pct": 56.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.1279
+      "p_value": 0.1506
      },
      {
       "name": "Andy Nagy",
-      "games": 143,
-      "home_cover_pct": 44.8,
+      "games": 144,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2416
+      "p_value": 0.2112
      },
      {
       "name": "CJ Washington",
-      "games": 114,
-      "home_cover_pct": 44.7,
+      "games": 115,
+      "home_cover_pct": 44.3,
       "significant": false,
       "direction": null,
-      "p_value": 0.3029
+      "p_value": 0.2631
      }
     ],
-    "avg_home_cover_pct": 48.6,
+    "avg_home_cover_pct": 48.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3181,11 +3181,11 @@
     "officials": [
      {
       "name": "Curtis Blair",
-      "games": 144,
-      "home_cover_pct": 51.4,
+      "games": 145,
+      "home_cover_pct": 51.0,
       "significant": false,
       "direction": null,
-      "p_value": 0.8027
+      "p_value": 0.8682
      },
      {
       "name": "Sean Corbin",
@@ -3197,14 +3197,14 @@
      },
      {
       "name": "Jenna Schroeder",
-      "games": 111,
-      "home_cover_pct": 55.9,
+      "games": 112,
+      "home_cover_pct": 55.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2546
+      "p_value": 0.2986
      }
     ],
-    "avg_home_cover_pct": 54.0,
+    "avg_home_cover_pct": 53.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -4511,14 +4511,14 @@
      },
      {
       "name": "Robert Hussey",
-      "games": 105,
-      "home_cover_pct": 49.5,
+      "games": 106,
+      "home_cover_pct": 49.1,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9227
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5149,11 +5149,11 @@
      },
      {
       "name": "Ray Acosta",
-      "games": 158,
-      "home_cover_pct": 49.4,
+      "games": 159,
+      "home_cover_pct": 49.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.9366
+      "p_value": 0.874
      },
      {
       "name": "Intae Hwang",
@@ -5164,7 +5164,7 @@
       "p_value": 1.0
      }
     ],
-    "avg_home_cover_pct": 49.4,
+    "avg_home_cover_pct": 49.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -5780,11 +5780,11 @@
     "officials": [
      {
       "name": "Bill Kennedy",
-      "games": 95,
-      "home_cover_pct": 48.4,
+      "games": 96,
+      "home_cover_pct": 47.9,
       "significant": false,
       "direction": null,
-      "p_value": 0.8376
+      "p_value": 0.7596
      },
      {
       "name": "Mark Lindsay",
@@ -5803,7 +5803,7 @@
       "p_value": 0.3966
      }
     ],
-    "avg_home_cover_pct": 51.5,
+    "avg_home_cover_pct": 51.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

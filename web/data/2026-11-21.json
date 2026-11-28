@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "is_today": false,
- "exported_at": "2026-11-28T15:01:59+08:00",
+ "exported_at": "2026-11-28T22:07:32+08:00",
  "summary": {
   "games": 6,
   "model_games": 6,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "Tre Maddox",
-      "games": 125,
-      "home_cover_pct": 50.4,
+      "games": 126,
+      "home_cover_pct": 50.8,
       "significant": false,
       "direction": null,
-      "p_value": 1.0
+      "p_value": 0.9291
      },
      {
       "name": "Jason Goldenberg",
@@ -560,7 +560,7 @@
       "p_value": 0.1716
      }
     ],
-    "avg_home_cover_pct": 50.8,
+    "avg_home_cover_pct": 50.9,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1180,8 +1180,8 @@
      },
      {
       "name": "John Butler",
-      "games": 138,
-      "home_cover_pct": 50.0,
+      "games": 139,
+      "home_cover_pct": 49.6,
       "significant": false,
       "direction": null,
       "p_value": 1.0
@@ -1195,7 +1195,7 @@
       "p_value": 0.6338
      }
     ],
-    "avg_home_cover_pct": 50.8,
+    "avg_home_cover_pct": 50.7,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -2507,11 +2507,11 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 155,
-      "home_cover_pct": 48.4,
+      "games": 156,
+      "home_cover_pct": 48.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.7481
+      "p_value": 0.8103
      },
      {
       "name": "Mousa Dagher",
@@ -2530,7 +2530,7 @@
       "p_value": 0.4841
      }
     ],
-    "avg_home_cover_pct": 48.7,
+    "avg_home_cover_pct": 48.8,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -3163,11 +3163,11 @@
      },
      {
       "name": "Karl Lane",
-      "games": 134,
-      "home_cover_pct": 48.5,
+      "games": 135,
+      "home_cover_pct": 48.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.7956
+      "p_value": 0.7308
      },
      {
       "name": "John Conley",
@@ -3178,7 +3178,7 @@
       "p_value": 0.5203
      }
     ],
-    "avg_home_cover_pct": 52.4,
+    "avg_home_cover_pct": 52.3,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,

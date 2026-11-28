@@ -1,7 +1,7 @@
 {
  "date": "2026-11-27",
  "is_today": false,
- "exported_at": "2026-11-28T15:01:57+08:00",
+ "exported_at": "2026-11-28T22:07:31+08:00",
  "summary": {
   "games": 11,
   "model_games": 11,
@@ -533,6 +533,33 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Scott Foster",
+      "games": 138,
+      "home_cover_pct": 47.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5514
+     },
+     {
+      "name": "Jacyn Goble",
+      "games": 153,
+      "home_cover_pct": 50.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 48.7,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -1166,6 +1193,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Marc Davis",
+      "games": 160,
+      "home_cover_pct": 46.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.3846
+     },
+     {
+      "name": "Eric Dalen",
+      "games": 134,
+      "home_cover_pct": 54.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.342
+     },
+     {
+      "name": "Rodney Mott",
+      "games": 100,
+      "home_cover_pct": 50.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     }
+    ],
+    "avg_home_cover_pct": 50.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -1788,6 +1850,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Capers",
+      "games": 131,
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.4847
+     },
+     {
+      "name": "Tre Maddox",
+      "games": 126,
+      "home_cover_pct": 50.8,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9291
+     },
+     {
+      "name": "Scott Twardoski",
+      "games": 118,
+      "home_cover_pct": 53.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5195
+     }
+    ],
+    "avg_home_cover_pct": 52.5,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -2444,6 +2541,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Ben Taylor",
+      "games": 103,
+      "home_cover_pct": 48.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8439
+     },
+     {
+      "name": "Robert Hussey",
+      "games": 106,
+      "home_cover_pct": 49.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9227
+     },
+     {
+      "name": "Jenna Reneau",
+      "games": 52,
+      "home_cover_pct": 38.5,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1263
+     }
+    ],
+    "avg_home_cover_pct": 45.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -3078,6 +3210,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Mitchell Ervin",
+      "games": 157,
+      "home_cover_pct": 56.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1506
+     },
+     {
+      "name": "Karl Lane",
+      "games": 135,
+      "home_cover_pct": 48.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7308
+     },
+     {
+      "name": "Che Flores",
+      "games": 90,
+      "home_cover_pct": 46.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5984
+     }
+    ],
+    "avg_home_cover_pct": 50.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -3719,6 +3886,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Ed Malloy",
+      "games": 125,
+      "home_cover_pct": 55.2,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2831
+     },
+     {
+      "name": "Natalie Sago",
+      "games": 140,
+      "home_cover_pct": 50.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9327
+     },
+     {
+      "name": "Brandon Schwab",
+      "games": 114,
+      "home_cover_pct": 49.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9254
+     }
+    ],
+    "avg_home_cover_pct": 51.7,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -4363,6 +4565,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Kevin Scott",
+      "games": 152,
+      "home_cover_pct": 47.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.5703
+     },
+     {
+      "name": "John Butler",
+      "games": 139,
+      "home_cover_pct": 49.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Leon Wood",
+      "games": 45,
+      "home_cover_pct": 46.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.766
+     }
+    ],
+    "avg_home_cover_pct": 47.9,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -4982,6 +5219,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "John Goble",
+      "games": 149,
+      "home_cover_pct": 55.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.1898
+     },
+     {
+      "name": "Andy Nagy",
+      "games": 144,
+      "home_cover_pct": 44.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2112
+     },
+     {
+      "name": "Aaron Smith",
+      "games": 50,
+      "home_cover_pct": 60.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2026
+     }
+    ],
+    "avg_home_cover_pct": 53.4,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -5623,6 +5895,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Bill Kennedy",
+      "games": 96,
+      "home_cover_pct": 47.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.7596
+     },
+     {
+      "name": "Ray Acosta",
+      "games": 159,
+      "home_cover_pct": 49.1,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.874
+     },
+     {
+      "name": "CJ Washington",
+      "games": 115,
+      "home_cover_pct": 44.3,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2631
+     }
+    ],
+    "avg_home_cover_pct": 47.1,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -6265,6 +6572,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "Curtis Blair",
+      "games": 145,
+      "home_cover_pct": 51.0,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8682
+     },
+     {
+      "name": "Sha'Rae Mitchell",
+      "games": 89,
+      "home_cover_pct": 50.6,
+      "significant": false,
+      "direction": null,
+      "p_value": 1.0
+     },
+     {
+      "name": "Jenna Schroeder",
+      "games": 112,
+      "home_cover_pct": 55.4,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.2986
+     }
+    ],
+    "avg_home_cover_pct": 52.3,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {
@@ -6879,6 +7221,41 @@
    "home_logo": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
    "away_logo": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
    "injuries_home": [],
+   "referee_crew": {
+    "officials": [
+     {
+      "name": "James Williams",
+      "games": 156,
+      "home_cover_pct": 51.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.6891
+     },
+     {
+      "name": "Justin Van Duyne",
+      "games": 156,
+      "home_cover_pct": 48.7,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.8103
+     },
+     {
+      "name": "Derrick Collins",
+      "games": 90,
+      "home_cover_pct": 48.9,
+      "significant": false,
+      "direction": null,
+      "p_value": 0.9161
+     }
+    ],
+    "avg_home_cover_pct": 49.8,
+    "away_friendly": false,
+    "home_friendly": false,
+    "has_significant": false,
+    "significant_officials": [],
+    "bias_flag_enabled": false,
+    "note": "僅供參考：2,626 場、67 位裁判（≥50 場）檢定後，裁判蓋盤傾向跨季不穩定（r=−0.22），不構成訊號"
+   },
    "injuries_away": [],
    "odds_history": [
     {

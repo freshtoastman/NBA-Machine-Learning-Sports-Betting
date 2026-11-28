@@ -1,7 +1,7 @@
 {
  "date": "2026-11-24",
  "is_today": false,
- "exported_at": "2026-11-28T15:01:58+08:00",
+ "exported_at": "2026-11-28T22:07:31+08:00",
  "summary": {
   "games": 3,
   "model_games": 3,
@@ -537,11 +537,11 @@
     "officials": [
      {
       "name": "Ben Taylor",
-      "games": 102,
-      "home_cover_pct": 49.0,
+      "games": 103,
+      "home_cover_pct": 48.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.9212
+      "p_value": 0.8439
      },
      {
       "name": "Marat Kogut",
@@ -553,14 +553,14 @@
      },
      {
       "name": "Jenna Reneau",
-      "games": 51,
-      "home_cover_pct": 39.2,
+      "games": 52,
+      "home_cover_pct": 38.5,
       "significant": false,
       "direction": null,
-      "p_value": 0.1608
+      "p_value": 0.1263
      }
     ],
-    "avg_home_cover_pct": 45.8,
+    "avg_home_cover_pct": 45.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1223,19 +1223,19 @@
     "officials": [
      {
       "name": "Justin Van Duyne",
-      "games": 155,
-      "home_cover_pct": 48.4,
+      "games": 156,
+      "home_cover_pct": 48.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.7481
+      "p_value": 0.8103
      },
      {
       "name": "Andy Nagy",
-      "games": 143,
-      "home_cover_pct": 44.8,
+      "games": 144,
+      "home_cover_pct": 44.4,
       "significant": false,
       "direction": null,
-      "p_value": 0.2416
+      "p_value": 0.2112
      },
      {
       "name": "Nate Green",
@@ -1246,7 +1246,7 @@
       "p_value": 0.9291
      }
     ],
-    "avg_home_cover_pct": 47.5,
+    "avg_home_cover_pct": 47.4,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
@@ -1886,19 +1886,19 @@
     "officials": [
      {
       "name": "John Goble",
-      "games": 148,
-      "home_cover_pct": 56.1,
+      "games": 149,
+      "home_cover_pct": 55.7,
       "significant": false,
       "direction": null,
-      "p_value": 0.1621
+      "p_value": 0.1898
      },
      {
       "name": "Karl Lane",
-      "games": 134,
-      "home_cover_pct": 48.5,
+      "games": 135,
+      "home_cover_pct": 48.1,
       "significant": false,
       "direction": null,
-      "p_value": 0.7956
+      "p_value": 0.7308
      },
      {
       "name": "Evan Scott",
@@ -1909,7 +1909,7 @@
       "p_value": 0.4437
      }
     ],
-    "avg_home_cover_pct": 52.9,
+    "avg_home_cover_pct": 52.6,
     "away_friendly": false,
     "home_friendly": false,
     "has_significant": false,
